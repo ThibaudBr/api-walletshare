@@ -1,11 +1,11 @@
-name: dev CI
+name: preprod CI
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ preprod ]
 
   pull_request:
-    branches: [ dev ]
+    branches: [ preprod ]
 
 jobs:
   build:
@@ -58,5 +58,16 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api-walletshare:dev
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api-walletshare:preprod
 
+  deploy_server:
+    name: Deploy - Docker - serveur
+    runs-on: ubuntu-18.04
+    needs: [ docker]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Trigger API Webhook reload service
+        uses: joelwmale/webhook-action@2.1.0
+        with:
+          url: ${{ secrets.WEBHOOK_URL }}
