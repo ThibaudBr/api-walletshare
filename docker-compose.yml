@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: "docker-nest-postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "*************"
+    ports:
+      - "5432:5432"
+    volumes:
+      - docker-nest-postgres:/var/lib/postgresql/data
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+    environment:
+      PORT: 8081
+      TYPEORM_HOST: "postgres"
+      TYPEORM_USERNAME: "postgres"
+      TYPEORM_PASSWORD: "*************"
+      TYPEORM_DATABASE: "docker-nest-postgres"
+      MAIL_HOST: ""
+      MAIL_USER: ""
+      MAIL_PASSWORD: ""
+
+
+volumes:
+  docker-nest-postgres:
