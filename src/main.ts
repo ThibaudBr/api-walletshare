@@ -8,9 +8,9 @@ async function bootstrap(): Promise<void> {
 
   // Swagger
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('API with NestJS')
-    .setDescription('API developed throughout the API with NestJS course')
-    .setVersion('1.0')
+    .setTitle('API Wallet Share Main')
+    .setDescription('API developed for Application Wallet Share')
+    .setVersion('0.0.1')
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
