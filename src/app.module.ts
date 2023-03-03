@@ -1,11 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DatabaseConfiguration } from './util/config/database.configuration';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { DataSource } from 'typeorm';
 
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forRootAsync({
+      useClass: DatabaseConfiguration,
+    }),
+    ConfigModule.forRoot({ isGlobal: true }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
+  constructor(private dataSource: DataSource) {}
 }
