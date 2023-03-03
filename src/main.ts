@@ -16,7 +16,7 @@ async function bootstrap(): Promise<void> {
   SwaggerModule.setup('api', app, document);
 
   app.enableCors({
-    origin: ['*', 'http://127.0.0.1:4200', 'http://localhost', 'http://localhost:4200'],
+    origin: ['*'],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     preflightContinue: false,
     optionsSuccessStatus: 200,
