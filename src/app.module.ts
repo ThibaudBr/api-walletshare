@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { DatabaseConfiguration } from './util/config/database.configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import HealthCheckModule from './api/health-check/health-check.module';
 
 @Module({
   imports: [
@@ -11,6 +12,8 @@ import { ConfigModule } from '@nestjs/config';
       useClass: DatabaseConfiguration,
     }),
     ConfigModule.forRoot({ isGlobal: true }),
+    // ________ Module ________
+    HealthCheckModule,
   ],
   controllers: [AppController],
   providers: [AppService],
