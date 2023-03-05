@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { HealthCheck, HealthCheckResult } from '@nestjs/terminus';
-import { CustomHealthCheckService } from './health-check.service';
+import { CustomHealthCheckService } from './custom-health-check.service';
 import { HealthCheckResponse } from './domain/response/health-check.response';
 
 /**
