@@ -2,6 +2,7 @@ import { Controller, Get, HttpCode } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { HealthCheck, HealthCheckResult } from '@nestjs/terminus';
 import { CustomHealthCheckService } from './health-check.service';
+import { HealthCheckResponse } from './domain/response/health-check.response';
 
 /**
  * @api {get} /health-check Health Check
@@ -23,7 +24,7 @@ export class HealthCheckController {
     description: 'Health Check for API WalletShare',
     content: { 'text/html': { example: 'Health Check for API WalletShare' } },
   })
-  check(): Promise<HealthCheckResult> {
+  check(): Promise<HealthCheckResponse> {
     return this.customHealthCheckService.checkHealth();
   }
 }
