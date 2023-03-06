@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -16,7 +17,8 @@ import { WhoCanShareCardEnum } from './enum/who-can-share-card.enum';
 import { WhoCanSeeCardInformationEnum } from './enum/who-can-see-card-information.enum';
 import { TypeOfCardEnum } from './enum/type-of-card.enum';
 import { IsEmail, IsUrl } from 'class-validator';
-
+import { OccupationEntity } from './occupation.entity';
+import { WhoCanCommunicateWithEnum } from './enum/who-can-communicate-with.enum';
 
 @Entity({ name: 'card' })
 export class CardEntity extends BaseEntity {
@@ -55,6 +57,9 @@ export class CardEntity extends BaseEntity {
   @Column({ nullable: true })
   occupation: string;
 
+  @Column({ type: 'integer', default: 0 })
+  numberOfShares: number;
+
   // ______________________________________________________
   // Relations
   // ______________________________________________________
@@ -80,6 +85,12 @@ export class CardEntity extends BaseEntity {
   })
   profilesWhoSavedCard: ProfileEntity[];
 
+  @ManyToMany(() => OccupationEntity, occupation => occupation.cards, {
+    onDelete: 'SET NULL',
+  })
+  @JoinTable()
+  occupations: OccupationEntity[];
+
   // ______________________________________________________
   // Enum
   // ______________________________________________________
@@ -87,14 +98,14 @@ export class CardEntity extends BaseEntity {
   @Column('text')
   typeOfCardEnum: TypeOfCardEnum;
 
-  @Column('text', { array: true, default: [] })
+  @Column({ type: 'set', enum: WhoCanShareCardEnum, default: [WhoCanShareCardEnum.DIFFUSIBLE] })
   whoCanShareCardEnums: WhoCanShareCardEnum[];
 
-  @Column('text', { array: true, default: [] })
+  @Column({ type: 'set', enum: WhoCanSeeCardInformationEnum, default: [WhoCanSeeCardInformationEnum.ALL] })
   whoCanSeeCardInformationEnums: WhoCanSeeCardInformationEnum[];
 
-  @Column('text', { array: true, default: [] })
-  whoCanSendMessagesEnums: WhoCanSeeCardInformationEnum[];
+  @Column({ type: 'set', enum: WhoCanCommunicateWithEnum, default: [WhoCanCommunicateWithEnum.ALL] })
+  whoCanSendMessagesEnums: WhoCanCommunicateWithEnum[];
 
   // ______________________________________________________
   // Timestamps

@@ -11,6 +11,8 @@ import {
 } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { CardEntity } from './card.entity';
+import { OccupationEntity } from './occupation.entity';
+import { CompanyEmployeeEntity } from './company-employee.entity';
 
 @Entity({ name: 'profile' })
 export class ProfileEntity {
@@ -48,6 +50,26 @@ export class ProfileEntity {
     },
   })
   savedCard?: CardEntity[];
+
+  @ManyToMany(() => OccupationEntity, occupation => occupation.profiles, {
+    onDelete: 'SET NULL',
+  })
+  @JoinTable({
+    name: 'profile-occupation',
+    joinColumn: {
+      name: 'profile_id',
+    },
+    inverseJoinColumn: {
+      name: 'occupation_id',
+    },
+  })
+  occupations?: OccupationEntity[];
+
+  @OneToMany(() => CompanyEmployeeEntity, companyEmployee => companyEmployee.profile, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  companies?: CompanyEmployeeEntity[];
 
   // ______________________________________________________
   // Timestamps
