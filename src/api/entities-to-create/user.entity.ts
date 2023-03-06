@@ -14,6 +14,7 @@ import { IsEmail, Length } from 'class-validator';
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from './profile.entity';
 import * as bcrypt from 'bcrypt';
+import { UserRoleEnum } from './enum/user-role.enum';
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -31,17 +32,42 @@ export class UserEntity extends BaseEntity {
   @Column({ unique: true })
   email?: string;
 
+  /**
+   * @description
+   * This is a flag to indicate if the user has confirmed their email address.
+   * This is used to prevent users from logging in before they have confirmed their email address.
+   */
+  @Column({ default: false })
+  isEmailConfirmed: boolean;
+
   @Column()
   @Length(5, 20)
   @Column({ unique: true })
   username?: string;
 
-  @Column({ unique: false, nullable: false, select: false })
+  /**
+   * @description
+   * Password is nullable because user can connect with Google
+   */
+  @Column({ unique: false, nullable: true, select: false })
   password: string;
 
   @Exclude()
   public jwtToken?: string;
 
+  /**
+   * @description
+   * This is a flag to indicate if the user has registered with google.
+   */
+  @Column({ default: false })
+  public isRegisteredWithGoogle: boolean;
+
+  @Column('text', { array: true, default: [UserRoleEnum.PUBLIC] })
+  userRoles: UserRoleEnum[];
+  /**
+   * @description
+   * This is a flag to indicate if the user has a stripe customer id.
+   */
   @Column({ unique: true, nullable: true })
   public stripCustomerId?: string;
   @Column({ nullable: true })

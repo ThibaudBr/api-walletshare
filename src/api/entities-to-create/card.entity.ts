@@ -17,6 +17,7 @@ import { WhoCanSeeCardInformationEnum } from './enum/who-can-see-card-informatio
 import { TypeOfCardEnum } from './enum/type-of-card.enum';
 import { IsEmail, IsUrl } from 'class-validator';
 
+
 @Entity({ name: 'card' })
 export class CardEntity extends BaseEntity {
   // ______________________________________________________
