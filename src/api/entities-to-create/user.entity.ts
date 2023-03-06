@@ -42,10 +42,15 @@ export class UserEntity extends BaseEntity {
   @Exclude()
   public jwtToken?: string;
 
-  /** _________________________________________________________
-   * Relations
-   * _________________________________________________________
-   * */
+  @Column({ unique: true, nullable: true })
+  public stripCustomerId?: string;
+  @Column({ nullable: true })
+  public monthlySubscriptionStatus?: string;
+
+  // _________________________________________________________
+  // Relations
+  // _________________________________________________________
+
   @OneToMany(() => ProfileEntity, profile => profile.user)
   @JoinTable({
     name: 'user_profile',
