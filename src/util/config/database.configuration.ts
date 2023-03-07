@@ -3,6 +3,25 @@ import { join } from 'path';
 import { Injectable } from '@nestjs/common';
 import * as process from 'process';
 import { logger } from './winston-logger.config';
+import { CardEntity } from '../../api/entities-to-create/card.entity';
+import CompanyEntity from '../../api/entities-to-create/company.entity';
+import { CompanyEmployeeEntity } from '../../api/entities-to-create/company-employee.entity';
+import { ConnectedCardEntity } from '../../api/entities-to-create/connected-card.entity';
+import { ConversationEntity } from '../../api/entities-to-create/conversation.entity';
+import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
+import { GroupEntity } from '../../api/entities-to-create/group.entity';
+import { GroupMembershipEntity } from '../../api/entities-to-create/group-membership.entity';
+import { InvoicesEntity } from '../../api/entities-to-create/invoices.entity';
+import { JoinedConversation } from '../../api/entities-to-create/joined-conversation.entity';
+import { MediaEntity } from '../../api/entities-to-create/media.entity';
+import { MessageEntity } from '../../api/entities-to-create/message.entity';
+import { OccupationEntity } from '../../api/entities-to-create/occupation.entity';
+import { PlanEntity } from '../../api/entities-to-create/plan.entity';
+import { ProfileEntity } from '../../api/entities-to-create/profile.entity';
+import { SocialNetworkEntity } from '../../api/entities-to-create/social-network.entity';
+import StripEventEntity from '../../api/entities-to-create/strip-event.entity';
+import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';
+import { UserEntity } from '../../api/entities-to-create/user.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -42,7 +61,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
               rejectUnauthorized: false,
             },
           },
-          entities: [join(__dirname, '**/*.entity{.ts,.js}')],
+          entities: [join(__dirname, '**', '*.entity.{ts,js}')],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PPROD === 'true',
         };
@@ -68,9 +87,29 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           username: process.env.TYPEORM_USERNAME_DEV,
           password: process.env.TYPEORM_PASSWORD_DEV,
           database: process.env.TYPEORM_DATABASE_DEV,
-          entities: [join(__dirname, '**', '*.entity.{ts,js}')],
           logging: process.env.TYPEORM_LOGGING_DEV === 'true',
           synchronize: process.env.TYPEORM_SYNCHRONIZE_DEV === 'true',
+          entities: [
+            CardEntity,
+            CompanyEntity,
+            CompanyEmployeeEntity,
+            ConnectedCardEntity,
+            ConversationEntity,
+            DiscountCodeEntity,
+            GroupEntity,
+            GroupMembershipEntity,
+            InvoicesEntity,
+            JoinedConversation,
+            MediaEntity,
+            MessageEntity,
+            OccupationEntity,
+            PlanEntity,
+            ProfileEntity,
+            SocialNetworkEntity,
+            StripEventEntity,
+            SubscriptionEntity,
+            UserEntity,
+          ],
         };
       } else {
         logger.error('NODE_ENV is not set');

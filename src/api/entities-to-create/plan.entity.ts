@@ -2,13 +2,12 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity, ManyToOne,
+  Entity,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { SubscriptionEntity } from './subscription.entity';
-import { UserEntity } from './user.entity';
 
 @Entity({ name: 'plan' })
 export class PlanEntity {

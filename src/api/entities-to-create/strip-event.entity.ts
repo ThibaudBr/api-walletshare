@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 /**
  * @name StripEventEntity
@@ -6,6 +6,8 @@ import { PrimaryGeneratedColumn } from 'typeorm';
  * @extends {BaseEntity}
  * @memberof PaymentEntity
  */
+@Entity({ name: 'strip_event' })
+
 export default class StripEventEntity {
   // ______________________________________________________
   // Properties

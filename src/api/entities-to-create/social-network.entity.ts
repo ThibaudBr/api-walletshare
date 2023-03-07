@@ -1,4 +1,13 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { CardEntity } from './card.entity';
 
 /**
  * @description
@@ -32,6 +41,13 @@ export class SocialNetworkEntity {
 
   @Column()
   icon: string;
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
+
+  @OneToMany(() => CardEntity, cardEntity => cardEntity.socialNetwork)
+  cards: CardEntity[];
 
   // ______________________________________________________
   // Timestamps

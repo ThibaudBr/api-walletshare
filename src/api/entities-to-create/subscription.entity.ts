@@ -33,8 +33,8 @@ export class SubscriptionEntity {
   @IsDate()
   public endDate: Date;
 
-  @Column({ type: 'enum', enum: StatusSubscriptionEnum, default: StatusSubscriptionEnum.ACTIVE })
-  public status: StatusSubscriptionEnum;
+  // @Column({ type: 'enum', enum: StatusSubscriptionEnum, default: StatusSubscriptionEnum.ACTIVE })
+  // public status: StatusSubscriptionEnum;
 
   /**
    * @description
@@ -42,9 +42,6 @@ export class SubscriptionEntity {
    */
   @Column({ unique: true, nullable: true })
   public stripCustomerId?: string;
-
-  @Column({ name: 'discount_code', type: 'varchar', length: 255, nullable: true })
-  public discountCode?: string;
 
   @Column({ name: 'trial_start_date', type: 'date', nullable: true })
   @IsDate()

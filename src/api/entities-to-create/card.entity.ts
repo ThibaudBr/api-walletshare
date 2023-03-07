@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -17,33 +16,17 @@ import { ConnectedCardEntity } from './connected-card.entity';
 import { WhoCanShareCardEnum } from './enum/who-can-share-card.enum';
 import { WhoCanSeeCardInformationEnum } from './enum/who-can-see-card-information.enum';
 import { TypeOfCardEnum } from './enum/type-of-card.enum';
-import { IsEmail, IsUrl, Length, MaxLength } from 'class-validator';
+import { IsEmail, IsUrl, MaxLength } from 'class-validator';
 import { OccupationEntity } from './occupation.entity';
 import { WhoCanCommunicateWithEnum } from './enum/who-can-communicate-with.enum';
 import { MediaEntity } from './media.entity';
-import { GroupMembership } from './group-membership.entity';
+import { GroupMembershipEntity } from './group-membership.entity';
 import { MessageEntity } from './message.entity';
 import { TransferableStatusCardEnum } from './enum/transferable-status-card.enum';
+import { SocialNetworkEntity } from './social-network.entity';
 
-/**
-* @swagger
- * components:
- *  schemas:
- *  CardEntity:
- *  type: object
- *  required:
- *  - id
- *  - owner
- *  - typeOfCard
- *  - whoCanShareCard
- *  - whoCanSeeCardInformation
- *  - whoCanCommunicateWith
- *  - transferableStatusCard
- *  properties:
- *
- */
-@Entity({ name: 'card' })
-export class CardEntity extends BaseEntity {
+@Entity()
+export class CardEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -54,10 +37,6 @@ export class CardEntity extends BaseEntity {
   @Column({ nullable: true })
   @MaxLength(255)
   socialName?: string;
-
-  @Column({ nullable: true })
-  @MaxLength(255)
-  socialNetwork?: string;
 
   @Column({ default: false })
   isOwnerPro: boolean;
@@ -81,7 +60,7 @@ export class CardEntity extends BaseEntity {
   @IsEmail({}, { each: true })
   emails: string[];
 
-  @Column({ nullable: true })
+  @Column('text', { array: true, default: [] })
   @IsUrl({}, { each: true })
   urls?: string[];
 
@@ -120,10 +99,7 @@ export class CardEntity extends BaseEntity {
   })
   connectedCardTwo: ConnectedCardEntity[];
 
-  @ManyToMany(() => ProfileEntity, profile => profile.savedCard, {
-    cascade: true,
-    onDelete: 'SET NULL',
-  })
+  @ManyToMany(() => ProfileEntity, profile => profile.savedCard)
   profilesWhoSavedCard: ProfileEntity[];
 
   @ManyToMany(() => OccupationEntity, occupation => occupation.cards, {
@@ -132,11 +108,11 @@ export class CardEntity extends BaseEntity {
   @JoinTable()
   occupations: OccupationEntity[];
 
-  @OneToMany(() => GroupMembership, groupMembership => groupMembership.card, {
+  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.card, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  groupMemberships: GroupMembership[];
+  groupMemberships: GroupMembershipEntity[];
 
   @OneToOne(() => MediaEntity, media => media.CardPicture, {
     cascade: true,
@@ -150,6 +126,11 @@ export class CardEntity extends BaseEntity {
   })
   messages?: MessageEntity[];
 
+  @ManyToOne(() => SocialNetworkEntity, socialNetwork => socialNetwork.cards, {
+    onDelete: 'SET NULL',
+  })
+  socialNetwork: SocialNetworkEntity;
+
   // ______________________________________________________
   // Enum
   // ______________________________________________________
@@ -157,13 +138,13 @@ export class CardEntity extends BaseEntity {
   @Column({ type: 'enum', enum: TypeOfCardEnum, default: TypeOfCardEnum.SOCIAL_NETWORK })
   typeOfCardEnum: TypeOfCardEnum;
 
-  @Column({ type: 'set', enum: WhoCanShareCardEnum, default: [WhoCanShareCardEnum.DIFFUSIBLE] })
+  @Column('text', { array: true, default: [WhoCanShareCardEnum.DIFFUSIBLE] })
   whoCanShareCardEnums: WhoCanShareCardEnum[];
 
-  @Column({ type: 'set', enum: WhoCanSeeCardInformationEnum, default: [WhoCanSeeCardInformationEnum.ALL] })
+  @Column('text', { array: true, default: [WhoCanSeeCardInformationEnum.ALL] })
   whoCanSeeCardInformationEnums: WhoCanSeeCardInformationEnum[];
 
-  @Column({ type: 'set', enum: WhoCanCommunicateWithEnum, default: [WhoCanCommunicateWithEnum.ALL] })
+  @Column('text', { array: true, default: [WhoCanCommunicateWithEnum.ALL] })
   whoCanSendMessagesEnums: WhoCanCommunicateWithEnum[];
 
   // ______________________________________________________

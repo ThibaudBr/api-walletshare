@@ -1,15 +1,26 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { CardEntity } from './card.entity';
 import { GroupEntity } from './group.entity';
 import { RoleGroupMembershipEnum } from './enum/role-group-membership.enum';
+import { TypeOfCardEnum } from './enum/type-of-card.enum';
 
 @Entity()
-export class GroupMembership {
+export class GroupMembershipEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   // ______________________________________________________
   // Properties
   // ______________________________________________________
 
-  @Column({ type: 'enum', enum: RoleGroupMembershipEnum, default: RoleGroupMembershipEnum.MEMBER })
+  @Column('text', { array: true, default: [RoleGroupMembershipEnum.MEMBER] })
   role: RoleGroupMembershipEnum;
 
   // ______________________________________________________
@@ -18,6 +29,7 @@ export class GroupMembership {
 
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.groupMemberships, {
     onDelete: 'CASCADE',
+
   })
   card: CardEntity;
 

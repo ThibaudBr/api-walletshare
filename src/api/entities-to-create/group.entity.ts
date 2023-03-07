@@ -12,7 +12,7 @@ import {
 import { Length } from 'class-validator';
 import { ConversationEntity } from './conversation.entity';
 import { MediaEntity } from './media.entity';
-import { GroupMembership } from './group-membership.entity';
+import { GroupMembershipEntity } from './group-membership.entity';
 
 @Entity()
 export class GroupEntity {
@@ -26,8 +26,8 @@ export class GroupEntity {
   @Length(5, 30)
   @Column({ nullable: false, unique: true })
   name: string;
-  @OneToMany(() => GroupMembership, groupMembership => groupMembership.group, { cascade: true })
-  members: GroupMembership[];
+  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
+  members: GroupMembershipEntity[];
 
   @OneToMany(() => ConversationEntity, conversation => conversation.group, {
     nullable: false,

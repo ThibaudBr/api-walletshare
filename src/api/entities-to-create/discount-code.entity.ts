@@ -2,7 +2,7 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
+  Entity, JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -47,6 +47,7 @@ export class DiscountCodeEntity {
   // ______________________________________________________
 
   @ManyToMany(() => SubscriptionEntity, subscriptionEntity => subscriptionEntity.discountCodes)
+  @JoinTable()
   subscriptions: SubscriptionEntity[];
 
   // ______________________________________________________

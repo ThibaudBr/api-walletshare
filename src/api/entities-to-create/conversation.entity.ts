@@ -1,4 +1,5 @@
 import {
+  Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
@@ -21,6 +22,12 @@ export class ConversationEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
+  content: string;
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
   @OneToOne(() => ConnectedCardEntity, connectedCardEntity => connectedCardEntity.conversation)
   connectedCard: ConnectedCardEntity;
 

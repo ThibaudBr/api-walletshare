@@ -2,10 +2,12 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
+  Entity,
   JoinTable,
   ManyToMany,
   ManyToOne,
-  OneToMany, OneToOne,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -14,6 +16,7 @@ import { CompanyEmployeeEntity } from './company-employee.entity';
 import { ProfileEntity } from './profile.entity';
 import { MediaEntity } from './media.entity';
 
+@Entity({ name: 'company' })
 export default class CompanyEntity {
   constructor(partial?: Partial<CompanyEntity>) {
     if (partial) {

@@ -1,13 +1,13 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
-  ManyToOne,
   CreateDateColumn,
-  UpdateDateColumn,
   DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
-import { IsNotEmpty, IsString, IsNumber, IsEnum, IsDateString, ValidateNested } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { SubscriptionEntity } from './subscription.entity';
 import { StatusInvoiceEnum } from './enum/status-invoice.enum';
 
@@ -30,9 +30,9 @@ export class InvoicesEntity {
   @IsString()
   currency: string;
 
-  @Column({ type: 'enum', enum: StatusInvoiceEnum, default: StatusInvoiceEnum.PENDING })
-  @IsEnum(StatusInvoiceEnum)
-  status: StatusInvoiceEnum;
+  // @Column({ type: 'enum', enum: StatusInvoiceEnum, default: StatusInvoiceEnum.PENDING })
+  // @IsEnum(StatusInvoiceEnum)
+  // status: StatusInvoiceEnum;
 
   // Informations supplémentaires pour la France
 

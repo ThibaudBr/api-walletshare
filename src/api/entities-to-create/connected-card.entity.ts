@@ -1,15 +1,15 @@
 import {
-  BeforeInsert,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity, getRepository, JoinColumn,
-  ManyToOne, OneToOne,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { CardEntity } from './card.entity';
 import { ConversationEntity } from './conversation.entity';
-import { getRepositoryToken } from '@nestjs/typeorm';
 
 @Entity({ name: 'connected-card' })
 export class ConnectedCardEntity {
@@ -45,7 +45,6 @@ export class ConnectedCardEntity {
     onDelete: 'CASCADE',
   })
   cardEntityTwo: CardEntity;
-
 
   // ______________________________________________________
   // Timestamps
