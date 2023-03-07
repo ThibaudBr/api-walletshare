@@ -7,9 +7,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IsEnum, IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { SubscriptionEntity } from './subscription.entity';
-import { StatusInvoiceEnum } from './enum/status-invoice.enum';
 
 @Entity('invoices')
 export class InvoicesEntity {

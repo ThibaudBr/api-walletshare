@@ -10,7 +10,6 @@ import {
 import { CardEntity } from './card.entity';
 import { GroupEntity } from './group.entity';
 import { RoleGroupMembershipEnum } from './enum/role-group-membership.enum';
-import { TypeOfCardEnum } from './enum/type-of-card.enum';
 
 @Entity()
 export class GroupMembershipEntity {
@@ -29,7 +28,6 @@ export class GroupMembershipEntity {
 
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.groupMemberships, {
     onDelete: 'CASCADE',
-
   })
   card: CardEntity;
 

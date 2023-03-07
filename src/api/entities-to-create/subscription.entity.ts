@@ -10,7 +10,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IsDate } from 'class-validator';
-import { StatusSubscriptionEnum } from './enum/status-subscription.enum';
 import { PlanEntity } from './plan.entity';
 import { UserEntity } from './user.entity';
 import { InvoicesEntity } from './invoices.entity';

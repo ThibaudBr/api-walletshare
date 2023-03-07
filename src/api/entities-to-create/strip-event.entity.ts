@@ -7,7 +7,6 @@ import { Entity, PrimaryGeneratedColumn } from 'typeorm';
  * @memberof PaymentEntity
  */
 @Entity({ name: 'strip_event' })
-
 export default class StripEventEntity {
   // ______________________________________________________
   // Properties

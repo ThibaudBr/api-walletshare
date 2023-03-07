@@ -50,5 +50,4 @@ import { UserEntity } from './user.entity';
     // ________ Service ________
   ],
 })
-export class EntitiesToMoveModule {
-}
+export class EntitiesToMoveModule {}
