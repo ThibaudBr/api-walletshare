@@ -1,17 +1,40 @@
 import {
+  BeforeInsert,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
-  ManyToOne,
+  Entity, getRepository, JoinColumn,
+  ManyToOne, OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { CardEntity } from './card.entity';
+import { ConversationEntity } from './conversation.entity';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 @Entity({ name: 'connected-card' })
 export class ConnectedCardEntity {
+  constructor(partial?: Partial<ConnectedCardEntity>) {
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
+
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
+
+  @OneToOne(() => ConversationEntity, conversation => conversation, {
+    cascade: true,
+  })
+  @JoinColumn()
+  conversation: ConversationEntity;
 
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.connectedCardOne, {
     onDelete: 'CASCADE',
@@ -22,6 +45,7 @@ export class ConnectedCardEntity {
     onDelete: 'CASCADE',
   })
   cardEntityTwo: CardEntity;
+
 
   // ______________________________________________________
   // Timestamps

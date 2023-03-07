@@ -1,16 +1,18 @@
-import { ProfileEntity } from './profile.entity';
 import {
   Column,
-  CreateDateColumn, DeleteDateColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
-  OneToMany,
+  OneToMany, OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { OccupationEntity } from './occupation.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
+import { ProfileEntity } from './profile.entity';
+import { MediaEntity } from './media.entity';
 
 export default class CompanyEntity {
   constructor(partial?: Partial<CompanyEntity>) {
@@ -38,17 +40,52 @@ export default class CompanyEntity {
   @Column({ nullable: true })
   description?: string;
 
+  @Column({ nullable: true })
+  website?: string;
+
+  @Column({ nullable: true })
+  address?: string;
+
+  @Column({ nullable: true })
+  zip_code?: string;
+
+  @Column({ nullable: true })
+  city?: string;
+
+  @Column({ nullable: true })
+  country?: string;
+
+  @Column({ nullable: true })
+  phone?: string;
+
+  @Column({ nullable: true })
+  email?: string;
+
   // ______________________________________________________
   // Relations
   // ______________________________________________________
 
-  @OneToMany(() => CompanyEmployeeEntity, (companyEmployeeEntity) => companyEmployeeEntity.company)
+  @OneToMany(() => CompanyEmployeeEntity, companyEmployeeEntity => companyEmployeeEntity.company)
   employees: CompanyEmployeeEntity[];
 
-  @ManyToMany(() => OccupationEntity, (occupationEntity) => occupationEntity.companies)
+  @ManyToMany(() => OccupationEntity, occupationEntity => occupationEntity.companies)
   @JoinTable()
   occupations: OccupationEntity[];
 
+  @ManyToOne(() => ProfileEntity, profileEntity => profileEntity.ownerCompanies)
+  ownerProfile: ProfileEntity;
+
+  @OneToOne(() => MediaEntity, media => media.profileEntityProfilePicture, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  profilePicture?: MediaEntity;
+
+  @OneToOne(() => MediaEntity, media => media.profileEntityBanner, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  bannerPicture?: MediaEntity;
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________

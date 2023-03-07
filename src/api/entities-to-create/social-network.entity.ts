@@ -37,6 +37,10 @@ export class SocialNetworkEntity {
   @Column()
   icon: string;
 
+  // ______________________________________________________
+  // Timestamps
+  // ______________________________________________________
+
   @CreateDateColumn()
   createdAt: Date;
 

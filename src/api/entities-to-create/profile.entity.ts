@@ -6,6 +6,7 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -13,6 +14,9 @@ import { UserEntity } from './user.entity';
 import { CardEntity } from './card.entity';
 import { OccupationEntity } from './occupation.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
+import { MediaEntity } from './media.entity';
+import { JoinedConversation } from './joined-conversation.entity';
+import CompanyEntity from './company.entity';
 
 @Entity({ name: 'profile' })
 export class ProfileEntity {
@@ -70,6 +74,30 @@ export class ProfileEntity {
     onDelete: 'SET NULL',
   })
   companies?: CompanyEmployeeEntity[];
+
+  @OneToOne(() => MediaEntity, media => media.profileEntityProfilePicture, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  profilePicture?: MediaEntity;
+
+  @OneToOne(() => MediaEntity, media => media.profileEntityBanner, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  bannerPicture?: MediaEntity;
+
+  @OneToMany(() => JoinedConversation, joinedConversation => joinedConversation.profile, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  joinedConversations?: JoinedConversation[];
+
+  @OneToMany(() => CompanyEntity, companyEntity => companyEntity.ownerProfile, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  ownerCompanies?: CompanyEntity[];
 
   // ______________________________________________________
   // Timestamps

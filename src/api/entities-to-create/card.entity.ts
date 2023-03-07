@@ -8,6 +8,7 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,6 +20,9 @@ import { TypeOfCardEnum } from './enum/type-of-card.enum';
 import { IsEmail, IsUrl } from 'class-validator';
 import { OccupationEntity } from './occupation.entity';
 import { WhoCanCommunicateWithEnum } from './enum/who-can-communicate-with.enum';
+import { MediaEntity } from './media.entity';
+import { GroupMembership } from './group-membership.entity';
+import { MessageEntity } from './message.entity';
 
 @Entity({ name: 'card' })
 export class CardEntity extends BaseEntity {
@@ -91,6 +95,18 @@ export class CardEntity extends BaseEntity {
   @JoinTable()
   occupations: OccupationEntity[];
 
+  @OneToMany(() => GroupMembership, groupMembership => groupMembership.card, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  groupMemberships: GroupMembership[];
+
+  @OneToOne(() => MediaEntity, media => media.CardPicture, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  media: MediaEntity;
+
   // ______________________________________________________
   // Enum
   // ______________________________________________________
@@ -106,6 +122,12 @@ export class CardEntity extends BaseEntity {
 
   @Column({ type: 'set', enum: WhoCanCommunicateWithEnum, default: [WhoCanCommunicateWithEnum.ALL] })
   whoCanSendMessagesEnums: WhoCanCommunicateWithEnum[];
+
+  @OneToMany(() => MessageEntity, message => message.author, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  messages?: MessageEntity[];
 
   // ______________________________________________________
   // Timestamps
