@@ -23,6 +23,7 @@ import { WhoCanCommunicateWithEnum } from './enum/who-can-communicate-with.enum'
 import { MediaEntity } from './media.entity';
 import { GroupMembership } from './group-membership.entity';
 import { MessageEntity } from './message.entity';
+import { TransferableStatusCardEnum } from './enum/transferable-status-card.enum';
 
 @Entity({ name: 'card' })
 export class CardEntity extends BaseEntity {
@@ -64,10 +65,11 @@ export class CardEntity extends BaseEntity {
   @Column({ type: 'integer', default: 0 })
   numberOfShares: number;
 
+  @Column('text', { array: true, default: [TransferableStatusCardEnum.IS_TRANSFERABLE] })
+
   // ______________________________________________________
   // Relations
   // ______________________________________________________
-
   @ManyToOne(() => ProfileEntity, profile => profile.personalCards)
   owner: ProfileEntity[];
 
@@ -107,6 +109,11 @@ export class CardEntity extends BaseEntity {
   })
   media: MediaEntity;
 
+  @OneToMany(() => MessageEntity, message => message.author, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  messages?: MessageEntity[];
   // ______________________________________________________
   // Enum
   // ______________________________________________________
@@ -122,12 +129,6 @@ export class CardEntity extends BaseEntity {
 
   @Column({ type: 'set', enum: WhoCanCommunicateWithEnum, default: [WhoCanCommunicateWithEnum.ALL] })
   whoCanSendMessagesEnums: WhoCanCommunicateWithEnum[];
-
-  @OneToMany(() => MessageEntity, message => message.author, {
-    cascade: true,
-    onDelete: 'SET NULL',
-  })
-  messages?: MessageEntity[];
 
   // ______________________________________________________
   // Timestamps
