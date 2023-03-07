@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >AppController</li>
+  <li >HealthCheckController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,9 +55,15 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.controller.ts</code>
+            <code>src/api/health-check/health-check.controller.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>health-check</code>
+            </p>
 
 
 
@@ -78,7 +84,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getHello" >getHello</a>
+                                <a href="#check" >check</a>
                             </li>
                         </ul>
                     </td>
@@ -101,16 +107,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHello"></a>
+                    <a name="check"></a>
                     <span class="name">
-                        <span ><b>getHello</b></span>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>check</b></span>
+                        <a href="#check"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getHello()</code>
+<code>check()</code>
                 </td>
             </tr>
 
@@ -118,26 +124,23 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@HttpCode(200)<br />@ApiResponse({status: 200, description: &#x27;Hello World!&#x27;, content: undefined})<br /></code>
+                    <code>@Get(&#x27;/&#x27;)<br />@HttpCode(200)<br />@HealthCheck()<br />@ApiResponse({status: 200, description: &#x27;Health Check for API WalletShare&#x27;, content: undefined})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app.controller.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/api/health-check/health-check.controller.ts:27</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>   HTTP/1.1 200 OK
-   Hello World!</p>
-</div>
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/HealthCheckResponse.html" target="_self" >Promise&lt;HealthCheckResponse&gt;</a></code>
 
                     </div>
                 </td>
@@ -149,37 +152,33 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode } from &#x27;@nestjs/common&#x27;;
-import { AppService } from &#x27;./app.service&#x27;;
 import { ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import { HealthCheck, HealthCheckResult } from &#x27;@nestjs/terminus&#x27;;
+import { CustomHealthCheckService } from &#x27;./custom-health-check.service&#x27;;
+import { HealthCheckResponse } from &#x27;./domain/response/health-check.response&#x27;;
 
-@Controller()
-@ApiTags(&#x27;HelloWorld&#x27;)
-export class AppController {
-  /**
-   * @ignore
-   */
-  constructor(private readonly appService: AppService) {}
+/**
+ * @api {get} /health-check Health Check
+ * @apiName HealthCheck
+ * @apiGroup HealthCheck
+ * @apiVersion 0.0.1
+ * @apiDescription Health Check for API WalletShare
+ */
+@Controller(&#x27;health-check&#x27;)
+@ApiTags(&#x27;HealthCheck&#x27;)
+export class HealthCheckController {
+  constructor(private customHealthCheckService: CustomHealthCheckService) {}
 
-  /**
-   * @api {get} / Hello World
-   * @apiName GetHello
-   * @apiGroup HelloWorld
-   * @apiVersion 0.0.1
-   * @apiDescription Hello World!
-   * @apiSuccess {String} text/html Hello World!
-   * @apiSuccessExample {text/html} Success-Response:
-   *    HTTP/1.1 200 OK
-   *    Hello World!
-   */
-  @Get()
+  @Get(&#x27;/&#x27;)
   @HttpCode(200)
+  @HealthCheck()
   @ApiResponse({
     status: 200,
-    description: &#x27;Hello World!&#x27;,
-    content: { &#x27;text/html&#x27;: { example: &#x27;Hello World!&#x27; } },
+    description: &#x27;Health Check for API WalletShare&#x27;,
+    content: { &#x27;text/html&#x27;: { example: &#x27;Health Check for API WalletShare&#x27; } },
   })
-  getHello(): string {
-    return this.appService.getHello();
+  check(): Promise&lt;HealthCheckResponse&gt; {
+    return this.customHealthCheckService.checkHealth();
   }
 }
 </code></pre>
@@ -227,7 +226,7 @@ export class AppController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'HealthCheckController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

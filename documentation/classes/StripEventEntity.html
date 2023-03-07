@@ -28,16 +28,23 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content class">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >AppController</li>
+  <li>Classes</li>
+  <li >StripEventEntity</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,9 +62,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.controller.ts</code>
+            <code>src/api/entities-to-create/strip-event.entity.ts</code>
         </p>
-
 
 
 
@@ -68,17 +74,17 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Properties</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getHello" >getHello</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#id" >id</a>
                             </li>
                         </ul>
                     </td>
@@ -88,110 +94,84 @@
 
 
 
+
         </tbody>
     </table>
 </section>
 
+
             <section>
     
-    <h3 id="methods">
-        Methods
+    <h3 id="inputs">
+        Properties
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHello"></a>
+                    <a name="id"></a>
                     <span class="name">
-                        <span ><b>getHello</b></span>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Public</span>
+                        <span ><b>id</b></span>
+                        <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getHello()</code>
-                </td>
-            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br />@HttpCode(200)<br />@ApiResponse({status: 200, description: &#x27;Hello World!&#x27;, content: undefined})<br /></code>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @PrimaryGeneratedColumn()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/api/entities-to-create/strip-event.entity.ts:15</a></div>
+                        </td>
+                    </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app.controller.ts:31</a></div>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>   HTTP/1.1 200 OK
-   Hello World!</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </div>
-                </td>
-            </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+
+
+
+
+
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode } from &#x27;@nestjs/common&#x27;;
-import { AppService } from &#x27;./app.service&#x27;;
-import { ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PrimaryGeneratedColumn } from &#x27;typeorm&#x27;;
 
-@Controller()
-@ApiTags(&#x27;HelloWorld&#x27;)
-export class AppController {
-  /**
-   * @ignore
-   */
-  constructor(private readonly appService: AppService) {}
+/**
+ * @name StripEventEntity
+ * @class StripEventEntity
+ * @extends {BaseEntity}
+ * @memberof PaymentEntity
+ */
+export default class StripEventEntity {
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
 
-  /**
-   * @api {get} / Hello World
-   * @apiName GetHello
-   * @apiGroup HelloWorld
-   * @apiVersion 0.0.1
-   * @apiDescription Hello World!
-   * @apiSuccess {String} text/html Hello World!
-   * @apiSuccessExample {text/html} Success-Response:
-   *    HTTP/1.1 200 OK
-   *    Hello World!
-   */
-  @Get()
-  @HttpCode(200)
-  @ApiResponse({
-    status: 200,
-    description: &#x27;Hello World!&#x27;,
-    content: { &#x27;text/html&#x27;: { example: &#x27;Hello World!&#x27; } },
-  })
-  getHello(): string {
-    return this.appService.getHello();
-  }
+  @PrimaryGeneratedColumn()
+  public id: string;
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
 
 
 
@@ -226,8 +206,8 @@ export class AppController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'StripEventEntity.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

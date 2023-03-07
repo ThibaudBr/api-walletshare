@@ -28,16 +28,19 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
 
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >AppController</li>
+  <li>Injectables</li>
+  <li >CustomHealthCheckService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,10 +58,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.controller.ts</code>
+            <code>src/api/health-check/custom-health-check.service.ts</code>
         </p>
-
-
 
 
 
@@ -78,7 +79,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getHello" >getHello</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#checkHealth" >checkHealth</a>
                             </li>
                         </ul>
                     </td>
@@ -93,6 +95,55 @@
 </section>
 
             <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(queryBus: QueryBus)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/api/health-check/custom-health-check.service.ts:7</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>queryBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>QueryBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
     
     <h3 id="methods">
         Methods
@@ -101,93 +152,64 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHello"></a>
+                    <a name="checkHealth"></a>
                     <span class="name">
-                        <span ><b>getHello</b></span>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>checkHealth</b></span>
+                        <a href="#checkHealth"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getHello()</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br />@HttpCode(200)<br />@ApiResponse({status: 200, description: &#x27;Hello World!&#x27;, content: undefined})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app.controller.ts:31</a></div>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkHealth()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>   HTTP/1.1 200 OK
-   Hello World!</p>
-</div>
+                    <div class="io-line">Defined in <a href="" data-line="10"
+                            class="link-to-prism">src/api/health-check/custom-health-check.service.ts:10</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/HealthCheckResponse.html" target="_self" >Promise&lt;HealthCheckResponse&gt;</a></code>
 
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode } from &#x27;@nestjs/common&#x27;;
-import { AppService } from &#x27;./app.service&#x27;;
-import { ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { QueryBus } from &#x27;@nestjs/cqrs&#x27;;
+import { HealthCheckQuery } from &#x27;./cqrs/query/health-check.query&#x27;;
+import { HealthCheckResponse } from &#x27;./domain/response/health-check.response&#x27;;
 
-@Controller()
-@ApiTags(&#x27;HelloWorld&#x27;)
-export class AppController {
-  /**
-   * @ignore
-   */
-  constructor(private readonly appService: AppService) {}
+@Injectable()
+export class CustomHealthCheckService {
+  constructor(private readonly queryBus: QueryBus) {}
 
-  /**
-   * @api {get} / Hello World
-   * @apiName GetHello
-   * @apiGroup HelloWorld
-   * @apiVersion 0.0.1
-   * @apiDescription Hello World!
-   * @apiSuccess {String} text/html Hello World!
-   * @apiSuccessExample {text/html} Success-Response:
-   *    HTTP/1.1 200 OK
-   *    Hello World!
-   */
-  @Get()
-  @HttpCode(200)
-  @ApiResponse({
-    status: 200,
-    description: &#x27;Hello World!&#x27;,
-    content: { &#x27;text/html&#x27;: { example: &#x27;Hello World!&#x27; } },
-  })
-  getHello(): string {
-    return this.appService.getHello();
+  async checkHealth(): Promise&lt;HealthCheckResponse&gt; {
+    return await this.queryBus.execute(new HealthCheckQuery());
   }
 }
 </code></pre>
     </div>
+
 </div>
-
-
-
 
 
 
@@ -226,8 +248,8 @@ export class AppController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'CustomHealthCheckService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -119,8 +119,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="9"
-                            class="link-to-prism">src/util/config/database.configuration.ts:9</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/util/config/database.configuration.ts:28</a></div>
                 </td>
             </tr>
 
@@ -147,6 +147,25 @@ import { join } from &#x27;path&#x27;;
 import { Injectable } from &#x27;@nestjs/common&#x27;;
 import * as process from &#x27;process&#x27;;
 import { logger } from &#x27;./winston-logger.config&#x27;;
+import { CardEntity } from &#x27;../../api/entities-to-create/card.entity&#x27;;
+import CompanyEntity from &#x27;../../api/entities-to-create/company.entity&#x27;;
+import { CompanyEmployeeEntity } from &#x27;../../api/entities-to-create/company-employee.entity&#x27;;
+import { ConnectedCardEntity } from &#x27;../../api/entities-to-create/connected-card.entity&#x27;;
+import { ConversationEntity } from &#x27;../../api/entities-to-create/conversation.entity&#x27;;
+import { DiscountCodeEntity } from &#x27;../../api/entities-to-create/discount-code.entity&#x27;;
+import { GroupEntity } from &#x27;../../api/entities-to-create/group.entity&#x27;;
+import { GroupMembershipEntity } from &#x27;../../api/entities-to-create/group-membership.entity&#x27;;
+import { InvoicesEntity } from &#x27;../../api/entities-to-create/invoices.entity&#x27;;
+import { JoinedConversation } from &#x27;../../api/entities-to-create/joined-conversation.entity&#x27;;
+import { MediaEntity } from &#x27;../../api/entities-to-create/media.entity&#x27;;
+import { MessageEntity } from &#x27;../../api/entities-to-create/message.entity&#x27;;
+import { OccupationEntity } from &#x27;../../api/entities-to-create/occupation.entity&#x27;;
+import { PlanEntity } from &#x27;../../api/entities-to-create/plan.entity&#x27;;
+import { ProfileEntity } from &#x27;../../api/entities-to-create/profile.entity&#x27;;
+import { SocialNetworkEntity } from &#x27;../../api/entities-to-create/social-network.entity&#x27;;
+import StripEventEntity from &#x27;../../api/entities-to-create/strip-event.entity&#x27;;
+import { SubscriptionEntity } from &#x27;../../api/entities-to-create/subscription.entity&#x27;;
+import { UserEntity } from &#x27;../../api/entities-to-create/user.entity&#x27;;
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -186,7 +205,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
               rejectUnauthorized: false,
             },
           },
-          entities: [join(__dirname, &#x27;**/*.entity{.ts,.js}&#x27;)],
+          entities: [join(__dirname, &#x27;**&#x27;, &#x27;*.entity.{ts,js}&#x27;)],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
           logging: process.env.TYPEORM_LOGGING_PPROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
         };
@@ -212,9 +231,29 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           username: process.env.TYPEORM_USERNAME_DEV,
           password: process.env.TYPEORM_PASSWORD_DEV,
           database: process.env.TYPEORM_DATABASE_DEV,
-          entities: [join(__dirname, &#x27;**&#x27;, &#x27;*.entity.{ts,js}&#x27;)],
           logging: process.env.TYPEORM_LOGGING_DEV &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
           synchronize: process.env.TYPEORM_SYNCHRONIZE_DEV &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
+          entities: [
+            CardEntity,
+            CompanyEntity,
+            CompanyEmployeeEntity,
+            ConnectedCardEntity,
+            ConversationEntity,
+            DiscountCodeEntity,
+            GroupEntity,
+            GroupMembershipEntity,
+            InvoicesEntity,
+            JoinedConversation,
+            MediaEntity,
+            MessageEntity,
+            OccupationEntity,
+            PlanEntity,
+            ProfileEntity,
+            SocialNetworkEntity,
+            StripEventEntity,
+            SubscriptionEntity,
+            UserEntity,
+          ],
         };
       } else {
         logger.error(&#x27;NODE_ENV is not set&#x27;);

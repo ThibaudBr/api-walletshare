@@ -28,163 +28,107 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content module">
                    <div class="content-data">
 
 
 
-
-
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >AppController</li>
+    <li>Modules</li>
+    <li >EntitiesToMoveModule</li>
 </ol>
 
+
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-        </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
+    <li  class="active" >
+        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li >
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="c-info">
+
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.controller.ts</code>
+            <code>src/api/entities-to-create/entities-to-move.module.ts</code>
         </p>
 
 
 
 
 
+        <div class="container-fluid module">
+            <div class="row">
+            </div>
+        </div>
 
 
-            <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#getHello" >getHello</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getHello"></a>
-                    <span class="name">
-                        <span ><b>getHello</b></span>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getHello()</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br />@HttpCode(200)<br />@ApiResponse({status: 200, description: &#x27;Hello World!&#x27;, content: undefined})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app.controller.ts:31</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>   HTTP/1.1 200 OK
-   Hello World!</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    </div>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode } from &#x27;@nestjs/common&#x27;;
-import { AppService } from &#x27;./app.service&#x27;;
-import { ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
+import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
+import { CardEntity } from &#x27;./card.entity&#x27;;
+import CompanyEntity from &#x27;./company.entity&#x27;;
+import { CompanyEmployeeEntity } from &#x27;./company-employee.entity&#x27;;
+import { ConnectedCardEntity } from &#x27;./connected-card.entity&#x27;;
+import { ConversationEntity } from &#x27;./conversation.entity&#x27;;
+import { DiscountCodeEntity } from &#x27;./discount-code.entity&#x27;;
+import { GroupEntity } from &#x27;./group.entity&#x27;;
+import { GroupMembershipEntity } from &#x27;./group-membership.entity&#x27;;
+import { InvoicesEntity } from &#x27;./invoices.entity&#x27;;
+import { JoinedConversation } from &#x27;./joined-conversation.entity&#x27;;
+import { MediaEntity } from &#x27;./media.entity&#x27;;
+import { MessageEntity } from &#x27;./message.entity&#x27;;
+import { OccupationEntity } from &#x27;./occupation.entity&#x27;;
+import { PlanEntity } from &#x27;./plan.entity&#x27;;
+import { ProfileEntity } from &#x27;./profile.entity&#x27;;
+import { SocialNetworkEntity } from &#x27;./social-network.entity&#x27;;
+import StripEventEntity from &#x27;./strip-event.entity&#x27;;
+import { SubscriptionEntity } from &#x27;./subscription.entity&#x27;;
+import { UserEntity } from &#x27;./user.entity&#x27;;
 
-@Controller()
-@ApiTags(&#x27;HelloWorld&#x27;)
-export class AppController {
-  /**
-   * @ignore
-   */
-  constructor(private readonly appService: AppService) {}
-
-  /**
-   * @api {get} / Hello World
-   * @apiName GetHello
-   * @apiGroup HelloWorld
-   * @apiVersion 0.0.1
-   * @apiDescription Hello World!
-   * @apiSuccess {String} text/html Hello World!
-   * @apiSuccessExample {text/html} Success-Response:
-   *    HTTP/1.1 200 OK
-   *    Hello World!
-   */
-  @Get()
-  @HttpCode(200)
-  @ApiResponse({
-    status: 200,
-    description: &#x27;Hello World!&#x27;,
-    content: { &#x27;text/html&#x27;: { example: &#x27;Hello World!&#x27; } },
-  })
-  getHello(): string {
-    return this.appService.getHello();
-  }
-}
+@Module({
+  imports: [
+    TypeOrmModule.forFeature([
+      // ________ Entity ________
+      CardEntity,
+      CompanyEntity,
+      CompanyEmployeeEntity,
+      ConnectedCardEntity,
+      ConversationEntity,
+      DiscountCodeEntity,
+      GroupEntity,
+      GroupMembershipEntity,
+      InvoicesEntity,
+      JoinedConversation,
+      MediaEntity,
+      MessageEntity,
+      OccupationEntity,
+      PlanEntity,
+      ProfileEntity,
+      SocialNetworkEntity,
+      StripEventEntity,
+      SubscriptionEntity,
+      UserEntity,
+    ]),
+  ],
+  controllers: [],
+  providers: [
+    // ________ Service ________
+  ],
+})
+export class EntitiesToMoveModule {}
 </code></pre>
     </div>
 </div>
+
 
 
 
@@ -226,8 +170,8 @@ export class AppController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'EntitiesToMoveModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
