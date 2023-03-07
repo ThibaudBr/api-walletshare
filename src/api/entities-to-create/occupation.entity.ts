@@ -13,11 +13,19 @@ import { ProfileEntity } from './profile.entity';
 
 @Entity('occupation')
 export class OccupationEntity {
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false, unique: true })
   name: string;
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
 
   @ManyToMany(() => ProfileEntity, profileEntity => profileEntity.occupations)
   profiles: ProfileEntity[];

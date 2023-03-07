@@ -13,6 +13,10 @@ import { ConversationEntity } from './conversation.entity';
 
 @Entity()
 export class JoinedConversation {
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

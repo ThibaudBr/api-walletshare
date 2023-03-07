@@ -17,7 +17,7 @@ import { ConnectedCardEntity } from './connected-card.entity';
 import { WhoCanShareCardEnum } from './enum/who-can-share-card.enum';
 import { WhoCanSeeCardInformationEnum } from './enum/who-can-see-card-information.enum';
 import { TypeOfCardEnum } from './enum/type-of-card.enum';
-import { IsEmail, IsUrl } from 'class-validator';
+import { IsEmail, IsUrl, Length, MaxLength } from 'class-validator';
 import { OccupationEntity } from './occupation.entity';
 import { WhoCanCommunicateWithEnum } from './enum/who-can-communicate-with.enum';
 import { MediaEntity } from './media.entity';
@@ -25,6 +25,23 @@ import { GroupMembership } from './group-membership.entity';
 import { MessageEntity } from './message.entity';
 import { TransferableStatusCardEnum } from './enum/transferable-status-card.enum';
 
+/**
+* @swagger
+ * components:
+ *  schemas:
+ *  CardEntity:
+ *  type: object
+ *  required:
+ *  - id
+ *  - owner
+ *  - typeOfCard
+ *  - whoCanShareCard
+ *  - whoCanSeeCardInformation
+ *  - whoCanCommunicateWith
+ *  - transferableStatusCard
+ *  properties:
+ *
+ */
 @Entity({ name: 'card' })
 export class CardEntity extends BaseEntity {
   // ______________________________________________________
@@ -35,41 +52,59 @@ export class CardEntity extends BaseEntity {
   id: string;
 
   @Column({ nullable: true })
-  socialName: string;
+  @MaxLength(255)
+  socialName?: string;
 
   @Column({ nullable: true })
-  socialNetwork: string;
+  @MaxLength(255)
+  socialNetwork?: string;
+
   @Column({ default: false })
   isOwnerPro: boolean;
+
   @Column({ nullable: true })
-  firstname: string;
+  @MaxLength(255)
+  firstname?: string;
+
   @Column({ nullable: true })
-  lastname: string;
+  @MaxLength(255)
+  lastname?: string;
+
   @Column({ nullable: true })
-  companyName: string;
+  @MaxLength(255)
+  companyName?: string;
+
   @Column('text', { array: true, default: [] })
   phones: string[];
+
   @Column('text', { array: true, default: [] })
   @IsEmail({}, { each: true })
   emails: string[];
+
   @Column({ nullable: true })
   @IsUrl({}, { each: true })
-  urls: string[];
+  urls?: string[];
+
   @Column({ nullable: true })
-  birthday: Date;
+  birthday?: Date;
+
   @Column('text', { nullable: true })
-  notes: string;
+  notes?: string;
+
   @Column({ nullable: true })
-  occupation: string;
+  @MaxLength(255)
+  occupation?: string;
 
   @Column({ type: 'integer', default: 0 })
   numberOfShares: number;
 
   @Column('text', { array: true, default: [TransferableStatusCardEnum.IS_TRANSFERABLE] })
+  transferableStatusCardEnum: TransferableStatusCardEnum[];
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
+
   @ManyToOne(() => ProfileEntity, profile => profile.personalCards)
   owner: ProfileEntity[];
 
@@ -114,11 +149,12 @@ export class CardEntity extends BaseEntity {
     onDelete: 'SET NULL',
   })
   messages?: MessageEntity[];
+
   // ______________________________________________________
   // Enum
   // ______________________________________________________
 
-  @Column('text')
+  @Column({ type: 'enum', enum: TypeOfCardEnum, default: TypeOfCardEnum.SOCIAL_NETWORK })
   typeOfCardEnum: TypeOfCardEnum;
 
   @Column({ type: 'set', enum: WhoCanShareCardEnum, default: [WhoCanShareCardEnum.DIFFUSIBLE] })

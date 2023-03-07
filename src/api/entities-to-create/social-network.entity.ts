@@ -1,15 +1,7 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { ProfileEntity } from './profile.entity';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 /**
+ * @description
  * define the social network entity
  * @class
  * @classdesc define the social network entity
@@ -25,6 +17,10 @@ import { ProfileEntity } from './profile.entity';
  */
 @Entity()
 export class SocialNetworkEntity {
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

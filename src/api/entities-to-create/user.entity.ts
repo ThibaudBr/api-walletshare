@@ -15,6 +15,7 @@ import { Exclude } from 'class-transformer';
 import { ProfileEntity } from './profile.entity';
 import * as bcrypt from 'bcrypt';
 import { UserRoleEnum } from './enum/user-role.enum';
+import { SubscriptionEntity } from './subscription.entity';
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -24,6 +25,10 @@ export class UserEntity extends BaseEntity {
       Object.assign(this, partial);
     }
   }
+
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
 
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -64,30 +69,16 @@ export class UserEntity extends BaseEntity {
 
   @Column('text', { array: true, default: [UserRoleEnum.PUBLIC] })
   userRoles: UserRoleEnum[];
-  /**
-   * @description
-   * This is a flag to indicate if the user has a stripe customer id.
-   */
-  @Column({ unique: true, nullable: true })
-  public stripCustomerId?: string;
-  @Column({ nullable: true })
-  public monthlySubscriptionStatus?: string;
 
   // _________________________________________________________
   // Relations
   // _________________________________________________________
 
   @OneToMany(() => ProfileEntity, profile => profile.user)
-  @JoinTable({
-    name: 'user_profile',
-    joinColumn: {
-      name: 'user_id',
-    },
-    inverseJoinColumn: {
-      name: 'profile_id',
-    },
-  })
   profiles: ProfileEntity[];
+
+  @OneToMany(() => SubscriptionEntity, subscription => subscription.user)
+  subscriptions: SubscriptionEntity[];
 
   // ______________________________________________________
   // Timestamps

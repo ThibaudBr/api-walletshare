@@ -1,6 +1,7 @@
 import {
   Column,
-  CreateDateColumn, DeleteDateColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   OneToMany,
@@ -15,6 +16,10 @@ import { GroupMembership } from './group-membership.entity';
 
 @Entity()
 export class GroupEntity {
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

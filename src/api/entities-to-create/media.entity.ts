@@ -14,11 +14,19 @@ import CompanyEntity from './company.entity';
 
 @Entity()
 export class MediaEntity {
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   public key: string;
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
 
   @OneToOne(() => GroupEntity, group => group.picture, { onDelete: 'CASCADE' })
   groupPicture: GroupEntity;

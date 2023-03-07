@@ -10,6 +10,7 @@ import {
 import { ConnectedCardEntity } from './connected-card.entity';
 import { GroupEntity } from './group.entity';
 import { JoinedConversation } from './joined-conversation.entity';
+import { MessageEntity } from './message.entity';
 
 @Entity({ name: 'conversation' })
 export class ConversationEntity {
@@ -26,8 +27,8 @@ export class ConversationEntity {
   @OneToMany(() => GroupEntity, groupEntity => groupEntity.conversations)
   group: GroupEntity[];
 
-  @OneToMany(() => Message, message => message.conversation, {})
-  messages: Message[];
+  @OneToMany(() => MessageEntity, message => message.conversation, {})
+  messages: MessageEntity[];
 
   @OneToMany(() => JoinedConversation, joinedConversation => joinedConversation.conversation)
   joinedProfiles: JoinedConversation[];

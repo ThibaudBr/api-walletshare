@@ -2,16 +2,16 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
-  ManyToOne,
+  Entity, ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ConversationEntity } from './conversation.entity';
-import { CardEntity } from './card.entity';
+import { SubscriptionEntity } from './subscription.entity';
+import { UserEntity } from './user.entity';
 
-@Entity()
-export class MessageEntity {
+@Entity({ name: 'plan' })
+export class PlanEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -19,18 +19,27 @@ export class MessageEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  public content: string;
+  @Column({ name: 'name', type: 'varchar', length: 255 })
+  name: string;
+
+  @Column({ name: 'description', type: 'varchar', length: 255 })
+  description: string;
+
+  @Column({ name: 'price', type: 'float' })
+  price: number;
+
+  @Column({ name: 'duration', type: 'int' })
+  duration: number;
+
+  @Column({ name: 'discounted_price', type: 'float' })
+  discountedPrice: number;
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() => CardEntity, cardEntity => cardEntity.messages, { onDelete: 'CASCADE' })
-  public author: CardEntity;
-
-  @ManyToOne(() => ConversationEntity, conversation => conversation.messages)
-  conversation: ConversationEntity;
+  @OneToMany(() => SubscriptionEntity, subscriptionEntity => subscriptionEntity.plan)
+  subscriptions: SubscriptionEntity[];
 
   // ______________________________________________________
   // Timestamps
