@@ -14,7 +14,7 @@ import { ConversationEntity } from './conversation.entity';
 import { MediaEntity } from './media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';
 
-@Entity()
+@Entity({ name: 'group' })
 export class GroupEntity {
   // ______________________________________________________
   // Properties

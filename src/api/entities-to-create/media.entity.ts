@@ -12,7 +12,7 @@ import { GroupEntity } from './group.entity';
 import { CardEntity } from './card.entity';
 import CompanyEntity from './company.entity';
 
-@Entity()
+@Entity({ name: 'media' })
 export class MediaEntity {
   // ______________________________________________________
   // Properties

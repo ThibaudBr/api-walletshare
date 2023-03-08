@@ -11,7 +11,7 @@ import {
 import { CardEntity } from './card.entity';
 import { ConversationEntity } from './conversation.entity';
 
-@Entity({ name: 'connected-card' })
+@Entity({ name: 'connected_card' })
 export class ConnectedCardEntity {
   constructor(partial?: Partial<ConnectedCardEntity>) {
     if (partial) {

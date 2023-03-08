@@ -24,7 +24,7 @@ import { CardEntity } from './card.entity';
  * @property {Date} updatedAt - the date of update of the social network
  * @property {Date} deletedAt - the date of deletion of the social network
  */
-@Entity()
+@Entity({ name: 'social_network' })
 export class SocialNetworkEntity {
   // ______________________________________________________
   // Properties

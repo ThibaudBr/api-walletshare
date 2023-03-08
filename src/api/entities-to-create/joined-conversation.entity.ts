@@ -11,7 +11,7 @@ import {
 import { ProfileEntity } from './profile.entity';
 import { ConversationEntity } from './conversation.entity';
 
-@Entity()
+@Entity({ name: 'joined_conversation' })
 export class JoinedConversation {
   // ______________________________________________________
   // Properties

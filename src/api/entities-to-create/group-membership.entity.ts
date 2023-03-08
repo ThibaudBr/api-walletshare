@@ -11,7 +11,7 @@ import { CardEntity } from './card.entity';
 import { GroupEntity } from './group.entity';
 import { RoleGroupMembershipEnum } from './enum/role-group-membership.enum';
 
-@Entity()
+@Entity({ name: 'group_membership' })
 export class GroupMembershipEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;

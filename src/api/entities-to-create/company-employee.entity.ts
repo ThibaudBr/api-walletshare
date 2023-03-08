@@ -11,7 +11,7 @@ import CompanyEntity from './company.entity';
 import { ProfileEntity } from './profile.entity';
 import { RoleCompanyEmployeeEnum } from './enum/role-company-employee.enum';
 
-@Entity('company-employee')
+@Entity('company_employee')
 export class CompanyEmployeeEntity {
   constructor(partial?: Partial<CompanyEmployeeEntity>) {
     if (partial) {

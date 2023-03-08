@@ -10,7 +10,7 @@ import {
 import { ConversationEntity } from './conversation.entity';
 import { CardEntity } from './card.entity';
 
-@Entity()
+@Entity({ name: 'message' })
 export class MessageEntity {
   // ______________________________________________________
   // Properties

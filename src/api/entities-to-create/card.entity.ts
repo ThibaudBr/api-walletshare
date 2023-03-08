@@ -25,7 +25,7 @@ import { MessageEntity } from './message.entity';
 import { TransferableStatusCardEnum } from './enum/transferable-status-card.enum';
 import { SocialNetworkEntity } from './social-network.entity';
 
-@Entity()
+@Entity({ name: 'card' })
 export class CardEntity {
   // ______________________________________________________
   // Properties

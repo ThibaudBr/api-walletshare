@@ -15,7 +15,7 @@ import { UserEntity } from './user.entity';
 import { InvoicesEntity } from './invoices.entity';
 import { DiscountCodeEntity } from './discount-code.entity';
 
-@Entity()
+@Entity({ name: 'subscription' })
 export class SubscriptionEntity {
   // ______________________________________________________
   // Properties
