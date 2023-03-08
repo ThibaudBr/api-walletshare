@@ -124,8 +124,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/app.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -155,6 +155,9 @@ import { ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
 @Controller()
 @ApiTags(&#x27;HelloWorld&#x27;)
 export class AppController {
+  /**
+   * @ignore
+   */
   constructor(private readonly appService: AppService) {}
 
   /**
