@@ -21,7 +21,7 @@ import { ProfileEntity } from '../../api/entities-to-create/profile.entity';
 import { SocialNetworkEntity } from '../../api/entities-to-create/social-network.entity';
 import StripEventEntity from '../../api/entities-to-create/strip-event.entity';
 import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';
-import { UserEntity } from '../../api/entities-to-create/user.entity';
+import { UserEntity } from '../../api/user/domain/entities/user.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {

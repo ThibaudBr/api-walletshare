@@ -10,7 +10,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from './user.entity';
+import { UserEntity } from '../user/domain/entities/user.entity';
 import { CardEntity } from './card.entity';
 import { OccupationEntity } from './occupation.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
