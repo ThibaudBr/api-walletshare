@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content entity">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -36,9 +36,15 @@
 
 
 
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >UserEntity</li>
+  <li>Classes</li>
+  <li >CreateLogDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,8 +62,10 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/user/domain/entities/user.entity.ts</code>
+            <code>src/api/api-log/domain/dto/create-log.dto.ts</code>
         </p>
+
+
 
 
 
@@ -75,48 +83,62 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#createdAt" >createdAt</a>
+                                <a href="#apiName" >apiName</a>
                             </li>
                             <li>
-                                <a href="#deletedAt" >deletedAt</a>
+                                <a href="#apiType" >apiType</a>
                             </li>
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#email" >email</a>
-                            </li>
-                            <li>
-                                <a href="#id" >id</a>
-                            </li>
-                            <li>
-                                <a href="#isEmailConfirmed" >isEmailConfirmed</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#isRegisteredWithGoogle" >isRegisteredWithGoogle</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Optional</span>
-                                <a href="#jwtToken" >jwtToken</a>
-                            </li>
-                            <li>
-                                <a href="#password" >password</a>
-                            </li>
-                            <li>
-                                <a href="#profiles" >profiles</a>
-                            </li>
-                            <li>
-                                <a href="#subscriptions" >subscriptions</a>
-                            </li>
-                            <li>
-                                <a href="#updatedAt" >updatedAt</a>
+                                <a href="#apiVersion" >apiVersion</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#username" >username</a>
+                                <a href="#body" >body</a>
                             </li>
                             <li>
-                                <a href="#userRoles" >userRoles</a>
+                                    <span class="modifier">Optional</span>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#headers" >headers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#ip" >ip</a>
+                            </li>
+                            <li>
+                                <a href="#loggingType" >loggingType</a>
+                            </li>
+                            <li>
+                                <a href="#method" >method</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#os" >os</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#platform" >platform</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#responseBody" >responseBody</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#responseHeaders" >responseHeaders</a>
+                            </li>
+                            <li>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#screenSize" >screenSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#status" >status</a>
                             </li>
                         </ul>
                     </td>
@@ -131,6 +153,7 @@
     </table>
 </section>
 
+
             <section>
     
     <h3 id="inputs">
@@ -140,16 +163,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createdAt"></a>
+                    <a name="apiName"></a>
                     <span class="name">
-                        <span ><b>createdAt</b></span>
-                        <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>apiName</b></span>
+                        <a href="#apiName"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
@@ -158,13 +181,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @CreateDateColumn()<br />
+                            @ApiProperty()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:7</a></div>
                         </td>
                     </tr>
 
@@ -175,16 +198,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="deletedAt"></a>
+                    <a name="apiType"></a>
                     <span class="name">
-                        <span ><b>deletedAt</b></span>
-                        <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>apiType</b></span>
+                        <a href="#apiType"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#ApiTypeEnum" target="_self" >ApiTypeEnum</a></code>
 
                     </td>
                 </tr>
@@ -193,13 +216,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @DeleteDateColumn()<br />
+                            @ApiProperty({enum: ApiTypeEnum})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:96</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -210,17 +233,52 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="email"></a>
+                    <a name="apiVersion"></a>
+                    <span class="name">
+                        <span ><b>apiVersion</b></span>
+                        <a href="#apiVersion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="body"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>email</b></span>
-                        <a href="#email"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>body</b></span>
+                        <a href="#body"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                     </td>
                 </tr>
@@ -229,13 +287,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsEmail()<br />@Column({unique: true})<br />
+                            @ApiProperty({type: &#x27;json&#x27;, nullable: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -246,313 +304,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="id"></a>
-                    <span class="name">
-                        <span ><b>id</b></span>
-                        <a href="#id"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @PrimaryGeneratedColumn(&#x27;uuid&#x27;)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:33</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="isEmailConfirmed"></a>
-                    <span class="name">
-                        <span ><b>isEmailConfirmed</b></span>
-                        <a href="#isEmailConfirmed"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Column({default: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:61</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>This is a flag to indicate if the user has confirmed their email address.
-This is used to prevent users from logging in before they have confirmed their email address.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="isRegisteredWithGoogle"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>isRegisteredWithGoogle</b></span>
-                        <a href="#isRegisteredWithGoogle"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Column({default: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:71</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>This is a flag to indicate if the user has registered with google.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="jwtToken"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                            <span class="modifier">Optional</span>
-                        <span ><b>jwtToken</b></span>
-                        <a href="#jwtToken"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Exclude()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:64</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="password"></a>
-                    <span class="name">
-                        <span ><b>password</b></span>
-                        <a href="#password"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Column({unique: false, nullable: true, select: false})<br />@Exclude()<br />@Matches(/^(?&#x3D;.*\d)(?&#x3D;.*[a-z])(?&#x3D;.*[A-Z])(?&#x3D;.*[!@#$%^&amp;*])[a-zA-Z\d!@#$%^&amp;*]{5,16}$/, {message: &#x27;The password must contain at least one number, one special character and one letter&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:53</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Password is nullable because user can connect with Google</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="profiles"></a>
-                    <span class="name">
-                        <span ><b>profiles</b></span>
-                        <a href="#profiles"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/ProfileEntity.html" target="_self" >ProfileEntity[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @OneToMany(undefined, profile &#x3D;&gt; profile.user)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:81</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="subscriptions"></a>
-                    <span class="name">
-                        <span ><b>subscriptions</b></span>
-                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/SubscriptionEntity.html" target="_self" >SubscriptionEntity[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @OneToMany(undefined, subscription &#x3D;&gt; subscription.user)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:84</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updatedAt"></a>
-                    <span class="name">
-                        <span ><b>updatedAt</b></span>
-                        <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @UpdateDateColumn()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:93</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="username"></a>
+                    <a name="error"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>username</b></span>
-                        <a href="#username"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -567,13 +323,13 @@ This is used to prevent users from logging in before they have confirmed their e
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column()<br />@Length(5, 20)<br />@Column({unique: true})<br />
+                            @ApiProperty({type: &#x27;text&#x27;, nullable: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -584,16 +340,17 @@ This is used to prevent users from logging in before they have confirmed their e
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="userRoles"></a>
+                    <a name="headers"></a>
                     <span class="name">
-                        <span ><b>userRoles</b></span>
-                        <a href="#userRoles"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Optional</span>
+                        <span ><b>headers</b></span>
+                        <a href="#headers"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#UserRoleEnum" target="_self" >UserRoleEnum[]</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                     </td>
                 </tr>
@@ -602,13 +359,370 @@ This is used to prevent users from logging in before they have confirmed their e
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;text&#x27;, {array: true, default: undefined})<br />
+                            @ApiProperty({type: &#x27;json&#x27;, nullable: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ip"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>ip</b></span>
+                        <a href="#ip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loggingType"></a>
+                    <span class="name">
+                        <span ><b>loggingType</b></span>
+                        <a href="#loggingType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/LoggingTypeEnum.html" target="_self" >LoggingTypeEnum</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:10</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="method"></a>
+                    <span class="name">
+                        <span ><b>method</b></span>
+                        <a href="#method"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="os"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>os</b></span>
+                        <a href="#os"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="platform"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>platform</b></span>
+                        <a href="#platform"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="responseBody"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>responseBody</b></span>
+                        <a href="#responseBody"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({type: &#x27;json&#x27;, nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="responseHeaders"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>responseHeaders</b></span>
+                        <a href="#responseHeaders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({type: &#x27;json&#x27;, nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="screenSize"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>screenSize</b></span>
+                        <a href="#screenSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="status"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>status</b></span>
+                        <a href="#status"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/api/api-log/domain/dto/create-log.dto.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -616,121 +730,73 @@ This is used to prevent users from logging in before they have confirmed their e
         </tbody>
     </table>
 </section>
+
+
+
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  BaseEntity,
-  BeforeInsert,
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from &#x27;typeorm&#x27;;
-import { IsEmail, Length, Matches } from &#x27;class-validator&#x27;;
-import { Exclude } from &#x27;class-transformer&#x27;;
-import { ProfileEntity } from &#x27;../../../entities-to-create/profile.entity&#x27;;
-import * as bcrypt from &#x27;bcrypt&#x27;;
-import { UserRoleEnum } from &#x27;../../../entities-to-create/enum/user-role.enum&#x27;;
-import { SubscriptionEntity } from &#x27;../../../entities-to-create/subscription.entity&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { ApiTypeEnum } from &#x27;../enum/api-type.enum&#x27;;
+import { LoggingTypeEnum } from &quot;../enum/logging-type.enum&quot;;
 
-@Entity({ name: &#x27;user&#x27; })
-export class UserEntity extends BaseEntity {
-  constructor(partial?: Partial&lt;UserEntity&gt;) {
-    super();
-    if (partial) {
-      Object.assign(this, partial);
-    }
-  }
+export class CreateLogDto {
+  @ApiProperty()
+  apiName: string;
 
-  // ______________________________________________________
-  // Properties
-  // ______________________________________________________
+  @ApiProperty()
+  loggingType: LoggingTypeEnum;
 
-  @PrimaryGeneratedColumn(&#x27;uuid&#x27;)
-  id: string;
+  @ApiProperty()
+  apiVersion: string;
 
-  @IsEmail()
-  @Column({ unique: true })
-  email?: string;
+  @ApiProperty({ enum: ApiTypeEnum })
+  apiType: ApiTypeEnum;
 
-  @Column()
-  @Length(5, 20)
-  @Column({ unique: true })
-  username?: string;
+  @ApiProperty()
+  method: string;
 
-  /**
-   * @description
-   * Password is nullable because user can connect with Google
-   */
-  @Column({ unique: false, nullable: true, select: false })
-  @Exclude()
-  @Matches(/^(?&#x3D;.*\d)(?&#x3D;.*[a-z])(?&#x3D;.*[A-Z])(?&#x3D;.*[!@#$%^&amp;*])[a-zA-Z\d!@#$%^&amp;*]{5,16}$/, {
-    message: &#x27;The password must contain at least one number, one special character and one letter&#x27;,
-  })
-  password: string;
+  @ApiProperty()
+  route: string;
 
-  /**
-   * @description
-   * This is a flag to indicate if the user has confirmed their email address.
-   * This is used to prevent users from logging in before they have confirmed their email address.
-   */
-  @Column({ default: false })
-  isEmailConfirmed: boolean;
+  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
+  headers?: object;
 
-  @Exclude()
-  public jwtToken?: string;
+  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
+  body?: object;
 
-  /**
-   * @description
-   * This is a flag to indicate if the user has registered with google.
-   */
-  @Column({ default: false })
-  public isRegisteredWithGoogle: boolean;
+  @ApiProperty({ nullable: true })
+  status?: number;
 
-  @Column(&#x27;text&#x27;, { array: true, default: [UserRoleEnum.PUBLIC] })
-  userRoles: UserRoleEnum[];
+  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
+  responseHeaders?: object;
 
-  // _________________________________________________________
-  // Relations
-  // _________________________________________________________
+  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
+  responseBody?: object;
 
-  @OneToMany(() &#x3D;&gt; ProfileEntity, profile &#x3D;&gt; profile.user)
-  profiles: ProfileEntity[];
+  @ApiProperty({ type: &#x27;text&#x27;, nullable: true })
+  error?: string;
 
-  @OneToMany(() &#x3D;&gt; SubscriptionEntity, subscription &#x3D;&gt; subscription.user)
-  subscriptions: SubscriptionEntity[];
+  @ApiProperty({ nullable: true })
+  os?: string;
 
-  // ______________________________________________________
-  // Timestamps
-  // ______________________________________________________
-  @CreateDateColumn()
-  createdAt: Date;
+  @ApiProperty({ nullable: true })
+  platform?: string;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
+  @ApiProperty({ nullable: true })
+  screenSize?: string;
 
-  @DeleteDateColumn()
-  deletedAt: Date;
-
-  @BeforeInsert()
-  async setPassword(password: string): Promise&lt;void&gt; {
-    this.password &#x3D; await bcrypt.hash(password || this.password, 10);
-  }
+  @ApiProperty({ nullable: true })
+  ip?: string;
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
 
 
 
@@ -765,8 +831,8 @@ export class UserEntity extends BaseEntity {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserEntity.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreateLogDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

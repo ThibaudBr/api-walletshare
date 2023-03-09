@@ -18,7 +18,6 @@ import { ProfileEntity } from './profile.entity';
 import { SocialNetworkEntity } from './social-network.entity';
 import StripEventEntity from './strip-event.entity';
 import { SubscriptionEntity } from './subscription.entity';
-import { UserEntity } from '../user/domain/entities/user.entity';
 
 @Module({
   imports: [

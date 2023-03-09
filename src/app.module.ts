@@ -12,7 +12,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { RequestLoggingMiddleware } from './middleware/request-logging.middleware';
 import { ResponseLoggingMiddleware } from './middleware/response-logging.middleware';
 import { ErrorLoggingMiddleware } from './middleware/error-logging.middleware';
-import { ApiLogService } from "./api/api-log/api-log.service";
+import { ApiLogService } from './api/api-log/api-log.service';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { ApiLogService } from "./api/api-log/api-log.service";
       useClass: DatabaseConfiguration,
     }),
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: 3201 }},
+      { name: 'API_LOG', transport: Transport.TCP, options: { port: 3201 } },
       { name: 'API_MAIL', transport: Transport.TCP },
     ]),
     // ________ Module ________

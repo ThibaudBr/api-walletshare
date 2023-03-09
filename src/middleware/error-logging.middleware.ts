@@ -1,5 +1,5 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { CreateLogDto } from '../api/api-log/domain/dto/create-log.dto';
 import { ApiTypeEnum } from '../api/api-log/domain/enum/api-type.enum';
 import { ApiLogService } from '../api/api-log/api-log.service';

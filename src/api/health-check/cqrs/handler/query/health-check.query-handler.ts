@@ -3,7 +3,6 @@ import { HealthCheckQuery } from '../../query/health-check.query';
 import { HealthCheckResponse } from '../../../domain/response/health-check.response';
 import {
   DiskHealthIndicator,
-  HealthCheckResult,
   HealthCheckService,
   HealthIndicatorResult,
   MemoryHealthIndicator,

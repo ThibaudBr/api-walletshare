@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { ApiTypeEnum } from '../enum/api-type.enum';
-import { LoggingTypeEnum } from "../enum/logging-type.enum";
+import { LoggingTypeEnum } from '../enum/logging-type.enum';
 
 export class CreateLogDto {
   @ApiProperty()

@@ -628,11 +628,11 @@
 } from &#x27;typeorm&#x27;;
 import { IsDate } from &#x27;class-validator&#x27;;
 import { PlanEntity } from &#x27;./plan.entity&#x27;;
-import { UserEntity } from &#x27;./user.entity&#x27;;
+import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
 import { InvoicesEntity } from &#x27;./invoices.entity&#x27;;
 import { DiscountCodeEntity } from &#x27;./discount-code.entity&#x27;;
 
-@Entity()
+@Entity({ name: &#x27;subscription&#x27; })
 export class SubscriptionEntity {
   // ______________________________________________________
   // Properties
