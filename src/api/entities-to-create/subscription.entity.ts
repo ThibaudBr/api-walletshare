@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { IsDate } from 'class-validator';
 import { PlanEntity } from './plan.entity';
-import { UserEntity } from './user.entity';
+import { UserEntity } from '../user/domain/entities/user.entity';
 import { InvoicesEntity } from './invoices.entity';
 import { DiscountCodeEntity } from './discount-code.entity';
 
