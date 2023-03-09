@@ -22,15 +22,16 @@
     "documentation:serve": "npx @compodoc/compodoc -p tsconfig.json --serve"
   },
   "dependencies": {
-    "@compodoc/compodoc": "^1.1.19",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
     "@nestjs/cqrs": "^9.0.3",
+    "@nestjs/microservices": "^9.3.9",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.2.1",
     "@nestjs/terminus": "^9.2.1",
     "@nestjs/typeorm": "^9.0.1",
+    "@types/useragent": "^2.3.1",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
@@ -39,9 +40,11 @@
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.6.2",
     "typeorm": "^0.3.12",
+    "useragent": "^2.3.0",
     "winston": "^3.8.2"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.19",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
