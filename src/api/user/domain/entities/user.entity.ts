@@ -13,8 +13,9 @@ import { IsEmail, Length, Matches } from 'class-validator';
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from '../../../entities-to-create/profile.entity';
 import * as bcrypt from 'bcrypt';
-import { UserRoleEnum } from '../../../entities-to-create/enum/user-role.enum';
+import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
+import { ReferralCodeEntity } from "../../../entities-to-create/referal-code.entity";
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -83,6 +84,11 @@ export class UserEntity extends BaseEntity {
   @OneToMany(() => SubscriptionEntity, subscription => subscription.user)
   subscriptions: SubscriptionEntity[];
 
+  @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.owner)
+  referralCodes: ReferralCodeEntity[];
+
+  @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.usedBy)
+  usedReferralCodes: ReferralCodeEntity;
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________

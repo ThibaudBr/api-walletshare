@@ -1,4 +1,5 @@
 import {
+  Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
@@ -8,8 +9,8 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+  UpdateDateColumn
+} from "typeorm";
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { CardEntity } from './card.entity';
 import { OccupationEntity } from './occupation.entity';
@@ -26,6 +27,9 @@ export class ProfileEntity {
 
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column()
+  usernameProfile: string;
 
   // ______________________________________________________
   // Relations
