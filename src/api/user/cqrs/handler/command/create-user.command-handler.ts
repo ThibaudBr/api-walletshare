@@ -8,6 +8,7 @@ import { DuplicateUsernameException } from '../../../../../util/exception/custom
 import { DuplicateEmailException } from '../../../../../util/exception/custom-http-exception/duplicate-email.exception';
 import { InvalidParameterEntityException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
 import { CreateUserResponse } from '../../../domain/response/create-user.response';
+import { UserRoleEnum } from '../../../domain/enum/user-role.enum';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler<CreateUserCommand> {
@@ -43,7 +44,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
         id: savedUser.id,
         username: savedUser.username,
         email: savedUser.email,
-        userRoles: savedUser.userRoles,
+        userRoles: savedUser.userRoles || [UserRoleEnum.PUBLIC],
       });
     } catch (error) {
       if (

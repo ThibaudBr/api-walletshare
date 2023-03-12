@@ -1,3 +1,3 @@
 export class ErrorCustomEvent {
-  constructor(public readonly localisation: string, public readonly error: string) {}
+  constructor(public readonly localisation: string, public readonly handler: string, public readonly error: string) {}
 }

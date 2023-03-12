@@ -13,6 +13,7 @@ import { RequestLoggingMiddleware } from './middleware/request-logging.middlewar
 import { ResponseLoggingMiddleware } from './middleware/response-logging.middleware';
 import { ErrorLoggingMiddleware } from './middleware/error-logging.middleware';
 import { ApiLogService } from './api/api-log/api-log.service';
+import { AuthModule } from './api/auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ApiLogService } from './api/api-log/api-log.service';
     HealthCheckModule,
     UserModule,
     ApiLogModule,
+    AuthModule,
     EntitiesToMoveModule,
   ],
   controllers: [AppController],

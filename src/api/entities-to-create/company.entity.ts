@@ -15,6 +15,7 @@ import { OccupationEntity } from './occupation.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
 import { ProfileEntity } from './profile.entity';
 import { MediaEntity } from './media.entity';
+import { AddressEntity } from "./address.entity";
 
 @Entity({ name: 'company' })
 export default class CompanyEntity {
@@ -89,6 +90,12 @@ export default class CompanyEntity {
     onDelete: 'SET NULL',
   })
   bannerPicture?: MediaEntity;
+
+  @OneToMany(() => AddressEntity, address => address.company, {
+    cascade: true,
+  })
+  addresses: AddressEntity[];
+
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________

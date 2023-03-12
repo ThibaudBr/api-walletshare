@@ -1,7 +1,10 @@
-import { Body, Controller, HttpException, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './domain/dto/create-user.dto';
 import { CreateUserResponse } from './domain/response/create-user.response';
+import { UpdateUserDto } from './domain/dto/update-user.dto';
+import JwtRefreshGuard from '../auth/guards/jwt-refresh-token.guard';
+import { RequestUser } from '../auth/interface/request-user.interface';
 
 @Controller('user')
 export class UserController {
@@ -20,5 +23,28 @@ export class UserController {
         error.status,
       );
     }
+  }
+
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.userService.findOne(id);
+  }
+
+  @Put('')
+  @UseGuards(JwtRefreshGuard)
+  update(@Req() request: RequestUser, @Body() updateUserDto: UpdateUserDto) {
+    const { user } = request;
+    return this.userService.update(user.id, updateUserDto);
+  }
+
+  @Delete(':id')
+  @UseGuards(JwtRefreshGuard)
+  remove(@Param('id') id: string) {
+    return this.userService.remove(id);
   }
 }

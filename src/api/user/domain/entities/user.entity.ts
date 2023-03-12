@@ -17,7 +17,7 @@ import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
 import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../../entities-to-create/notification.entity';
-import { AddressEntity } from "../../../entities-to-create/address.entity";
+import { AddressEntity } from '../../../entities-to-create/address.entity';
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -50,9 +50,6 @@ export class UserEntity extends BaseEntity {
    */
   @Column({ unique: false, nullable: true, select: false })
   @Exclude()
-  @Matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{5,16}$/, {
-    message: 'The password must contain at least one number, one special character and one letter',
-  })
   password: string;
 
   /**
@@ -62,6 +59,13 @@ export class UserEntity extends BaseEntity {
    */
   @Column({ default: false })
   isEmailConfirmed: boolean;
+
+  @Column({
+    nullable: true,
+    select: false,
+  })
+  @Exclude()
+  public currentHashedRefreshToken?: string;
 
   @Exclude()
   public jwtToken?: string;
@@ -113,9 +117,4 @@ export class UserEntity extends BaseEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
-
-  @BeforeInsert()
-  async setPassword(password: string): Promise<void> {
-    this.password = await bcrypt.hash(password || this.password, 10);
-  }
 }

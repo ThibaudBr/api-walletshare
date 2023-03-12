@@ -20,6 +20,7 @@ import StripEventEntity from './strip-event.entity';
 import { SubscriptionEntity } from './subscription.entity';
 import { ReferralCodeEntity } from './referal-code.entity';
 import { NotificationEntity } from './notification.entity';
+import { AddressEntity } from "./address.entity";
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { NotificationEntity } from './notification.entity';
       SubscriptionEntity,
       ReferralCodeEntity,
       NotificationEntity,
+      AddressEntity,
     ]),
   ],
   controllers: [],
