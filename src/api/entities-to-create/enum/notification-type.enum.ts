@@ -1,0 +1,9 @@
+export enum NotificationTypeEnum {
+  INFO = 'INFO',
+  WARNING = 'WARNING',
+  ERROR = 'ERROR',
+  NEW_MESSAGE = 'NEW_MESSAGE',
+  JOIN_NEW_GROUP = 'JOIN_NEW_GROUP',
+  NEW_GROUP_MESSAGE = 'NEW_GROUP_MESSAGE',
+  NEW_CALL = 'NEW_CALL',
+}

@@ -15,7 +15,8 @@ import { ProfileEntity } from '../../../entities-to-create/profile.entity';
 import * as bcrypt from 'bcrypt';
 import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
-import { ReferralCodeEntity } from "../../../entities-to-create/referal-code.entity";
+import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';
+import { NotificationEntity } from '../../../entities-to-create/notification.entity';
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -89,6 +90,11 @@ export class UserEntity extends BaseEntity {
 
   @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.usedBy)
   usedReferralCodes: ReferralCodeEntity;
+
+  @OneToMany(() => NotificationEntity, notification => notification.user, {
+    cascade: true,
+  })
+  notifications: NotificationEntity[];
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________

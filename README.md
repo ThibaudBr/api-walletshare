@@ -48,3 +48,9 @@ npm run documentation:serve
 
 ### Application Dependencies
 <img src="documentation/graph/dependencies.svg" alt=''>
+
+### API Routes
+<img src="doc/api-waller-share-Map-1.png" alt=''>
+
+### Database Schema V_0.0.2
+<img src="doc/bdd.png" alt=''>

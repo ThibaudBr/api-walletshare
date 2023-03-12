@@ -18,6 +18,7 @@ import { CompanyEmployeeEntity } from './company-employee.entity';
 import { MediaEntity } from './media.entity';
 import { JoinedConversation } from './joined-conversation.entity';
 import CompanyEntity from './company.entity';
+import { NotificationEntity } from "./notification.entity";
 
 @Entity({ name: 'profile' })
 export class ProfileEntity {
@@ -102,6 +103,12 @@ export class ProfileEntity {
     onDelete: 'SET NULL',
   })
   ownerCompanies?: CompanyEntity[];
+
+  @OneToMany(() => NotificationEntity, notification => notification.profile, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  notifications: NotificationEntity[];
 
   // ______________________________________________________
   // Timestamps

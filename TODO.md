@@ -1,0 +1,6 @@
+- [ ] Serialize response to send empty string when data is null [api-nestjs-serializing-response-interceptors](https://wanago.io/2020/06/08/api-nestjs-serializing-response-interceptors/)
+- [ ] add auth jwt
+- [ ] add double auth
+- [ ] add auth with Google 
+- [ ] add confirming mail [confirming-email-address](https://wanago.io/2021/07/12/api-nestjs-confirming-email/)
+- [ ] add database migrations and cron [typeorm-migrations](https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
