@@ -18,7 +18,8 @@ import { ProfileEntity } from './profile.entity';
 import { SocialNetworkEntity } from './social-network.entity';
 import StripEventEntity from './strip-event.entity';
 import { SubscriptionEntity } from './subscription.entity';
-import { ReferralCodeEntity } from "./referal-code.entity";
+import { ReferralCodeEntity } from './referal-code.entity';
+import { NotificationEntity } from './notification.entity';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { ReferralCodeEntity } from "./referal-code.entity";
       StripEventEntity,
       SubscriptionEntity,
       ReferralCodeEntity,
+      NotificationEntity,
     ]),
   ],
   controllers: [],

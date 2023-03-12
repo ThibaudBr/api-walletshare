@@ -22,6 +22,8 @@ import { SocialNetworkEntity } from '../../api/entities-to-create/social-network
 import StripEventEntity from '../../api/entities-to-create/strip-event.entity';
 import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
+import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
+import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -109,6 +111,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             StripEventEntity,
             SubscriptionEntity,
             UserEntity,
+            NotificationEntity,
+            ReferralCodeEntity,
           ],
         };
       } else {
