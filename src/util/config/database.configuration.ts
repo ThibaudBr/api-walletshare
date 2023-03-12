@@ -24,6 +24,7 @@ import { SubscriptionEntity } from '../../api/entities-to-create/subscription.en
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
 import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
+import { AddressEntity } from "../../api/entities-to-create/address.entity";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -113,6 +114,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserEntity,
             NotificationEntity,
             ReferralCodeEntity,
+            AddressEntity,
           ],
         };
       } else {

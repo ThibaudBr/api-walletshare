@@ -17,6 +17,7 @@ import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
 import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../../entities-to-create/notification.entity';
+import { AddressEntity } from "../../../entities-to-create/address.entity";
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -95,6 +96,12 @@ export class UserEntity extends BaseEntity {
     cascade: true,
   })
   notifications: NotificationEntity[];
+
+  @OneToMany(() => AddressEntity, address => address.user, {
+    cascade: true,
+  })
+  addresses: AddressEntity[];
+
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
