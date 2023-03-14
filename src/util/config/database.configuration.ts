@@ -24,7 +24,7 @@ import { SubscriptionEntity } from '../../api/entities-to-create/subscription.en
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
 import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
-import { AddressEntity } from "../../api/entities-to-create/address.entity";
+import { AddressEntity } from '../../api/entities-to-create/address.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -77,7 +77,30 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           username: process.env.TYPEORM_USERNAME_TEST,
           password: process.env.TYPEORM_PASSWORD_TEST,
           database: process.env.TYPEORM_DATABASE_TEST,
-          entities: [join(__dirname, '**/*.entity{.ts,.js}')],
+          entities: [
+            CardEntity,
+            CompanyEntity,
+            CompanyEmployeeEntity,
+            ConnectedCardEntity,
+            ConversationEntity,
+            DiscountCodeEntity,
+            GroupEntity,
+            GroupMembershipEntity,
+            InvoicesEntity,
+            JoinedConversation,
+            MediaEntity,
+            MessageEntity,
+            OccupationEntity,
+            PlanEntity,
+            ProfileEntity,
+            SocialNetworkEntity,
+            StripEventEntity,
+            SubscriptionEntity,
+            UserEntity,
+            NotificationEntity,
+            ReferralCodeEntity,
+            AddressEntity,
+          ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
         };

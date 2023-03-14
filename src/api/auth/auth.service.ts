@@ -19,28 +19,14 @@ export class AuthService {
   }
 
   async login(username: string, plainTextPassword: string): Promise<UserEntity> {
-    try {
-      const user = await this.queryBus.execute(new GetUserLoginQuery(username));
-
-      if (!(await this.verifyPassword(plainTextPassword, user.password))) {
-        throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
-      }
-      user.password = undefined;
-      return user;
-    } catch (error) {
-      throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
-    }
-  }
-
-  public async verifyPassword(plainTextPassword: string, hashedPassword: string) {
-    return await bcrypt.compare(plainTextPassword, hashedPassword);
+    return await this.queryBus.execute(new GetUserLoginQuery(username, plainTextPassword));
   }
 
   public getCookieWithJwtToken(userId: string): { token: string; auth: string } {
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload, {
       secret: process.env.JWT_ACCESS_TOKEN_SECRET,
-      expiresIn: `${process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME}s`,
+      expiresIn: `${process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME}`,
     });
     return {
       token: token,
@@ -52,7 +38,7 @@ export class AuthService {
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload, {
       secret: process.env.JWT_REFRESH_TOKEN_SECRET,
-      expiresIn: `${process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME}s`,
+      expiresIn: `${process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME}`,
     });
     const cookie = `Refresh=${token}; HttpOnly; Path=/; Max-Age=${process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME}`;
     return {

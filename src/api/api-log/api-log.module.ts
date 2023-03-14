@@ -4,12 +4,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP },
-      { name: 'API_MAIL', transport: Transport.TCP },
-    ]),
-  ],
+  imports: [ClientsModule.register([{ name: 'API_LOG', transport: Transport.TCP, options: { port: 3001 } }])],
   controllers: [],
   providers: [ApiLogService, ErrorCustomEventHandler],
 })

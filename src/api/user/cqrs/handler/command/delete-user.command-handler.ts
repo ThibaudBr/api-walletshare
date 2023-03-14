@@ -8,8 +8,8 @@ import { DeleteUserEvent } from '../../event/delete-user.event';
 import { ErrorCustomEvent } from "../../../../../util/exception/error-handler/error-custom.event";
 
 @CommandHandler(DeleteUserCommand)
-export class DeleteUserHandler implements ICommandHandler<DeleteUserCommand> {
-  logger = new Logger('DeleteUserHandler');
+export class DeleteUserCommandHandler implements ICommandHandler<DeleteUserCommand> {
+  logger = new Logger('DeleteUserCommandHandler');
 
   constructor(
     @InjectRepository(UserEntity)
@@ -22,7 +22,7 @@ export class DeleteUserHandler implements ICommandHandler<DeleteUserCommand> {
       await this.userRepository.delete(command.userId);
       this.eventBus.publish(new DeleteUserEvent(command.userId));
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent('user', 'DeleteUserHandler', error));
+      this.eventBus.publish(new ErrorCustomEvent('user', 'DeleteUserCommandHandler', error));
     }
   }
 }

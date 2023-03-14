@@ -15,6 +15,7 @@ import { UpdateUserDto } from './domain/dto/update-user.dto';
 import { DeleteUserCommand } from './cqrs/command/delete-user.command';
 import { GetUserQuery } from './cqrs/query/get-user.query';
 import { UpdateUserCommand } from './cqrs/command/update-user.command';
+import { UserResponse } from './domain/response/user.response';
 
 @Injectable()
 export class UserService {
@@ -22,40 +23,6 @@ export class UserService {
 
   async createUser(createUserDto: CreateUserDto): Promise<CreateUserResponse> {
     return this.commandBus.execute(new CreateUserCommand(createUserDto));
-  }
-
-  async getUserLogin(login?: string): Promise<UserLoginResponse> {
-    try {
-      let user: UserEntity;
-      const regex = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
-
-      if (!login) {
-        throw new Error('Error: no login provided');
-      }
-
-      if (login.match(regex)) {
-        // Login is an email
-        user = await this.queryBus.execute(new GetUserByEmailQuery(login));
-      } else {
-        // Login is a username
-        user = await this.queryBus.execute(new GetUserByUsernameQuery(login));
-      }
-
-      if (!user) {
-        throw new Error('Error: no match found');
-      }
-      return new UserLoginResponse({
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        password: user.password,
-        userRoles: user.userRoles,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
-      });
-    } catch (error) {
-      throw new Error(error);
-    }
   }
 
   //TODO: Implement this
@@ -95,19 +62,19 @@ export class UserService {
     return this.commandBus.execute(new SetCurrentRefreshTokenCommand(token, userId));
   }
 
-  async findAll() {
+  async findAll(): Promise<UserResponse[]> {
     return this.queryBus.execute(new GetUserQuery());
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<UserResponse> {
     return this.queryBus.execute(new GetUserQuery(id));
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<UserResponse> {
     return this.commandBus.execute(new UpdateUserCommand(id, updateUserDto));
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<void> {
     return this.commandBus.execute(new DeleteUserCommand(id));
   }
 }

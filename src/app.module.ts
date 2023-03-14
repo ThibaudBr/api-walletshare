@@ -23,7 +23,7 @@ import { AuthModule } from './api/auth/auth.module';
     }),
     ClientsModule.register([
       { name: 'API_LOG', transport: Transport.TCP, options: { port: 3201 } },
-      { name: 'API_MAIL', transport: Transport.TCP },
+      { name: 'API_MAIL', transport: Transport.TCP, options: { port: 3202 } },
     ]),
     // ________ Module ________
     HealthCheckModule,

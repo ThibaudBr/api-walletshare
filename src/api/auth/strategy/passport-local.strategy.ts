@@ -8,10 +8,10 @@ import { UserEntity } from '../../user/domain/entities/user.entity';
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authenticationService: AuthService) {
     super({
-      usernameField: 'username',
+      usernameField: 'login',
     });
   }
-  async validate(username: string, password: string): Promise<UserEntity> {
-    return this.authenticationService.login(username, password);
+  async validate(login: string, password: string): Promise<UserEntity> {
+    return this.authenticationService.login(login, password);
   }
 }

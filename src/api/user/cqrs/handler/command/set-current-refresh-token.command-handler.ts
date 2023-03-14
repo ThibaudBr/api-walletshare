@@ -7,7 +7,7 @@ import * as bcrypt from 'bcrypt';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(SetCurrentRefreshTokenCommand)
-export class SetCurrentRefreshTokenHandler implements ICommandHandler<SetCurrentRefreshTokenCommand> {
+export class SetCurrentRefreshTokenCommandHandler implements ICommandHandler<SetCurrentRefreshTokenCommand> {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
@@ -21,7 +21,7 @@ export class SetCurrentRefreshTokenHandler implements ICommandHandler<SetCurrent
         currentHashedRefreshToken,
       });
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent('user', 'SetCurrentRefreshTokenHandler', error));
+      this.eventBus.publish(new ErrorCustomEvent('user', 'SetCurrentRefreshTokenCommandHandler', error));
     }
   }
 }

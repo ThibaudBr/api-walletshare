@@ -1,19 +1,19 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { RemoveRefreshTokenEvent } from '../../event/remove-refresh-token.event';
-import { Logger } from '@nestjs/common';
-import { logger } from '../../../../../util/config/winston-logger.config';
+import { Inject } from "@nestjs/common";
+import { ClientProxy } from "@nestjs/microservices";
 
 @EventsHandler(RemoveRefreshTokenEvent)
 export class RemoveRefreshTokenEventHandler
   implements IEventHandler<RemoveRefreshTokenEvent>
 {
-  logger_console = new Logger('RemoveRefreshTokenEvent');
-
+  constructor(@Inject('API_LOG') private readonly client: ClientProxy) {}
   handle(event: RemoveRefreshTokenEvent): void {
-    logger.info('User with id : ' + event.userId + ' refresh his token');
-
-    this.logger_console.log(
-      'User with id : ' + event.userId + ' refresh his token',
+    this.client.emit(
+      {
+        cmd: 'add-log',
+      },
+      event,
     );
   }
 }

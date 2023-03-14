@@ -5,6 +5,7 @@ import { config } from 'dotenv';
 import { UserService } from '../../user/user.service';
 import { TokenPayload } from '../interface/token-payload.interface';
 import { Request } from 'express';
+import { RequestUser } from "../interface/request-user.interface";
 
 config();
 @Injectable()
@@ -12,7 +13,7 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
   constructor(private readonly userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
-        (request: Request) => {
+        (request: Request): string => {
           return request?.headers?.authorization?.split(' ')[1] || '';
         },
       ]),
@@ -21,8 +22,8 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
     });
   }
 
-  async validate(request: Request, payload: TokenPayload) {
+  async validate(request: Request, payload: TokenPayload): Promise<RequestUser> {
     const refreshToken = request?.headers?.authorization?.split(' ')[1];
-    return this.userService.getUserIfRefreshTokenMatches(refreshToken || '', payload.userId);
+    return await this.userService.getUserIfRefreshTokenMatches(refreshToken || '', payload.userId);
   }
 }

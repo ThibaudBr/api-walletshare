@@ -1,17 +1,18 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { DeleteUserEvent } from '../../event/delete-user.event';
-import { Logger } from '@nestjs/common';
-import { logger } from '../../../../../util/config/winston-logger.config';
+import { Inject, Logger } from "@nestjs/common";
+import { ClientProxy } from "@nestjs/microservices";
 
 @EventsHandler(DeleteUserEvent)
 export class DeleteUserEventHandler implements IEventHandler<DeleteUserEvent> {
-  logger_console = new Logger('DeleteUser');
 
+  constructor(@Inject('API_LOG') private readonly client: ClientProxy) {}
   handle(event: DeleteUserEvent): void {
-    logger.info('User with id : ' + event.userId + ' have been delete');
-
-    this.logger_console.log(
-      'User with id : ' + event.userId + ' have been delete',
+    this.client.emit(
+      {
+        cmd: 'add-log',
+      },
+      event,
     );
   }
 }

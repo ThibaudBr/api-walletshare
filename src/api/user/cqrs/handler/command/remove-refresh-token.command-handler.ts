@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(RemoveRefreshTokenCommand)
-export class RemoveRefreshTokenHandler implements ICommandHandler<RemoveRefreshTokenCommand> {
+export class RemoveRefreshTokenCommandHandler implements ICommandHandler<RemoveRefreshTokenCommand> {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
@@ -19,7 +19,7 @@ export class RemoveRefreshTokenHandler implements ICommandHandler<RemoveRefreshT
         currentHashedRefreshToken: undefined,
       });
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent('user', 'RemoveRefreshTokenHandler', error));
+      this.eventBus.publish(new ErrorCustomEvent('user', 'RemoveRefreshTokenCommandHandler', error));
     }
   }
 }

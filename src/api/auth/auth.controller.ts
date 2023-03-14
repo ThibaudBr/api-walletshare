@@ -9,7 +9,7 @@ import JwtRefreshGuard from './guards/jwt-refresh-token.guard';
 import { UserService } from '../user/user.service';
 import { ApiTags } from '@nestjs/swagger';
 
-@Controller('auth')
+@Controller('/auth')
 @ApiTags('auth')
 export class AuthController {
   constructor(private readonly userService: UserService, private readonly authService: AuthService) {}

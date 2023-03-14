@@ -11,7 +11,7 @@ import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/er
 import { UserResponse } from '../../../domain/response/user.response';
 
 @CommandHandler(UpdateUserCommand)
-export class UpdateUserHandler implements ICommandHandler<UpdateUserCommand> {
+export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserCommand> {
   logger = new Logger('UpdateUser');
 
   constructor(
@@ -34,7 +34,7 @@ export class UpdateUserHandler implements ICommandHandler<UpdateUserCommand> {
       this.eventBus.publish(new UpdateUserEvent(command.userId));
       return new UserResponse(user.id, user.username, user.email);
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent('user', 'UpdateUserHandler', error));
+      this.eventBus.publish(new ErrorCustomEvent('user', 'UpdateUserCommandHandler', error));
       throw error;
     }
   }
