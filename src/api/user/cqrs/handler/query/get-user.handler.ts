@@ -15,17 +15,16 @@ export class GetUserHandler implements IQueryHandler<GetUserQuery> {
 
   async execute(query: GetUserQuery): Promise<UserResponse | UserResponse[]> {
     if (query.userId) {
-      const user: UserResponse = {
+      return {
         ...(await this.userRepository.findOneOrFail({
           where: [{ id: query.userId }],
         })),
       };
-      return user;
     }
     const userListResponse: UserListResponse = new UserListResponse();
     await this.userRepository.find().then(userList => {
       userList.forEach(user => {
-        userListResponse.userList.push(new UserResponse(user.id, user.username, user.email));
+        userListResponse.userList.push(new UserResponse({ ...user }));
       });
     });
     return userListResponse.userList;

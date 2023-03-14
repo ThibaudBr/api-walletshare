@@ -32,7 +32,7 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
         where: [{ id: command.userId }],
       });
       this.eventBus.publish(new UpdateUserEvent(command.userId));
-      return new UserResponse(user.id, user.username, user.email);
+      return new UserResponse({ ...user });
     } catch (error) {
       this.eventBus.publish(new ErrorCustomEvent('user', 'UpdateUserCommandHandler', error));
       throw error;

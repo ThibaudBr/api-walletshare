@@ -1,6 +1,5 @@
 import {
   BaseEntity,
-  BeforeInsert,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -9,10 +8,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IsEmail, Length, Matches } from 'class-validator';
+import { IsEmail, Length } from 'class-validator';
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from '../../../entities-to-create/profile.entity';
-import * as bcrypt from 'bcrypt';
 import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
 import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';

@@ -26,28 +26,6 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class AppTestE2eService {
-  //  CardEntity,
-  //       CompanyEntity,
-  //       CompanyEmployeeEntity,
-  //       ConnectedCardEntity,
-  //       ConversationEntity,
-  //       DiscountCodeEntity,
-  //       GroupEntity,
-  //       GroupMembershipEntity,
-  //       InvoicesEntity,
-  //       JoinedConversation,
-  //       MediaEntity,
-  //       MessageEntity,
-  //       OccupationEntity,
-  //       PlanEntity,
-  //       ProfileEntity,
-  //       SocialNetworkEntity,
-  //       StripEventEntity,
-  //       SubscriptionEntity,
-  //       UserEntity,
-  //       NotificationEntity,
-  //       ReferralCodeEntity,
-  //       AddressEntity,
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
