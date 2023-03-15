@@ -80,6 +80,9 @@
                             <li>
                                 <a href="#clearDatabaseTest" >clearDatabaseTest</a>
                             </li>
+                            <li>
+                                <a href="#createUserTest" >createUserTest</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -124,8 +127,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:13</a></div>
                 </td>
             </tr>
 
@@ -141,13 +144,91 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createUserTest"></a>
+                    <span class="name">
+                        <span ><b>createUserTest</b></span>
+                        <a href="#createUserTest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createUserTest(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UsePipes(new IsTestEnvironmentPipe())<br />@Post(&#x27;/api/test/create-user-test&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:19</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>createUserDto</td>
+                                    <td>
+                                                <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, UsePipes } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Post, UsePipes } from &#x27;@nestjs/common&#x27;;
 import { AppTestE2eService } from &#x27;./app-test-e2e.service&#x27;;
 import { IsTestEnvironmentPipe } from &#x27;../../src/util/pipe/is-test-environment.pipe&#x27;;
+import { CreateUserDto } from &#x27;../../src/api/user/domain/dto/create-user.dto&#x27;;
+import { UserEntity } from &#x27;../../src/api/user/domain/entities/user.entity&#x27;;
 
 @Controller()
 export class AppTestE2eController {
@@ -157,6 +238,12 @@ export class AppTestE2eController {
   @Get(&#x27;/api/test/clear-database-test&#x27;)
   clearDatabaseTest(): Promise&lt;void&gt; {
     return this.appService.clearDatabaseTest();
+  }
+
+  @UsePipes(new IsTestEnvironmentPipe())
+  @Post(&#x27;/api/test/create-user-test&#x27;)
+  createUserTest(@Body() createUserDto: CreateUserDto): Promise&lt;UserEntity&gt; {
+    return this.appService.createUserTest(createUserDto);
   }
 }
 </code></pre>

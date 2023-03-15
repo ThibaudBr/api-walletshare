@@ -132,7 +132,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -205,7 +205,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -241,8 +241,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:20</a></div>
                 </td>
             </tr>
 
@@ -280,7 +280,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/CreateUserResponse.html" target="_self" >Promise&lt;CreateUserResponse&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;CreateUserResponse&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -310,6 +310,7 @@ import { DuplicateUsernameException } from &#x27;../../../../../util/exception/c
 import { DuplicateEmailException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-email.exception&#x27;;
 import { InvalidParameterEntityException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception&#x27;;
 import { CreateUserResponse } from &#x27;../../../domain/response/create-user.response&#x27;;
+import { UserRoleEnum } from &#x27;../../../domain/enum/user-role.enum&#x27;;
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler&lt;CreateUserCommand&gt; {
@@ -345,7 +346,7 @@ export class CreateUserCommandHandler implements ICommandHandler&lt;CreateUserCo
         id: savedUser.id,
         username: savedUser.username,
         email: savedUser.email,
-        userRoles: savedUser.userRoles,
+        roles: savedUser.roles || [UserRoleEnum.PUBLIC],
       });
     } catch (error) {
       if (

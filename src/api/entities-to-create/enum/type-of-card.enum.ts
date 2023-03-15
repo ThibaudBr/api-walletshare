@@ -11,4 +11,5 @@ export enum TypeOfCardEnum {
   SOCIAL_NETWORK = 'SOCIAL_NETWORK',
   WEBSITE = 'WEBSITE',
   WALLET_SHARE = 'WALLET_SHARE',
+  V_CARD = 'V_CARD',
 }

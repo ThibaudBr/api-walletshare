@@ -48,3 +48,9 @@ npm run documentation:serve
 
 ### Application Dependencies
 <img src="documentation/graph/dependencies.svg" alt=''>
+
+### API Routes V_0.0.4
+<img src="doc/api-wallet-share-route-v2.png" alt=''>
+
+### Database Schema V_0.0.4
+<img src="doc/bdd_V2_0.0.4.png" alt=''>

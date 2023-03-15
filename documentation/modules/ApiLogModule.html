@@ -137,16 +137,16 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 import { ApiLogService } from &#x27;./api-log.service&#x27;;
 import { ClientsModule, Transport } from &#x27;@nestjs/microservices&#x27;;
+import { ErrorCustomEventHandler } from &#x27;../../util/exception/error-handler/error-custom.event-handler&#x27;;
 
 @Module({
   imports: [
     ClientsModule.register([
-      { name: &#x27;API_LOG&#x27;, transport: Transport.TCP },
-      { name: &#x27;API_MAIL&#x27;, transport: Transport.TCP },
+      { name: &#x27;API_LOG&#x27;, transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3001 } },
     ]),
   ],
   controllers: [],
-  providers: [ApiLogService],
+  providers: [ApiLogService, ErrorCustomEventHandler],
 })
 export class ApiLogModule {}
 </code></pre>

@@ -39,7 +39,7 @@ export class RequestLoggingMiddleware implements NestMiddleware {
     createLogDto.os = os;
     createLogDto.ip = req.ip;
     createLogDto.platform = req.headers['user-agent']
-      ? req.headers['user-agent'].split('(')[1].split(')')[0].split('; ')[1]
+      ? req?.headers['user-agent']?.split('(')[1]?.split(')')[0]?.split('; ')[1]
       : undefined;
     createLogDto.screenSize = screenSize;
 

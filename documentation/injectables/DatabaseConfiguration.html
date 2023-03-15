@@ -119,8 +119,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/util/config/database.configuration.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/util/config/database.configuration.ts:31</a></div>
                 </td>
             </tr>
 
@@ -166,6 +166,9 @@ import { SocialNetworkEntity } from &#x27;../../api/entities-to-create/social-ne
 import StripEventEntity from &#x27;../../api/entities-to-create/strip-event.entity&#x27;;
 import { SubscriptionEntity } from &#x27;../../api/entities-to-create/subscription.entity&#x27;;
 import { UserEntity } from &#x27;../../api/user/domain/entities/user.entity&#x27;;
+import { ReferralCodeEntity } from &#x27;../../api/entities-to-create/referal-code.entity&#x27;;
+import { NotificationEntity } from &#x27;../../api/entities-to-create/notification.entity&#x27;;
+import { AddressEntity } from &#x27;../../api/entities-to-create/address.entity&#x27;;
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -218,7 +221,30 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           username: process.env.TYPEORM_USERNAME_TEST,
           password: process.env.TYPEORM_PASSWORD_TEST,
           database: process.env.TYPEORM_DATABASE_TEST,
-          entities: [join(__dirname, &#x27;**/*.entity{.ts,.js}&#x27;)],
+          entities: [
+            CardEntity,
+            CompanyEntity,
+            CompanyEmployeeEntity,
+            ConnectedCardEntity,
+            ConversationEntity,
+            DiscountCodeEntity,
+            GroupEntity,
+            GroupMembershipEntity,
+            InvoicesEntity,
+            JoinedConversation,
+            MediaEntity,
+            MessageEntity,
+            OccupationEntity,
+            PlanEntity,
+            ProfileEntity,
+            SocialNetworkEntity,
+            StripEventEntity,
+            SubscriptionEntity,
+            UserEntity,
+            NotificationEntity,
+            ReferralCodeEntity,
+            AddressEntity,
+          ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
           logging: process.env.TYPEORM_LOGGING_TEST &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
         };
@@ -253,6 +279,9 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             StripEventEntity,
             SubscriptionEntity,
             UserEntity,
+            NotificationEntity,
+            ReferralCodeEntity,
+            AddressEntity,
           ],
         };
       } else {

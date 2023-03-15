@@ -5,7 +5,7 @@ import { ClientProxy } from '@nestjs/microservices';
 
 @EventsHandler(CreateUserEvent)
 export class CreateUserEventHandler implements IEventHandler<CreateUserEvent> {
-  constructor(@Inject('API_LOG_SERVICE') private readonly client: ClientProxy) {}
+  constructor(@Inject('API_LOG') private readonly client: ClientProxy) {}
   handle(event: CreateUserEvent): void {
     this.client.emit(
       {

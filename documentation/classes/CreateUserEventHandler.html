@@ -179,8 +179,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/api/user/cqrs/handler/event/create-user.event-handler.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="9"
+                            class="link-to-prism">src/api/user/cqrs/handler/event/create-user.event-handler.ts:9</a></div>
                 </td>
             </tr>
 
@@ -238,21 +238,21 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventsHandler, IEventHandler } from &quot;@nestjs/cqrs&quot;;
-import { CreateUserEvent } from &quot;../../event/create-user.event&quot;;
-import { Inject } from &quot;@nestjs/common&quot;;
-import { ClientProxy } from &quot;@nestjs/microservices&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventsHandler, IEventHandler } from &#x27;@nestjs/cqrs&#x27;;
+import { CreateUserEvent } from &#x27;../../event/create-user.event&#x27;;
+import { Inject } from &#x27;@nestjs/common&#x27;;
+import { ClientProxy } from &#x27;@nestjs/microservices&#x27;;
 
 @EventsHandler(CreateUserEvent)
 export class CreateUserEventHandler implements IEventHandler&lt;CreateUserEvent&gt; {
-  constructor(
-    @Inject(&#x27;API_LOG_SERVICE&#x27;) private readonly client: ClientProxy,
-  ) {
-  }
+  constructor(@Inject(&#x27;API_LOG&#x27;) private readonly client: ClientProxy) {}
   handle(event: CreateUserEvent): void {
-    this.client.emit({
-      cmd: &#x27;add-log&#x27;,
-    }, event)
+    this.client.emit(
+      {
+        cmd: &#x27;add-log&#x27;,
+      },
+      event,
+    );
   }
 }
 </code></pre>

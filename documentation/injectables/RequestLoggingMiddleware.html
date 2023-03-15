@@ -441,7 +441,7 @@ export class RequestLoggingMiddleware implements NestMiddleware {
     createLogDto.os &#x3D; os;
     createLogDto.ip &#x3D; req.ip;
     createLogDto.platform &#x3D; req.headers[&#x27;user-agent&#x27;]
-      ? req.headers[&#x27;user-agent&#x27;].split(&#x27;(&#x27;)[1].split(&#x27;)&#x27;)[0].split(&#x27;; &#x27;)[1]
+      ? req?.headers[&#x27;user-agent&#x27;]?.split(&#x27;(&#x27;)[1]?.split(&#x27;)&#x27;)[0]?.split(&#x27;; &#x27;)[1]
       : undefined;
     createLogDto.screenSize &#x3D; screenSize;
 
