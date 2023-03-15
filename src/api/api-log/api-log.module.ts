@@ -6,7 +6,7 @@ import { ErrorCustomEventHandler } from '../../util/exception/error-handler/erro
 @Module({
   imports: [
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_MAIN) || 3001 } },
+      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3001 } },
     ]),
   ],
   controllers: [],

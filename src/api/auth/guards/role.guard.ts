@@ -1,9 +1,8 @@
 import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
-import { CanActivate, ExecutionContext, Type, mixin, Injectable } from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, mixin, Type } from '@nestjs/common';
 import { RequestUser } from '../interface/request-user.interface';
-import JwtAuthenticationGuard from './jwt-auth.guard';
 import { UserService } from '../../user/user.service';
-import JwtRefreshGuard from "./jwt-refresh-token.guard";
+import JwtRefreshGuard from './jwt-refresh-token.guard';
 
 export const RoleGuard = (roles: UserRoleEnum[]): Type<CanActivate> => {
   @Injectable()

@@ -9,8 +9,8 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
+  UpdateDateColumn,
+} from 'typeorm';
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { CardEntity } from './card.entity';
 import { OccupationEntity } from './occupation.entity';
@@ -18,7 +18,7 @@ import { CompanyEmployeeEntity } from './company-employee.entity';
 import { MediaEntity } from './media.entity';
 import { JoinedConversation } from './joined-conversation.entity';
 import CompanyEntity from './company.entity';
-import { NotificationEntity } from "./notification.entity";
+import { NotificationEntity } from './notification.entity';
 
 @Entity({ name: 'profile' })
 export class ProfileEntity {

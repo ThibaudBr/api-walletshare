@@ -1,6 +1,5 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { TokenPayload } from './interface/token-payload.interface';
 import { SignUpDto } from './dto/sign-up.dto';

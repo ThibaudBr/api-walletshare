@@ -1,4 +1,3 @@
 export class GetUserByEmailQuery {
-  constructor(public readonly email: string) {
-  }
+  constructor(public readonly email: string) {}
 }

@@ -6,8 +6,7 @@ import { Repository } from 'typeorm';
 import { config } from 'dotenv';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { LoginOfUserEventHandler } from "../event/login-of-user.event-handler";
-import { LoginOfUserEvent } from "../../event/login-of-user.event";
+import { LoginOfUserEvent } from '../../event/login-of-user.event';
 
 config();
 @QueryHandler(GetUserLoginQuery)

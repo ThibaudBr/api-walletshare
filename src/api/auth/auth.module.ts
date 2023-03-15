@@ -36,7 +36,7 @@ config();
       {
         name: 'API_LANDING_PAGE',
         transport: Transport.TCP,
-        options: { port: Number(process.env.PORT_API_LANDING_PAGE) || 3103 },
+        options: { port: Number(process.env.PORT_API_WAITING_LIST) || 3103 },
       },
     ]),
     PassportModule,

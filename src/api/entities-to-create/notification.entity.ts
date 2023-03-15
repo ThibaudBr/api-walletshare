@@ -45,13 +45,16 @@ export class NotificationEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() => UserEntity, userEntity => userEntity.notifications, {nullable: true,  onDelete: 'CASCADE' })
+  @ManyToOne(() => UserEntity, userEntity => userEntity.notifications, { nullable: true, onDelete: 'CASCADE' })
   user: UserEntity;
 
-  @ManyToOne(() => ProfileEntity, profileEntity => profileEntity.notifications, {nullable: true,  onDelete: 'CASCADE' })
+  @ManyToOne(() => ProfileEntity, profileEntity => profileEntity.notifications, { nullable: true, onDelete: 'CASCADE' })
   profile: ProfileEntity;
 
-  @ManyToOne(() => ConversationEntity, conversationEntity => conversationEntity.notifications, { nullable: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => ConversationEntity, conversationEntity => conversationEntity.notifications, {
+    nullable: true,
+    onDelete: 'CASCADE',
+  })
   conversation: ConversationEntity;
 
   // ______________________________________________________

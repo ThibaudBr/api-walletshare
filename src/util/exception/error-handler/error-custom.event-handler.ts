@@ -1,7 +1,5 @@
-import { Inject, Logger } from '@nestjs/common';
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { ErrorCustomEvent } from './error-custom.event';
-import { logger } from '../../config/winston-logger.config';
 import { CreateLogDto } from '../../../api/api-log/domain/dto/create-log.dto';
 import { LoggingTypeEnum } from '../../../api/api-log/domain/enum/logging-type.enum';
 import { ApiLogService } from '../../../api/api-log/api-log.service';

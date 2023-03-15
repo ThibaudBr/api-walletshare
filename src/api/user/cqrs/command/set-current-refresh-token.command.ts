@@ -1,6 +1,3 @@
 export class SetCurrentRefreshTokenCommand {
-  constructor(
-    public readonly refreshToken: string,
-    public readonly userId: string,
-  ) {}
+  constructor(public readonly refreshToken: string, public readonly userId: string) {}
 }

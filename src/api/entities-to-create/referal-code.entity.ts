@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, Length, IsOptional, IsDateString } from 'class-validator';
+import { IsDateString, IsOptional, IsString, Length } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
@@ -7,10 +7,10 @@ import {
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
+  UpdateDateColumn,
+} from 'typeorm';
 import { SubscriptionEntity } from './subscription.entity';
-import { UserEntity } from "../user/domain/entities/user.entity";
+import { UserEntity } from '../user/domain/entities/user.entity';
 
 @Entity('referral_code')
 export class ReferralCodeEntity {

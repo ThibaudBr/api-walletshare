@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../../../domain/entities/user.entity';
 import { DeleteUserEvent } from '../../event/delete-user.event';
-import { ErrorCustomEvent } from "../../../../../util/exception/error-handler/error-custom.event";
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(DeleteUserCommand)
 export class DeleteUserCommandHandler implements ICommandHandler<DeleteUserCommand> {
