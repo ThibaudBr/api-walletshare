@@ -92,7 +92,9 @@ import { ProfileEntity } from &#x27;./profile.entity&#x27;;
 import { SocialNetworkEntity } from &#x27;./social-network.entity&#x27;;
 import StripEventEntity from &#x27;./strip-event.entity&#x27;;
 import { SubscriptionEntity } from &#x27;./subscription.entity&#x27;;
-import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
+import { ReferralCodeEntity } from &#x27;./referal-code.entity&#x27;;
+import { NotificationEntity } from &#x27;./notification.entity&#x27;;
+import { AddressEntity } from &#x27;./address.entity&#x27;;
 
 @Module({
   imports: [
@@ -116,6 +118,9 @@ import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
       SocialNetworkEntity,
       StripEventEntity,
       SubscriptionEntity,
+      ReferralCodeEntity,
+      NotificationEntity,
+      AddressEntity,
     ]),
   ],
   controllers: [],

@@ -67,6 +67,12 @@
                             <a href="#ErrorEnum" title="src/util/exception/ErrorEnum.ts" ><b>ErrorEnum</b>&nbsp;&nbsp;&nbsp;(src/.../ErrorEnum.ts)</a>
                         </li>
                         <li>
+                            <a href="#NotificationTypeEnum" title="src/api/entities-to-create/enum/notification-type.enum.ts" ><b>NotificationTypeEnum</b>&nbsp;&nbsp;&nbsp;(src/.../notification-type.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PostgresErrorCode" title="src/api/auth/database/postgres-error-code.enum.ts" ><b>PostgresErrorCode</b>&nbsp;&nbsp;&nbsp;(src/.../postgres-error-code.enum.ts)</a>
+                        </li>
+                        <li>
                             <a href="#RoleCompanyEmployeeEnum" title="src/api/entities-to-create/enum/role-company-employee.enum.ts" ><b>RoleCompanyEmployeeEnum</b>&nbsp;&nbsp;&nbsp;(src/.../role-company-employee.enum.ts)</a>
                         </li>
                         <li>
@@ -85,7 +91,7 @@
                             <a href="#TypeOfCardEnum" title="src/api/entities-to-create/enum/type-of-card.enum.ts" ><b>TypeOfCardEnum</b>&nbsp;&nbsp;&nbsp;(src/.../type-of-card.enum.ts)</a>
                         </li>
                         <li>
-                            <a href="#UserRoleEnum" title="src/api/entities-to-create/enum/user-role.enum.ts" ><b>UserRoleEnum</b>&nbsp;&nbsp;&nbsp;(src/.../user-role.enum.ts)</a>
+                            <a href="#UserRoleEnum" title="src/api/user/domain/enum/user-role.enum.ts" ><b>UserRoleEnum</b>&nbsp;&nbsp;&nbsp;(src/.../user-role.enum.ts)</a>
                         </li>
                         <li>
                             <a href="#WhoCanCommunicateWithEnum" title="src/api/entities-to-create/enum/who-can-communicate-with.enum.ts" ><b>WhoCanCommunicateWithEnum</b>&nbsp;&nbsp;&nbsp;(src/.../who-can-communicate-with.enum.ts)</a>
@@ -214,6 +220,112 @@
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>Category name already exists</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/api/entities-to-create/enum/notification-type.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="NotificationTypeEnum"></a>
+                        <span class="name "><b>NotificationTypeEnum</b><a href="#NotificationTypeEnum"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;INFO
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>INFO</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;WARNING
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>WARNING</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;ERROR
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>ERROR</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;NEW_MESSAGE
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>NEW_MESSAGE</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;JOIN_NEW_GROUP
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>JOIN_NEW_GROUP</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;NEW_GROUP_MESSAGE
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>NEW_GROUP_MESSAGE</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;NEW_CALL
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>NEW_CALL</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/api/auth/database/postgres-error-code.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="PostgresErrorCode"></a>
+                        <span class="name "><b>PostgresErrorCode</b><a href="#PostgresErrorCode"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;UniqueViolation
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>23505</code>
                             </td>
                         </tr>
             </tbody>
@@ -489,10 +601,20 @@
                                 <i>Value : </i><code>WALLET_SHARE</code>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;V_CARD
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>V_CARD</code>
+                            </td>
+                        </tr>
             </tbody>
         </table>
 </section>
-    <h3>src/api/entities-to-create/enum/user-role.enum.ts</h3>
+    <h3>src/api/user/domain/enum/user-role.enum.ts</h3>
     <section>
         <table class="table table-sm table-bordered">
             <tbody>

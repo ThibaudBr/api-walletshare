@@ -1,3 +1,10 @@
+# [0.0.5](https://github.com/WalletShareOrg/api-wallet-share/tree/V_0.0.5) - 2023-03-15
+
+### Features
+- add auth verification
+- add tcp validate-login
+- add e2e auth test
+
 # [0.0.4](https://github.com/WalletShareOrg/api-wallet-share/tree/V_0.0.4) - 2023-03-10
 
 ### Features

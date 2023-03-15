@@ -82,6 +82,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#clearDatabaseTest" >clearDatabaseTest</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createUserTest" >createUserTest</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -94,6 +98,306 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, cardRepository: <a href="../entitys/CardEntity.html" target="_self">Repository&lt;CardEntity&gt;</a>, companyRepository: <a href="../entitys/CompanyEntity.html" target="_self">Repository&lt;CompanyEntity&gt;</a>, companyEmployeeRepository: <a href="../entitys/CompanyEmployeeEntity.html" target="_self">Repository&lt;CompanyEmployeeEntity&gt;</a>, connectedCardRepository: Repository<ConnectedCardEntity>, conversationRepository: <a href="../entitys/ConversationEntity.html" target="_self">Repository&lt;ConversationEntity&gt;</a>, discountCodeRepository: <a href="../entitys/DiscountCodeEntity.html" target="_self">Repository&lt;DiscountCodeEntity&gt;</a>, groupRepository: <a href="../entitys/GroupEntity.html" target="_self">Repository&lt;GroupEntity&gt;</a>, groupMembershipRepository: <a href="../entitys/GroupMembershipEntity.html" target="_self">Repository&lt;GroupMembershipEntity&gt;</a>, invoicesRepository: <a href="../entitys/InvoicesEntity.html" target="_self">Repository&lt;InvoicesEntity&gt;</a>, joinedConversationRepository: <a href="../entitys/JoinedConversation.html" target="_self">Repository&lt;JoinedConversation&gt;</a>, mediaRepository: <a href="../entitys/MediaEntity.html" target="_self">Repository&lt;MediaEntity&gt;</a>, messageRepository: <a href="../entitys/MessageEntity.html" target="_self">Repository&lt;MessageEntity&gt;</a>, occupationRepository: <a href="../entitys/OccupationEntity.html" target="_self">Repository&lt;OccupationEntity&gt;</a>, planRepository: <a href="../entitys/PlanEntity.html" target="_self">Repository&lt;PlanEntity&gt;</a>, profileRepository: <a href="../entitys/ProfileEntity.html" target="_self">Repository&lt;ProfileEntity&gt;</a>, socialNetworkRepository: <a href="../entitys/SocialNetworkEntity.html" target="_self">Repository&lt;SocialNetworkEntity&gt;</a>, stripEventRepository: <a href="../entitys/StripEventEntity.html" target="_self">Repository&lt;StripEventEntity&gt;</a>, subscriptionRepository: <a href="../entitys/SubscriptionEntity.html" target="_self">Repository&lt;SubscriptionEntity&gt;</a>, notificationRepository: <a href="../entitys/NotificationEntity.html" target="_self">Repository&lt;NotificationEntity&gt;</a>, referralCodeRepository: <a href="../entitys/ReferralCodeEntity.html" target="_self">Repository&lt;ReferralCodeEntity&gt;</a>, addressRepository: <a href="../entitys/AddressEntity.html" target="_self">Repository&lt;AddressEntity&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">test/test-environment/app-test-e2e.service.ts:30</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/UserEntity.html" target="_self" >Repository&lt;UserEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cardRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/CardEntity.html" target="_self" >Repository&lt;CardEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>companyRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/CompanyEntity.html" target="_self" >Repository&lt;CompanyEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>companyEmployeeRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/CompanyEmployeeEntity.html" target="_self" >Repository&lt;CompanyEmployeeEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>connectedCardRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;ConnectedCardEntity&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>conversationRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/ConversationEntity.html" target="_self" >Repository&lt;ConversationEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>discountCodeRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/DiscountCodeEntity.html" target="_self" >Repository&lt;DiscountCodeEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>groupRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/GroupEntity.html" target="_self" >Repository&lt;GroupEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>groupMembershipRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/GroupMembershipEntity.html" target="_self" >Repository&lt;GroupMembershipEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>invoicesRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/InvoicesEntity.html" target="_self" >Repository&lt;InvoicesEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>joinedConversationRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/JoinedConversation.html" target="_self" >Repository&lt;JoinedConversation&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mediaRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/MediaEntity.html" target="_self" >Repository&lt;MediaEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/MessageEntity.html" target="_self" >Repository&lt;MessageEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>occupationRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/OccupationEntity.html" target="_self" >Repository&lt;OccupationEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>planRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/PlanEntity.html" target="_self" >Repository&lt;PlanEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>profileRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/ProfileEntity.html" target="_self" >Repository&lt;ProfileEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>socialNetworkRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/SocialNetworkEntity.html" target="_self" >Repository&lt;SocialNetworkEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stripEventRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/StripEventEntity.html" target="_self" >Repository&lt;StripEventEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>subscriptionRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/SubscriptionEntity.html" target="_self" >Repository&lt;SubscriptionEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/NotificationEntity.html" target="_self" >Repository&lt;NotificationEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>referralCodeRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/ReferralCodeEntity.html" target="_self" >Repository&lt;ReferralCodeEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>addressRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/AddressEntity.html" target="_self" >Repository&lt;AddressEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -122,8 +426,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="5"
-                            class="link-to-prism">test/test-environment/app-test-e2e.service.ts:5</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">test/test-environment/app-test-e2e.service.ts:78</a></div>
                 </td>
             </tr>
 
@@ -139,6 +443,77 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createUserTest"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createUserTest</b></span>
+                        <a href="#createUserTest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createUserTest(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">test/test-environment/app-test-e2e.service.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>createUserDto</td>
+                                    <td>
+                                                <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -146,11 +521,116 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { AddressEntity } from &#x27;../../src/api/entities-to-create/address.entity&#x27;;
+import StripEventEntity from &#x27;../../src/api/entities-to-create/strip-event.entity&#x27;;
+import { ReferralCodeEntity } from &#x27;../../src/api/entities-to-create/referal-code.entity&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { JoinedConversation } from &#x27;../../src/api/entities-to-create/joined-conversation.entity&#x27;;
+import { SocialNetworkEntity } from &#x27;../../src/api/entities-to-create/social-network.entity&#x27;;
+import { SubscriptionEntity } from &#x27;../../src/api/entities-to-create/subscription.entity&#x27;;
+import { GroupMembershipEntity } from &#x27;../../src/api/entities-to-create/group-membership.entity&#x27;;
+import { CardEntity } from &#x27;../../src/api/entities-to-create/card.entity&#x27;;
+import { UserEntity } from &#x27;../../src/api/user/domain/entities/user.entity&#x27;;
+import { ProfileEntity } from &#x27;../../src/api/entities-to-create/profile.entity&#x27;;
+import { DiscountCodeEntity } from &#x27;../../src/api/entities-to-create/discount-code.entity&#x27;;
+import { MessageEntity } from &#x27;../../src/api/entities-to-create/message.entity&#x27;;
+import { GroupEntity } from &#x27;../../src/api/entities-to-create/group.entity&#x27;;
+import CompanyEntity from &#x27;../../src/api/entities-to-create/company.entity&#x27;;
+import { CompanyEmployeeEntity } from &#x27;../../src/api/entities-to-create/company-employee.entity&#x27;;
+import { PlanEntity } from &#x27;../../src/api/entities-to-create/plan.entity&#x27;;
+import { ConversationEntity } from &#x27;../../src/api/entities-to-create/conversation.entity&#x27;;
+import { InvoicesEntity } from &#x27;../../src/api/entities-to-create/invoices.entity&#x27;;
+import { NotificationEntity } from &#x27;../../src/api/entities-to-create/notification.entity&#x27;;
+import { ConnectedCardEntity } from &#x27;../../src/api/entities-to-create/connected-card.entity&#x27;;
+import { MediaEntity } from &#x27;../../src/api/entities-to-create/media.entity&#x27;;
+import { OccupationEntity } from &#x27;../../src/api/entities-to-create/occupation.entity&#x27;;
+import { Repository } from &#x27;typeorm&#x27;;
+import { CreateUserDto } from &#x27;../../src/api/user/domain/dto/create-user.dto&#x27;;
+import * as bcrypt from &quot;bcrypt&quot;;
 
 @Injectable()
 export class AppTestE2eService {
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository&lt;UserEntity&gt;,
+    @InjectRepository(CardEntity)
+    private readonly cardRepository: Repository&lt;CardEntity&gt;,
+    @InjectRepository(CompanyEntity)
+    private readonly companyRepository: Repository&lt;CompanyEntity&gt;,
+    @InjectRepository(CompanyEmployeeEntity)
+    private readonly companyEmployeeRepository: Repository&lt;CompanyEmployeeEntity&gt;,
+    @InjectRepository(ConnectedCardEntity)
+    private readonly connectedCardRepository: Repository&lt;ConnectedCardEntity&gt;,
+    @InjectRepository(ConversationEntity)
+    private readonly conversationRepository: Repository&lt;ConversationEntity&gt;,
+    @InjectRepository(DiscountCodeEntity)
+    private readonly discountCodeRepository: Repository&lt;DiscountCodeEntity&gt;,
+    @InjectRepository(GroupEntity)
+    private readonly groupRepository: Repository&lt;GroupEntity&gt;,
+    @InjectRepository(GroupMembershipEntity)
+    private readonly groupMembershipRepository: Repository&lt;GroupMembershipEntity&gt;,
+    @InjectRepository(InvoicesEntity)
+    private readonly invoicesRepository: Repository&lt;InvoicesEntity&gt;,
+    @InjectRepository(JoinedConversation)
+    private readonly joinedConversationRepository: Repository&lt;JoinedConversation&gt;,
+    @InjectRepository(MediaEntity)
+    private readonly mediaRepository: Repository&lt;MediaEntity&gt;,
+    @InjectRepository(MessageEntity)
+    private readonly messageRepository: Repository&lt;MessageEntity&gt;,
+    @InjectRepository(OccupationEntity)
+    private readonly occupationRepository: Repository&lt;OccupationEntity&gt;,
+    @InjectRepository(PlanEntity)
+    private readonly planRepository: Repository&lt;PlanEntity&gt;,
+    @InjectRepository(ProfileEntity)
+    private readonly profileRepository: Repository&lt;ProfileEntity&gt;,
+    @InjectRepository(SocialNetworkEntity)
+    private readonly socialNetworkRepository: Repository&lt;SocialNetworkEntity&gt;,
+    @InjectRepository(StripEventEntity)
+    private readonly stripEventRepository: Repository&lt;StripEventEntity&gt;,
+    @InjectRepository(SubscriptionEntity)
+    private readonly subscriptionRepository: Repository&lt;SubscriptionEntity&gt;,
+    @InjectRepository(NotificationEntity)
+    private readonly notificationRepository: Repository&lt;NotificationEntity&gt;,
+    @InjectRepository(ReferralCodeEntity)
+    private readonly referralCodeRepository: Repository&lt;ReferralCodeEntity&gt;,
+    @InjectRepository(AddressEntity)
+    private readonly addressRepository: Repository&lt;AddressEntity&gt;,
+  ) {}
+
   async clearDatabaseTest(): Promise&lt;void&gt; {
+    await this.userRepository.query(&#x27;DELETE FROM &quot;user&quot;;&#x27;);
+    await this.cardRepository.query(&#x27;DELETE FROM &quot;card&quot;;&#x27;);
+    await this.companyRepository.query(&#x27;DELETE FROM &quot;company&quot;;&#x27;);
+    await this.companyEmployeeRepository.query(&#x27;DELETE FROM &quot;company_employee&quot;;&#x27;);
+    await this.connectedCardRepository.query(&#x27;DELETE FROM &quot;connected_card&quot;;&#x27;);
+    await this.conversationRepository.query(&#x27;DELETE FROM &quot;conversation&quot;;&#x27;);
+    await this.discountCodeRepository.query(&#x27;DELETE FROM &quot;discount_codes&quot;;&#x27;);
+    await this.groupRepository.query(&#x27;DELETE FROM &quot;group&quot;;&#x27;);
+    await this.groupMembershipRepository.query(&#x27;DELETE FROM &quot;group_membership&quot;;&#x27;);
+    await this.invoicesRepository.query(&#x27;DELETE FROM &quot;invoices&quot;;&#x27;);
+    await this.joinedConversationRepository.query(&#x27;DELETE FROM &quot;joined_conversation&quot;;&#x27;);
+    await this.mediaRepository.query(&#x27;DELETE FROM &quot;media&quot;;&#x27;);
+    await this.messageRepository.query(&#x27;DELETE FROM &quot;message&quot;;&#x27;);
+    await this.occupationRepository.query(&#x27;DELETE FROM &quot;occupation&quot;;&#x27;);
+    await this.planRepository.query(&#x27;DELETE FROM &quot;plan&quot;;&#x27;);
+    await this.profileRepository.query(&#x27;DELETE FROM &quot;profile&quot;;&#x27;);
+    await this.socialNetworkRepository.query(&#x27;DELETE FROM &quot;social_network&quot;;&#x27;);
+    await this.stripEventRepository.query(&#x27;DELETE FROM &quot;strip_event&quot;;&#x27;);
+    await this.subscriptionRepository.query(&#x27;DELETE FROM &quot;subscription&quot;;&#x27;);
+    await this.notificationRepository.query(&#x27;DELETE FROM &quot;notification&quot;;&#x27;);
+    await this.referralCodeRepository.query(&#x27;DELETE FROM &quot;referral_code&quot;;&#x27;);
+    await this.addressRepository.query(&#x27;DELETE FROM &quot;address&quot;;&#x27;);
+
     return;
+  }
+
+  async createUserTest(createUserDto: CreateUserDto): Promise&lt;UserEntity&gt; {
+    return await this.userRepository.save({
+      username: createUserDto.username,
+      email: createUserDto.email,
+      password: bcrypt.hashSync(createUserDto.password, 10),
+      roles: createUserDto.roles,
+    });
   }
 }
 </code></pre>
