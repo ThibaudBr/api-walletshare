@@ -8,6 +8,8 @@ import { Response } from 'express';
 import JwtRefreshGuard from './guards/jwt-refresh-token.guard';
 import { UserService } from '../user/user.service';
 import { ApiTags } from '@nestjs/swagger';
+import { RoleGuard } from './guards/role.guard';
+import { UserRoleEnum } from '../user/domain/enum/user-role.enum';
 
 @Controller('/auth')
 @ApiTags('auth')
@@ -15,6 +17,7 @@ export class AuthController {
   constructor(private readonly userService: UserService, private readonly authService: AuthService) {}
 
   @Post('/register')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async signUp(@Body() signUpDto: SignUpDto): Promise<UserEntity> {
     return await this.authService.signup(signUpDto);
   }
@@ -38,23 +41,24 @@ export class AuthController {
     return response.send(user);
   }
 
+  @HttpCode(204)
   @UseGuards(JwtRefreshGuard)
-  @Post('logout')
-  async logOut(@Req() request: RequestUser, @Res() response: Response) {
+  @Post('/logout')
+  async logOut(@Req() request: RequestUser, @Res() response: Response): Promise<Response> {
     await this.userService.removeRefreshToken(request.user.id);
     response.setHeader('Set-Cookie', this.authService.getCookieForLogOut());
-    return response.sendStatus(200);
+    return response.sendStatus(204);
   }
 
   //getCurrentUser
   @UseGuards(JwtRefreshGuard)
-  @Get('actual')
+  @Get('/actual')
   authenticate(@Req() request: RequestUser): UserEntity {
     return request.user;
   }
 
   @UseGuards(JwtRefreshGuard)
-  @Get('refresh')
+  @Get('/refresh')
   refresh(@Req() request: RequestUser): UserEntity {
     const accessTokenCookie = this.authService.getCookieWithJwtToken(request.user.id);
 

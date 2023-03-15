@@ -23,6 +23,8 @@ import { ConnectedCardEntity } from '../../src/api/entities-to-create/connected-
 import { MediaEntity } from '../../src/api/entities-to-create/media.entity';
 import { OccupationEntity } from '../../src/api/entities-to-create/occupation.entity';
 import { Repository } from 'typeorm';
+import { CreateUserDto } from '../../src/api/user/domain/dto/create-user.dto';
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class AppTestE2eService {
@@ -98,5 +100,14 @@ export class AppTestE2eService {
     await this.addressRepository.query('DELETE FROM "address";');
 
     return;
+  }
+
+  async createUserTest(createUserDto: CreateUserDto): Promise<UserEntity> {
+    return await this.userRepository.save({
+      username: createUserDto.username,
+      email: createUserDto.email,
+      password: bcrypt.hashSync(createUserDto.password, 10),
+      roles: createUserDto.roles,
+    });
   }
 }

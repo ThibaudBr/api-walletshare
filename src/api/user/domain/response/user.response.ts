@@ -8,7 +8,7 @@ export class UserResponse {
   }
 
   public readonly id: string;
-  public readonly userRoles: UserRoleEnum[];
+  public readonly roles: UserRoleEnum[];
   public readonly username?: string;
   public readonly email?: string;
 }

@@ -15,7 +15,7 @@ export class GetUserByUsernameQueryHandler implements IQueryHandler<GetUserByUse
     try {
       return await this.userRepository.findOneOrFail({
         where: [{ username: query.username }],
-        select: ['id', 'username', 'password', 'userRoles', 'createdAt', 'updatedAt'],
+        select: ['id', 'username', 'password', 'roles', 'createdAt', 'updatedAt'],
       });
     } catch (error) {
       throw 'Error: no match found';

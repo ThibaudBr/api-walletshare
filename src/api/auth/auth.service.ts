@@ -19,7 +19,11 @@ export class AuthService {
   }
 
   async login(username: string, plainTextPassword: string): Promise<UserEntity> {
-    return await this.queryBus.execute(new GetUserLoginQuery(username, plainTextPassword));
+    try {
+      return await this.queryBus.execute(new GetUserLoginQuery(username, plainTextPassword));
+    } catch (error) {
+      throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
+    }
   }
 
   public getCookieWithJwtToken(userId: string): { token: string; auth: string } {

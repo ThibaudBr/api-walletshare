@@ -18,7 +18,7 @@ export class CreateUserDto {
 
   @ApiProperty()
   @IsOptional()
-  role?: UserRoleEnum;
+  roles?: UserRoleEnum[];
 
   constructor(partial: Partial<CreateUserDto>) {
     Object.assign(this, partial);

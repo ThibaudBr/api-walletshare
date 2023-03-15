@@ -76,7 +76,7 @@ export class UserEntity extends BaseEntity {
   public isRegisteredWithGoogle: boolean;
 
   @Column('text', { array: true, default: [UserRoleEnum.PUBLIC] })
-  userRoles: UserRoleEnum[];
+  roles: UserRoleEnum[];
 
   // _________________________________________________________
   // Relations

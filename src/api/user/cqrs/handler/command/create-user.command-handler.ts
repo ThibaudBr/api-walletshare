@@ -44,7 +44,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
         id: savedUser.id,
         username: savedUser.username,
         email: savedUser.email,
-        userRoles: savedUser.userRoles || [UserRoleEnum.PUBLIC],
+        roles: savedUser.roles || [UserRoleEnum.PUBLIC],
       });
     } catch (error) {
       if (

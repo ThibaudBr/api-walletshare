@@ -22,7 +22,7 @@ export class GetUserLoginHandler implements IQueryHandler<GetUserLoginQuery> {
     try {
       const userUsername = await this.userRepository.findOne({
         where: [{ username: query.username }],
-        select: ['id', 'username', 'password', 'email', 'userRoles', 'createdAt', 'updatedAt', 'deletedAt'],
+        select: ['id', 'username', 'password', 'email', 'roles', 'createdAt', 'updatedAt', 'deletedAt'],
       });
 
       if (userUsername) {
@@ -35,7 +35,7 @@ export class GetUserLoginHandler implements IQueryHandler<GetUserLoginQuery> {
       } else {
         const userUsername = await this.userRepository.findOne({
           where: [{ email: query.username }],
-          select: ['id', 'username', 'password', 'email', 'userRoles', 'createdAt', 'updatedAt', 'deletedAt'],
+          select: ['id', 'username', 'password', 'email', 'roles', 'createdAt', 'updatedAt', 'deletedAt'],
         });
         if (userUsername) {
           if (!(await this.verifyPassword(query.plainTextPassword, userUsername.password))) {
