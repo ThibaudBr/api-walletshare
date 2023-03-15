@@ -26,58 +26,116 @@ describe('AuthController (e2e)', () => {
     await app.close();
   });
 
-  // describe('Register /api/v1/auth/register (POST)', () => {
-  //   beforeAll(async () => {
-  //     await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
-  //   });
-  //
-  //   describe('With valid data', () => {
-  //     it('should return new users', async () => {
-  //       const response = await request(app.getHttpServer()).post('/auth/register').send({
-  //         username: 'testRegister',
-  //         email: 'testRegister@test.fr',
-  //         password: 'Test123!',
-  //       });
-  //       expect(response.status).toEqual(201);
-  //       expect(response.body).toHaveProperty('id');
-  //       expect(response.body.username).toEqual('testRegister');
-  //       expect(response.body.email).toEqual('testRegister@test.fr');
-  //       expect(response.body.password).toBeUndefined();
-  //     });
-  //   });
-  //   describe('With invalid data', () => {
-  //     describe('With invalid email', () => {
-  //       it('should return 400', async () => {
-  //         const response = await request(app.getHttpServer()).post('/api/v1/auth/register').send({
-  //           username: 'test',
-  //           email: 'testtest.fr',
-  //           password: 'Test123!',
-  //         });
-  //         expect(response.status).toEqual(400);
-  //       });
-  //       describe('With invalid password', () => {
-  //         it('should return 400', async function () {
-  //           const response = await request(app.getHttpServer()).post('/api/v1/auth/register').send({
-  //             username: 'test',
-  //             email: 'test@test.fr',
-  //             password: 'Test123',
-  //           });
-  //           expect(response.status).toEqual(400);
-  //         });
-  //       });
-  //       describe('With invalid username', () => {
-  //         it('should return 400', async function () {
-  //           const response = await request(app.getHttpServer()).post('/api/v1/auth/register').send({
-  //             username: 'te',
-  //             email: 'test@test.fr',
-  //             password: 'Test123',
-  //           });
-  //           expect(response.status).toEqual(400);
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
+  describe('Register /api/v1/auth/register (POST)', () => {
+    beforeAll(async () => {
+      await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
+      await request(app.getHttpServer())
+        .post('/api/test/create-user-test')
+        .send({
+          username: 'loginTest',
+          email: 'loginTest@test.fr',
+          password: 'Test123!',
+          roles: ['ADMIN'],
+        })
+        .expect(201);
+      await request(app.getHttpServer())
+        .post('/api/test/create-user-test')
+        .send({
+          username: 'loginTestPublic',
+          email: 'loginTestPublic@test.fr',
+          password: 'Test123!',
+          roles: ['PUBLIC'],
+        })
+        .expect(201);
+    });
+
+    describe('With valid data', () => {
+      it('should return new users', async () => {
+        const response = await request(app.getHttpServer())
+          .post('/auth/login')
+          .send({
+            login: 'loginTest',
+            password: 'Test123!',
+          })
+          .expect(200);
+        const responseRegister = await request(app.getHttpServer())
+          .post('/auth/register')
+          .set('Authorization', 'Bearer ' + response.body.currentHashedRefreshToken)
+          .send({
+            username: 'testRegister',
+            email: 'testRegister@test.fr',
+            password: 'Test123!',
+          });
+        expect(responseRegister.status).toEqual(201);
+        expect(responseRegister.body).toHaveProperty('id');
+        expect(responseRegister.body.username).toEqual('testRegister');
+        expect(responseRegister.body.email).toEqual('testRegister@test.fr');
+        expect(responseRegister.body.password).toEqual('');
+      });
+    });
+    describe('With invalid data', () => {
+      describe('With invalid email', () => {
+        it('should return 400', async () => {
+          const response = await request(app.getHttpServer())
+            .post('/auth/login')
+            .send({
+              login: 'loginTest',
+              password: 'Test123!',
+            })
+            .expect(200);
+          const responseRegister = await request(app.getHttpServer())
+            .post('/auth/register')
+            .set('Authorization', 'Bearer ' + response.body.currentHashedRefreshToken)
+            .send({
+              username: 'test',
+              email: 'testtest.fr',
+              password: 'Test123!',
+            });
+          expect(responseRegister.status).toEqual(400);
+        });
+        describe('With invalid password', () => {
+          it('should return 400', async function () {
+            const response = await request(app.getHttpServer())
+              .post('/auth/login')
+              .send({
+                login: 'loginTest',
+                password: 'Test123!',
+              })
+              .expect(200);
+            const responseRegister = await request(app.getHttpServer())
+              .post('/auth/register')
+              .set('Authorization', 'Bearer ' + response.body.currentHashedRefreshToken)
+              .send({
+                username: 'test',
+                email: 'test@test.fr',
+                password: 'Test123',
+              });
+            expect(responseRegister.status).toEqual(400);
+          });
+        });
+        describe('With invalid username', () => {
+          it('should return 400', async function () {
+            const response = await request(app.getHttpServer())
+              .post('/auth/login')
+              .send({
+                login: 'loginTest',
+                password: 'Test123!',
+              })
+              .expect(200);
+            const responseRegister = await request(app.getHttpServer())
+              .post('/auth/register')
+              .set('Authorization', 'Bearer ' + response.body.currentHashedRefreshToken)
+              .send({
+                username: 'te',
+                email: 'test@test.fr',
+                password: 'Test123',
+              });
+            expect(responseRegister.status).toEqual(400);
+          });
+        });
+      });
+    });
+  });
 
   describe('Login /auth/login (POST)', () => {
     beforeAll(async () => {
