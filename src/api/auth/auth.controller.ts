@@ -10,6 +10,8 @@ import { UserService } from '../user/user.service';
 import { ApiTags } from '@nestjs/swagger';
 import { RoleGuard } from './guards/role.guard';
 import { UserRoleEnum } from '../user/domain/enum/user-role.enum';
+import { MessagePattern } from '@nestjs/microservices';
+import { UserLoginResponse } from '../user/domain/response/user-login.response';
 
 @Controller('/auth')
 @ApiTags('auth')
@@ -68,5 +70,12 @@ export class AuthController {
 
     request.res.setHeader('Set-Cookie', accessTokenCookie.token);
     return request.user;
+  }
+
+  // MessagePatern
+
+  @MessagePattern({ cmd: 'validate-token' })
+  async validateToken(data: string): Promise<UserLoginResponse> {
+    return await this.authService.getUserFromAuthToken(data);
   }
 }

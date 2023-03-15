@@ -55,12 +55,13 @@ export class AuthService {
     return ['Authentication=; HttpOnly; Path=/; Max-Age=0', 'Refresh=; HttpOnly; Path=/; Max-Age=0'];
   }
 
-  async getUserFromAuthToken(authenticationToken: string): Promise<UserLoginResponse | undefined> {
+  async getUserFromAuthToken(authenticationToken: string): Promise<UserLoginResponse> {
     const payload: TokenPayload = this.jwtService.verify(authenticationToken, {
       secret: process.env.JWT_REFRESH_TOKEN_SECRET,
     });
     if (payload.userId) {
       return this.queryBus.execute(new GetUserQuery(payload.userId));
     }
+    throw new HttpException('Wrong token provided', HttpStatus.BAD_REQUEST);
   }
 }

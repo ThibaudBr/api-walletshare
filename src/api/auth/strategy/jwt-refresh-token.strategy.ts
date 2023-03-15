@@ -5,7 +5,7 @@ import { config } from 'dotenv';
 import { UserService } from '../../user/user.service';
 import { TokenPayload } from '../interface/token-payload.interface';
 import { Request } from 'express';
-import { RequestUser } from "../interface/request-user.interface";
+import { RequestUser } from '../interface/request-user.interface';
 
 config();
 @Injectable()

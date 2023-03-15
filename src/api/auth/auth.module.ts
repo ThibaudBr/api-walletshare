@@ -17,7 +17,8 @@ import { RegisterEventHandler } from './cqrs/event-handler/register.event-handle
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';
 import { ApiLogModule } from '../api-log/api-log.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ApiLogService } from "../api-log/api-log.service";
+import { ApiLogService } from '../api-log/api-log.service';
+import * as process from 'process';
 
 config();
 
@@ -30,8 +31,13 @@ config();
       },
     }),
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP },
-      { name: 'API_MAIL', transport: Transport.TCP },
+      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
+      { name: 'API_MAIL', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_MAIL) || 3102 } },
+      {
+        name: 'API_LANDING_PAGE',
+        transport: Transport.TCP,
+        options: { port: Number(process.env.PORT_API_LANDING_PAGE) || 3103 },
+      },
     ]),
     PassportModule,
     TypeOrmModule.forFeature([UserEntity]),
