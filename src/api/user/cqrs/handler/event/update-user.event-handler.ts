@@ -1,17 +1,16 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { UpdateUserEvent } from '../../event/update-user.event';
-import { Inject } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { ApiLogService } from '../../../../api-log/api-log.service';
 
 @EventsHandler(UpdateUserEvent)
 export class UpdateUserEventHandler implements IEventHandler<UpdateUserEvent> {
-  constructor(@Inject('API_LOG') private readonly client: ClientProxy) {}
+  constructor(private readonly apiLogService: ApiLogService) {}
+
   handle(event: UpdateUserEvent): void {
-    this.client.emit(
-      {
-        cmd: 'add-log',
-      },
-      event,
-    );
+    this.apiLogService.createLogForMethode({
+      module: event.module,
+      method: event.method,
+      body: 'User with id: ' + event.userId + ' updated',
+    });
   }
 }

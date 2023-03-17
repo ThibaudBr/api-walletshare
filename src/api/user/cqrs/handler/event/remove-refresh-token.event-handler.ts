@@ -1,17 +1,15 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { RemoveRefreshTokenEvent } from '../../event/remove-refresh-token.event';
-import { Inject } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { ApiLogService } from '../../../../api-log/api-log.service';
 
 @EventsHandler(RemoveRefreshTokenEvent)
 export class RemoveRefreshTokenEventHandler implements IEventHandler<RemoveRefreshTokenEvent> {
-  constructor(@Inject('API_LOG') private readonly client: ClientProxy) {}
+  constructor(private readonly apiLogService: ApiLogService) {}
   handle(event: RemoveRefreshTokenEvent): void {
-    this.client.emit(
-      {
-        cmd: 'add-log',
-      },
-      event,
-    );
+    this.apiLogService.createLogForMethode({
+      module: event.module,
+      method: event.method,
+      body: 'Refresh token with id: ' + event.userId + ' removed',
+    });
   }
 }

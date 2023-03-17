@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ApiTypeEnum } from '../enum/api-type.enum';
-import { LoggingTypeEnum } from '../enum/logging-type.enum';
+import { LoggingTypeEnum } from '../../domain/enum/logging-type.enum';
+import { ApiTypeEnum } from '../../domain/enum/api-type.enum';
 
-export class CreateLogDto {
-  constructor(partial: Partial<CreateLogDto>) {
+export class CreateLogCommand {
+  constructor(partial: Partial<CreateLogCommand>) {
     Object.assign(this, partial);
   }
 
@@ -20,19 +20,16 @@ export class CreateLogDto {
   apiType: ApiTypeEnum;
 
   @ApiProperty()
-  method?: string;
+  method: string;
 
   @ApiProperty()
-  route?: string;
+  route: string;
 
   @ApiProperty({ type: 'json', nullable: true })
   headers?: object;
 
   @ApiProperty({ type: 'json', nullable: true })
   body?: object;
-
-  @ApiProperty()
-  module?: string;
 
   @ApiProperty({ nullable: true })
   status?: number;

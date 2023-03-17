@@ -14,6 +14,7 @@ import { ResponseLoggingMiddleware } from './middleware/response-logging.middlew
 import { ErrorLoggingMiddleware } from './middleware/error-logging.middleware';
 import { ApiLogService } from './api/api-log/api-log.service';
 import { AuthModule } from './api/auth/auth.module';
+import { ApiMailModule } from './api/api-mail/api-mail.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { AuthModule } from './api/auth/auth.module';
     ApiLogModule,
     AuthModule,
     EntitiesToMoveModule,
+    ApiMailModule,
   ],
   controllers: [AppController],
   providers: [AppService, ApiLogService],
