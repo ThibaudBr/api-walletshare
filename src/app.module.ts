@@ -15,6 +15,7 @@ import { ErrorLoggingMiddleware } from './middleware/error-logging.middleware';
 import { ApiLogService } from './api/api-log/api-log.service';
 import { AuthModule } from './api/auth/auth.module';
 import { ApiMailModule } from './api/api-mail/api-mail.module';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ApiMailModule } from './api/api-mail/api-mail.module';
     AuthModule,
     EntitiesToMoveModule,
     ApiMailModule,
+    CqrsModule,
   ],
   controllers: [AppController],
   providers: [AppService, ApiLogService],

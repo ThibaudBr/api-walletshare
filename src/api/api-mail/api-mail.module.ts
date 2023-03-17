@@ -6,6 +6,7 @@ import { SendMailCommandHandler } from './cqrs/handler/command/send-mail.command
 import { SendMailEventHandler } from './cqrs/handler/event/send-mail.event-handler';
 import { ApiLogService } from '../api-log/api-log.service';
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';
+import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
 
 @Module({
   imports: [
@@ -17,6 +18,12 @@ import { ErrorCustomEventHandler } from '../../util/exception/error-handler/erro
     ApiLogModule,
   ],
   controllers: [],
-  providers: [ApiLogService, ErrorCustomEventHandler, SendMailCommandHandler, SendMailEventHandler],
+  providers: [
+    ApiLogService,
+    ErrorCustomEventHandler,
+    SendMailCommandHandler,
+    SendMailEventHandler,
+    CreateLogCommandHandler,
+  ],
 })
 export class ApiMailModule {}
