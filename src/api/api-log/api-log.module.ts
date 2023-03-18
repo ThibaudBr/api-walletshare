@@ -8,7 +8,7 @@ import { CreateLogCommandHandler } from './cqrs/handler/command/create-log.comma
 @Module({
   imports: [
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3001 } },
+      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
     ]),
     CqrsModule,
     ApiLogModule,

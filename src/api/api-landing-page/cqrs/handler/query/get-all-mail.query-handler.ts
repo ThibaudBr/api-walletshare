@@ -7,11 +7,11 @@ import { MailLandingPageDto } from '../../../domain/dto/mail-landing-page.dto';
 
 @QueryHandler(GetAllMailQuery)
 export class GetAllMailQueryHandler implements IQueryHandler<GetAllMailQuery> {
-  constructor(@Inject('API_LANDING_PAGE') private client: ClientProxy) {}
+  constructor(@Inject('API_WAITING_LIST') private client: ClientProxy) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async execute(query: GetAllMailQuery): Promise<MailLandingPageDto[]> {
-    return firstValueFrom(
+    return await firstValueFrom(
       this.client.send({ cmd: 'get-all' }, '').pipe(
         catchError(() => {
           throw new HttpException('unreachable', 401);
