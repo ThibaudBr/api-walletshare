@@ -1,3 +1,11 @@
+# [0.0.6](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.0.6) - 2023-03-18
+
+### Features
+- api-mail module
+- api-landing-page module
+- refactor api-log
+- fix things
+
 # [0.0.5](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.0.5) - 2023-03-15
 
 ### Features

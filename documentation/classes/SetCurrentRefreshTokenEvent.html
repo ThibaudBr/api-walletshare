@@ -85,7 +85,7 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#action" >action</a>
+                                <a href="#method" >method</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -121,7 +121,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(module: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, action: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, refreshToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(module: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, method: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, refreshToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -156,7 +156,7 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>action</td>
+                                                        <td>method</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -209,12 +209,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="action"></a>
+                    <a name="method"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>action</b></span>
-                        <a href="#action"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>method</b></span>
+                        <a href="#method"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -226,7 +226,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;create-user&#x27;</code>
+                        <i>Default value : </i><code>&#x27;set-refresh-token-user&#x27;</code>
                     </td>
                 </tr>
                     <tr>
@@ -342,7 +342,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SetCurrentRefreshTokenEvent {
   constructor(
     public readonly module: string &#x3D; &#x27;user&#x27;,
-    public readonly action: string &#x3D; &#x27;create-user&#x27;,
+    public readonly method: string &#x3D; &#x27;set-refresh-token-user&#x27;,
     public readonly refreshToken: string,
     public readonly userId: string,
   ) {}

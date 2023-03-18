@@ -139,7 +139,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/create&#x27;)<br /></code>
+                    <code>@Post(&#x27;/create&#x27;)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -215,14 +215,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@UseGuards(undefined)<br /></code>
+                    <code>@Post(&#x27;/create-user-from-mail&#x27;)<br />@UseGuards(undefined)<br />@Get()<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/api/user/user.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/api/user/user.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -259,14 +259,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@Get(&#x27;:id&#x27;)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/api/user/user.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/api/user/user.controller.ts:43</a></div>
                 </td>
             </tr>
 
@@ -335,14 +335,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;:id&#x27;)<br />@UseGuards(JwtRefreshGuard)<br /></code>
+                    <code>@Delete(&#x27;:id&#x27;)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/api/user/user.controller.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/api/user/user.controller.ts:56</a></div>
                 </td>
             </tr>
 
@@ -411,14 +411,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;&#x27;)<br />@UseGuards(JwtRefreshGuard)<br /></code>
+                    <code>@Put(&#x27;&#x27;)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/api/user/user.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/api/user/user.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -487,7 +487,6 @@ import { UserService } from &#x27;./user.service&#x27;;
 import { CreateUserDto } from &#x27;./domain/dto/create-user.dto&#x27;;
 import { CreateUserResponse } from &#x27;./domain/response/create-user.response&#x27;;
 import { UpdateUserDto } from &#x27;./domain/dto/update-user.dto&#x27;;
-import JwtRefreshGuard from &#x27;../auth/guards/jwt-refresh-token.guard&#x27;;
 import { RequestUser } from &#x27;../auth/interface/request-user.interface&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { UserResponse } from &#x27;./domain/response/user.response&#x27;;
@@ -500,6 +499,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post(&#x27;/create&#x27;)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createUser(@Body() createUserDto: CreateUserDto): Promise&lt;CreateUserResponse | HttpException&gt; {
     try {
       return await this.userService.createUser(createUserDto);
@@ -514,6 +514,8 @@ export class UserController {
     }
   }
 
+  @Post(&#x27;/create-user-from-mail&#x27;)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   @Get()
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   findAll(): Promise&lt;UserResponse[]&gt; {
@@ -521,19 +523,20 @@ export class UserController {
   }
 
   @Get(&#x27;:id&#x27;)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC]))
   findOne(@Param(&#x27;id&#x27;) id: string): Promise&lt;UserResponse&gt; {
     return this.userService.findOne(id);
   }
 
   @Put(&#x27;&#x27;)
-  @UseGuards(JwtRefreshGuard)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   update(@Req() request: RequestUser, @Body() updateUserDto: UpdateUserDto): Promise&lt;UserResponse&gt; {
     const { user } &#x3D; request;
     return this.userService.update(user.id, updateUserDto);
   }
 
   @Delete(&#x27;:id&#x27;)
-  @UseGuards(JwtRefreshGuard)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   remove(@Param(&#x27;id&#x27;) id: string): Promise&lt;void&gt; {
     return this.userService.remove(id);
   }

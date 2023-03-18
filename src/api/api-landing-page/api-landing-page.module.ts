@@ -10,8 +10,8 @@ import { GetAllMailQueryHandler } from './cqrs/handler/query/get-all-mail.query-
 import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
 import { ApiLandingPageService } from './api-landing-page.service';
 import { ApiLogService } from '../api-log/api-log.service';
-import { UserModule } from "../user/user.module";
-import { UserService } from "../user/user.service";
+import { UserModule } from '../user/user.module';
+import { UserService } from '../user/user.service';
 
 @Module({
   imports: [

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { SendMailCommand } from './cqrs/command/send-mail.command';
-import { MailDto } from "./domain/dto/mail.dto";
+import { MailDto } from './domain/dto/mail.dto';
 
 @Injectable()
 export class ApiMailService {

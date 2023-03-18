@@ -412,7 +412,7 @@ export class ErrorCustomEventHandler implements IEventHandler&lt;ErrorCustomEven
     this.VERBOSE &#x3D; process.env.VERBOSE_ERROR &#x3D;&#x3D;&#x3D; &#x27;true&#x27;;
   }
   handle(event: ErrorCustomEvent): void {
-    const createLogDto &#x3D; new CreateLogDto();
+    const createLogDto &#x3D; new CreateLogDto({});
     createLogDto.apiName &#x3D; this.API_NAME;
     createLogDto.apiVersion &#x3D; this.API_VERSION;
     createLogDto.loggingType &#x3D; LoggingTypeEnum.ERROR;

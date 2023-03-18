@@ -2,7 +2,7 @@ import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { DeleteUserEvent } from '../../event/delete-user.event';
 import { Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { ApiLogService } from "../../../../api-log/api-log.service";
+import { ApiLogService } from '../../../../api-log/api-log.service';
 
 @EventsHandler(DeleteUserEvent)
 export class DeleteUserEventHandler implements IEventHandler<DeleteUserEvent> {

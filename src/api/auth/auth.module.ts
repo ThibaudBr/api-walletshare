@@ -19,7 +19,7 @@ import { ApiLogModule } from '../api-log/api-log.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ApiLogService } from '../api-log/api-log.service';
 import * as process from 'process';
-import { CreateLogCommandHandler } from "../api-log/cqrs/handler/command/create-log.command-handler";
+import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
 
 config();
 

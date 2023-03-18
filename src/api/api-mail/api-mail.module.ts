@@ -7,12 +7,12 @@ import { SendMailEventHandler } from './cqrs/handler/event/send-mail.event-handl
 import { ApiLogService } from '../api-log/api-log.service';
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';
 import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
-import { ApiMailController } from "./api-mail.controller";
-import { ApiMailService } from "./api-mail.service";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { UserEntity } from "../user/domain/entities/user.entity";
-import { UserModule } from "../user/user.module";
-import { UserService } from "../user/user.service";
+import { ApiMailController } from './api-mail.controller';
+import { ApiMailService } from './api-mail.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserEntity } from '../user/domain/entities/user.entity';
+import { UserModule } from '../user/user.module';
+import { UserService } from '../user/user.service';
 
 @Module({
   imports: [

@@ -1,13 +1,13 @@
-import { Body, Controller, Delete, Get, HttpException, Param, Post, Put, Req, UseGuards } from "@nestjs/common";
-import { UserService } from "./user.service";
-import { CreateUserDto } from "./domain/dto/create-user.dto";
-import { CreateUserResponse } from "./domain/response/create-user.response";
-import { UpdateUserDto } from "./domain/dto/update-user.dto";
-import { RequestUser } from "../auth/interface/request-user.interface";
-import { ApiTags } from "@nestjs/swagger";
-import { UserResponse } from "./domain/response/user.response";
-import { RoleGuard } from "../auth/guards/role.guard";
-import { UserRoleEnum } from "./domain/enum/user-role.enum";
+import { Body, Controller, Delete, Get, HttpException, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { UserService } from './user.service';
+import { CreateUserDto } from './domain/dto/create-user.dto';
+import { CreateUserResponse } from './domain/response/create-user.response';
+import { UpdateUserDto } from './domain/dto/update-user.dto';
+import { RequestUser } from '../auth/interface/request-user.interface';
+import { ApiTags } from '@nestjs/swagger';
+import { UserResponse } from './domain/response/user.response';
+import { RoleGuard } from '../auth/guards/role.guard';
+import { UserRoleEnum } from './domain/enum/user-role.enum';
 
 @Controller('user')
 @ApiTags('user')
@@ -32,7 +32,6 @@ export class UserController {
 
   @Post('/create-user-from-mail')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-
   @Get()
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   findAll(): Promise<UserResponse[]> {
