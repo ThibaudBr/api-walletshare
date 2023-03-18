@@ -208,6 +208,7 @@ import { SetCurrentRefreshTokenEventHandler } from &#x27;./cqrs/handler/event/se
 import { LoginOfUserEventHandler } from &#x27;./cqrs/handler/event/login-of-user.event-handler&#x27;;
 import { UpdateUserEventHandler } from &#x27;./cqrs/handler/event/update-user.event-handler&#x27;;
 import { DeleteUserCommandHandler } from &#x27;./cqrs/handler/command/delete-user.command-handler&#x27;;
+import { CreateLogCommandHandler } from &#x27;../api-log/cqrs/handler/command/create-log.command-handler&#x27;;
 
 @Module({
   imports: [
@@ -219,7 +220,9 @@ import { DeleteUserCommandHandler } from &#x27;./cqrs/handler/command/delete-use
   controllers: [UserController],
   providers: [
     UserService,
+    // log
     ApiLogService,
+    CreateLogCommandHandler,
     // Command handlers
     CreateUserCommandHandler,
     RemoveRefreshTokenCommandHandler,

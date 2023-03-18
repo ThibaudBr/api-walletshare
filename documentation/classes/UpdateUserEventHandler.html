@@ -110,12 +110,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(client: ClientProxy)</code>
+<code>constructor(apiLogService: <a href="../injectables/ApiLogService.html" target="_self">ApiLogService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/api/user/cqrs/handler/event/update-user.event-handler.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/api/user/cqrs/handler/event/update-user.event-handler.ts:6</a></div>
                             </td>
                         </tr>
 
@@ -133,10 +133,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>client</td>
+                                                        <td>apiLogService</td>
                                                   
                                                         <td>
-                                                                    <code>ClientProxy</code>
+                                                                        <code><a href="../injectables/ApiLogService.html" target="_self" >ApiLogService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -240,19 +240,18 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventsHandler, IEventHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { UpdateUserEvent } from &#x27;../../event/update-user.event&#x27;;
-import { Inject } from &#x27;@nestjs/common&#x27;;
-import { ClientProxy } from &#x27;@nestjs/microservices&#x27;;
+import { ApiLogService } from &#x27;../../../../api-log/api-log.service&#x27;;
 
 @EventsHandler(UpdateUserEvent)
 export class UpdateUserEventHandler implements IEventHandler&lt;UpdateUserEvent&gt; {
-  constructor(@Inject(&#x27;API_LOG&#x27;) private readonly client: ClientProxy) {}
+  constructor(private readonly apiLogService: ApiLogService) {}
+
   handle(event: UpdateUserEvent): void {
-    this.client.emit(
-      {
-        cmd: &#x27;add-log&#x27;,
-      },
-      event,
-    );
+    this.apiLogService.createLogForMethode({
+      module: event.module,
+      method: event.method,
+      body: &#x27;User with id: &#x27; + event.userId + &#x27; updated&#x27;,
+    });
   }
 }
 </code></pre>

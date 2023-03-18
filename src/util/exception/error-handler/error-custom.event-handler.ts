@@ -18,7 +18,7 @@ export class ErrorCustomEventHandler implements IEventHandler<ErrorCustomEvent> 
     this.VERBOSE = process.env.VERBOSE_ERROR === 'true';
   }
   handle(event: ErrorCustomEvent): void {
-    const createLogDto = new CreateLogDto();
+    const createLogDto = new CreateLogDto({});
     createLogDto.apiName = this.API_NAME;
     createLogDto.apiVersion = this.API_VERSION;
     createLogDto.loggingType = LoggingTypeEnum.ERROR;

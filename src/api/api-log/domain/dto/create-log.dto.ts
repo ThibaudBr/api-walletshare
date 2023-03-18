@@ -3,6 +3,10 @@ import { ApiTypeEnum } from '../enum/api-type.enum';
 import { LoggingTypeEnum } from '../enum/logging-type.enum';
 
 export class CreateLogDto {
+  constructor(partial: Partial<CreateLogDto>) {
+    Object.assign(this, partial);
+  }
+
   @ApiProperty()
   apiName: string;
 
@@ -16,16 +20,19 @@ export class CreateLogDto {
   apiType: ApiTypeEnum;
 
   @ApiProperty()
-  method: string;
+  method?: string;
 
   @ApiProperty()
-  route: string;
+  route?: string;
 
   @ApiProperty({ type: 'json', nullable: true })
   headers?: object;
 
   @ApiProperty({ type: 'json', nullable: true })
   body?: object;
+
+  @ApiProperty()
+  module?: string;
 
   @ApiProperty({ nullable: true })
   status?: number;

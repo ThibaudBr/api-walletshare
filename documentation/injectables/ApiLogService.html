@@ -79,7 +79,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#createLog" >createLog</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createLogForMethode" >createLogForMethode</a>
                             </li>
                         </ul>
                     </td>
@@ -99,12 +104,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(client: ClientProxy)</code>
+<code>constructor(commandBus: CommandBus)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/api/api-log/api-log.service.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/api/api-log/api-log.service.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -122,10 +127,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>client</td>
+                                                        <td>commandBus</td>
                                                   
                                                         <td>
-                                                                    <code>ClientProxy</code>
+                                                                    <code>CommandBus</code>
                                                         </td>
                                                   
                                                     <td>
@@ -153,6 +158,7 @@
                 <td class="col-md-4">
                     <a name="createLog"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>createLog</b></span>
                         <a href="#createLog"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -160,15 +166,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createLog(log: <a href="../classes/CreateLogDto.html" target="_self">CreateLogDto</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createLog(log: <a href="../classes/CreateLogDto.html" target="_self">CreateLogDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="8"
-                            class="link-to-prism">src/api/api-log/api-log.service.ts:8</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="10"
+                            class="link-to-prism">src/api/api-log/api-log.service.ts:10</a></div>
                 </td>
             </tr>
 
@@ -206,7 +213,78 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createLogForMethode"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createLogForMethode</b></span>
+                        <a href="#createLogForMethode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createLogForMethode(log: <a href="../classes/CreateMethodLogDto.html" target="_self">CreateMethodLogDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/api/api-log/api-log.service.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>log</td>
+                                    <td>
+                                                <code><a href="../classes/CreateMethodLogDto.html" target="_self" >CreateMethodLogDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -222,15 +300,34 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;;
-import { ClientProxy } from &#x27;@nestjs/microservices&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { CreateLogDto } from &#x27;./domain/dto/create-log.dto&#x27;;
+import { CommandBus } from &#x27;@nestjs/cqrs&#x27;;
+import { CreateLogCommand } from &#x27;./cqrs/command/create-log.command&#x27;;
+import { CreateMethodLogDto } from &#x27;./domain/dto/create-method-log.dto&#x27;;
 
 @Injectable()
 export class ApiLogService {
-  constructor(@Inject(&#x27;API_LOG&#x27;) private client: ClientProxy) {}
-  createLog(log: CreateLogDto): void {
-    this.client.emit(&#x27;create-log&#x27;, log);
+  constructor(private readonly commandBus: CommandBus) {}
+  async createLog(log: CreateLogDto): Promise&lt;void&gt; {
+    await this.commandBus.execute(
+      new CreateLogCommand({
+        ...log,
+      }),
+    );
+  }
+
+  async createLogForMethode(log: CreateMethodLogDto): Promise&lt;void&gt; {
+    const createLogDto: CreateLogDto &#x3D; new CreateLogDto({
+      method: log.method,
+      module: log.module,
+      body: Object(log.body),
+    });
+    await this.commandBus.execute(
+      new CreateLogCommand({
+        ...createLogDto,
+      }),
+    );
   }
 }
 </code></pre>
