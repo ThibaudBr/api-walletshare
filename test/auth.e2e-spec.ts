@@ -33,7 +33,7 @@ describe('AuthController (e2e)', () => {
         .post('/api/test/create-user-test')
         .send({
           username: 'loginTest',
-          email: 'loginTest@test.fr',
+          mail: 'loginTest@test.fr',
           password: 'Test123!',
           roles: ['ADMIN'],
         })
@@ -42,7 +42,7 @@ describe('AuthController (e2e)', () => {
         .post('/api/test/create-user-test')
         .send({
           username: 'loginTestPublic',
-          email: 'loginTestPublic@test.fr',
+          mail: 'loginTestPublic@test.fr',
           password: 'Test123!',
           roles: ['PUBLIC'],
         })
@@ -63,13 +63,13 @@ describe('AuthController (e2e)', () => {
           .set('Authorization', 'Bearer ' + response.body.currentHashedRefreshToken)
           .send({
             username: 'testRegister',
-            email: 'testRegister@test.fr',
+            mail: 'testRegister@test.fr',
             password: 'Test123!',
           });
         expect(responseRegister.status).toEqual(201);
         expect(responseRegister.body).toHaveProperty('id');
         expect(responseRegister.body.username).toEqual('testRegister');
-        expect(responseRegister.body.email).toEqual('testRegister@test.fr');
+        expect(responseRegister.body.mail).toEqual('testRegister@test.fr');
       });
     });
     describe('With invalid data', () => {
@@ -86,8 +86,7 @@ describe('AuthController (e2e)', () => {
             .post('/auth/register')
             .set('Authorization', 'Bearer ' + response.body.currentHashedRefreshToken)
             .send({
-              username: 'test',
-              email: 'testtest.fr',
+              mail: 'testtest.fr',
               password: 'Test123!',
             });
           expect(responseRegister.status).toEqual(400);
@@ -106,7 +105,7 @@ describe('AuthController (e2e)', () => {
               .set('Authorization', 'Bearer ' + response.body.currentHashedRefreshToken)
               .send({
                 username: 'test',
-                email: 'test@test.fr',
+                mail: 'test@test.fr',
                 password: 'Test123',
               });
             expect(responseRegister.status).toEqual(400);
@@ -126,7 +125,7 @@ describe('AuthController (e2e)', () => {
               .set('Authorization', 'Bearer ' + response.body.currentHashedRefreshToken)
               .send({
                 username: 'te',
-                email: 'test@test.fr',
+                mail: 'test@test.fr',
                 password: 'Test123',
               });
             expect(responseRegister.status).toEqual(400);
@@ -144,7 +143,7 @@ describe('AuthController (e2e)', () => {
         .post('/api/test/create-user-test')
         .send({
           username: 'loginTest',
-          email: 'loginTest@test.fr',
+          mail: 'loginTest@test.fr',
           password: 'Test123!',
         })
         .expect(201);
