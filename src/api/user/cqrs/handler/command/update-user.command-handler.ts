@@ -12,8 +12,6 @@ import { UserResponse } from '../../../domain/response/user.response';
 
 @CommandHandler(UpdateUserCommand)
 export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserCommand> {
-  logger = new Logger('UpdateUser');
-
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
@@ -24,7 +22,6 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
     try {
       const err = await validate(UpdateUserCommand);
       if (err.length > 0) {
-        this.logger.error('Invalid parameters');
         throw new InvalidClassException('Parameter not validate');
       }
       await this.userRepository.update(command.userId, command.user);
@@ -34,7 +31,13 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
       this.eventBus.publish(new UpdateUserEvent(command.userId));
       return new UserResponse({ ...user });
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent('user', 'UpdateUserCommandHandler', error));
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'user',
+          handler: 'UpdateUserCommandHandler',
+          error: error,
+        }),
+      );
       throw error;
     }
   }

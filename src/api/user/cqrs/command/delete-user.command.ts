@@ -1,3 +1,7 @@
 export class DeleteUserCommand {
-  constructor(public readonly userId: string) {}
+  public readonly userId: string;
+
+  constructor(partial: Partial<DeleteUserCommand>) {
+    Object.assign(this, partial);
+  }
 }

@@ -3,11 +3,11 @@ import { IsEmail, IsNotEmpty, Length } from 'class-validator';
 export class UpdateUserDto {
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  email?: string;
 
   @Length(5, 20)
   @IsNotEmpty()
-  username: string;
+  username?: string;
 
   password?: string;
 }

@@ -14,8 +14,8 @@ export class GetUserByEmailQueryHandler implements IQueryHandler<GetUserByEmailQ
   async execute(query: GetUserByEmailQuery): Promise<UserEntity> {
     try {
       return await this.userRepository.findOneOrFail({
-        where: [{ email: query.email }],
-        select: ['id', 'email', 'password', 'roles', 'createdAt', 'updatedAt'],
+        where: [{ mail: query.email }],
+        select: ['id', 'mail', 'password', 'roles', 'createdAt', 'updatedAt'],
       });
     } catch (error) {
       throw 'Error: no match found';

@@ -11,6 +11,8 @@ import { InvalidPasswordException } from '../../../../../util/exception/custom-h
 import { DuplicateEmailException } from '../../../../../util/exception/custom-http-exception/duplicate-email.exception';
 import { DuplicateUsernameException } from '../../../../../util/exception/custom-http-exception/duplicate-username.exception';
 import * as bcrypt from 'bcrypt';
+import { InvalidMailException } from '../../../../../util/exception/custom-http-exception/invalid-mail.exception';
+import { InvalidUsernameException } from '../../../../../util/exception/custom-http-exception/invalid-username.exception';
 
 @CommandHandler(RegisterCommand)
 export class RegisterHandler implements ICommandHandler<RegisterCommand> {
@@ -26,31 +28,60 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
 
   async execute(command: RegisterCommand): Promise<UserEntity> {
     if (await this.isDuplicatedUsername(command.username)) {
-      this.eventBus.publish(new ErrorCustomEvent('auth', 'Register', 'Username already exists'));
+      this.eventBus.publish(
+        new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
+      );
       throw new DuplicateUsernameException();
     }
-    if (await this.isDuplicatedEmail(command.email)) {
-      this.eventBus.publish(new ErrorCustomEvent('auth', 'Register', 'Email already exists'));
+    if (await this.isDuplicatedEmail(command.mail)) {
+      this.eventBus.publish(
+        new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
+      );
       throw new DuplicateEmailException();
     }
 
     if (this.isValidPassword(command.password)) {
-      this.eventBus.publish(new ErrorCustomEvent('auth', 'Register', 'Invalid password'));
+      this.eventBus.publish(
+        new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid password' }),
+      );
       throw new InvalidPasswordException();
     }
+
+    if (command.mail) {
+      if (!this.isValidEmail(command.mail)) {
+        this.eventBus.publish(
+          new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
+        );
+        throw new InvalidMailException();
+      }
+    }
+
+    if (command.username) {
+      if (!this.isValidUsername(command.username)) {
+        this.eventBus.publish(
+          new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid username' }),
+        );
+        throw new InvalidUsernameException();
+      }
+    }
+
     const newUser = new UserEntity({
-      email: command.email,
+      mail: command.mail,
       password: bcrypt.hashSync(command.password, 10),
       username: command.username,
     });
     const err = await validate(newUser);
     if (err.length > 0) {
-      this.eventBus.publish(new ErrorCustomEvent('auth', 'Register', 'Invalid parameters :' + err));
+      this.eventBus.publish(
+        new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid parameters :' + err }),
+      );
       throw new InvalidParameterEntityException(err);
     }
+
     const insertedUser = await this.userRepository.save(newUser);
     this.eventBus.publish(new RegisterEvent(insertedUser.id));
-    return newUser;
+    console.log(insertedUser);
+    return insertedUser;
   }
 
   private async isDuplicatedUsername(username: string): Promise<boolean> {
@@ -61,11 +92,20 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
 
   private async isDuplicatedEmail(email: string): Promise<boolean> {
     return await this.userRepository.find().then(users => {
-      return users.some(user => user.email === email);
+      return users.some(user => user.mail === email);
     });
   }
 
   private isValidPassword(password: string): boolean {
     return !this.regexValidatePassword.test(password);
+  }
+
+  private isValidUsername(username: string): boolean {
+    return username.length > 4 && username.length < 20;
+  }
+
+  private isValidEmail(email: string): boolean {
+    const regex = new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$');
+    return regex.test(email);
   }
 }

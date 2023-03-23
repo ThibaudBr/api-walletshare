@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private jwtService: JwtService, private commandBus: CommandBus, private queryBus: QueryBus) {}
 
   async signup(signUpDto: SignUpDto) {
-    return this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.email, signUpDto.password));
+    return this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password));
   }
 
   async login(username: string, plainTextPassword: string): Promise<UserEntity> {

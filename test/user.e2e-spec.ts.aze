@@ -1,0 +1,27 @@
+//
+// if (process.env.NODE_ENV != 'test') {
+//   console.log('NODE_ENV must be set to test');
+//   throw new Error('NODE_ENV must be set to test');
+// }
+//
+// describe('UserController (e2e)', () => {
+//   let app: INestApplication;
+//   let moduleFixture: TestingModule;
+//
+//   beforeAll(async () => {
+//     jest.setTimeout(100000);
+//     moduleFixture = await Test.createTestingModule({
+//       imports: [AppTestE2eModule],
+//     }).compile();
+//
+//     app = moduleFixture.createNestApplication();
+//     await app.init();
+//   });
+//
+//   afterAll(async () => {
+//     await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
+//     await app.close();
+//   });
+//
+//
+// }

@@ -16,7 +16,7 @@ import { ApiLogService } from './api/api-log/api-log.service';
 import { AuthModule } from './api/auth/auth.module';
 import { ApiMailModule } from './api/api-mail/api-mail.module';
 import { CqrsModule } from '@nestjs/cqrs';
-import { ApiLandingPageModule } from "./api/api-landing-page/api-landing-page.module";
+import { ApiLandingPageModule } from './api/api-landing-page/api-landing-page.module';
 
 @Module({
   imports: [

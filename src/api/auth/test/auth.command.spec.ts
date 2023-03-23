@@ -6,7 +6,7 @@ describe('AuthCommand', () => {
     it('should create a RegisterCommand instance', () => {
       const command = new RegisterCommand('test', 'test@mail.com', 'pass');
       expect(command.username).toBe('test');
-      expect(command.email).toBe('test@mail.com');
+      expect(command.mail).toBe('test@mail.com');
       expect(command.password).toBe('pass');
       expect(command instanceof RegisterCommand).toBe(true);
     });

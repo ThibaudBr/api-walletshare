@@ -7,9 +7,9 @@ import { UserService } from './user.service';
 import { CreateUserCommandHandler } from './cqrs/handler/command/create-user.command-handler';
 import { GetUserByEmailQueryHandler } from './cqrs/handler/query/get-user-by-email.query-handler';
 import { GetUserByUsernameQueryHandler } from './cqrs/handler/query/get-user-by-username.query-handler';
-import { GetUserLoginHandler } from './cqrs/handler/query/get-user-login.handler';
-import { GetUserIfRefreshTokenMatchesHandler } from './cqrs/handler/query/get-user-if-refresh-token-matches.handler';
-import { GetUserHandler } from './cqrs/handler/query/get-user.handler';
+import { GetUserLoginQueryHandler } from './cqrs/handler/query/get-user-login.query-handler';
+import { GetUserIfRefreshTokenMatchesQueryHandler } from './cqrs/handler/query/get-user-if-refresh-token-matches.query-handler';
+import { GetUserQueryHandler } from './cqrs/handler/query/get-user.query-handler';
 import { ApiLogModule } from '../api-log/api-log.module';
 import { ApiLogService } from '../api-log/api-log.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
@@ -22,7 +22,7 @@ import { RemoveRefreshTokenEventHandler } from './cqrs/handler/event/remove-refr
 import { SetCurrentRefreshTokenEventHandler } from './cqrs/handler/event/set-current-refresh-token.event-handler';
 import { LoginOfUserEventHandler } from './cqrs/handler/event/login-of-user.event-handler';
 import { UpdateUserEventHandler } from './cqrs/handler/event/update-user.event-handler';
-import { DeleteUserCommandHandler } from './cqrs/handler/command/delete-user.command-handler';
+import { SoftDeleteUserCommandHandler } from './cqrs/handler/command/soft-delete-user.command-handler';
 import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
 
 @Module({
@@ -43,13 +43,13 @@ import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-
     RemoveRefreshTokenCommandHandler,
     SetCurrentRefreshTokenCommandHandler,
     UpdateUserCommandHandler,
-    DeleteUserCommandHandler,
+    SoftDeleteUserCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,
-    GetUserLoginHandler,
-    GetUserIfRefreshTokenMatchesHandler,
-    GetUserHandler,
+    GetUserLoginQueryHandler,
+    GetUserIfRefreshTokenMatchesQueryHandler,
+    GetUserQueryHandler,
     // Event handlers
     CreateUserEventHandler,
     DeleteUserEventHandler,
