@@ -80,7 +80,6 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
 
     const insertedUser = await this.userRepository.save(newUser);
     this.eventBus.publish(new RegisterEvent(insertedUser.id));
-    console.log(insertedUser);
     return insertedUser;
   }
 

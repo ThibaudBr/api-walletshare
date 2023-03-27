@@ -110,4 +110,23 @@ export class AppTestE2eService {
       roles: createUserDto.roles,
     });
   }
+
+  async removeUser(userId: string): Promise<void> {
+    console.log('userId: ', userId);
+    await this.userRepository.softDelete({ id: userId });
+  }
+
+  async getUser(userId: string): Promise<UserEntity | null> {
+    return await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+    });
+  }
+
+  async getAllUsers(): Promise<UserEntity[]> {
+    return await this.userRepository.find({
+      withDeleted: true,
+    });
+  }
 }

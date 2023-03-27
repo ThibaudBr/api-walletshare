@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { UserEntity } from './domain/entities/user.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserController } from './user.controller';
+import { UserController } from './web/user.controller';
 import { UserService } from './user.service';
 import { CreateUserCommandHandler } from './cqrs/handler/command/create-user.command-handler';
 import { GetUserByEmailQueryHandler } from './cqrs/handler/query/get-user-by-email.query-handler';

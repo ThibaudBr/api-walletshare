@@ -1,16 +1,16 @@
 import { Body, Controller, Delete, Get, HttpException, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './domain/dto/create-user.dto';
-import { CreateUserResponse } from './domain/response/create-user.response';
-import { UpdateUserDto } from './domain/dto/update-user.dto';
-import { RequestUser } from '../auth/interface/request-user.interface';
+import { UserService } from '../user.service';
+import { CreateUserDto } from '../domain/dto/create-user.dto';
+import { CreateUserResponse } from '../domain/response/create-user.response';
+import { UpdateUserDto } from '../domain/dto/update-user.dto';
+import { RequestUser } from '../../auth/interface/request-user.interface';
 import { ApiTags } from '@nestjs/swagger';
-import { UserResponse } from './domain/response/user.response';
-import { RoleGuard } from '../auth/guards/role.guard';
-import { UserRoleEnum } from './domain/enum/user-role.enum';
-import { GetUserWithCriteriaDto } from './domain/dto/get-user-with-criteria.dto';
-import { UpdateUserCredentialDto } from './domain/dto/update-user-credential.dto';
-import { GenerateUserDto } from './domain/dto/generate-user.dto';
+import { UserResponse } from '../domain/response/user.response';
+import { RoleGuard } from '../../auth/guards/role.guard';
+import { UserRoleEnum } from '../domain/enum/user-role.enum';
+import { GetUserWithCriteriaDto } from '../domain/dto/get-user-with-criteria.dto';
+import { UpdateUserCredentialDto } from '../domain/dto/update-user-credential.dto';
+import { GenerateUserDto } from '../domain/dto/generate-user.dto';
 
 @Controller('user')
 @ApiTags('user')
@@ -96,7 +96,7 @@ export class UserController {
     }
   }
 
-  @Get('/admin/criteria')
+  @Post('/admin/criteria')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async findWithCriteria(
     @Body() getUserWithCriteriaDto: GetUserWithCriteriaDto,
