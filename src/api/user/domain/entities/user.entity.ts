@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import { ProfileEntity } from '../../../entities-to-create/profile.entity';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
 import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';

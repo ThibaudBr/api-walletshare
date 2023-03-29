@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { NotificationTypeEnum } from './enum/notification-type.enum';
-import { ProfileEntity } from './profile.entity';
+import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { ConversationEntity } from './conversation.entity';
 import { IsNotEmpty, IsString } from 'class-validator';
 import { UserEntity } from '../user/domain/entities/user.entity';

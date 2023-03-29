@@ -17,7 +17,7 @@ import { MediaEntity } from '../../api/entities-to-create/media.entity';
 import { MessageEntity } from '../../api/entities-to-create/message.entity';
 import { OccupationEntity } from '../../api/entities-to-create/occupation.entity';
 import { PlanEntity } from '../../api/entities-to-create/plan.entity';
-import { ProfileEntity } from '../../api/entities-to-create/profile.entity';
+import { ProfileEntity } from '../../api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../api/entities-to-create/social-network.entity';
 import StripEventEntity from '../../api/entities-to-create/strip-event.entity';
 import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';

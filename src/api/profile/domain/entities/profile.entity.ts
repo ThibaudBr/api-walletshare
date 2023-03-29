@@ -11,14 +11,15 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from '../user/domain/entities/user.entity';
-import { CardEntity } from './card.entity';
-import { OccupationEntity } from './occupation.entity';
-import { CompanyEmployeeEntity } from './company-employee.entity';
-import { MediaEntity } from './media.entity';
-import { JoinedConversation } from './joined-conversation.entity';
-import CompanyEntity from './company.entity';
-import { NotificationEntity } from './notification.entity';
+import { UserEntity } from '../../../user/domain/entities/user.entity';
+import { CardEntity } from '../../../entities-to-create/card.entity';
+import { OccupationEntity } from '../../../entities-to-create/occupation.entity';
+import { CompanyEmployeeEntity } from '../../../entities-to-create/company-employee.entity';
+import { MediaEntity } from '../../../entities-to-create/media.entity';
+import { JoinedConversation } from '../../../entities-to-create/joined-conversation.entity';
+import CompanyEntity from '../../../entities-to-create/company.entity';
+import { NotificationEntity } from '../../../entities-to-create/notification.entity';
+import { RoleProfileEnum } from '../enum/role-profile.enum';
 
 @Entity({ name: 'profile' })
 export class ProfileEntity {
@@ -31,6 +32,12 @@ export class ProfileEntity {
 
   @Column()
   usernameProfile: string;
+
+  // ______________________________________________________
+  // Enum
+  // ______________________________________________________
+  @Column({ type: 'enum', enum: RoleProfileEnum, default: RoleProfileEnum.CLASSIC })
+  roleProfile: RoleProfileEnum;
 
   // ______________________________________________________
   // Relations
@@ -122,4 +129,8 @@ export class ProfileEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial: Partial<ProfileEntity>) {
+    Object.assign(this, partial);
+  }
 }

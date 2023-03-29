@@ -28,6 +28,7 @@ import { GetUserWithCriteriaQueryHandler } from './cqrs/handler/query/get-user-w
 import { UpdateUserCredentialCommandHandler } from './cqrs/handler/command/update-user-credential.command-handler';
 import { UpdateUserRoleCommandHandler } from './cqrs/handler/command/update-user-role.command-handler';
 import { RestoreUserCommandHandler } from './cqrs/handler/command/restore-user.command-handler';
+import { DeleteUserCommandHandler } from './cqrs/handler/command/delete-user.command-handler';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { RestoreUserCommandHandler } from './cqrs/handler/command/restore-user.c
     UpdateUserCredentialCommandHandler,
     UpdateUserRoleCommandHandler,
     RestoreUserCommandHandler,
+    DeleteUserCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,

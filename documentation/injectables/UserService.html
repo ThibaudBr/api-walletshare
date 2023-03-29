@@ -103,6 +103,10 @@
                                 <a href="#findWithCriteria" >findWithCriteria</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#fullDelete" >fullDelete</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#generatePassword" >generatePassword</a>
                             </li>
@@ -622,6 +626,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="fullDelete"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>fullDelete</b></span>
+                        <a href="#fullDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fullDelete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/api/user/user.service.ts:164</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="generatePassword"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -872,7 +947,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/RequestUser.html" target="_self" >Promise&lt;RequestUser&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -1438,8 +1513,6 @@ import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
 import { CreateUserCommand } from &#x27;./cqrs/command/create-user.command&#x27;;
 import { CreateUserDto } from &#x27;./domain/dto/create-user.dto&#x27;;
 import { CreateUserResponse } from &#x27;./domain/response/create-user.response&#x27;;
-import { UserEntity } from &#x27;./domain/entities/user.entity&#x27;;
-import * as process from &#x27;process&#x27;;
 import { RemoveRefreshTokenCommand } from &#x27;./cqrs/command/remove-refresh-token.command&#x27;;
 import { SetCurrentRefreshTokenCommand } from &#x27;./cqrs/command/set-current-refresh-token.command&#x27;;
 import { GetUserIfRefreshTokenMatchesQuery } from &#x27;./cqrs/query/get-user-if-refresh-token-matches.query&#x27;;
@@ -1463,6 +1536,8 @@ import { UserNotFoundException } from &#x27;../../util/exception/custom-http-exc
 import { DuplicateUsernameException } from &#x27;../../util/exception/custom-http-exception/duplicate-username.exception&#x27;;
 import { SamePasswordException } from &#x27;../../util/exception/custom-http-exception/same-password.exception&#x27;;
 import { InvalidPasswordException } from &#x27;../../util/exception/custom-http-exception/invalid-password.exception&#x27;;
+import { RequestUser } from &#x27;../auth/interface/request-user.interface&#x27;;
+import { DeleteUserCommand } from &#x27;./cqrs/command/delete-user.command&#x27;;
 
 @Injectable()
 export class UserService {
@@ -1472,7 +1547,7 @@ export class UserService {
     return await this.commandBus.execute(new CreateUserCommand(createUserDto));
   }
 
-  async getUserIfRefreshTokenMatches(refreshToken: string, userId: string) {
+  async getUserIfRefreshTokenMatches(refreshToken: string, userId: string): Promise&lt;RequestUser&gt; {
     return await this.queryBus.execute(new GetUserIfRefreshTokenMatchesQuery(refreshToken, userId));
   }
 
@@ -1594,6 +1669,10 @@ export class UserService {
 
   private generatePassword(): string {
     return &#x27;Pt&#x27; + Math.random().toString(10).split(&#x27;.&#x27;)[1] + &#x27;!&#x27;;
+  }
+
+  async fullDelete(id: string): Promise&lt;void&gt; {
+    return await this.commandBus.execute(new DeleteUserCommand({ userId: id }));
   }
 }
 </code></pre>

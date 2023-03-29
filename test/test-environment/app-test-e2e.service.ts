@@ -9,7 +9,7 @@ import { SubscriptionEntity } from '../../src/api/entities-to-create/subscriptio
 import { GroupMembershipEntity } from '../../src/api/entities-to-create/group-membership.entity';
 import { CardEntity } from '../../src/api/entities-to-create/card.entity';
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
-import { ProfileEntity } from '../../src/api/entities-to-create/profile.entity';
+import { ProfileEntity } from '../../src/api/profile/domain/entities/profile.entity';
 import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
 import { MessageEntity } from '../../src/api/entities-to-create/message.entity';
 import { GroupEntity } from '../../src/api/entities-to-create/group.entity';

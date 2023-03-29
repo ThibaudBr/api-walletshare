@@ -11,7 +11,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ProfileEntity } from './profile.entity';
+import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { ConnectedCardEntity } from './connected-card.entity';
 import { WhoCanShareCardEnum } from './enum/who-can-share-card.enum';
 import { WhoCanSeeCardInformationEnum } from './enum/who-can-see-card-information.enum';

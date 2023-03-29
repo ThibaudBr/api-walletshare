@@ -14,7 +14,7 @@ import { MediaEntity } from './media.entity';
 import { MessageEntity } from './message.entity';
 import { OccupationEntity } from './occupation.entity';
 import { PlanEntity } from './plan.entity';
-import { ProfileEntity } from './profile.entity';
+import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from './social-network.entity';
 import StripEventEntity from './strip-event.entity';
 import { SubscriptionEntity } from './subscription.entity';

@@ -13,7 +13,7 @@ import {
 } from 'typeorm';
 import { OccupationEntity } from './occupation.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
-import { ProfileEntity } from './profile.entity';
+import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { MediaEntity } from './media.entity';
 import { AddressEntity } from './address.entity';
 

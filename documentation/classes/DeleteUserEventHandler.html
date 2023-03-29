@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/api/user/cqrs/handler/event/delete-user.event-handler.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/api/user/cqrs/handler/event/delete-user.event-handler.ts:6</a></div>
                             </td>
                         </tr>
 
@@ -182,8 +182,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/api/user/cqrs/handler/event/delete-user.event-handler.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/api/user/cqrs/handler/event/delete-user.event-handler.ts:8</a></div>
                 </td>
             </tr>
 
@@ -243,8 +243,6 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventsHandler, IEventHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { DeleteUserEvent } from &#x27;../../event/delete-user.event&#x27;;
-import { Inject } from &#x27;@nestjs/common&#x27;;
-import { ClientProxy } from &#x27;@nestjs/microservices&#x27;;
 import { ApiLogService } from &#x27;../../../../api-log/api-log.service&#x27;;
 
 @EventsHandler(DeleteUserEvent)

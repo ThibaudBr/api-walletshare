@@ -204,13 +204,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppTestE2eModule.html" data-type="entity-link" >AppTestE2eModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-AppTestE2eModule-62ea4984ba79ad350b073695248acf1e607acb5b6a852061b2474eff375ae717ef0f317bd4aa4853d3cafc95a07dabb94cc453ae3f5bb28fa8188a83d182b900"' : 'data-target="#xs-controllers-links-module-AppTestE2eModule-62ea4984ba79ad350b073695248acf1e607acb5b6a852061b2474eff375ae717ef0f317bd4aa4853d3cafc95a07dabb94cc453ae3f5bb28fa8188a83d182b900"' }>
+                                            'data-target="#controllers-links-module-AppTestE2eModule-ca82a737fbf5e0601aa3aa08d42ee661fe0559b07305483fb4eb60295d79e53473f309e1e9e341b36537946bc93ff244078b29128d10d558995053271338a0c3"' : 'data-target="#xs-controllers-links-module-AppTestE2eModule-ca82a737fbf5e0601aa3aa08d42ee661fe0559b07305483fb4eb60295d79e53473f309e1e9e341b36537946bc93ff244078b29128d10d558995053271338a0c3"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppTestE2eModule-62ea4984ba79ad350b073695248acf1e607acb5b6a852061b2474eff375ae717ef0f317bd4aa4853d3cafc95a07dabb94cc453ae3f5bb28fa8188a83d182b900"' :
-                                            'id="xs-controllers-links-module-AppTestE2eModule-62ea4984ba79ad350b073695248acf1e607acb5b6a852061b2474eff375ae717ef0f317bd4aa4853d3cafc95a07dabb94cc453ae3f5bb28fa8188a83d182b900"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppTestE2eModule-ca82a737fbf5e0601aa3aa08d42ee661fe0559b07305483fb4eb60295d79e53473f309e1e9e341b36537946bc93ff244078b29128d10d558995053271338a0c3"' :
+                                            'id="xs-controllers-links-module-AppTestE2eModule-ca82a737fbf5e0601aa3aa08d42ee661fe0559b07305483fb4eb60295d79e53473f309e1e9e341b36537946bc93ff244078b29128d10d558995053271338a0c3"' }>
                                             <li class="link">
                                                 <a href="controllers/AppTestE2eController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppTestE2eController</a>
                                             </li>
@@ -218,13 +218,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-AppTestE2eModule-62ea4984ba79ad350b073695248acf1e607acb5b6a852061b2474eff375ae717ef0f317bd4aa4853d3cafc95a07dabb94cc453ae3f5bb28fa8188a83d182b900"' : 'data-target="#xs-injectables-links-module-AppTestE2eModule-62ea4984ba79ad350b073695248acf1e607acb5b6a852061b2474eff375ae717ef0f317bd4aa4853d3cafc95a07dabb94cc453ae3f5bb28fa8188a83d182b900"' }>
+                                        'data-target="#injectables-links-module-AppTestE2eModule-ca82a737fbf5e0601aa3aa08d42ee661fe0559b07305483fb4eb60295d79e53473f309e1e9e341b36537946bc93ff244078b29128d10d558995053271338a0c3"' : 'data-target="#xs-injectables-links-module-AppTestE2eModule-ca82a737fbf5e0601aa3aa08d42ee661fe0559b07305483fb4eb60295d79e53473f309e1e9e341b36537946bc93ff244078b29128d10d558995053271338a0c3"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppTestE2eModule-62ea4984ba79ad350b073695248acf1e607acb5b6a852061b2474eff375ae717ef0f317bd4aa4853d3cafc95a07dabb94cc453ae3f5bb28fa8188a83d182b900"' :
-                                        'id="xs-injectables-links-module-AppTestE2eModule-62ea4984ba79ad350b073695248acf1e607acb5b6a852061b2474eff375ae717ef0f317bd4aa4853d3cafc95a07dabb94cc453ae3f5bb28fa8188a83d182b900"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppTestE2eModule-ca82a737fbf5e0601aa3aa08d42ee661fe0559b07305483fb4eb60295d79e53473f309e1e9e341b36537946bc93ff244078b29128d10d558995053271338a0c3"' :
+                                        'id="xs-injectables-links-module-AppTestE2eModule-ca82a737fbf5e0601aa3aa08d42ee661fe0559b07305483fb4eb60295d79e53473f309e1e9e341b36537946bc93ff244078b29128d10d558995053271338a0c3"' }>
                                         <li class="link">
                                             <a href="injectables/AppTestE2eService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppTestE2eService</a>
                                         </li>
@@ -312,16 +312,50 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
-                                <a href="modules/UserModule.html" data-type="entity-link" >UserModule</a>
+                                <a href="modules/ProfileModule.html" data-type="entity-link" >ProfileModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-UserModule-196408eb534820ef6a83275a0c3f8c1976deb2bfcdf4fa756c815ffef52115fb3374b46236266358779f117ef2508efbdc571bd9e3729b63df73ae2134a2a174"' : 'data-target="#xs-controllers-links-module-UserModule-196408eb534820ef6a83275a0c3f8c1976deb2bfcdf4fa756c815ffef52115fb3374b46236266358779f117ef2508efbdc571bd9e3729b63df73ae2134a2a174"' }>
+                                            'data-target="#controllers-links-module-ProfileModule-c1029386ba533e10a9609fe968f4636c455a9a4415f8243fdc5ff5c30eac73668a5a499be5dd413faab97b2dff1c890f0abfe196762a5d59dc1d3861bc50287e"' : 'data-target="#xs-controllers-links-module-ProfileModule-c1029386ba533e10a9609fe968f4636c455a9a4415f8243fdc5ff5c30eac73668a5a499be5dd413faab97b2dff1c890f0abfe196762a5d59dc1d3861bc50287e"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UserModule-196408eb534820ef6a83275a0c3f8c1976deb2bfcdf4fa756c815ffef52115fb3374b46236266358779f117ef2508efbdc571bd9e3729b63df73ae2134a2a174"' :
-                                            'id="xs-controllers-links-module-UserModule-196408eb534820ef6a83275a0c3f8c1976deb2bfcdf4fa756c815ffef52115fb3374b46236266358779f117ef2508efbdc571bd9e3729b63df73ae2134a2a174"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-ProfileModule-c1029386ba533e10a9609fe968f4636c455a9a4415f8243fdc5ff5c30eac73668a5a499be5dd413faab97b2dff1c890f0abfe196762a5d59dc1d3861bc50287e"' :
+                                            'id="xs-controllers-links-module-ProfileModule-c1029386ba533e10a9609fe968f4636c455a9a4415f8243fdc5ff5c30eac73668a5a499be5dd413faab97b2dff1c890f0abfe196762a5d59dc1d3861bc50287e"' }>
+                                            <li class="link">
+                                                <a href="controllers/ProfileController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ProfileController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-ProfileModule-c1029386ba533e10a9609fe968f4636c455a9a4415f8243fdc5ff5c30eac73668a5a499be5dd413faab97b2dff1c890f0abfe196762a5d59dc1d3861bc50287e"' : 'data-target="#xs-injectables-links-module-ProfileModule-c1029386ba533e10a9609fe968f4636c455a9a4415f8243fdc5ff5c30eac73668a5a499be5dd413faab97b2dff1c890f0abfe196762a5d59dc1d3861bc50287e"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-ProfileModule-c1029386ba533e10a9609fe968f4636c455a9a4415f8243fdc5ff5c30eac73668a5a499be5dd413faab97b2dff1c890f0abfe196762a5d59dc1d3861bc50287e"' :
+                                        'id="xs-injectables-links-module-ProfileModule-c1029386ba533e10a9609fe968f4636c455a9a4415f8243fdc5ff5c30eac73668a5a499be5dd413faab97b2dff1c890f0abfe196762a5d59dc1d3861bc50287e"' }>
+                                        <li class="link">
+                                            <a href="injectables/ApiLogService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ApiLogService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/ProfileService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ProfileService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/UserModule.html" data-type="entity-link" >UserModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-UserModule-598f8ac0640a10d79ef9fe11422ae19c3061ac5efdacb01dbf21867b7226ac2d132e94a52639ac72221b4a10f551647bcce4b4d7a78b2a61d42adaa5b7d1b486"' : 'data-target="#xs-controllers-links-module-UserModule-598f8ac0640a10d79ef9fe11422ae19c3061ac5efdacb01dbf21867b7226ac2d132e94a52639ac72221b4a10f551647bcce4b4d7a78b2a61d42adaa5b7d1b486"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UserModule-598f8ac0640a10d79ef9fe11422ae19c3061ac5efdacb01dbf21867b7226ac2d132e94a52639ac72221b4a10f551647bcce4b4d7a78b2a61d42adaa5b7d1b486"' :
+                                            'id="xs-controllers-links-module-UserModule-598f8ac0640a10d79ef9fe11422ae19c3061ac5efdacb01dbf21867b7226ac2d132e94a52639ac72221b4a10f551647bcce4b4d7a78b2a61d42adaa5b7d1b486"' }>
                                             <li class="link">
                                                 <a href="controllers/UserController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserController</a>
                                             </li>
@@ -329,13 +363,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-UserModule-196408eb534820ef6a83275a0c3f8c1976deb2bfcdf4fa756c815ffef52115fb3374b46236266358779f117ef2508efbdc571bd9e3729b63df73ae2134a2a174"' : 'data-target="#xs-injectables-links-module-UserModule-196408eb534820ef6a83275a0c3f8c1976deb2bfcdf4fa756c815ffef52115fb3374b46236266358779f117ef2508efbdc571bd9e3729b63df73ae2134a2a174"' }>
+                                        'data-target="#injectables-links-module-UserModule-598f8ac0640a10d79ef9fe11422ae19c3061ac5efdacb01dbf21867b7226ac2d132e94a52639ac72221b4a10f551647bcce4b4d7a78b2a61d42adaa5b7d1b486"' : 'data-target="#xs-injectables-links-module-UserModule-598f8ac0640a10d79ef9fe11422ae19c3061ac5efdacb01dbf21867b7226ac2d132e94a52639ac72221b4a10f551647bcce4b4d7a78b2a61d42adaa5b7d1b486"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UserModule-196408eb534820ef6a83275a0c3f8c1976deb2bfcdf4fa756c815ffef52115fb3374b46236266358779f117ef2508efbdc571bd9e3729b63df73ae2134a2a174"' :
-                                        'id="xs-injectables-links-module-UserModule-196408eb534820ef6a83275a0c3f8c1976deb2bfcdf4fa756c815ffef52115fb3374b46236266358779f117ef2508efbdc571bd9e3729b63df73ae2134a2a174"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UserModule-598f8ac0640a10d79ef9fe11422ae19c3061ac5efdacb01dbf21867b7226ac2d132e94a52639ac72221b4a10f551647bcce4b4d7a78b2a61d42adaa5b7d1b486"' :
+                                        'id="xs-injectables-links-module-UserModule-598f8ac0640a10d79ef9fe11422ae19c3061ac5efdacb01dbf21867b7226ac2d132e94a52639ac72221b4a10f551647bcce4b4d7a78b2a61d42adaa5b7d1b486"' }>
                                         <li class="link">
                                             <a href="injectables/ApiLogService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ApiLogService</a>
                                         </li>
@@ -444,6 +478,24 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CreateMethodLogDto.html" data-type="entity-link" >CreateMethodLogDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CreateProfileCommand.html" data-type="entity-link" >CreateProfileCommand</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateProfileCommandHandler.html" data-type="entity-link" >CreateProfileCommandHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateProfileDto.html" data-type="entity-link" >CreateProfileDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateProfileEvent.html" data-type="entity-link" >CreateProfileEvent</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateProfileEventHandler.html" data-type="entity-link" >CreateProfileEventHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateProfileRequest.html" data-type="entity-link" >CreateProfileRequest</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CreateUserCommand.html" data-type="entity-link" >CreateUserCommand</a>
                             </li>
                             <li class="link">
@@ -472,6 +524,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/DeleteMailEventHandler.html" data-type="entity-link" >DeleteMailEventHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeleteProfileCommand.html" data-type="entity-link" >DeleteProfileCommand</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeleteProfileCommandHandler.html" data-type="entity-link" >DeleteProfileCommandHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeleteProfileEvent.html" data-type="entity-link" >DeleteProfileEvent</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeleteProfileEventHandler.html" data-type="entity-link" >DeleteProfileEventHandler</a>
                             </li>
                             <li class="link">
                                 <a href="classes/DeleteUserCommand.html" data-type="entity-link" >DeleteUserCommand</a>
@@ -508,6 +572,36 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/GetAllMailQueryHandler.html" data-type="entity-link" >GetAllMailQueryHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetAllProfileQuery.html" data-type="entity-link" >GetAllProfileQuery</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetAllProfileQueryHandler.html" data-type="entity-link" >GetAllProfileQueryHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetProfileByIdQuery.html" data-type="entity-link" >GetProfileByIdQuery</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetProfileByIdQueryHandler.html" data-type="entity-link" >GetProfileByIdQueryHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetProfilesByUserIdQuery.html" data-type="entity-link" >GetProfilesByUserIdQuery</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetProfilesByUserIdQueryHandler.html" data-type="entity-link" >GetProfilesByUserIdQueryHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetProfilesWithCriteriaRequest.html" data-type="entity-link" >GetProfilesWithCriteriaRequest</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetProfileWithCriteriaDto.html" data-type="entity-link" >GetProfileWithCriteriaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetProfileWithCriteriaQuery.html" data-type="entity-link" >GetProfileWithCriteriaQuery</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetProfileWithCriteriaQueryHandler.html" data-type="entity-link" >GetProfileWithCriteriaQueryHandler</a>
                             </li>
                             <li class="link">
                                 <a href="classes/GetUserByEmailQuery.html" data-type="entity-link" >GetUserByEmailQuery</a>
@@ -558,6 +652,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/HealthCheckResponse.html" data-type="entity-link" >HealthCheckResponse</a>
                             </li>
                             <li class="link">
+                                <a href="classes/IdProfileDto.html" data-type="entity-link" >IdProfileDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/InvalidIdException.html" data-type="entity-link" >InvalidIdException</a>
                             </li>
                             <li class="link">
@@ -601,6 +698,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/NoUserTraceException.html" data-type="entity-link" >NoUserTraceException</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ProfileResponse.html" data-type="entity-link" >ProfileResponse</a>
                             </li>
                             <li class="link">
                                 <a href="classes/RegisterCommand.html" data-type="entity-link" >RegisterCommand</a>
@@ -669,10 +769,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/SetCurrentRefreshTokenEventHandler.html" data-type="entity-link" >SetCurrentRefreshTokenEventHandler</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ShiftProfileOwnerCommand.html" data-type="entity-link" >ShiftProfileOwnerCommand</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ShiftProfileOwnerCommandHandler.html" data-type="entity-link" >ShiftProfileOwnerCommandHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ShiftProfileOwnerEvent.html" data-type="entity-link" >ShiftProfileOwnerEvent</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ShiftProfileOwnerEventHandler.html" data-type="entity-link" >ShiftProfileOwnerEventHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ShiftProfileOwnerRequest.html" data-type="entity-link" >ShiftProfileOwnerRequest</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/SignInDto.html" data-type="entity-link" >SignInDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SignUpDto.html" data-type="entity-link" >SignUpDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SoftDeleteProfileCommand.html" data-type="entity-link" >SoftDeleteProfileCommand</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SoftDeleteProfileCommandHandler.html" data-type="entity-link" >SoftDeleteProfileCommandHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SoftDeleteProfileEvent.html" data-type="entity-link" >SoftDeleteProfileEvent</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SoftDeleteProfileEventHandler.html" data-type="entity-link" >SoftDeleteProfileEventHandler</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SoftDeleteUserCommand.html" data-type="entity-link" >SoftDeleteUserCommand</a>
@@ -690,7 +817,43 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/TimestampEntityExtendEntity.html" data-type="entity-link" >TimestampEntityExtendEntity</a>
                             </li>
                             <li class="link">
+                                <a href="classes/TransferProfileToUserCommand.html" data-type="entity-link" >TransferProfileToUserCommand</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/UnauthorizedRequestException.html" data-type="entity-link" >UnauthorizedRequestException</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateOccupationsProfileCommand.html" data-type="entity-link" >UpdateOccupationsProfileCommand</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateOccupationsProfileCommandHandler.html" data-type="entity-link" >UpdateOccupationsProfileCommandHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateOccupationsProfileDto.html" data-type="entity-link" >UpdateOccupationsProfileDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateOccupationsProfileEvent.html" data-type="entity-link" >UpdateOccupationsProfileEvent</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateOccupationsProfileEventHandler.html" data-type="entity-link" >UpdateOccupationsProfileEventHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateProfileCommand.html" data-type="entity-link" >UpdateProfileCommand</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateProfileCommandHandler.html" data-type="entity-link" >UpdateProfileCommandHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateProfileDto.html" data-type="entity-link" >UpdateProfileDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateProfileEvent.html" data-type="entity-link" >UpdateProfileEvent</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateProfileEventHandler.html" data-type="entity-link" >UpdateProfileEventHandler</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateProfileRequest.html" data-type="entity-link" >UpdateProfileRequest</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateUserCommand.html" data-type="entity-link" >UpdateUserCommand</a>
