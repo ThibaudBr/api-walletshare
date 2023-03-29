@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import CompanyEntity from './company.entity';
-import { ProfileEntity } from './profile.entity';
+import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { RoleCompanyEmployeeEnum } from './enum/role-company-employee.enum';
 
 @Entity('company_employee')

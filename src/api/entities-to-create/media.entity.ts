@@ -1,4 +1,4 @@
-import { ProfileEntity } from './profile.entity';
+import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import {
   Column,
   CreateDateColumn,

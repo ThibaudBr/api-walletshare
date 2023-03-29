@@ -17,7 +17,7 @@ export class DeleteUserCommandHandler implements ICommandHandler<DeleteUserComma
 
   async execute(command: DeleteUserCommand): Promise<void> {
     try {
-      await this.userRepository.softDelete(command.userId);
+      await this.userRepository.delete(command.userId);
       this.eventBus.publish(new DeleteUserEvent(command.userId));
     } catch (error) {
       this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'DeleteUserCommandHandler', error }));

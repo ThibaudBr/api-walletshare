@@ -26,7 +26,8 @@ import { UserNotFoundException } from '../../util/exception/custom-http-exceptio
 import { DuplicateUsernameException } from '../../util/exception/custom-http-exception/duplicate-username.exception';
 import { SamePasswordException } from '../../util/exception/custom-http-exception/same-password.exception';
 import { InvalidPasswordException } from '../../util/exception/custom-http-exception/invalid-password.exception';
-import { RequestUser } from "../auth/interface/request-user.interface";
+import { RequestUser } from '../auth/interface/request-user.interface';
+import { DeleteUserCommand } from './cqrs/command/delete-user.command';
 
 @Injectable()
 export class UserService {
@@ -158,5 +159,9 @@ export class UserService {
 
   private generatePassword(): string {
     return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
+  }
+
+  async fullDelete(id: string): Promise<void> {
+    return await this.commandBus.execute(new DeleteUserCommand({ userId: id }));
   }
 }

@@ -241,4 +241,20 @@ export class UserController {
       );
     }
   }
+
+  @HttpCode(204)
+  @Delete('/admin/full-delete/:id')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async fullDelete(@Param('id') id: string): Promise<void | HttpException> {
+    try {
+      return await this.userService.fullDelete(id);
+    } catch (error) {
+      throw new HttpException(
+        {
+          message: error.message,
+        },
+        error.status,
+      );
+    }
+  }
 }

@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import CompanyEntity from './company.entity';
 import { CardEntity } from './card.entity';
-import { ProfileEntity } from './profile.entity';
+import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 
 @Entity('occupation')
 export class OccupationEntity {
