@@ -1,3 +1,9 @@
+# [0.0.7](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.0.7) - 2023-03-29
+
+### Features
+- module user
+- test e2e
+
 # [0.0.6](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.0.6) - 2023-03-18
 
 ### Features
