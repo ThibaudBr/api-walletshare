@@ -1,6 +1,5 @@
 import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetAllProfileQuery } from '../../query/get-all-profile.query';
-import { IdProfileDto } from '../../../domain/dto/id-profile.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileEntity } from '../../../domain/entities/profile.entity';
 import { Repository } from 'typeorm';

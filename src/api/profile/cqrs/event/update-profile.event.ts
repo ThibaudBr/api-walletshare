@@ -1,4 +1,4 @@
-import { UpdateProfileCommand } from "../command/update-profile.command";
+import { UpdateProfileCommand } from '../command/update-profile.command';
 
 export class UpdateProfileEvent {
   public readonly updateProfileCommand: UpdateProfileCommand;

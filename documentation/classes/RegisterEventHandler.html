@@ -215,7 +215,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
@@ -244,7 +244,7 @@ import { RegisterEvent } from &#x27;../event/register.event&#x27;;
 export class RegisterEventHandler implements IEventHandler&lt;RegisterEvent&gt; {
   logger_console &#x3D; new Logger(&#x27;RegisterEventHandler&#x27;);
 
-  handle(event: RegisterEvent): any {
+  handle(event: RegisterEvent): void {
     logger.info(&#x27;New user have registered  with id &#x27; + event.userId);
 
     this.logger_console.log(&#x27;New user have registered with id &#x27; + event.userId);

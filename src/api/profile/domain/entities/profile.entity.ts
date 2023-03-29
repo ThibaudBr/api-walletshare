@@ -36,7 +36,6 @@ export class ProfileEntity {
   // ______________________________________________________
   // Enum
   // ______________________________________________________
-
   @Column({ type: 'enum', enum: RoleProfileEnum, default: RoleProfileEnum.CLASSIC })
   roleProfile: RoleProfileEnum;
 

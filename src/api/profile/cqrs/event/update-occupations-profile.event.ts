@@ -1,4 +1,3 @@
-
 export class UpdateOccupationsProfileEvent {
   public readonly listOfOccupationId: string[];
   public readonly profileId: string;

@@ -1,4 +1,4 @@
-import { SignInDto } from "../../../auth/dto/sign-in.dto";
+import { SignInDto } from '../../../auth/dto/sign-in.dto';
 
 export class TransferProfileToUserCommand {
   public readonly userId: string;

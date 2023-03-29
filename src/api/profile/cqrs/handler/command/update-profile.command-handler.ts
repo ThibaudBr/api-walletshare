@@ -4,7 +4,6 @@ import { UpdateProfileCommand } from '../../command/update-profile.command';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileEntity } from '../../../domain/entities/profile.entity';
 import { Repository } from 'typeorm';
-import { OccupationEntity } from '../../../../entities-to-create/occupation.entity';
 
 @CommandHandler(UpdateProfileCommand)
 export class UpdateProfileCommandHandler implements ICommandHandler<UpdateProfileCommand> {

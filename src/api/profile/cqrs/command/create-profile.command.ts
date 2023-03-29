@@ -1,5 +1,4 @@
-import { CreateProfileDto } from "../../domain/dto/create-profile.dto";
-import { RoleProfileEnum } from "../../domain/enum/role-profile.enum";
+import { CreateProfileDto } from '../../domain/dto/create-profile.dto';
 
 export class CreateProfileCommand {
   public readonly userId: string;

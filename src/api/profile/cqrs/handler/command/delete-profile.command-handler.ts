@@ -2,8 +2,8 @@ import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { DeleteProfileCommand } from '../../command/delete-profile.command';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteProfileEvent } from '../../event/delete-profile.event';
-import { ProfileEntity } from "../../../domain/entities/profile.entity";
-import { Repository } from "typeorm";
+import { ProfileEntity } from '../../../domain/entities/profile.entity';
+import { Repository } from 'typeorm';
 
 @CommandHandler(DeleteProfileCommand)
 export class DeleteProfileCommandHandler implements ICommandHandler<DeleteProfileCommand> {

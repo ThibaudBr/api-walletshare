@@ -1,10 +1,9 @@
-import { CommandHandler, EventBus, ICommandHandler } from "@nestjs/cqrs";
-import { SoftDeleteProfileCommand } from "../../command/soft-delete-profile.command";
-import { InjectRepository } from "@nestjs/typeorm";
-import { DeleteProfileEvent } from "../../event/delete-profile.event";
-import { ProfileEntity } from "../../../domain/entities/profile.entity";
-import { Repository } from "typeorm";
-import { SoftDeleteProfileEvent } from "../../event/soft-delete-profile.event";
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
+import { SoftDeleteProfileCommand } from '../../command/soft-delete-profile.command';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ProfileEntity } from '../../../domain/entities/profile.entity';
+import { Repository } from 'typeorm';
+import { SoftDeleteProfileEvent } from '../../event/soft-delete-profile.event';
 
 @CommandHandler(SoftDeleteProfileCommand)
 export class SoftDeleteProfileCommandHandler implements ICommandHandler<SoftDeleteProfileCommand> {

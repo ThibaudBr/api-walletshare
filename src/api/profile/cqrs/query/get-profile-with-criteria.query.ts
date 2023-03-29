@@ -1,4 +1,4 @@
-import { GetProfileWithCriteriaDto } from "../../domain/dto/get-profile-with-criteria.dto";
+import { GetProfileWithCriteriaDto } from '../../domain/dto/get-profile-with-criteria.dto';
 
 export class GetProfileWithCriteriaQuery {
   public readonly getProfileWithCriteriaDto: GetProfileWithCriteriaDto;

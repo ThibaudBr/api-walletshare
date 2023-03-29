@@ -1,6 +1,6 @@
 import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetProfileWithCriteriaQuery } from '../../query/get-profile-with-criteria.query';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileResponse } from '../../../domain/response/profile.response';
 import { ProfileEntity } from '../../../domain/entities/profile.entity';

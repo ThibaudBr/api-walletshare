@@ -1,6 +1,6 @@
-import { ApiLogService } from "../../../../api-log/api-log.service";
-import { DeleteProfileEvent } from "../../event/delete-profile.event";
-import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
+import { ApiLogService } from '../../../../api-log/api-log.service';
+import { DeleteProfileEvent } from '../../event/delete-profile.event';
+import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 
 @EventsHandler(DeleteProfileEvent)
 export class DeleteProfileEventHandler implements IEventHandler<DeleteProfileEvent> {

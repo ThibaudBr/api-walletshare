@@ -1,4 +1,3 @@
-
 export class UpdateOccupationsProfileCommand {
   public readonly id: string;
   public readonly occupations: string[];

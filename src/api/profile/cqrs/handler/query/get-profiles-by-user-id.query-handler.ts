@@ -1,10 +1,10 @@
-import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { GetProfilesByUserIdQuery } from "../../query/get-profiles-by-user-id.query";
-import { InjectRepository } from "@nestjs/typeorm";
-import { UserEntity } from "../../../../user/domain/entities/user.entity";
-import { ProfileResponse } from "../../../domain/response/profile.response";
-import { Repository } from "typeorm";
-import { ProfileEntity } from "../../../domain/entities/profile.entity";
+import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { GetProfilesByUserIdQuery } from '../../query/get-profiles-by-user-id.query';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from '../../../../user/domain/entities/user.entity';
+import { ProfileResponse } from '../../../domain/response/profile.response';
+import { Repository } from 'typeorm';
+import { ProfileEntity } from '../../../domain/entities/profile.entity';
 
 @QueryHandler(GetProfilesByUserIdQuery)
 export class GetProfilesByUserIdQueryHandler implements IQueryHandler<GetProfilesByUserIdQuery> {

@@ -1,4 +1,4 @@
-import { UpdateProfileDto } from "../../domain/dto/update-profile.dto";
+import { UpdateProfileDto } from '../../domain/dto/update-profile.dto';
 
 export class UpdateProfileCommand {
   public readonly id: string;

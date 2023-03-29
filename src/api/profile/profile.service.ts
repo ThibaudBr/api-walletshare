@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CreateProfileDto } from './domain/dto/create-profile.dto';
 import { ProfileResponse } from './domain/response/profile.response';
 import { CreateProfileCommand } from './cqrs/command/create-profile.command';
 import { InvalidIdException } from '../../util/exception/custom-http-exception/invalid-id.exception';
@@ -8,7 +7,6 @@ import { UserNotFoundException } from '../../util/exception/custom-http-exceptio
 import { InvalidParameterEntityException } from '../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
 import { DeleteProfileCommand } from './cqrs/command/delete-profile.command';
 import { UpdateProfileCommand } from './cqrs/command/update-profile.command';
-import { UpdateProfileDto } from './domain/dto/update-profile.dto';
 import { CreateProfileRequest } from './domain/request/create-profile.request';
 import { SoftDeleteProfileCommand } from './cqrs/command/soft-delete-profile.command';
 import { UpdateProfileRequest } from './domain/request/update-profile.request';

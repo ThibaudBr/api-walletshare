@@ -1,4 +1,4 @@
-import { RoleProfileEnum } from "../enum/role-profile.enum";
+import { RoleProfileEnum } from '../enum/role-profile.enum';
 
 export class UpdateProfileRequest {
   public readonly usernameProfile: string;
