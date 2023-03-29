@@ -1,13 +1,13 @@
 import {
-  BaseEntity,
+  BaseEntity, BeforeInsert,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+  UpdateDateColumn
+} from "typeorm";
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { UserRoleEnum } from '../enum/user-role.enum';
@@ -115,4 +115,16 @@ export class UserEntity extends BaseEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  // ______________________________________________________
+  // Methods
+  // ______________________________________________________
+  @BeforeInsert()
+  private async addProfile(): Promise<void> {
+    if (!this.profiles) {
+      this.profiles = [];
+    }
+    const profile = new ProfileEntity({});
+    this.profiles.push(profile);
+  }
 }
