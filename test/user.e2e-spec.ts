@@ -1026,7 +1026,6 @@ describe('UserController (e2e)', () => {
       });
 
       describe('Public user should not be able to updateMe with same mail', () => {
-
         it('should pass when duplicated mail is from deleted User', async function () {
           await request(app.getHttpServer())
             .put('/user/public/update-me')

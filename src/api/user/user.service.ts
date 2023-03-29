@@ -3,8 +3,6 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateUserCommand } from './cqrs/command/create-user.command';
 import { CreateUserDto } from './domain/dto/create-user.dto';
 import { CreateUserResponse } from './domain/response/create-user.response';
-import { UserEntity } from './domain/entities/user.entity';
-import * as process from 'process';
 import { RemoveRefreshTokenCommand } from './cqrs/command/remove-refresh-token.command';
 import { SetCurrentRefreshTokenCommand } from './cqrs/command/set-current-refresh-token.command';
 import { GetUserIfRefreshTokenMatchesQuery } from './cqrs/query/get-user-if-refresh-token-matches.query';
@@ -37,7 +35,7 @@ export class UserService {
     return await this.commandBus.execute(new CreateUserCommand(createUserDto));
   }
 
-  async getUserIfRefreshTokenMatches(refreshToken: string, userId: string) {
+  async getUserIfRefreshTokenMatches(refreshToken: string, userId: string): Promise<UserResponse> {
     return await this.queryBus.execute(new GetUserIfRefreshTokenMatchesQuery(refreshToken, userId));
   }
 

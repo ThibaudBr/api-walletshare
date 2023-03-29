@@ -4,7 +4,6 @@ import { HttpException, HttpStatus, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { DeleteMailEvent } from '../../event/delete-mail.event';
 import { catchError, firstValueFrom } from 'rxjs';
-import { ErrorCustomEventHandler } from '../../../../../util/exception/error-handler/error-custom.event-handler';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(DeleteMailCommand)

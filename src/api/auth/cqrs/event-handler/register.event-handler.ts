@@ -7,7 +7,7 @@ import { RegisterEvent } from '../event/register.event';
 export class RegisterEventHandler implements IEventHandler<RegisterEvent> {
   logger_console = new Logger('RegisterEventHandler');
 
-  handle(event: RegisterEvent): any {
+  handle(event: RegisterEvent): void {
     logger.info('New user have registered  with id ' + event.userId);
 
     this.logger_console.log('New user have registered with id ' + event.userId);

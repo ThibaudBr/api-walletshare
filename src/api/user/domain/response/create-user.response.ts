@@ -1,5 +1,4 @@
 import { UserRoleEnum } from '../enum/user-role.enum';
-import { UserEntity } from '../entities/user.entity';
 
 export class CreateUserResponse {
   constructor(partial?: Partial<CreateUserResponse>) {

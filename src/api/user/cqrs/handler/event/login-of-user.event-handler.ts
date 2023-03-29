@@ -1,6 +1,4 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { Inject } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
 import { LoginOfUserEvent } from '../../event/login-of-user.event';
 import { ApiLogService } from '../../../../api-log/api-log.service';
 
