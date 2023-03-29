@@ -24,6 +24,10 @@ import { LoginOfUserEventHandler } from './cqrs/handler/event/login-of-user.even
 import { UpdateUserEventHandler } from './cqrs/handler/event/update-user.event-handler';
 import { SoftDeleteUserCommandHandler } from './cqrs/handler/command/soft-delete-user.command-handler';
 import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
+import { GetUserWithCriteriaQueryHandler } from './cqrs/handler/query/get-user-with-criteria.query-handler';
+import { UpdateUserCredentialCommandHandler } from './cqrs/handler/command/update-user-credential.command-handler';
+import { UpdateUserRoleCommandHandler } from './cqrs/handler/command/update-user-role.command-handler';
+import { RestoreUserCommandHandler } from './cqrs/handler/command/restore-user.command-handler';
 
 @Module({
   imports: [
@@ -44,12 +48,16 @@ import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-
     SetCurrentRefreshTokenCommandHandler,
     UpdateUserCommandHandler,
     SoftDeleteUserCommandHandler,
+    UpdateUserCredentialCommandHandler,
+    UpdateUserRoleCommandHandler,
+    RestoreUserCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,
     GetUserLoginQueryHandler,
     GetUserIfRefreshTokenMatchesQueryHandler,
     GetUserQueryHandler,
+    GetUserWithCriteriaQueryHandler,
     // Event handlers
     CreateUserEventHandler,
     DeleteUserEventHandler,

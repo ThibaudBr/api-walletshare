@@ -270,7 +270,7 @@ export class RemoveRefreshTokenCommandHandler implements ICommandHandler&lt;Remo
 
   async execute(command: RemoveRefreshTokenCommand): Promise&lt;void&gt; {
     try {
-      await this.userRepository.update(command.userId, {
+      await this.userRepository.update(command.id, {
         currentHashedRefreshToken: undefined,
       });
     } catch (error) {

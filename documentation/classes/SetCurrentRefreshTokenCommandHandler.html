@@ -272,7 +272,7 @@ export class SetCurrentRefreshTokenCommandHandler implements ICommandHandler&lt;
   async execute(command: SetCurrentRefreshTokenCommand): Promise&lt;void&gt; {
     try {
       const currentHashedRefreshToken &#x3D; await bcrypt.hash(command.refreshToken, 10);
-      await this.userRepository.update(command.userId, {
+      await this.userRepository.update(command.id, {
         currentHashedRefreshToken,
       });
     } catch (error) {

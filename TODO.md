@@ -2,6 +2,6 @@
 - [X] add auth jwt
 - [ ] add double auth
 - [ ] add auth with Google 
-- [ ] add confirming mail [confirming-email-address](https://wanago.io/2021/07/12/api-nestjs-confirming-email/)
+- [ ] add confirming mail [confirming-mail-address](https://wanago.io/2021/07/12/api-nestjs-confirming-email/)
 - [ ] add database migrations and cron [typeorm-migrations](https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
 - [ ] add flag feature [flag-feature](https://wanago.io/2022/08/22/api-nestjs-feature-flags-feature-toggles/)

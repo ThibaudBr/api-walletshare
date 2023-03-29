@@ -246,7 +246,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getCookieWithJwtRefreshToken(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>getCookieWithJwtRefreshToken(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -275,7 +275,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -317,7 +317,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getCookieWithJwtToken(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>getCookieWithJwtToken(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -346,7 +346,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -620,7 +620,7 @@ export class AuthService {
   constructor(private jwtService: JwtService, private commandBus: CommandBus, private queryBus: QueryBus) {}
 
   async signup(signUpDto: SignUpDto) {
-    return this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.email, signUpDto.password));
+    return this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password));
   }
 
   async login(username: string, plainTextPassword: string): Promise&lt;UserEntity&gt; {
@@ -631,8 +631,8 @@ export class AuthService {
     }
   }
 
-  public getCookieWithJwtToken(userId: string): { token: string; auth: string } {
-    const payload: TokenPayload &#x3D; { userId };
+  public getCookieWithJwtToken(id: string): { token: string; auth: string } {
+    const payload: TokenPayload &#x3D; { id };
     const token &#x3D; this.jwtService.sign(payload, {
       secret: process.env.JWT_ACCESS_TOKEN_SECRET,
       expiresIn: &#x60;${process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME}&#x60;,
@@ -643,8 +643,8 @@ export class AuthService {
     };
   }
 
-  public getCookieWithJwtRefreshToken(userId: string): { cookie: string; token: string } {
-    const payload: TokenPayload &#x3D; { userId };
+  public getCookieWithJwtRefreshToken(id: string): { cookie: string; token: string } {
+    const payload: TokenPayload &#x3D; { id };
     const token &#x3D; this.jwtService.sign(payload, {
       secret: process.env.JWT_REFRESH_TOKEN_SECRET,
       expiresIn: &#x60;${process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME}&#x60;,
@@ -664,8 +664,8 @@ export class AuthService {
     const payload: TokenPayload &#x3D; this.jwtService.verify(authenticationToken, {
       secret: process.env.JWT_REFRESH_TOKEN_SECRET,
     });
-    if (payload.userId) {
-      return this.queryBus.execute(new GetUserQuery(payload.userId));
+    if (payload.id) {
+      return this.queryBus.execute(new GetUserQuery(payload.id));
     }
     throw new HttpException(&#x27;Wrong token provided&#x27;, HttpStatus.BAD_REQUEST);
   }

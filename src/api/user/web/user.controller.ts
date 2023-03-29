@@ -1,4 +1,16 @@
-import { Body, Controller, Delete, Get, HttpException, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get, HttpCode,
+  HttpException,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+  Req,
+  UseGuards
+} from "@nestjs/common";
 import { UserService } from '../user.service';
 import { CreateUserDto } from '../domain/dto/create-user.dto';
 import { CreateUserResponse } from '../domain/response/create-user.response';
@@ -11,6 +23,8 @@ import { UserRoleEnum } from '../domain/enum/user-role.enum';
 import { GetUserWithCriteriaDto } from '../domain/dto/get-user-with-criteria.dto';
 import { UpdateUserCredentialDto } from '../domain/dto/update-user-credential.dto';
 import { GenerateUserDto } from '../domain/dto/generate-user.dto';
+import { ListRolesDto } from "../domain/dto/list-roles.dto";
+import { UserIdDto } from "../domain/dto/user-id.dto";
 
 @Controller('user')
 @ApiTags('user')
@@ -23,10 +37,9 @@ export class UserController {
     try {
       return await this.userService.createUser(createUserDto);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
@@ -39,26 +52,25 @@ export class UserController {
     try {
       return await this.userService.generateUserFromMail(generateUserDto);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
     }
   }
 
+  @HttpCode(204)
   @Post('/admin/restore-user')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async restoreUser(@Body() userId: string): Promise<void | HttpException> {
+  async restoreUser(@Body() userId: UserIdDto): Promise<void | HttpException> {
     try {
-      return await this.userService.restoreUser(userId);
+      return await this.userService.restoreUser(userId.userId);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
@@ -70,10 +82,9 @@ export class UserController {
     try {
       return await this.userService.findAll();
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
@@ -86,16 +97,16 @@ export class UserController {
     try {
       return await this.userService.findOne(id);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
     }
   }
 
+  @HttpCode(200)
   @Post('/admin/criteria')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async findWithCriteria(
@@ -106,8 +117,7 @@ export class UserController {
     } catch (error) {
       return new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
@@ -118,12 +128,12 @@ export class UserController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getMe(@Req() requestUser: RequestUser): Promise<UserResponse | HttpException> {
     try {
-      return await this.userService.findMe(requestUser.user.id);
+      const { user } = requestUser;
+      return await this.userService.findMe(user.id);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
@@ -133,32 +143,31 @@ export class UserController {
   @Put('/admin/:id')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async update(
-    @Param(':id') userId: string,
+    @Param('id') userId: string,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<UserResponse | HttpException> {
     try {
       return await this.userService.update(userId, updateUserDto);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
     }
   }
 
+  @HttpCode(204)
   @Put('/admin/:id/role')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async updateRole(@Param('id') id: string, @Body() roles: UserRoleEnum[]): Promise<UserResponse | HttpException> {
+  async updateRole(@Param('id') id: string, @Body() roles: ListRolesDto): Promise<UserResponse | HttpException> {
     try {
-      return await this.userService.updateRoles(id, roles);
+      return await this.userService.updateRoles(id, roles.roles);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
@@ -172,12 +181,11 @@ export class UserController {
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<UserResponse | HttpException> {
     try {
-      return await this.userService.updateMe(requestUser.user.id, updateUserDto);
+      return await this.userService.update(requestUser.user.id, updateUserDto);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
@@ -193,32 +201,41 @@ export class UserController {
     try {
       return await this.userService.updatePassword(requestUser.user.id, updateUserCredentialDto);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );
     }
   }
 
+  @HttpCode(204)
   @Delete('/admin/:id')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   remove(@Req() requestUser: RequestUser, @Param('id') id: string): Promise<void> {
-    return this.userService.remove(id);
+    try {
+      return this.userService.remove(id);
+    } catch (error) {
+      throw new HttpException(
+        {
+          message: error.message,
+        },
+        error.status,
+      );
+    }
   }
 
+  @HttpCode(204)
   @Delete('/public/delete-me')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async deleteMe(@Req() requestUser: RequestUser): Promise<void | HttpException> {
     try {
       return await this.userService.deleteMe(requestUser.user.id);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
-          type: error.message.split(':')[0],
-          error: error.message.split(':')[1],
+          message: error.message,
         },
         error.status,
       );

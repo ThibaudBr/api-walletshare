@@ -16,11 +16,14 @@ export class RestoreUserCommandHandler implements ICommandHandler<RestoreUserCom
 
   async execute(command: RestoreUserCommand): Promise<void> {
     try {
-      if (!command.userId) throw new Error('User id is required');
-      if ((await this.userRepository.find({ where: { id: command.userId } })).length === 0)
+      if (!command.id) throw new Error('User id is required');
+      try {
+        await this.userRepository.findOneOrFail({ where: [{ id: command.id }], withDeleted: true });
+      } catch (e) {
         throw new Error('User not found');
-      await this.userRepository.restore(command.userId);
-      this.eventBus.publish(new RestoreUserEvent(command.userId));
+      }
+      await this.userRepository.restore(command.id);
+      this.eventBus.publish(new RestoreUserEvent(command.id));
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'user', handler: 'RestoreUserCommandHandler', error }),

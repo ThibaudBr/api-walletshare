@@ -2,7 +2,7 @@ import { UserRoleEnum } from '../enum/user-role.enum';
 import { UserEntity } from '../entities/user.entity';
 
 export class CreateUserResponse {
-  constructor(partial?: Partial<UserEntity>) {
+  constructor(partial?: Partial<CreateUserResponse>) {
     if (partial) {
       Object.assign(this, partial);
     }
@@ -10,7 +10,9 @@ export class CreateUserResponse {
 
   public readonly id: string;
   public readonly username: string;
-  public readonly email: string;
+  public readonly mail: string;
   public readonly createdAt: Date;
   public readonly roles: UserRoleEnum[];
+
+  public readonly referralCode?: string;
 }

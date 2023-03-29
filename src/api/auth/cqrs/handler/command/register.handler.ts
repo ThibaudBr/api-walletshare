@@ -8,7 +8,7 @@ import { RegisterEvent } from '../../event/register.event';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { InvalidParameterEntityException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
 import { InvalidPasswordException } from '../../../../../util/exception/custom-http-exception/invalid-password.exception';
-import { DuplicateEmailException } from '../../../../../util/exception/custom-http-exception/duplicate-email.exception';
+import { DuplicateMailException } from '../../../../../util/exception/custom-http-exception/duplicate-mail.exception';
 import { DuplicateUsernameException } from '../../../../../util/exception/custom-http-exception/duplicate-username.exception';
 import * as bcrypt from 'bcrypt';
 import { InvalidMailException } from '../../../../../util/exception/custom-http-exception/invalid-mail.exception';
@@ -23,7 +23,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
     private userRepository: Repository<UserEntity>,
     private eventBus: EventBus,
   ) {
-    this.regexValidatePassword = new RegExp('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$');
+    this.regexValidatePassword = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$');
   }
 
   async execute(command: RegisterCommand): Promise<UserEntity> {
@@ -37,7 +37,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
       );
-      throw new DuplicateEmailException();
+      throw new DuplicateMailException();
     }
 
     if (this.isValidPassword(command.password)) {
@@ -69,6 +69,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
       mail: command.mail,
       password: bcrypt.hashSync(command.password, 10),
       username: command.username,
+      referralCode: await this.generateUniqueReferralCode(),
     });
     const err = await validate(newUser);
     if (err.length > 0) {
@@ -104,7 +105,32 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
   }
 
   private isValidEmail(email: string): boolean {
-    const regex = new RegExp('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$');
+    const regex = new RegExp('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$');
     return regex.test(email);
+  }
+
+
+  // Generate a random alphanumeric code of a given length
+  private generateCode(length: number): string {
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let code = '';
+    for (let i = 0; i < length; i++) {
+      code += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    return code;
+  }
+
+  // Generate a unique referral code that does not already exist in the database
+  async generateUniqueReferralCode(): Promise<string> {
+    let code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
+    while (await this.getUserByReferralCode(code)) {
+      code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
+    }
+    return code;
+  }
+
+  async getUserByReferralCode(referralCode: string): Promise<boolean> {
+    const user = await this.userRepository.findOne({ where: { referralCode: referralCode } });
+    return !!user;
   }
 }

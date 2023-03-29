@@ -15,8 +15,7 @@ export const RoleGuard = (roles: UserRoleEnum[]): Type<CanActivate> => {
 
       const request = context.switchToHttp().getRequest<RequestUser>();
       const { user } = request;
-      const userFromDb = await this.userService.findOne(user.id);
-      return roles.some(role => userFromDb?.roles.includes(role));
+      return roles.some(role => user?.roles.includes(role));
     }
   }
   return mixin(RoleGuardMixin);

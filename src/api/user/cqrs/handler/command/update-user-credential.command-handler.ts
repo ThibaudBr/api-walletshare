@@ -45,10 +45,11 @@ export class UpdateUserCredentialCommandHandler implements ICommandHandler<Updat
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'user', handler: 'UpdateUserCredentialCommandHandler', error: error }),
       );
+      throw error;
     }
   }
   private isValidPassword(password: string): boolean {
-    return !this.regexValidatePassword.test(password);
+    return this.regexValidatePassword.test(password);
   }
 
   private async verifyPassword(plainTextPassword: string, hashedPassword: string): Promise<boolean> {

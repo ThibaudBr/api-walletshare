@@ -1,5 +1,5 @@
 export class RestoreUserCommand {
-  public readonly userId: string;
+  public readonly id: string;
 
   constructor(partial: Partial<RestoreUserCommand>) {
     Object.assign(this, partial);

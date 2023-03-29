@@ -112,7 +112,6 @@ export class AppTestE2eService {
   }
 
   async removeUser(userId: string): Promise<void> {
-    console.log('userId: ', userId);
     await this.userRepository.softDelete({ id: userId });
   }
 

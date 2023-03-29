@@ -252,7 +252,7 @@ export class SendMailEventHandler implements IEventHandler&lt;SendMailEvent&gt; 
     await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: &#x27;Mail sent to: &#x27; + event.email,
+      body: &#x27;Mail sent to: &#x27; + event.mail,
     });
   }
 }

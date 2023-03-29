@@ -15,43 +15,43 @@ export class GetUserWithCriteriaQueryHandler implements IQueryHandler<GetUserWit
     const queryBuilder = this.userRepository.createQueryBuilder('user');
 
     if (query.getUserWithCriteriaDto.isDeleted) {
-      queryBuilder.where('user.isDeleted != null');
+      queryBuilder.setFindOptions({ withDeleted: true });
     }
 
     if (query.getUserWithCriteriaDto.createdFrom) {
-      queryBuilder.where('user.createdAt >= :from', { from: query.getUserWithCriteriaDto.createdFrom });
+      queryBuilder.andWhere('user.createdAt >= :from', { from: query.getUserWithCriteriaDto.createdFrom });
     }
 
     if (query.getUserWithCriteriaDto.createdTo) {
-      queryBuilder.where('user.createdAt <= :to', { to: query.getUserWithCriteriaDto.createdTo });
+      queryBuilder.andWhere('user.createdAt <= :to', { to: query.getUserWithCriteriaDto.createdTo });
     }
 
     if (query.getUserWithCriteriaDto.updatedFrom) {
-      queryBuilder.where('user.updatedAt >= :from', { from: query.getUserWithCriteriaDto.updatedFrom });
+      queryBuilder.andWhere('user.updatedAt >= :from', { from: query.getUserWithCriteriaDto.updatedFrom });
     }
 
     if (query.getUserWithCriteriaDto.updatedTo) {
-      queryBuilder.where('user.updatedAt <= :to', { to: query.getUserWithCriteriaDto.updatedTo });
+      queryBuilder.andWhere('user.updatedAt <= :to', { to: query.getUserWithCriteriaDto.updatedTo });
     }
 
     if (query.getUserWithCriteriaDto.deletedFrom) {
-      queryBuilder.where('user.deletedAt >= :from', { from: query.getUserWithCriteriaDto.deletedFrom });
+      queryBuilder.andWhere('user.deletedAt >= :from', { from: query.getUserWithCriteriaDto.deletedFrom });
     }
 
     if (query.getUserWithCriteriaDto.deletedTo) {
-      queryBuilder.where('user.deletedAt <= :to', { to: query.getUserWithCriteriaDto.deletedTo });
+      queryBuilder.andWhere('user.deletedAt <= :to', { to: query.getUserWithCriteriaDto.deletedTo });
     }
 
     if (query.getUserWithCriteriaDto.role) {
-      queryBuilder.where('user.roles LIKE :roles', { role: query.getUserWithCriteriaDto.role });
+      queryBuilder.andWhere('user.roles LIKE :roles', { role: query.getUserWithCriteriaDto.role });
     }
 
     if (query.getUserWithCriteriaDto.username) {
-      queryBuilder.where('user.username LIKE :username', { username: query.getUserWithCriteriaDto.username });
+      queryBuilder.andWhere('user.username LIKE :username', { username: query.getUserWithCriteriaDto.username });
     }
 
     if (query.getUserWithCriteriaDto.mail) {
-      queryBuilder.where('user.mail LIKE :mail', { mail: query.getUserWithCriteriaDto.mail });
+      queryBuilder.andWhere('user.mail LIKE :mail', { mail: query.getUserWithCriteriaDto.mail });
     }
 
     return await queryBuilder.getMany();

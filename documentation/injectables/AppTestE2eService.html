@@ -627,7 +627,7 @@ export class AppTestE2eService {
   async createUserTest(createUserDto: CreateUserDto): Promise&lt;UserEntity&gt; {
     return await this.userRepository.save({
       username: createUserDto.username,
-      email: createUserDto.email,
+      mail: createUserDto.mail,
       password: bcrypt.hashSync(createUserDto.password, 10),
       roles: createUserDto.roles,
     });

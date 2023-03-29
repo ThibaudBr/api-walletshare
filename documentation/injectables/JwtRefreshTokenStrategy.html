@@ -263,7 +263,7 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, &#x27;jw
 
   async validate(request: Request, payload: TokenPayload): Promise&lt;RequestUser&gt; {
     const refreshToken &#x3D; request?.headers?.authorization?.split(&#x27; &#x27;)[1];
-    return await this.userService.getUserIfRefreshTokenMatches(refreshToken || &#x27;&#x27;, payload.userId);
+    return await this.userService.getUserIfRefreshTokenMatches(refreshToken || &#x27;&#x27;, payload.id);
   }
 }
 </code></pre>

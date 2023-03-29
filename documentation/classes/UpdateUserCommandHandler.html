@@ -358,11 +358,11 @@ export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCo
         this.logger.error(&#x27;Invalid parameters&#x27;);
         throw new InvalidClassException(&#x27;Parameter not validate&#x27;);
       }
-      await this.userRepository.update(command.userId, command.user);
+      await this.userRepository.update(command.id, command.user);
       const user: UserEntity &#x3D; await this.userRepository.findOneOrFail({
-        where: [{ id: command.userId }],
+        where: [{ id: command.id }],
       });
-      this.eventBus.publish(new UpdateUserEvent(command.userId));
+      this.eventBus.publish(new UpdateUserEvent(command.id));
       return new UserResponse({ ...user });
     } catch (error) {
       this.eventBus.publish(new ErrorCustomEvent(&#x27;user&#x27;, &#x27;UpdateUserCommandHandler&#x27;, error));

@@ -254,7 +254,7 @@ export class DeleteUserEventHandler implements IEventHandler&lt;DeleteUserEvent&
     await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: &#x27;User with id: &#x27; + event.userId + &#x27; deleted&#x27;,
+      body: &#x27;User with id: &#x27; + event.id + &#x27; deleted&#x27;,
     });
   }
 }

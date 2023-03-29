@@ -22,17 +22,23 @@ import { UpdateUserCredentialCommand } from './cqrs/command/update-user-credenti
 import { UpdateUserCredentialDto } from './domain/dto/update-user-credential.dto';
 import { GenerateUserDto } from './domain/dto/generate-user.dto';
 import { DeleteMailCommand } from '../api-landing-page/cqrs/command/delete-mail.command';
+import { DuplicateMailException } from '../../util/exception/custom-http-exception/duplicate-mail.exception';
+import { MailRequiredException } from '../../util/exception/custom-http-exception/mail-required.exception';
+import { UserNotFoundException } from '../../util/exception/custom-http-exception/user-not-found.exception';
+import { DuplicateUsernameException } from '../../util/exception/custom-http-exception/duplicate-username.exception';
+import { SamePasswordException } from '../../util/exception/custom-http-exception/same-password.exception';
+import { InvalidPasswordException } from '../../util/exception/custom-http-exception/invalid-password.exception';
 
 @Injectable()
 export class UserService {
   constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<CreateUserResponse> {
-    return this.commandBus.execute(new CreateUserCommand(createUserDto));
+    return await this.commandBus.execute(new CreateUserCommand(createUserDto));
   }
 
   async getUserIfRefreshTokenMatches(refreshToken: string, userId: string) {
-    return this.queryBus.execute(new GetUserIfRefreshTokenMatchesQuery(refreshToken, userId));
+    return await this.queryBus.execute(new GetUserIfRefreshTokenMatchesQuery(refreshToken, userId));
   }
 
   async removeRefreshToken(userId: string): Promise<void> {
@@ -40,52 +46,79 @@ export class UserService {
   }
 
   async setCurrentRefreshToken(token: string, userId: string): Promise<void> {
-    return this.commandBus.execute(new SetCurrentRefreshTokenCommand(token, userId));
+    return await this.commandBus.execute(new SetCurrentRefreshTokenCommand(token, userId));
   }
 
   async findAll(): Promise<UserResponse[]> {
-    return this.queryBus.execute(new GetUserQuery());
+    return await this.queryBus.execute(new GetUserQuery());
   }
 
   async findOne(id: string): Promise<UserResponse> {
-    return this.queryBus.execute(new GetUserQuery(id));
+    try {
+      return await this.queryBus.execute(new GetUserQuery(id));
+    } catch (error) {
+      throw new UserNotFoundException();
+    }
   }
 
   async update(userId: string, updateUserDto: UpdateUserDto): Promise<UserResponse> {
-    return this.commandBus.execute(new UpdateUserCommand(userId, updateUserDto));
+    try {
+      return await this.commandBus.execute(new UpdateUserCommand(userId, updateUserDto));
+    } catch (error) {
+      if (error.message === 'User not found') throw new UserNotFoundException();
+      else if (error.message === 'Mail already exists' || error instanceof DuplicateMailException)
+        throw new DuplicateMailException();
+      else if (error instanceof DuplicateUsernameException || error.message === 'Username already exists') {
+        throw new DuplicateUsernameException();
+      } else throw Error('not handled error');
+    }
   }
 
   async remove(id: string): Promise<void> {
-    return this.commandBus.execute(new SoftDeleteUserCommand(id));
+    try {
+      return await this.commandBus.execute(new SoftDeleteUserCommand(id));
+    } catch (error) {
+      if (error.message === 'User not found') throw new UserNotFoundException();
+      else throw error;
+    }
   }
 
   async generateUserFromMail(generateUserDto: GenerateUserDto): Promise<CreateUserResponse> {
     try {
       if (!generateUserDto) throw new Error('Mail is required');
       if ((await this.queryBus.execute(new GetUserWithCriteriaQuery({ mail: generateUserDto.mail }))).length > 0)
-        throw new Error('User already exists');
+        throw new Error('Mail already exists');
       const user = await this.commandBus.execute(
         new CreateUserCommand(
           new CreateUserDto({
             mail: generateUserDto.mail,
             password: this.generatePassword(),
-            roles: generateUserDto.userRoles ? generateUserDto.userRoles : [UserRoleEnum.PUBLIC],
+            roles: generateUserDto.roles ? generateUserDto.roles : [UserRoleEnum.PUBLIC],
           }),
         ),
       );
-      await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
+      try {
+        await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
+      } catch (error) {}
       return user;
     } catch (error) {
-      throw error;
+      if (error.message === 'Mail is required') throw new MailRequiredException();
+      else if (error.message === 'Mail already exists') throw new DuplicateMailException();
+      else throw error;
     }
   }
 
   async restoreUser(userId: string): Promise<void> {
-    return await this.commandBus.execute(new RestoreUserCommand({ userId: userId }));
+    try {
+      return await this.commandBus.execute(new RestoreUserCommand({ id: userId }));
+    } catch (error) {
+      if (error.message === 'User not found') throw new UserNotFoundException();
+      else throw error;
+    }
   }
 
   async findWithCriteria(getUserWithCriteriaDto: GetUserWithCriteriaDto): Promise<UserResponse[]> {
-    return this.queryBus.execute(new GetUserWithCriteriaQuery(getUserWithCriteriaDto));
+    return await this.queryBus.execute(new GetUserWithCriteriaQuery(getUserWithCriteriaDto));
   }
 
   async getMe(userId: string): Promise<UserResponse> {
@@ -93,19 +126,25 @@ export class UserService {
   }
 
   async updateRoles(userId: string, roles: UserRoleEnum[]): Promise<UserResponse> {
-    return await this.commandBus.execute(new UpdateUserRoleCommand({ userId: userId, roles: roles }));
-  }
-
-  async updateMe(userId: string, updateUserDto: UpdateUserDto): Promise<UserResponse> {
-    if (!!(await this.queryBus.execute(new GetUserQuery(userId)))) throw new Error('User not found');
-    return await this.commandBus.execute(new UpdateUserCommand(userId, updateUserDto));
+    try {
+      return await this.commandBus.execute(new UpdateUserRoleCommand({ userId: userId, roles: roles }));
+    } catch (error) {
+      throw new UserNotFoundException();
+    }
   }
 
   async updatePassword(userId: string, updateUserCredentialDto: UpdateUserCredentialDto): Promise<UserResponse> {
-    if (!!(await this.queryBus.execute(new GetUserQuery(userId)))) throw new Error('User not found');
-    return await this.commandBus.execute(
-      new UpdateUserCredentialCommand({ userId: userId, updateUserCredentialDto: updateUserCredentialDto }),
-    );
+    try {
+      return await this.commandBus.execute(
+        new UpdateUserCredentialCommand({ userId: userId, updateUserCredentialDto: updateUserCredentialDto }),
+      );
+    } catch (error) {
+      if (error.message === 'New password is the same as old password') throw new SamePasswordException();
+      else if (error.message === 'User not found') throw new UserNotFoundException();
+      else if (error.message === 'Invalid password') throw new InvalidPasswordException();
+      else if (error.message === 'Invalid old password') throw new InvalidPasswordException();
+      else throw error;
+    }
   }
 
   async deleteMe(userId: string): Promise<void> {
@@ -114,12 +153,11 @@ export class UserService {
   }
 
   async findMe(userId: string): Promise<UserResponse> {
-    if (!!(await this.queryBus.execute(new GetUserQuery(userId)))) throw new Error('User not found');
+    if (!(await this.queryBus.execute(new GetUserQuery(userId)))) throw new Error('User not found');
     return await this.queryBus.execute(new GetUserQuery(userId));
   }
 
   private generatePassword(): string {
-    return Math.random().toString(36).slice(-8);
+    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
   }
-
 }

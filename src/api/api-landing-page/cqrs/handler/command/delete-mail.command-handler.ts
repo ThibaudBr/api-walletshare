@@ -1,6 +1,6 @@
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { DeleteMailCommand } from '../../command/delete-mail.command';
-import { HttpException, Inject } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject } from "@nestjs/common";
 import { ClientProxy } from '@nestjs/microservices';
 import { DeleteMailEvent } from '../../event/delete-mail.event';
 import { catchError, firstValueFrom } from 'rxjs';
@@ -15,7 +15,7 @@ export class DeleteMailCommandHandler implements ICommandHandler<DeleteMailComma
     return await firstValueFrom(
       this.client.send({ cmd: 'delete' }, command.mail).pipe(
         catchError(err => {
-          if (err.status === 'error') {
+          if (err.status !== undefined) {
             this.eventBus.publish(
               new ErrorCustomEvent({
                 handler: 'DeleteMailCommandHandler',
@@ -32,7 +32,7 @@ export class DeleteMailCommandHandler implements ICommandHandler<DeleteMailComma
               error: 'unreachable',
             }),
           );
-          throw new HttpException('unreachable', 401);
+          throw new HttpException('unreachable', HttpStatus.SERVICE_UNAVAILABLE);
         }),
       ),
     ).then(() => {

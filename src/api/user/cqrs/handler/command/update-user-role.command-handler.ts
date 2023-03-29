@@ -22,6 +22,7 @@ export class UpdateUserRoleCommandHandler implements ICommandHandler<UpdateUserR
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'user', handler: 'UpdateUserRoleCommandHandler', error: error }),
       );
+      throw new Error(error.message);
     }
   }
 }

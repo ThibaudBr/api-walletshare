@@ -577,7 +577,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getUserIfRefreshTokenMatches(refreshToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>getUserIfRefreshTokenMatches(refreshToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -618,7 +618,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -731,7 +731,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeRefreshToken(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>removeRefreshToken(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -760,7 +760,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -802,7 +802,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>setCurrentRefreshToken(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>setCurrentRefreshToken(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -843,7 +843,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -1008,16 +1008,16 @@ export class UserService {
     return code;
   }
 
-  async getUserIfRefreshTokenMatches(refreshToken: string, userId: string) {
-    return this.queryBus.execute(new GetUserIfRefreshTokenMatchesQuery(refreshToken, userId));
+  async getUserIfRefreshTokenMatches(refreshToken: string, id: string) {
+    return this.queryBus.execute(new GetUserIfRefreshTokenMatchesQuery(refreshToken, id));
   }
 
-  async removeRefreshToken(userId: string) {
-    return this.commandBus.execute(new RemoveRefreshTokenCommand(userId));
+  async removeRefreshToken(id: string) {
+    return this.commandBus.execute(new RemoveRefreshTokenCommand(id));
   }
 
-  async setCurrentRefreshToken(token: string, userId: string) {
-    return this.commandBus.execute(new SetCurrentRefreshTokenCommand(token, userId));
+  async setCurrentRefreshToken(token: string, id: string) {
+    return this.commandBus.execute(new SetCurrentRefreshTokenCommand(token, id));
   }
 
   async findAll(): Promise&lt;UserResponse[]&gt; {

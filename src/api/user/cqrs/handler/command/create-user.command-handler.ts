@@ -5,39 +5,80 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { validate } from 'class-validator';
 import { DuplicateUsernameException } from '../../../../../util/exception/custom-http-exception/duplicate-username.exception';
-import { DuplicateEmailException } from '../../../../../util/exception/custom-http-exception/duplicate-email.exception';
+import { DuplicateMailException } from '../../../../../util/exception/custom-http-exception/duplicate-mail.exception';
 import { InvalidParameterEntityException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
 import { CreateUserResponse } from '../../../domain/response/create-user.response';
 import { UserRoleEnum } from '../../../domain/enum/user-role.enum';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
+import { InvalidPasswordException } from '../../../../../util/exception/custom-http-exception/invalid-password.exception';
+import { InvalidMailException } from '../../../../../util/exception/custom-http-exception/invalid-mail.exception';
+import { InvalidUsernameException } from '../../../../../util/exception/custom-http-exception/invalid-username.exception';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler<CreateUserCommand> {
+  private regexValidatePassword;
+
   constructor(
     @InjectRepository(UserEntity)
     public readonly userRepository: Repository<UserEntity>,
     public readonly eventBus: EventBus,
-  ) {}
+  ) {
+    this.regexValidatePassword = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$');
+  }
 
   async execute(command: CreateUserCommand): Promise<CreateUserResponse> {
     try {
-      const newUser: UserEntity = new UserEntity({ ...command.createUserDto });
+      if (command.createUserDto.username) {
+        if (await this.isDuplicatedUsername(command.createUserDto.username)) {
+          this.eventBus.publish(
+            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
+          );
+          throw new DuplicateUsernameException();
+        }
+      }
+
+      if (command.createUserDto.mail) {
+        if (await this.isDuplicatedEmail(command.createUserDto.mail)) {
+          this.eventBus.publish(
+            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
+          );
+          throw new DuplicateMailException();
+        }
+      }
+
+      if (!this.isValidPassword(command.createUserDto.password)) {
+        this.eventBus.publish(
+          new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid password' }),
+        );
+        throw new InvalidPasswordException();
+      }
+
+      if (command.createUserDto.mail) {
+        if (!this.isValidEmail(command.createUserDto.mail)) {
+          this.eventBus.publish(
+            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
+          );
+          throw new InvalidMailException();
+        }
+      }
+
+      if (command.createUserDto.username) {
+        if (!this.isValidUsername(command.createUserDto.username)) {
+          this.eventBus.publish(
+            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid username' }),
+          );
+          throw new InvalidUsernameException();
+        }
+      }
+
+      const newUser: UserEntity = new UserEntity({
+        ...command.createUserDto,
+        referralCode: await this.generateUniqueReferralCode(),
+      });
 
       const err = await validate(newUser);
       if (err.length > 0) {
         throw new InvalidParameterEntityException(err);
-      }
-
-      // verify that email is unique
-      const userUniqueEmail = await this.userRepository.findBy({ mail: command.createUserDto.mail });
-      if (userUniqueEmail.length > 0) {
-        throw new DuplicateEmailException();
-      }
-
-      // verify that username is unique
-      const userUniqueUsername = await this.userRepository.findBy({ username: command.createUserDto.username });
-      if (userUniqueUsername.length > 0) {
-        throw new DuplicateUsernameException();
       }
 
       const savedUser: UserEntity = await this.userRepository.save(newUser);
@@ -47,15 +88,9 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
         username: savedUser.username,
         mail: savedUser.mail,
         roles: savedUser.roles || [UserRoleEnum.PUBLIC],
+        referralCode: savedUser.referralCode,
       });
     } catch (error) {
-      if (
-        error instanceof InvalidParameterEntityException ||
-        error instanceof DuplicateEmailException ||
-        error instanceof DuplicateUsernameException
-      ) {
-        throw error;
-      }
       this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'CreateUser', error: error }));
       throw error;
     }
@@ -81,7 +116,32 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
   }
 
   async getUserByReferralCode(referralCode: string): Promise<boolean> {
-    const user = await this.userRepository.findOne({ where: { referralCodeString: referralCode } });
+    const user = await this.userRepository.findOne({ where: { referralCode: referralCode } });
     return !!user;
+  }
+
+  private async isDuplicatedUsername(username: string): Promise<boolean> {
+    return await this.userRepository.find().then(users => {
+      return users.some(user => user.username === username);
+    });
+  }
+
+  private async isDuplicatedEmail(email: string): Promise<boolean> {
+    return await this.userRepository.find().then(users => {
+      return users.some(user => user.mail === email);
+    });
+  }
+
+  private isValidPassword(password: string): boolean {
+    return this.regexValidatePassword.test(password);
+  }
+
+  private isValidUsername(username: string): boolean {
+    return username.length > 4 && username.length < 20;
+  }
+
+  private isValidEmail(email: string): boolean {
+    const regex = new RegExp('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$');
+    return regex.test(email);
   }
 }

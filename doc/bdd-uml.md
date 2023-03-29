@@ -40,7 +40,7 @@ class company {
    varchar city
    varchar country
    varchar phone
-   varchar email
+   varchar mail
    timestamp createdAt
    timestamp updatedAt
    timestamp deletedAt
@@ -177,7 +177,7 @@ class profile {
    timestamp createdAt
    timestamp updatedAt
    timestamp deletedAt
-   uuid userId
+   uuid id
    uuid id
 }
 class node14 {
@@ -210,11 +210,11 @@ class subscription_entity {
    timestamp updatedAt
    timestamp deletedAt
    uuid planId
-   uuid userId
+   uuid id
    uuid id
 }
 class user {
-   varchar email
+   varchar mail
    boolean isEmailConfirmed
    varchar username
    varchar password
@@ -249,10 +249,10 @@ joined_conversation  -->  conversation : conversationId:id
 joined_conversation  -->  profile : profileId:id
 message_entity  -->  card_entity : authorId:id
 message_entity  -->  conversation : conversationId:id
-profile  -->  user : userId:id
+profile  -->  user : id:id
 node14  -->  occupation : occupation_id:id
 node14  -->  profile : profile_id:id
 node9  -->  card_entity : card_id:id
 node9  -->  profile : profile_id:id
 subscription_entity  -->  plan : planId:id
-subscription_entity  -->  user : userId:id
+subscription_entity  -->  user : id:id

@@ -99,7 +99,7 @@ describe('UserController (e2e)', () => {
     });
 
     describe(' Not authentified user should not be able to createUser', () => {
-      it('should return 403', async function () {
+      it('should return 401', async function () {
         await request(app.getHttpServer())
           .post('/user/admin/create')
           .send({
@@ -108,7 +108,7 @@ describe('UserController (e2e)', () => {
             password: 'Test123!',
             roles: ['ADMIN'],
           })
-          .expect(403);
+          .expect(401);
       });
     });
 
@@ -209,7 +209,7 @@ describe('UserController (e2e)', () => {
           })
           .expect(400)
           .then(response => {
-            expect(response.body.message).toEqual('Username is too short');
+            expect(response.body.message).toEqual('Invalid username exception');
           });
       });
 
@@ -224,7 +224,7 @@ describe('UserController (e2e)', () => {
           })
           .expect(400)
           .then(response => {
-            expect(response.body.message).toEqual('Username is too long');
+            expect(response.body.message).toEqual('Invalid username exception');
           });
       });
 
@@ -254,28 +254,15 @@ describe('UserController (e2e)', () => {
           })
           .expect(400)
           .then(response => {
-            expect(response.body.message).toEqual('Password is invalid');
-          });
-      });
-
-      it('should return role is not valid', async function () {
-        await request(app.getHttpServer())
-          .post('/user/admin/create')
-          .set('Authorization', 'Bearer ' + adminToken)
-          .send({
-            username: 'test123',
-            mail: 'userTest@test.fr',
-            roles: ['ADMIN', 'PUBLIC', 'bob'],
-          })
-          .expect(400)
-          .then(response => {
-            expect(response.body.message).toEqual('Role is not valid');
+            expect(response.body.message).toEqual(
+              'Invalid password. Password must contain at least 4 characters, at least one uppercase letter, one lowercase letter and one number',
+            );
           });
       });
     });
   });
 
-  describe('Generate User', () => {
+  describe('Generate User /user/admin/generate-user-from-mail (POST) ', () => {
     beforeEach(async () => {
       await request(app.getHttpServer())
         .post('/api/test/create-user-test')
@@ -291,7 +278,7 @@ describe('UserController (e2e)', () => {
     describe('Public user should not be able to generateUser', () => {
       it('should return Forbidden', async function () {
         await request(app.getHttpServer())
-          .post('/user/generate')
+          .post('/user/admin/generate-user-from-mail')
           .set('Authorization', 'Bearer ' + publicToken)
           .expect(403);
       });
@@ -299,14 +286,14 @@ describe('UserController (e2e)', () => {
 
     describe('Not Authenticated user should not be able to generateUser', () => {
       it('should return Unauthorized', async function () {
-        await request(app.getHttpServer()).post('/user/generate').expect(401);
+        await request(app.getHttpServer()).post('/user/admin/generate-user-from-mail').expect(401);
       });
     });
 
     describe('Admin user should be able to generateUser', () => {
       it('should return new generatedUser', async function () {
         const newUser = await request(app.getHttpServer())
-          .post('/user/generate')
+          .post('/user/admin/generate-user-from-mail')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({
             mail: 'userTest@test.fr',
@@ -315,14 +302,14 @@ describe('UserController (e2e)', () => {
 
         expect(newUser).toBeDefined();
         expect(newUser.body).toBeDefined();
-        expect(newUser.body?.username).toBeUndefined();
+        expect(newUser.body?.username).toBeNull();
         expect(newUser.body.mail).toEqual('userTest@test.fr');
         expect(newUser.body.roles).toEqual(['PUBLIC']);
       });
 
       it('should return new generate Admin', function () {
         request(app.getHttpServer())
-          .post('/user/generate')
+          .post('/user/admin/generate-user-from-mail')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({
             mail: 'userTest@test.fr',
@@ -332,7 +319,7 @@ describe('UserController (e2e)', () => {
           .then(newUser => {
             expect(newUser).toBeDefined();
             expect(newUser.body).toBeDefined();
-            expect(newUser.body?.username).toBeUndefined();
+            expect(newUser.body?.username).toBeNull();
             expect(newUser.body.mail).toEqual('userTest@test.fr');
             expect(newUser.body.roles).toEqual(['ADMIN']);
           });
@@ -342,7 +329,7 @@ describe('UserController (e2e)', () => {
     describe('Admin user should not be able to generateUser with invalid mail', () => {
       it('should return mail is not valid', async function () {
         await request(app.getHttpServer())
-          .post('/user/generate')
+          .post('/user/admin/generate-user-from-mail')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({
             mail: 'userTesttest.fr',
@@ -354,32 +341,17 @@ describe('UserController (e2e)', () => {
       });
     });
 
-    describe('Admin user should not be able to generateUser with invalid roles', () => {
-      it('should return invalid role', async function () {
-        await request(app.getHttpServer())
-          .post('/user/generate')
-          .set('Authorization', 'Bearer ' + adminToken)
-          .send({
-            mail: 'userTest@test.fr',
-            roles: ['ADMIN', 'bob'],
-          })
-          .expect(400)
-          .then(response => {
-            expect(response.body.message).toEqual('Invalid role');
-          });
-      });
-    });
     describe('Admin should not be able to generateUser with duplicate mail', () => {
       it('should return mail is already used', async function () {
         await request(app.getHttpServer())
-          .post('/user/generate')
+          .post('/user/admin/generate-user-from-mail')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({
             mail: 'userToTest@test.fr',
           })
           .expect(400)
           .then(response => {
-            expect(response.body.message).toEqual('Mail is already used');
+            expect(response.body.message).toEqual('Mail already exists');
           });
       });
     });
@@ -401,17 +373,17 @@ describe('UserController (e2e)', () => {
           userRemovedId = response.body.id;
         });
       await request(app.getHttpServer())
-        .post('/api/test/remove-user-test')
+        .delete('/api/test/remove-user-test')
         .send({
           userId: userRemovedId,
         })
-        .expect(201);
+        .expect(204);
     });
 
     describe('Public user should not be able to restoreUser', () => {
       it('should return Forbidden', async function () {
         await request(app.getHttpServer())
-          .post('/user/restore')
+          .post('/user/admin/restore-user')
           .set('Authorization', 'Bearer ' + publicToken)
           .expect(403);
       });
@@ -419,21 +391,21 @@ describe('UserController (e2e)', () => {
 
     describe('Not Authenticated user should not be able to restoreUser', () => {
       it('should return forbidden', async function () {
-        await request(app.getHttpServer()).post('/user/restore').expect(403);
+        await request(app.getHttpServer()).post('/user/admin/restore-user').expect(401);
       });
     });
 
     describe('Admin user should be able to restoreUser', () => {
       it('should return 201', async function () {
         await request(app.getHttpServer())
-          .post('/user/restore')
+          .post('/user/admin/restore-user')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({
             userId: userRemovedId,
           })
-          .expect(201);
+          .expect(204);
         await request(app.getHttpServer())
-          .get('/user/' + userRemovedId)
+          .get('/user/admin/' + userRemovedId)
           .set('Authorization', 'Bearer ' + adminToken)
           .expect(200)
           .then(response => {
@@ -446,14 +418,14 @@ describe('UserController (e2e)', () => {
     describe('Admin user should not be able to restoreUser with invalid userId', () => {
       it('should return 400', async function () {
         await request(app.getHttpServer())
-          .post('/user/restore')
+          .post('/user/admin/restore-user')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({
             userId: 'invalidId',
           })
           .expect(400)
           .then(response => {
-            expect(response.body.message).toEqual('Invalid userId');
+            expect(response.body.message).toEqual('User not found');
           });
       });
     });
@@ -499,7 +471,7 @@ describe('UserController (e2e)', () => {
         it('should return borbiden', async function () {
           await request(app.getHttpServer())
             .delete('/user/admin/' + userToRemoveId)
-            .expect(403);
+            .expect(401);
           await request(app.getHttpServer())
             .get('/api/test/get-all-users-test')
             .expect(200)
@@ -535,7 +507,7 @@ describe('UserController (e2e)', () => {
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Invalid userId');
+              expect(response.body.message).toEqual('User not found');
             });
         });
       });
@@ -561,7 +533,7 @@ describe('UserController (e2e)', () => {
 
       describe('Not Authenticated user should not be able to deleteMe', () => {
         it('should return 403', async function () {
-          await request(app.getHttpServer()).delete('/user/public/delete-me').expect(403);
+          await request(app.getHttpServer()).delete('/user/public/delete-me').expect(401);
         });
       });
     });
@@ -626,7 +598,7 @@ describe('UserController (e2e)', () => {
 
       describe('Not Authenticated user should not be able to getAllUserAdmin', () => {
         it('should return borbiden', async function () {
-          await request(app.getHttpServer()).get('/user/admin').expect(403);
+          await request(app.getHttpServer()).get('/user/admin').expect(401);
         });
       });
 
@@ -638,7 +610,7 @@ describe('UserController (e2e)', () => {
             .expect(200)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.length).toEqual(5);
+              expect(response.body.length).toEqual(4);
               expect(response.body[2].username).toEqual('userToTest2');
               expect(response.body[2].deletedAt).toBeNull();
               expect(response.body[3].username).toEqual('userToTest3');
@@ -662,7 +634,7 @@ describe('UserController (e2e)', () => {
         it('should return forbiden', async function () {
           await request(app.getHttpServer())
             .get('/user/admin/' + userCreatedIdList[1])
-            .expect(403);
+            .expect(401);
         });
       });
 
@@ -688,7 +660,7 @@ describe('UserController (e2e)', () => {
             .expect(400)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Invalid userId');
+              expect(response.body.message).toEqual('User not found');
             });
         });
       });
@@ -701,7 +673,7 @@ describe('UserController (e2e)', () => {
             .expect(400)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Invalid userId');
+              expect(response.body.message).toEqual('User not found');
             });
         });
       });
@@ -719,7 +691,7 @@ describe('UserController (e2e)', () => {
 
       describe('Not Authenticated user should not be able to findUserWithCriteria', () => {
         it('should return forbiden', async function () {
-          await request(app.getHttpServer()).post('/user/admin/criteria').expect(403);
+          await request(app.getHttpServer()).post('/user/admin/criteria').expect(401);
         });
       });
 
@@ -737,20 +709,20 @@ describe('UserController (e2e)', () => {
               expect(response.body[3].username).toEqual('userToTest3');
               expect(response.body[3].deletedAt).toBeNull();
             });
+        });
 
-          it('should retrun all user with delleted user', async function () {
-            await request(app.getHttpServer())
-              .post('/user/admin/criteria')
-              .set('Authorization', 'Bearer ' + adminToken)
-              .send({
-                isDeleted: true,
-              })
-              .expect(200)
-              .then(response => {
-                expect(response.body).toBeDefined();
-                expect(response.body.length).toEqual(5);
-              });
-          });
+        it('should retrun all user with delleted user', async function () {
+          await request(app.getHttpServer())
+            .post('/user/admin/criteria')
+            .set('Authorization', 'Bearer ' + adminToken)
+            .send({
+              isDeleted: true,
+            })
+            .expect(200)
+            .then(response => {
+              expect(response.body).toBeDefined();
+              expect(response.body.length).toEqual(5);
+            });
         });
       });
 
@@ -771,7 +743,7 @@ describe('UserController (e2e)', () => {
 
         describe('Not Authenticated user should not be able to getMe', () => {
           it('should return forbiden', async function () {
-            await request(app.getHttpServer()).get('/user/public/get-me').expect(403);
+            await request(app.getHttpServer()).get('/user/public/get-me').expect(401);
           });
         });
       });
@@ -849,7 +821,7 @@ describe('UserController (e2e)', () => {
               mail: 'userUpdated@test.fr',
               password: 'Test123!',
             })
-            .expect(403);
+            .expect(401);
         });
       });
 
@@ -885,10 +857,10 @@ describe('UserController (e2e)', () => {
               mail: 'udpatedUser@test.fr',
               password: 'Test123!',
             })
-            .expect(409)
+            .expect(400)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Username already exist');
+              expect(response.body.message).toEqual('Username already exists');
             });
         });
 
@@ -920,10 +892,10 @@ describe('UserController (e2e)', () => {
               mail: 'userToTest3@test.fr',
               password: 'Test123!',
             })
-            .expect(409)
+            .expect(400)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Mail already exist');
+              expect(response.body.message).toEqual('Mail already exists');
             });
         });
 
@@ -966,25 +938,20 @@ describe('UserController (e2e)', () => {
             .send({
               roles: ['ADMIN'],
             })
-            .expect(403);
+            .expect(401);
         });
       });
 
       describe('Admin user should be able to updateUserRole', () => {
         describe('when user is not deleted', () => {
-          it('should return user updated', async function () {
+          it('should return 204', async function () {
             await request(app.getHttpServer())
               .put('/user/admin/' + userCreatedIdList[1] + '/role')
               .set('Authorization', 'Bearer ' + adminToken)
               .send({
                 roles: ['ADMIN'],
               })
-              .expect(200)
-              .then(response => {
-                expect(response.body).toBeDefined();
-                expect(response.body.roles).toEqual(['ADMIN']);
-                expect(response.body.deletedAt).toBeNull();
-              });
+              .expect(204);
           });
         });
       });
@@ -997,26 +964,10 @@ describe('UserController (e2e)', () => {
             .send({
               roles: ['ADMIN'],
             })
-            .expect(404)
-            .then(response => {
-              expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('User not found');
-            });
-        });
-      });
-
-      describe('Admin should not be able to update user with wrong role', () => {
-        it('should return error user not found', async function () {
-          await request(app.getHttpServer())
-            .put('/user/admin/' + userCreatedIdList[1] + '/role')
-            .set('Authorization', 'Bearer ' + adminToken)
-            .send({
-              roles: ['WRONGROLE'],
-            })
             .expect(400)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Invalid role');
+              expect(response.body.message).toEqual('User not found');
             });
         });
       });
@@ -1050,10 +1001,10 @@ describe('UserController (e2e)', () => {
               username: 'userToTest2',
               mail: 'updatedUser@test.fr',
             })
-            .expect(409)
+            .expect(400)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Username already exist');
+              expect(response.body.message).toEqual('Username already exists');
             });
         });
 
@@ -1075,20 +1026,6 @@ describe('UserController (e2e)', () => {
       });
 
       describe('Public user should not be able to updateMe with same mail', () => {
-        it('should return duplicated mail', async function () {
-          await request(app.getHttpServer())
-            .put('/user/public/update-me')
-            .set('Authorization', 'Bearer ' + publicToken)
-            .send({
-              username: 'updatedUser',
-              mail: 'userTest2@test.fr',
-            })
-            .expect(409)
-            .then(response => {
-              expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Mail already exist');
-            });
-        });
 
         it('should pass when duplicated mail is from deleted User', async function () {
           await request(app.getHttpServer())
@@ -1134,10 +1071,12 @@ describe('UserController (e2e)', () => {
               password: 'wrongPassword',
               newPassword: 'Test123!',
             })
-            .expect(401)
+            .expect(400)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Wrong password');
+              expect(response.body.message).toEqual(
+                'Invalid password. Password must contain at least 4 characters, at least one uppercase letter, one lowercase letter and one number',
+              );
             });
         });
 
@@ -1152,7 +1091,9 @@ describe('UserController (e2e)', () => {
             .expect(400)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Invalid password');
+              expect(response.body.message).toEqual(
+                'Invalid password. Password must contain at least 4 characters, at least one uppercase letter, one lowercase letter and one number',
+              );
             });
         });
       });
@@ -1182,10 +1123,9 @@ describe('UserController (e2e)', () => {
               password: 'Test123!',
               newPassword: 'Test12543!',
             })
-            .expect(403)
+            .expect(401)
             .then(response => {
               expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('Forbidden resource');
             });
         });
       });

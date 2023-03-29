@@ -83,7 +83,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#email" >email</a>
+                                <a href="#email" >mail</a>
                             </li>
                             <li>
                                 <a href="#password" >password</a>
@@ -116,7 +116,7 @@
                 <td class="col-md-4">
                     <a name="email"></a>
                     <span class="name">
-                        <span ><b>email</b></span>
+                        <span ><b>mail</b></span>
                         <a href="#email"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -235,7 +235,7 @@ export class SignUpDto {
 
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  mail: string;
 
   @IsNotEmpty()
   @MinLength(5)

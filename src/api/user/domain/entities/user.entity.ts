@@ -66,7 +66,7 @@ export class UserEntity extends BaseEntity {
   public jwtToken?: string;
 
   @Column({ unique: true, nullable: true })
-  public referralCodeString?: string;
+  public referralCode?: string;
 
   /**
    * @description

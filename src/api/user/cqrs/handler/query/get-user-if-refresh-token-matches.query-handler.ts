@@ -17,7 +17,7 @@ export class GetUserIfRefreshTokenMatchesQueryHandler implements IQueryHandler<G
   async execute(query: GetUserIfRefreshTokenMatchesQuery): Promise<UserEntity | undefined> {
     try {
       const user = await this.userRepository.findOne({
-        select: ['id', 'username', 'mail', 'currentHashedRefreshToken'],
+        select: ['id', 'username', 'mail', 'currentHashedRefreshToken', 'roles'],
         where: {
           id: query.userId,
         },
