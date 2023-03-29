@@ -26,6 +26,7 @@ import { UserNotFoundException } from '../../util/exception/custom-http-exceptio
 import { DuplicateUsernameException } from '../../util/exception/custom-http-exception/duplicate-username.exception';
 import { SamePasswordException } from '../../util/exception/custom-http-exception/same-password.exception';
 import { InvalidPasswordException } from '../../util/exception/custom-http-exception/invalid-password.exception';
+import { RequestUser } from "../auth/interface/request-user.interface";
 
 @Injectable()
 export class UserService {
@@ -35,7 +36,7 @@ export class UserService {
     return await this.commandBus.execute(new CreateUserCommand(createUserDto));
   }
 
-  async getUserIfRefreshTokenMatches(refreshToken: string, userId: string): Promise<UserResponse> {
+  async getUserIfRefreshTokenMatches(refreshToken: string, userId: string): Promise<RequestUser> {
     return await this.queryBus.execute(new GetUserIfRefreshTokenMatchesQuery(refreshToken, userId));
   }
 
