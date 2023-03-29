@@ -187,14 +187,14 @@
 import { UserEntity } from &#x27;./domain/entities/user.entity&#x27;;
 import { CqrsModule } from &#x27;@nestjs/cqrs&#x27;;
 import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
-import { UserController } from &#x27;./user.controller&#x27;;
+import { UserController } from &#x27;./web/user.controller&#x27;;
 import { UserService } from &#x27;./user.service&#x27;;
 import { CreateUserCommandHandler } from &#x27;./cqrs/handler/command/create-user.command-handler&#x27;;
-import { GetUserByEmailQueryHandler } from &#x27;./cqrs/handler/query/get-user-by-mail.query-handler&#x27;;
+import { GetUserByEmailQueryHandler } from &#x27;./cqrs/handler/query/get-user-by-email.query-handler&#x27;;
 import { GetUserByUsernameQueryHandler } from &#x27;./cqrs/handler/query/get-user-by-username.query-handler&#x27;;
-import { GetUserLoginHandler } from &#x27;./cqrs/handler/query/get-user-login.handler&#x27;;
-import { GetUserIfRefreshTokenMatchesHandler } from &#x27;./cqrs/handler/query/get-user-if-refresh-token-matches.handler&#x27;;
-import { GetUserHandler } from &#x27;./cqrs/handler/query/get-user.handler&#x27;;
+import { GetUserLoginQueryHandler } from &#x27;./cqrs/handler/query/get-user-login.query-handler&#x27;;
+import { GetUserIfRefreshTokenMatchesQueryHandler } from &#x27;./cqrs/handler/query/get-user-if-refresh-token-matches.query-handler&#x27;;
+import { GetUserQueryHandler } from &#x27;./cqrs/handler/query/get-user.query-handler&#x27;;
 import { ApiLogModule } from &#x27;../api-log/api-log.module&#x27;;
 import { ApiLogService } from &#x27;../api-log/api-log.service&#x27;;
 import { ClientsModule, Transport } from &#x27;@nestjs/microservices&#x27;;
@@ -207,8 +207,12 @@ import { RemoveRefreshTokenEventHandler } from &#x27;./cqrs/handler/event/remove
 import { SetCurrentRefreshTokenEventHandler } from &#x27;./cqrs/handler/event/set-current-refresh-token.event-handler&#x27;;
 import { LoginOfUserEventHandler } from &#x27;./cqrs/handler/event/login-of-user.event-handler&#x27;;
 import { UpdateUserEventHandler } from &#x27;./cqrs/handler/event/update-user.event-handler&#x27;;
-import { DeleteUserCommandHandler } from &#x27;./cqrs/handler/command/delete-user.command-handler&#x27;;
+import { SoftDeleteUserCommandHandler } from &#x27;./cqrs/handler/command/soft-delete-user.command-handler&#x27;;
 import { CreateLogCommandHandler } from &#x27;../api-log/cqrs/handler/command/create-log.command-handler&#x27;;
+import { GetUserWithCriteriaQueryHandler } from &#x27;./cqrs/handler/query/get-user-with-criteria.query-handler&#x27;;
+import { UpdateUserCredentialCommandHandler } from &#x27;./cqrs/handler/command/update-user-credential.command-handler&#x27;;
+import { UpdateUserRoleCommandHandler } from &#x27;./cqrs/handler/command/update-user-role.command-handler&#x27;;
+import { RestoreUserCommandHandler } from &#x27;./cqrs/handler/command/restore-user.command-handler&#x27;;
 
 @Module({
   imports: [
@@ -228,13 +232,17 @@ import { CreateLogCommandHandler } from &#x27;../api-log/cqrs/handler/command/cr
     RemoveRefreshTokenCommandHandler,
     SetCurrentRefreshTokenCommandHandler,
     UpdateUserCommandHandler,
-    DeleteUserCommandHandler,
+    SoftDeleteUserCommandHandler,
+    UpdateUserCredentialCommandHandler,
+    UpdateUserRoleCommandHandler,
+    RestoreUserCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,
-    GetUserLoginHandler,
-    GetUserIfRefreshTokenMatchesHandler,
-    GetUserHandler,
+    GetUserLoginQueryHandler,
+    GetUserIfRefreshTokenMatchesQueryHandler,
+    GetUserQueryHandler,
+    GetUserWithCriteriaQueryHandler,
     // Event handlers
     CreateUserEventHandler,
     DeleteUserEventHandler,

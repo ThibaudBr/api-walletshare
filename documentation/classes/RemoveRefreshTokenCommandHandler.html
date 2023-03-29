@@ -270,11 +270,13 @@ export class RemoveRefreshTokenCommandHandler implements ICommandHandler&lt;Remo
 
   async execute(command: RemoveRefreshTokenCommand): Promise&lt;void&gt; {
     try {
-      await this.userRepository.update(command.id, {
+      await this.userRepository.update(command.userId, {
         currentHashedRefreshToken: undefined,
       });
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent(&#x27;user&#x27;, &#x27;RemoveRefreshTokenCommandHandler&#x27;, error));
+      this.eventBus.publish(
+        new ErrorCustomEvent({ localisation: &#x27;user&#x27;, handler: &#x27;RemoveRefreshTokenCommandHandler&#x27;, error: error }),
+      );
     }
   }
 }

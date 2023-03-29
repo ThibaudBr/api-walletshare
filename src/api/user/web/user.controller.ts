@@ -2,15 +2,16 @@ import {
   Body,
   Controller,
   Delete,
-  Get, HttpCode,
+  Get,
+  HttpCode,
   HttpException,
   HttpStatus,
   Param,
   Post,
   Put,
   Req,
-  UseGuards
-} from "@nestjs/common";
+  UseGuards,
+} from '@nestjs/common';
 import { UserService } from '../user.service';
 import { CreateUserDto } from '../domain/dto/create-user.dto';
 import { CreateUserResponse } from '../domain/response/create-user.response';
@@ -23,8 +24,8 @@ import { UserRoleEnum } from '../domain/enum/user-role.enum';
 import { GetUserWithCriteriaDto } from '../domain/dto/get-user-with-criteria.dto';
 import { UpdateUserCredentialDto } from '../domain/dto/update-user-credential.dto';
 import { GenerateUserDto } from '../domain/dto/generate-user.dto';
-import { ListRolesDto } from "../domain/dto/list-roles.dto";
-import { UserIdDto } from "../domain/dto/user-id.dto";
+import { ListRolesDto } from '../domain/dto/list-roles.dto';
+import { UserIdDto } from '../domain/dto/user-id.dto';
 
 @Controller('user')
 @ApiTags('user')

@@ -245,9 +245,9 @@ export class RegisterEventHandler implements IEventHandler&lt;RegisterEvent&gt; 
   logger_console &#x3D; new Logger(&#x27;RegisterEventHandler&#x27;);
 
   handle(event: RegisterEvent): any {
-    logger.info(&#x27;New user have registered  with id &#x27; + event.id);
+    logger.info(&#x27;New user have registered  with id &#x27; + event.userId);
 
-    this.logger_console.log(&#x27;New user have registered with id &#x27; + event.id);
+    this.logger_console.log(&#x27;New user have registered with id &#x27; + event.userId);
   }
 }
 </code></pre>

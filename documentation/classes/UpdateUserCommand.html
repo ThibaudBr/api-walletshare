@@ -90,7 +90,7 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#userId" >id</a>
+                                <a href="#userId" >userId</a>
                             </li>
                         </ul>
                     </td>
@@ -111,7 +111,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, user: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
+<code>constructor(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, user: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -134,7 +134,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>id</td>
+                                                        <td>userId</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -207,7 +207,7 @@
                     <span class="name">
                             <span class="modifier">Public</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>id</b></span>
+                        <span ><b>userId</b></span>
                         <a href="#userId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -242,7 +242,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UpdateUserDto } from &#x27;../../domain/dto/update-user.dto&#x27;;
 
 export class UpdateUserCommand {
-  constructor(public readonly id: string, public readonly user: UpdateUserDto) {}
+  constructor(public readonly userId: string, public readonly user: UpdateUserDto) {}
 }
 </code></pre>
     </div>

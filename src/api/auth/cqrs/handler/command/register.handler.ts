@@ -109,7 +109,6 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
     return regex.test(email);
   }
 
-
   // Generate a random alphanumeric code of a given length
   private generateCode(length: number): string {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

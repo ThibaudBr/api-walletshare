@@ -263,10 +263,10 @@ import { SendMailCommand } from &#x27;../../command/send-mail.command&#x27;;
 export class SendMailCommandHandler implements ICommandHandler&lt;SendMailCommand&gt; {
   constructor(@Inject(&#x27;API_LOG&#x27;) private client: ClientProxy, private readonly eventBus: EventBus) {}
   async execute(command: SendMailCommand): Promise&lt;void&gt; {
-    this.client.emit(&#x27;send-mail&#x27;, command);
+    this.client.emit(&#x27;send-email&#x27;, command);
     this.eventBus.publish(
       new SendMailEvent({
-        mail: command.mail,
+        email: command.email,
       }),
     );
   }

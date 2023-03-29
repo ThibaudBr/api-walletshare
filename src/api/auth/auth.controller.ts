@@ -12,7 +12,7 @@ import { RoleGuard } from './guards/role.guard';
 import { UserRoleEnum } from '../user/domain/enum/user-role.enum';
 import { MessagePattern } from '@nestjs/microservices';
 import { UserLoginResponse } from '../user/domain/response/user-login.response';
-import { UserResponse } from "../user/domain/response/user.response";
+import { UserResponse } from '../user/domain/response/user.response';
 
 @Controller('/auth')
 @ApiTags('auth')

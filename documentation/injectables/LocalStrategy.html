@@ -170,8 +170,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/api/auth/strategy/passport-local.strategy.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/api/auth/strategy/passport-local.strategy.ts:15</a></div>
                 </td>
             </tr>
 
@@ -248,6 +248,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authenticationService: AuthService) {
     super({
       usernameField: &#x27;login&#x27;,
+      passwordField: &#x27;password&#x27;,
     });
   }
   async validate(login: string, password: string): Promise&lt;UserEntity&gt; {

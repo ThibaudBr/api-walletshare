@@ -282,7 +282,7 @@ import { CqrsModule } from &#x27;@nestjs/cqrs&#x27;;
 import { JwtRefreshTokenStrategy } from &#x27;./strategy/jwt-refresh-token.strategy&#x27;;
 import { UserService } from &#x27;../user/user.service&#x27;;
 import { JwtStrategy } from &#x27;./strategy/jwt.strategy&#x27;;
-import { GetUserLoginHandler } from &#x27;../user/cqrs/handler/query/get-user-login.handler&#x27;;
+import { GetUserLoginQueryHandler } from &#x27;../user/cqrs/handler/query/get-user-login.query-handler&#x27;;
 import { RegisterEventHandler } from &#x27;./cqrs/event-handler/register.event-handler&#x27;;
 import { ErrorCustomEventHandler } from &#x27;../../util/exception/error-handler/error-custom.event-handler&#x27;;
 import { ApiLogModule } from &#x27;../api-log/api-log.module&#x27;;
@@ -323,7 +323,7 @@ config();
     JwtStrategy,
     JwtRefreshTokenStrategy,
     RegisterHandler,
-    GetUserLoginHandler,
+    GetUserLoginQueryHandler,
     RegisterEventHandler,
     ErrorCustomEventHandler,
     CreateLogCommandHandler,

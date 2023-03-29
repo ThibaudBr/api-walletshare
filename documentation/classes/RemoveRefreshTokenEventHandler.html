@@ -249,7 +249,7 @@ export class RemoveRefreshTokenEventHandler implements IEventHandler&lt;RemoveRe
     this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: &#x27;Refresh token with id: &#x27; + event.id + &#x27; removed&#x27;,
+      body: &#x27;Refresh token with id: &#x27; + event.userId + &#x27; removed&#x27;,
     });
   }
 }

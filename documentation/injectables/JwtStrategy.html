@@ -252,7 +252,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: TokenPayload): Promise&lt;UserEntity&gt; {
     return await this.userRepository.findOneOrFail({
-      where: [{ id: payload.id }],
+      where: [{ id: payload.userId }],
     });
   }
 }

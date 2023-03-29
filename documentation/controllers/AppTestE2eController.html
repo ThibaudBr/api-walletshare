@@ -83,6 +83,15 @@
                             <li>
                                 <a href="#createUserTest" >createUserTest</a>
                             </li>
+                            <li>
+                                <a href="#deleteUserTest" >deleteUserTest</a>
+                            </li>
+                            <li>
+                                <a href="#getAllUsersTest" >getAllUsersTest</a>
+                            </li>
+                            <li>
+                                <a href="#getUserTest" >getUserTest</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -127,8 +136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:14</a></div>
                 </td>
             </tr>
 
@@ -171,8 +180,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:20</a></div>
                 </td>
             </tr>
 
@@ -220,15 +229,212 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteUserTest"></a>
+                    <span class="name">
+                        <span ><b>deleteUserTest</b></span>
+                        <a href="#deleteUserTest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteUserTest(userIdDto: <a href="../interfaces/UserIdDto.html" target="_self">UserIdDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HttpCode(204)<br />@UsePipes(new IsTestEnvironmentPipe())<br />@Delete(&#x27;/api/test/remove-user-test&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:27</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userIdDto</td>
+                                    <td>
+                                                <code><a href="../interfaces/UserIdDto.html" target="_self" >UserIdDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllUsersTest"></a>
+                    <span class="name">
+                        <span ><b>getAllUsersTest</b></span>
+                        <a href="#getAllUsersTest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAllUsersTest()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UsePipes(new IsTestEnvironmentPipe())<br />@Get(&#x27;/api/test/get-all-users-test&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:33</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserTest"></a>
+                    <span class="name">
+                        <span ><b>getUserTest</b></span>
+                        <a href="#getUserTest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserTest(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UsePipes(new IsTestEnvironmentPipe())<br />@Get(&#x27;/api/test/get-user-test&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">test/test-environment/app-test-e2e.controller.ts:39</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity | null&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Post, UsePipes } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, Post, UsePipes } from &#x27;@nestjs/common&#x27;;
 import { AppTestE2eService } from &#x27;./app-test-e2e.service&#x27;;
 import { IsTestEnvironmentPipe } from &#x27;../../src/util/pipe/is-test-environment.pipe&#x27;;
 import { CreateUserDto } from &#x27;../../src/api/user/domain/dto/create-user.dto&#x27;;
 import { UserEntity } from &#x27;../../src/api/user/domain/entities/user.entity&#x27;;
+import { UserIdDto } from &#x27;../../src/api/user/domain/dto/user-id.dto&#x27;;
 
 @Controller()
 export class AppTestE2eController {
@@ -244,6 +450,25 @@ export class AppTestE2eController {
   @Post(&#x27;/api/test/create-user-test&#x27;)
   createUserTest(@Body() createUserDto: CreateUserDto): Promise&lt;UserEntity&gt; {
     return this.appService.createUserTest(createUserDto);
+  }
+
+  @HttpCode(204)
+  @UsePipes(new IsTestEnvironmentPipe())
+  @Delete(&#x27;/api/test/remove-user-test&#x27;)
+  deleteUserTest(@Body() userIdDto: UserIdDto): Promise&lt;void&gt; {
+    return this.appService.removeUser(userIdDto.userId);
+  }
+
+  @UsePipes(new IsTestEnvironmentPipe())
+  @Get(&#x27;/api/test/get-all-users-test&#x27;)
+  getAllUsersTest(): Promise&lt;UserEntity[]&gt; {
+    return this.appService.getAllUsers();
+  }
+
+  @UsePipes(new IsTestEnvironmentPipe())
+  @Get(&#x27;/api/test/get-user-test&#x27;)
+  getUserTest(@Body() userId: string): Promise&lt;UserEntity | null&gt; {
+    return this.appService.getUser(userId);
   }
 }
 </code></pre>

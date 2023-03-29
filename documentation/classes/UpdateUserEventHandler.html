@@ -250,7 +250,7 @@ export class UpdateUserEventHandler implements IEventHandler&lt;UpdateUserEvent&
     this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: &#x27;User with id: &#x27; + event.id + &#x27; updated&#x27;,
+      body: &#x27;User with id: &#x27; + event.userId + &#x27; updated&#x27;,
     });
   }
 }

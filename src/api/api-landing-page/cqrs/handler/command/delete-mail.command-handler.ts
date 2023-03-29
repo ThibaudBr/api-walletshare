@@ -1,6 +1,6 @@
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { DeleteMailCommand } from '../../command/delete-mail.command';
-import { HttpException, HttpStatus, Inject } from "@nestjs/common";
+import { HttpException, HttpStatus, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { DeleteMailEvent } from '../../event/delete-mail.event';
 import { catchError, firstValueFrom } from 'rxjs';
