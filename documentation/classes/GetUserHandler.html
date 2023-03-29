@@ -257,10 +257,10 @@ export class GetUserHandler implements IQueryHandler&lt;GetUserQuery&gt; {
   ) {}
 
   async execute(query: GetUserQuery): Promise&lt;UserResponse | UserResponse[]&gt; {
-    if (query.userId) {
+    if (query.id) {
       return {
         ...(await this.userRepository.findOneOrFail({
-          where: [{ id: query.userId }],
+          where: [{ id: query.id }],
         })),
       };
     }

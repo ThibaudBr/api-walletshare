@@ -111,7 +111,7 @@
 
 export class UserNotFoundException extends HttpException {
   constructor() {
-    super(&#x27;User not found&#x27;, HttpStatus.NOT_FOUND);
+    super(&#x27;User not found&#x27;, HttpStatus.BAD_REQUEST);
   }
 }
 </code></pre>

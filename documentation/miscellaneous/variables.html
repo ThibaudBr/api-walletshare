@@ -210,8 +210,7 @@
 
       const request &#x3D; context.switchToHttp().getRequest&lt;RequestUser&gt;();
       const { user } &#x3D; request;
-      const userFromDb &#x3D; await this.userService.findOne(user.id);
-      return roles.some(role &#x3D;&gt; userFromDb?.roles.includes(role));
+      return roles.some(role &#x3D;&gt; user?.roles.includes(role));
     }
   }
   return mixin(RoleGuardMixin);

@@ -1,7 +1,5 @@
 export class RemoveRefreshTokenEvent {
-  constructor(
-    public readonly userId: string,
-    public readonly module: string = 'user',
-    public readonly method: string = 'remove-refresh-token',
-  ) {}
+  public readonly module: string = 'user';
+  public readonly method: string = 'remove-refresh-token';
+  constructor(public readonly userId: string) {}
 }

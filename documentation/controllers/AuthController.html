@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/api/auth/auth.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -227,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/api/auth/auth.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -315,8 +315,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/api/auth/auth.controller.ts:75</a></div>
                 </td>
             </tr>
 
@@ -393,8 +393,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/api/auth/auth.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -483,8 +483,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/api/auth/auth.controller.ts:24</a></div>
                 </td>
             </tr>
 
@@ -522,7 +522,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/UserResponse.html" target="_self" >Promise&lt;UserResponse | HttpException&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -561,8 +561,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/api/auth/auth.controller.ts:89</a></div>
                 </td>
             </tr>
 
@@ -616,7 +616,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SignUpDto } from &#x27;./dto/sign-up.dto&#x27;;
 import { AuthService } from &#x27;./auth.service&#x27;;
-import { Body, Controller, Get, HttpCode, Post, Req, Res, UseGuards } from &#x27;@nestjs/common&#x27;;
+import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post, Req, Res, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
 import { LocalAuthenticationGuard } from &#x27;./guards/auth.guard&#x27;;
 import { RequestUser } from &#x27;./interface/request-user.interface&#x27;;
@@ -628,6 +628,7 @@ import { RoleGuard } from &#x27;./guards/role.guard&#x27;;
 import { UserRoleEnum } from &#x27;../user/domain/enum/user-role.enum&#x27;;
 import { MessagePattern } from &#x27;@nestjs/microservices&#x27;;
 import { UserLoginResponse } from &#x27;../user/domain/response/user-login.response&#x27;;
+import { UserResponse } from &#x27;../user/domain/response/user.response&#x27;;
 
 @Controller(&#x27;/auth&#x27;)
 @ApiTags(&#x27;auth&#x27;)
@@ -636,8 +637,18 @@ export class AuthController {
 
   @Post(&#x27;/register&#x27;)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async signUp(@Body() signUpDto: SignUpDto): Promise&lt;UserEntity&gt; {
-    return await this.authService.signup(signUpDto);
+  async signUp(@Body() signUpDto: SignUpDto): Promise&lt;UserResponse | HttpException&gt; {
+    try {
+      return await this.authService.signup(signUpDto);
+    } catch (error) {
+      throw new HttpException(
+        {
+          type: error.message.split(&#x27;:&#x27;)[0],
+          error: error.message.split(&#x27;:&#x27;)[1],
+        },
+        400,
+      );
+    }
   }
 
   @HttpCode(200)
@@ -692,7 +703,11 @@ export class AuthController {
 
   @MessagePattern({ cmd: &#x27;validate-token&#x27; })
   async validateToken(data: string): Promise&lt;UserLoginResponse&gt; {
-    return await this.authService.getUserFromAuthToken(data);
+    try {
+      return await this.authService.getUserFromAuthToken(data);
+    } catch (e) {
+      throw new HttpException(&#x27;Wrong token provided&#x27;, HttpStatus.BAD_REQUEST);
+    }
   }
 }
 </code></pre>

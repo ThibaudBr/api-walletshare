@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IsEmail, Length } from 'class-validator';
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from '../../../entities-to-create/profile.entity';
 import { UserRoleEnum } from '../enum/user-role.enum';
@@ -33,13 +32,11 @@ export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @IsEmail()
-  @Column({ unique: true })
-  email?: string;
+  @Column({ unique: true, nullable: true })
+  mail?: string;
 
   @Column()
-  @Length(5, 20)
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: true })
   username?: string;
 
   /**
@@ -67,6 +64,9 @@ export class UserEntity extends BaseEntity {
 
   @Exclude()
   public jwtToken?: string;
+
+  @Column({ unique: true, nullable: true })
+  public referralCode?: string;
 
   /**
    * @description

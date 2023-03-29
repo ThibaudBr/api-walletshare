@@ -21,7 +21,9 @@ export class SetCurrentRefreshTokenCommandHandler implements ICommandHandler<Set
         currentHashedRefreshToken,
       });
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent('user', 'SetCurrentRefreshTokenCommandHandler', error));
+      this.eventBus.publish(
+        new ErrorCustomEvent({ localisation: 'user', handler: 'SetCurrentRefreshTokenCommandHandler', error: error }),
+      );
     }
   }
 }

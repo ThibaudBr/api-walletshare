@@ -12,7 +12,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { JwtRefreshTokenStrategy } from './strategy/jwt-refresh-token.strategy';
 import { UserService } from '../user/user.service';
 import { JwtStrategy } from './strategy/jwt.strategy';
-import { GetUserLoginHandler } from '../user/cqrs/handler/query/get-user-login.handler';
+import { GetUserLoginQueryHandler } from '../user/cqrs/handler/query/get-user-login.query-handler';
 import { RegisterEventHandler } from './cqrs/event-handler/register.event-handler';
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';
 import { ApiLogModule } from '../api-log/api-log.module';
@@ -53,7 +53,7 @@ config();
     JwtStrategy,
     JwtRefreshTokenStrategy,
     RegisterHandler,
-    GetUserLoginHandler,
+    GetUserLoginQueryHandler,
     RegisterEventHandler,
     ErrorCustomEventHandler,
     CreateLogCommandHandler,

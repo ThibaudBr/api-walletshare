@@ -83,13 +83,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#email" >email</a>
+                                    <span class="modifier">Optional</span>
+                                <a href="#mail" >mail</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
                                 <a href="#password" >password</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#username" >username</a>
                             </li>
                         </ul>
@@ -115,10 +117,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="email"></a>
+                    <a name="mail"></a>
                     <span class="name">
-                        <span ><b>email</b></span>
-                        <a href="#email"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Optional</span>
+                        <span ><b>mail</b></span>
+                        <a href="#mail"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -179,6 +182,7 @@
                 <td class="col-md-4">
                     <a name="username"></a>
                     <span class="name">
+                            <span class="modifier">Optional</span>
                         <span ><b>username</b></span>
                         <a href="#username"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -225,11 +229,11 @@
 export class UpdateUserDto {
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  mail?: string;
 
   @Length(5, 20)
   @IsNotEmpty()
-  username: string;
+  username?: string;
 
   password?: string;
 }

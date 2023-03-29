@@ -125,7 +125,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/auth/auth.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/auth/auth.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/api/auth/auth.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/api/auth/auth.service.ts:56</a></div>
                 </td>
             </tr>
 
@@ -253,8 +253,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/api/auth/auth.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/api/auth/auth.service.ts:43</a></div>
                 </td>
             </tr>
 
@@ -324,8 +324,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/api/auth/auth.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/api/auth/auth.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -395,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/api/auth/auth.service.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/api/auth/auth.service.ts:60</a></div>
                 </td>
             </tr>
 
@@ -466,8 +466,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/api/auth/auth.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/api/auth/auth.service.ts:23</a></div>
                 </td>
             </tr>
 
@@ -549,8 +549,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/api/auth/auth.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/api/auth/auth.service.ts:17</a></div>
                 </td>
             </tr>
 
@@ -588,7 +588,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="../classes/UserResponse.html" target="_self" >Promise&lt;UserResponse&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -614,20 +614,23 @@ import { UserLoginResponse } from &#x27;../user/domain/response/user-login.respo
 import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
 import { GetUserQuery } from &#x27;../user/cqrs/query/get-user.query&#x27;;
 import { GetUserLoginQuery } from &#x27;../user/cqrs/query/get-user-login.query&#x27;;
+import { UserResponse } from &#x27;../user/domain/response/user.response&#x27;;
 
 @Injectable()
 export class AuthService {
   constructor(private jwtService: JwtService, private commandBus: CommandBus, private queryBus: QueryBus) {}
 
-  async signup(signUpDto: SignUpDto) {
-    return this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.email, signUpDto.password));
+  async signup(signUpDto: SignUpDto): Promise&lt;UserResponse&gt; {
+    return new UserResponse({
+      ...(await this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password))),
+    });
   }
 
   async login(username: string, plainTextPassword: string): Promise&lt;UserEntity&gt; {
     try {
       return await this.queryBus.execute(new GetUserLoginQuery(username, plainTextPassword));
     } catch (error) {
-      throw new HttpException(&#x27;Wrong credentials provided&#x27;, HttpStatus.BAD_REQUEST);
+      throw new HttpException(&#x27;Wrong credentials provided&#x27;, HttpStatus.UNAUTHORIZED);
     }
   }
 
@@ -667,7 +670,7 @@ export class AuthService {
     if (payload.userId) {
       return this.queryBus.execute(new GetUserQuery(payload.userId));
     }
-    throw new HttpException(&#x27;Wrong token provided&#x27;, HttpStatus.BAD_REQUEST);
+    throw new Error(&#x27;Invalid token&#x27;);
   }
 }
 </code></pre>

@@ -272,9 +272,9 @@ export class GetUserIfRefreshTokenMatchesHandler implements IQueryHandler&lt;Get
   async execute(query: GetUserIfRefreshTokenMatchesQuery): Promise&lt;UserEntity | undefined&gt; {
     try {
       const user &#x3D; await this.userRepository.findOne({
-        select: [&#x27;id&#x27;, &#x27;username&#x27;, &#x27;email&#x27;, &#x27;currentHashedRefreshToken&#x27;],
+        select: [&#x27;id&#x27;, &#x27;username&#x27;, &#x27;mail&#x27;, &#x27;currentHashedRefreshToken&#x27;],
         where: {
-          id: query.userId,
+          id: query.id,
         },
       });
 

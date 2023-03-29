@@ -8,20 +8,23 @@ import { UserLoginResponse } from '../user/domain/response/user-login.response';
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { GetUserQuery } from '../user/cqrs/query/get-user.query';
 import { GetUserLoginQuery } from '../user/cqrs/query/get-user-login.query';
+import { UserResponse } from '../user/domain/response/user.response';
 
 @Injectable()
 export class AuthService {
   constructor(private jwtService: JwtService, private commandBus: CommandBus, private queryBus: QueryBus) {}
 
-  async signup(signUpDto: SignUpDto) {
-    return this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.email, signUpDto.password));
+  async signup(signUpDto: SignUpDto): Promise<UserResponse> {
+    return new UserResponse({
+      ...(await this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password))),
+    });
   }
 
   async login(username: string, plainTextPassword: string): Promise<UserEntity> {
     try {
       return await this.queryBus.execute(new GetUserLoginQuery(username, plainTextPassword));
     } catch (error) {
-      throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Wrong credentials provided', HttpStatus.UNAUTHORIZED);
     }
   }
 
@@ -61,6 +64,6 @@ export class AuthService {
     if (payload.userId) {
       return this.queryBus.execute(new GetUserQuery(payload.userId));
     }
-    throw new HttpException('Wrong token provided', HttpStatus.BAD_REQUEST);
+    throw new Error('Invalid token');
   }
 }

@@ -13,7 +13,7 @@ describe('AuthEventHandler', () => {
   beforeAll(() => {
     mockedUser = new UserEntity();
     mockedUser.id = '1';
-    mockedUser.email = 'user@email.com';
+    mockedUser.mail = 'user@email.com';
     mockedUser.username = 'billy';
     mockedUser.password = 'hash';
   });

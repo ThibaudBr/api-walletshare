@@ -1,6 +1,6 @@
 import { SignUpDto } from './dto/sign-up.dto';
 import { AuthService } from './auth.service';
-import { Body, Controller, Get, HttpCode, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { LocalAuthenticationGuard } from './guards/auth.guard';
 import { RequestUser } from './interface/request-user.interface';
@@ -12,6 +12,7 @@ import { RoleGuard } from './guards/role.guard';
 import { UserRoleEnum } from '../user/domain/enum/user-role.enum';
 import { MessagePattern } from '@nestjs/microservices';
 import { UserLoginResponse } from '../user/domain/response/user-login.response';
+import { UserResponse } from '../user/domain/response/user.response';
 
 @Controller('/auth')
 @ApiTags('auth')
@@ -20,8 +21,18 @@ export class AuthController {
 
   @Post('/register')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async signUp(@Body() signUpDto: SignUpDto): Promise<UserEntity> {
-    return await this.authService.signup(signUpDto);
+  async signUp(@Body() signUpDto: SignUpDto): Promise<UserResponse | HttpException> {
+    try {
+      return await this.authService.signup(signUpDto);
+    } catch (error) {
+      throw new HttpException(
+        {
+          type: error.message.split(':')[0],
+          error: error.message.split(':')[1],
+        },
+        400,
+      );
+    }
   }
 
   @HttpCode(200)
@@ -76,6 +87,10 @@ export class AuthController {
 
   @MessagePattern({ cmd: 'validate-token' })
   async validateToken(data: string): Promise<UserLoginResponse> {
-    return await this.authService.getUserFromAuthToken(data);
+    try {
+      return await this.authService.getUserFromAuthToken(data);
+    } catch (e) {
+      throw new HttpException('Wrong token provided', HttpStatus.BAD_REQUEST);
+    }
   }
 }

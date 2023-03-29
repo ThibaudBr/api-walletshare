@@ -18,7 +18,7 @@ export class ReferralCodeEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty({ example: 'ABC123', minLength: 6, maxLength: 10 })
+  @ApiProperty({ example: 'ABC123', minLength: 6, maxLength: 20 })
   @Column({ unique: true })
   @IsString()
   @Length(6, 10)

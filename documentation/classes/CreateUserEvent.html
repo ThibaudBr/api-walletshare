@@ -121,12 +121,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(module: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, method: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
+<code>constructor(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:3</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:5</a></div>
                             </td>
                         </tr>
 
@@ -143,30 +143,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                        <td>module</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>method</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                                 <tr>
                                                         <td>userId</td>
                                                   
@@ -226,7 +202,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:6</a></div>
                         </td>
                     </tr>
 
@@ -259,7 +235,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:5</a></div>
                         </td>
                     </tr>
 
@@ -292,7 +268,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:4</a></div>
                         </td>
                     </tr>
 
@@ -320,7 +296,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/api/user/cqrs/event/create-user.event.ts:6</a></div>
                         </td>
                     </tr>
 
@@ -342,12 +318,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CreateUserDto } from &#x27;../../domain/dto/create-user.dto&#x27;;
 
 export class CreateUserEvent {
-  constructor(
-    public readonly module: string &#x3D; &#x27;user&#x27;,
-    public readonly method: string &#x3D; &#x27;create-user&#x27;,
-    public readonly userId: string,
-    public readonly createUserDto: CreateUserDto,
-  ) {}
+  public readonly module: string &#x3D; &#x27;user&#x27;;
+  public readonly method: string &#x3D; &#x27;create-user&#x27;;
+  constructor(public readonly userId: string, public readonly createUserDto: CreateUserDto) {}
 }
 </code></pre>
     </div>

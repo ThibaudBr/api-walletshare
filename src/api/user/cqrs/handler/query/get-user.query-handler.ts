@@ -7,7 +7,7 @@ import { UserResponse } from '../../../domain/response/user.response';
 import { UserListResponse } from '../../../domain/response/user-list.response';
 
 @QueryHandler(GetUserQuery)
-export class GetUserHandler implements IQueryHandler<GetUserQuery> {
+export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,

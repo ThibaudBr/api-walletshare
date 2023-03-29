@@ -91,6 +91,15 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Readonly</span>
+                                <a href="#eventBus" >eventBus</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#regexValidatePassword" >regexValidatePassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#userRepository" >userRepository</a>
                             </li>
                         </ul>
@@ -108,6 +117,40 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#execute" >execute</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#generateCode" >generateCode</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#generateUniqueReferralCode" >generateUniqueReferralCode</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserByReferralCode" >getUserByReferralCode</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#isDuplicatedEmail" >isDuplicatedEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#isDuplicatedUsername" >isDuplicatedUsername</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isValidEmail" >isValidEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isValidPassword" >isValidPassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isValidUsername" >isValidUsername</a>
                             </li>
                         </ul>
                     </td>
@@ -127,12 +170,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, eventBus: EventBus)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -161,6 +204,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>eventBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>EventBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -175,6 +230,55 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventBus"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>eventBus</b></span>
+                        <a href="#eventBus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventBus</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="regexValidatePassword"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>regexValidatePassword</b></span>
+                        <a href="#regexValidatePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -205,7 +309,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -241,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:29</a></div>
                 </td>
             </tr>
 
@@ -290,6 +394,544 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateCode"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>generateCode</b></span>
+                        <a href="#generateCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateCode(length: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:100</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>length</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateUniqueReferralCode"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>generateUniqueReferralCode</b></span>
+                        <a href="#generateUniqueReferralCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateUniqueReferralCode()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:110</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserByReferralCode"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserByReferralCode</b></span>
+                        <a href="#getUserByReferralCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserByReferralCode(referralCode: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>referralCode</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDuplicatedEmail"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>isDuplicatedEmail</b></span>
+                        <a href="#isDuplicatedEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isDuplicatedEmail(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>email</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDuplicatedUsername"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>isDuplicatedUsername</b></span>
+                        <a href="#isDuplicatedUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isDuplicatedUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isValidEmail"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>isValidEmail</b></span>
+                        <a href="#isValidEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isValidEmail(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>email</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isValidPassword"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>isValidPassword</b></span>
+                        <a href="#isValidPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isValidPassword(password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:135</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>password</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isValidUsername"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>isValidUsername</b></span>
+                        <a href="#isValidUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isValidUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/api/user/cqrs/handler/command/create-user.command-handler.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
 
@@ -300,44 +942,87 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommandHandler, ICommandHandler } from &#x27;@nestjs/cqrs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommandHandler, EventBus, ICommandHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { CreateUserCommand } from &#x27;../../command/create-user.command&#x27;;
 import { UserEntity } from &#x27;../../../domain/entities/user.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
 import { DuplicateUsernameException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-username.exception&#x27;;
-import { DuplicateEmailException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-email.exception&#x27;;
+import { DuplicateMailException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-mail.exception&#x27;;
 import { InvalidParameterEntityException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception&#x27;;
 import { CreateUserResponse } from &#x27;../../../domain/response/create-user.response&#x27;;
 import { UserRoleEnum } from &#x27;../../../domain/enum/user-role.enum&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import { InvalidPasswordException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-password.exception&#x27;;
+import { InvalidMailException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-mail.exception&#x27;;
+import { InvalidUsernameException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-username.exception&#x27;;
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler&lt;CreateUserCommand&gt; {
+  private regexValidatePassword;
+
   constructor(
     @InjectRepository(UserEntity)
     public readonly userRepository: Repository&lt;UserEntity&gt;,
-  ) {}
+    public readonly eventBus: EventBus,
+  ) {
+    this.regexValidatePassword &#x3D; new RegExp(&#x27;^(?&#x3D;.*[A-Za-z])(?&#x3D;.*\\d)(?&#x3D;.*[@$!%*#?&amp;])[A-Za-z\\d@$!%*#?&amp;]{6,}$&#x27;);
+  }
 
   async execute(command: CreateUserCommand): Promise&lt;CreateUserResponse&gt; {
     try {
-      const newUser: UserEntity &#x3D; new UserEntity({ ...command.createUserDto });
+      if (command.createUserDto.username) {
+        if (await this.isDuplicatedUsername(command.createUserDto.username)) {
+          this.eventBus.publish(
+            new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Username already exists&#x27; }),
+          );
+          throw new DuplicateUsernameException();
+        }
+      }
+
+      if (command.createUserDto.mail) {
+        if (await this.isDuplicatedEmail(command.createUserDto.mail)) {
+          this.eventBus.publish(
+            new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Email already exists&#x27; }),
+          );
+          throw new DuplicateMailException();
+        }
+      }
+
+      if (!this.isValidPassword(command.createUserDto.password)) {
+        this.eventBus.publish(
+          new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Invalid password&#x27; }),
+        );
+        throw new InvalidPasswordException();
+      }
+
+      if (command.createUserDto.mail) {
+        if (!this.isValidEmail(command.createUserDto.mail)) {
+          this.eventBus.publish(
+            new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Invalid mail&#x27; }),
+          );
+          throw new InvalidMailException();
+        }
+      }
+
+      if (command.createUserDto.username) {
+        if (!this.isValidUsername(command.createUserDto.username)) {
+          this.eventBus.publish(
+            new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Invalid username&#x27; }),
+          );
+          throw new InvalidUsernameException();
+        }
+      }
+
+      const newUser: UserEntity &#x3D; new UserEntity({
+        ...command.createUserDto,
+        referralCode: await this.generateUniqueReferralCode(),
+      });
 
       const err &#x3D; await validate(newUser);
       if (err.length &gt; 0) {
         throw new InvalidParameterEntityException(err);
-      }
-
-      // verify that email is unique
-      const userUniqueEmail &#x3D; await this.userRepository.findBy({ email: command.createUserDto.email });
-      if (userUniqueEmail.length &gt; 0) {
-        throw new DuplicateEmailException();
-      }
-
-      // verify that username is unique
-      const userUniqueUsername &#x3D; await this.userRepository.findBy({ username: command.createUserDto.username });
-      if (userUniqueUsername.length &gt; 0) {
-        throw new DuplicateUsernameException();
       }
 
       const savedUser: UserEntity &#x3D; await this.userRepository.save(newUser);
@@ -345,19 +1030,63 @@ export class CreateUserCommandHandler implements ICommandHandler&lt;CreateUserCo
       return new CreateUserResponse({
         id: savedUser.id,
         username: savedUser.username,
-        email: savedUser.email,
+        mail: savedUser.mail,
         roles: savedUser.roles || [UserRoleEnum.PUBLIC],
+        referralCode: savedUser.referralCode,
       });
     } catch (error) {
-      if (
-        error instanceof InvalidParameterEntityException ||
-        error instanceof DuplicateEmailException ||
-        error instanceof DuplicateUsernameException
-      ) {
-        throw error;
-      }
-      throw new Error(&#x27;Error executing CreateUserCommand: &#x27; + error.message);
+      this.eventBus.publish(new ErrorCustomEvent({ localisation: &#x27;user&#x27;, handler: &#x27;CreateUser&#x27;, error: error }));
+      throw error;
     }
+  }
+
+  // Generate a random alphanumeric code of a given length
+  private generateCode(length: number): string {
+    const charset &#x3D; &#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#x27;;
+    let code &#x3D; &#x27;&#x27;;
+    for (let i &#x3D; 0; i &lt; length; i++) {
+      code +&#x3D; charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    return code;
+  }
+
+  // Generate a unique referral code that does not already exist in the database
+  async generateUniqueReferralCode(): Promise&lt;string&gt; {
+    let code &#x3D; this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
+    while (await this.getUserByReferralCode(code)) {
+      code &#x3D; this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
+    }
+    return code;
+  }
+
+  async getUserByReferralCode(referralCode: string): Promise&lt;boolean&gt; {
+    const user &#x3D; await this.userRepository.findOne({ where: { referralCode: referralCode } });
+    return !!user;
+  }
+
+  private async isDuplicatedUsername(username: string): Promise&lt;boolean&gt; {
+    return await this.userRepository.find().then(users &#x3D;&gt; {
+      return users.some(user &#x3D;&gt; user.username &#x3D;&#x3D;&#x3D; username);
+    });
+  }
+
+  private async isDuplicatedEmail(email: string): Promise&lt;boolean&gt; {
+    return await this.userRepository.find().then(users &#x3D;&gt; {
+      return users.some(user &#x3D;&gt; user.mail &#x3D;&#x3D;&#x3D; email);
+    });
+  }
+
+  private isValidPassword(password: string): boolean {
+    return this.regexValidatePassword.test(password);
+  }
+
+  private isValidUsername(username: string): boolean {
+    return username.length &gt; 4 &amp;&amp; username.length &lt; 20;
+  }
+
+  private isValidEmail(email: string): boolean {
+    const regex &#x3D; new RegExp(&#x27;^[a-zA-Z0-9.!#$%&amp;’*+/&#x3D;?^_&#x60;{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$&#x27;);
+    return regex.test(email);
   }
 }
 </code></pre>

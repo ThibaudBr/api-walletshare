@@ -7,7 +7,7 @@ import * as bcrypt from 'bcrypt';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @QueryHandler(GetUserIfRefreshTokenMatchesQuery)
-export class GetUserIfRefreshTokenMatchesHandler implements IQueryHandler<GetUserIfRefreshTokenMatchesQuery> {
+export class GetUserIfRefreshTokenMatchesQueryHandler implements IQueryHandler<GetUserIfRefreshTokenMatchesQuery> {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
@@ -17,7 +17,7 @@ export class GetUserIfRefreshTokenMatchesHandler implements IQueryHandler<GetUse
   async execute(query: GetUserIfRefreshTokenMatchesQuery): Promise<UserEntity | undefined> {
     try {
       const user = await this.userRepository.findOne({
-        select: ['id', 'username', 'email', 'currentHashedRefreshToken'],
+        select: ['id', 'username', 'mail', 'currentHashedRefreshToken', 'roles'],
         where: {
           id: query.userId,
         },
@@ -29,7 +29,13 @@ export class GetUserIfRefreshTokenMatchesHandler implements IQueryHandler<GetUse
         return user;
       }
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent('user', 'GetUserIfRefreshTokenMatchesHandler', error));
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'user',
+          handler: 'GetUserIfRefreshTokenMatchesQueryHandler',
+          error: error,
+        }),
+      );
     }
   }
 }

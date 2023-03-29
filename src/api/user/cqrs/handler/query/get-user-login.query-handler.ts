@@ -10,7 +10,7 @@ import { LoginOfUserEvent } from '../../event/login-of-user.event';
 
 config();
 @QueryHandler(GetUserLoginQuery)
-export class GetUserLoginHandler implements IQueryHandler<GetUserLoginQuery> {
+export class GetUserLoginQueryHandler implements IQueryHandler<GetUserLoginQuery> {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
@@ -21,7 +21,7 @@ export class GetUserLoginHandler implements IQueryHandler<GetUserLoginQuery> {
     try {
       const userUsername = await this.userRepository.findOne({
         where: [{ username: query.username }],
-        select: ['id', 'username', 'password', 'email', 'roles', 'createdAt', 'updatedAt', 'deletedAt'],
+        select: ['id', 'username', 'password', 'mail', 'roles', 'createdAt', 'updatedAt', 'deletedAt'],
       });
 
       if (userUsername) {
@@ -33,8 +33,8 @@ export class GetUserLoginHandler implements IQueryHandler<GetUserLoginQuery> {
         return userUsername;
       } else {
         const userUsername = await this.userRepository.findOne({
-          where: [{ email: query.username }],
-          select: ['id', 'username', 'password', 'email', 'roles', 'createdAt', 'updatedAt', 'deletedAt'],
+          where: [{ mail: query.username }],
+          select: ['id', 'username', 'password', 'mail', 'roles', 'createdAt', 'updatedAt', 'deletedAt'],
         });
         if (userUsername) {
           if (!(await this.verifyPassword(query.plainTextPassword, userUsername.password))) {

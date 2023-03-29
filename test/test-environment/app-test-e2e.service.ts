@@ -24,7 +24,7 @@ import { MediaEntity } from '../../src/api/entities-to-create/media.entity';
 import { OccupationEntity } from '../../src/api/entities-to-create/occupation.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../../src/api/user/domain/dto/create-user.dto';
-import * as bcrypt from "bcrypt";
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AppTestE2eService {
@@ -105,9 +105,27 @@ export class AppTestE2eService {
   async createUserTest(createUserDto: CreateUserDto): Promise<UserEntity> {
     return await this.userRepository.save({
       username: createUserDto.username,
-      email: createUserDto.email,
+      mail: createUserDto.mail,
       password: bcrypt.hashSync(createUserDto.password, 10),
       roles: createUserDto.roles,
+    });
+  }
+
+  async removeUser(userId: string): Promise<void> {
+    await this.userRepository.softDelete({ id: userId });
+  }
+
+  async getUser(userId: string): Promise<UserEntity | null> {
+    return await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+    });
+  }
+
+  async getAllUsers(): Promise<UserEntity[]> {
+    return await this.userRepository.find({
+      withDeleted: true,
     });
   }
 }

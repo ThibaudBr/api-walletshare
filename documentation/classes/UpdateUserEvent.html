@@ -116,12 +116,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, module: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, method: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="1" class="link-to-prism">src/api/user/cqrs/event/update-user.event.ts:1</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/api/user/cqrs/event/update-user.event.ts:3</a></div>
                             </td>
                         </tr>
 
@@ -140,30 +140,6 @@
                                         <tbody>
                                                 <tr>
                                                         <td>userId</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>module</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>method</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -214,7 +190,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/api/user/cqrs/event/update-user.event.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/api/user/cqrs/event/update-user.event.ts:3</a></div>
                         </td>
                     </tr>
 
@@ -247,7 +223,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/api/user/cqrs/event/update-user.event.ts:4</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="2" class="link-to-prism">src/api/user/cqrs/event/update-user.event.ts:2</a></div>
                         </td>
                     </tr>
 
@@ -275,7 +251,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/api/user/cqrs/event/update-user.event.ts:3</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/api/user/cqrs/event/update-user.event.ts:4</a></div>
                         </td>
                     </tr>
 
@@ -295,11 +271,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class UpdateUserEvent {
-  constructor(
-    public readonly userId: string,
-    public readonly module: string &#x3D; &#x27;user&#x27;,
-    public readonly method: string &#x3D; &#x27;update-user&#x27;,
-  ) {}
+  public readonly module: string &#x3D; &#x27;user&#x27;;
+  public readonly method: string &#x3D; &#x27;update-user&#x27;;
+  constructor(public readonly userId: string) {}
 }
 </code></pre>
     </div>

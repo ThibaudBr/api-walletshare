@@ -89,10 +89,6 @@
                                 <a href="#deletedAt" >deletedAt</a>
                             </li>
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#email" >email</a>
-                            </li>
-                            <li>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
@@ -108,6 +104,10 @@
                                 <a href="#jwtToken" >jwtToken</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#mail" >mail</a>
+                            </li>
+                            <li>
                                 <a href="#notifications" >notifications</a>
                             </li>
                             <li>
@@ -115,6 +115,11 @@
                             </li>
                             <li>
                                 <a href="#profiles" >profiles</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#referralCode" >referralCode</a>
                             </li>
                             <li>
                                 <a href="#referralCodes" >referralCodes</a>
@@ -253,7 +258,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -299,42 +304,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="email"></a>
-                    <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>email</b></span>
-                        <a href="#email"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @IsEmail()<br />@Column({unique: true})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:38</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
                         <span ><b>id</b></span>
@@ -359,7 +328,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -394,7 +363,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -480,7 +449,43 @@ This is used to prevent users from logging in before they have confirmed their e
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mail"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>mail</b></span>
+                        <a href="#mail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({unique: true, nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -550,7 +555,7 @@ This is used to prevent users from logging in before they have confirmed their e
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -592,6 +597,43 @@ This is used to prevent users from logging in before they have confirmed their e
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="referralCode"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>referralCode</b></span>
+                        <a href="#referralCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({unique: true, nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -796,13 +838,13 @@ This is used to prevent users from logging in before they have confirmed their e
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column()<br />@Length(5, 20)<br />@Column({unique: true})<br />
+                            @Column()<br />@Column({unique: true, nullable: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/api/user/domain/entities/user.entity.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -824,7 +866,6 @@ This is used to prevent users from logging in before they have confirmed their e
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import { IsEmail, Length } from &#x27;class-validator&#x27;;
 import { Exclude } from &#x27;class-transformer&#x27;;
 import { ProfileEntity } from &#x27;../../../entities-to-create/profile.entity&#x27;;
 import { UserRoleEnum } from &#x27;../enum/user-role.enum&#x27;;
@@ -849,13 +890,11 @@ export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn(&#x27;uuid&#x27;)
   id: string;
 
-  @IsEmail()
-  @Column({ unique: true })
-  email?: string;
+  @Column({ unique: true, nullable: true })
+  mail?: string;
 
   @Column()
-  @Length(5, 20)
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: true })
   username?: string;
 
   /**
@@ -883,6 +922,9 @@ export class UserEntity extends BaseEntity {
 
   @Exclude()
   public jwtToken?: string;
+
+  @Column({ unique: true, nullable: true })
+  public referralCode?: string;
 
   /**
    * @description

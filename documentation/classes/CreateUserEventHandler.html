@@ -253,7 +253,7 @@ export class CreateUserEventHandler implements IEventHandler&lt;CreateUserEvent&
     await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: &#x27;User with id: &#x27; + event.userId + &#x27; created with email: &#x27; + event.createUserDto.email,
+      body: &#x27;User with id: &#x27; + event.userId + &#x27; created with email: &#x27; + event.createUserDto.mail,
     });
   }
 }
