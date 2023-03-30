@@ -44,7 +44,7 @@ export class ProfileEntity {
   // ______________________________________________________
 
   @ManyToOne(() => UserEntity, user => user.profiles)
-  user?: UserEntity;
+  user: UserEntity;
 
   @OneToMany(() => CardEntity, card => card.owner, {
     cascade: true,

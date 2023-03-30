@@ -18,13 +18,14 @@ export class GetProfileByIdQueryHandler implements IQueryHandler<GetProfileByIdQ
     try {
       return await this.profileRepository
         .findOneOrFail({
+          relations: ['user'],
           where: [
             {
               id: query.id,
             },
           ],
         })
-        .then(profile => new ProfileResponse({ ...profile }));
+        .then(profile => new ProfileResponse({ ...profile, userId: profile.user?.id }));
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({

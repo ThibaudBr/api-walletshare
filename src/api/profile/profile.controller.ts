@@ -7,6 +7,7 @@ import { RoleGuard } from '../auth/guards/role.guard';
 import { RequestUser } from '../auth/interface/request-user.interface';
 import { GetProfilesWithCriteriaRequest } from './domain/request/get-profiles-with-criteria.request';
 import { UpdateProfileRequest } from './domain/request/update-profile.request';
+import { CreateProfileRequest } from "./domain/request/create-profile.request";
 
 @Controller('profile')
 @ApiTags('profile')
@@ -45,8 +46,9 @@ export class ProfileController {
   @Get('/public/:id')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async getProfileById(@Param('id') profileId: string): Promise<ProfileResponse> {
-    return await this.profileService.getProfile(profileId).catch(error => {
+  async getProfileById(@Req() requestUser: RequestUser, @Param('id') profileId: string): Promise<ProfileResponse> {
+    const { id } = requestUser.user;
+    return await this.profileService.getMyProfile(id, profileId).catch(error => {
       throw new Error(error);
     });
   }
@@ -103,7 +105,7 @@ export class ProfileController {
   @Post('/admin/create-profile')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async createProfile(@Body() profile: UpdateProfileRequest): Promise<ProfileResponse> {
+  async createProfile(@Body() profile: CreateProfileRequest): Promise<ProfileResponse> {
     return await this.profileService.createProfile(profile).catch(error => {
       throw new Error(error);
     });
