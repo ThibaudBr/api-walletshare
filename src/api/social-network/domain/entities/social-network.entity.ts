@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -7,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { CardEntity } from './card.entity';
+import { CardEntity } from '../../../entities-to-create/card.entity';
 
 /**
  * @description
@@ -25,7 +26,11 @@ import { CardEntity } from './card.entity';
  * @property {Date} deletedAt - the date of deletion of the social network
  */
 @Entity({ name: 'social_network' })
-export class SocialNetworkEntity {
+export class SocialNetworkEntity extends BaseEntity {
+  constructor(partial: Partial<SocialNetworkEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -41,6 +46,9 @@ export class SocialNetworkEntity {
 
   @Column()
   icon: string;
+
+  @Column()
+  color: string;
 
   // ______________________________________________________
   // Relations

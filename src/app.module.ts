@@ -19,6 +19,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLandingPageModule } from './api/api-landing-page/api-landing-page.module';
 import { ProfileModule } from './api/profile/profile.module';
 import { OccupationModule } from './api/occupation/occupation.module';
+import { SocialNetworkModule } from './api/social-network/social-network.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { OccupationModule } from './api/occupation/occupation.module';
     AuthModule,
     ProfileModule,
     OccupationModule,
+    SocialNetworkModule,
     EntitiesToMoveModule,
   ],
   controllers: [AppController],

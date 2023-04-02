@@ -23,7 +23,7 @@ import { MediaEntity } from './media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';
 import { MessageEntity } from './message.entity';
 import { TransferableStatusCardEnum } from './enum/transferable-status-card.enum';
-import { SocialNetworkEntity } from './social-network.entity';
+import { SocialNetworkEntity } from '../social-network/domain/entities/social-network.entity';
 
 @Entity({ name: 'card' })
 export class CardEntity {

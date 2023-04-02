@@ -4,7 +4,7 @@ import StripEventEntity from '../../src/api/entities-to-create/strip-event.entit
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JoinedConversation } from '../../src/api/entities-to-create/joined-conversation.entity';
-import { SocialNetworkEntity } from '../../src/api/entities-to-create/social-network.entity';
+import { SocialNetworkEntity } from '../../src/api/social-network/domain/entities/social-network.entity';
 import { SubscriptionEntity } from '../../src/api/entities-to-create/subscription.entity';
 import { GroupMembershipEntity } from '../../src/api/entities-to-create/group-membership.entity';
 import { CardEntity } from '../../src/api/entities-to-create/card.entity';
