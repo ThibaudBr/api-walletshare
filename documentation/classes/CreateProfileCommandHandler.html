@@ -287,7 +287,7 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
 import { InvalidParameterEntityException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception&#x27;;
 import { CreateProfileEvent } from &#x27;../../event/create-profile.event&#x27;;
-import { OccupationEntity } from &#x27;../../../../entities-to-create/occupation.entity&#x27;;
+import { OccupationEntity } from &#x27;../../../../occupation/domain/entities/occupation.entity&#x27;;
 
 @CommandHandler(CreateProfileCommand)
 export class CreateProfileCommandHandler implements ICommandHandler&lt;CreateProfileCommand&gt; {

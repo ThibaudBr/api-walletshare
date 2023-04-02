@@ -17,7 +17,7 @@ import { WhoCanShareCardEnum } from './enum/who-can-share-card.enum';
 import { WhoCanSeeCardInformationEnum } from './enum/who-can-see-card-information.enum';
 import { TypeOfCardEnum } from './enum/type-of-card.enum';
 import { IsEmail, IsUrl, MaxLength } from 'class-validator';
-import { OccupationEntity } from './occupation.entity';
+import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
 import { WhoCanCommunicateWithEnum } from './enum/who-can-communicate-with.enum';
 import { MediaEntity } from './media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';

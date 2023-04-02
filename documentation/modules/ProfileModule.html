@@ -186,7 +186,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
 import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
-import { OccupationEntity } from &#x27;../entities-to-create/occupation.entity&#x27;;
+import { OccupationEntity } from &#x27;../occupation/domain/entities/occupation.entity&#x27;;
 import { ProfileEntity } from &#x27;./domain/entities/profile.entity&#x27;;
 import { CqrsModule } from &#x27;@nestjs/cqrs&#x27;;
 import { ApiLogModule } from &#x27;../api-log/api-log.module&#x27;;
@@ -211,6 +211,8 @@ import { CreateProfileEventHandler } from &#x27;./cqrs/handler/event/create-prof
 import { ShiftProfileOwnerEventHandler } from &#x27;./cqrs/handler/event/shift-profile-owner.event-handler&#x27;;
 import { SoftDeleteProfileCommandHandler } from &#x27;./cqrs/handler/command/soft-delete-profile.command-handler&#x27;;
 import { UpdateOccupationsProfileEventHandler } from &#x27;./cqrs/handler/event/update-occupations-profile.event-handler&#x27;;
+import { RestoreProfileCommandHandler } from &#x27;./cqrs/handler/command/restore-profile.command-handler&#x27;;
+import { RestoreProfileEventHandler } from &#x27;./cqrs/handler/event/restore-profile.event-handler&#x27;;
 
 @Module({
   imports: [
@@ -232,6 +234,7 @@ import { UpdateOccupationsProfileEventHandler } from &#x27;./cqrs/handler/event/
     SoftDeleteProfileCommandHandler,
     UpdateProfileCommandHandler,
     UpdateOccupationsProfileCommandHandler,
+    RestoreProfileCommandHandler,
     // Query handlers
     GetProfileByIdQueryHandler,
     GetProfilesByUserIdQueryHandler,
@@ -244,6 +247,7 @@ import { UpdateOccupationsProfileEventHandler } from &#x27;./cqrs/handler/event/
     SoftDeleteProfileEventHandler,
     UpdateProfileEventHandler,
     UpdateOccupationsProfileEventHandler,
+    RestoreProfileEventHandler,
   ],
 })
 export class ProfileModule {}

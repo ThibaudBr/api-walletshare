@@ -117,6 +117,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#restoreProfile" >restoreProfile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#updateMyProfile" >updateMyProfile</a>
                             </li>
                             <li>
@@ -155,7 +159,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createProfile(profile: <a href="../classes/UpdateProfileRequest.html" target="_self">UpdateProfileRequest</a>)</code>
+                    <code>createProfile(profile: <a href="../classes/CreateProfileRequest.html" target="_self">CreateProfileRequest</a>)</code>
                 </td>
             </tr>
 
@@ -169,8 +173,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:108</a></div>
                 </td>
             </tr>
 
@@ -193,7 +197,7 @@
                                 <tr>
                                     <td>profile</td>
                                     <td>
-                                                <code><a href="../classes/UpdateProfileRequest.html" target="_self" >UpdateProfileRequest</a></code>
+                                                <code><a href="../classes/CreateProfileRequest.html" target="_self" >CreateProfileRequest</a></code>
                                     </td>
 
                                     <td>
@@ -247,8 +251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:126</a></div>
                 </td>
             </tr>
 
@@ -325,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:117</a></div>
                 </td>
             </tr>
 
@@ -403,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -449,8 +453,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -513,7 +517,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getProfileById(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>getProfileById(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -527,8 +531,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -548,6 +552,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>profileId</td>
                                     <td>
@@ -605,8 +621,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -683,8 +699,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:78</a></div>
                 </td>
             </tr>
 
@@ -736,6 +752,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="restoreProfile"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>restoreProfile</b></span>
+                        <a href="#restoreProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>restoreProfile(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/admin/restore-profile/:id&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:135</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateMyProfile"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -761,8 +855,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:98</a></div>
                 </td>
             </tr>
 
@@ -851,8 +945,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:89</a></div>
                 </td>
             </tr>
 
@@ -925,6 +1019,7 @@ import { RoleGuard } from &#x27;../auth/guards/role.guard&#x27;;
 import { RequestUser } from &#x27;../auth/interface/request-user.interface&#x27;;
 import { GetProfilesWithCriteriaRequest } from &#x27;./domain/request/get-profiles-with-criteria.request&#x27;;
 import { UpdateProfileRequest } from &#x27;./domain/request/update-profile.request&#x27;;
+import { CreateProfileRequest } from &#x27;./domain/request/create-profile.request&#x27;;
 
 @Controller(&#x27;profile&#x27;)
 @ApiTags(&#x27;profile&#x27;)
@@ -956,16 +1051,17 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllProfiles(): Promise&lt;ProfileResponse[]&gt; {
     return await this.profileService.getProfiles().catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
     });
   }
 
   @Get(&#x27;/public/:id&#x27;)
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async getProfileById(@Param(&#x27;id&#x27;) profileId: string): Promise&lt;ProfileResponse&gt; {
-    return await this.profileService.getProfile(profileId).catch(error &#x3D;&gt; {
-      throw new Error(error);
+  async getProfileById(@Req() requestUser: RequestUser, @Param(&#x27;id&#x27;) profileId: string): Promise&lt;ProfileResponse&gt; {
+    const { id } &#x3D; requestUser.user;
+    return await this.profileService.getMyProfile(id, profileId).catch(error &#x3D;&gt; {
+      throw error;
     });
   }
 
@@ -974,7 +1070,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getProfileByUserId(@Param(&#x27;id&#x27;) userId: string): Promise&lt;ProfileResponse[]&gt; {
     return await this.profileService.getProfileByUserId(userId).catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -984,7 +1080,7 @@ export class ProfileController {
   async getMyProfiles(@Req() requestUser: RequestUser): Promise&lt;ProfileResponse[]&gt; {
     const { id } &#x3D; requestUser.user;
     return await this.profileService.getProfileByUserId(id).catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -995,7 +1091,7 @@ export class ProfileController {
     @Body() getProfilesWithCriteriaRequest: GetProfilesWithCriteriaRequest,
   ): Promise&lt;ProfileResponse[]&gt; {
     return await this.profileService.getProfilesWithCriteria(getProfilesWithCriteriaRequest).catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -1004,7 +1100,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async updateProfile(@Param(&#x27;id&#x27;) profileId: string, @Body() profile: UpdateProfileRequest): Promise&lt;void&gt; {
     return await this.profileService.updateProfile(profileId, profile).catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -1014,16 +1110,16 @@ export class ProfileController {
   async updateMyProfile(@Req() requestUser: RequestUser, @Body() profile: UpdateProfileRequest): Promise&lt;void&gt; {
     const { id } &#x3D; requestUser.user;
     return await this.profileService.updateProfile(id, profile).catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
     });
   }
 
   @Post(&#x27;/admin/create-profile&#x27;)
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async createProfile(@Body() profile: UpdateProfileRequest): Promise&lt;ProfileResponse&gt; {
+  async createProfile(@Body() profile: CreateProfileRequest): Promise&lt;ProfileResponse&gt; {
     return await this.profileService.createProfile(profile).catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -1032,7 +1128,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteProfile(@Param(&#x27;id&#x27;) profileId: string): Promise&lt;void&gt; {
     return await this.profileService.deleteProfile(profileId).catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -1041,7 +1137,16 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteMyProfile(@Req() requestUser: RequestUser): Promise&lt;void&gt; {
     return await this.profileService.deleteProfile(requestUser.user.id).catch(error &#x3D;&gt; {
-      throw new Error(error);
+      throw error;
+    });
+  }
+
+  @Put(&#x27;/admin/restore-profile/:id&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async restoreProfile(@Param(&#x27;id&#x27;) profileId: string): Promise&lt;void&gt; {
+    return await this.profileService.restoreProfile(profileId).catch(error &#x3D;&gt; {
+      throw error;
     });
   }
 }

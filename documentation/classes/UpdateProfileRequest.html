@@ -85,7 +85,7 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#idUser" >idUser</a>
+                                <a href="#id" >id</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -173,12 +173,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="idUser"></a>
+                    <a name="id"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>idUser</b></span>
-                        <a href="#idUser"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>id</b></span>
+                        <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -190,7 +190,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/api/profile/domain/request/update-profile.request.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/api/profile/domain/request/update-profile.request.ts:4</a></div>
                         </td>
                     </tr>
 
@@ -274,7 +274,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/api/profile/domain/request/update-profile.request.ts:4</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/api/profile/domain/request/update-profile.request.ts:5</a></div>
                         </td>
                     </tr>
 
@@ -296,8 +296,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RoleProfileEnum } from &#x27;../enum/role-profile.enum&#x27;;
 
 export class UpdateProfileRequest {
+  public readonly id: string;
   public readonly usernameProfile: string;
-  public readonly idUser: string;
   public readonly roleProfile: RoleProfileEnum;
   public readonly occupationsId: string[];
   constructor(partial: Partial&lt;UpdateProfileRequest&gt;) {

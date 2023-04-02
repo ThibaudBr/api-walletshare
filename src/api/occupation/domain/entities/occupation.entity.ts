@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -7,12 +8,19 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import CompanyEntity from './company.entity';
-import { CardEntity } from './card.entity';
-import { ProfileEntity } from '../profile/domain/entities/profile.entity';
+import CompanyEntity from '../../../entities-to-create/company.entity';
+import { CardEntity } from '../../../entities-to-create/card.entity';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
+import { Length } from 'class-validator';
 
 @Entity('occupation')
-export class OccupationEntity {
+export class OccupationEntity extends BaseEntity {
+  constructor(partial?: Partial<OccupationEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -21,6 +29,7 @@ export class OccupationEntity {
   id: string;
 
   @Column({ nullable: false, unique: true })
+  @Length(2, 20)
   name: string;
 
   // ______________________________________________________

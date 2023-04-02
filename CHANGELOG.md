@@ -1,3 +1,8 @@
+# [0.0.9](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.0.9) - 2023-04-02
+
+### Features
+- module occupation
+
 # [0.0.8](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.0.8) - 2023-03-29
 
 ### Features

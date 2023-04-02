@@ -19,6 +19,7 @@ import { GetProfileWithCriteriaQuery } from './cqrs/query/get-profile-with-crite
 import { GetProfilesWithCriteriaRequest } from './domain/request/get-profiles-with-criteria.request';
 import { GetProfilesByUserIdQuery } from './cqrs/query/get-profiles-by-user-id.query';
 import { NotTheOwnerException } from '../../util/exception/custom-http-exception/not-the-owner.exception';
+import { RestoreProfileCommand } from './cqrs/command/restore-profile.command';
 
 @Injectable()
 export class ProfileService {
@@ -223,6 +224,19 @@ export class ProfileService {
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdException();
       else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerException();
+      else throw new Error(e);
+    }
+  }
+
+  async restoreProfile(id: string): Promise<void> {
+    try {
+      return await this.commandBus.execute(
+        new RestoreProfileCommand({
+          profileId: id,
+        }),
+      );
+    } catch (e) {
+      if (e.message === 'Profile not found') throw new InvalidIdException();
       else throw new Error(e);
     }
   }

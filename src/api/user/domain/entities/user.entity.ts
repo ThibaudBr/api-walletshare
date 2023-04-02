@@ -1,13 +1,14 @@
 import {
-  BaseEntity, BeforeInsert,
+  BaseEntity,
+  BeforeInsert,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
+  UpdateDateColumn,
+} from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { UserRoleEnum } from '../enum/user-role.enum';

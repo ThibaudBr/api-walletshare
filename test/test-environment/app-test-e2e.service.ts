@@ -21,7 +21,7 @@ import { InvoicesEntity } from '../../src/api/entities-to-create/invoices.entity
 import { NotificationEntity } from '../../src/api/entities-to-create/notification.entity';
 import { ConnectedCardEntity } from '../../src/api/entities-to-create/connected-card.entity';
 import { MediaEntity } from '../../src/api/entities-to-create/media.entity';
-import { OccupationEntity } from '../../src/api/entities-to-create/occupation.entity';
+import { OccupationEntity } from '../../src/api/occupation/domain/entities/occupation.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../../src/api/user/domain/dto/create-user.dto';
 import * as bcrypt from 'bcrypt';

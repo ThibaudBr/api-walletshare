@@ -271,7 +271,7 @@ import { UpdateOccupationsProfileEvent } from &#x27;../../event/update-occupatio
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { ProfileEntity } from &#x27;../../../domain/entities/profile.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
-import { OccupationEntity } from &#x27;../../../../entities-to-create/occupation.entity&#x27;;
+import { OccupationEntity } from &#x27;../../../../occupation/domain/entities/occupation.entity&#x27;;
 
 @CommandHandler(UpdateOccupationsProfileCommand)
 export class UpdateOccupationsProfileCommandHandler implements ICommandHandler&lt;UpdateOccupationsProfileCommand&gt; {

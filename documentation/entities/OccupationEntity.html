@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/entities-to-create/occupation.entity.ts</code>
+            <code>src/api/occupation/domain/entities/occupation.entity.ts</code>
         </p>
 
 
@@ -144,7 +144,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/entities-to-create/occupation.entity.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -179,7 +179,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/api/entities-to-create/occupation.entity.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -214,7 +214,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/api/entities-to-create/occupation.entity.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -249,7 +249,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/api/entities-to-create/occupation.entity.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -284,7 +284,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/api/entities-to-create/occupation.entity.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -313,13 +313,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({nullable: false, unique: true})<br />
+                            @Column({nullable: false, unique: true})<br />@Length(2, 20)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/api/entities-to-create/occupation.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -354,7 +354,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/api/entities-to-create/occupation.entity.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -389,7 +389,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/api/entities-to-create/occupation.entity.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -402,6 +402,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -410,12 +411,19 @@
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import CompanyEntity from &#x27;./company.entity&#x27;;
-import { CardEntity } from &#x27;./card.entity&#x27;;
-import { ProfileEntity } from &#x27;../profile/domain/entities/profile.entity&#x27;;
+import CompanyEntity from &#x27;../../../entities-to-create/company.entity&#x27;;
+import { CardEntity } from &#x27;../../../entities-to-create/card.entity&#x27;;
+import { ProfileEntity } from &#x27;../../../profile/domain/entities/profile.entity&#x27;;
+import { Length } from &#x27;class-validator&#x27;;
 
 @Entity(&#x27;occupation&#x27;)
-export class OccupationEntity {
+export class OccupationEntity extends BaseEntity {
+  constructor(partial?: Partial&lt;OccupationEntity&gt;) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -424,6 +432,7 @@ export class OccupationEntity {
   id: string;
 
   @Column({ nullable: false, unique: true })
+  @Length(2, 20)
   name: string;
 
   // ______________________________________________________
