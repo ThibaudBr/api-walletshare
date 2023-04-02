@@ -13,7 +13,7 @@ import {
 } from 'typeorm';
 import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { CardEntity } from '../../../entities-to-create/card.entity';
-import { OccupationEntity } from '../../../entities-to-create/occupation.entity';
+import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 import { CompanyEmployeeEntity } from '../../../entities-to-create/company-employee.entity';
 import { MediaEntity } from '../../../entities-to-create/media.entity';
 import { JoinedConversation } from '../../../entities-to-create/joined-conversation.entity';
@@ -44,7 +44,7 @@ export class ProfileEntity {
   // ______________________________________________________
 
   @ManyToOne(() => UserEntity, user => user.profiles)
-  user?: UserEntity;
+  user: UserEntity;
 
   @OneToMany(() => CardEntity, card => card.owner, {
     cascade: true,

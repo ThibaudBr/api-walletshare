@@ -18,6 +18,8 @@ import { GetAllProfileQuery } from './cqrs/query/get-all-profile.query';
 import { GetProfileWithCriteriaQuery } from './cqrs/query/get-profile-with-criteria.query';
 import { GetProfilesWithCriteriaRequest } from './domain/request/get-profiles-with-criteria.request';
 import { GetProfilesByUserIdQuery } from './cqrs/query/get-profiles-by-user-id.query';
+import { NotTheOwnerException } from '../../util/exception/custom-http-exception/not-the-owner.exception';
+import { RestoreProfileCommand } from './cqrs/command/restore-profile.command';
 
 @Injectable()
 export class ProfileService {
@@ -74,6 +76,45 @@ export class ProfileService {
       if (updateProfileRequest.occupationsId.length > 0) {
         await this.commandBus.execute(
           new UpdateOccupationsProfileCommand({
+            id: updateProfileRequest.id,
+            occupations: updateProfileRequest.occupationsId,
+          }),
+        );
+      }
+      await this.commandBus.execute(
+        new UpdateProfileCommand({
+          updateProfileDto: {
+            usernameProfile: updateProfileRequest.usernameProfile,
+            roleProfile: updateProfileRequest.roleProfile,
+          },
+          id: updateProfileRequest.id,
+        }),
+      );
+    } catch (e) {
+      if (e.message === 'Profile not found') throw new InvalidIdException();
+      else if (e instanceof InvalidParameterEntityException) throw e;
+      else if (e.message === 'User not found') throw new UserNotFoundException();
+      else if (e.message === 'Occupation not found') throw new InvalidIdException();
+      else throw new Error(e);
+    }
+  }
+
+  async updateMyProfile(id: string, updateProfileRequest: UpdateProfileRequest): Promise<void> {
+    try {
+      await this.queryBus
+        .execute(
+          new GetProfileByIdQuery({
+            id: updateProfileRequest.id,
+          }),
+        )
+        .then(profile => {
+          if (profile.userId !== id) {
+            throw new Error('User is not he owner of the profile');
+          }
+        });
+      if (updateProfileRequest.occupationsId.length > 0) {
+        await this.commandBus.execute(
+          new UpdateOccupationsProfileCommand({
             id: id,
             occupations: updateProfileRequest.occupationsId,
           }),
@@ -93,6 +134,7 @@ export class ProfileService {
       else if (e instanceof InvalidParameterEntityException) throw e;
       else if (e.message === 'User not found') throw new UserNotFoundException();
       else if (e.message === 'Occupation not found') throw new InvalidIdException();
+      else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerException();
       else throw new Error(e);
     }
   }
@@ -162,6 +204,40 @@ export class ProfileService {
     } catch (e) {
       if (e.message === 'User not found') throw new UserNotFoundException();
       throw new Error(e);
+    }
+  }
+
+  async getMyProfile(userId: string, profileId: string): Promise<ProfileResponse> {
+    try {
+      return await this.queryBus
+        .execute(
+          new GetProfileByIdQuery({
+            id: profileId,
+          }),
+        )
+        .then(profile => {
+          if (profile.userId !== userId) {
+            throw new Error('User is not he owner of the profile');
+          }
+          return profile;
+        });
+    } catch (e) {
+      if (e.message === 'Profile not found') throw new InvalidIdException();
+      else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerException();
+      else throw new Error(e);
+    }
+  }
+
+  async restoreProfile(id: string): Promise<void> {
+    try {
+      return await this.commandBus.execute(
+        new RestoreProfileCommand({
+          profileId: id,
+        }),
+      );
+    } catch (e) {
+      if (e.message === 'Profile not found') throw new InvalidIdException();
+      else throw new Error(e);
     }
   }
 }

@@ -8,7 +8,7 @@ import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
 import { InvalidParameterEntityException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
 import { CreateProfileEvent } from '../../event/create-profile.event';
-import { OccupationEntity } from '../../../../entities-to-create/occupation.entity';
+import { OccupationEntity } from '../../../../occupation/domain/entities/occupation.entity';
 
 @CommandHandler(CreateProfileCommand)
 export class CreateProfileCommandHandler implements ICommandHandler<CreateProfileCommand> {

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../user/domain/entities/user.entity';
-import { OccupationEntity } from '../entities-to-create/occupation.entity';
+import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
 import { ProfileEntity } from './domain/entities/profile.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
@@ -26,6 +26,8 @@ import { CreateProfileEventHandler } from './cqrs/handler/event/create-profile.e
 import { ShiftProfileOwnerEventHandler } from './cqrs/handler/event/shift-profile-owner.event-handler';
 import { SoftDeleteProfileCommandHandler } from './cqrs/handler/command/soft-delete-profile.command-handler';
 import { UpdateOccupationsProfileEventHandler } from './cqrs/handler/event/update-occupations-profile.event-handler';
+import { RestoreProfileCommandHandler } from './cqrs/handler/command/restore-profile.command-handler';
+import { RestoreProfileEventHandler } from './cqrs/handler/event/restore-profile.event-handler';
 
 @Module({
   imports: [
@@ -47,6 +49,7 @@ import { UpdateOccupationsProfileEventHandler } from './cqrs/handler/event/updat
     SoftDeleteProfileCommandHandler,
     UpdateProfileCommandHandler,
     UpdateOccupationsProfileCommandHandler,
+    RestoreProfileCommandHandler,
     // Query handlers
     GetProfileByIdQueryHandler,
     GetProfilesByUserIdQueryHandler,
@@ -59,6 +62,7 @@ import { UpdateOccupationsProfileEventHandler } from './cqrs/handler/event/updat
     SoftDeleteProfileEventHandler,
     UpdateProfileEventHandler,
     UpdateOccupationsProfileEventHandler,
+    RestoreProfileEventHandler,
   ],
 })
 export class ProfileModule {}

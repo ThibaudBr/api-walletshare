@@ -15,7 +15,7 @@ import { InvoicesEntity } from '../../src/api/entities-to-create/invoices.entity
 import { JoinedConversation } from '../../src/api/entities-to-create/joined-conversation.entity';
 import { MediaEntity } from '../../src/api/entities-to-create/media.entity';
 import { MessageEntity } from '../../src/api/entities-to-create/message.entity';
-import { OccupationEntity } from '../../src/api/entities-to-create/occupation.entity';
+import { OccupationEntity } from '../../src/api/occupation/domain/entities/occupation.entity';
 import { PlanEntity } from '../../src/api/entities-to-create/plan.entity';
 import { ProfileEntity } from '../../src/api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../src/api/entities-to-create/social-network.entity';

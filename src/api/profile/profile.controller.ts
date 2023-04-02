@@ -7,6 +7,7 @@ import { RoleGuard } from '../auth/guards/role.guard';
 import { RequestUser } from '../auth/interface/request-user.interface';
 import { GetProfilesWithCriteriaRequest } from './domain/request/get-profiles-with-criteria.request';
 import { UpdateProfileRequest } from './domain/request/update-profile.request';
+import { CreateProfileRequest } from './domain/request/create-profile.request';
 
 @Controller('profile')
 @ApiTags('profile')
@@ -38,16 +39,17 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllProfiles(): Promise<ProfileResponse[]> {
     return await this.profileService.getProfiles().catch(error => {
-      throw new Error(error);
+      throw error;
     });
   }
 
   @Get('/public/:id')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async getProfileById(@Param('id') profileId: string): Promise<ProfileResponse> {
-    return await this.profileService.getProfile(profileId).catch(error => {
-      throw new Error(error);
+  async getProfileById(@Req() requestUser: RequestUser, @Param('id') profileId: string): Promise<ProfileResponse> {
+    const { id } = requestUser.user;
+    return await this.profileService.getMyProfile(id, profileId).catch(error => {
+      throw error;
     });
   }
 
@@ -56,7 +58,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getProfileByUserId(@Param('id') userId: string): Promise<ProfileResponse[]> {
     return await this.profileService.getProfileByUserId(userId).catch(error => {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -66,7 +68,7 @@ export class ProfileController {
   async getMyProfiles(@Req() requestUser: RequestUser): Promise<ProfileResponse[]> {
     const { id } = requestUser.user;
     return await this.profileService.getProfileByUserId(id).catch(error => {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -77,7 +79,7 @@ export class ProfileController {
     @Body() getProfilesWithCriteriaRequest: GetProfilesWithCriteriaRequest,
   ): Promise<ProfileResponse[]> {
     return await this.profileService.getProfilesWithCriteria(getProfilesWithCriteriaRequest).catch(error => {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -86,7 +88,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async updateProfile(@Param('id') profileId: string, @Body() profile: UpdateProfileRequest): Promise<void> {
     return await this.profileService.updateProfile(profileId, profile).catch(error => {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -96,16 +98,16 @@ export class ProfileController {
   async updateMyProfile(@Req() requestUser: RequestUser, @Body() profile: UpdateProfileRequest): Promise<void> {
     const { id } = requestUser.user;
     return await this.profileService.updateProfile(id, profile).catch(error => {
-      throw new Error(error);
+      throw error;
     });
   }
 
   @Post('/admin/create-profile')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async createProfile(@Body() profile: UpdateProfileRequest): Promise<ProfileResponse> {
+  async createProfile(@Body() profile: CreateProfileRequest): Promise<ProfileResponse> {
     return await this.profileService.createProfile(profile).catch(error => {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -114,7 +116,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteProfile(@Param('id') profileId: string): Promise<void> {
     return await this.profileService.deleteProfile(profileId).catch(error => {
-      throw new Error(error);
+      throw error;
     });
   }
 
@@ -123,7 +125,16 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteMyProfile(@Req() requestUser: RequestUser): Promise<void> {
     return await this.profileService.deleteProfile(requestUser.user.id).catch(error => {
-      throw new Error(error);
+      throw error;
+    });
+  }
+
+  @Put('/admin/restore-profile/:id')
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async restoreProfile(@Param('id') profileId: string): Promise<void> {
+    return await this.profileService.restoreProfile(profileId).catch(error => {
+      throw error;
     });
   }
 }

@@ -12,7 +12,7 @@ import { InvoicesEntity } from './invoices.entity';
 import { JoinedConversation } from './joined-conversation.entity';
 import { MediaEntity } from './media.entity';
 import { MessageEntity } from './message.entity';
-import { OccupationEntity } from './occupation.entity';
+import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
 import { PlanEntity } from './plan.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from './social-network.entity';

@@ -125,7 +125,6 @@
                                 <a href="#updatedAt" >updatedAt</a>
                             </li>
                             <li>
-                                    <span class="modifier">Optional</span>
                                 <a href="#user" >user</a>
                             </li>
                             <li>
@@ -653,7 +652,6 @@
                 <td class="col-md-4">
                     <a name="user"></a>
                     <span class="name">
-                            <span class="modifier">Optional</span>
                         <span ><b>user</b></span>
                         <a href="#user"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -738,7 +736,7 @@
 } from &#x27;typeorm&#x27;;
 import { UserEntity } from &#x27;../../../user/domain/entities/user.entity&#x27;;
 import { CardEntity } from &#x27;../../../entities-to-create/card.entity&#x27;;
-import { OccupationEntity } from &#x27;../../../entities-to-create/occupation.entity&#x27;;
+import { OccupationEntity } from &#x27;../../../occupation/domain/entities/occupation.entity&#x27;;
 import { CompanyEmployeeEntity } from &#x27;../../../entities-to-create/company-employee.entity&#x27;;
 import { MediaEntity } from &#x27;../../../entities-to-create/media.entity&#x27;;
 import { JoinedConversation } from &#x27;../../../entities-to-create/joined-conversation.entity&#x27;;
@@ -769,7 +767,7 @@ export class ProfileEntity {
   // ______________________________________________________
 
   @ManyToOne(() &#x3D;&gt; UserEntity, user &#x3D;&gt; user.profiles)
-  user?: UserEntity;
+  user: UserEntity;
 
   @OneToMany(() &#x3D;&gt; CardEntity, card &#x3D;&gt; card.owner, {
     cascade: true,

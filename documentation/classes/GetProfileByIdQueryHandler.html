@@ -273,13 +273,14 @@ export class GetProfileByIdQueryHandler implements IQueryHandler&lt;GetProfileBy
     try {
       return await this.profileRepository
         .findOneOrFail({
+          relations: [&#x27;user&#x27;],
           where: [
             {
               id: query.id,
             },
           ],
         })
-        .then(profile &#x3D;&gt; new ProfileResponse({ ...profile }));
+        .then(profile &#x3D;&gt; new ProfileResponse({ ...profile, userId: profile.user?.id }));
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({

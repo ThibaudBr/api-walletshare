@@ -17,6 +17,8 @@ import { AuthModule } from './api/auth/auth.module';
 import { ApiMailModule } from './api/api-mail/api-mail.module';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLandingPageModule } from './api/api-landing-page/api-landing-page.module';
+import { ProfileModule } from './api/profile/profile.module';
+import { OccupationModule } from './api/occupation/occupation.module';
 
 @Module({
   imports: [
@@ -28,15 +30,19 @@ import { ApiLandingPageModule } from './api/api-landing-page/api-landing-page.mo
       { name: 'API_LOG', transport: Transport.TCP, options: { port: 3201 } },
       { name: 'API_MAIL', transport: Transport.TCP, options: { port: 3202 } },
     ]),
-    // ________ Module ________
-    HealthCheckModule,
-    UserModule,
-    ApiLogModule,
-    AuthModule,
-    EntitiesToMoveModule,
-    ApiMailModule,
     CqrsModule,
+    // ________ Module ________
+    ApiMailModule,
+    ApiLogModule,
+    HealthCheckModule,
     ApiLandingPageModule,
+
+    // ________ Module Application ________
+    UserModule,
+    AuthModule,
+    ProfileModule,
+    OccupationModule,
+    EntitiesToMoveModule,
   ],
   controllers: [AppController],
   providers: [AppService, ApiLogService],

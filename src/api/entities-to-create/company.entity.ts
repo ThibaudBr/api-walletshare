@@ -11,7 +11,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { OccupationEntity } from './occupation.entity';
+import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { MediaEntity } from './media.entity';
