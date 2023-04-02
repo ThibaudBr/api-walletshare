@@ -15,7 +15,7 @@ import { MessageEntity } from './message.entity';
 import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
 import { PlanEntity } from './plan.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
-import { SocialNetworkEntity } from './social-network.entity';
+import { SocialNetworkEntity } from '../social-network/domain/entities/social-network.entity';
 import StripEventEntity from './strip-event.entity';
 import { SubscriptionEntity } from './subscription.entity';
 import { ReferralCodeEntity } from './referal-code.entity';
