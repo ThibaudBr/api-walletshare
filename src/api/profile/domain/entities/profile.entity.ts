@@ -12,7 +12,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { UserEntity } from '../../../user/domain/entities/user.entity';
-import { CardEntity } from '../../../entities-to-create/card.entity';
 import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 import { CompanyEmployeeEntity } from '../../../entities-to-create/company-employee.entity';
 import { MediaEntity } from '../../../entities-to-create/media.entity';
@@ -20,6 +19,7 @@ import { JoinedConversation } from '../../../entities-to-create/joined-conversat
 import CompanyEntity from '../../../entities-to-create/company.entity';
 import { NotificationEntity } from '../../../entities-to-create/notification.entity';
 import { RoleProfileEnum } from '../enum/role-profile.enum';
+import { CardEntity } from '../../../card/domain/entities/card.entity';
 
 @Entity({ name: 'profile' })
 export class ProfileEntity {

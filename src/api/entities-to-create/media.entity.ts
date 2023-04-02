@@ -9,8 +9,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { GroupEntity } from './group.entity';
-import { CardEntity } from './card.entity';
 import CompanyEntity from './company.entity';
+import { CardEntity } from '../card/domain/entities/card.entity';
 
 @Entity({ name: 'media' })
 export class MediaEntity {

@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -11,22 +12,26 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ProfileEntity } from '../profile/domain/entities/profile.entity';
-import { ConnectedCardEntity } from './connected-card.entity';
-import { WhoCanShareCardEnum } from './enum/who-can-share-card.enum';
-import { WhoCanSeeCardInformationEnum } from './enum/who-can-see-card-information.enum';
-import { TypeOfCardEnum } from './enum/type-of-card.enum';
+import { WhoCanSeeCardInformationEnum } from '../enum/who-can-see-card-information.enum';
+import { WhoCanCommunicateWithEnum } from '../enum/who-can-communicate-with.enum';
+import { TypeOfCardEnum } from '../enum/type-of-card.enum';
+import { SocialNetworkEntity } from '../../../social-network/domain/entities/social-network.entity';
 import { IsEmail, IsUrl, MaxLength } from 'class-validator';
-import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
-import { WhoCanCommunicateWithEnum } from './enum/who-can-communicate-with.enum';
-import { MediaEntity } from './media.entity';
-import { GroupMembershipEntity } from './group-membership.entity';
-import { MessageEntity } from './message.entity';
-import { TransferableStatusCardEnum } from './enum/transferable-status-card.enum';
-import { SocialNetworkEntity } from '../social-network/domain/entities/social-network.entity';
+import { ConnectedCardEntity } from '../../../entities-to-create/connected-card.entity';
+import { MediaEntity } from '../../../entities-to-create/media.entity';
+import { GroupMembershipEntity } from '../../../entities-to-create/group-membership.entity';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
+import { TransferableStatusCardEnum } from '../enum/transferable-status-card.enum';
+import { MessageEntity } from '../../../entities-to-create/message.entity';
+import { WhoCanShareCardEnum } from '../enum/who-can-share-card.enum';
+import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 
 @Entity({ name: 'card' })
-export class CardEntity {
+export class CardEntity extends BaseEntity {
+  constructor(partial: Partial<CardEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -70,22 +75,17 @@ export class CardEntity {
   @Column('text', { nullable: true })
   notes?: string;
 
-  @Column({ nullable: true })
-  @MaxLength(255)
-  occupation?: string;
-
   @Column({ type: 'integer', default: 0 })
   numberOfShares: number;
 
-  @Column('text', { array: true, default: [TransferableStatusCardEnum.IS_TRANSFERABLE] })
-  transferableStatusCardEnum: TransferableStatusCardEnum[];
+
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
 
   @ManyToOne(() => ProfileEntity, profile => profile.personalCards)
-  owner: ProfileEntity[];
+  owner: ProfileEntity;
 
   @OneToMany(() => ConnectedCardEntity, connectedCard => connectedCard.cardEntityOne, {
     cascade: true,
@@ -145,7 +145,10 @@ export class CardEntity {
   whoCanSeeCardInformationEnums: WhoCanSeeCardInformationEnum[];
 
   @Column('text', { array: true, default: [WhoCanCommunicateWithEnum.ALL] })
-  whoCanSendMessagesEnums: WhoCanCommunicateWithEnum[];
+  whoCanCommunicateWithEnum: WhoCanCommunicateWithEnum[];
+
+  @Column('text', { array: true, default: [TransferableStatusCardEnum.IS_TRANSFERABLE] })
+  transferableStatusCardEnum: TransferableStatusCardEnum[];
 
   // ______________________________________________________
   // Timestamps

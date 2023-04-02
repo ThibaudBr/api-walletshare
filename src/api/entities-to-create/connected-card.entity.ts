@@ -8,8 +8,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { CardEntity } from './card.entity';
 import { ConversationEntity } from './conversation.entity';
+import { CardEntity } from '../card/domain/entities/card.entity';
 
 @Entity({ name: 'connected_card' })
 export class ConnectedCardEntity {

@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { ConversationEntity } from './conversation.entity';
-import { CardEntity } from './card.entity';
+import { CardEntity } from "../card/domain/entities/card.entity";
 
 @Entity({ name: 'message' })
 export class MessageEntity {
