@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
@@ -8,12 +9,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ConversationEntity } from './conversation.entity';
-import { CardEntity } from '../card/domain/entities/card.entity';
+import { ConversationEntity } from '../../../entities-to-create/conversation.entity';
+import { CardEntity } from './card.entity';
 
 @Entity({ name: 'connected_card' })
-export class ConnectedCardEntity {
+export class ConnectedCardEntity extends BaseEntity {
   constructor(partial?: Partial<ConnectedCardEntity>) {
+    super();
     if (partial) {
       Object.assign(this, partial);
     }

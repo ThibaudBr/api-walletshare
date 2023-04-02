@@ -6,7 +6,7 @@ import { logger } from './winston-logger.config';
 import { CardEntity } from '../../api/entities-to-create/card.entity';
 import CompanyEntity from '../../api/entities-to-create/company.entity';
 import { CompanyEmployeeEntity } from '../../api/entities-to-create/company-employee.entity';
-import { ConnectedCardEntity } from '../../api/entities-to-create/connected-card.entity';
+import { ConnectedCardEntity } from '../../api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../api/entities-to-create/conversation.entity';
 import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../api/entities-to-create/group.entity';

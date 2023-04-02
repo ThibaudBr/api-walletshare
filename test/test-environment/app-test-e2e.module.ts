@@ -6,7 +6,7 @@ import { AppModule } from '../../src/app.module';
 import { CardEntity } from '../../src/api/entities-to-create/card.entity';
 import CompanyEntity from '../../src/api/entities-to-create/company.entity';
 import { CompanyEmployeeEntity } from '../../src/api/entities-to-create/company-employee.entity';
-import { ConnectedCardEntity } from '../../src/api/entities-to-create/connected-card.entity';
+import { ConnectedCardEntity } from '../../src/api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../src/api/entities-to-create/conversation.entity';
 import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../src/api/entities-to-create/group.entity';

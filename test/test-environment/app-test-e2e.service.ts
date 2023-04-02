@@ -19,7 +19,7 @@ import { PlanEntity } from '../../src/api/entities-to-create/plan.entity';
 import { ConversationEntity } from '../../src/api/entities-to-create/conversation.entity';
 import { InvoicesEntity } from '../../src/api/entities-to-create/invoices.entity';
 import { NotificationEntity } from '../../src/api/entities-to-create/notification.entity';
-import { ConnectedCardEntity } from '../../src/api/entities-to-create/connected-card.entity';
+import { ConnectedCardEntity } from '../../src/api/card/domain/entities/connected-card.entity';
 import { MediaEntity } from '../../src/api/entities-to-create/media.entity';
 import { OccupationEntity } from '../../src/api/occupation/domain/entities/occupation.entity';
 import { Repository } from 'typeorm';
