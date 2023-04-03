@@ -39,10 +39,18 @@ import { RemoveConnectedCardEventHandler } from './cqrs/handler/event/remove-con
 import { RestoreCardEventHandler } from './cqrs/handler/event/restore-card.event-handler';
 import { SoftDeleteCardEventHandler } from './cqrs/handler/event/soft-delete-card.event-handler';
 import { UpdateCardEventHandler } from './cqrs/handler/event/update-card.event-handler';
+import { ConnectedCardEntity } from './domain/entities/connected-card.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity, SocialNetworkEntity, CardEntity, ProfileEntity, OccupationEntity]),
+    TypeOrmModule.forFeature([
+      UserEntity,
+      SocialNetworkEntity,
+      CardEntity,
+      ProfileEntity,
+      OccupationEntity,
+      ConnectedCardEntity,
+    ]),
     CqrsModule,
     ApiLogModule,
     ClientsModule.register([{ name: 'API_LOG', transport: Transport.TCP, options: { port: 3001 } }]),
