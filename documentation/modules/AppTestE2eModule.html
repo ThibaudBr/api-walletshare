@@ -173,10 +173,9 @@ import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
 import { AppTestE2eController } from &#x27;./app-test-e2e.controller&#x27;;
 import { AppTestE2eService } from &#x27;./app-test-e2e.service&#x27;;
 import { AppModule } from &#x27;../../src/app.module&#x27;;
-import { CardEntity } from &#x27;../../src/api/entities-to-create/card.entity&#x27;;
 import CompanyEntity from &#x27;../../src/api/entities-to-create/company.entity&#x27;;
 import { CompanyEmployeeEntity } from &#x27;../../src/api/entities-to-create/company-employee.entity&#x27;;
-import { ConnectedCardEntity } from &#x27;../../src/api/entities-to-create/connected-card.entity&#x27;;
+import { ConnectedCardEntity } from &#x27;../../src/api/card/domain/entities/connected-card.entity&#x27;;
 import { ConversationEntity } from &#x27;../../src/api/entities-to-create/conversation.entity&#x27;;
 import { DiscountCodeEntity } from &#x27;../../src/api/entities-to-create/discount-code.entity&#x27;;
 import { GroupEntity } from &#x27;../../src/api/entities-to-create/group.entity&#x27;;
@@ -195,6 +194,7 @@ import { UserEntity } from &#x27;../../src/api/user/domain/entities/user.entity&
 import { NotificationEntity } from &#x27;../../src/api/entities-to-create/notification.entity&#x27;;
 import { ReferralCodeEntity } from &#x27;../../src/api/entities-to-create/referal-code.entity&#x27;;
 import { AddressEntity } from &#x27;../../src/api/entities-to-create/address.entity&#x27;;
+import { CardEntity } from &#x27;../../src/api/card/domain/entities/card.entity&#x27;;
 
 @Module({
   imports: [

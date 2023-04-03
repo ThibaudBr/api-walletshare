@@ -1,0 +1,45 @@
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
+import { RestoreCardCommand } from '../../command/restore-card.command';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CardEntity } from '../../../domain/entities/card.entity';
+import { RestoreCardEvent } from '../../event/restore-card.event';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
+
+@CommandHandler(RestoreCardCommand)
+export class RestoreCardCommandHandler implements ICommandHandler<RestoreCardCommand> {
+  constructor(
+    @InjectRepository(CardEntity)
+    private readonly cardRepository: Repository<CardEntity>,
+    private readonly eventBus: EventBus,
+  ) {}
+
+  async execute(command: RestoreCardCommand): Promise<void> {
+    try {
+      await this.cardRepository
+        .findOneOrFail({
+          withDeleted: true,
+          where: [{ id: command.id }],
+        })
+        .catch(() => {
+          throw new Error('Card not found');
+        });
+
+      await this.cardRepository.restore(command.id);
+      this.eventBus.publish(
+        new RestoreCardEvent({
+          cardId: command.id,
+        }),
+      );
+    } catch (error) {
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'RestoreCardCommandHandler',
+          localisation: 'card',
+          error: error.message,
+        }),
+      );
+      throw new Error(error);
+    }
+  }
+}

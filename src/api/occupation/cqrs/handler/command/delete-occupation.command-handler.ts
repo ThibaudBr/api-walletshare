@@ -17,6 +17,7 @@ export class DeleteOccupationCommandHandler implements ICommandHandler<DeleteOcc
     try {
       const occupation = await this.occupationRepository
         .findOneOrFail({
+          withDeleted: true,
           where: [{ id: command.occupationId }],
         })
         .catch(() => {

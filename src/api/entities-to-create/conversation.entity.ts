@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ConnectedCardEntity } from './connected-card.entity';
+import { ConnectedCardEntity } from '../card/domain/entities/connected-card.entity';
 import { GroupEntity } from './group.entity';
 import { JoinedConversation } from './joined-conversation.entity';
 import { MessageEntity } from './message.entity';

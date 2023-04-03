@@ -272,6 +272,7 @@ export class DeleteSocialNetworkCommandHandler implements ICommandHandler&lt;Del
   async execute(command: DeleteSocialNetworkCommand): Promise&lt;void&gt; {
     await this.socialNetworkRepository
       .findOneOrFail({
+        withDeleted: true,
         where: [{ id: command.id }],
       })
       .then(async socialNetwork &#x3D;&gt; {

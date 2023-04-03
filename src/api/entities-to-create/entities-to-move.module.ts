@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CardEntity } from './card.entity';
 import CompanyEntity from './company.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
-import { ConnectedCardEntity } from './connected-card.entity';
+import { ConnectedCardEntity } from '../card/domain/entities/connected-card.entity';
 import { ConversationEntity } from './conversation.entity';
 import { DiscountCodeEntity } from './discount-code.entity';
 import { GroupEntity } from './group.entity';
@@ -26,7 +25,6 @@ import { AddressEntity } from './address.entity';
   imports: [
     TypeOrmModule.forFeature([
       // ________ Entity ________
-      CardEntity,
       CompanyEntity,
       CompanyEmployeeEntity,
       ConnectedCardEntity,

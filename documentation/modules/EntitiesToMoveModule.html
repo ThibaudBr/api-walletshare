@@ -74,10 +74,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
-import { CardEntity } from &#x27;./card.entity&#x27;;
 import CompanyEntity from &#x27;./company.entity&#x27;;
 import { CompanyEmployeeEntity } from &#x27;./company-employee.entity&#x27;;
-import { ConnectedCardEntity } from &#x27;./connected-card.entity&#x27;;
+import { ConnectedCardEntity } from &#x27;../card/domain/entities/connected-card.entity&#x27;;
 import { ConversationEntity } from &#x27;./conversation.entity&#x27;;
 import { DiscountCodeEntity } from &#x27;./discount-code.entity&#x27;;
 import { GroupEntity } from &#x27;./group.entity&#x27;;
@@ -100,7 +99,6 @@ import { AddressEntity } from &#x27;./address.entity&#x27;;
   imports: [
     TypeOrmModule.forFeature([
       // ________ Entity ________
-      CardEntity,
       CompanyEntity,
       CompanyEmployeeEntity,
       ConnectedCardEntity,

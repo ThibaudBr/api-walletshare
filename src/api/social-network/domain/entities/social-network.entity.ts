@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { CardEntity } from '../../../entities-to-create/card.entity';
+import { CardEntity } from '../../../card/domain/entities/card.entity';
 
 /**
  * @description

@@ -1,0 +1,2981 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api-walletshare documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">api-walletshare documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >CardService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/api/card/card.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addConnectedCard" >addConnectedCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addConnectedCardToMyCard" >addConnectedCardToMyCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addSavedCardToMyCard" >addSavedCardToMyCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addViewCount" >addViewCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createCard" >createCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createCardForMe" >createCardForMe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteCard" >deleteCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCards" >getAllCards</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCardWithProfileId" >getAllCardWithProfileId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCardWithUserId" >getAllCardWithUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllMyCardWithProfileId" >getAllMyCardWithProfileId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCardById" >getCardById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCardWithCriteria" >getCardWithCriteria</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getMySavedCardWithProfileId" >getMySavedCardWithProfileId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getSavedCardWithProfileId" >getSavedCardWithProfileId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getSavedCardWithUserId" >getSavedCardWithUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#isCardOwnerWithUserId" >isCardOwnerWithUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#isProfileOwner" >isProfileOwner</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeConnectedCard" >removeConnectedCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeConnectedCardFromMyCard" >removeConnectedCardFromMyCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeSavedCardFromMyCard" >removeSavedCardFromMyCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#restoreCard" >restoreCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#softDeleteCard" >softDeleteCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#softDeleteMyCard" >softDeleteMyCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateCard" >updateCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateMyCard" >updateMyCard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(commandBus: CommandBus, queryBus: QueryBus)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/api/card/card.service.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>commandBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>CommandBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>queryBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>QueryBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addConnectedCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addConnectedCard</b></span>
+                        <a href="#addConnectedCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addConnectedCard(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, connectedCardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="284"
+                            class="link-to-prism">src/api/card/card.service.ts:284</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>connectedCardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addConnectedCardToMyCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addConnectedCardToMyCard</b></span>
+                        <a href="#addConnectedCardToMyCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addConnectedCardToMyCard(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, connectedCardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="261"
+                            class="link-to-prism">src/api/card/card.service.ts:261</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>connectedCardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addSavedCardToMyCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addSavedCardToMyCard</b></span>
+                        <a href="#addSavedCardToMyCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addSavedCardToMyCard(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="303"
+                            class="link-to-prism">src/api/card/card.service.ts:303</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addViewCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addViewCount</b></span>
+                        <a href="#addViewCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addViewCount(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="326"
+                            class="link-to-prism">src/api/card/card.service.ts:326</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createCard</b></span>
+                        <a href="#createCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCard(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, card: <a href="../classes/CreateCardRequest.html" target="_self">CreateCardRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="361"
+                            class="link-to-prism">src/api/card/card.service.ts:361</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>card</td>
+                                    <td>
+                                                <code><a href="../classes/CreateCardRequest.html" target="_self" >CreateCardRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCardForMe"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createCardForMe</b></span>
+                        <a href="#createCardForMe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCardForMe(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, card: <a href="../classes/CreateCardRequest.html" target="_self">CreateCardRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="341"
+                            class="link-to-prism">src/api/card/card.service.ts:341</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>card</td>
+                                    <td>
+                                                <code><a href="../classes/CreateCardRequest.html" target="_self" >CreateCardRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteCard</b></span>
+                        <a href="#deleteCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteCard(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="380"
+                            class="link-to-prism">src/api/card/card.service.ts:380</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCards"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCards</b></span>
+                        <a href="#getAllCards"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCards()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/api/card/card.service.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCardWithProfileId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCardWithProfileId</b></span>
+                        <a href="#getAllCardWithProfileId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCardWithProfileId(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/api/card/card.service.ts:137</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCardWithUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCardWithUserId</b></span>
+                        <a href="#getAllCardWithUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCardWithUserId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/api/card/card.service.ts:83</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllMyCardWithProfileId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllMyCardWithProfileId</b></span>
+                        <a href="#getAllMyCardWithProfileId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllMyCardWithProfileId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/api/card/card.service.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCardById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getCardById</b></span>
+                        <a href="#getCardById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCardById(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/api/card/card.service.ts:61</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCardWithCriteria"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getCardWithCriteria</b></span>
+                        <a href="#getCardWithCriteria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCardWithCriteria(criteria: <a href="../classes/GetCardWithCriteriaRequest.html" target="_self">GetCardWithCriteriaRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/api/card/card.service.ts:164</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>criteria</td>
+                                    <td>
+                                                <code><a href="../classes/GetCardWithCriteriaRequest.html" target="_self" >GetCardWithCriteriaRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMySavedCardWithProfileId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getMySavedCardWithProfileId</b></span>
+                        <a href="#getMySavedCardWithProfileId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMySavedCardWithProfileId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/api/card/card.service.ts:207</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSavedCardWithProfileId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getSavedCardWithProfileId</b></span>
+                        <a href="#getSavedCardWithProfileId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSavedCardWithProfileId(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="238"
+                            class="link-to-prism">src/api/card/card.service.ts:238</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSavedCardWithUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getSavedCardWithUserId</b></span>
+                        <a href="#getSavedCardWithUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSavedCardWithUserId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">src/api/card/card.service.ts:183</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardResponse.html" target="_self" >Promise&lt;CardResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCardOwnerWithUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>isCardOwnerWithUserId</b></span>
+                        <a href="#isCardOwnerWithUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isCardOwnerWithUserId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="433"
+                            class="link-to-prism">src/api/card/card.service.ts:433</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isProfileOwner"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>isProfileOwner</b></span>
+                        <a href="#isProfileOwner"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isProfileOwner(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="446"
+                            class="link-to-prism">src/api/card/card.service.ts:446</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeConnectedCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeConnectedCard</b></span>
+                        <a href="#removeConnectedCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeConnectedCard(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, connectedCardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="418"
+                            class="link-to-prism">src/api/card/card.service.ts:418</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>connectedCardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeConnectedCardFromMyCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeConnectedCardFromMyCard</b></span>
+                        <a href="#removeConnectedCardFromMyCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeConnectedCardFromMyCard(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, connectedCardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="395"
+                            class="link-to-prism">src/api/card/card.service.ts:395</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>connectedCardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeSavedCardFromMyCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeSavedCardFromMyCard</b></span>
+                        <a href="#removeSavedCardFromMyCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeSavedCardFromMyCard(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="552"
+                            class="link-to-prism">src/api/card/card.service.ts:552</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="restoreCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>restoreCard</b></span>
+                        <a href="#restoreCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>restoreCard(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="459"
+                            class="link-to-prism">src/api/card/card.service.ts:459</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softDeleteCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>softDeleteCard</b></span>
+                        <a href="#softDeleteCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softDeleteCard(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="493"
+                            class="link-to-prism">src/api/card/card.service.ts:493</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softDeleteMyCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>softDeleteMyCard</b></span>
+                        <a href="#softDeleteMyCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softDeleteMyCard(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="474"
+                            class="link-to-prism">src/api/card/card.service.ts:474</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateCard</b></span>
+                        <a href="#updateCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateCard(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, card: <a href="../classes/UpdateCardRequest.html" target="_self">UpdateCardRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="532"
+                            class="link-to-prism">src/api/card/card.service.ts:532</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>card</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateCardRequest.html" target="_self" >UpdateCardRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateMyCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateMyCard</b></span>
+                        <a href="#updateMyCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateMyCard(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, card: <a href="../classes/UpdateCardRequest.html" target="_self">UpdateCardRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="508"
+                            class="link-to-prism">src/api/card/card.service.ts:508</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>card</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateCardRequest.html" target="_self" >UpdateCardRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from &#x27;@nestjs/common&#x27;;
+import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
+import { InvalidIdException } from &#x27;../../util/exception/custom-http-exception/invalid-id.exception&#x27;;
+import { IsCardOwnerWithUserIdQuery } from &#x27;./cqrs/query/is-card-owner-with-user-id.query&#x27;;
+import { AddConnectedCardCommand } from &#x27;./cqrs/command/add-connected-card.command&#x27;;
+import { UnauthorizedRequestException } from &#x27;../../util/exception/custom-http-exception/unauthorized-request.exception&#x27;;
+import { AddSavedCardCommand } from &#x27;./cqrs/command/add-saved-card.command&#x27;;
+import { IsProfileOwnerWithUserIsQuery } from &#x27;./cqrs/query/is-profile-owner-with-user-is.query&#x27;;
+import { AddViewCountCardCommand } from &#x27;./cqrs/command/add-view-count-card.command&#x27;;
+import { CreateCardCommand } from &#x27;./cqrs/command/create-card.command&#x27;;
+import { DeleteCardCommand } from &#x27;./cqrs/command/delete-card.command&#x27;;
+import { RemoveConnectedCardCommand } from &#x27;./cqrs/command/remove-connected-card.command&#x27;;
+import { RestoreCardCommand } from &#x27;./cqrs/command/restore-card.command&#x27;;
+import { SoftDeleteCardCommand } from &#x27;./cqrs/command/soft-delete-card.command&#x27;;
+import { UpdateCardCommand } from &#x27;./cqrs/command/update-card.command&#x27;;
+import { CardResponse } from &#x27;./web/response/card.response&#x27;;
+import { GetAllCardQuery } from &#x27;./cqrs/query/get-all-card.query&#x27;;
+import { GetCardByIdQuery } from &#x27;./cqrs/query/get-card-by-id.query&#x27;;
+import { CardEntity } from &#x27;./domain/entities/card.entity&#x27;;
+import { ProfileResponse } from &#x27;../profile/domain/response/profile.response&#x27;;
+import { SocialNetworkResponse } from &#x27;../social-network/web/response/social-network.response&#x27;;
+import { GroupMembershipResponse } from &#x27;../entities-to-create/response/group-membership.response&#x27;;
+import { GetAllCardWithProfileIdQuery } from &#x27;./cqrs/query/get-all-card-with-profile-id.query&#x27;;
+import { GetCardWithCriteriaRequest } from &#x27;./web/request/get-card-with-criteria.request&#x27;;
+import { GetCardWithCriteriaQuery } from &#x27;./cqrs/query/get-card-with-criteria.query&#x27;;
+import { GetSavedCardWithUserIdQuery } from &#x27;./cqrs/query/get-saved-card-with-user-id.query&#x27;;
+import { GetSavedCardWithProfileIdQuery } from &#x27;./cqrs/query/get-saved-card-with-profile-id.query&#x27;;
+import { GetAllCardWithUserIdQuery } from &#x27;./cqrs/query/get-all-card-with-user-id.query&#x27;;
+import { RemoveSavedCardCommand } from &#x27;./cqrs/command/remove-saved-card.command&#x27;;
+import { CreateCardRequest } from &#x27;./web/request/create-card.request&#x27;;
+import { UpdateCardRequest } from &#x27;./web/request/update-card.request&#x27;;
+
+@Injectable()
+export class CardService {
+  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
+
+  async getAllCards(): Promise&lt;CardResponse[]&gt; {
+    try {
+      return this.queryBus
+        .execute(new GetAllCardQuery())
+        .then((cards: CardEntity[]) &#x3D;&gt; {
+          return cards.map((card: CardEntity) &#x3D;&gt; {
+            return new CardResponse({
+              ...card,
+              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+              groupMemberships: card.groupMemberships
+                ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+                : undefined,
+            });
+          });
+        })
+        .catch(error &#x3D;&gt; {
+          throw new InternalServerErrorException(error);
+        });
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getCardById(cardId: string): Promise&lt;CardResponse&gt; {
+    try {
+      return this.queryBus
+        .execute(new GetCardByIdQuery({ id: cardId }))
+        .then((card: CardEntity) &#x3D;&gt; {
+          return new CardResponse({
+            ...card,
+            owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+            socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+            groupMemberships: card.groupMemberships
+              ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+              : undefined,
+          });
+        })
+        .catch(error &#x3D;&gt; {
+          throw new InternalServerErrorException(error);
+        });
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getAllCardWithUserId(userId: string): Promise&lt;CardResponse[]&gt; {
+    try {
+      return this.queryBus
+        .execute(new GetAllCardWithUserIdQuery({ userId: userId }))
+        .then((cards: CardEntity[]) &#x3D;&gt; {
+          return cards.map((card: CardEntity) &#x3D;&gt; {
+            return new CardResponse({
+              ...card,
+              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+              groupMemberships: card.groupMemberships
+                ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+                : undefined,
+            });
+          });
+        })
+        .catch(error &#x3D;&gt; {
+          throw new InternalServerErrorException(error);
+        });
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getAllMyCardWithProfileId(userId: string, profileId: string): Promise&lt;CardResponse[]&gt; {
+    try {
+      if (await this.isProfileOwner(userId, profileId)) {
+        return this.queryBus
+          .execute(new GetAllCardWithProfileIdQuery({ profileId: profileId }))
+          .then((cards: CardEntity[]) &#x3D;&gt; {
+            return cards.map((card: CardEntity) &#x3D;&gt; {
+              return new CardResponse({
+                ...card,
+                owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+                socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+                groupMemberships: card.groupMemberships
+                  ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+                  : undefined,
+              });
+            });
+          })
+          .catch(error &#x3D;&gt; {
+            throw new InternalServerErrorException(error);
+          });
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedException(&#x27;Unauthorized&#x27;);
+      else throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getAllCardWithProfileId(profileId: string): Promise&lt;CardResponse[]&gt; {
+    try {
+      return this.queryBus
+        .execute(new GetAllCardWithProfileIdQuery({ profileId: profileId }))
+        .then((cards: CardEntity[]) &#x3D;&gt; {
+          return cards.map((card: CardEntity) &#x3D;&gt; {
+            return new CardResponse({
+              ...card,
+              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+              groupMemberships: card.groupMemberships
+                ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+                : undefined,
+            });
+          });
+        })
+        .catch(error &#x3D;&gt; {
+          throw new InternalServerErrorException(error);
+        });
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedException(&#x27;Unauthorized&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdException(&#x27; for profile&#x27;);
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getCardWithCriteria(criteria: GetCardWithCriteriaRequest): Promise&lt;CardResponse[]&gt; {
+    try {
+      return this.queryBus.execute(new GetCardWithCriteriaQuery({ ...criteria })).then((cards: CardEntity[]) &#x3D;&gt; {
+        return cards.map((card: CardEntity) &#x3D;&gt; {
+          return new CardResponse({
+            ...card,
+            owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+            socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+            groupMemberships: card.groupMemberships
+              ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+              : undefined,
+          });
+        });
+      });
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getSavedCardWithUserId(userId: string): Promise&lt;CardResponse[]&gt; {
+    try {
+      return this.queryBus
+        .execute(new GetSavedCardWithUserIdQuery({ userId: userId }))
+        .then((cards: CardEntity[]) &#x3D;&gt; {
+          return cards.map((card: CardEntity) &#x3D;&gt; {
+            return new CardResponse({
+              ...card,
+              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+              groupMemberships: card.groupMemberships
+                ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+                : undefined,
+            });
+          });
+        })
+        .catch(error &#x3D;&gt; {
+          throw new InternalServerErrorException(error);
+        });
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getMySavedCardWithProfileId(userId: string, profileId: string): Promise&lt;CardResponse[]&gt; {
+    try {
+      if (await this.isProfileOwner(userId, profileId)) {
+        return this.queryBus
+          .execute(new GetSavedCardWithProfileIdQuery({ profileId: profileId }))
+          .then((cards: CardEntity[]) &#x3D;&gt; {
+            return cards.map((card: CardEntity) &#x3D;&gt; {
+              return new CardResponse({
+                ...card,
+                owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+                socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+                groupMemberships: card.groupMemberships
+                  ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+                  : undefined,
+              });
+            });
+          })
+          .catch(error &#x3D;&gt; {
+            throw new InternalServerErrorException(error);
+          });
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedException(&#x27;Unauthorized&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdException(&#x27; for profile&#x27;);
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getSavedCardWithProfileId(profileId: string): Promise&lt;CardResponse[]&gt; {
+    try {
+      return this.queryBus
+        .execute(new GetSavedCardWithProfileIdQuery({ profileId: profileId }))
+        .then((cards: CardEntity[]) &#x3D;&gt; {
+          return cards.map((card: CardEntity) &#x3D;&gt; {
+            return new CardResponse({
+              ...card,
+              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
+              groupMemberships: card.groupMemberships
+                ? card.groupMemberships.map(groupMembership &#x3D;&gt; new GroupMembershipResponse({ ...groupMembership }))
+                : undefined,
+            });
+          });
+        });
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedException(&#x27;Unauthorized&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdException(&#x27; for profile&#x27;);
+      else throw new InternalServerErrorException(error);
+    }
+  }
+  async addConnectedCardToMyCard(userId: string, cardId: string, connectedCardId: string): Promise&lt;void&gt; {
+    try {
+      if (await this.isCardOwnerWithUserId(userId, cardId)) {
+        return await this.commandBus.execute(
+          new AddConnectedCardCommand({
+            cardId: cardId,
+            connectedCardId: connectedCardId,
+          }),
+        );
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card of sender not found&#x27;) throw new InvalidIdException(&#x27; for card sender&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card of receiver not found&#x27;) throw new InvalidIdException(&#x27; for card receiver&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card already connected&#x27;) throw new BadRequestException(&#x27;Card already connected&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async addConnectedCard(cardId: string, connectedCardId: string): Promise&lt;void&gt; {
+    try {
+      return await this.commandBus.execute(
+        new AddConnectedCardCommand({
+          cardId: cardId,
+          connectedCardId: connectedCardId,
+        }),
+      );
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card of sender not found&#x27;) throw new InvalidIdException(&#x27; for card sender&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card of receiver not found&#x27;) throw new InvalidIdException(&#x27; for card receiver&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card already connected&#x27;) throw new BadRequestException(&#x27;Card already connected&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async addSavedCardToMyCard(userId: string, cardId: string, profileId: string): Promise&lt;void&gt; {
+    try {
+      if (await this.isProfileOwner(userId, profileId)) {
+        return await this.commandBus.execute(
+          new AddSavedCardCommand({
+            cardId: cardId,
+            profileId: profileId,
+          }),
+        );
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card of sender not found&#x27;) throw new InvalidIdException(&#x27; for card sender&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card of receiver not found&#x27;) throw new InvalidIdException(&#x27; for card receiver&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card already connected&#x27;) throw new BadRequestException(&#x27;Card already connected&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async addViewCount(cardId: string): Promise&lt;void&gt; {
+    try {
+      return await this.commandBus.execute(
+        new AddViewCountCardCommand({
+          cardId: cardId,
+        }),
+      );
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async createCardForMe(userId: string, profileId: string, card: CreateCardRequest): Promise&lt;void&gt; {
+    try {
+      if (await this.isProfileOwner(userId, profileId)) {
+        return await this.commandBus.execute(
+          new CreateCardCommand({
+            ...card,
+            profileId: profileId,
+          }),
+        );
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdException(&#x27; for profile&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async createCard(profileId: string, card: CreateCardRequest): Promise&lt;void&gt; {
+    try {
+      return await this.commandBus.execute(
+        new CreateCardCommand({
+          ...card,
+          profileId: profileId,
+        }),
+      );
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdException(&#x27; for profile&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Social Network not found&#x27;) throw new InvalidIdException(&#x27; for social network&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new InvalidIdException(&#x27; for occupation&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error saving card&#x27;) throw new InternalServerErrorException(&#x27;Error saving card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async deleteCard(cardId: string): Promise&lt;void&gt; {
+    try {
+      return await this.commandBus.execute(
+        new DeleteCardCommand({
+          id: cardId,
+        }),
+      );
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async removeConnectedCardFromMyCard(userId: string, cardId: string, connectedCardId: string): Promise&lt;void&gt; {
+    try {
+      if (
+        (await this.isCardOwnerWithUserId(userId, cardId)) ||
+        (await this.isCardOwnerWithUserId(userId, connectedCardId))
+      ) {
+        await this.commandBus.execute(
+          new RemoveConnectedCardCommand({
+            id: cardId,
+            connectedCardId: connectedCardId,
+          }),
+        );
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async removeConnectedCard(cardId: string, connectedCardId: string): Promise&lt;void&gt; {
+    try {
+      return await this.commandBus.execute(
+        new RemoveConnectedCardCommand({
+          id: cardId,
+          connectedCardId: connectedCardId,
+        }),
+      );
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else throw error;
+    }
+  }
+
+  async isCardOwnerWithUserId(userId: string, cardId: string): Promise&lt;boolean&gt; {
+    try {
+      return await this.queryBus.execute(
+        new IsCardOwnerWithUserIdQuery({
+          userId: userId,
+          cardId: cardId,
+        }),
+      );
+    } catch (e) {
+      throw new InvalidIdException();
+    }
+  }
+
+  async isProfileOwner(userId: string, profileId: string): Promise&lt;boolean&gt; {
+    try {
+      return await this.queryBus.execute(
+        new IsProfileOwnerWithUserIsQuery({
+          userId: userId,
+          profileId: profileId,
+        }),
+      );
+    } catch (error) {
+      throw new InvalidIdException();
+    }
+  }
+
+  async restoreCard(cardId: string): Promise&lt;void&gt; {
+    try {
+      return await this.commandBus.execute(
+        new RestoreCardCommand({
+          id: cardId,
+        }),
+      );
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async softDeleteMyCard(userId: string, cardId: string): Promise&lt;void&gt; {
+    try {
+      if (await this.isCardOwnerWithUserId(userId, cardId)) {
+        return await this.commandBus.execute(
+          new SoftDeleteCardCommand({
+            id: cardId,
+          }),
+        );
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async softDeleteCard(cardId: string): Promise&lt;void&gt; {
+    try {
+      return await this.commandBus.execute(
+        new SoftDeleteCardCommand({
+          id: cardId,
+        }),
+      );
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async updateMyCard(userId: string, cardId: string, card: UpdateCardRequest): Promise&lt;void&gt; {
+    try {
+      if (await this.isCardOwnerWithUserId(userId, cardId)) {
+        return await this.commandBus.execute(
+          new UpdateCardCommand({
+            ...card,
+            cardId: cardId,
+          }),
+        );
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdException(&#x27; for profile&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Social Network not found&#x27;) throw new InvalidIdException(&#x27; for social network&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new InvalidIdException(&#x27; for occupation&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error saving card&#x27;) throw new InternalServerErrorException(&#x27;Error saving card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async updateCard(cardId: string, card: UpdateCardRequest): Promise&lt;void&gt; {
+    try {
+      return await this.commandBus.execute(
+        new UpdateCardCommand({
+          ...card,
+          cardId: cardId,
+        }),
+      );
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdException(&#x27; for profile&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Social Network not found&#x27;) throw new InvalidIdException(&#x27; for social network&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new InvalidIdException(&#x27; for occupation&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error saving card&#x27;) throw new InternalServerErrorException(&#x27;Error saving card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+
+  async removeSavedCardFromMyCard(userId: string, cardId: string, profileId: string): Promise&lt;void&gt; {
+    try {
+      if (await this.isProfileOwner(userId, cardId)) {
+        await this.commandBus.execute(
+          new RemoveSavedCardCommand({
+            cardId: cardId,
+            profileId: profileId,
+          }),
+        );
+      } else {
+        throw new Error(&#x27;Unauthorized&#x27;);
+      }
+    } catch (error) {
+      if (error instanceof InvalidIdException) throw new InvalidIdException(&#x27; for userId&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdException(&#x27; for card&#x27;);
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestException();
+      else throw error;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'CardService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
