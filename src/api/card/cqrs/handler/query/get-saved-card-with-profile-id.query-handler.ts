@@ -1,10 +1,10 @@
-import { EventBus, IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { GetSavedCardWithProfileIdQuery } from "../../query/get-saved-card-with-profile-id.query";
-import { InjectRepository } from "@nestjs/typeorm";
-import { CardEntity } from "../../../domain/entities/card.entity";
-import { ErrorCustomEvent } from "../../../../../util/exception/error-handler/error-custom.event";
-import { Repository } from "typeorm";
-import { ProfileEntity } from "../../../../profile/domain/entities/profile.entity";
+import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { GetSavedCardWithProfileIdQuery } from '../../query/get-saved-card-with-profile-id.query';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CardEntity } from '../../../domain/entities/card.entity';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
+import { Repository } from 'typeorm';
+import { ProfileEntity } from '../../../../profile/domain/entities/profile.entity';
 
 @QueryHandler(GetSavedCardWithProfileIdQuery)
 export class GetSavedCardWithProfileIdQueryHandler implements IQueryHandler<GetSavedCardWithProfileIdQuery> {

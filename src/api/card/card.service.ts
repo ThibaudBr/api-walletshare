@@ -4,11 +4,9 @@ import { InvalidIdException } from '../../util/exception/custom-http-exception/i
 import { IsCardOwnerWithUserIdQuery } from './cqrs/query/is-card-owner-with-user-id.query';
 import { AddConnectedCardCommand } from './cqrs/command/add-connected-card.command';
 import { UnauthorizedRequestException } from '../../util/exception/custom-http-exception/unauthorized-request.exception';
-import { InvalidParameterEntityException } from '../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
 import { AddSavedCardCommand } from './cqrs/command/add-saved-card.command';
 import { IsProfileOwnerWithUserIsQuery } from './cqrs/query/is-profile-owner-with-user-is.query';
 import { AddViewCountCardCommand } from './cqrs/command/add-view-count-card.command';
-import { CardDto } from './domain/dto/card.dto';
 import { CreateCardCommand } from './cqrs/command/create-card.command';
 import { DeleteCardCommand } from './cqrs/command/delete-card.command';
 import { RemoveConnectedCardCommand } from './cqrs/command/remove-connected-card.command';
@@ -29,8 +27,8 @@ import { GetSavedCardWithUserIdQuery } from './cqrs/query/get-saved-card-with-us
 import { GetSavedCardWithProfileIdQuery } from './cqrs/query/get-saved-card-with-profile-id.query';
 import { GetAllCardWithUserIdQuery } from './cqrs/query/get-all-card-with-user-id.query';
 import { RemoveSavedCardCommand } from './cqrs/command/remove-saved-card.command';
-import { CreateCardRequest } from "./web/request/create-card.request";
-import { UpdateCardRequest } from "./web/request/update-card.request";
+import { CreateCardRequest } from './web/request/create-card.request';
+import { UpdateCardRequest } from './web/request/update-card.request';
 
 @Injectable()
 export class CardService {

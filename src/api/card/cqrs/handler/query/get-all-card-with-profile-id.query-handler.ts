@@ -3,7 +3,6 @@ import { CardEntity } from '../../../domain/entities/card.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GetAllCardWithProfileIdQuery } from '../../query/get-all-card-with-profile-id.query';
-import { CardDto } from '../../../domain/dto/card.dto';
 import { ProfileEntity } from '../../../../profile/domain/entities/profile.entity';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 

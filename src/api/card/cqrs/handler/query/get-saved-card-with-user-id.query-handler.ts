@@ -1,5 +1,4 @@
 import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { CardDto } from '../../../domain/dto/card.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CardEntity } from '../../../domain/entities/card.entity';

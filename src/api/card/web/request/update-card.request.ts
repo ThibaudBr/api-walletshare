@@ -1,8 +1,8 @@
-import { TypeOfCardEnum } from "../../domain/enum/type-of-card.enum";
-import { WhoCanShareCardEnum } from "../../domain/enum/who-can-share-card.enum";
-import { WhoCanSeeCardInformationEnum } from "../../domain/enum/who-can-see-card-information.enum";
-import { WhoCanCommunicateWithEnum } from "../../domain/enum/who-can-communicate-with.enum";
-import { TransferableStatusCardEnum } from "../../domain/enum/transferable-status-card.enum";
+import { TypeOfCardEnum } from '../../domain/enum/type-of-card.enum';
+import { WhoCanShareCardEnum } from '../../domain/enum/who-can-share-card.enum';
+import { WhoCanSeeCardInformationEnum } from '../../domain/enum/who-can-see-card-information.enum';
+import { WhoCanCommunicateWithEnum } from '../../domain/enum/who-can-communicate-with.enum';
+import { TransferableStatusCardEnum } from '../../domain/enum/transferable-status-card.enum';
 
 export class UpdateCardRequest {
   constructor(partial: Partial<UpdateCardRequest>) {

@@ -1,11 +1,9 @@
 import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetCardByIdQuery } from '../../query/get-card-by-id.query';
 import { Repository } from 'typeorm';
-import { CardDto } from '../../../domain/dto/card.dto';
 import { CardEntity } from '../../../domain/entities/card.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import { CardResponse } from "../../../web/response/card.response";
 
 @QueryHandler(GetCardByIdQuery)
 export class GetCardByIdQueryHandler implements IQueryHandler<GetCardByIdQuery> {
@@ -29,7 +27,6 @@ export class GetCardByIdQueryHandler implements IQueryHandler<GetCardByIdQuery> 
         .catch(() => {
           throw new Error('Card not found');
         });
-
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({

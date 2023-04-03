@@ -24,7 +24,7 @@ import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
 import { NotificationEntity } from '../../src/api/entities-to-create/notification.entity';
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
 import { AddressEntity } from '../../src/api/entities-to-create/address.entity';
-import { CardEntity } from "../../src/api/card/domain/entities/card.entity";
+import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
 
 @Module({
   imports: [

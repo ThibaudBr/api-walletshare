@@ -1,13 +1,10 @@
-import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
-import { ApiLogService } from "src/api/api-log/api-log.service";
-import { UpdateCardEvent } from "../../event/update-card.event";
+import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
+import { ApiLogService } from 'src/api/api-log/api-log.service';
+import { UpdateCardEvent } from '../../event/update-card.event';
 
 @EventsHandler(UpdateCardEvent)
 export class UpdateCardEventHandler implements IEventHandler<UpdateCardEvent> {
-  constructor(
-    private readonly apiLogService: ApiLogService,
-  ) {
-  }
+  constructor(private readonly apiLogService: ApiLogService) {}
 
   async handle(event: UpdateCardEvent): Promise<void> {
     await this.apiLogService.createLogForMethode({

@@ -3,7 +3,6 @@ import { GetCardWithCriteriaQuery } from '../../query/get-card-with-criteria.que
 import { InjectRepository } from '@nestjs/typeorm';
 import { CardEntity } from '../../../domain/entities/card.entity';
 import { Repository } from 'typeorm';
-import { CardDto } from '../../../domain/dto/card.dto';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @QueryHandler(GetCardWithCriteriaQuery)
@@ -70,7 +69,7 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler<GetCardWit
         .then(cards => {
           return cards;
         })
-        .catch(error => {
+        .catch(() => {
           throw new Error('Error while getting cards');
         });
     } catch (error) {

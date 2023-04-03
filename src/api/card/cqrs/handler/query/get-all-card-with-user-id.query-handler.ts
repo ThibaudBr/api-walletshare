@@ -1,9 +1,9 @@
-import { EventBus, IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { InjectRepository } from "@nestjs/typeorm";
-import { CardEntity } from "../../../domain/entities/card.entity";
-import { Repository } from "typeorm";
-import { GetAllCardWithUserIdQuery } from "../../query/get-all-card-with-user-id.query";
-import { ErrorCustomEvent } from "../../../../../util/exception/error-handler/error-custom.event";
+import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CardEntity } from '../../../domain/entities/card.entity';
+import { Repository } from 'typeorm';
+import { GetAllCardWithUserIdQuery } from '../../query/get-all-card-with-user-id.query';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @QueryHandler(GetAllCardWithUserIdQuery)
 export class GetAllCardWithUserIdQueryHandler implements IQueryHandler<GetAllCardWithUserIdQuery> {

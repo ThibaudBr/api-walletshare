@@ -11,7 +11,7 @@ import {
 import CompanyEntity from '../../../entities-to-create/company.entity';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { Length } from 'class-validator';
-import { CardEntity } from "../../../card/domain/entities/card.entity";
+import { CardEntity } from '../../../card/domain/entities/card.entity';
 
 @Entity('occupation')
 export class OccupationEntity extends BaseEntity {

@@ -1,4 +1,4 @@
-import { TypeOfCardEnum } from "../../domain/enum/type-of-card.enum";
+import { TypeOfCardEnum } from '../../domain/enum/type-of-card.enum';
 
 export class GetCardWithCriteriaQuery {
   constructor(partial: Partial<GetCardWithCriteriaQuery>) {
