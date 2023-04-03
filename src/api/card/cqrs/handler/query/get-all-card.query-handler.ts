@@ -5,6 +5,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CardEntity } from '../../../domain/entities/card.entity';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { CardDto } from '../../../domain/dto/card.dto';
+import { CardResponse } from '../../../web/response/card.response';
+import { ProfileResponse } from '../../../../profile/domain/response/profile.response';
+import { OccupationResponse } from '../../../../occupation/web/response/occupation-response';
+import { GroupMembershipResponse } from '../../../../entities-to-create/response/group-membership.response';
 
 @QueryHandler(GetAllCardQuery)
 export class GetAllCardQueryHandler implements IQueryHandler<GetAllCardQuery> {
@@ -14,24 +18,13 @@ export class GetAllCardQueryHandler implements IQueryHandler<GetAllCardQuery> {
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(): Promise<CardDto[]> {
+  async execute(): Promise<CardEntity[]> {
     try {
-      const cards = await this.cardRepository.find({
+      return await this.cardRepository.find({
         relations: ['occupation', 'owner', 'socialNetwork'],
       });
 
-      return cards.map(
-        card =>
-          new CardDto({
-            ...card,
-            ownerId: card.owner ? card.owner.id : undefined,
-            occupationsId: card.occupations
-              ? card.occupations.map(occupation => {
-                  return occupation.id;
-                })
-              : undefined,
-          }),
-      );
+
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({

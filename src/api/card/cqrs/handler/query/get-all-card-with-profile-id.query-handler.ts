@@ -17,7 +17,7 @@ export class GetAllCardWithProfileIdQueryHandler implements IQueryHandler<GetAll
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(query: GetAllCardWithProfileIdQuery): Promise<CardDto[]> {
+  async execute(query: GetAllCardWithProfileIdQuery): Promise<CardEntity[]> {
     try {
       const profile = await this.profileRepository
         .findOneOrFail({
@@ -44,18 +44,7 @@ export class GetAllCardWithProfileIdQueryHandler implements IQueryHandler<GetAll
           throw new Error('Cards not found');
         })
         .then(cards => {
-          return cards.map(
-            card =>
-              new CardDto({
-                ...card,
-                ownerId: card.owner ? card.owner.id : undefined,
-                occupationsId: card.occupations
-                  ? card.occupations.map(occupation => {
-                      return occupation.id;
-                    })
-                  : undefined,
-              }),
-          );
+          return cards;
         });
     } catch (error) {
       this.eventBus.publish(

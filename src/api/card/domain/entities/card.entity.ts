@@ -78,8 +78,6 @@ export class CardEntity extends BaseEntity {
   @Column({ type: 'integer', default: 0 })
   numberOfShares: number;
 
-
-
   // ______________________________________________________
   // Relations
   // ______________________________________________________

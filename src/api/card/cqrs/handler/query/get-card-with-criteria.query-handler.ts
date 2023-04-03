@@ -14,7 +14,7 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler<GetCardWit
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(query: GetCardWithCriteriaQuery): Promise<CardDto[]> {
+  async execute(query: GetCardWithCriteriaQuery): Promise<CardEntity[]> {
     try {
       const queryBuilder = this.cardRepository.createQueryBuilder('card');
       queryBuilder.setFindOptions({
@@ -68,18 +68,7 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler<GetCardWit
       return await queryBuilder
         .getMany()
         .then(cards => {
-          return cards.map(
-            card =>
-              new CardDto({
-                ...card,
-                ownerId: card.owner ? card.owner.id : undefined,
-                occupationsId: card.occupations
-                  ? card.occupations.map(occupation => {
-                      return occupation.id;
-                    })
-                  : undefined,
-              }),
-          );
+          return cards;
         })
         .catch(error => {
           throw new Error('Error while getting cards');

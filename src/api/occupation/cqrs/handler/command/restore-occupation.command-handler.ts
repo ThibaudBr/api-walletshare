@@ -17,6 +17,7 @@ export class RestoreOccupationCommandHandler implements ICommandHandler<RestoreO
     try {
       await this.occupationRepository
         .findOneOrFail({
+          withDeleted: true,
           where: [{ id: command.occupationId }],
         })
         .catch(() => {

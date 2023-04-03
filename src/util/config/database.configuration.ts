@@ -3,7 +3,6 @@ import { join } from 'path';
 import { Injectable } from '@nestjs/common';
 import * as process from 'process';
 import { logger } from './winston-logger.config';
-import { CardEntity } from '../../api/entities-to-create/card.entity';
 import CompanyEntity from '../../api/entities-to-create/company.entity';
 import { CompanyEmployeeEntity } from '../../api/entities-to-create/company-employee.entity';
 import { ConnectedCardEntity } from '../../api/card/domain/entities/connected-card.entity';
@@ -25,6 +24,7 @@ import { UserEntity } from '../../api/user/domain/entities/user.entity';
 import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
 import { AddressEntity } from '../../api/entities-to-create/address.entity';
+import { CardEntity } from "../../api/card/domain/entities/card.entity";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {

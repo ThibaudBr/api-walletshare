@@ -1,15 +1,16 @@
-import { TypeOfCardEnum } from "../enum/type-of-card.enum";
-import { WhoCanShareCardEnum } from "../enum/who-can-share-card.enum";
-import { WhoCanSeeCardInformationEnum } from "../enum/who-can-see-card-information.enum";
-import { WhoCanCommunicateWithEnum } from "../enum/who-can-communicate-with.enum";
-import { TransferableStatusCardEnum } from "../enum/transferable-status-card.enum";
+import { TypeOfCardEnum } from "../../domain/enum/type-of-card.enum";
+import { WhoCanShareCardEnum } from "../../domain/enum/who-can-share-card.enum";
+import { WhoCanSeeCardInformationEnum } from "../../domain/enum/who-can-see-card-information.enum";
+import { WhoCanCommunicateWithEnum } from "../../domain/enum/who-can-communicate-with.enum";
+import { TransferableStatusCardEnum } from "../../domain/enum/transferable-status-card.enum";
 
-export class CardDto {
-  constructor(partial: Partial<CardDto>) {
+export class UpdateCardRequest {
+  constructor(partial: Partial<UpdateCardRequest>) {
     Object.assign(this, partial);
   }
 
-  id: string;
+  cardId: string;
+  profileId: string;
   socialName?: string;
   isOwnerPro: boolean;
   firstName?: string;
@@ -34,7 +35,4 @@ export class CardDto {
   whoCanSeeCardInformationEnums?: WhoCanSeeCardInformationEnum[];
   whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
   transferableStatusCardEnum?: TransferableStatusCardEnum[];
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
 }

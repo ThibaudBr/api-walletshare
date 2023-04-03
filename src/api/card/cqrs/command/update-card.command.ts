@@ -1,3 +1,5 @@
+import { TypeOfCardEnum } from '../../domain/enum/type-of-card.enum';
+
 export class UpdateCardCommand {
   constructor(partial: Partial<UpdateCardCommand>) {
     Object.assign(this, partial);
@@ -5,7 +7,7 @@ export class UpdateCardCommand {
 
   public readonly cardId: string;
   public readonly profileId: string;
-  public readonly cardType: string;
+  public readonly typeOfCardEnum: TypeOfCardEnum;
   public readonly socialName?: string;
   public readonly firstName?: string;
   public readonly lastName?: string;
@@ -16,9 +18,10 @@ export class UpdateCardCommand {
   public readonly address?: string;
   public readonly url?: string[];
   public readonly birthday?: Date;
-  public readonly occupationId?: string;
+  public readonly occupationsId?: string[];
   public readonly whoCanShareCardEnums?: string[];
   public readonly whoCanSeeCardInformationEnums?: string[];
   public readonly whoCanSendMessagesEnums?: string[];
   public readonly transferableStatusCardEnum?: string[];
+  public readonly socialNetworkId?: string;
 }

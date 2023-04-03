@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppTestE2eController } from './app-test-e2e.controller';
 import { AppTestE2eService } from './app-test-e2e.service';
 import { AppModule } from '../../src/app.module';
-import { CardEntity } from '../../src/api/entities-to-create/card.entity';
 import CompanyEntity from '../../src/api/entities-to-create/company.entity';
 import { CompanyEmployeeEntity } from '../../src/api/entities-to-create/company-employee.entity';
 import { ConnectedCardEntity } from '../../src/api/card/domain/entities/connected-card.entity';
@@ -25,6 +24,7 @@ import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
 import { NotificationEntity } from '../../src/api/entities-to-create/notification.entity';
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
 import { AddressEntity } from '../../src/api/entities-to-create/address.entity';
+import { CardEntity } from "../../src/api/card/domain/entities/card.entity";
 
 @Module({
   imports: [

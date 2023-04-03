@@ -17,10 +17,14 @@ export class IsCardOwnerWithUserIdQueryHandler implements IQueryHandler<IsCardOw
     try {
       const card = await this.cardRepository
         .findOneOrFail({
-          relations: ['owner'],
+          relations: ['owner', 'owner.user'],
           where: [
             {
-              id: query.cardId,
+              owner: {
+                user: {
+                  id: query.userId,
+                },
+              },
             },
           ],
         })

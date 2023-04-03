@@ -17,7 +17,7 @@ export class GetSavedCardWithUserIdQueryHandler implements IQueryHandler<GetSave
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(query: GetSavedCardWithUserIdQuery): Promise<CardDto[]> {
+  async execute(query: GetSavedCardWithUserIdQuery): Promise<CardEntity[]> {
     try {
       const user = await this.userRepository
         .findOneOrFail({
@@ -45,17 +45,7 @@ export class GetSavedCardWithUserIdQueryHandler implements IQueryHandler<GetSave
           ],
         })
         .then(cards => {
-          return cards.map(card => {
-            return new CardDto({
-              ...card,
-              ownerId: card.owner ? card.owner.id : undefined,
-              occupationsId: card.occupations
-                ? card.occupations.map(occupation => {
-                    return occupation.id;
-                  })
-                : undefined,
-            });
-          });
+          return cards;
         });
     } catch (error) {
       this.eventBus.publish(

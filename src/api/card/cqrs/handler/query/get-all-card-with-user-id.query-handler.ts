@@ -1,11 +1,9 @@
-import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { InjectRepository } from '@nestjs/typeorm';
-import { CardEntity } from '../../../domain/entities/card.entity';
-import { Repository } from 'typeorm';
-import { CardResponse } from '../../../web/response/card.response';
-import { GetAllCardWithUserIdQuery } from '../../query/get-all-card-with-user-id.query';
-import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import { CardDto } from "../../../domain/dto/card.dto";
+import { EventBus, IQueryHandler, QueryHandler } from "@nestjs/cqrs";
+import { InjectRepository } from "@nestjs/typeorm";
+import { CardEntity } from "../../../domain/entities/card.entity";
+import { Repository } from "typeorm";
+import { GetAllCardWithUserIdQuery } from "../../query/get-all-card-with-user-id.query";
+import { ErrorCustomEvent } from "../../../../../util/exception/error-handler/error-custom.event";
 
 @QueryHandler(GetAllCardWithUserIdQuery)
 export class GetAllCardWithUserIdQueryHandler implements IQueryHandler<GetAllCardWithUserIdQuery> {
@@ -15,9 +13,9 @@ export class GetAllCardWithUserIdQueryHandler implements IQueryHandler<GetAllCar
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(query: GetAllCardWithUserIdQuery): Promise<CardDto[]> {
+  async execute(query: GetAllCardWithUserIdQuery): Promise<CardEntity[]> {
     try {
-      const cards = await this.cardRepository.find({
+      return await this.cardRepository.find({
         relations: ['occupation', 'owner', 'owner.user', 'socialNetwork'],
         loadRelationIds: true,
         loadEagerRelations: true,
@@ -31,19 +29,6 @@ export class GetAllCardWithUserIdQueryHandler implements IQueryHandler<GetAllCar
           },
         ],
       });
-
-      return cards.map(
-        card =>
-          new CardDto({
-            ...card,
-            ownerId: card.owner ? card.owner.id : undefined,
-            occupationsId: card.occupations
-              ? card.occupations.map(occupation => {
-                  return occupation.id;
-                })
-              : undefined,
-          }),
-      );
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({
