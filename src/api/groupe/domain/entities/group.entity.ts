@@ -10,9 +10,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Length } from 'class-validator';
-import { ConversationEntity } from './conversation.entity';
-import { MediaEntity } from './media.entity';
+import { ConversationEntity } from '../../../entities-to-create/conversation.entity';
+import { MediaEntity } from '../../../entities-to-create/media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';
+import { GroupRequestEntity } from "./group-request.entity";
 
 @Entity({ name: 'group' })
 export class GroupEntity {
@@ -51,6 +52,12 @@ export class GroupEntity {
   })
   @JoinColumn()
   bannerPicture: MediaEntity;
+
+  @OneToMany(() => GroupRequestEntity, groupRequest => groupRequest.group, {
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
+  groupRequests: GroupRequestEntity[];
 
   // ______________________________________________________
   // Timestamps

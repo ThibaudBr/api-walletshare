@@ -6,13 +6,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { JoinedConversation } from '../../src/api/entities-to-create/joined-conversation.entity';
 import { SocialNetworkEntity } from '../../src/api/social-network/domain/entities/social-network.entity';
 import { SubscriptionEntity } from '../../src/api/entities-to-create/subscription.entity';
-import { GroupMembershipEntity } from '../../src/api/entities-to-create/group-membership.entity';
-import { CardEntity } from '../../src/api/entities-to-create/card.entity';
+import { GroupMembershipEntity } from '../../src/api/groupe/domain/entities/group-membership.entity';
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
 import { ProfileEntity } from '../../src/api/profile/domain/entities/profile.entity';
 import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
 import { MessageEntity } from '../../src/api/entities-to-create/message.entity';
-import { GroupEntity } from '../../src/api/entities-to-create/group.entity';
+import { GroupEntity } from '../../src/api/groupe/domain/entities/group.entity';
 import CompanyEntity from '../../src/api/entities-to-create/company.entity';
 import { CompanyEmployeeEntity } from '../../src/api/entities-to-create/company-employee.entity';
 import { PlanEntity } from '../../src/api/entities-to-create/plan.entity';
@@ -25,6 +24,8 @@ import { OccupationEntity } from '../../src/api/occupation/domain/entities/occup
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../../src/api/user/domain/dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
+import { GroupRequestEntity } from '../../src/api/groupe/domain/entities/group-request.entity';
+import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
 
 @Injectable()
 export class AppTestE2eService {
@@ -73,6 +74,8 @@ export class AppTestE2eService {
     private readonly referralCodeRepository: Repository<ReferralCodeEntity>,
     @InjectRepository(AddressEntity)
     private readonly addressRepository: Repository<AddressEntity>,
+    @InjectRepository(GroupRequestEntity)
+    private readonly groupRequestRepository: Repository<GroupRequestEntity>,
   ) {}
 
   async clearDatabaseTest(): Promise<void> {
@@ -98,6 +101,7 @@ export class AppTestE2eService {
     await this.notificationRepository.query('DELETE FROM "notification";');
     await this.referralCodeRepository.query('DELETE FROM "referral_code";');
     await this.addressRepository.query('DELETE FROM "address";');
+    await this.groupRequestRepository.query('DELETE FROM "group_request";');
 
     return;
   }

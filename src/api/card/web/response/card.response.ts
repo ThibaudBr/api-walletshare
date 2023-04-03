@@ -6,7 +6,7 @@ import { WhoCanSeeCardInformationEnum } from '../../domain/enum/who-can-see-card
 import { WhoCanCommunicateWithEnum } from '../../domain/enum/who-can-communicate-with.enum';
 import { TransferableStatusCardEnum } from '../../domain/enum/transferable-status-card.enum';
 import { SocialNetworkResponse } from '../../../social-network/web/response/social-network.response';
-import { GroupMembershipResponse } from '../../../entities-to-create/response/group-membership.response';
+import { GroupMembershipResponse } from '../../../groupe/web/response/group-membership.response';
 
 export class CardResponse {
   constructor(partial: Partial<CardResponse>) {

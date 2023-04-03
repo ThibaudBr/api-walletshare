@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { GroupEntity } from './group.entity';
+import { GroupEntity } from '../groupe/domain/entities/group.entity';
 import CompanyEntity from './company.entity';
 import { CardEntity } from '../card/domain/entities/card.entity';
 

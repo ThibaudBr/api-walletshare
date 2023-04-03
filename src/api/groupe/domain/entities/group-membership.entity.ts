@@ -8,8 +8,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { GroupEntity } from './group.entity';
-import { RoleGroupMembershipEnum } from './enum/role-group-membership.enum';
-import { CardEntity } from '../card/domain/entities/card.entity';
+import { RoleGroupMembershipEnum } from '../enum/role-group-membership.enum';
+import { CardEntity } from '../../../card/domain/entities/card.entity';
 
 @Entity({ name: 'group_membership' })
 export class GroupMembershipEntity {

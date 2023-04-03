@@ -19,7 +19,6 @@ import { GetCardByIdQuery } from './cqrs/query/get-card-by-id.query';
 import { CardEntity } from './domain/entities/card.entity';
 import { ProfileResponse } from '../profile/domain/response/profile.response';
 import { SocialNetworkResponse } from '../social-network/web/response/social-network.response';
-import { GroupMembershipResponse } from '../entities-to-create/response/group-membership.response';
 import { GetAllCardWithProfileIdQuery } from './cqrs/query/get-all-card-with-profile-id.query';
 import { GetCardWithCriteriaRequest } from './web/request/get-card-with-criteria.request';
 import { GetCardWithCriteriaQuery } from './cqrs/query/get-card-with-criteria.query';
@@ -29,6 +28,7 @@ import { GetAllCardWithUserIdQuery } from './cqrs/query/get-all-card-with-user-i
 import { RemoveSavedCardCommand } from './cqrs/command/remove-saved-card.command';
 import { CreateCardRequest } from './web/request/create-card.request';
 import { UpdateCardRequest } from './web/request/update-card.request';
+import { GroupMembershipResponse } from '../groupe/web/response/group-membership.response';
 
 @Injectable()
 export class CardService {
@@ -45,7 +45,17 @@ export class CardService {
               owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
               socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
               groupMemberships: card.groupMemberships
-                ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+                ? card.groupMemberships.map(
+                    groupMembership =>
+                      new GroupMembershipResponse({
+                        groupId: groupMembership.group.id,
+                        cardId: card.id,
+                        createdAt: groupMembership.createdAt,
+                        updatedAt: groupMembership.updatedAt,
+                        deletedAt: groupMembership.deletedAt,
+                        role: groupMembership.role,
+                      }),
+                  )
                 : undefined,
             });
           });
@@ -68,7 +78,17 @@ export class CardService {
             owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
             socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
             groupMemberships: card.groupMemberships
-              ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+              ? card.groupMemberships.map(
+                  groupMembership =>
+                    new GroupMembershipResponse({
+                      groupId: groupMembership.group.id,
+                      cardId: card.id,
+                      createdAt: groupMembership.createdAt,
+                      updatedAt: groupMembership.updatedAt,
+                      deletedAt: groupMembership.deletedAt,
+                      role: groupMembership.role,
+                    }),
+                )
               : undefined,
           });
         })
@@ -91,7 +111,17 @@ export class CardService {
               owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
               socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
               groupMemberships: card.groupMemberships
-                ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+                ? card.groupMemberships.map(
+                    groupMembership =>
+                      new GroupMembershipResponse({
+                        groupId: groupMembership.group.id,
+                        cardId: card.id,
+                        createdAt: groupMembership.createdAt,
+                        updatedAt: groupMembership.updatedAt,
+                        deletedAt: groupMembership.deletedAt,
+                        role: groupMembership.role,
+                      }),
+                  )
                 : undefined,
             });
           });
@@ -116,7 +146,17 @@ export class CardService {
                 owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
                 socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
                 groupMemberships: card.groupMemberships
-                  ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+                  ? card.groupMemberships.map(
+                      groupMembership =>
+                        new GroupMembershipResponse({
+                          groupId: groupMembership.group.id,
+                          cardId: card.id,
+                          createdAt: groupMembership.createdAt,
+                          updatedAt: groupMembership.updatedAt,
+                          deletedAt: groupMembership.deletedAt,
+                          role: groupMembership.role,
+                        }),
+                    )
                   : undefined,
               });
             });
@@ -145,7 +185,17 @@ export class CardService {
               owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
               socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
               groupMemberships: card.groupMemberships
-                ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+                ? card.groupMemberships.map(
+                    groupMembership =>
+                      new GroupMembershipResponse({
+                        groupId: groupMembership.group.id,
+                        cardId: card.id,
+                        createdAt: groupMembership.createdAt,
+                        updatedAt: groupMembership.updatedAt,
+                        deletedAt: groupMembership.deletedAt,
+                        role: groupMembership.role,
+                      }),
+                  )
                 : undefined,
             });
           });
@@ -170,7 +220,17 @@ export class CardService {
             owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
             socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
             groupMemberships: card.groupMemberships
-              ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+              ? card.groupMemberships.map(
+                  groupMembership =>
+                    new GroupMembershipResponse({
+                      groupId: groupMembership.group.id,
+                      cardId: card.id,
+                      createdAt: groupMembership.createdAt,
+                      updatedAt: groupMembership.updatedAt,
+                      deletedAt: groupMembership.deletedAt,
+                      role: groupMembership.role,
+                    }),
+                )
               : undefined,
           });
         });
@@ -191,7 +251,17 @@ export class CardService {
               owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
               socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
               groupMemberships: card.groupMemberships
-                ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+                ? card.groupMemberships.map(
+                    groupMembership =>
+                      new GroupMembershipResponse({
+                        groupId: groupMembership.group.id,
+                        cardId: card.id,
+                        createdAt: groupMembership.createdAt,
+                        updatedAt: groupMembership.updatedAt,
+                        deletedAt: groupMembership.deletedAt,
+                        role: groupMembership.role,
+                      }),
+                  )
                 : undefined,
             });
           });
@@ -216,7 +286,17 @@ export class CardService {
                 owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
                 socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
                 groupMemberships: card.groupMemberships
-                  ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+                  ? card.groupMemberships.map(
+                      groupMembership =>
+                        new GroupMembershipResponse({
+                          groupId: groupMembership.group.id,
+                          cardId: card.id,
+                          createdAt: groupMembership.createdAt,
+                          updatedAt: groupMembership.updatedAt,
+                          deletedAt: groupMembership.deletedAt,
+                          role: groupMembership.role,
+                        }),
+                    )
                   : undefined,
               });
             });
@@ -246,7 +326,17 @@ export class CardService {
               owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
               socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
               groupMemberships: card.groupMemberships
-                ? card.groupMemberships.map(groupMembership => new GroupMembershipResponse({ ...groupMembership }))
+                ? card.groupMemberships.map(
+                    groupMembership =>
+                      new GroupMembershipResponse({
+                        groupId: groupMembership.group.id,
+                        cardId: card.id,
+                        createdAt: groupMembership.createdAt,
+                        updatedAt: groupMembership.updatedAt,
+                        deletedAt: groupMembership.deletedAt,
+                        role: groupMembership.role,
+                      }),
+                  )
                 : undefined,
             });
           });
