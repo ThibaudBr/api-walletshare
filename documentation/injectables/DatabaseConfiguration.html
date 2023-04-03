@@ -147,10 +147,9 @@ import { join } from &#x27;path&#x27;;
 import { Injectable } from &#x27;@nestjs/common&#x27;;
 import * as process from &#x27;process&#x27;;
 import { logger } from &#x27;./winston-logger.config&#x27;;
-import { CardEntity } from &#x27;../../api/entities-to-create/card.entity&#x27;;
 import CompanyEntity from &#x27;../../api/entities-to-create/company.entity&#x27;;
 import { CompanyEmployeeEntity } from &#x27;../../api/entities-to-create/company-employee.entity&#x27;;
-import { ConnectedCardEntity } from &#x27;../../api/entities-to-create/connected-card.entity&#x27;;
+import { ConnectedCardEntity } from &#x27;../../api/card/domain/entities/connected-card.entity&#x27;;
 import { ConversationEntity } from &#x27;../../api/entities-to-create/conversation.entity&#x27;;
 import { DiscountCodeEntity } from &#x27;../../api/entities-to-create/discount-code.entity&#x27;;
 import { GroupEntity } from &#x27;../../api/entities-to-create/group.entity&#x27;;
@@ -169,6 +168,7 @@ import { UserEntity } from &#x27;../../api/user/domain/entities/user.entity&#x27
 import { ReferralCodeEntity } from &#x27;../../api/entities-to-create/referal-code.entity&#x27;;
 import { NotificationEntity } from &#x27;../../api/entities-to-create/notification.entity&#x27;;
 import { AddressEntity } from &#x27;../../api/entities-to-create/address.entity&#x27;;
+import { CardEntity } from &#x27;../../api/card/domain/entities/card.entity&#x27;;
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {

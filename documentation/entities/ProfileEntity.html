@@ -735,7 +735,6 @@
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
 import { UserEntity } from &#x27;../../../user/domain/entities/user.entity&#x27;;
-import { CardEntity } from &#x27;../../../entities-to-create/card.entity&#x27;;
 import { OccupationEntity } from &#x27;../../../occupation/domain/entities/occupation.entity&#x27;;
 import { CompanyEmployeeEntity } from &#x27;../../../entities-to-create/company-employee.entity&#x27;;
 import { MediaEntity } from &#x27;../../../entities-to-create/media.entity&#x27;;
@@ -743,6 +742,7 @@ import { JoinedConversation } from &#x27;../../../entities-to-create/joined-conv
 import CompanyEntity from &#x27;../../../entities-to-create/company.entity&#x27;;
 import { NotificationEntity } from &#x27;../../../entities-to-create/notification.entity&#x27;;
 import { RoleProfileEnum } from &#x27;../enum/role-profile.enum&#x27;;
+import { CardEntity } from &#x27;../../../card/domain/entities/card.entity&#x27;;
 
 @Entity({ name: &#x27;profile&#x27; })
 export class ProfileEntity {

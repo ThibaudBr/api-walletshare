@@ -272,6 +272,7 @@ export class DeleteOccupationCommandHandler implements ICommandHandler&lt;Delete
     try {
       const occupation &#x3D; await this.occupationRepository
         .findOneOrFail({
+          withDeleted: true,
           where: [{ id: command.occupationId }],
         })
         .catch(() &#x3D;&gt; {

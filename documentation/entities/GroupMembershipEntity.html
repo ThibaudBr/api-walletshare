@@ -372,9 +372,9 @@
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import { CardEntity } from &#x27;./card.entity&#x27;;
 import { GroupEntity } from &#x27;./group.entity&#x27;;
 import { RoleGroupMembershipEnum } from &#x27;./enum/role-group-membership.enum&#x27;;
+import { CardEntity } from &#x27;../card/domain/entities/card.entity&#x27;;
 
 @Entity({ name: &#x27;group_membership&#x27; })
 export class GroupMembershipEntity {
