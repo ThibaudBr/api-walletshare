@@ -33,7 +33,7 @@ export class UserController {
 
   @Post('/admin/create')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async createUser(@Body() createUserDto: CreateUserDto): Promise<CreateUserResponse | HttpException> {
+  async createUser(@Body() createUserDto: CreateUserDto): Promise<CreateUserResponse> {
     try {
       return await this.userService.createUser(createUserDto);
     } catch (error) {
@@ -48,7 +48,7 @@ export class UserController {
 
   @Post('/admin/generate-user-from-mail')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async generateUserFromMail(@Body() generateUserDto: GenerateUserDto): Promise<CreateUserResponse | HttpException> {
+  async generateUserFromMail(@Body() generateUserDto: GenerateUserDto): Promise<CreateUserResponse> {
     try {
       return await this.userService.generateUserFromMail(generateUserDto);
     } catch (error) {
@@ -64,7 +64,7 @@ export class UserController {
   @HttpCode(204)
   @Post('/admin/restore-user')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async restoreUser(@Body() userId: UserIdDto): Promise<void | HttpException> {
+  async restoreUser(@Body() userId: UserIdDto): Promise<void> {
     try {
       return await this.userService.restoreUser(userId.userId);
     } catch (error) {
@@ -78,7 +78,7 @@ export class UserController {
   }
   @Get('/admin/')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async findAll(): Promise<UserResponse[] | HttpException> {
+  async findAll(): Promise<UserResponse[]> {
     try {
       return await this.userService.findAll();
     } catch (error) {
@@ -93,7 +93,7 @@ export class UserController {
 
   @Get('/admin/:id')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async findOne(@Param('id') id: string): Promise<UserResponse | HttpException> {
+  async findOne(@Param('id') id: string): Promise<UserResponse> {
     try {
       return await this.userService.findOne(id);
     } catch (error) {
@@ -109,13 +109,11 @@ export class UserController {
   @HttpCode(200)
   @Post('/admin/criteria')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async findWithCriteria(
-    @Body() getUserWithCriteriaDto: GetUserWithCriteriaDto,
-  ): Promise<UserResponse[] | HttpException> {
+  async findWithCriteria(@Body() getUserWithCriteriaDto: GetUserWithCriteriaDto): Promise<UserResponse[]> {
     try {
       return await this.userService.findWithCriteria(getUserWithCriteriaDto);
     } catch (error) {
-      return new HttpException(
+      throw new HttpException(
         {
           message: error.message,
         },
@@ -126,7 +124,7 @@ export class UserController {
 
   @Get('/public/get-me')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async getMe(@Req() requestUser: RequestUser): Promise<UserResponse | HttpException> {
+  async getMe(@Req() requestUser: RequestUser): Promise<UserResponse> {
     try {
       const { user } = requestUser;
       return await this.userService.findMe(user.id);
@@ -142,10 +140,7 @@ export class UserController {
 
   @Put('/admin/:id')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async update(
-    @Param('id') userId: string,
-    @Body() updateUserDto: UpdateUserDto,
-  ): Promise<UserResponse | HttpException> {
+  async update(@Param('id') userId: string, @Body() updateUserDto: UpdateUserDto): Promise<UserResponse> {
     try {
       return await this.userService.update(userId, updateUserDto);
     } catch (error) {
@@ -161,7 +156,7 @@ export class UserController {
   @HttpCode(204)
   @Put('/admin/:id/role')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async updateRole(@Param('id') id: string, @Body() roles: ListRolesDto): Promise<UserResponse | HttpException> {
+  async updateRole(@Param('id') id: string, @Body() roles: ListRolesDto): Promise<UserResponse> {
     try {
       return await this.userService.updateRoles(id, roles.roles);
     } catch (error) {
@@ -176,10 +171,7 @@ export class UserController {
 
   @Put('/public/update-me')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async updateMe(
-    @Req() requestUser: RequestUser,
-    @Body() updateUserDto: UpdateUserDto,
-  ): Promise<UserResponse | HttpException> {
+  async updateMe(@Req() requestUser: RequestUser, @Body() updateUserDto: UpdateUserDto): Promise<UserResponse> {
     try {
       return await this.userService.update(requestUser.user.id, updateUserDto);
     } catch (error) {
@@ -197,7 +189,7 @@ export class UserController {
   async updatePassword(
     @Req() requestUser: RequestUser,
     @Body() updateUserCredentialDto: UpdateUserCredentialDto,
-  ): Promise<UserResponse | HttpException> {
+  ): Promise<UserResponse> {
     try {
       return await this.userService.updatePassword(requestUser.user.id, updateUserCredentialDto);
     } catch (error) {
@@ -213,9 +205,9 @@ export class UserController {
   @HttpCode(204)
   @Delete('/admin/:id')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  remove(@Req() requestUser: RequestUser, @Param('id') id: string): Promise<void> {
+  async remove(@Req() requestUser: RequestUser, @Param('id') id: string): Promise<void> {
     try {
-      return this.userService.remove(id);
+      return await this.userService.remove(id);
     } catch (error) {
       throw new HttpException(
         {
@@ -229,7 +221,7 @@ export class UserController {
   @HttpCode(204)
   @Delete('/public/delete-me')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async deleteMe(@Req() requestUser: RequestUser): Promise<void | HttpException> {
+  async deleteMe(@Req() requestUser: RequestUser): Promise<void> {
     try {
       return await this.userService.deleteMe(requestUser.user.id);
     } catch (error) {
@@ -245,7 +237,7 @@ export class UserController {
   @HttpCode(204)
   @Delete('/admin/full-delete/:id')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async fullDelete(@Param('id') id: string): Promise<void | HttpException> {
+  async fullDelete(@Param('id') id: string): Promise<void> {
     try {
       return await this.userService.fullDelete(id);
     } catch (error) {

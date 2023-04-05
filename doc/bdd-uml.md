@@ -104,7 +104,7 @@ class group_membership_entity {
    timestamp createdAt
    timestamp updatedAt
    timestamp deletedAt
-   uuid cardId
+   uuid groupId
    uuid groupId
    text[] role
    uuid id
@@ -242,7 +242,7 @@ discount_codes_subscriptions_subscription_entity  -->  discount_codes : discount
 discount_codes_subscriptions_subscription_entity  -->  subscription_entity : subscriptionEntityId:id
 group_entity  -->  media_entity : pictureId:id
 group_entity  -->  media_entity : bannerPictureId:id
-group_membership_entity  -->  card_entity : cardId:id
+group_membership_entity  -->  card_entity : groupId:id
 group_membership_entity  -->  group_entity : groupId:id
 invoices  -->  subscription_entity : subscriptionId:id
 joined_conversation  -->  conversation : conversationId:id

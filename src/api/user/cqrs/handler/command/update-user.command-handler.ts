@@ -8,8 +8,8 @@ import { InvalidClassException } from '@nestjs/core/errors/exceptions/invalid-cl
 import { UpdateUserEvent } from '../../event/update-user.event';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { UserResponse } from '../../../domain/response/user.response';
-import { DuplicateUsernameException } from '../../../../../util/exception/custom-http-exception/duplicate-username.exception';
-import { DuplicateMailException } from '../../../../../util/exception/custom-http-exception/duplicate-mail.exception';
+import { DuplicateUsernameHttpException } from '../../../../../util/exception/custom-http-exception/duplicate-username.http-exception';
+import { DuplicateMailHttpException } from '../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception';
 
 @CommandHandler(UpdateUserCommand)
 export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserCommand> {
@@ -26,7 +26,7 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
           this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
           );
-          throw new DuplicateUsernameException();
+          throw new DuplicateUsernameHttpException();
         }
       }
 
@@ -35,7 +35,7 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
           this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
           );
-          throw new DuplicateMailException();
+          throw new DuplicateMailHttpException();
         }
       }
       if ((await this.userRepository.findOne({ where: [{ id: command.userId }] })) === undefined) {

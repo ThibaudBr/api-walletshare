@@ -4,15 +4,15 @@ import { UserEntity } from '../../../domain/entities/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { validate } from 'class-validator';
-import { DuplicateUsernameException } from '../../../../../util/exception/custom-http-exception/duplicate-username.exception';
-import { DuplicateMailException } from '../../../../../util/exception/custom-http-exception/duplicate-mail.exception';
-import { InvalidParameterEntityException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
+import { DuplicateUsernameHttpException } from '../../../../../util/exception/custom-http-exception/duplicate-username.http-exception';
+import { DuplicateMailHttpException } from '../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception';
+import { InvalidParameterEntityHttpException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 import { CreateUserResponse } from '../../../domain/response/create-user.response';
 import { UserRoleEnum } from '../../../domain/enum/user-role.enum';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import { InvalidPasswordException } from '../../../../../util/exception/custom-http-exception/invalid-password.exception';
-import { InvalidMailException } from '../../../../../util/exception/custom-http-exception/invalid-mail.exception';
-import { InvalidUsernameException } from '../../../../../util/exception/custom-http-exception/invalid-username.exception';
+import { InvalidPasswordHttpException } from '../../../../../util/exception/custom-http-exception/invalid-password.http-exception';
+import { InvalidMailHttpException } from '../../../../../util/exception/custom-http-exception/invalid-mail.http-exception';
+import { InvalidUsernameHttpException } from '../../../../../util/exception/custom-http-exception/invalid-username.http-exception';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler<CreateUserCommand> {
@@ -33,7 +33,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
           this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
           );
-          throw new DuplicateUsernameException();
+          throw new DuplicateUsernameHttpException();
         }
       }
 
@@ -42,7 +42,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
           this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
           );
-          throw new DuplicateMailException();
+          throw new DuplicateMailHttpException();
         }
       }
 
@@ -50,7 +50,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
         this.eventBus.publish(
           new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid password' }),
         );
-        throw new InvalidPasswordException();
+        throw new InvalidPasswordHttpException();
       }
 
       if (command.createUserDto.mail) {
@@ -58,7 +58,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
           this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
           );
-          throw new InvalidMailException();
+          throw new InvalidMailHttpException();
         }
       }
 
@@ -67,7 +67,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
           this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid username' }),
           );
-          throw new InvalidUsernameException();
+          throw new InvalidUsernameHttpException();
         }
       }
 
@@ -78,7 +78,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
       const err = await validate(newUser);
       if (err.length > 0) {
-        throw new InvalidParameterEntityException(err);
+        throw new InvalidParameterEntityHttpException(err);
       }
 
       const savedUser: UserEntity = await this.userRepository.save(newUser);

@@ -92,7 +92,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#connectedCards" >connectedCards</a>
+                                <a href="#connectedCardsResponse" >connectedCardsResponse</a>
                             </li>
                             <li>
                                 <a href="#createdAt" >createdAt</a>
@@ -111,7 +111,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#groupMemberships" >groupMemberships</a>
+                                <a href="#groupMembershipsResponse" >groupMembershipsResponse</a>
                             </li>
                             <li>
                                 <a href="#id" >id</a>
@@ -140,10 +140,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#occupations" >occupations</a>
+                                <a href="#occupationsResponse" >occupationsResponse</a>
                             </li>
                             <li>
-                                <a href="#owner" >owner</a>
+                                    <span class="modifier">Optional</span>
+                                <a href="#ownerResponse" >ownerResponse</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -151,7 +152,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#savedBy" >savedBy</a>
+                                <a href="#savedByResponse" >savedByResponse</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -159,7 +160,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#socialNetwork" >socialNetwork</a>
+                                <a href="#socialNetworkResponse" >socialNetworkResponse</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -312,11 +313,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="connectedCards"></a>
+                    <a name="connectedCardsResponse"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>connectedCards</b></span>
-                        <a href="#connectedCards"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>connectedCardsResponse</b></span>
+                        <a href="#connectedCardsResponse"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -446,11 +447,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="groupMemberships"></a>
+                    <a name="groupMembershipsResponse"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>groupMemberships</b></span>
-                        <a href="#groupMemberships"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>groupMembershipsResponse</b></span>
+                        <a href="#groupMembershipsResponse"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -659,11 +660,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="occupations"></a>
+                    <a name="occupationsResponse"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>occupations</b></span>
-                        <a href="#occupations"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>occupationsResponse</b></span>
+                        <a href="#occupationsResponse"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -686,10 +687,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="owner"></a>
+                    <a name="ownerResponse"></a>
                     <span class="name">
-                        <span ><b>owner</b></span>
-                        <a href="#owner"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Optional</span>
+                        <span ><b>ownerResponse</b></span>
+                        <a href="#ownerResponse"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -739,11 +741,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="savedBy"></a>
+                    <a name="savedByResponse"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>savedBy</b></span>
-                        <a href="#savedBy"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>savedByResponse</b></span>
+                        <a href="#savedByResponse"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -793,11 +795,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="socialNetwork"></a>
+                    <a name="socialNetworkResponse"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>socialNetwork</b></span>
-                        <a href="#socialNetwork"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>socialNetworkResponse</b></span>
+                        <a href="#socialNetworkResponse"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1023,7 +1025,7 @@ import { WhoCanSeeCardInformationEnum } from &#x27;../../domain/enum/who-can-see
 import { WhoCanCommunicateWithEnum } from &#x27;../../domain/enum/who-can-communicate-with.enum&#x27;;
 import { TransferableStatusCardEnum } from &#x27;../../domain/enum/transferable-status-card.enum&#x27;;
 import { SocialNetworkResponse } from &#x27;../../../social-network/web/response/social-network.response&#x27;;
-import { GroupMembershipResponse } from &#x27;../../../entities-to-create/response/group-membership.response&#x27;;
+import { GroupMembershipResponse } from &#x27;../../../groupe/web/response/group-membership.response&#x27;;
 
 export class CardResponse {
   constructor(partial: Partial&lt;CardResponse&gt;) {
@@ -1042,14 +1044,14 @@ export class CardResponse {
   birthday?: Date;
   notes?: string;
   numberOfShares: number;
-  owner: ProfileResponse;
-  connectedCards?: CardResponse[];
-  savedBy?: ProfileResponse[];
-  occupations?: OccupationResponse[];
-  groupMemberships?: GroupMembershipResponse[];
+  ownerResponse?: ProfileResponse;
+  connectedCardsResponse?: CardResponse[];
+  savedByResponse?: ProfileResponse[];
+  occupationsResponse?: OccupationResponse[];
+  groupMembershipsResponse?: GroupMembershipResponse[];
   mediaUrl?: string;
   messagesCount?: number;
-  socialNetwork?: SocialNetworkResponse;
+  socialNetworkResponse?: SocialNetworkResponse;
   typeOfCardEnum: TypeOfCardEnum;
   whoCanShareCardEnums?: WhoCanShareCardEnum[];
   whoCanSeeCardInformationEnums?: WhoCanSeeCardInformationEnum[];

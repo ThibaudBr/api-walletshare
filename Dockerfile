@@ -13,6 +13,6 @@ ENV NODE_ENV=dev \
     TYPEORM_PORT=5432 \
     TYPEORM_SYNCHRONIZE_DEV=true \
     TYPEORM_LOGGING_DEV=true \
-    TYPEORM_ENTITIES='src/api/**/domain/entities/*.entity.ts' \
+    TYPEORM_ENTITIES='src/api/**/domain/entities/*.entity.ts'
 
 CMD ["npm", "start"]

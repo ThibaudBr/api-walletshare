@@ -8,8 +8,8 @@ import { CompanyEmployeeEntity } from '../../api/entities-to-create/company-empl
 import { ConnectedCardEntity } from '../../api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../api/entities-to-create/conversation.entity';
 import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
-import { GroupEntity } from '../../api/entities-to-create/group.entity';
-import { GroupMembershipEntity } from '../../api/entities-to-create/group-membership.entity';
+import { GroupEntity } from '../../api/groupe/domain/entities/group.entity';
+import { GroupMembershipEntity } from '../../api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../api/entities-to-create/invoices.entity';
 import { JoinedConversation } from '../../api/entities-to-create/joined-conversation.entity';
 import { MediaEntity } from '../../api/entities-to-create/media.entity';
@@ -25,6 +25,7 @@ import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.en
 import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
 import { AddressEntity } from '../../api/entities-to-create/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
+import { GroupRequestEntity } from '../../api/groupe/domain/entities/group-request.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -100,6 +101,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationEntity,
             ReferralCodeEntity,
             AddressEntity,
+            GroupRequestEntity,
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
@@ -138,6 +140,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationEntity,
             ReferralCodeEntity,
             AddressEntity,
+            GroupRequestEntity,
           ],
         };
       } else {

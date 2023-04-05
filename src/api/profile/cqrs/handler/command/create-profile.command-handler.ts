@@ -6,9 +6,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../../../../user/domain/entities/user.entity';
 import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
-import { InvalidParameterEntityException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
+import { InvalidParameterEntityHttpException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 import { CreateProfileEvent } from '../../event/create-profile.event';
 import { OccupationEntity } from '../../../../occupation/domain/entities/occupation.entity';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(CreateProfileCommand)
 export class CreateProfileCommandHandler implements ICommandHandler<CreateProfileCommand> {
@@ -56,7 +57,7 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
 
       const err = await validate(newProfile);
       if (err.length > 0) {
-        throw new InvalidParameterEntityException(err);
+        throw new InvalidParameterEntityHttpException(err);
       }
 
       const savedProfile = await this.profileRepository.save(newProfile).then(profile => {
@@ -70,6 +71,13 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
         }),
       );
     } catch (error) {
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'CreateProfileCommandHandler',
+          localisation: 'Profile',
+          error: error.message,
+        }),
+      );
       throw new Error(error);
     }
   }

@@ -745,10 +745,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
 import { GetAllOccupationQuery } from &#x27;./cqrs/query/get-all-occupation.query&#x27;;
-import { QueryErrorException } from &#x27;../../util/exception/custom-http-exception/query-error.exception&#x27;;
+import { QueryErrorHttpException } from &#x27;../../util/exception/custom-http-exception/query-error.http-exception&#x27;;
 import { OccupationDto } from &#x27;./domain/dto/occupation.dto&#x27;;
 import { OccupationResponse } from &#x27;./web/response/occupation-response&#x27;;
-import { OccupationNotFoundException } from &#x27;../../util/exception/custom-http-exception/occupation-not-found.exception&#x27;;
+import { OccupationNotFoundHttpException } from &#x27;../../util/exception/custom-http-exception/occupation-not-found.http-exception&#x27;;
 import { GetOccupationByIdQuery } from &#x27;./cqrs/query/get-occupation-by-id.query&#x27;;
 import { GetOccupationWithCriteriaRequest } from &#x27;./web/request/get-occupation-with-criteria.request&#x27;;
 import { GetOccupationWithCriteriaQuery } from &#x27;./cqrs/query/get-occupation-with-criteria.query&#x27;;
@@ -756,7 +756,7 @@ import { GetOccupationWithCriteriaDto } from &#x27;./domain/dto/get-occupation-w
 import { CreateOccupationCommand } from &#x27;./cqrs/command/create-occupation.command&#x27;;
 import { CreateOccupationDto } from &#x27;./domain/dto/create-occupation.dto&#x27;;
 import { InvalidClassException } from &#x27;@nestjs/core/errors/exceptions/invalid-class.exception&#x27;;
-import { DuplicateNameException } from &#x27;../../util/exception/custom-http-exception/duplicate-name.exception&#x27;;
+import { DuplicateNameHttpException } from &#x27;../../util/exception/custom-http-exception/duplicate-name.http-exception&#x27;;
 import { CreateOccupationRequest } from &#x27;./web/request/create-occupation.request&#x27;;
 import { UpdateOccupationRequest } from &#x27;./web/request/update-occupation.request&#x27;;
 import { UpdateOccupationDto } from &#x27;./domain/dto/update-occupation.dto&#x27;;
@@ -777,7 +777,7 @@ export class OccupationService {
         });
       });
     } catch (error) {
-      throw new QueryErrorException();
+      throw new QueryErrorHttpException();
     }
   }
 
@@ -789,8 +789,8 @@ export class OccupationService {
           return new OccupationResponse(occupationDto);
         });
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundException();
-      else throw new QueryErrorException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundHttpException();
+      else throw new QueryErrorHttpException();
     }
   }
 
@@ -811,7 +811,7 @@ export class OccupationService {
           });
         });
     } catch (error) {
-      throw new QueryErrorException();
+      throw new QueryErrorHttpException();
     }
   }
 
@@ -825,7 +825,7 @@ export class OccupationService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicate name&#x27;) throw new DuplicateNameException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicate name&#x27;) throw new DuplicateNameHttpException();
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }
@@ -842,8 +842,8 @@ export class OccupationService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundException();
-      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicate name&#x27;) throw new DuplicateNameException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundHttpException();
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicate name&#x27;) throw new DuplicateNameHttpException();
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }
@@ -857,7 +857,7 @@ export class OccupationService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundHttpException();
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }
@@ -871,7 +871,7 @@ export class OccupationService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundHttpException();
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }
@@ -885,7 +885,7 @@ export class OccupationService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundHttpException();
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }

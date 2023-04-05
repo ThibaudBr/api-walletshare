@@ -4,6 +4,7 @@ import { DeleteOccupationCommand } from '../../command/delete-occupation.command
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
+import { DeleteOccupationEvent } from '../../event/delete-occupation.event';
 
 @CommandHandler(DeleteOccupationCommand)
 export class DeleteOccupationCommandHandler implements ICommandHandler<DeleteOccupationCommand> {
@@ -26,6 +27,7 @@ export class DeleteOccupationCommandHandler implements ICommandHandler<DeleteOcc
       await this.occupationRepository.delete(occupation.id).catch(() => {
         throw new Error('Occupation not deleted');
       });
+      this.eventBus.publish(new DeleteOccupationEvent({ occupationId: occupation.id }));
     } catch (e) {
       this.eventBus.publish(
         new ErrorCustomEvent({

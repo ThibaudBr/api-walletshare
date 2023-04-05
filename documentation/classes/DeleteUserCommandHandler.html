@@ -308,7 +308,7 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { DeleteUserCommand } from &#x27;../../command/delete-user.command&#x27;;
 import { DeleteUserEvent } from &#x27;../../event/delete-user.event&#x27;;
-import { InvalidIdException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-id.exception&#x27;;
+import { InvalidIdHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
 
 @CommandHandler(DeleteUserCommand)
 export class DeleteUserCommandHandler implements ICommandHandler&lt;DeleteUserCommand&gt; {
@@ -324,7 +324,7 @@ export class DeleteUserCommandHandler implements ICommandHandler&lt;DeleteUserCo
       this.eventBus.publish(new DeleteUserEvent(command.userId));
     } catch (error) {
       this.eventBus.publish(new ErrorCustomEvent({ localisation: &#x27;user&#x27;, handler: &#x27;DeleteUserCommandHandler&#x27;, error }));
-      throw new InvalidIdException();
+      throw new InvalidIdHttpException();
     }
   }
 }

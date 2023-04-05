@@ -6,13 +6,13 @@ import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
 import { RegisterEvent } from '../../event/register.event';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import { InvalidParameterEntityException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
-import { InvalidPasswordException } from '../../../../../util/exception/custom-http-exception/invalid-password.exception';
-import { DuplicateMailException } from '../../../../../util/exception/custom-http-exception/duplicate-mail.exception';
-import { DuplicateUsernameException } from '../../../../../util/exception/custom-http-exception/duplicate-username.exception';
+import { InvalidParameterEntityHttpException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
+import { InvalidPasswordHttpException } from '../../../../../util/exception/custom-http-exception/invalid-password.http-exception';
+import { DuplicateMailHttpException } from '../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception';
+import { DuplicateUsernameHttpException } from '../../../../../util/exception/custom-http-exception/duplicate-username.http-exception';
 import * as bcrypt from 'bcrypt';
-import { InvalidMailException } from '../../../../../util/exception/custom-http-exception/invalid-mail.exception';
-import { InvalidUsernameException } from '../../../../../util/exception/custom-http-exception/invalid-username.exception';
+import { InvalidMailHttpException } from '../../../../../util/exception/custom-http-exception/invalid-mail.http-exception';
+import { InvalidUsernameHttpException } from '../../../../../util/exception/custom-http-exception/invalid-username.http-exception';
 
 @CommandHandler(RegisterCommand)
 export class RegisterHandler implements ICommandHandler<RegisterCommand> {
@@ -31,20 +31,20 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
       );
-      throw new DuplicateUsernameException();
+      throw new DuplicateUsernameHttpException();
     }
     if (await this.isDuplicatedEmail(command.mail)) {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
       );
-      throw new DuplicateMailException();
+      throw new DuplicateMailHttpException();
     }
 
     if (this.isValidPassword(command.password)) {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid password' }),
       );
-      throw new InvalidPasswordException();
+      throw new InvalidPasswordHttpException();
     }
 
     if (command.mail) {
@@ -52,7 +52,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
         this.eventBus.publish(
           new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
         );
-        throw new InvalidMailException();
+        throw new InvalidMailHttpException();
       }
     }
 
@@ -61,7 +61,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
         this.eventBus.publish(
           new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid username' }),
         );
-        throw new InvalidUsernameException();
+        throw new InvalidUsernameHttpException();
       }
     }
 
@@ -76,7 +76,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid parameters :' + err }),
       );
-      throw new InvalidParameterEntityException(err);
+      throw new InvalidParameterEntityHttpException(err);
     }
 
     const insertedUser = await this.userRepository.save(newUser);

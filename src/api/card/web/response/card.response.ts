@@ -6,7 +6,7 @@ import { WhoCanSeeCardInformationEnum } from '../../domain/enum/who-can-see-card
 import { WhoCanCommunicateWithEnum } from '../../domain/enum/who-can-communicate-with.enum';
 import { TransferableStatusCardEnum } from '../../domain/enum/transferable-status-card.enum';
 import { SocialNetworkResponse } from '../../../social-network/web/response/social-network.response';
-import { GroupMembershipResponse } from '../../../entities-to-create/response/group-membership.response';
+import { GroupMembershipResponse } from '../../../groupe/web/response/group-membership.response';
 
 export class CardResponse {
   constructor(partial: Partial<CardResponse>) {
@@ -25,14 +25,14 @@ export class CardResponse {
   birthday?: Date;
   notes?: string;
   numberOfShares: number;
-  owner: ProfileResponse;
-  connectedCards?: CardResponse[];
-  savedBy?: ProfileResponse[];
-  occupations?: OccupationResponse[];
-  groupMemberships?: GroupMembershipResponse[];
+  ownerResponse?: ProfileResponse;
+  connectedCardsResponse?: CardResponse[];
+  savedByResponse?: ProfileResponse[];
+  occupationsResponse?: OccupationResponse[];
+  groupMembershipsResponse?: GroupMembershipResponse[];
   mediaUrl?: string;
   messagesCount?: number;
-  socialNetwork?: SocialNetworkResponse;
+  socialNetworkResponse?: SocialNetworkResponse;
   typeOfCardEnum: TypeOfCardEnum;
   whoCanShareCardEnums?: WhoCanShareCardEnum[];
   whoCanSeeCardInformationEnums?: WhoCanSeeCardInformationEnum[];

@@ -5,7 +5,7 @@ import { OccupationEntity } from './domain/entities/occupation.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { OccupationController } from './occupation.controller';
+import { OccupationController } from './web/occupation.controller';
 import { OccupationService } from './occupation.service';
 import { ApiLogService } from '../api-log/api-log.service';
 import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';

@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/occupation/cqrs/handler/command/update-occupation.command-handler.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/occupation/cqrs/handler/command/update-occupation.command-handler.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/api/occupation/cqrs/handler/command/update-occupation.command-handler.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/api/occupation/cqrs/handler/command/update-occupation.command-handler.ts:19</a></div>
                 </td>
             </tr>
 
@@ -261,6 +261,7 @@ import { validate } from &#x27;class-validator&#x27;;
 import { InvalidClassException } from &#x27;@nestjs/core/errors/exceptions/invalid-class.exception&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { UpdateOccupationCommand } from &#x27;../../command/update-occupation.command&#x27;;
+import { UpdateOccupationEvent } from &#x27;../../event/update-occupation.event&#x27;;
 
 @CommandHandler(UpdateOccupationCommand)
 export class UpdateOccupationCommandHandler implements ICommandHandler&lt;UpdateOccupationCommand&gt; {
@@ -307,7 +308,7 @@ export class UpdateOccupationCommandHandler implements ICommandHandler&lt;Update
         })
         .then(async () &#x3D;&gt; {
           await this.eventBus.publish(
-            new UpdateOccupationCommand({
+            new UpdateOccupationEvent({
               occupationId: command.occupationId,
             }),
           );

@@ -676,17 +676,17 @@ import { GetSocialNetworkWithCriteriaQuery } from &#x27;./cqrs/query/get-social-
 import { DeleteSocialNetworkCommand } from &#x27;./cqrs/command/delete-social-network.command&#x27;;
 import { GetAllSocialNetworkQuery } from &#x27;./cqrs/query/get-all-social-network.query&#x27;;
 import { GetSocialNetworkWithCriteriaRequest } from &#x27;./web/request/get-social-network-with-criteria.request&#x27;;
-import { QueryErrorException } from &#x27;../../util/exception/custom-http-exception/query-error.exception&#x27;;
+import { QueryErrorHttpException } from &#x27;../../util/exception/custom-http-exception/query-error.http-exception&#x27;;
 import { RestoreSocialNetworkCommand } from &#x27;./cqrs/command/restore-social-network.command&#x27;;
 import { SocialNetworkDto } from &#x27;./domain/dto/social-network.dto&#x27;;
 import { SocialNetworkResponse } from &#x27;./web/response/social-network.response&#x27;;
 import { UpdateSocialNetworkCommand } from &#x27;./cqrs/command/update-social-network.command&#x27;;
 import { GetSocialNetworkByIdQuery } from &#x27;./cqrs/query/get-social-network-by-id.query&#x27;;
 import { InvalidClassException } from &#x27;@nestjs/core/errors/exceptions/invalid-class.exception&#x27;;
-import { EntityCreationException } from &#x27;../../util/exception/custom-http-exception/entity-creation.exception&#x27;;
-import { DuplicateNameException } from &#x27;../../util/exception/custom-http-exception/duplicate-name.exception&#x27;;
-import { CommandErrorException } from &#x27;../../util/exception/custom-http-exception/command-error.exception&#x27;;
-import { InvalidIdException } from &#x27;../../util/exception/custom-http-exception/invalid-id.exception&#x27;;
+import { EntityCreationHttpException } from &#x27;../../util/exception/custom-http-exception/entity-creation.http-exception&#x27;;
+import { DuplicateNameHttpException } from &#x27;../../util/exception/custom-http-exception/duplicate-name.http-exception&#x27;;
+import { CommandErrorHttpException } from &#x27;../../util/exception/custom-http-exception/command-error.http-exception&#x27;;
+import { InvalidIdHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
 
 @Injectable()
 export class SocialNetworkService {
@@ -702,7 +702,7 @@ export class SocialNetworkService {
           });
         });
     } catch (error) {
-      throw new QueryErrorException();
+      throw new QueryErrorHttpException();
     }
   }
 
@@ -714,8 +714,8 @@ export class SocialNetworkService {
           return new SocialNetworkResponse(socialNetworkDto);
         });
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not found&#x27;) throw new InvalidIdException();
-      else throw new QueryErrorException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not found&#x27;) throw new InvalidIdHttpException();
+      else throw new QueryErrorHttpException();
     }
   }
 
@@ -734,7 +734,7 @@ export class SocialNetworkService {
           });
         });
     } catch (error) {
-      throw new QueryErrorException();
+      throw new QueryErrorHttpException();
     }
   }
 
@@ -749,10 +749,10 @@ export class SocialNetworkService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicated name&#x27;) throw new DuplicateNameException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicated name&#x27;) throw new DuplicateNameHttpException();
       else if (error instanceof InvalidClassException) throw error;
-      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not created&#x27;) throw new EntityCreationException();
-      else throw new CommandErrorException();
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not created&#x27;) throw new EntityCreationHttpException();
+      else throw new CommandErrorHttpException();
     }
   }
 
@@ -768,8 +768,8 @@ export class SocialNetworkService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not found&#x27;) throw new InvalidIdException();
-      else throw new CommandErrorException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not found&#x27;) throw new InvalidIdHttpException();
+      else throw new CommandErrorHttpException();
     }
   }
 
@@ -781,8 +781,8 @@ export class SocialNetworkService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not found&#x27;) throw new InvalidIdException();
-      else throw new CommandErrorException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not found&#x27;) throw new InvalidIdHttpException();
+      else throw new CommandErrorHttpException();
     }
   }
 
@@ -794,8 +794,8 @@ export class SocialNetworkService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not found&#x27;) throw new InvalidIdException();
-      else throw new CommandErrorException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not found&#x27;) throw new InvalidIdHttpException();
+      else throw new CommandErrorHttpException();
     }
   }
 }

@@ -8,8 +8,8 @@ import { CompanyEmployeeEntity } from '../../src/api/entities-to-create/company-
 import { ConnectedCardEntity } from '../../src/api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../src/api/entities-to-create/conversation.entity';
 import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
-import { GroupEntity } from '../../src/api/entities-to-create/group.entity';
-import { GroupMembershipEntity } from '../../src/api/entities-to-create/group-membership.entity';
+import { GroupEntity } from '../../src/api/groupe/domain/entities/group.entity';
+import { GroupMembershipEntity } from '../../src/api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../src/api/entities-to-create/invoices.entity';
 import { JoinedConversation } from '../../src/api/entities-to-create/joined-conversation.entity';
 import { MediaEntity } from '../../src/api/entities-to-create/media.entity';

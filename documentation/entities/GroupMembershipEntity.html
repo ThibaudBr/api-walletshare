@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/entities-to-create/group-membership.entity.ts</code>
+            <code>src/api/groupe/domain/entities/group-membership.entity.ts</code>
         </p>
 
 
@@ -141,7 +141,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/api/entities-to-create/group-membership.entity.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/api/groupe/domain/entities/group-membership.entity.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -176,7 +176,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/api/entities-to-create/group-membership.entity.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/api/groupe/domain/entities/group-membership.entity.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -211,7 +211,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/api/entities-to-create/group-membership.entity.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/api/groupe/domain/entities/group-membership.entity.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/entities-to-create/group-membership.entity.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/groupe/domain/entities/group-membership.entity.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -281,7 +281,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/entities-to-create/group-membership.entity.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/api/groupe/domain/entities/group-membership.entity.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -316,7 +316,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/api/entities-to-create/group-membership.entity.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/groupe/domain/entities/group-membership.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -351,7 +351,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/api/entities-to-create/group-membership.entity.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/api/groupe/domain/entities/group-membership.entity.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -364,6 +364,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -373,11 +374,16 @@
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
 import { GroupEntity } from &#x27;./group.entity&#x27;;
-import { RoleGroupMembershipEnum } from &#x27;./enum/role-group-membership.enum&#x27;;
-import { CardEntity } from &#x27;../card/domain/entities/card.entity&#x27;;
+import { RoleGroupMembershipEnum } from &#x27;../enum/role-group-membership.enum&#x27;;
+import { CardEntity } from &#x27;../../../card/domain/entities/card.entity&#x27;;
 
 @Entity({ name: &#x27;group_membership&#x27; })
-export class GroupMembershipEntity {
+export class GroupMembershipEntity extends BaseEntity {
+  constructor(partial: Partial&lt;GroupMembershipEntity&gt;) {
+    super();
+    Object.assign(this, partial);
+  }
+
   @PrimaryGeneratedColumn(&#x27;uuid&#x27;)
   id: string;
   // ______________________________________________________

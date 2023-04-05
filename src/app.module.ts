@@ -20,7 +20,7 @@ import { ApiLandingPageModule } from './api/api-landing-page/api-landing-page.mo
 import { ProfileModule } from './api/profile/profile.module';
 import { OccupationModule } from './api/occupation/occupation.module';
 import { SocialNetworkModule } from './api/social-network/social-network.module';
-import { CardModule } from "./api/card/card.module";
+import { CardModule } from './api/card/card.module';
 
 @Module({
   imports: [

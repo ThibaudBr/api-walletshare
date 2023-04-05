@@ -1,7 +1,12 @@
+# [0.1.1](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.1) - 2023-04-06
+
+### Features
+- module group
+
 # [0.1.0](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.0) - 2023-04-03
 
 ### Features
-- module card
+- module cardResponse
 - push to pprod
 
 # [0.0.10](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.0.10) - 2023-04-02
