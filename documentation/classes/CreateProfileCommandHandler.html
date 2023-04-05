@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:26</a></div>
                 </td>
             </tr>
 
@@ -285,9 +285,10 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { UserEntity } from &#x27;../../../../user/domain/entities/user.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
-import { InvalidParameterEntityException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
 import { CreateProfileEvent } from &#x27;../../event/create-profile.event&#x27;;
 import { OccupationEntity } from &#x27;../../../../occupation/domain/entities/occupation.entity&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @CommandHandler(CreateProfileCommand)
 export class CreateProfileCommandHandler implements ICommandHandler&lt;CreateProfileCommand&gt; {
@@ -335,7 +336,7 @@ export class CreateProfileCommandHandler implements ICommandHandler&lt;CreatePro
 
       const err &#x3D; await validate(newProfile);
       if (err.length &gt; 0) {
-        throw new InvalidParameterEntityException(err);
+        throw new InvalidParameterEntityHttpException(err);
       }
 
       const savedProfile &#x3D; await this.profileRepository.save(newProfile).then(profile &#x3D;&gt; {
@@ -349,6 +350,13 @@ export class CreateProfileCommandHandler implements ICommandHandler&lt;CreatePro
         }),
       );
     } catch (error) {
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;CreateProfileCommandHandler&#x27;,
+          localisation: &#x27;Profile&#x27;,
+          error: error.message,
+        }),
+      );
       throw new Error(error);
     }
   }

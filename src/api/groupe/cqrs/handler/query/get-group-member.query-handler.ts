@@ -1,5 +1,4 @@
 import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { GroupRequestEntity } from '../../../domain/entities/group-request.entity';
 import { Repository } from 'typeorm';
 import { GroupEntity } from '../../../domain/entities/group.entity';
 import { InjectRepository } from '@nestjs/typeorm';

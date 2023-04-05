@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { GroupRequestEntity } from '../../../domain/entities/group-request.entity';
 import { Repository } from 'typeorm';
 import { GroupEntity } from '../../../domain/entities/group.entity';
-import { GroupMembershipEntity } from '../../../domain/entities/group-membership.entity';
 import { CardEntity } from '../../../../card/domain/entities/card.entity';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { GroupRequestStatusEnum } from '../../../domain/enum/group-request-status.enum';

@@ -1530,12 +1530,12 @@ import { UpdateUserCredentialCommand } from &#x27;./cqrs/command/update-user-cre
 import { UpdateUserCredentialDto } from &#x27;./domain/dto/update-user-credential.dto&#x27;;
 import { GenerateUserDto } from &#x27;./domain/dto/generate-user.dto&#x27;;
 import { DeleteMailCommand } from &#x27;../api-landing-page/cqrs/command/delete-mail.command&#x27;;
-import { DuplicateMailException } from &#x27;../../util/exception/custom-http-exception/duplicate-mail.exception&#x27;;
-import { MailRequiredException } from &#x27;../../util/exception/custom-http-exception/mail-required.exception&#x27;;
-import { UserNotFoundException } from &#x27;../../util/exception/custom-http-exception/user-not-found.exception&#x27;;
-import { DuplicateUsernameException } from &#x27;../../util/exception/custom-http-exception/duplicate-username.exception&#x27;;
-import { SamePasswordException } from &#x27;../../util/exception/custom-http-exception/same-password.exception&#x27;;
-import { InvalidPasswordException } from &#x27;../../util/exception/custom-http-exception/invalid-password.exception&#x27;;
+import { DuplicateMailHttpException } from &#x27;../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
+import { MailRequiredHttpException } from &#x27;../../util/exception/custom-http-exception/mail-required.http-exception&#x27;;
+import { UserNotFoundHttpException } from &#x27;../../util/exception/custom-http-exception/user-not-found.http-exception&#x27;;
+import { DuplicateUsernameHttpException } from &#x27;../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
+import { SamePasswordHttpException } from &#x27;../../util/exception/custom-http-exception/same-password.http-exception&#x27;;
+import { InvalidPasswordHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-password.http-exception&#x27;;
 import { RequestUser } from &#x27;../auth/interface/request-user.interface&#x27;;
 import { DeleteUserCommand } from &#x27;./cqrs/command/delete-user.command&#x27;;
 
@@ -1567,7 +1567,7 @@ export class UserService {
     try {
       return await this.queryBus.execute(new GetUserQuery(id));
     } catch (error) {
-      throw new UserNotFoundException();
+      throw new UserNotFoundHttpException();
     }
   }
 
@@ -1575,11 +1575,11 @@ export class UserService {
     try {
       return await this.commandBus.execute(new UpdateUserCommand(userId, updateUserDto));
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundException();
-      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Mail already exists&#x27; || error instanceof DuplicateMailException)
-        throw new DuplicateMailException();
-      else if (error instanceof DuplicateUsernameException || error.message &#x3D;&#x3D;&#x3D; &#x27;Username already exists&#x27;) {
-        throw new DuplicateUsernameException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundHttpException();
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Mail already exists&#x27; || error instanceof DuplicateMailHttpException)
+        throw new DuplicateMailHttpException();
+      else if (error instanceof DuplicateUsernameHttpException || error.message &#x3D;&#x3D;&#x3D; &#x27;Username already exists&#x27;) {
+        throw new DuplicateUsernameHttpException();
       } else throw Error(&#x27;not handled error&#x27;);
     }
   }
@@ -1588,7 +1588,7 @@ export class UserService {
     try {
       return await this.commandBus.execute(new SoftDeleteUserCommand(id));
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundHttpException();
       else throw error;
     }
   }
@@ -1612,8 +1612,8 @@ export class UserService {
       } catch (error) {}
       return user;
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Mail is required&#x27;) throw new MailRequiredException();
-      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Mail already exists&#x27;) throw new DuplicateMailException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Mail is required&#x27;) throw new MailRequiredHttpException();
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Mail already exists&#x27;) throw new DuplicateMailHttpException();
       else throw error;
     }
   }
@@ -1622,7 +1622,7 @@ export class UserService {
     try {
       return await this.commandBus.execute(new RestoreUserCommand({ id: userId }));
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundHttpException();
       else throw error;
     }
   }
@@ -1639,7 +1639,7 @@ export class UserService {
     try {
       return await this.commandBus.execute(new UpdateUserRoleCommand({ userId: userId, roles: roles }));
     } catch (error) {
-      throw new UserNotFoundException();
+      throw new UserNotFoundHttpException();
     }
   }
 
@@ -1649,10 +1649,10 @@ export class UserService {
         new UpdateUserCredentialCommand({ userId: userId, updateUserCredentialDto: updateUserCredentialDto }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;New password is the same as old password&#x27;) throw new SamePasswordException();
-      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundException();
-      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Invalid password&#x27;) throw new InvalidPasswordException();
-      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Invalid old password&#x27;) throw new InvalidPasswordException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;New password is the same as old password&#x27;) throw new SamePasswordHttpException();
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundHttpException();
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Invalid password&#x27;) throw new InvalidPasswordHttpException();
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Invalid old password&#x27;) throw new InvalidPasswordHttpException();
       else throw error;
     }
   }

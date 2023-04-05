@@ -33,11 +33,11 @@ export class SoftDeleteGroupEventHandler implements IEventHandler<SoftDeleteGrou
               }),
             );
           })
-          .catch(error => {
+          .catch(() => {
             throw new ErrorSoftDeleteRuntimeException('Error while soft deleting group');
           });
       })
-      .catch(error => {
+      .catch(() => {
         throw new ErrorInvalidIdRuntimeException('Invalid group id');
       });
   }

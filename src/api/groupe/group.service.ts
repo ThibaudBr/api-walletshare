@@ -31,7 +31,6 @@ import { GroupMembershipResponse } from './web/response/group-membership.respons
 import { CardResponse } from '../card/web/response/card.response';
 import { GetGroupByIdQuery } from './cqrs/query/get-group-by-id.query';
 import { GetGroupMembershipWithCardIdQuery } from './cqrs/query/get-group-membership-with-card-id.query';
-import { GetGroupWithCardIdAndGroupIdRequest } from './web/request/get-group-with-card-id-and-group-id.request';
 import { GetGroupRequestWithCardIdAndGroupIdQuery } from './cqrs/query/get-group-request-with-card-id-and-group-id.query';
 import { GetGroupRequestWithCriteriaQuery } from './cqrs/query/get-group-request-with-criteria.query';
 import { GetGroupRequestWithCriteriaRequest } from './web/request/get-group-request-with-criteria.request';

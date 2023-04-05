@@ -769,8 +769,8 @@ import { InvalidClassException } from &#x27;@nestjs/core/errors/exceptions/inval
 import { UpdateUserEvent } from &#x27;../../event/update-user.event&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { UserResponse } from &#x27;../../../domain/response/user.response&#x27;;
-import { DuplicateUsernameException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-username.exception&#x27;;
-import { DuplicateMailException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-mail.exception&#x27;;
+import { DuplicateUsernameHttpException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
+import { DuplicateMailHttpException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
 
 @CommandHandler(UpdateUserCommand)
 export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCommand&gt; {
@@ -787,7 +787,7 @@ export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCo
           this.eventBus.publish(
             new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Username already exists&#x27; }),
           );
-          throw new DuplicateUsernameException();
+          throw new DuplicateUsernameHttpException();
         }
       }
 
@@ -796,7 +796,7 @@ export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCo
           this.eventBus.publish(
             new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Email already exists&#x27; }),
           );
-          throw new DuplicateMailException();
+          throw new DuplicateMailHttpException();
         }
       }
       if ((await this.userRepository.findOne({ where: [{ id: command.userId }] })) &#x3D;&#x3D;&#x3D; undefined) {

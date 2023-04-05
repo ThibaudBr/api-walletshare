@@ -3,7 +3,6 @@ import { UserEntity } from '../../../../user/domain/entities/user.entity';
 import { Repository } from 'typeorm';
 import { GroupMembershipEntity } from '../../../domain/entities/group-membership.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RoleGroupMembershipEnum } from '../../../domain/enum/role-group-membership.enum';
 import { IsUserIdHaveRoleInGroupQuery } from '../../query/is-user-id-have-role-in-group.query';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 

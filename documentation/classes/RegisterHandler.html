@@ -875,13 +875,13 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
 import { RegisterEvent } from &#x27;../../event/register.event&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
-import { InvalidParameterEntityException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.exception&#x27;;
-import { InvalidPasswordException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-password.exception&#x27;;
-import { DuplicateMailException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-mail.exception&#x27;;
-import { DuplicateUsernameException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-username.exception&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { InvalidPasswordHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-password.http-exception&#x27;;
+import { DuplicateMailHttpException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
+import { DuplicateUsernameHttpException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
 import * as bcrypt from &#x27;bcrypt&#x27;;
-import { InvalidMailException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-mail.exception&#x27;;
-import { InvalidUsernameException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-username.exception&#x27;;
+import { InvalidMailHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-mail.http-exception&#x27;;
+import { InvalidUsernameHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-username.http-exception&#x27;;
 
 @CommandHandler(RegisterCommand)
 export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
@@ -900,20 +900,20 @@ export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Username already exists&#x27; }),
       );
-      throw new DuplicateUsernameException();
+      throw new DuplicateUsernameHttpException();
     }
     if (await this.isDuplicatedEmail(command.mail)) {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Email already exists&#x27; }),
       );
-      throw new DuplicateMailException();
+      throw new DuplicateMailHttpException();
     }
 
     if (this.isValidPassword(command.password)) {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Invalid password&#x27; }),
       );
-      throw new InvalidPasswordException();
+      throw new InvalidPasswordHttpException();
     }
 
     if (command.mail) {
@@ -921,7 +921,7 @@ export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
         this.eventBus.publish(
           new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Invalid mail&#x27; }),
         );
-        throw new InvalidMailException();
+        throw new InvalidMailHttpException();
       }
     }
 
@@ -930,7 +930,7 @@ export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
         this.eventBus.publish(
           new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Invalid username&#x27; }),
         );
-        throw new InvalidUsernameException();
+        throw new InvalidUsernameHttpException();
       }
     }
 
@@ -945,7 +945,7 @@ export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Invalid parameters :&#x27; + err }),
       );
-      throw new InvalidParameterEntityException(err);
+      throw new InvalidParameterEntityHttpException(err);
     }
 
     const insertedUser &#x3D; await this.userRepository.save(newUser);

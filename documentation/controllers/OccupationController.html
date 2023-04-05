@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/occupation/occupation.controller.ts</code>
+            <code>src/api/occupation/web/occupation.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -162,7 +162,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/api/occupation/occupation.controller.ts:47</a></div>
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:47</a></div>
                 </td>
             </tr>
 
@@ -240,7 +240,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/api/occupation/occupation.controller.ts:68</a></div>
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -318,7 +318,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/api/occupation/occupation.controller.ts:18</a></div>
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:18</a></div>
                 </td>
             </tr>
 
@@ -364,7 +364,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/api/occupation/occupation.controller.ts:27</a></div>
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -442,7 +442,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/api/occupation/occupation.controller.ts:36</a></div>
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -520,7 +520,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/api/occupation/occupation.controller.ts:86</a></div>
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:86</a></div>
                 </td>
             </tr>
 
@@ -598,7 +598,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/api/occupation/occupation.controller.ts:77</a></div>
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -676,7 +676,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/api/occupation/occupation.controller.ts:56</a></div>
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:56</a></div>
                 </td>
             </tr>
 
@@ -742,12 +742,12 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { OccupationService } from &#x27;./occupation.service&#x27;;
-import { RoleGuard } from &#x27;../auth/guards/role.guard&#x27;;
-import { OccupationResponse } from &#x27;./web/response/occupation-response&#x27;;
-import { UserRoleEnum } from &#x27;../user/domain/enum/user-role.enum&#x27;;
-import { GetOccupationWithCriteriaRequest } from &#x27;./web/request/get-occupation-with-criteria.request&#x27;;
-import { CreateOccupationRequest } from &#x27;./web/request/create-occupation.request&#x27;;
+import { OccupationService } from &#x27;../occupation.service&#x27;;
+import { RoleGuard } from &#x27;../../auth/guards/role.guard&#x27;;
+import { OccupationResponse } from &#x27;./response/occupation-response&#x27;;
+import { UserRoleEnum } from &#x27;../../user/domain/enum/user-role.enum&#x27;;
+import { GetOccupationWithCriteriaRequest } from &#x27;./request/get-occupation-with-criteria.request&#x27;;
+import { CreateOccupationRequest } from &#x27;./request/create-occupation.request&#x27;;
 
 @Controller(&#x27;/occupation&#x27;)
 @ApiTags(&#x27;Occupation&#x27;)

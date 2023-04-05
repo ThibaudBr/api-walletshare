@@ -5,7 +5,6 @@ import { GroupEntity } from '../../../domain/entities/group.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { GroupMembershipEntity } from '../../../domain/entities/group-membership.entity';
-import { CardEntity } from '../../../../card/domain/entities/card.entity';
 import { RoleGroupMembershipEnum } from '../../../domain/enum/role-group-membership.enum';
 import { GiveAdminRightGroupEvent } from '../../event/give-admin-right-group.event';
 
