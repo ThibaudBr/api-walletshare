@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { OccupationService } from './occupation.service';
-import { RoleGuard } from '../auth/guards/role.guard';
-import { OccupationResponse } from './web/response/occupation-response';
-import { UserRoleEnum } from '../user/domain/enum/user-role.enum';
-import { GetOccupationWithCriteriaRequest } from './web/request/get-occupation-with-criteria.request';
-import { CreateOccupationRequest } from './web/request/create-occupation.request';
+import { OccupationService } from '../occupation.service';
+import { RoleGuard } from '../../auth/guards/role.guard';
+import { OccupationResponse } from './response/occupation-response';
+import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
+import { GetOccupationWithCriteriaRequest } from './request/get-occupation-with-criteria.request';
+import { CreateOccupationRequest } from './request/create-occupation.request';
 
 @Controller('/occupation')
 @ApiTags('Occupation')

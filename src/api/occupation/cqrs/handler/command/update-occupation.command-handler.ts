@@ -6,6 +6,7 @@ import { validate } from 'class-validator';
 import { InvalidClassException } from '@nestjs/core/errors/exceptions/invalid-class.exception';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { UpdateOccupationCommand } from '../../command/update-occupation.command';
+import { UpdateOccupationEvent } from "../../event/update-occupation.event";
 
 @CommandHandler(UpdateOccupationCommand)
 export class UpdateOccupationCommandHandler implements ICommandHandler<UpdateOccupationCommand> {
@@ -52,8 +53,9 @@ export class UpdateOccupationCommandHandler implements ICommandHandler<UpdateOcc
         })
         .then(async () => {
           await this.eventBus.publish(
-            new UpdateOccupationCommand({
+            new UpdateOccupationEvent({
               occupationId: command.occupationId,
+
             }),
           );
         });

@@ -12,7 +12,7 @@ import { GetOccupationWithCriteriaDto } from './domain/dto/get-occupation-with-c
 import { CreateOccupationCommand } from './cqrs/command/create-occupation.command';
 import { CreateOccupationDto } from './domain/dto/create-occupation.dto';
 import { InvalidClassException } from '@nestjs/core/errors/exceptions/invalid-class.exception';
-import { DuplicateNameException } from '../../util/exception/custom-http-exception/duplicate-name.exception';
+import { DuplicateNameHttpException } from '../../util/exception/custom-http-exception/duplicate-name.http-exception';
 import { CreateOccupationRequest } from './web/request/create-occupation.request';
 import { UpdateOccupationRequest } from './web/request/update-occupation.request';
 import { UpdateOccupationDto } from './domain/dto/update-occupation.dto';
@@ -81,7 +81,7 @@ export class OccupationService {
         }),
       );
     } catch (error) {
-      if (error.message === 'Duplicate name') throw new DuplicateNameException();
+      if (error.message === 'Duplicate name') throw new DuplicateNameHttpException();
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }
@@ -99,7 +99,7 @@ export class OccupationService {
       );
     } catch (error) {
       if (error.message === 'Occupation not found') throw new OccupationNotFoundException();
-      else if (error.message === 'Duplicate name') throw new DuplicateNameException();
+      else if (error.message === 'Duplicate name') throw new DuplicateNameHttpException();
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }
