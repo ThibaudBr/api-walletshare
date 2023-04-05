@@ -1,9 +1,22 @@
-import { CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { GroupEntity } from './group.entity';
+import { GroupRequestStatusEnum } from '../enum/group-request-status.enum';
 
 @Entity()
-export class GroupRequestEntity {
+export class GroupRequestEntity extends BaseEntity {
+  constructor(partial: Partial<GroupRequestEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -16,6 +29,9 @@ export class GroupRequestEntity {
     onDelete: 'CASCADE',
   })
   card: CardEntity;
+
+  @Column()
+  status: GroupRequestStatusEnum;
 
   @CreateDateColumn()
   createdAt: Date;

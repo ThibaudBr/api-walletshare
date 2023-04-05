@@ -25,7 +25,7 @@ import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.en
 import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
 import { AddressEntity } from '../../api/entities-to-create/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
-import { GroupRequestEntity } from "../../api/groupe/domain/entities/group-request.entity";
+import { GroupRequestEntity } from '../../api/groupe/domain/entities/group-request.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {

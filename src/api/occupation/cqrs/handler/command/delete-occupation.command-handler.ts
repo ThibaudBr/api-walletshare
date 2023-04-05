@@ -4,7 +4,7 @@ import { DeleteOccupationCommand } from '../../command/delete-occupation.command
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import { DeleteOccupationEvent } from "../../event/delete-occupation.event";
+import { DeleteOccupationEvent } from '../../event/delete-occupation.event';
 
 @CommandHandler(DeleteOccupationCommand)
 export class DeleteOccupationCommandHandler implements ICommandHandler<DeleteOccupationCommand> {

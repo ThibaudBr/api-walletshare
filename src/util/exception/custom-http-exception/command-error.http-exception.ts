@@ -1,6 +1,6 @@
 import { HttpException } from '@nestjs/common';
 
-export class CommandErrorException extends HttpException {
+export class CommandErrorHttpException extends HttpException {
   constructor() {
     super(
       {

@@ -1,4 +1,4 @@
-import { GroupMembershipResponse } from "./group-membership.response";
+import { GroupMembershipResponse } from './group-membership.response';
 
 export class GroupResponse {
   constructor(partial: Partial<GroupResponse>) {
@@ -7,7 +7,6 @@ export class GroupResponse {
 
   public readonly id: string;
   public readonly name: string;
-  public readonly description: string;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
   public readonly deletedAt: Date;

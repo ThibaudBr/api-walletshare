@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ProfileResponse } from './domain/response/profile.response';
 import { CreateProfileCommand } from './cqrs/command/create-profile.command';
-import { InvalidIdException } from '../../util/exception/custom-http-exception/invalid-id.exception';
-import { UserNotFoundException } from '../../util/exception/custom-http-exception/user-not-found.exception';
-import { InvalidParameterEntityException } from '../../util/exception/custom-http-exception/invalid-parameter-entity.exception';
+import { InvalidIdHttpException } from '../../util/exception/custom-http-exception/invalid-id.http-exception';
+import { UserNotFoundHttpException } from '../../util/exception/custom-http-exception/user-not-found.http-exception';
+import { InvalidParameterEntityHttpException } from '../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 import { DeleteProfileCommand } from './cqrs/command/delete-profile.command';
 import { UpdateProfileCommand } from './cqrs/command/update-profile.command';
 import { CreateProfileRequest } from './domain/request/create-profile.request';
@@ -18,7 +18,7 @@ import { GetAllProfileQuery } from './cqrs/query/get-all-profile.query';
 import { GetProfileWithCriteriaQuery } from './cqrs/query/get-profile-with-criteria.query';
 import { GetProfilesWithCriteriaRequest } from './domain/request/get-profiles-with-criteria.request';
 import { GetProfilesByUserIdQuery } from './cqrs/query/get-profiles-by-user-id.query';
-import { NotTheOwnerException } from '../../util/exception/custom-http-exception/not-the-owner.exception';
+import { NotTheOwnerHttpException } from '../../util/exception/custom-http-exception/not-the-owner.http-exception';
 import { RestoreProfileCommand } from './cqrs/command/restore-profile.command';
 
 @Injectable()
@@ -38,9 +38,9 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'User not found') throw new UserNotFoundException();
-      else if (e instanceof InvalidParameterEntityException) throw e;
-      else if (e.message === 'Occupation not found') throw new InvalidIdException();
+      if (e.message === 'User not found') throw new UserNotFoundHttpException();
+      else if (e instanceof InvalidParameterEntityHttpException) throw e;
+      else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
       else throw new Error(e);
     }
   }
@@ -53,7 +53,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'Profile not found') throw new InvalidIdException();
+      if (e.message === 'Profile not found') throw new InvalidIdHttpException();
       else throw new Error(e);
     }
   }
@@ -66,7 +66,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'Profile not found') throw new InvalidIdException();
+      if (e.message === 'Profile not found') throw new InvalidIdHttpException();
       else throw new Error(e);
     }
   }
@@ -91,10 +91,10 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'Profile not found') throw new InvalidIdException();
-      else if (e instanceof InvalidParameterEntityException) throw e;
-      else if (e.message === 'User not found') throw new UserNotFoundException();
-      else if (e.message === 'Occupation not found') throw new InvalidIdException();
+      if (e.message === 'Profile not found') throw new InvalidIdHttpException();
+      else if (e instanceof InvalidParameterEntityHttpException) throw e;
+      else if (e.message === 'User not found') throw new UserNotFoundHttpException();
+      else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
       else throw new Error(e);
     }
   }
@@ -130,11 +130,11 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'Profile not found') throw new InvalidIdException();
-      else if (e instanceof InvalidParameterEntityException) throw e;
-      else if (e.message === 'User not found') throw new UserNotFoundException();
-      else if (e.message === 'Occupation not found') throw new InvalidIdException();
-      else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerException();
+      if (e.message === 'Profile not found') throw new InvalidIdHttpException();
+      else if (e instanceof InvalidParameterEntityHttpException) throw e;
+      else if (e.message === 'User not found') throw new UserNotFoundHttpException();
+      else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
+      else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerHttpException();
       else throw new Error(e);
     }
   }
@@ -148,8 +148,8 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'Profile not found') throw new InvalidIdException();
-      else if (e.message === 'User not found') throw new UserNotFoundException();
+      if (e.message === 'Profile not found') throw new InvalidIdHttpException();
+      else if (e.message === 'User not found') throw new UserNotFoundHttpException();
       else throw new Error(e);
     }
   }
@@ -163,7 +163,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'Profile not found') throw new InvalidIdException();
+      if (e.message === 'Profile not found') throw new InvalidIdHttpException();
       else throw new Error(e);
     }
   }
@@ -202,7 +202,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'User not found') throw new UserNotFoundException();
+      if (e.message === 'User not found') throw new UserNotFoundHttpException();
       throw new Error(e);
     }
   }
@@ -222,8 +222,8 @@ export class ProfileService {
           return profile;
         });
     } catch (e) {
-      if (e.message === 'Profile not found') throw new InvalidIdException();
-      else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerException();
+      if (e.message === 'Profile not found') throw new InvalidIdHttpException();
+      else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerHttpException();
       else throw new Error(e);
     }
   }
@@ -236,7 +236,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      if (e.message === 'Profile not found') throw new InvalidIdException();
+      if (e.message === 'Profile not found') throw new InvalidIdHttpException();
       else throw new Error(e);
     }
   }

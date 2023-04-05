@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -13,10 +14,14 @@ import { Length } from 'class-validator';
 import { ConversationEntity } from '../../../entities-to-create/conversation.entity';
 import { MediaEntity } from '../../../entities-to-create/media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';
-import { GroupRequestEntity } from "./group-request.entity";
+import { GroupRequestEntity } from './group-request.entity';
 
 @Entity({ name: 'group' })
-export class GroupEntity {
+export class GroupEntity extends BaseEntity {
+  constructor(partial: Partial<GroupEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -27,6 +32,11 @@ export class GroupEntity {
   @Length(5, 30)
   @Column({ nullable: false, unique: true })
   name: string;
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
+
   @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
   members: GroupMembershipEntity[];
 

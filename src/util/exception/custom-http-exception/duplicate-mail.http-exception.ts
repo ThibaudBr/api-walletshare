@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-export class DuplicateMailException extends HttpException {
+export class DuplicateMailHttpException extends HttpException {
   constructor() {
     super('Mail already exists', HttpStatus.BAD_REQUEST);
   }

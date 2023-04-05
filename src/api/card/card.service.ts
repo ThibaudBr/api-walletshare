@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { InvalidIdException } from '../../util/exception/custom-http-exception/invalid-id.exception';
+import { InvalidIdHttpException } from '../../util/exception/custom-http-exception/invalid-id.http-exception';
 import { IsCardOwnerWithUserIdQuery } from './cqrs/query/is-card-owner-with-user-id.query';
 import { AddConnectedCardCommand } from './cqrs/command/add-connected-card.command';
-import { UnauthorizedRequestException } from '../../util/exception/custom-http-exception/unauthorized-request.exception';
+import { UnauthorizedRequestHttpException } from '../../util/exception/custom-http-exception/unauthorized-request.http-exception';
 import { AddSavedCardCommand } from './cqrs/command/add-saved-card.command';
 import { IsProfileOwnerWithUserIsQuery } from './cqrs/query/is-profile-owner-with-user-is.query';
 import { AddViewCountCardCommand } from './cqrs/command/add-view-count-card.command';
@@ -42,9 +42,11 @@ export class CardService {
           return cards.map((card: CardEntity) => {
             return new CardResponse({
               ...card,
-              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-              groupMemberships: card.groupMemberships
+              ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetworkResponse: card.socialNetwork
+                ? new SocialNetworkResponse({ ...card.socialNetwork })
+                : undefined,
+              groupMembershipsResponse: card.groupMemberships
                 ? card.groupMemberships.map(
                     groupMembership =>
                       new GroupMembershipResponse({
@@ -75,9 +77,11 @@ export class CardService {
         .then((card: CardEntity) => {
           return new CardResponse({
             ...card,
-            owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-            socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-            groupMemberships: card.groupMemberships
+            ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+            socialNetworkResponse: card.socialNetwork
+              ? new SocialNetworkResponse({ ...card.socialNetwork })
+              : undefined,
+            groupMembershipsResponse: card.groupMemberships
               ? card.groupMemberships.map(
                   groupMembership =>
                     new GroupMembershipResponse({
@@ -108,9 +112,11 @@ export class CardService {
           return cards.map((card: CardEntity) => {
             return new CardResponse({
               ...card,
-              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-              groupMemberships: card.groupMemberships
+              ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetworkResponse: card.socialNetwork
+                ? new SocialNetworkResponse({ ...card.socialNetwork })
+                : undefined,
+              groupMembershipsResponse: card.groupMemberships
                 ? card.groupMemberships.map(
                     groupMembership =>
                       new GroupMembershipResponse({
@@ -143,9 +149,11 @@ export class CardService {
             return cards.map((card: CardEntity) => {
               return new CardResponse({
                 ...card,
-                owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-                socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-                groupMemberships: card.groupMemberships
+                ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+                socialNetworkResponse: card.socialNetwork
+                  ? new SocialNetworkResponse({ ...card.socialNetwork })
+                  : undefined,
+                groupMembershipsResponse: card.groupMemberships
                   ? card.groupMemberships.map(
                       groupMembership =>
                         new GroupMembershipResponse({
@@ -168,7 +176,7 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Unauthorized') throw new UnauthorizedException('Unauthorized');
       else throw new InternalServerErrorException(error);
     }
@@ -182,9 +190,11 @@ export class CardService {
           return cards.map((card: CardEntity) => {
             return new CardResponse({
               ...card,
-              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-              groupMemberships: card.groupMemberships
+              ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetworkResponse: card.socialNetwork
+                ? new SocialNetworkResponse({ ...card.socialNetwork })
+                : undefined,
+              groupMembershipsResponse: card.groupMemberships
                 ? card.groupMemberships.map(
                     groupMembership =>
                       new GroupMembershipResponse({
@@ -204,9 +214,9 @@ export class CardService {
           throw new InternalServerErrorException(error);
         });
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Unauthorized') throw new UnauthorizedException('Unauthorized');
-      else if (error.message === 'Profile not found') throw new InvalidIdException(' for profile');
+      else if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
       throw new InternalServerErrorException(error);
     }
   }
@@ -217,9 +227,11 @@ export class CardService {
         return cards.map((card: CardEntity) => {
           return new CardResponse({
             ...card,
-            owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-            socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-            groupMemberships: card.groupMemberships
+            ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+            socialNetworkResponse: card.socialNetwork
+              ? new SocialNetworkResponse({ ...card.socialNetwork })
+              : undefined,
+            groupMembershipsResponse: card.groupMemberships
               ? card.groupMemberships.map(
                   groupMembership =>
                     new GroupMembershipResponse({
@@ -248,9 +260,11 @@ export class CardService {
           return cards.map((card: CardEntity) => {
             return new CardResponse({
               ...card,
-              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-              groupMemberships: card.groupMemberships
+              ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetworkResponse: card.socialNetwork
+                ? new SocialNetworkResponse({ ...card.socialNetwork })
+                : undefined,
+              groupMembershipsResponse: card.groupMemberships
                 ? card.groupMemberships.map(
                     groupMembership =>
                       new GroupMembershipResponse({
@@ -283,9 +297,11 @@ export class CardService {
             return cards.map((card: CardEntity) => {
               return new CardResponse({
                 ...card,
-                owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-                socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-                groupMemberships: card.groupMemberships
+                ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+                socialNetworkResponse: card.socialNetwork
+                  ? new SocialNetworkResponse({ ...card.socialNetwork })
+                  : undefined,
+                groupMembershipsResponse: card.groupMemberships
                   ? card.groupMemberships.map(
                       groupMembership =>
                         new GroupMembershipResponse({
@@ -308,9 +324,9 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Unauthorized') throw new UnauthorizedException('Unauthorized');
-      else if (error.message === 'Profile not found') throw new InvalidIdException(' for profile');
+      else if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
       throw new InternalServerErrorException(error);
     }
   }
@@ -323,9 +339,11 @@ export class CardService {
           return cards.map((card: CardEntity) => {
             return new CardResponse({
               ...card,
-              owner: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
-              socialNetwork: card.socialNetwork ? new SocialNetworkResponse({ ...card.socialNetwork }) : undefined,
-              groupMemberships: card.groupMemberships
+              ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+              socialNetworkResponse: card.socialNetwork
+                ? new SocialNetworkResponse({ ...card.socialNetwork })
+                : undefined,
+              groupMembershipsResponse: card.groupMemberships
                 ? card.groupMemberships.map(
                     groupMembership =>
                       new GroupMembershipResponse({
@@ -342,9 +360,9 @@ export class CardService {
           });
         });
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Unauthorized') throw new UnauthorizedException('Unauthorized');
-      else if (error.message === 'Profile not found') throw new InvalidIdException(' for profile');
+      else if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
       else throw new InternalServerErrorException(error);
     }
   }
@@ -361,12 +379,12 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Card of sender not found') throw new InvalidIdException(' for card sender');
-      else if (error.message === 'Card of receiver not found') throw new InvalidIdException(' for card receiver');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Card of sender not found') throw new InvalidIdHttpException(' for card sender');
+      else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card receiver');
       else if (error.message === 'Card already connected') throw new BadRequestException('Card already connected');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -380,12 +398,12 @@ export class CardService {
         }),
       );
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Card of sender not found') throw new InvalidIdException(' for card sender');
-      else if (error.message === 'Card of receiver not found') throw new InvalidIdException(' for card receiver');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Card of sender not found') throw new InvalidIdHttpException(' for card sender');
+      else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card receiver');
       else if (error.message === 'Card already connected') throw new BadRequestException('Card already connected');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -403,12 +421,12 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Card of sender not found') throw new InvalidIdException(' for card sender');
-      else if (error.message === 'Card of receiver not found') throw new InvalidIdException(' for card receiver');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Card of sender not found') throw new InvalidIdHttpException(' for card sender');
+      else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card receiver');
       else if (error.message === 'Card already connected') throw new BadRequestException('Card already connected');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -421,9 +439,9 @@ export class CardService {
         }),
       );
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -441,9 +459,9 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Profile not found') throw new InvalidIdException(' for profile');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -457,12 +475,12 @@ export class CardService {
         }),
       );
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Profile not found') throw new InvalidIdException(' for profile');
-      else if (error.message === 'Social Network not found') throw new InvalidIdException(' for social network');
-      else if (error.message === 'Occupation not found') throw new InvalidIdException(' for occupation');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
+      else if (error.message === 'Social Network not found') throw new InvalidIdHttpException(' for social network');
+      else if (error.message === 'Occupation not found') throw new InvalidIdHttpException(' for occupation');
       else if (error.message === 'Error saving card') throw new InternalServerErrorException('Error saving card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -475,9 +493,9 @@ export class CardService {
         }),
       );
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -498,9 +516,9 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -514,8 +532,8 @@ export class CardService {
         }),
       );
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
       else throw error;
     }
   }
@@ -529,7 +547,7 @@ export class CardService {
         }),
       );
     } catch (e) {
-      throw new InvalidIdException();
+      throw new InvalidIdHttpException();
     }
   }
 
@@ -542,7 +560,7 @@ export class CardService {
         }),
       );
     } catch (error) {
-      throw new InvalidIdException();
+      throw new InvalidIdHttpException();
     }
   }
 
@@ -554,9 +572,9 @@ export class CardService {
         }),
       );
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -573,9 +591,9 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -588,9 +606,9 @@ export class CardService {
         }),
       );
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -608,13 +626,13 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Profile not found') throw new InvalidIdException(' for profile');
-      else if (error.message === 'Social Network not found') throw new InvalidIdException(' for social network');
-      else if (error.message === 'Occupation not found') throw new InvalidIdException(' for occupation');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
+      else if (error.message === 'Social Network not found') throw new InvalidIdHttpException(' for social network');
+      else if (error.message === 'Occupation not found') throw new InvalidIdHttpException(' for occupation');
       else if (error.message === 'Error saving card') throw new InternalServerErrorException('Error saving card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -628,13 +646,13 @@ export class CardService {
         }),
       );
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Profile not found') throw new InvalidIdException(' for profile');
-      else if (error.message === 'Social Network not found') throw new InvalidIdException(' for social network');
-      else if (error.message === 'Occupation not found') throw new InvalidIdException(' for occupation');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
+      else if (error.message === 'Social Network not found') throw new InvalidIdHttpException(' for social network');
+      else if (error.message === 'Occupation not found') throw new InvalidIdHttpException(' for occupation');
       else if (error.message === 'Error saving card') throw new InternalServerErrorException('Error saving card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }
@@ -652,9 +670,9 @@ export class CardService {
         throw new Error('Unauthorized');
       }
     } catch (error) {
-      if (error instanceof InvalidIdException) throw new InvalidIdException(' for userId');
-      else if (error.message === 'Card not found') throw new InvalidIdException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestException();
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
   }

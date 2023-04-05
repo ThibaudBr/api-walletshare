@@ -1,6 +1,6 @@
 import { HttpException } from '@nestjs/common';
 
-export class EntityCreationException extends HttpException {
+export class EntityCreationHttpException extends HttpException {
   constructor() {
     super(
       {

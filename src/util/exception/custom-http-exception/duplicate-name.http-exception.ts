@@ -1,6 +1,6 @@
 import { HttpException } from '@nestjs/common';
 
-export class DuplicateNameException extends HttpException {
+export class DuplicateNameHttpException extends HttpException {
   constructor() {
     super('Duplicate name', 409);
   }

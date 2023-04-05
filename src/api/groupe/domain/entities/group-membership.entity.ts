@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -12,7 +13,12 @@ import { RoleGroupMembershipEnum } from '../enum/role-group-membership.enum';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 
 @Entity({ name: 'group_membership' })
-export class GroupMembershipEntity {
+export class GroupMembershipEntity extends BaseEntity {
+  constructor(partial: Partial<GroupMembershipEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
   // ______________________________________________________

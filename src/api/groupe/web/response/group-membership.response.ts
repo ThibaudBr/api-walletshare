@@ -7,10 +7,11 @@ export class GroupMembershipResponse {
     Object.assign(this, partial);
   }
 
-  public readonly card?: CardResponse;
+  public readonly id: string;
+  public readonly cardResponse?: CardResponse;
   public readonly cardId: string;
   public readonly groupId: string;
-  public readonly group?: GroupResponse;
+  public readonly groupResponse?: GroupResponse;
   public readonly role: RoleGroupMembershipEnum;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;

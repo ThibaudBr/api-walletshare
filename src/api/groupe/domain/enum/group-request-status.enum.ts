@@ -1,5 +1,6 @@
-export enum GroupRequestStatus {
-  NONE,
+export enum GroupRequestStatusEnum {
+  REFUSED,
   PENDING,
   JOINED,
+  CANCELED,
 }

@@ -20,12 +20,12 @@ import { UpdateUserCredentialCommand } from './cqrs/command/update-user-credenti
 import { UpdateUserCredentialDto } from './domain/dto/update-user-credential.dto';
 import { GenerateUserDto } from './domain/dto/generate-user.dto';
 import { DeleteMailCommand } from '../api-landing-page/cqrs/command/delete-mail.command';
-import { DuplicateMailException } from '../../util/exception/custom-http-exception/duplicate-mail.exception';
-import { MailRequiredException } from '../../util/exception/custom-http-exception/mail-required.exception';
-import { UserNotFoundException } from '../../util/exception/custom-http-exception/user-not-found.exception';
-import { DuplicateUsernameException } from '../../util/exception/custom-http-exception/duplicate-username.exception';
-import { SamePasswordException } from '../../util/exception/custom-http-exception/same-password.exception';
-import { InvalidPasswordException } from '../../util/exception/custom-http-exception/invalid-password.exception';
+import { DuplicateMailHttpException } from '../../util/exception/custom-http-exception/duplicate-mail.http-exception';
+import { MailRequiredHttpException } from '../../util/exception/custom-http-exception/mail-required.http-exception';
+import { UserNotFoundHttpException } from '../../util/exception/custom-http-exception/user-not-found.http-exception';
+import { DuplicateUsernameHttpException } from '../../util/exception/custom-http-exception/duplicate-username.http-exception';
+import { SamePasswordHttpException } from '../../util/exception/custom-http-exception/same-password.http-exception';
+import { InvalidPasswordHttpException } from '../../util/exception/custom-http-exception/invalid-password.http-exception';
 import { RequestUser } from '../auth/interface/request-user.interface';
 import { DeleteUserCommand } from './cqrs/command/delete-user.command';
 
@@ -57,7 +57,7 @@ export class UserService {
     try {
       return await this.queryBus.execute(new GetUserQuery(id));
     } catch (error) {
-      throw new UserNotFoundException();
+      throw new UserNotFoundHttpException();
     }
   }
 
@@ -65,11 +65,11 @@ export class UserService {
     try {
       return await this.commandBus.execute(new UpdateUserCommand(userId, updateUserDto));
     } catch (error) {
-      if (error.message === 'User not found') throw new UserNotFoundException();
-      else if (error.message === 'Mail already exists' || error instanceof DuplicateMailException)
-        throw new DuplicateMailException();
-      else if (error instanceof DuplicateUsernameException || error.message === 'Username already exists') {
-        throw new DuplicateUsernameException();
+      if (error.message === 'User not found') throw new UserNotFoundHttpException();
+      else if (error.message === 'Mail already exists' || error instanceof DuplicateMailHttpException)
+        throw new DuplicateMailHttpException();
+      else if (error instanceof DuplicateUsernameHttpException || error.message === 'Username already exists') {
+        throw new DuplicateUsernameHttpException();
       } else throw Error('not handled error');
     }
   }
@@ -78,7 +78,7 @@ export class UserService {
     try {
       return await this.commandBus.execute(new SoftDeleteUserCommand(id));
     } catch (error) {
-      if (error.message === 'User not found') throw new UserNotFoundException();
+      if (error.message === 'User not found') throw new UserNotFoundHttpException();
       else throw error;
     }
   }
@@ -102,8 +102,8 @@ export class UserService {
       } catch (error) {}
       return user;
     } catch (error) {
-      if (error.message === 'Mail is required') throw new MailRequiredException();
-      else if (error.message === 'Mail already exists') throw new DuplicateMailException();
+      if (error.message === 'Mail is required') throw new MailRequiredHttpException();
+      else if (error.message === 'Mail already exists') throw new DuplicateMailHttpException();
       else throw error;
     }
   }
@@ -112,7 +112,7 @@ export class UserService {
     try {
       return await this.commandBus.execute(new RestoreUserCommand({ id: userId }));
     } catch (error) {
-      if (error.message === 'User not found') throw new UserNotFoundException();
+      if (error.message === 'User not found') throw new UserNotFoundHttpException();
       else throw error;
     }
   }
@@ -129,7 +129,7 @@ export class UserService {
     try {
       return await this.commandBus.execute(new UpdateUserRoleCommand({ userId: userId, roles: roles }));
     } catch (error) {
-      throw new UserNotFoundException();
+      throw new UserNotFoundHttpException();
     }
   }
 
@@ -139,10 +139,10 @@ export class UserService {
         new UpdateUserCredentialCommand({ userId: userId, updateUserCredentialDto: updateUserCredentialDto }),
       );
     } catch (error) {
-      if (error.message === 'New password is the same as old password') throw new SamePasswordException();
-      else if (error.message === 'User not found') throw new UserNotFoundException();
-      else if (error.message === 'Invalid password') throw new InvalidPasswordException();
-      else if (error.message === 'Invalid old password') throw new InvalidPasswordException();
+      if (error.message === 'New password is the same as old password') throw new SamePasswordHttpException();
+      else if (error.message === 'User not found') throw new UserNotFoundHttpException();
+      else if (error.message === 'Invalid password') throw new InvalidPasswordHttpException();
+      else if (error.message === 'Invalid old password') throw new InvalidPasswordHttpException();
       else throw error;
     }
   }
