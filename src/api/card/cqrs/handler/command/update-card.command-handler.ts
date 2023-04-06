@@ -9,9 +9,7 @@ import { SocialNetworkEntity } from '../../../../social-network/domain/entities/
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { validate } from 'class-validator';
 import { UpdateCardEvent } from '../../event/update-card.event';
-import {
-  ErrorInvalidIdRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
 
 @CommandHandler(UpdateCardCommand)
 export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardCommand> {

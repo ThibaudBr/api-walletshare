@@ -5,12 +5,8 @@ import { CardEntity } from '../../../domain/entities/card.entity';
 import { Repository } from 'typeorm';
 import { AddViewCountCardEvent } from '../../event/add-view-count-card.event';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import {
-  ErrorInvalidIdRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
-import {
-  ErrorUpdateRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-group-request.runtime-exception";
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorUpdateRuntimeException } from '../../../../../util/exception/runtime-exception/error-group-request.runtime-exception';
 
 @CommandHandler(AddViewCountCardCommand)
 export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCountCardCommand> {

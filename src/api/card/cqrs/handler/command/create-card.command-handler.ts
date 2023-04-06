@@ -9,12 +9,8 @@ import { SocialNetworkEntity } from '../../../../social-network/domain/entities/
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { TypeOfCardEnum } from '../../../domain/enum/type-of-card.enum';
 import { CreateCardEvent } from '../../event/create-card.event';
-import {
-  ErrorInvalidIdRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
-import {
-  ErrorSaveRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-save.runtime-exception";
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorSaveRuntimeException } from '../../../../../util/exception/runtime-exception/error-save.runtime-exception';
 
 @CommandHandler(CreateCardCommand)
 export class CreateCardCommandHandler implements ICommandHandler<CreateCardCommand> {

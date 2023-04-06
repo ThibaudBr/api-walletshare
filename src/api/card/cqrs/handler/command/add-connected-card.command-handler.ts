@@ -6,15 +6,9 @@ import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/er
 import { Repository } from 'typeorm';
 import { ConnectedCardEntity } from '../../../domain/entities/connected-card.entity';
 import { AddConnectedCardEvent } from '../../event/add-connected-card.event';
-import {
-  ErrorInvalidIdRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
-import {
-  ErrorCardAlreadyConnectedRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-card-already-connected.runtime-exception";
-import {
-  ErrorSaveRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-save.runtime-exception";
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorCardAlreadyConnectedRuntimeException } from '../../../../../util/exception/runtime-exception/error-card-already-connected.runtime-exception';
+import { ErrorSaveRuntimeException } from '../../../../../util/exception/runtime-exception/error-save.runtime-exception';
 
 @CommandHandler(AddConnectedCardCommand)
 export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnectedCardCommand> {

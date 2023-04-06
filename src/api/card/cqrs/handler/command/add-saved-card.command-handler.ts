@@ -6,12 +6,8 @@ import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { AddSavedCardEvent } from '../../event/add-saved-card.event';
 import { ProfileEntity } from '../../../../profile/domain/entities/profile.entity';
-import {
-  ErrorInvalidIdRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
-import {
-  ErrorUpdateRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-group-request.runtime-exception";
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorUpdateRuntimeException } from '../../../../../util/exception/runtime-exception/error-group-request.runtime-exception';
 
 @CommandHandler(AddSavedCardCommand)
 export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardCommand> {

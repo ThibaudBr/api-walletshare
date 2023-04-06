@@ -47,6 +47,7 @@ import { RestoreGroupEventHandler } from './cqrs/handler/event/restore-group.eve
 import { SendGroupRequestEventHandler } from './cqrs/handler/event/send-group-request.event-handler';
 import { SoftDeleteGroupEventHandler } from './cqrs/handler/event/soft-delete-group.event-handler';
 import { UpdateGroupEventHandler } from './cqrs/handler/event/update-group.event-handler';
+import { GroupService } from './group.service';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { UpdateGroupEventHandler } from './cqrs/handler/event/update-group.event
   ],
   controllers: [GroupController],
   providers: [
+    GroupService,
     // log
     ApiLogService,
     CreateLogCommandHandler,

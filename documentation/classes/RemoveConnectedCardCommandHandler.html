@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/card/cqrs/handler/command/remove-connected-card.command-handler.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/card/cqrs/handler/command/remove-connected-card.command-handler.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -206,8 +206,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/remove-connected-card.command-handler.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/remove-connected-card.command-handler.ts:22</a></div>
                 </td>
             </tr>
 
@@ -272,6 +272,9 @@ import { RemoveConnectedCardCommand } from &#x27;../../command/remove-connected-
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { ConnectedCardEntity } from &#x27;../../../domain/entities/connected-card.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
+import { ErrorInvalidIdRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
+import { ErrorDeleteRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-delete.runtime-exception&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @CommandHandler(RemoveConnectedCardCommand)
 export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;RemoveConnectedCardCommand&gt; {
@@ -295,7 +298,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;Rem
           ],
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Card of sender not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Card of sender not found&#x27;);
         });
 
       const cardToDisconnect: CardEntity &#x3D; await this.cardRepository
@@ -308,7 +311,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;Rem
           ],
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Card of receiver not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Card of receiver not found&#x27;);
         });
 
       if (cardWhoRequest.connectedCardOne.map(card &#x3D;&gt; card.id).includes(cardToDisconnect.id)) {
@@ -338,11 +341,11 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;Rem
                 );
               })
               .catch(() &#x3D;&gt; {
-                throw new Error(&#x27;Error while deleting relation&#x27;);
+                throw new ErrorDeleteRuntimeException(&#x27;Error while deleting relation&#x27;);
               });
           })
           .catch(() &#x3D;&gt; {
-            throw new Error(&#x27;Error while fetching relation&#x27;);
+            throw new ErrorInvalidIdRuntimeException(&#x27;Error while fetching relation&#x27;);
           });
       } else {
         await this.connectedCardRepository
@@ -371,15 +374,22 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;Rem
                 );
               })
               .catch(() &#x3D;&gt; {
-                throw new Error(&#x27;Error while deleting relation&#x27;);
+                throw new ErrorDeleteRuntimeException(&#x27;Error while deleting relation&#x27;);
               });
           })
           .catch(() &#x3D;&gt; {
-            throw new Error(&#x27;Error while fetching relation&#x27;);
+            throw new ErrorInvalidIdRuntimeException(&#x27;Error while fetching relation&#x27;);
           });
       }
     } catch (error) {
-      throw new Error(error);
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;RemoveConnectedCardCommandHandler&#x27;,
+          localisation: &#x27;card&#x27;,
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

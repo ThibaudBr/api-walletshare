@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/card/cqrs/handler/command/soft-delete-card.command-handler.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/card/cqrs/handler/command/soft-delete-card.command-handler.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/soft-delete-card.command-handler.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/soft-delete-card.command-handler.ts:20</a></div>
                 </td>
             </tr>
 
@@ -260,6 +260,9 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { CardEntity } from &#x27;../../../domain/entities/card.entity&#x27;;
 import { SoftDeleteCardEvent } from &#x27;../../event/soft-delete-card.event&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import {
+  ErrorInvalidIdRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
 
 @CommandHandler(SoftDeleteCardCommand)
 export class SoftDeleteCardCommandHandler implements ICommandHandler&lt;SoftDeleteCardCommand&gt; {
@@ -276,7 +279,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler&lt;SoftDele
           where: [{ id: command.id }],
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Card not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
         });
 
       await this.cardRepository.softDelete(command.id);
@@ -293,7 +296,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler&lt;SoftDele
           error: error.message,
         }),
       );
-      throw new Error(error);
+      throw error;
     }
   }
 }

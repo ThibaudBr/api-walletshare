@@ -5,9 +5,7 @@ import { Repository } from 'typeorm';
 import { CardEntity } from '../../../domain/entities/card.entity';
 import { SoftDeleteCardEvent } from '../../event/soft-delete-card.event';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import {
-  ErrorInvalidIdRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
 
 @CommandHandler(SoftDeleteCardCommand)
 export class SoftDeleteCardCommandHandler implements ICommandHandler<SoftDeleteCardCommand> {

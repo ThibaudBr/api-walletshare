@@ -5,9 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CardEntity } from '../../../domain/entities/card.entity';
 import { RestoreCardEvent } from '../../event/restore-card.event';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import {
-  ErrorInvalidIdRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
 
 @CommandHandler(RestoreCardCommand)
 export class RestoreCardCommandHandler implements ICommandHandler<RestoreCardCommand> {

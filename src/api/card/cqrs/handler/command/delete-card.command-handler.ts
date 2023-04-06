@@ -5,15 +5,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CardEntity } from '../../../domain/entities/card.entity';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { DeleteCardEvent } from '../../event/delete-card.event';
-import {
-  ErrorParameterNotProvidedRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-parameter-not-provided.runtime-exception";
-import {
-  ErrorInvalidIdRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
-import {
-  ErrorDeleteRuntimeException
-} from "../../../../../util/exception/runtime-exception/error-delete.runtime-exception";
+import { ErrorParameterNotProvidedRuntimeException } from '../../../../../util/exception/runtime-exception/error-parameter-not-provided.runtime-exception';
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorDeleteRuntimeException } from '../../../../../util/exception/runtime-exception/error-delete.runtime-exception';
 
 @CommandHandler(DeleteCardCommand)
 export class DeleteCardCommandHandler implements ICommandHandler<DeleteCardCommand> {
