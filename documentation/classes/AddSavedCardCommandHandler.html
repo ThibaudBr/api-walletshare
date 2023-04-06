@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/card/cqrs/handler/command/add-saved-card.command-handler.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/card/cqrs/handler/command/add-saved-card.command-handler.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -206,8 +206,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/add-saved-card.command-handler.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/add-saved-card.command-handler.ts:26</a></div>
                 </td>
             </tr>
 
@@ -273,6 +273,12 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { AddSavedCardEvent } from &#x27;../../event/add-saved-card.event&#x27;;
 import { ProfileEntity } from &#x27;../../../../profile/domain/entities/profile.entity&#x27;;
+import {
+  ErrorInvalidIdRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
+import {
+  ErrorUpdateRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-group-request.runtime-exception&quot;;
 
 @CommandHandler(AddSavedCardCommand)
 export class AddSavedCardCommandHandler implements ICommandHandler&lt;AddSavedCardCommand&gt; {
@@ -295,7 +301,7 @@ export class AddSavedCardCommandHandler implements ICommandHandler&lt;AddSavedCa
           ],
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Profile not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Profile not found&#x27;);
         });
       await this.cardRepository
         .findOneOrFail({
@@ -307,7 +313,7 @@ export class AddSavedCardCommandHandler implements ICommandHandler&lt;AddSavedCa
           ],
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Card not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
         })
         .then(card &#x3D;&gt; {
           if (card.profilesWhoSavedCard.find(profile &#x3D;&gt; profile.id &#x3D;&#x3D;&#x3D; profileEntity.id)) {
@@ -325,7 +331,7 @@ export class AddSavedCardCommandHandler implements ICommandHandler&lt;AddSavedCa
               );
             })
             .catch(() &#x3D;&gt; {
-              throw new Error(&#x27;Error while updating in database&#x27;);
+              throw new ErrorUpdateRuntimeException(&#x27;Error while updating in database&#x27;);
             });
         });
     } catch (e) {
@@ -336,6 +342,7 @@ export class AddSavedCardCommandHandler implements ICommandHandler&lt;AddSavedCa
           error: e.message,
         }),
       );
+      throw e;
     }
   }
 }

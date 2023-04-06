@@ -5,6 +5,8 @@ import { CardEntity } from '../../../domain/entities/card.entity';
 import { Repository } from 'typeorm';
 import { AddViewCountCardEvent } from '../../event/add-view-count-card.event';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorUpdateRuntimeException } from '../../../../../util/exception/runtime-exception/error-group-request.runtime-exception';
 
 @CommandHandler(AddViewCountCardCommand)
 export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCountCardCommand> {
@@ -25,7 +27,7 @@ export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCo
           ],
         })
         .catch(() => {
-          throw new Error('Card not found');
+          throw new ErrorInvalidIdRuntimeException('Card not found');
         })
         .then(card => {
           this.cardRepository
@@ -40,7 +42,7 @@ export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCo
               );
             })
             .catch(() => {
-              throw new Error('Error while updating in database');
+              throw new ErrorUpdateRuntimeException('Error while updating in database');
             });
         });
     } catch (e) {
@@ -51,6 +53,7 @@ export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCo
           error: e.message,
         }),
       );
+      throw e;
     }
   }
 }

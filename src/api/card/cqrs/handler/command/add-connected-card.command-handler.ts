@@ -6,6 +6,9 @@ import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/er
 import { Repository } from 'typeorm';
 import { ConnectedCardEntity } from '../../../domain/entities/connected-card.entity';
 import { AddConnectedCardEvent } from '../../event/add-connected-card.event';
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorCardAlreadyConnectedRuntimeException } from '../../../../../util/exception/runtime-exception/error-card-already-connected.runtime-exception';
+import { ErrorSaveRuntimeException } from '../../../../../util/exception/runtime-exception/error-save.runtime-exception';
 
 @CommandHandler(AddConnectedCardCommand)
 export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnectedCardCommand> {
@@ -29,7 +32,7 @@ export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnec
           ],
         })
         .catch(() => {
-          throw new Error('Card of sender not found');
+          throw new ErrorInvalidIdRuntimeException('Card of sender not found');
         });
 
       const cardToConnect: CardEntity = await this.cardRepository
@@ -42,17 +45,17 @@ export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnec
           ],
         })
         .catch(() => {
-          throw new Error('Card of receiver not found');
+          throw new ErrorInvalidIdRuntimeException('Card of receiver not found');
         });
 
       cardWhoRequest.connectedCardOne.forEach(card => {
         if (card.id === cardToConnect.id) {
-          throw new Error('Card already connected');
+          throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
         }
       });
       cardWhoRequest.connectedCardTwo.forEach(card => {
         if (card.id === cardToConnect.id) {
-          throw new Error('Card already connected');
+          throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
         }
       });
       await this.connectedCardRepository
@@ -71,7 +74,7 @@ export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnec
           );
         })
         .catch(() => {
-          throw new Error('Error while saving connected card');
+          throw new ErrorSaveRuntimeException('Error while saving connected card');
         });
     } catch (error) {
       this.eventBus.publish(

@@ -5,6 +5,9 @@ import { RemoveConnectedCardCommand } from '../../command/remove-connected-card.
 import { InjectRepository } from '@nestjs/typeorm';
 import { ConnectedCardEntity } from '../../../domain/entities/connected-card.entity';
 import { Repository } from 'typeorm';
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorDeleteRuntimeException } from '../../../../../util/exception/runtime-exception/error-delete.runtime-exception';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(RemoveConnectedCardCommand)
 export class RemoveConnectedCardCommandHandler implements ICommandHandler<RemoveConnectedCardCommand> {
@@ -28,7 +31,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
           ],
         })
         .catch(() => {
-          throw new Error('Card of sender not found');
+          throw new ErrorInvalidIdRuntimeException('Card of sender not found');
         });
 
       const cardToDisconnect: CardEntity = await this.cardRepository
@@ -41,7 +44,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
           ],
         })
         .catch(() => {
-          throw new Error('Card of receiver not found');
+          throw new ErrorInvalidIdRuntimeException('Card of receiver not found');
         });
 
       if (cardWhoRequest.connectedCardOne.map(card => card.id).includes(cardToDisconnect.id)) {
@@ -71,11 +74,11 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
                 );
               })
               .catch(() => {
-                throw new Error('Error while deleting relation');
+                throw new ErrorDeleteRuntimeException('Error while deleting relation');
               });
           })
           .catch(() => {
-            throw new Error('Error while fetching relation');
+            throw new ErrorInvalidIdRuntimeException('Error while fetching relation');
           });
       } else {
         await this.connectedCardRepository
@@ -104,15 +107,22 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
                 );
               })
               .catch(() => {
-                throw new Error('Error while deleting relation');
+                throw new ErrorDeleteRuntimeException('Error while deleting relation');
               });
           })
           .catch(() => {
-            throw new Error('Error while fetching relation');
+            throw new ErrorInvalidIdRuntimeException('Error while fetching relation');
           });
       }
     } catch (error) {
-      throw new Error(error);
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'RemoveConnectedCardCommandHandler',
+          localisation: 'card',
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/card/cqrs/handler/command/delete-card.command-handler.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/card/cqrs/handler/command/delete-card.command-handler.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/delete-card.command-handler.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/delete-card.command-handler.ts:26</a></div>
                 </td>
             </tr>
 
@@ -260,6 +260,15 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { CardEntity } from &#x27;../../../domain/entities/card.entity&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { DeleteCardEvent } from &#x27;../../event/delete-card.event&#x27;;
+import {
+  ErrorParameterNotProvidedRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-parameter-not-provided.runtime-exception&quot;;
+import {
+  ErrorInvalidIdRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
+import {
+  ErrorDeleteRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-delete.runtime-exception&quot;;
 
 @CommandHandler(DeleteCardCommand)
 export class DeleteCardCommandHandler implements ICommandHandler&lt;DeleteCardCommand&gt; {
@@ -272,7 +281,7 @@ export class DeleteCardCommandHandler implements ICommandHandler&lt;DeleteCardCo
   async execute(command: DeleteCardCommand): Promise&lt;void&gt; {
     try {
       if (!command.id) {
-        throw new Error(&#x27;Card id not provided&#x27;);
+        throw new ErrorParameterNotProvidedRuntimeException(&#x27;Card id not provided&#x27;);
       }
 
       await this.cardRepository
@@ -295,11 +304,11 @@ export class DeleteCardCommandHandler implements ICommandHandler&lt;DeleteCardCo
               );
             })
             .catch(() &#x3D;&gt; {
-              throw new Error(&#x27;Error while deleting in database&#x27;);
+              throw new ErrorDeleteRuntimeException(&#x27;Error while deleting in database&#x27;);
             });
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Card not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
         });
     } catch (e) {
       await this.eventBus.publish(

@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/card/cqrs/handler/command/create-card.command-handler.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/api/card/cqrs/handler/command/create-card.command-handler.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -230,8 +230,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/create-card.command-handler.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/create-card.command-handler.ts:33</a></div>
                 </td>
             </tr>
 
@@ -300,6 +300,12 @@ import { SocialNetworkEntity } from &#x27;../../../../social-network/domain/enti
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { TypeOfCardEnum } from &#x27;../../../domain/enum/type-of-card.enum&#x27;;
 import { CreateCardEvent } from &#x27;../../event/create-card.event&#x27;;
+import {
+  ErrorInvalidIdRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
+import {
+  ErrorSaveRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-save.runtime-exception&quot;;
 
 @CommandHandler(CreateCardCommand)
 export class CreateCardCommandHandler implements ICommandHandler&lt;CreateCardCommand&gt; {
@@ -329,7 +335,7 @@ export class CreateCardCommandHandler implements ICommandHandler&lt;CreateCardCo
           ],
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Profile not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Profile not found&#x27;);
         });
 
       if (command.typeOfCardEnum &#x3D;&#x3D;&#x3D; TypeOfCardEnum.SOCIAL_NETWORK) {
@@ -342,7 +348,7 @@ export class CreateCardCommandHandler implements ICommandHandler&lt;CreateCardCo
             ],
           })
           .catch(() &#x3D;&gt; {
-            throw new Error(&#x27;Social Network not found&#x27;);
+            throw new ErrorInvalidIdRuntimeException(&#x27;Social Network not found&#x27;);
           });
       }
 
@@ -357,7 +363,7 @@ export class CreateCardCommandHandler implements ICommandHandler&lt;CreateCardCo
               ],
             })
             .catch(() &#x3D;&gt; {
-              throw new Error(&#x27;Occupation not found&#x27;);
+              throw new ErrorInvalidIdRuntimeException(&#x27;Occupation not found&#x27;);
             });
           newCard.occupations.push(occupation);
         }
@@ -373,7 +379,7 @@ export class CreateCardCommandHandler implements ICommandHandler&lt;CreateCardCo
           );
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Error saving card&#x27;);
+          throw new ErrorSaveRuntimeException(&#x27;Error saving card&#x27;);
         });
     } catch (error) {
       await this.eventBus.publish(

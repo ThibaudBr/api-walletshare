@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CardEntity } from '../../../domain/entities/card.entity';
 import { SoftDeleteCardEvent } from '../../event/soft-delete-card.event';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
 
 @CommandHandler(SoftDeleteCardCommand)
 export class SoftDeleteCardCommandHandler implements ICommandHandler<SoftDeleteCardCommand> {
@@ -21,7 +22,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler<SoftDeleteC
           where: [{ id: command.id }],
         })
         .catch(() => {
-          throw new Error('Card not found');
+          throw new ErrorInvalidIdRuntimeException('Card not found');
         });
 
       await this.cardRepository.softDelete(command.id);
@@ -38,7 +39,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler<SoftDeleteC
           error: error.message,
         }),
       );
-      throw new Error(error);
+      throw error;
     }
   }
 }

@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/card/cqrs/handler/command/update-card.command-handler.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/card/cqrs/handler/command/update-card.command-handler.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -230,8 +230,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/update-card.command-handler.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/update-card.command-handler.ts:30</a></div>
                 </td>
             </tr>
 
@@ -300,6 +300,9 @@ import { SocialNetworkEntity } from &#x27;../../../../social-network/domain/enti
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
 import { UpdateCardEvent } from &#x27;../../event/update-card.event&#x27;;
+import {
+  ErrorInvalidIdRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
 
 @CommandHandler(UpdateCardCommand)
 export class UpdateCardCommandHandler implements ICommandHandler&lt;UpdateCardCommand&gt; {
@@ -327,7 +330,7 @@ export class UpdateCardCommandHandler implements ICommandHandler&lt;UpdateCardCo
           ],
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Card not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
         });
 
       if (command.profileId !&#x3D; undefined) {
@@ -341,7 +344,7 @@ export class UpdateCardCommandHandler implements ICommandHandler&lt;UpdateCardCo
               ],
             })
             .catch(() &#x3D;&gt; {
-              throw new Error(&#x27;Profile not found&#x27;);
+              throw new ErrorInvalidIdRuntimeException(&#x27;Profile not found&#x27;);
             })
             .then(profile &#x3D;&gt; {
               return profile;
@@ -360,7 +363,7 @@ export class UpdateCardCommandHandler implements ICommandHandler&lt;UpdateCardCo
               ],
             })
             .catch(() &#x3D;&gt; {
-              throw new Error(&#x27;Social Network not found&#x27;);
+              throw new ErrorInvalidIdRuntimeException(&#x27;Social Network not found&#x27;);
             })
             .then(socialNetwork &#x3D;&gt; {
               return socialNetwork;
@@ -380,7 +383,7 @@ export class UpdateCardCommandHandler implements ICommandHandler&lt;UpdateCardCo
                 ],
               })
               .catch(() &#x3D;&gt; {
-                throw new Error(&#x27;Occupation not found&#x27;);
+                throw new ErrorInvalidIdRuntimeException(&#x27;Occupation not found&#x27;);
               })
               .then(occupation &#x3D;&gt; {
                 return occupation;

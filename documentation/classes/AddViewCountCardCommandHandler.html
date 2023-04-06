@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:23</a></div>
                 </td>
             </tr>
 
@@ -260,6 +260,12 @@ import { CardEntity } from &#x27;../../../domain/entities/card.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { AddViewCountCardEvent } from &#x27;../../event/add-view-count-card.event&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import {
+  ErrorInvalidIdRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
+import {
+  ErrorUpdateRuntimeException
+} from &quot;../../../../../util/exception/runtime-exception/error-group-request.runtime-exception&quot;;
 
 @CommandHandler(AddViewCountCardCommand)
 export class AddViewCountCardCommandHandler implements ICommandHandler&lt;AddViewCountCardCommand&gt; {
@@ -280,7 +286,7 @@ export class AddViewCountCardCommandHandler implements ICommandHandler&lt;AddVie
           ],
         })
         .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Card not found&#x27;);
+          throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
         })
         .then(card &#x3D;&gt; {
           this.cardRepository
@@ -295,7 +301,7 @@ export class AddViewCountCardCommandHandler implements ICommandHandler&lt;AddVie
               );
             })
             .catch(() &#x3D;&gt; {
-              throw new Error(&#x27;Error while updating in database&#x27;);
+              throw new ErrorUpdateRuntimeException(&#x27;Error while updating in database&#x27;);
             });
         });
     } catch (e) {
@@ -306,6 +312,7 @@ export class AddViewCountCardCommandHandler implements ICommandHandler&lt;AddVie
           error: e.message,
         }),
       );
+      throw e;
     }
   }
 }

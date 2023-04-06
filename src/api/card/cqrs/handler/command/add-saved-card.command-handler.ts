@@ -6,6 +6,8 @@ import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { AddSavedCardEvent } from '../../event/add-saved-card.event';
 import { ProfileEntity } from '../../../../profile/domain/entities/profile.entity';
+import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import { ErrorUpdateRuntimeException } from '../../../../../util/exception/runtime-exception/error-group-request.runtime-exception';
 
 @CommandHandler(AddSavedCardCommand)
 export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardCommand> {
@@ -28,7 +30,7 @@ export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardC
           ],
         })
         .catch(() => {
-          throw new Error('Profile not found');
+          throw new ErrorInvalidIdRuntimeException('Profile not found');
         });
       await this.cardRepository
         .findOneOrFail({
@@ -40,7 +42,7 @@ export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardC
           ],
         })
         .catch(() => {
-          throw new Error('Card not found');
+          throw new ErrorInvalidIdRuntimeException('Card not found');
         })
         .then(card => {
           if (card.profilesWhoSavedCard.find(profile => profile.id === profileEntity.id)) {
@@ -58,7 +60,7 @@ export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardC
               );
             })
             .catch(() => {
-              throw new Error('Error while updating in database');
+              throw new ErrorUpdateRuntimeException('Error while updating in database');
             });
         });
     } catch (e) {
@@ -69,6 +71,7 @@ export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardC
           error: e.message,
         }),
       );
+      throw e;
     }
   }
 }
