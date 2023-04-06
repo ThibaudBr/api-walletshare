@@ -9,6 +9,12 @@ import { SocialNetworkEntity } from '../../../../social-network/domain/entities/
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { TypeOfCardEnum } from '../../../domain/enum/type-of-card.enum';
 import { CreateCardEvent } from '../../event/create-card.event';
+import {
+  ErrorInvalidIdRuntimeException
+} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
+import {
+  ErrorSaveRuntimeException
+} from "../../../../../util/exception/runtime-exception/error-save.runtime-exception";
 
 @CommandHandler(CreateCardCommand)
 export class CreateCardCommandHandler implements ICommandHandler<CreateCardCommand> {
@@ -38,7 +44,7 @@ export class CreateCardCommandHandler implements ICommandHandler<CreateCardComma
           ],
         })
         .catch(() => {
-          throw new Error('Profile not found');
+          throw new ErrorInvalidIdRuntimeException('Profile not found');
         });
 
       if (command.typeOfCardEnum === TypeOfCardEnum.SOCIAL_NETWORK) {
@@ -51,7 +57,7 @@ export class CreateCardCommandHandler implements ICommandHandler<CreateCardComma
             ],
           })
           .catch(() => {
-            throw new Error('Social Network not found');
+            throw new ErrorInvalidIdRuntimeException('Social Network not found');
           });
       }
 
@@ -66,7 +72,7 @@ export class CreateCardCommandHandler implements ICommandHandler<CreateCardComma
               ],
             })
             .catch(() => {
-              throw new Error('Occupation not found');
+              throw new ErrorInvalidIdRuntimeException('Occupation not found');
             });
           newCard.occupations.push(occupation);
         }
@@ -82,7 +88,7 @@ export class CreateCardCommandHandler implements ICommandHandler<CreateCardComma
           );
         })
         .catch(() => {
-          throw new Error('Error saving card');
+          throw new ErrorSaveRuntimeException('Error saving card');
         });
     } catch (error) {
       await this.eventBus.publish(

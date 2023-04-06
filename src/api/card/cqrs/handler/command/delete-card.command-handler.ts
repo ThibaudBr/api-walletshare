@@ -5,6 +5,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CardEntity } from '../../../domain/entities/card.entity';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { DeleteCardEvent } from '../../event/delete-card.event';
+import {
+  ErrorParameterNotProvidedRuntimeException
+} from "../../../../../util/exception/runtime-exception/error-parameter-not-provided.runtime-exception";
+import {
+  ErrorInvalidIdRuntimeException
+} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
+import {
+  ErrorDeleteRuntimeException
+} from "../../../../../util/exception/runtime-exception/error-delete.runtime-exception";
 
 @CommandHandler(DeleteCardCommand)
 export class DeleteCardCommandHandler implements ICommandHandler<DeleteCardCommand> {
@@ -17,7 +26,7 @@ export class DeleteCardCommandHandler implements ICommandHandler<DeleteCardComma
   async execute(command: DeleteCardCommand): Promise<void> {
     try {
       if (!command.id) {
-        throw new Error('Card id not provided');
+        throw new ErrorParameterNotProvidedRuntimeException('Card id not provided');
       }
 
       await this.cardRepository
@@ -40,11 +49,11 @@ export class DeleteCardCommandHandler implements ICommandHandler<DeleteCardComma
               );
             })
             .catch(() => {
-              throw new Error('Error while deleting in database');
+              throw new ErrorDeleteRuntimeException('Error while deleting in database');
             });
         })
         .catch(() => {
-          throw new Error('Card not found');
+          throw new ErrorInvalidIdRuntimeException('Card not found');
         });
     } catch (e) {
       await this.eventBus.publish(

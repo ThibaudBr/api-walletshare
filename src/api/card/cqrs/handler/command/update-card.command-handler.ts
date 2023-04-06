@@ -9,6 +9,9 @@ import { SocialNetworkEntity } from '../../../../social-network/domain/entities/
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { validate } from 'class-validator';
 import { UpdateCardEvent } from '../../event/update-card.event';
+import {
+  ErrorInvalidIdRuntimeException
+} from "../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception";
 
 @CommandHandler(UpdateCardCommand)
 export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardCommand> {
@@ -36,7 +39,7 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
           ],
         })
         .catch(() => {
-          throw new Error('Card not found');
+          throw new ErrorInvalidIdRuntimeException('Card not found');
         });
 
       if (command.profileId != undefined) {
@@ -50,7 +53,7 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
               ],
             })
             .catch(() => {
-              throw new Error('Profile not found');
+              throw new ErrorInvalidIdRuntimeException('Profile not found');
             })
             .then(profile => {
               return profile;
@@ -69,7 +72,7 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
               ],
             })
             .catch(() => {
-              throw new Error('Social Network not found');
+              throw new ErrorInvalidIdRuntimeException('Social Network not found');
             })
             .then(socialNetwork => {
               return socialNetwork;
@@ -89,7 +92,7 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
                 ],
               })
               .catch(() => {
-                throw new Error('Occupation not found');
+                throw new ErrorInvalidIdRuntimeException('Occupation not found');
               })
               .then(occupation => {
                 return occupation;
