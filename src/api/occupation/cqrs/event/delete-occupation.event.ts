@@ -1,6 +1,6 @@
 export class DeleteOccupationEvent {
   constructor(partial: Partial<DeleteOccupationEvent>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly occupationId: string;

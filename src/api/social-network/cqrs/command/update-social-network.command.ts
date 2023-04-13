@@ -1,6 +1,6 @@
 export class UpdateSocialNetworkCommand {
   constructor(partial: Partial<UpdateSocialNetworkCommand>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly id: string;

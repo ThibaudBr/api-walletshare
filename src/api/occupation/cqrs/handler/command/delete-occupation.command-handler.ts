@@ -16,6 +16,8 @@ export class DeleteOccupationCommandHandler implements ICommandHandler<DeleteOcc
 
   async execute(command: DeleteOccupationCommand): Promise<void> {
     try {
+      console.log(command);
+      console.log(command.occupationId);
       const occupation = await this.occupationRepository
         .findOneOrFail({
           withDeleted: true,
