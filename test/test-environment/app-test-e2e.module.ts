@@ -30,6 +30,8 @@ import { UserTestE2eController } from './controller-test/user-test-e2e.controlle
 import { OccupationTestE2eController } from './controller-test/occupation-test-e2e.controller';
 import { UserTestE2eService } from './service-test/user-test-e2e.service';
 import { OccupationTestE2eService } from './service-test/occupation-test-e2e.service';
+import { SocialNetworkTestE2eController } from './controller-test/social-network-test-e2e.controller';
+import { SocialNetworkTestE2eService } from './service-test/social-network-test-e2e.service';
 
 @Module({
   imports: [
@@ -60,7 +62,12 @@ import { OccupationTestE2eService } from './service-test/occupation-test-e2e.ser
       GroupRequestEntity,
     ]),
   ],
-  controllers: [AppTestE2eController, UserTestE2eController, OccupationTestE2eController],
-  providers: [AppTestE2eService, UserTestE2eService, OccupationTestE2eService],
+  controllers: [
+    AppTestE2eController,
+    UserTestE2eController,
+    OccupationTestE2eController,
+    SocialNetworkTestE2eController,
+  ],
+  providers: [AppTestE2eService, UserTestE2eService, OccupationTestE2eService, SocialNetworkTestE2eService],
 })
 export class AppTestE2eModule {}

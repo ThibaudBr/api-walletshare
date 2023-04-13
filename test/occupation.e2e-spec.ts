@@ -5,7 +5,6 @@ import * as request from 'supertest';
 import { GetOccupationWithCriteriaRequest } from '../src/api/occupation/web/request/get-occupation-with-criteria.request';
 import { CreateOccupationRequest } from '../src/api/occupation/web/request/create-occupation.request';
 import { UpdateOccupationRequest } from '../src/api/occupation/web/request/update-occupation.request';
-import { OccupationResponse } from "../src/api/occupation/web/response/occupation-response";
 
 if (process.env.NODE_ENV != 'test') {
   console.log('NODE_ENV must be set to test');
@@ -208,11 +207,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/get-with-criteria')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new GetOccupationWithCriteriaRequest({
-            isDeleted: true,
-          }),
-        )
+        .send({
+          isDeleted: true,
+        })
         .expect(201)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Array);
@@ -224,11 +221,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/get-with-criteria')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new GetOccupationWithCriteriaRequest({
-            name: 'occupationTest1',
-          }),
-        )
+        .send({
+          name: 'occupationTest1',
+        })
         .expect(201)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Array);
@@ -240,12 +235,10 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/get-with-criteria')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new GetOccupationWithCriteriaRequest({
-            name: 'occupationTest3',
-            isDeleted: true,
-          }),
-        )
+        .send({
+          name: 'occupationTest3',
+          isDeleted: true,
+        })
         .expect(201)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Array);
@@ -257,12 +250,10 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/get-with-criteria')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new GetOccupationWithCriteriaRequest({
-            name: 'occupationTest4',
-            isDeleted: true,
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+          isDeleted: true,
+        })
         .expect(201)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Array);
@@ -275,11 +266,9 @@ describe('OccupationController (e2e)', () => {
     it('should not create an occupation when user is not logged', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
-        .send(
-          new CreateOccupationRequest({
-            name: 'occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+        })
         .expect(401)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -290,11 +279,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${publicToken}`)
-        .send(
-          new CreateOccupationRequest({
-            name: 'occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+        })
         .expect(403)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -305,11 +292,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new CreateOccupationRequest({
-            name: 'occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+        })
         .expect(201)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -321,11 +306,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new CreateOccupationRequest({
-            name: 'occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -337,11 +320,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new CreateOccupationRequest({
-            name: '',
-          }),
-        )
+        .send({
+          name: '',
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -353,11 +334,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new CreateOccupationRequest({
-            name: undefined,
-          }),
-        )
+        .send({
+          name: undefined,
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -369,11 +348,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new CreateOccupationRequest({
-            name: 'occupationTest4occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4occupationTest4',
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -385,11 +362,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new CreateOccupationRequest({
-            name: 'oc',
-          }),
-        )
+        .send({
+          name: 'oc',
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -401,11 +376,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new CreateOccupationRequest({
-            name: 'occupationTest3',
-          }),
-        )
+        .send({
+          name: 'occupationTest3',
+        })
         .expect(201)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -452,11 +425,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/occupation/admin/update/' + occupationIdToUpdateList[0])
         .set('Authorization', `Bearer ${publicToken}`)
-        .send(
-          new UpdateOccupationRequest({
-            name: 'occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+        })
         .expect(403)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -468,11 +439,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/occupation/admin/update/' + occupationIdToUpdateList[0])
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new UpdateOccupationRequest({
-            name: 'occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+        })
         .expect(200)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -484,11 +453,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/occupation/admin/update/' + occupationIdToUpdateList[0])
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new UpdateOccupationRequest({
-            name: 'occupationTest3',
-          }),
-        )
+        .send({
+          name: 'occupationTest3',
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -500,11 +467,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/occupation/admin/update/' + occupationIdToUpdateList[0])
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new UpdateOccupationRequest({
-            name: '',
-          }),
-        )
+        .send({
+          name: '',
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -516,11 +481,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/occupation/admin/update/' + occupationIdToUpdateList[0])
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new UpdateOccupationRequest({
-            name: 'occupationTest4occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4occupationTest4',
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -532,11 +495,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/occupation/admin/update/' + occupationIdToUpdateList[0])
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new UpdateOccupationRequest({
-            name: 'oc',
-          }),
-        )
+        .send({
+          name: 'oc',
+        })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -548,11 +509,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/occupation/admin/update/' + 'invalidId')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new UpdateOccupationRequest({
-            name: 'occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+        })
         .expect(404)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
@@ -564,11 +523,9 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/occupation/admin/update/' + occupationIdList[2])
         .set('Authorization', `Bearer ${adminToken}`)
-        .send(
-          new UpdateOccupationRequest({
-            name: 'occupationTest4',
-          }),
-        )
+        .send({
+          name: 'occupationTest4',
+        })
         .expect(404)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);

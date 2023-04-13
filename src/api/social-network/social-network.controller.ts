@@ -14,7 +14,7 @@ export class SocialNetworkController {
   constructor(private readonly socialNetworkService: SocialNetworkService) {}
 
   @Get('/public/')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllSocialNetworks(): Promise<SocialNetworkResponse[]> {
     return await this.socialNetworkService.getAllSocialNetwork().catch(error => {
@@ -23,7 +23,7 @@ export class SocialNetworkController {
   }
 
   @Get('/public/:id')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getSocialNetworkById(@Param('id') socialNetworkId: string): Promise<SocialNetworkResponse> {
     return await this.socialNetworkService.getSocialNetworkById(socialNetworkId).catch(error => {
@@ -32,7 +32,7 @@ export class SocialNetworkController {
   }
 
   @Post('/admin/get-with-criteria')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getSocialNetworksWithCriteria(
     @Body() getSocialNetworksWithCriteriaRequest: GetSocialNetworkWithCriteriaRequest,
