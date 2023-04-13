@@ -1,16 +1,15 @@
-import { Injectable } from "@nestjs/common";
-import { Repository } from "typeorm";
-import { CreateOccupationDto } from "../../../src/api/occupation/domain/dto/create-occupation.dto";
-import { InjectRepository } from "@nestjs/typeorm";
-import { OccupationEntity } from "../../../src/api/occupation/domain/entities/occupation.entity";
+import { Injectable } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { CreateOccupationDto } from '../../../src/api/occupation/domain/dto/create-occupation.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { OccupationEntity } from '../../../src/api/occupation/domain/entities/occupation.entity';
 
 @Injectable()
 export class OccupationTestE2eService {
   constructor(
     @InjectRepository(OccupationEntity)
-    private readonly occupationRepository: Repository<OccupationEntity>
-  ) {
-  }
+    private readonly occupationRepository: Repository<OccupationEntity>,
+  ) {}
 
   async createOccupationTest(createOccupationDto: CreateOccupationDto): Promise<OccupationEntity> {
     return await this.occupationRepository.save({
@@ -19,7 +18,7 @@ export class OccupationTestE2eService {
   }
 
   async removeOccupation(occupationId: string): Promise<void> {
-    await this.occupationRepository.softDelete({ id: occupationId });
+    await this.occupationRepository.softDelete(occupationId);
   }
 
   async getOccupation(occupationId: string): Promise<OccupationEntity | null> {

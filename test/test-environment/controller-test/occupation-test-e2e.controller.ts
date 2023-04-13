@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UsePipes } from '@nestjs/common';
+import { Body, Controller, Param, Post, UsePipes } from '@nestjs/common';
 import { OccupationTestE2eService } from '../service-test/occupation-test-e2e.service';
 import { OccupationEntity } from '../../../src/api/occupation/domain/entities/occupation.entity';
 import { CreateOccupationDto } from '../../../src/api/occupation/domain/dto/create-occupation.dto';
@@ -15,9 +15,9 @@ export class OccupationTestE2eController {
   }
 
   @UsePipes(new IsTestEnvironmentPipe())
-  @Post('/api/test/remove-occupation-test')
-  removeOccupationTest(@Body() occupationId: string): Promise<void> {
-    return this.occupationTestE2eService.removeOccupation(occupationId);
+  @Post('/api/test/remove-occupation-test/:id')
+  removeOccupationTest(@Param('id') id: string): Promise<void> {
+    return this.occupationTestE2eService.removeOccupation(id);
   }
 
   @UsePipes(new IsTestEnvironmentPipe())
@@ -27,8 +27,8 @@ export class OccupationTestE2eController {
   }
 
   @UsePipes(new IsTestEnvironmentPipe())
-  @Post('/api/test/get-occupation-test')
-  getOccupationTest(@Body() occupationId: string): Promise<OccupationEntity | null> {
+  @Post('/api/test/get-occupation-test/:id')
+  getOccupationTest(@Param('id') occupationId: string): Promise<OccupationEntity | null> {
     return this.occupationTestE2eService.getOccupation(occupationId);
   }
 }

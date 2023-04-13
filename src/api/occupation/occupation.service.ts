@@ -107,15 +107,10 @@ export class OccupationService {
 
   async deleteOccupation(occupationId: string): Promise<void> {
     try {
-      // return await this.commandBus.execute(
-      //   new DeleteOccupationCommand({
-      //     occupationId: occupationId,
-      //   }),
-      // );
       return await this.commandBus.execute(
-        new DeleteOccupationCommand(
-          occupationId,
-        ),
+        new DeleteOccupationCommand({
+          occupationId: occupationId,
+        }),
       );
     } catch (error) {
       if (error.message === 'Occupation not found') throw new OccupationNotFoundHttpException();
