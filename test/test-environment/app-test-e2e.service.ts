@@ -22,8 +22,6 @@ import { ConnectedCardEntity } from '../../src/api/card/domain/entities/connecte
 import { MediaEntity } from '../../src/api/entities-to-create/media.entity';
 import { OccupationEntity } from '../../src/api/occupation/domain/entities/occupation.entity';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from '../../src/api/user/domain/dto/create-user.dto';
-import * as bcrypt from 'bcrypt';
 import { GroupRequestEntity } from '../../src/api/groupe/domain/entities/group-request.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
 
@@ -104,32 +102,5 @@ export class AppTestE2eService {
     await this.groupRequestRepository.query('DELETE FROM "group_request";');
 
     return;
-  }
-
-  async createUserTest(createUserDto: CreateUserDto): Promise<UserEntity> {
-    return await this.userRepository.save({
-      username: createUserDto.username,
-      mail: createUserDto.mail,
-      password: bcrypt.hashSync(createUserDto.password, 10),
-      roles: createUserDto.roles,
-    });
-  }
-
-  async removeUser(userId: string): Promise<void> {
-    await this.userRepository.softDelete({ id: userId });
-  }
-
-  async getUser(userId: string): Promise<UserEntity | null> {
-    return await this.userRepository.findOne({
-      where: {
-        id: userId,
-      },
-    });
-  }
-
-  async getAllUsers(): Promise<UserEntity[]> {
-    return await this.userRepository.find({
-      withDeleted: true,
-    });
   }
 }

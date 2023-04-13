@@ -26,6 +26,10 @@ import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-cod
 import { AddressEntity } from '../../src/api/entities-to-create/address.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
 import { GroupRequestEntity } from '../../src/api/groupe/domain/entities/group-request.entity';
+import { UserTestE2eController } from './controller-test/user-test-e2e.controller';
+import { OccupationTestE2eController } from './controller-test/occupation-test-e2e.controller';
+import { UserTestE2eService } from './service-test/user-test-e2e.service';
+import { OccupationTestE2eService } from './service-test/occupation-test-e2e.service';
 
 @Module({
   imports: [
@@ -56,7 +60,7 @@ import { GroupRequestEntity } from '../../src/api/groupe/domain/entities/group-r
       GroupRequestEntity,
     ]),
   ],
-  controllers: [AppTestE2eController],
-  providers: [AppTestE2eService],
+  controllers: [AppTestE2eController, UserTestE2eController, OccupationTestE2eController],
+  providers: [AppTestE2eService, UserTestE2eService, OccupationTestE2eService],
 })
 export class AppTestE2eModule {}
