@@ -25,6 +25,7 @@ import { NotificationEntity } from '../../src/api/entities-to-create/notificatio
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
 import { AddressEntity } from '../../src/api/entities-to-create/address.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
+import { GroupRequestEntity } from '../../src/api/groupe/domain/entities/group-request.entity';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
       NotificationEntity,
       ReferralCodeEntity,
       AddressEntity,
+      GroupRequestEntity,
     ]),
   ],
   controllers: [AppTestE2eController],

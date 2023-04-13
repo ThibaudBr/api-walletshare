@@ -11,7 +11,7 @@ import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { GroupEntity } from './group.entity';
 import { GroupRequestStatusEnum } from '../enum/group-request-status.enum';
 
-@Entity()
+@Entity({ name: 'group_request' })
 export class GroupRequestEntity extends BaseEntity {
   constructor(partial: Partial<GroupRequestEntity>) {
     super();

@@ -1,6 +1,6 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { ApiLogService } from 'src/api/api-log/api-log.service';
 import { DeleteGroupMembershipEvent } from '../../event/delete-group-membership.event';
+import { ApiLogService } from "../../../../api-log/api-log.service";
 
 @EventsHandler(DeleteGroupMembershipEvent)
 export class DeleteGroupMembershipEventHandler implements IEventHandler<DeleteGroupMembershipEvent> {
