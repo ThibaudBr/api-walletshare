@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppTestE2eController } from './app-test-e2e.controller';
-import { AppTestE2eService } from './app-test-e2e.service';
+import { AppTestE2eController } from './controller-test/app-test-e2e.controller';
+import { AppTestE2eService } from './service-test/app-test-e2e.service';
 import { AppModule } from '../../src/app.module';
 import CompanyEntity from '../../src/api/entities-to-create/company.entity';
 import { CompanyEmployeeEntity } from '../../src/api/entities-to-create/company-employee.entity';
@@ -32,6 +32,8 @@ import { UserTestE2eService } from './service-test/user-test-e2e.service';
 import { OccupationTestE2eService } from './service-test/occupation-test-e2e.service';
 import { SocialNetworkTestE2eController } from './controller-test/social-network-test-e2e.controller';
 import { SocialNetworkTestE2eService } from './service-test/social-network-test-e2e.service';
+import { ProfileTestE2eController } from './controller-test/profile-test-e2e.controller';
+import { ProfileTestE2eService } from './service-test/profile-test-e2e.service';
 
 @Module({
   imports: [
@@ -67,7 +69,14 @@ import { SocialNetworkTestE2eService } from './service-test/social-network-test-
     UserTestE2eController,
     OccupationTestE2eController,
     SocialNetworkTestE2eController,
+    ProfileTestE2eController,
   ],
-  providers: [AppTestE2eService, UserTestE2eService, OccupationTestE2eService, SocialNetworkTestE2eService],
+  providers: [
+    AppTestE2eService,
+    UserTestE2eService,
+    OccupationTestE2eService,
+    SocialNetworkTestE2eService,
+    ProfileTestE2eService,
+  ],
 })
 export class AppTestE2eModule {}

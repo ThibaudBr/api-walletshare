@@ -13,12 +13,17 @@ export class UserTestE2eService {
   ) {}
 
   async createUserTest(createUserDto: CreateUserDto): Promise<UserEntity> {
-    return await this.userRepository.save({
-      username: createUserDto.username,
-      mail: createUserDto.mail,
-      password: bcrypt.hashSync(createUserDto.password, 10),
-      roles: createUserDto.roles,
-    });
+    try {
+      return await this.userRepository.save({
+        username: createUserDto.username,
+        mail: createUserDto.mail,
+        password: bcrypt.hashSync(createUserDto.password, 10),
+        roles: createUserDto.roles,
+      });
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
   }
 
   async removeUser(userId: string): Promise<void> {

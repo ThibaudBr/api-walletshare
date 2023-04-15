@@ -24,7 +24,7 @@ describe('UserController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
-
+    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
     await request(app.getHttpServer())
       .post('/api/test/create-user-test')
       .send({
@@ -66,7 +66,6 @@ describe('UserController (e2e)', () => {
   });
 
   afterEach(async () => {
-    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
     await app.close();
   });
 

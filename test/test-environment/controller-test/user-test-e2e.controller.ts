@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Post, UsePipes } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, UsePipes } from "@nestjs/common";
 import { UserTestE2eService } from '../service-test/user-test-e2e.service';
 import { IsTestEnvironmentPipe } from '../../../src/util/pipe/is-test-environment.pipe';
 import { CreateUserDto } from '../../../src/api/user/domain/dto/create-user.dto';
@@ -29,8 +29,8 @@ export class UserTestE2eController {
   }
 
   @UsePipes(new IsTestEnvironmentPipe())
-  @Get('/api/test/get-user-test')
-  getUserTest(@Body() userId: string): Promise<UserEntity | null> {
+  @Get('/api/test/get-user-test/:userId')
+  getUserTest(@Param('userId') userId: string): Promise<UserEntity | null> {
     return this.userTestE2eService.getUser(userId);
   }
 }

@@ -17,6 +17,7 @@ export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
     if (query.userId) {
       return {
         ...(await this.userRepository.findOneOrFail({
+          relations: ['profiles'],
           where: [{ id: query.userId }],
         })),
       };

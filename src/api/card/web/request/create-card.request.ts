@@ -20,7 +20,7 @@ export class CreateCardRequest {
   birthday?: Date;
   notes?: string;
   numberOfShares: number;
-  owner: string;
+  ownerId: string;
   connectedCardsId?: string[];
   savedById?: string[];
   occupationsId?: string[];
