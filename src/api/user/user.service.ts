@@ -28,6 +28,7 @@ import { SamePasswordHttpException } from '../../util/exception/custom-http-exce
 import { InvalidPasswordHttpException } from '../../util/exception/custom-http-exception/invalid-password.http-exception';
 import { RequestUser } from '../auth/interface/request-user.interface';
 import { DeleteUserCommand } from './cqrs/command/delete-user.command';
+import { SendMailCommand } from '../api-mail/cqrs/command/send-mail.command';
 
 @Injectable()
 export class UserService {
@@ -99,6 +100,13 @@ export class UserService {
       );
       try {
         await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
+        await this.commandBus.execute(
+          new SendMailCommand({
+            email: generateUserDto.mail,
+            message: `Bonjour, votre compte a été créé avec succès. Votre mot de passe est : ${user.password}`,
+            title: 'Création de compte Wallet Share',
+          }),
+        );
       } catch (error) {}
       return user;
     } catch (error) {

@@ -48,10 +48,11 @@ import { SendGroupRequestEventHandler } from './cqrs/handler/event/send-group-re
 import { SoftDeleteGroupEventHandler } from './cqrs/handler/event/soft-delete-group.event-handler';
 import { UpdateGroupEventHandler } from './cqrs/handler/event/update-group.event-handler';
 import { GroupService } from './group.service';
+import { CardEntity } from "../card/domain/entities/card.entity";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity, GroupEntity, GroupRequestEntity, GroupMembershipEntity]),
+    TypeOrmModule.forFeature([UserEntity, GroupEntity, GroupRequestEntity, GroupMembershipEntity, CardEntity]),
     CqrsModule,
     ApiLogModule,
     ClientsModule.register([{ name: 'API_LOG', transport: Transport.TCP, options: { port: 3001 } }]),

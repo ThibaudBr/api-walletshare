@@ -1,3 +1,5 @@
+import { TypeOfCardEnum } from '../../domain/enum/type-of-card.enum';
+
 export class GetCardWithCriteriaRequest {
   constructor(partial: Partial<GetCardWithCriteriaRequest>) {
     Object.assign(this, partial);
@@ -5,5 +7,5 @@ export class GetCardWithCriteriaRequest {
 
   public readonly isDeleted?: boolean = false;
 
-  public readonly cardType?: string;
+  public readonly typeOfCardEnum?: TypeOfCardEnum;
 }

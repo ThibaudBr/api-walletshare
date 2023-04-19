@@ -233,7 +233,7 @@ export class CardController {
     return await this.cardService.updateCard(cardId, updateCardRequest);
   }
 
-  @Put('/public/update-card/:cardId')
+  @Put('/public/update-my-card/:cardId')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async updateMyCard(

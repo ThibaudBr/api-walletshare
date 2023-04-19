@@ -34,6 +34,8 @@ import { SocialNetworkTestE2eController } from './controller-test/social-network
 import { SocialNetworkTestE2eService } from './service-test/social-network-test-e2e.service';
 import { ProfileTestE2eController } from './controller-test/profile-test-e2e.controller';
 import { ProfileTestE2eService } from './service-test/profile-test-e2e.service';
+import { CardTestE2eController } from "./controller-test/card-test-e2e.controller";
+import { CardTestE2eService } from "./service-test/card-test-e2e.service";
 
 @Module({
   imports: [
@@ -70,6 +72,7 @@ import { ProfileTestE2eService } from './service-test/profile-test-e2e.service';
     OccupationTestE2eController,
     SocialNetworkTestE2eController,
     ProfileTestE2eController,
+    CardTestE2eController,
   ],
   providers: [
     AppTestE2eService,
@@ -77,6 +80,7 @@ import { ProfileTestE2eService } from './service-test/profile-test-e2e.service';
     OccupationTestE2eService,
     SocialNetworkTestE2eService,
     ProfileTestE2eService,
+    CardTestE2eService,
   ],
 })
 export class AppTestE2eModule {}
