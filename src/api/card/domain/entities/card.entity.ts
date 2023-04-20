@@ -25,7 +25,6 @@ import { TransferableStatusCardEnum } from '../enum/transferable-status-card.enu
 import { MessageEntity } from '../../../entities-to-create/message.entity';
 import { WhoCanShareCardEnum } from '../enum/who-can-share-card.enum';
 import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
-import { GroupRequestEntity } from '../../../groupe/domain/entities/group-request.entity';
 
 @Entity({ name: 'card' })
 export class CardEntity extends BaseEntity {
@@ -129,11 +128,6 @@ export class CardEntity extends BaseEntity {
     onDelete: 'SET NULL',
   })
   socialNetwork: SocialNetworkEntity;
-
-  @OneToMany(() => GroupRequestEntity, groupRequest => groupRequest.card, {
-    onDelete: 'SET NULL',
-  })
-  groupRequests: GroupRequestEntity[];
 
   // ______________________________________________________
   // Enum
