@@ -105,7 +105,7 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
       });
       const err = await validate(cardUpdated);
       if (err.length > 0) {
-        throw new Error(err.toString());
+        throw err;
       }
 
       await this.cardRepository

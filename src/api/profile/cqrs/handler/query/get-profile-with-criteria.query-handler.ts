@@ -19,7 +19,7 @@ export class GetProfileWithCriteriaQueryHandler implements IQueryHandler<GetProf
       const queryBuilder = this.profileRepository.createQueryBuilder('profile');
 
       if (query.getProfileWithCriteriaDto.isDeleted) {
-        queryBuilder.setFindOptions({ withDeleted: true });
+        queryBuilder.setFindOptions({ withDeleted: true, relations: ['user', 'occupations'] });
       }
 
       if (query.getProfileWithCriteriaDto.usernameProfile) {

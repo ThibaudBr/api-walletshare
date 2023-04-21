@@ -28,7 +28,7 @@ export class OccupationEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: false, unique: true })
+  @Column({ nullable: false })
   @Length(2, 20)
   name: string;
 

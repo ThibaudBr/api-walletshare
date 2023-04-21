@@ -57,7 +57,7 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
 
       const err = await validate(newProfile);
       if (err.length > 0) {
-        throw new InvalidParameterEntityHttpException(err);
+        throw err;
       }
 
       const savedProfile = await this.profileRepository.save(newProfile).then(profile => {

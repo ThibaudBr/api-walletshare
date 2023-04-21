@@ -326,8 +326,8 @@ describe('UserController (e2e)', () => {
     });
 
     describe('Admin user should not be able to generateUser with invalid mail', () => {
-      it('should return mail is not valid', async function () {
-        await request(app.getHttpServer())
+      it('should return mail is not valid', function () {
+        request(app.getHttpServer())
           .post('/user/admin/generate-user-from-mail')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({

@@ -23,11 +23,15 @@ export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
       };
     }
     const userListResponse: UserListResponse = new UserListResponse();
-    await this.userRepository.find().then(userList => {
-      userList.forEach(user => {
-        userListResponse.userList.push(new UserResponse({ ...user }));
+    await this.userRepository
+      .find({
+        relations: ['profiles'],
+      })
+      .then(userList => {
+        userList.forEach(user => {
+          userListResponse.userList.push(new UserResponse({ ...user }));
+        });
       });
-    });
     return userListResponse.userList;
   }
 }

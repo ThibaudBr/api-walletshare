@@ -18,7 +18,7 @@ export class GetProfileByIdQueryHandler implements IQueryHandler<GetProfileByIdQ
     try {
       return await this.profileRepository
         .findOneOrFail({
-          relations: ['user'],
+          relations: ['user', 'occupations'],
           where: [
             {
               id: query.id,

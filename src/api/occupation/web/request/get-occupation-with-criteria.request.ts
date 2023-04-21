@@ -1,6 +1,6 @@
 export class GetOccupationWithCriteriaRequest {
   constructor(partial: Partial<GetOccupationWithCriteriaRequest>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly name: string;

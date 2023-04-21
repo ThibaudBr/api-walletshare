@@ -39,6 +39,7 @@ export class SoftDeleteOccupationCommandHandler implements ICommandHandler<SoftD
           error: e.message,
         }),
       );
+      throw e;
     }
   }
 }

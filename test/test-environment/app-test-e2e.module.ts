@@ -25,7 +25,6 @@ import { NotificationEntity } from '../../src/api/entities-to-create/notificatio
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
 import { AddressEntity } from '../../src/api/entities-to-create/address.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
-import { GroupRequestEntity } from '../../src/api/groupe/domain/entities/group-request.entity';
 import { UserTestE2eController } from './controller-test/user-test-e2e.controller';
 import { OccupationTestE2eController } from './controller-test/occupation-test-e2e.controller';
 import { UserTestE2eService } from './service-test/user-test-e2e.service';
@@ -34,8 +33,10 @@ import { SocialNetworkTestE2eController } from './controller-test/social-network
 import { SocialNetworkTestE2eService } from './service-test/social-network-test-e2e.service';
 import { ProfileTestE2eController } from './controller-test/profile-test-e2e.controller';
 import { ProfileTestE2eService } from './service-test/profile-test-e2e.service';
-import { CardTestE2eController } from "./controller-test/card-test-e2e.controller";
-import { CardTestE2eService } from "./service-test/card-test-e2e.service";
+import { CardTestE2eController } from './controller-test/card-test-e2e.controller';
+import { CardTestE2eService } from './service-test/card-test-e2e.service';
+import { GroupTestE2eController } from './controller-test/group-test-e2e.controller';
+import { GroupTestE2eService } from './service-test/group-test-e2e.service';
 
 @Module({
   imports: [
@@ -63,7 +64,6 @@ import { CardTestE2eService } from "./service-test/card-test-e2e.service";
       NotificationEntity,
       ReferralCodeEntity,
       AddressEntity,
-      GroupRequestEntity,
     ]),
   ],
   controllers: [
@@ -73,6 +73,7 @@ import { CardTestE2eService } from "./service-test/card-test-e2e.service";
     SocialNetworkTestE2eController,
     ProfileTestE2eController,
     CardTestE2eController,
+    GroupTestE2eController,
   ],
   providers: [
     AppTestE2eService,
@@ -81,6 +82,7 @@ import { CardTestE2eService } from "./service-test/card-test-e2e.service";
     SocialNetworkTestE2eService,
     ProfileTestE2eService,
     CardTestE2eService,
+    GroupTestE2eService,
   ],
 })
 export class AppTestE2eModule {}

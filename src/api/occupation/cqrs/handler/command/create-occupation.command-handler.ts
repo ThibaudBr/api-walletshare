@@ -33,7 +33,7 @@ export class CreateOccupationCommandHandler implements ICommandHandler<CreateOcc
       });
       const err = await validate(newOccupationEntity);
       if (err.length > 0) {
-        throw new InvalidClassException('Parameter not validate');
+        throw err;
       }
 
       return this.occupationRepository

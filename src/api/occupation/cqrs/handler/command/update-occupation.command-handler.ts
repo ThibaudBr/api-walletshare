@@ -43,7 +43,7 @@ export class UpdateOccupationCommandHandler implements ICommandHandler<UpdateOcc
         });
       const err = await validate(updatedOccupationEntity);
       if (err.length > 0) {
-        throw new InvalidClassException('Parameter not validate');
+        throw err;
       }
 
       await this.occupationRepository

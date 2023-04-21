@@ -1,6 +1,6 @@
 export class UpdateSocialNetworkRequest {
   constructor(partial: Partial<UpdateSocialNetworkRequest>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly id: string;

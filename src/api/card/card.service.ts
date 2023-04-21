@@ -1,4 +1,10 @@
-import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+  InternalServerErrorException,
+  UnauthorizedException
+} from "@nestjs/common";
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { InvalidIdHttpException } from '../../util/exception/custom-http-exception/invalid-id.http-exception';
 import { IsCardOwnerWithUserIdQuery } from './cqrs/query/is-card-owner-with-user-id.query';
@@ -376,7 +382,7 @@ export class CardService {
           }),
         );
       } else {
-        throw new Error('Unauthorized');
+        throw new Error('Forbidden');
       }
     } catch (error) {
       if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
@@ -384,7 +390,7 @@ export class CardService {
       else if (error.message === 'Card of sender not found') throw new InvalidIdHttpException(' for card sender');
       else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card receiver');
       else if (error.message === 'Card already connected') throw new BadRequestException('Card already connected');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
+      else if (error.message === 'Forbidden') throw new ForbiddenException();
       else throw error;
     }
   }

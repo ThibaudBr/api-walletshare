@@ -14,6 +14,8 @@ import { InvalidPasswordHttpException } from '../../../../../util/exception/cust
 import { InvalidMailHttpException } from '../../../../../util/exception/custom-http-exception/invalid-mail.http-exception';
 import { InvalidUsernameHttpException } from '../../../../../util/exception/custom-http-exception/invalid-username.http-exception';
 import * as bcrypt from 'bcrypt';
+import { ProfileEntity } from '../../../../profile/domain/entities/profile.entity';
+import { RoleProfileEnum } from '../../../../profile/domain/enum/role-profile.enum';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler<CreateUserCommand> {
@@ -74,6 +76,12 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
       const newUser: UserEntity = new UserEntity({
         ...command.createUserDto,
+        profiles: [
+          new ProfileEntity({
+            usernameProfile: command.createUserDto.username,
+            roleProfile: RoleProfileEnum.CLASSIC,
+          }),
+        ],
         password: bcrypt.hashSync(command.createUserDto.password, 10),
         referralCode: await this.generateUniqueReferralCode(),
       });

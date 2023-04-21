@@ -374,14 +374,14 @@ describe('ProfileController (e2e)', () => {
   describe('GET getAllCardsByUserId /admin/get-all-cards/:userId', () => {
     describe('when user is not connected', () => {
       it('should return 401', async () => {
-        await request(app.getHttpServer()).get('/admin/get-all-cards/1').expect(401);
+        await request(app.getHttpServer()).get('/card/admin/get-all-cards/1').expect(401);
       });
     });
 
     describe('when user is connected as PUBLIC', () => {
       it('should return 403', async () => {
         await request(app.getHttpServer())
-          .get('/admin/get-all-cards/1')
+          .get('/card/admin/get-all-cards/1')
           .set('Authorization', 'Bearer ' + publicToken)
           .expect(403);
       });
@@ -390,7 +390,7 @@ describe('ProfileController (e2e)', () => {
     describe('when user is connected as ADMIN', () => {
       it('when user id is not valid', async () => {
         await request(app.getHttpServer())
-          .get('/admin/get-all-cards/invalidId')
+          .get('/card/admin/get-all-cards/invalidId')
           .set('Authorization', 'Bearer ' + adminToken)
           .expect(400)
           .then(response => {
@@ -400,7 +400,7 @@ describe('ProfileController (e2e)', () => {
 
       it('when user id is from deleted user', async () => {
         await request(app.getHttpServer())
-          .get('/admin/get-all-cards/' + userIdList[2])
+          .get('/card/admin/get-all-cards/' + userIdList[2])
           .set('Authorization', 'Bearer ' + adminToken)
           .expect(404)
           .then(response => {
@@ -412,7 +412,7 @@ describe('ProfileController (e2e)', () => {
         describe('when user has no card', () => {
           it('should return 200, and empty array', async () => {
             const response = await request(app.getHttpServer())
-              .get('/admin/get-all-cards/' + userIdList[0])
+              .get('/card/admin/get-all-cards/' + userIdList[0])
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(200);
             expect(response.body).toHaveLength(0);
@@ -422,7 +422,7 @@ describe('ProfileController (e2e)', () => {
         describe('when user has card', () => {
           it('should return 200, and array of card', async () => {
             const response = await request(app.getHttpServer())
-              .get('/admin/get-all-cards/' + userIdList[1])
+              .get('/card/admin/get-all-cards/' + userIdList[1])
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(200);
             expect(response.body).toHaveLength(4);
@@ -430,7 +430,7 @@ describe('ProfileController (e2e)', () => {
 
           it('should return 200, and array of card with relation with owner: ProfileResponse and owner.user', async () => {
             const response = await request(app.getHttpServer())
-              .get('/admin/get-all-cards/' + userIdList[1])
+              .get('/card/admin/get-all-cards/' + userIdList[1])
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(200);
             expect(response.body[0].owner).toBeDefined();
@@ -637,17 +637,17 @@ describe('ProfileController (e2e)', () => {
     });
   });
 
-  describe('POST getAllCardsWithCriteria /card/admin/get-all-cards-with-criteria', () => {
+  describe('POST getAllCardsWithCriteria /card/admin/get-with-criteria', () => {
     describe('when user is not connected', () => {
       it('should return 401', async () => {
-        await request(app.getHttpServer()).post('/card/admin/get-all-cards-with-criteria').expect(401);
+        await request(app.getHttpServer()).post('/card/admin/get-with-criteria').expect(401);
       });
     });
 
     describe('when user is connected as PUBLIC', () => {
       it('should return 403', async () => {
         await request(app.getHttpServer())
-          .post('/card/admin/get-all-cards-with-criteria')
+          .post('/card/admin/get-with-criteria')
           .set('Authorization', 'Bearer ' + publicToken)
           .expect(403);
       });
@@ -656,7 +656,7 @@ describe('ProfileController (e2e)', () => {
     describe('when user is connected as ADMIN', () => {
       it('when criteria is not valid', async () => {
         await request(app.getHttpServer())
-          .post('/card/admin/get-all-cards-with-criteria')
+          .post('/card/admin/get-with-criteria')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({ criteria: 'invalidCriteria' })
           .expect(400)
@@ -668,7 +668,7 @@ describe('ProfileController (e2e)', () => {
       describe('when criteria is valid', () => {
         it('when criteria is empty', async () => {
           await request(app.getHttpServer())
-            .post('/card/admin/get-all-cards-with-criteria')
+            .post('/card/admin/get-with-criteria')
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(200)
             .then(response => {
@@ -680,7 +680,7 @@ describe('ProfileController (e2e)', () => {
           describe('when isDeleted is true', () => {
             it('should return 200, and array of card', async () => {
               await request(app.getHttpServer())
-                .post('/card/admin/get-all-cards-with-criteria')
+                .post('/card/admin/get-with-criteria')
                 .set('Authorization', 'Bearer ' + adminToken)
                 .send({ isDeleted: true })
                 .expect(200)
@@ -693,7 +693,7 @@ describe('ProfileController (e2e)', () => {
           describe('when get by typeOfCardEnum', () => {
             it('when typeOfCardEnum is TypeOfCardEnum.WALLET_SHARE', async () => {
               await request(app.getHttpServer())
-                .post('/card/admin/get-all-cards-with-criteria')
+                .post('/card/admin/get-with-criteria')
                 .set('Authorization', 'Bearer ' + adminToken)
                 .send({ typeOfCardEnum: TypeOfCardEnum.WALLET_SHARE })
                 .expect(200)
@@ -704,7 +704,7 @@ describe('ProfileController (e2e)', () => {
 
             it('when typeOfCardEnum is TypeOfCardEnum.V_CARD', async () => {
               await request(app.getHttpServer())
-                .post('/card/admin/get-all-cards-with-criteria')
+                .post('/card/admin/get-with-criteria')
                 .set('Authorization', 'Bearer ' + adminToken)
                 .send({ typeOfCardEnum: TypeOfCardEnum.V_CARD })
                 .expect(200)
@@ -715,7 +715,7 @@ describe('ProfileController (e2e)', () => {
 
             it('when typeOfCardEnum is TypeOfCardEnum.WEBSITE', async () => {
               await request(app.getHttpServer())
-                .post('/card/admin/get-all-cards-with-criteria')
+                .post('/card/admin/get-with-criteria')
                 .set('Authorization', 'Bearer ' + adminToken)
                 .send({ typeOfCardEnum: TypeOfCardEnum.WEBSITE })
                 .expect(200)
@@ -726,7 +726,7 @@ describe('ProfileController (e2e)', () => {
 
             it('when typeOfCardEnum is TypeOfCardEnum.SOCIAL_NETWORK', async () => {
               await request(app.getHttpServer())
-                .post('/card/admin/get-all-cards-with-criteria')
+                .post('/card/admin/get-with-criteria')
                 .set('Authorization', 'Bearer ' + adminToken)
                 .send({ typeOfCardEnum: TypeOfCardEnum.SOCIAL_NETWORK })
                 .expect(200)
@@ -739,7 +739,7 @@ describe('ProfileController (e2e)', () => {
           describe('when get by profileId and isDeleted True', () => {
             it('should return 200, and array of card', async () => {
               await request(app.getHttpServer())
-                .post('/card/admin/get-all-cards-with-criteria')
+                .post('/card/admin/get-with-criteria')
                 .set('Authorization', 'Bearer ' + adminToken)
                 .send({ profileId: profileIdList[1], isDeleted: true })
                 .expect(200)
@@ -752,7 +752,7 @@ describe('ProfileController (e2e)', () => {
           describe('when get by typeOfCardEnum and isDeleted True', () => {
             it('should return 200, and array of card', async () => {
               await request(app.getHttpServer())
-                .post('/admin/get-all-cards-with-criteria')
+                .post('/card/admin/get-with-criteria')
                 .set('Authorization', 'Bearer ' + adminToken)
                 .send({ typeOfCardEnum: TypeOfCardEnum.WALLET_SHARE, isDeleted: true })
                 .expect(200)
@@ -819,7 +819,7 @@ describe('ProfileController (e2e)', () => {
       describe('when user is not connected', () => {
         it('should return 401', async () => {
           await request(app.getHttpServer())
-            .get('/admin/get-saved-cards-with-user-id/' + userIdList[0])
+            .get('/card/admin/get-saved-cards-with-user-id/' + userIdList[0])
             .expect(401);
         });
       });
@@ -827,7 +827,7 @@ describe('ProfileController (e2e)', () => {
       describe('when user is connected as PUBLIC', () => {
         it('should return 403', async () => {
           await request(app.getHttpServer())
-            .get('/admin/get-saved-cards-with-user-id/' + userIdList[0])
+            .get('/card/admin/get-saved-cards-with-user-id/' + userIdList[0])
             .set('Authorization', 'Bearer ' + publicToken)
             .expect(403);
         });
@@ -837,7 +837,7 @@ describe('ProfileController (e2e)', () => {
         describe('when userId is not valid', () => {
           it('should return 400', async () => {
             await request(app.getHttpServer())
-              .get('/admin/get-saved-cards-with-user-id/' + 'not-valid-id')
+              .get('/card/admin/get-saved-cards-with-user-id/' + 'not-valid-id')
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(400);
           });
@@ -846,7 +846,7 @@ describe('ProfileController (e2e)', () => {
         describe('when userId is valid', () => {
           it('should return 200', async () => {
             await request(app.getHttpServer())
-              .get('/admin/get-saved-cards-with-user-id/' + userIdList[0])
+              .get('/card/admin/get-saved-cards-with-user-id/' + userIdList[0])
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(200);
           });
@@ -858,7 +858,7 @@ describe('ProfileController (e2e)', () => {
       describe('when user is not connected', () => {
         it('should return 401', async () => {
           await request(app.getHttpServer())
-            .get('/admin/get-saved-cards-with-profile-id/' + profileIdList[0])
+            .get('/card/admin/get-saved-cards-with-profile-id/' + profileIdList[0])
             .expect(401);
         });
       });
@@ -867,7 +867,7 @@ describe('ProfileController (e2e)', () => {
         describe('when profileId is not valid', () => {
           it('should return 400', async () => {
             await request(app.getHttpServer())
-              .get('/admin/get-saved-cards-with-profile-id/' + 'not-valid-id')
+              .get('/card/admin/get-saved-cards-with-profile-id/' + 'not-valid-id')
               .set('Authorization', 'Bearer ' + publicToken)
               .expect(400);
           });
@@ -877,7 +877,7 @@ describe('ProfileController (e2e)', () => {
           describe('when profileId is not from the user', () => {
             it('should return 403', async () => {
               await request(app.getHttpServer())
-                .get('/admin/get-saved-cards-with-profile-id/' + profileIdList[0])
+                .get('/card/admin/get-saved-cards-with-profile-id/' + profileIdList[0])
                 .set('Authorization', 'Bearer ' + publicToken)
                 .expect(403);
             });
@@ -887,7 +887,7 @@ describe('ProfileController (e2e)', () => {
             describe('when there is no saved card', () => {
               it('should return 200', async () => {
                 await request(app.getHttpServer())
-                  .get('/admin/get-saved-cards-with-profile-id/' + profileIdList[1])
+                  .get('/card/admin/get-saved-cards-with-profile-id/' + profileIdList[1])
                   .set('Authorization', 'Bearer ' + publicToken)
                   .expect(200);
               });
@@ -896,7 +896,7 @@ describe('ProfileController (e2e)', () => {
             describe('when there is saved card', () => {
               it('should return 200', async () => {
                 await request(app.getHttpServer())
-                  .get('/admin/get-saved-cards-with-profile-id/' + profileIdList[0])
+                  .get('/card/admin/get-saved-cards-with-profile-id/' + profileIdList[0])
                   .set('Authorization', 'Bearer ' + publicToken)
                   .expect(200);
               });
@@ -1235,7 +1235,7 @@ describe('ProfileController (e2e)', () => {
             });
             describe('when cardId and connectedCardId are not the same', () => {
               describe('when cardId and connectedCardId are already connected', () => {
-                it('should return 400', async () => {
+                it('should return 403', async () => {
                   await request(app.getHttpServer())
                     .put('/card/public/add-connected-card')
                     .set('Authorization', 'Bearer ' + publicToken)
@@ -1243,7 +1243,7 @@ describe('ProfileController (e2e)', () => {
                       cardId: cardIdList[0],
                       connectedCardId: cardIdList[12],
                     })
-                    .expect(400);
+                    .expect(403);
                 });
               });
 
@@ -2273,7 +2273,6 @@ describe('ProfileController (e2e)', () => {
                 .put('/card/public/update-my-card/' + cardIdList[0])
                 .set('Authorization', 'Bearer ' + publicToken)
                 .send({
-                  typeOfCard: TypeOfCardEnum.V_CARD,
                   whoCanCommunicateWith: 'not valid WhoCanCommunicateWithEnum',
                 })
                 .expect(400)
@@ -2289,7 +2288,6 @@ describe('ProfileController (e2e)', () => {
                 .put('/card/public/update-my-card/' + cardIdList[0])
                 .set('Authorization', 'Bearer ' + publicToken)
                 .send({
-                  typeOfCard: TypeOfCardEnum.V_CARD,
                   whoCanCommunicateWith: WhoCanCommunicateWithEnum.NOBODY,
                 })
                 .expect(200);

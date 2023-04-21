@@ -22,7 +22,6 @@ import { ConnectedCardEntity } from '../../../src/api/card/domain/entities/conne
 import { MediaEntity } from '../../../src/api/entities-to-create/media.entity';
 import { OccupationEntity } from '../../../src/api/occupation/domain/entities/occupation.entity';
 import { Repository } from 'typeorm';
-import { GroupRequestEntity } from '../../../src/api/groupe/domain/entities/group-request.entity';
 import { CardEntity } from '../../../src/api/card/domain/entities/card.entity';
 
 @Injectable()
@@ -72,8 +71,6 @@ export class AppTestE2eService {
     private readonly referralCodeRepository: Repository<ReferralCodeEntity>,
     @InjectRepository(AddressEntity)
     private readonly addressRepository: Repository<AddressEntity>,
-    @InjectRepository(GroupRequestEntity)
-    private readonly groupRequestRepository: Repository<GroupRequestEntity>,
   ) {}
 
   async clearDatabaseTest(): Promise<void> {
@@ -103,7 +100,6 @@ export class AppTestE2eService {
       await this.notificationRepository.query('DELETE FROM "notification";');
       await this.referralCodeRepository.query('DELETE FROM "referral_code";');
       await this.addressRepository.query('DELETE FROM "address";');
-      await this.groupRequestRepository.query('DELETE FROM "group_request";');
       await this.userRepository.query('DELETE FROM "user";');
     } catch (error) {
       console.log(error);

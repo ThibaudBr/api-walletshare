@@ -30,7 +30,6 @@ export class CardTestE2eService {
 
       return await this.cardRepository.save(newCard);
     } catch (e) {
-      console.log(e);
       throw e;
     }
   }

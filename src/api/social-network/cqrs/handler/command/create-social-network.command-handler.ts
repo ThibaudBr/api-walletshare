@@ -33,7 +33,7 @@ export class CreateSocialNetworkCommandHandler implements ICommandHandler<Create
 
       const err = await validate(newSocialNetworkEntity);
       if (err.length > 0) {
-        throw new InvalidClassException('Parameter not validate');
+        throw err;
       }
 
       this.socialNetworkRepository

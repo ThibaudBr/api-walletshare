@@ -104,7 +104,9 @@ describe('SocialNetworkController (e2e)', () => {
       .expect(201)
       .then(async response => {
         socialNetworkIdList.push(response.body.id);
-        await request(app.getHttpServer()).delete(`/api/test/remove-social-network-test/${response.body.id}`).expect(200);
+        await request(app.getHttpServer())
+          .delete(`/api/test/remove-social-network-test/${response.body.id}`)
+          .expect(200);
       });
   });
 
@@ -180,7 +182,7 @@ describe('SocialNetworkController (e2e)', () => {
         .set('Authorization', `Bearer ${publicToken}`)
         .expect(400)
         .then(response => {
-          expect(response.body.name).toBe('Invalid Id');
+          expect(response.body.message).toBe('Invalid Id');
         });
     });
   });
@@ -255,8 +257,12 @@ describe('SocialNetworkController (e2e)', () => {
     it('should return 403 when user is not logged', async () => {
       await request(app.getHttpServer())
         .post('/social-network/admin/create')
-        .send({ name: 'Facebook', color: '#e1306c' })
-        .expect(401)
+        .send({
+          name: 'Facebook',
+          url: 'https://www.facebook.fr/',
+          icon: 'jesaispas',
+          color: '#e1306c',
+        })        .expect(401)
         .then(response => {
           expect(response.body.message).toBe('Unauthorized');
         });
@@ -266,8 +272,12 @@ describe('SocialNetworkController (e2e)', () => {
       await request(app.getHttpServer())
         .post('/social-network/admin/create')
         .set('Authorization', `Bearer ${publicToken}`)
-        .send({ name: 'Facebook', color: '#e1306c' })
-        .expect(403)
+        .send({
+          name: 'Facebook',
+          url: 'https://www.facebook.fr/',
+          icon: 'jesaispas',
+          color: '#e1306c',
+        })        .expect(403)
         .then(response => {
           expect(response.body.message).toBe('Forbidden resource');
         });
@@ -277,7 +287,12 @@ describe('SocialNetworkController (e2e)', () => {
       await request(app.getHttpServer())
         .post('/social-network/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
-        .send({ name: 'Facebook', color: '#e1306c' })
+        .send({
+          name: 'Facebook',
+          url: 'https://www.facebook.fr/',
+          icon: 'jesaispas',
+          color: '#e1306c',
+        })
         .expect(201);
     });
 

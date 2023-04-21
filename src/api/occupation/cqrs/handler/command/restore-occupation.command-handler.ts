@@ -4,6 +4,7 @@ import { RestoreOccupationCommand } from '../../command/restore-occupation.comma
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestoreOccupationEvent } from '../../event/restore-occupation.event';
 import { OccupationEntity } from '../../../domain/entities/occupation.entity';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(RestoreOccupationCommand)
 export class RestoreOccupationCommandHandler implements ICommandHandler<RestoreOccupationCommand> {
@@ -15,7 +16,7 @@ export class RestoreOccupationCommandHandler implements ICommandHandler<RestoreO
 
   async execute(command: RestoreOccupationCommand): Promise<void> {
     try {
-      await this.occupationRepository
+      const occupation: OccupationEntity = await this.occupationRepository
         .findOneOrFail({
           withDeleted: true,
           where: [{ id: command.occupationId }],
@@ -23,6 +24,7 @@ export class RestoreOccupationCommandHandler implements ICommandHandler<RestoreO
         .catch(() => {
           throw new Error('Occupation not found');
         });
+      if (!occupation.deletedAt) throw new Error('Occupation is not soft deleted');
 
       await this.occupationRepository.restore(command.occupationId);
       this.eventBus.publish(
@@ -31,7 +33,14 @@ export class RestoreOccupationCommandHandler implements ICommandHandler<RestoreO
         }),
       );
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'RestoreOccupationCommandHandler',
+          localisation: 'occupation',
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

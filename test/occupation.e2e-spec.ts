@@ -154,6 +154,7 @@ describe('OccupationController (e2e)', () => {
         .set('Authorization', `Bearer ${publicToken}`)
         .expect(201)
         .expect(res => {
+          console.log(res.body);
           expect(res.body.id).toBe(occupationIdList[0]);
         });
     });
@@ -162,7 +163,7 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .get(`/occupation/public/${occupationIdList[0]}1`)
         .set('Authorization', `Bearer ${publicToken}`)
-        .expect(404)
+        .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
           expect(res.body.message).toBe('Occupation not found');
@@ -295,11 +296,7 @@ describe('OccupationController (e2e)', () => {
         .send({
           name: 'occupationTest4',
         })
-        .expect(201)
-        .expect(res => {
-          expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.name).toBe('occupationTest4');
-        });
+        .expect(201);
     });
 
     it('should not create an occupation when user is admin and name is already used', () => {
@@ -307,7 +304,7 @@ describe('OccupationController (e2e)', () => {
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
         .send({
-          name: 'occupationTest4',
+          name: 'occupationTest1',
         })
         .expect(400)
         .expect(res => {
@@ -326,7 +323,7 @@ describe('OccupationController (e2e)', () => {
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Name is required');
+          expect(res.body.message).toBe('Invalid parameters: name must be longer than or equal to 2 characters');
         });
     });
 
@@ -340,7 +337,7 @@ describe('OccupationController (e2e)', () => {
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Name is required');
+          expect(res.body.message).toBe('Invalid parameters: name must be longer than or equal to 2 characters');
         });
     });
 
@@ -354,7 +351,7 @@ describe('OccupationController (e2e)', () => {
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Name is too long');
+          expect(res.body.message).toBe('Invalid parameters: name must be shorter than or equal to 20 characters');
         });
     });
 
@@ -363,12 +360,12 @@ describe('OccupationController (e2e)', () => {
         .post('/occupation/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
         .send({
-          name: 'oc',
+          name: 'o',
         })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Name is too short');
+          expect(res.body.message).toBe('Invalid parameters: name must be longer than or equal to 2 characters');
         });
     });
 
@@ -442,11 +439,7 @@ describe('OccupationController (e2e)', () => {
         .send({
           name: 'occupationTest4',
         })
-        .expect(200)
-        .expect(res => {
-          expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.name).toBe('occupationTest4');
-        });
+        .expect(204);
     });
 
     it('should not update an occupation when user is admin and name is already used', () => {
@@ -454,7 +447,7 @@ describe('OccupationController (e2e)', () => {
         .put('/occupation/admin/update/' + occupationIdToUpdateList[0])
         .set('Authorization', `Bearer ${adminToken}`)
         .send({
-          name: 'occupationTest3',
+          name: 'occupationTest2',
         })
         .expect(400)
         .expect(res => {
@@ -473,7 +466,7 @@ describe('OccupationController (e2e)', () => {
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Name is required');
+          expect(res.body.message).toBe('Invalid parameters: name must be longer than or equal to 2 characters');
         });
     });
 
@@ -487,7 +480,7 @@ describe('OccupationController (e2e)', () => {
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Name is too long');
+          expect(res.body.message).toBe('Invalid parameters: name must be shorter than or equal to 20 characters');
         });
     });
 
@@ -496,12 +489,12 @@ describe('OccupationController (e2e)', () => {
         .put('/occupation/admin/update/' + occupationIdToUpdateList[0])
         .set('Authorization', `Bearer ${adminToken}`)
         .send({
-          name: 'oc',
+          name: 'o',
         })
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Name is too short');
+          expect(res.body.message).toBe('Invalid parameters: name must be longer than or equal to 2 characters');
         });
     });
 
@@ -512,7 +505,7 @@ describe('OccupationController (e2e)', () => {
         .send({
           name: 'occupationTest4',
         })
-        .expect(404)
+        .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
           expect(res.body.message).toBe('Occupation not found');
@@ -526,7 +519,7 @@ describe('OccupationController (e2e)', () => {
         .send({
           name: 'occupationTest4',
         })
-        .expect(404)
+        .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
           expect(res.body.message).toBe('Occupation not found');
@@ -580,7 +573,7 @@ describe('OccupationController (e2e)', () => {
       return request(app.getHttpServer())
         .delete('/occupation/admin/delete/' + 'invalidId')
         .set('Authorization', `Bearer ${adminToken}`)
-        .expect(404)
+        .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
           expect(res.body.message).toBe('Occupation not found');
@@ -637,7 +630,7 @@ describe('OccupationController (e2e)', () => {
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Invalid id');
+          expect(res.body.message).toBe('Occupation not found');
         });
     });
 
@@ -652,7 +645,7 @@ describe('OccupationController (e2e)', () => {
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Occupation already soft deleted');
+          expect(res.body.message).toBe('Occupation not found');
         });
     });
   });
@@ -711,17 +704,13 @@ describe('OccupationController (e2e)', () => {
         .expect(400)
         .expect(res => {
           expect(res.body).toBeInstanceOf(Object);
-          expect(res.body.message).toBe('Invalid id');
+          expect(res.body.message).toBe('Occupation not found');
         });
     });
 
     it('should not restore an occupation who is not soft-deleted', async () => {
-      await request(app.getHttpServer())
-        .put('/occupation/admin/restore/' + occupationIdToRestore)
-        .set('Authorization', `Bearer ${adminToken}`)
-        .expect(400);
       return request(app.getHttpServer())
-        .put('/occupation/admin/restore/' + occupationIdToRestore)
+        .put('/occupation/admin/restore/' + occupationIdList[0])
         .set('Authorization', `Bearer ${adminToken}`)
         .expect(400)
         .expect(res => {

@@ -1,6 +1,6 @@
 export class GetSocialNetworkWithCriteriaRequest {
   constructor(partial: Partial<GetSocialNetworkWithCriteriaRequest>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly isDeleted: boolean;

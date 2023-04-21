@@ -1,6 +1,6 @@
 export class MailResponse {
   constructor(partial: Partial<MailResponse>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly mail: string;

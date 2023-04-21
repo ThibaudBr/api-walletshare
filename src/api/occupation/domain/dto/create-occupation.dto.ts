@@ -1,6 +1,6 @@
 export class CreateOccupationDto {
   constructor(partial: Partial<CreateOccupationDto>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly name: string;

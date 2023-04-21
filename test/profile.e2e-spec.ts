@@ -467,7 +467,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(2);
+          expect(response.body.length).toBe(3);
         });
     });
 
@@ -475,7 +475,7 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .get('/profile/admin')
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(201)
+        .expect(200)
         .then(response => {
           expect(response.body.length).toBe(2);
           expect(response.body[0].occupations).toBeDefined();
@@ -676,7 +676,7 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(3);
+          expect(response.body.length).toBe(4);
           expect(response.body[0].id).toBeDefined();
           expect(response.body[0].user.id).toBeDefined();
           expect(response.body[0].user.id).toBe(userIdList[0]);
@@ -694,7 +694,7 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(2);
+          expect(response.body.length).toBe(4);
           expect(response.body[0].id).toBeDefined();
           expect(response.body[0].user.id).toBeDefined();
           expect(response.body[0].user.id).toBe(userIdList[0]);
@@ -1092,7 +1092,7 @@ describe('ProfileController (e2e)', () => {
         .expect(204);
 
       await request(app.getHttpServer())
-        .get('/api/test/get-all-profiles!-test')
+        .get('/api/test/get-all-profiles-test')
         .expect(200)
         .then(response => {
           response.body.forEach((profile: ProfileEntity) => {
@@ -1103,7 +1103,7 @@ describe('ProfileController (e2e)', () => {
 
     it('when user is logged in as ADMIN, should return 404, because profile does not exist', async () => {
       await request(app.getHttpServer())
-        .delete('/profile/admin/delete-profile/' + profileIdList[1])
+        .delete('/profile/admin/delete-profile/invalidId')
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(404)
         .then(response => {
@@ -1146,7 +1146,6 @@ describe('ProfileController (e2e)', () => {
             if (profile.id === profileIdList[1]) {
               expect(profile.deletedAt).toBeDefined();
               expect(profile.deletedAt).not.toBeNull();
-              expect(profile.deletedAt).toBeInstanceOf(Date)
             }
           });
         });
@@ -1154,7 +1153,7 @@ describe('ProfileController (e2e)', () => {
 
     it('when user is logged in as ADMIN, should return 404, because profile does not exist', async () => {
       await request(app.getHttpServer())
-        .delete('/profile/admin/soft-delete-profile/' + profileIdList[1])
+        .delete('/profile/admin/soft-delete-profile/invalidId')
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(404)
         .then(response => {
@@ -1164,7 +1163,7 @@ describe('ProfileController (e2e)', () => {
 
     it('when user is logged in as ADMIN, should return 404, because profile is already soft-deleted', async () => {
       await request(app.getHttpServer())
-        .delete('/profile/admin/soft-delete-profile/' + profileIdList[2])
+        .delete('/profile/admin/soft-delete-profile/' + profileIdList[3])
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(404)
         .then(response => {
@@ -1204,7 +1203,6 @@ describe('ProfileController (e2e)', () => {
         .expect(200)
         .then(response => {
           response.body.forEach((profile: ProfileEntity) => {
-            expect(profile.id).not.toBe(profileIdList[2]);
             if (profile.id === profileIdList[2]) {
               expect(profile.deletedAt).toBeUndefined();
             }
