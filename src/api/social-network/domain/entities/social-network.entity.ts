@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
+import { IsNotEmpty, IsUrl, Length, Matches } from 'class-validator';
 
 /**
  * @description
@@ -39,15 +40,21 @@ export class SocialNetworkEntity extends BaseEntity {
   id: string;
 
   @Column()
+  @Length(2, 50)
   name: string;
 
   @Column()
+  @IsUrl()
   url: string;
 
   @Column()
+  @IsNotEmpty()
   icon: string;
 
   @Column()
+  @Matches(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, {
+    message: 'The field must be a valid hexadecimal RGB value',
+  })
   color: string;
 
   // ______________________________________________________

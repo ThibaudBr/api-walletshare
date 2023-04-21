@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Param, Post, UsePipes } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UsePipes } from "@nestjs/common";
 import { SocialNetworkTestE2eService } from '../service-test/social-network-test-e2e.service';
 import { CreateSocialNetworkRequest } from '../../../src/api/social-network/web/request/create-social-network.request';
 import { SocialNetworkEntity } from '../../../src/api/social-network/domain/entities/social-network.entity';
@@ -21,13 +21,13 @@ export class SocialNetworkTestE2eController {
   }
 
   @UsePipes(new IsTestEnvironmentPipe())
-  @Post('/api/test/get-all-social-networks-test')
+  @Get('/api/test/get-all-social-networks-test')
   getAllSocialNetworksTest(): Promise<SocialNetworkEntity[]> {
     return this.socialNetworkTestE2eService.getAllSocialNetworks();
   }
 
   @UsePipes(new IsTestEnvironmentPipe())
-  @Post('/api/test/get-social-network-test/:id')
+  @Get('/api/test/get-social-network-test/:id')
   getSocialNetworkTest(@Param('id') socialNetworkId: string): Promise<SocialNetworkEntity | null> {
     return this.socialNetworkTestE2eService.getSocialNetwork(socialNetworkId);
   }

@@ -262,7 +262,8 @@ describe('SocialNetworkController (e2e)', () => {
           url: 'https://www.facebook.fr/',
           icon: 'jesaispas',
           color: '#e1306c',
-        })        .expect(401)
+        })
+        .expect(401)
         .then(response => {
           expect(response.body.message).toBe('Unauthorized');
         });
@@ -277,7 +278,8 @@ describe('SocialNetworkController (e2e)', () => {
           url: 'https://www.facebook.fr/',
           icon: 'jesaispas',
           color: '#e1306c',
-        })        .expect(403)
+        })
+        .expect(403)
         .then(response => {
           expect(response.body.message).toBe('Forbidden resource');
         });
@@ -288,12 +290,12 @@ describe('SocialNetworkController (e2e)', () => {
         .post('/social-network/admin/create')
         .set('Authorization', `Bearer ${adminToken}`)
         .send({
-          name: 'Facebook',
+          name: 'BillyBob',
           url: 'https://www.facebook.fr/',
           icon: 'jesaispas',
           color: '#e1306c',
         })
-        .expect(201);
+        .expect(204);
     });
 
     it('should return 400 when user is ADMIN and social network name already exists', async () => {
@@ -308,7 +310,7 @@ describe('SocialNetworkController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network name already exists');
+          expect(response.body.message).toBe('Duplicate name');
         });
     });
 
@@ -324,7 +326,7 @@ describe('SocialNetworkController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network name is required');
+          expect(response.body.message).toBe('Invalid parameters: name must be longer than or equal to 2 characters');
         });
     });
 
@@ -340,7 +342,7 @@ describe('SocialNetworkController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network color is required');
+          expect(response.body.message).toBe('Invalid parameters: The field must be a valid hexadecimal RGB value');
         });
     });
 
@@ -356,7 +358,7 @@ describe('SocialNetworkController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network url is required');
+          expect(response.body.message).toBe('Invalid parameters: url must be a URL address');
         });
     });
 
@@ -372,7 +374,7 @@ describe('SocialNetworkController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network icon is required');
+          expect(response.body.message).toBe('Invalid parameters: icon should not be empty');
         });
     });
 
@@ -388,7 +390,7 @@ describe('SocialNetworkController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network url is not valid');
+          expect(response.body.message).toBe('Invalid parameters: url must be a URL address');
         });
     });
 
@@ -406,7 +408,7 @@ describe('SocialNetworkController (e2e)', () => {
     });
   });
 
-  describe('POST /social-network/admin/update', () => {
+  describe('PUT /social-network/admin/update', () => {
     it('should return 403 when user is not logged', async () => {
       await request(app.getHttpServer())
         .put('/social-network/admin/update/' + socialNetworkIdList[0])
@@ -421,7 +423,12 @@ describe('SocialNetworkController (e2e)', () => {
       await request(app.getHttpServer())
         .put('/social-network/admin/update/' + socialNetworkIdList[0])
         .set('Authorization', `Bearer ${publicToken}`)
-        .send({ name: 'Facebook', color: '#e1306c' })
+        .send({
+          name: 'Facebook',
+          color: '#e1306c',
+          url: 'https://www.facebook.com',
+          icon: 'facebook',
+        })
         .expect(403)
         .then(response => {
           expect(response.body.message).toBe('Forbidden resource');
@@ -434,9 +441,21 @@ describe('SocialNetworkController (e2e)', () => {
         .set('Authorization', `Bearer ${adminToken}`)
         .send({
           name: 'Facebook2',
-          color: '#e1306c',
+          color: '#e1312c',
+          url: 'https://www.facebook.com',
+          icon: 'facebook',
         })
         .expect(204);
+
+      await request(app.getHttpServer())
+        .get('/api/test/get-social-network-test/' + socialNetworkIdList[0])
+        .expect(200)
+        .then(response => {
+          expect(response.body.name).toEqual('Facebook2');
+          expect(response.body.url).toEqual('https://www.facebook.com');
+          expect(response.body.icon).toEqual('facebook');
+          expect(response.body.color).toEqual('#e1312c');
+        });
     });
 
     it('should return error when user is ADMIN and social network name already exists', async () => {
@@ -451,7 +470,7 @@ describe('SocialNetworkController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network name already exists');
+          expect(response.body.message).toBe('Duplicate name');
         });
     });
 
@@ -467,7 +486,7 @@ describe('SocialNetworkController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network name is required');
+          expect(response.body.message).toBe('Invalid parameters: name must be longer than or equal to 2 characters');
         });
     });
 
@@ -561,7 +580,7 @@ describe('SocialNetworkController (e2e)', () => {
 
     it('should return 204 when user is ADMIN and social network is restored', async () => {
       await request(app.getHttpServer())
-        .put('/social-network/admin/restore/' + socialNetworkIdList[0])
+        .put('/social-network/admin/restore/' + socialNetworkIdList[2])
         .set('Authorization', `Bearer ${adminToken}`)
         .expect(204);
     });
@@ -576,13 +595,13 @@ describe('SocialNetworkController (e2e)', () => {
         });
     });
 
-    it('should return error when user is ADMIN and social network already exists', async () => {
+    it('should return error when user is ADMIN and social network is not soft deleted', async () => {
       await request(app.getHttpServer())
         .put('/social-network/admin/restore/' + socialNetworkIdList[1])
         .set('Authorization', `Bearer ${adminToken}`)
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Social network already exists');
+          expect(response.body.message).toBe('Social network is not soft deleted');
         });
     });
   });

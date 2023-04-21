@@ -52,7 +52,7 @@ export class CreateSocialNetworkCommandHandler implements ICommandHandler<Create
           error: e.message,
         }),
       );
-      throw new Error('SocialNetwork not created');
+      throw e;
     }
   }
 }

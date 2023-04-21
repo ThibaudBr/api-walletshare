@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { UpdateSocialNetworkEvent } from '../../event/update-social-network.event';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SocialNetworkEntity } from '../../../domain/entities/social-network.entity';
+import { validate } from 'class-validator';
 
 @CommandHandler(UpdateSocialNetworkCommand)
 export class UpdateSocialNetworkCommandHandler implements ICommandHandler<UpdateSocialNetworkCommand> {
@@ -14,11 +15,20 @@ export class UpdateSocialNetworkCommandHandler implements ICommandHandler<Update
   ) {}
 
   async execute(command: UpdateSocialNetworkCommand): Promise<void> {
+    await this.socialNetworkRepository.find().then((socialNetworkEntityList: SocialNetworkEntity[]) => {
+      socialNetworkEntityList.forEach((socialNetwork: SocialNetworkEntity) => {
+        if (socialNetwork.id != command.id && socialNetwork.name == command.name) throw new Error('Duplicated name');
+      });
+    });
     await this.socialNetworkRepository
       .findOneOrFail({
         where: [{ id: command.id }],
       })
       .then(async socialNetwork => {
+        const err = await validate(new SocialNetworkEntity({ ...command }));
+        if (err.length > 0) {
+          throw err;
+        }
         await this.socialNetworkRepository
           .update(socialNetwork.id, {
             ...command,
@@ -30,7 +40,8 @@ export class UpdateSocialNetworkCommandHandler implements ICommandHandler<Update
             throw new Error('SocialNetwork not updated');
           });
       })
-      .catch(() => {
+      .catch(error => {
+        if (error instanceof Array) throw error;
         throw new Error('SocialNetwork not found');
       });
   }

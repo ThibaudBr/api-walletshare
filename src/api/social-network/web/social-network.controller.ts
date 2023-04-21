@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from '@nestjs/common';
-import { SocialNetworkService } from './social-network.service';
+import { SocialNetworkService } from '../social-network.service';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateSocialNetworkRequest } from './web/request/create-social-network.request';
-import { RoleGuard } from '../auth/guards/role.guard';
-import { UserRoleEnum } from '../user/domain/enum/user-role.enum';
-import { SocialNetworkResponse } from './web/response/social-network.response';
-import { GetSocialNetworkWithCriteriaRequest } from './web/request/get-social-network-with-criteria.request';
-import { UpdateSocialNetworkRequest } from './web/request/update-social-network.request';
+import { CreateSocialNetworkRequest } from './request/create-social-network.request';
+import { RoleGuard } from '../../auth/guards/role.guard';
+import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
+import { SocialNetworkResponse } from './response/social-network.response';
+import { GetSocialNetworkWithCriteriaRequest } from './request/get-social-network-with-criteria.request';
+import { UpdateSocialNetworkRequest } from './request/update-social-network.request';
 
 @Controller('social-network')
 @ApiTags('SocialNetwork')

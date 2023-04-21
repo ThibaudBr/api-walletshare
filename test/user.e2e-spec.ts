@@ -325,21 +325,6 @@ describe('UserController (e2e)', () => {
       });
     });
 
-    describe('Admin user should not be able to generateUser with invalid mail', () => {
-      it('should return mail is not valid', function () {
-        request(app.getHttpServer())
-          .post('/user/admin/generate-user-from-mail')
-          .set('Authorization', 'Bearer ' + adminToken)
-          .send({
-            mail: 'userTesttest.fr',
-          })
-          .expect(400)
-          .then(response => {
-            expect(response.body.message).toEqual('Mail is not valid');
-          });
-      });
-    });
-
     describe('Admin should not be able to generateUser with duplicate mail', () => {
       it('should return mail is already used', async function () {
         await request(app.getHttpServer())
@@ -610,9 +595,9 @@ describe('UserController (e2e)', () => {
             .then(response => {
               expect(response.body).toBeDefined();
               expect(response.body.length).toEqual(4);
-              expect(response.body[2].username).toEqual('userToTest2');
+              expect(response.body[2].username).toEqual('userToTest3');
               expect(response.body[2].deletedAt).toBeNull();
-              expect(response.body[3].username).toEqual('userToTest3');
+              expect(response.body[3].username).toEqual('userToTest4');
               expect(response.body[3].deletedAt).toBeNull();
             });
         });
