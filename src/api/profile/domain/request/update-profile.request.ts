@@ -1,7 +1,7 @@
 import { RoleProfileEnum } from '../enum/role-profile.enum';
 
 export class UpdateProfileRequest {
-  public readonly id: string;
+  public readonly profileId: string;
   public readonly usernameProfile: string;
   public readonly roleProfile: RoleProfileEnum;
   public readonly occupationsId: string[];

@@ -16,7 +16,7 @@ import { WhoCanSeeCardInformationEnum } from '../enum/who-can-see-card-informati
 import { WhoCanCommunicateWithEnum } from '../enum/who-can-communicate-with.enum';
 import { TypeOfCardEnum } from '../enum/type-of-card.enum';
 import { SocialNetworkEntity } from '../../../social-network/domain/entities/social-network.entity';
-import { IsEmail, IsUrl, MaxLength } from 'class-validator';
+import { IsEmail, IsEnum, IsUrl, MaxLength } from "class-validator";
 import { ConnectedCardEntity } from './connected-card.entity';
 import { MediaEntity } from '../../../entities-to-create/media.entity';
 import { GroupMembershipEntity } from '../../../groupe/domain/entities/group-membership.entity';
@@ -134,18 +134,23 @@ export class CardEntity extends BaseEntity {
   // ______________________________________________________
 
   @Column({ type: 'enum', enum: TypeOfCardEnum, default: TypeOfCardEnum.SOCIAL_NETWORK })
+  @IsEnum(TypeOfCardEnum)
   typeOfCardEnum: TypeOfCardEnum;
 
   @Column('text', { array: true, default: [WhoCanShareCardEnum.DIFFUSIBLE] })
+  @IsEnum(WhoCanShareCardEnum)
   whoCanShareCardEnums: WhoCanShareCardEnum[];
 
   @Column('text', { array: true, default: [WhoCanSeeCardInformationEnum.ALL] })
+  @IsEnum(WhoCanSeeCardInformationEnum)
   whoCanSeeCardInformationEnums: WhoCanSeeCardInformationEnum[];
 
   @Column('text', { array: true, default: [WhoCanCommunicateWithEnum.ALL] })
+  @IsEnum(WhoCanCommunicateWithEnum)
   whoCanCommunicateWithEnum: WhoCanCommunicateWithEnum[];
 
   @Column('text', { array: true, default: [TransferableStatusCardEnum.IS_TRANSFERABLE] })
+  @IsEnum(TransferableStatusCardEnum)
   transferableStatusCardEnum: TransferableStatusCardEnum[];
 
   // ______________________________________________________

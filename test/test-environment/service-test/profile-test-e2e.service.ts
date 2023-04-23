@@ -26,7 +26,7 @@ export class ProfileTestE2eService {
       });
       newProfile.user = await this.userRepository.findOneOrFail({
         where: {
-          id: createProfileRequest.idUser,
+          id: createProfileRequest.userId,
         },
       });
       for (const occupationId of createProfileRequest.occupationsId) {

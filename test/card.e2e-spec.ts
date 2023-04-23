@@ -14,7 +14,7 @@ if (process.env.NODE_ENV != 'test') {
   throw new Error('NODE_ENV must be set to test');
 }
 
-describe('ProfileController (e2e)', () => {
+describe('CardController (e2e)', () => {
   let app: INestApplication;
   let moduleFixture: TestingModule;
 
@@ -310,20 +310,20 @@ describe('ProfileController (e2e)', () => {
 
     describe('when user is connected as ADMIN', () => {
       describe('when card is not found', () => {
-        it('should return 404', async () => {
+        it('should return 400', async () => {
           await request(app.getHttpServer())
             .get('/card/public/' + cardIdList[0])
             .set('Authorization', 'Bearer ' + adminToken)
-            .expect(404);
+            .expect(400);
         });
       });
 
       describe('when card is deleted', () => {
-        it('should return 404', async () => {
+        it('should return 400', async () => {
           await request(app.getHttpServer())
             .get('/card/public/' + cardIdList[1])
             .set('Authorization', 'Bearer ' + adminToken)
-            .expect(404);
+            .expect(400);
         });
       });
 
@@ -341,20 +341,20 @@ describe('ProfileController (e2e)', () => {
 
     describe('when user is connected as PUBLIC', () => {
       describe('when card is not found', () => {
-        it('should return 404', async () => {
+        it('should return 400', async () => {
           await request(app.getHttpServer())
             .get('/card/public/' + cardIdList[0])
             .set('Authorization', 'Bearer ' + publicToken)
-            .expect(404);
+            .expect(400);
         });
       });
 
       describe('when card is deleted', () => {
-        it('should return 404', async () => {
+        it('should return 400', async () => {
           await request(app.getHttpServer())
             .get('/card/public/' + cardIdList[1])
             .set('Authorization', 'Bearer ' + publicToken)
-            .expect(404);
+            .expect(400);
         });
       });
 
@@ -402,7 +402,7 @@ describe('ProfileController (e2e)', () => {
         await request(app.getHttpServer())
           .get('/card/admin/get-all-cards/' + userIdList[2])
           .set('Authorization', 'Bearer ' + adminToken)
-          .expect(404)
+          .expect(400)
           .then(response => {
             expect(response.body.message).toEqual('User not found');
           });
@@ -516,7 +516,7 @@ describe('ProfileController (e2e)', () => {
 
       describe('when profile id is valid', () => {
         describe('when profile id is from another user', () => {
-          it('should return 404', async () => {
+          it('should return 400', async () => {
             await request(app.getHttpServer())
               .get('/card/public/get-all-cards-by-profile-id/' + profileIdList[0])
               .set('Authorization', 'Bearer ' + publicToken)

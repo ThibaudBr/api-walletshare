@@ -156,7 +156,7 @@ export class UserService {
   }
 
   async deleteMe(userId: string): Promise<void> {
-    if (!!(await this.queryBus.execute(new GetUserQuery(userId)))) throw new Error('User not found');
+    if (!(await this.queryBus.execute(new GetUserQuery(userId)))) throw new Error('User not found');
     return await this.commandBus.execute(new SoftDeleteUserCommand(userId));
   }
 

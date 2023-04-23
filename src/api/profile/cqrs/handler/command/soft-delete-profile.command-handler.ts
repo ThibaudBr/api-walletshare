@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileEntity } from '../../../domain/entities/profile.entity';
 import { Repository } from 'typeorm';
 import { SoftDeleteProfileEvent } from '../../event/soft-delete-profile.event';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(SoftDeleteProfileCommand)
 export class SoftDeleteProfileCommandHandler implements ICommandHandler<SoftDeleteProfileCommand> {
@@ -31,7 +32,14 @@ export class SoftDeleteProfileCommandHandler implements ICommandHandler<SoftDele
         }),
       );
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'SoftDeleteProfileCommandHandler',
+          localisation: 'profile',
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

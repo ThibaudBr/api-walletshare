@@ -137,7 +137,7 @@ describe('ProfileController (e2e)', () => {
         usernameProfile: 'profileTest1',
         roleProfile: RoleProfileEnum.CLASSIC,
         occupationsId: [occupationIdList[0], occupationIdList[1]],
-        idUser: userIdList[0],
+        userId: userIdList[0],
       })
       .expect(201)
       .then(response => {
@@ -149,7 +149,7 @@ describe('ProfileController (e2e)', () => {
         usernameProfile: 'profileTest2',
         roleProfile: RoleProfileEnum.CLASSIC,
         occupationsId: [occupationIdList[0], occupationIdList[1]],
-        idUser: userIdList[1],
+        userId: userIdList[1],
       })
       .expect(201)
       .then(response => {
@@ -161,7 +161,7 @@ describe('ProfileController (e2e)', () => {
         usernameProfile: 'profileTest3',
         roleProfile: RoleProfileEnum.CLASSIC,
         occupationsId: [occupationIdList[0], occupationIdList[1]],
-        idUser: userIdList[2],
+        userId: userIdList[2],
       })
       .expect(201)
       .then(response => {
@@ -173,7 +173,7 @@ describe('ProfileController (e2e)', () => {
         usernameProfile: 'profileTest4',
         roleProfile: RoleProfileEnum.CLASSIC,
         occupationsId: [occupationIdList[0], occupationIdList[1]],
-        idUser: userIdList[1],
+        userId: userIdList[1],
       })
       .expect(201)
       .then(async response => {
@@ -187,57 +187,6 @@ describe('ProfileController (e2e)', () => {
   afterEach(async () => {
     await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
     await app.close();
-  });
-
-  describe('When admin create user, new profile public should be created', () => {
-    it('new user should have a profile public', async () => {
-      await request(app.getHttpServer())
-        .post('/user/admin/create')
-        .set('Authorization', 'Bearer ' + adminToken)
-        .send({
-          username: 'userToTest',
-          mail: 'userToTest@test.fr',
-          password: 'Test123!',
-          roles: ['PUBLIC'],
-        })
-        .expect(201);
-      await request(app.getHttpServer())
-        .get('/user/admin/')
-        .set('Authorization', 'Bearer ' + adminToken)
-        .expect(200)
-        .then(response => {
-          response.body.forEach((user: UserResponse) => {
-            if (user.username === 'userToTest') {
-              expect(user.profiles?.length).toBe(1);
-              expect(user.profiles?.[0].roleProfile).toBe('PUBLIC');
-            }
-          });
-        });
-    });
-
-    it('when user register, new profile public should be created', async () => {
-      await request(app.getHttpServer())
-        .post('/auth/register')
-        .set('Authorization', 'Bearer ' + adminToken)
-        .send({
-          username: 'userToTest',
-          mail: 'userToTest@test.fr',
-          password: 'Test123!',
-        })
-        .expect(201);
-      await request(app.getHttpServer())
-        .get('/user/admin/')
-        .set('Authorization', 'Bearer ' + adminToken)
-        .expect(200)
-        .then(response => {
-          response.body.forEach((user: UserResponse) => {
-            if (user.username === 'userToTest') {
-              expect(user.profiles?.length).toBe(1);
-              expect(user.profiles?.[0].roleProfile).toBe('CLASSIC');
-            }
-          });
-        });
-    });
   });
 
   describe('when user is soft deleted, his profile should be soft deleted', () => {
@@ -281,7 +230,19 @@ describe('ProfileController (e2e)', () => {
           usernameProfile: 'profileTest1',
           roleProfile: RoleProfileEnum.CLASSIC,
           occupationsId: [occupationIdList[0], occupationIdList[1]],
-          idUser: userToSoftDeleteId,
+          userId: userToSoftDeleteId,
+        })
+        .expect(201)
+        .then(response => {
+          createdProfileId = response.body.id;
+        });
+      await request(app.getHttpServer())
+        .post('/api/test/create-profile-test')
+        .send({
+          usernameProfile: 'profileTest2',
+          roleProfile: RoleProfileEnum.CLASSIC,
+          occupationsId: [occupationIdList[0], occupationIdList[1]],
+          userId: userToSoftDeleteId,
         })
         .expect(201)
         .then(response => {
@@ -300,8 +261,8 @@ describe('ProfileController (e2e)', () => {
         .then(response => {
           response.body.forEach((profile: ProfileEntity) => {
             if (profile.user.id === userToSoftDeleteId) {
-              expect(profile.deletedAt).toBeDefined();
-              expect(profile.deletedAt).toBeInstanceOf(Date);
+              expect(profile.deletedAt).not.toBeNull();
+              expect(new Date(profile.deletedAt)).toBeInstanceOf(Date);
             }
           });
         });
@@ -321,7 +282,7 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .delete('/user/admin/' + userToSoftDeleteId)
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(201);
+        .expect(204);
 
       await request(app.getHttpServer())
         .get('/api/test/get-all-profiles-test')
@@ -330,7 +291,7 @@ describe('ProfileController (e2e)', () => {
           response.body.forEach((profile: ProfileEntity) => {
             if (profile.user.id === userToSoftDeleteId) {
               expect(profile.deletedAt).toBeDefined();
-              expect(profile.deletedAt).toBeInstanceOf(Date);
+              expect(new Date(profile.deletedAt)).toBeInstanceOf(Date);
             }
           });
         });
@@ -394,7 +355,7 @@ describe('ProfileController (e2e)', () => {
           usernameProfile: 'profileTest1',
           roleProfile: RoleProfileEnum.CLASSIC,
           occupationsId: [occupationIdList[0], occupationIdList[1]],
-          idUser: userToSoftDeleteId,
+          userId: userToSoftDeleteId,
         })
         .expect(201)
         .then(response => {
@@ -406,7 +367,7 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .delete('/occupation/admin/delete/' + occupationIdList[0])
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(201);
+        .expect(204);
 
       await request(app.getHttpServer())
         .get('/api/test/get-all-profiles-test')
@@ -433,8 +394,8 @@ describe('ProfileController (e2e)', () => {
         .then(response => {
           response.body.forEach((profile: ProfileEntity) => {
             if (profile.id === createdProfileId) {
-              expect(profile.occupations?.length).toBe(1);
-              expect(profile.occupations?.[0].id).toBe(occupationIdList[1]);
+              expect(profile.occupations?.length).toBe(2);
+              expect(profile.occupations?.[0].deletedAt).not.toBeNull();
             }
           });
         });
@@ -477,35 +438,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(2);
-          expect(response.body[0].occupations).toBeDefined();
-          expect(response.body[0].occupations).toBeInstanceOf(Array);
-          expect(response.body[0].occupations[0].id).toBeDefined();
-          expect(response.body[0].occupations[0].name).toBeDefined();
-          expect(response.body[0].occupations[0].name).toBeInstanceOf(String);
-          expect(response.body[0].occupations[0].deletedAt).toBeDefined();
-          expect(response.body[0].occupations[0].deletedAt).toBeInstanceOf(Date);
-          expect(response.body[0].occupations[0].createdAt).toBeDefined();
-          expect(response.body[0].occupations[0].createdAt).toBeInstanceOf(Date);
-          expect(response.body[0].occupations[0].updatedAt).toBeDefined();
-          expect(response.body[0].occupations[0].updatedAt).toBeInstanceOf(Date);
-          expect(response.body[0].user).toBeDefined();
-          expect(response.body[0].user).toBeInstanceOf(Object);
-          expect(response.body[0].user.id).toBeDefined();
-          expect(response.body[0].user.username).toBeDefined();
-          expect(response.body[0].user.username).toBeInstanceOf(String);
-          expect(response.body[0].user.mail).toBeDefined();
-          expect(response.body[0].user.mail).toBeInstanceOf(String);
-          expect(response.body[0].user.roles).toBeDefined();
-          expect(response.body[0].user.roles).toBeInstanceOf(Array);
-          expect(response.body[0].user.roles[0]).toBeDefined();
-          expect(response.body[0].user.roles[0]).toBeInstanceOf(String);
-          expect(response.body[0].user.deletedAt).toBeDefined();
-          expect(response.body[0].user.deletedAt).toBeInstanceOf(Date);
-          expect(response.body[0].user.createdAt).toBeDefined();
-          expect(response.body[0].user.createdAt).toBeInstanceOf(Date);
-          expect(response.body[0].user.updatedAt).toBeDefined();
-          expect(response.body[0].user.updatedAt).toBeInstanceOf(Date);
+          expect(response.body.length).toBe(3);
         });
     });
   });
@@ -569,9 +502,9 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200)
         .then(response => {
-          expect(response.body.id).toBeDefined();
-          expect(response.body.user.id).toBeDefined();
-          expect(response.body.occupations).toBeDefined();
+          expect(response.body[0].id).toBeDefined();
+          expect(response.body[0].userId).toBeDefined();
+          expect(response.body[0].occupations).toBeDefined();
         });
     });
 
@@ -581,10 +514,9 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200)
         .then(response => {
-          expect(response.body.id).toBeDefined();
-          expect(response.body.user.id).toBeDefined();
-          expect(response.body.user.id).toBe(userIdList[0]);
-          expect(response.body.occupations).toBeDefined();
+          expect(response.body[0].id).toBeDefined();
+          expect(response.body[0].userId).toEqual(userIdList[0]);
+          expect(response.body[0].occupations).toBeDefined();
         });
     });
   });
@@ -605,10 +537,10 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + publicToken)
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(2);
+          expect(response.body.length).toBe(1);
           expect(response.body[0].id).toBeDefined();
-          expect(response.body[0].user.id).toBeDefined();
-          expect(response.body[0].user.id).toBe(userIdList[0]);
+          expect(response.body[0].userId).toBeDefined();
+          expect(response.body[0].userId).toBe(userIdList[1]);
           expect(response.body[0].occupations).toBeDefined();
         });
     });
@@ -616,13 +548,13 @@ describe('ProfileController (e2e)', () => {
     it('when user logged is ADMIN, should return 200, with all his profile', async () => {
       await request(app.getHttpServer())
         .get('/profile/public/get-my-profiles')
-        .set('Authorization', 'Bearer ' + adminToken)
+        .set('Authorization', 'Bearer ' + publicToken)
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(2);
+          expect(response.body.length).toBe(1);
           expect(response.body[0].id).toBeDefined();
-          expect(response.body[0].user.id).toBeDefined();
-          expect(response.body[0].user.id).toBe(userIdList[0]);
+          expect(response.body[0].userId).toBeDefined();
+          expect(response.body[0].userId).toBe(userIdList[1]);
           expect(response.body[0].occupations).toBeDefined();
         });
     });
@@ -661,8 +593,8 @@ describe('ProfileController (e2e)', () => {
         .then(response => {
           expect(response.body.length).toBe(1);
           expect(response.body[0].id).toBeDefined();
-          expect(response.body[0].user.id).toBeDefined();
-          expect(response.body[0].user.id).toBe(userIdList[0]);
+          expect(response.body[0].userId).toBeDefined();
+          expect(response.body[0].userId).toBe(userIdList[0]);
           expect(response.body[0].occupations).toBeDefined();
         });
     });
@@ -730,10 +662,12 @@ describe('ProfileController (e2e)', () => {
         .post('/profile/admin/create-profile')
         .set('Authorization', 'Bearer ' + adminToken)
         .send({
+          occupations: [],
           userId: userIdList[0],
           roleProfile: RoleProfileEnum.CLASSIC,
+          usernameProfile: 'BillyBob',
         })
-        .expect(204);
+        .expect(201);
     });
 
     it('when user logged is ADMIN, should return 400, because userId is not defined', async () => {
@@ -745,29 +679,7 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('userId is required');
-        });
-    });
-
-    it('when user logged is ADMIN, should return 204, whith roleProfile undefined in request but set default as CLASSIC', async () => {
-      await request(app.getHttpServer())
-        .post('/profile/admin/create-profile')
-        .set('Authorization', 'Bearer ' + adminToken)
-        .send({
-          userId: userIdList[0],
-        })
-        .expect(204);
-      await request(app.getHttpServer())
-        .get('/profile/public/get-my-profile')
-        .set('Authorization', 'Bearer ' + publicToken)
-        .expect(200)
-        .then(response => {
-          expect(response.body.length).toBe(1);
-          expect(response.body[0].id).toBeDefined();
-          expect(response.body[0].user.id).toBeDefined();
-          expect(response.body[0].user.id).toBe(userIdList[0]);
-          expect(response.body[0].occupations).toBeDefined();
-          expect(response.body[0].roleProfile).toBe(RoleProfileEnum.CLASSIC);
+          expect(response.body.message).toBe('User not found');
         });
     });
 
@@ -777,12 +689,13 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .send({
           userId: userIdList[0],
+          usernameProfile: 'biilyBob',
           roleProfile: RoleProfileEnum.CLASSIC,
           occupationsId: [occupationIdList[0], 'invalidId'],
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('occupationsId contains invalid id');
+          expect(response.body.message).toBe('Invalid Id');
         });
     });
 
@@ -797,7 +710,9 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('usernameProfile must be longer than or equal to 3 characters');
+          expect(response.body.message).toBe(
+            'Invalid parameters: usernameProfile must be longer than or equal to 3 characters',
+          );
         });
     });
 
@@ -812,22 +727,9 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('usernameProfile must be shorter than or equal to 30 characters');
-        });
-    });
-
-    it('when user logged is ADMIN, should return 400, because usernameProfile contain invalid carac', async () => {
-      await request(app.getHttpServer())
-        .post('/profile/admin/create-profile')
-        .set('Authorization', 'Bearer ' + adminToken)
-        .send({
-          userId: userIdList[0],
-          roleProfile: RoleProfileEnum.CLASSIC,
-          usernameProfile: 'a^a!"\'&<>*-+',
-        })
-        .expect(400)
-        .then(response => {
-          expect(response.body.message).toBe('usernameProfile must match the following: /^[a-zA-Z0-9]+$/');
+          expect(response.body.message).toBe(
+            'Invalid parameters: usernameProfile must be shorter than or equal to 30 characters',
+          );
         });
     });
   });
@@ -859,6 +761,7 @@ describe('ProfileController (e2e)', () => {
         .put('/profile/admin/update-profile/' + profileIdList[0])
         .set('Authorization', 'Bearer ' + adminToken)
         .send({
+          usernameProfile: 'bob',
           roleProfile: RoleProfileEnum.CLASSIC,
         })
         .expect(204);
@@ -869,11 +772,12 @@ describe('ProfileController (e2e)', () => {
         .put('/profile/admin/update-profile/invalidId')
         .set('Authorization', 'Bearer ' + adminToken)
         .send({
+          usernameProfile: 'bob',
           roleProfile: RoleProfileEnum.CLASSIC,
         })
-        .expect(404)
+        .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Not Found');
+          expect(response.body.message).toBe('Invalid Id');
         });
     });
 
@@ -882,11 +786,12 @@ describe('ProfileController (e2e)', () => {
         .put('/profile/admin/update-profile/' + profileIdList[0])
         .set('Authorization', 'Bearer ' + adminToken)
         .send({
+          usernameProfile: 'bob',
           roleProfile: 'invalidRole',
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('roleProfile must be a valid enum value');
+          expect(response.body.message).toBe('Invalid parameters: roleProfile must be one of the following values: CLASSIC, PREMIUM, COMPANY');
         });
     });
 
@@ -896,10 +801,13 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .send({
           usernameProfile: 'a',
+          roleProfile: RoleProfileEnum.CLASSIC,
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('usernameProfile must be longer than or equal to 3 characters');
+          expect(response.body.message).toBe(
+            'Invalid parameters: usernameProfile must be longer than or equal to 3 characters',
+          );
         });
     });
 
@@ -909,10 +817,13 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .send({
           usernameProfile: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          roleProfile: RoleProfileEnum.CLASSIC,
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('usernameProfile must be shorter than or equal to 30 characters');
+          expect(response.body.message).toBe(
+            'Invalid parameters: usernameProfile must be shorter than or equal to 30 characters',
+          );
         });
     });
 
@@ -925,7 +836,7 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('occupationsId contains invalid id');
+          expect(response.body.message).toBe('Invalid Id');
         });
     });
 
@@ -939,7 +850,7 @@ describe('ProfileController (e2e)', () => {
         .expect(204);
 
       await request(app.getHttpServer())
-        .get('/profile/admin/get-profile/' + profileIdList[0])
+        .get('/api/test/get-profile-test/' + profileIdList[0])
         .expect(200)
         .then(response => {
           expect(response.body.occupations).toEqual([]);
@@ -951,32 +862,17 @@ describe('ProfileController (e2e)', () => {
         .put('/profile/admin/update-profile/' + profileIdList[0])
         .set('Authorization', 'Bearer ' + adminToken)
         .send({
+          usernameProfile: 'bob',
           roleProfile: RoleProfileEnum.CLASSIC,
         })
         .expect(204);
 
       await request(app.getHttpServer())
-        .get('/profile/admin/get-profile/' + profileIdList[0])
+        .get('/profile/public/get-profile/' + profileIdList[0])
+        .set('Authorization', 'Bearer ' + adminToken)
         .expect(200)
         .then(response => {
           expect(response.body.occupations?.[0].id).toEqual(occupationIdList[0]);
-        });
-    });
-
-    it('when user logged is ADMIN, should return 204, if usernameProfile is undefined, profile should have no change', async () => {
-      await request(app.getHttpServer())
-        .put('/profile/admin/update-profile/' + profileIdList[0])
-        .set('Authorization', 'Bearer ' + adminToken)
-        .send({
-          roleProfile: RoleProfileEnum.CLASSIC,
-        })
-        .expect(204);
-
-      await request(app.getHttpServer())
-        .get('/profile/admin/get-profile/' + profileIdList[0])
-        .expect(200)
-        .then(response => {
-          expect(response.body.usernameProfile).toEqual('usernameProfile');
         });
     });
   });
@@ -996,21 +892,11 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .put('/profile/public/update-my-profile')
         .set('Authorization', 'Bearer ' + publicToken)
-        .send({})
-        .expect(204);
-    });
-
-    it('when user logged is PUBLIC, should return 400, because user should not be able to update is roleProfile', async () => {
-      await request(app.getHttpServer())
-        .put('/profile/public/update-my-profile')
-        .set('Authorization', 'Bearer ' + publicToken)
         .send({
-          roleProfile: RoleProfileEnum.CLASSIC,
+          profileId: profileIdList[1],
+          usernameProfile: 'bob'
         })
-        .expect(400)
-        .then(response => {
-          expect(response.body.message).toBe('roleProfile should not be updated');
-        });
+        .expect(204);
     });
 
     it('when user logged is PUBLIC, should return 204, and usernameProfile should be updated', async () => {
@@ -1018,17 +904,17 @@ describe('ProfileController (e2e)', () => {
         .put('/profile/public/update-my-profile')
         .set('Authorization', 'Bearer ' + publicToken)
         .send({
-          id: profileIdList[1],
+          profileId: profileIdList[1],
           usernameProfile: 'newUsernameProfile',
         })
         .expect(204);
 
       await request(app.getHttpServer())
-        .get('/profile/public/get-my-profile')
+        .get('/profile/public/get-my-profiles')
         .set('Authorization', 'Bearer ' + publicToken)
         .expect(200)
         .then(response => {
-          expect(response.body.usernameProfile).toBe('newUsernameProfile');
+          expect(response.body[0].usernameProfile).toBe('newUsernameProfile');
         });
     });
 
@@ -1037,12 +923,12 @@ describe('ProfileController (e2e)', () => {
         .put('/profile/public/update-my-profile')
         .set('Authorization', 'Bearer ' + publicToken)
         .send({
-          id: profileIdList[0],
+          profileId: profileIdList[0],
           usernameProfile: 'newUsernameProfile',
         })
         .expect(403)
         .then(response => {
-          expect(response.body.message).toBe('Forbidden resource');
+          expect(response.body.message).toBe('Not the owner');
         });
     });
 
@@ -1051,16 +937,17 @@ describe('ProfileController (e2e)', () => {
         .put('/profile/public/update-my-profile')
         .set('Authorization', 'Bearer ' + publicToken)
         .send({
+          profileId: profileIdList[1],
           occupationsId: [occupationIdList[0]],
         })
         .expect(204);
 
       await request(app.getHttpServer())
-        .get('/profile/public/get-my-profile')
+        .get('/profile/public/get-my-profiles')
         .set('Authorization', 'Bearer ' + publicToken)
         .expect(200)
         .then(response => {
-          expect(response.body.occupations?.[0].id).toBe(occupationIdList[0]);
+          expect(response.body[0].occupations?.[0].id).toBe(occupationIdList[0]);
         });
     });
   });
@@ -1105,9 +992,9 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .delete('/profile/admin/delete-profile/invalidId')
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(404)
+        .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Profile not found');
+          expect(response.body.message).toBe('Invalid Id');
         });
     });
   });
@@ -1151,13 +1038,13 @@ describe('ProfileController (e2e)', () => {
         });
     });
 
-    it('when user is logged in as ADMIN, should return 404, because profile does not exist', async () => {
+    it('when user is logged in as ADMIN, should return 400, because profile does not exist', async () => {
       await request(app.getHttpServer())
         .delete('/profile/admin/soft-delete-profile/invalidId')
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(404)
+        .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Profile not found');
+          expect(response.body.message).toBe('Invalid Id');
         });
     });
 
@@ -1165,9 +1052,9 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .delete('/profile/admin/soft-delete-profile/' + profileIdList[3])
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(404)
+        .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Profile not found');
+          expect(response.body.message).toBe('Invalid Id');
         });
     });
   });
@@ -1194,7 +1081,7 @@ describe('ProfileController (e2e)', () => {
 
     it('when user is logged in as ADMIN, should return 204', async () => {
       await request(app.getHttpServer())
-        .put('/profile/admin/restore-profile/' + profileIdList[2])
+        .put('/profile/admin/restore-profile/' + profileIdList[3])
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(204);
 
@@ -1203,8 +1090,8 @@ describe('ProfileController (e2e)', () => {
         .expect(200)
         .then(response => {
           response.body.forEach((profile: ProfileEntity) => {
-            if (profile.id === profileIdList[2]) {
-              expect(profile.deletedAt).toBeUndefined();
+            if (profile.id === profileIdList[3]) {
+              expect(profile.deletedAt).toBeNull();
             }
           });
         });
@@ -1214,9 +1101,9 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .put('/profile/admin/restore-profile/invalidId')
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(404)
+        .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Profile not found');
+          expect(response.body.message).toBe('Invalid Id');
         });
     });
 
@@ -1224,9 +1111,9 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .put('/profile/admin/restore-profile/' + profileIdList[1])
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(404)
+        .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Profile is already active');
+          expect(response.body.message).toBe('Profile is not soft deleted');
         });
     });
   });

@@ -20,6 +20,8 @@ export class GetProfileWithCriteriaQueryHandler implements IQueryHandler<GetProf
 
       if (query.getProfileWithCriteriaDto.isDeleted) {
         queryBuilder.setFindOptions({ withDeleted: true, relations: ['user', 'occupations'] });
+      } else {
+        queryBuilder.setFindOptions({ relations: ['user', 'occupations'] });
       }
 
       if (query.getProfileWithCriteriaDto.usernameProfile) {
@@ -34,6 +36,7 @@ export class GetProfileWithCriteriaQueryHandler implements IQueryHandler<GetProf
         profile =>
           new ProfileResponse({
             ...profile,
+            userId: profile.user.id,
           }),
       );
     } catch (error) {

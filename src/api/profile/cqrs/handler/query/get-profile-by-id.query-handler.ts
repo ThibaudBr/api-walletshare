@@ -25,7 +25,13 @@ export class GetProfileByIdQueryHandler implements IQueryHandler<GetProfileByIdQ
             },
           ],
         })
-        .then(profile => new ProfileResponse({ ...profile, userId: profile.user?.id }));
+        .then(
+          profile =>
+            new ProfileResponse({
+              ...profile,
+              userId: profile.user?.id,
+            }),
+        );
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({

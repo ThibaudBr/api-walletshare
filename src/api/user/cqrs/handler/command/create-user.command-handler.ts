@@ -76,12 +76,6 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
       const newUser: UserEntity = new UserEntity({
         ...command.createUserDto,
-        profiles: [
-          new ProfileEntity({
-            usernameProfile: command.createUserDto.username,
-            roleProfile: RoleProfileEnum.CLASSIC,
-          }),
-        ],
         password: bcrypt.hashSync(command.createUserDto.password, 10),
         referralCode: await this.generateUniqueReferralCode(),
       });

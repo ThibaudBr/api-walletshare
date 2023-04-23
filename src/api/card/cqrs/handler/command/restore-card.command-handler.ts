@@ -40,7 +40,7 @@ export class RestoreCardCommandHandler implements ICommandHandler<RestoreCardCom
           error: error.message,
         }),
       );
-      throw new Error(error);
+      throw error;
     }
   }
 }

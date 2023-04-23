@@ -27,11 +27,16 @@ export class UserTestE2eService {
   }
 
   async removeUser(userId: string): Promise<void> {
-    await this.userRepository.softDelete({ id: userId });
+    try {
+      await this.userRepository.softDelete({ id: userId });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   async getUser(userId: string): Promise<UserEntity | null> {
     return await this.userRepository.findOne({
+      relations: ['profiles'],
       where: {
         id: userId,
       },
@@ -40,6 +45,7 @@ export class UserTestE2eService {
 
   async getAllUsers(): Promise<UserEntity[]> {
     return await this.userRepository.find({
+      relations: ['profiles'],
       withDeleted: true,
     });
   }

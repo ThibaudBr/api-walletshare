@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteProfileEvent } from '../../event/delete-profile.event';
 import { ProfileEntity } from '../../../domain/entities/profile.entity';
 import { Repository } from 'typeorm';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(DeleteProfileCommand)
 export class DeleteProfileCommandHandler implements ICommandHandler<DeleteProfileCommand> {
@@ -29,7 +30,14 @@ export class DeleteProfileCommandHandler implements ICommandHandler<DeleteProfil
         }),
       );
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'DeleteProfileCommandHandler',
+          error: error.message,
+          localisation: 'profile',
+        }),
+      );
+      throw error;
     }
   }
 }

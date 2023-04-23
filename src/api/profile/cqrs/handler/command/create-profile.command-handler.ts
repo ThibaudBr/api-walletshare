@@ -25,9 +25,10 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
 
   async execute(command: CreateProfileCommand): Promise<void> {
     try {
+      if (!command.userId) throw new Error('User not found')
       const user = await this.userRepository
         .findOneOrFail({
-          where: [{ id: command.userId }],
+          where: { id: command.userId },
         })
         .catch(() => {
           throw new Error('User not found');
@@ -38,20 +39,22 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
         ...command.createProfileDto,
       });
 
-      if (command.occupationsId.length > 0) {
-        const occupationPromises: Promise<OccupationEntity>[] = command.occupationsId.map(async occupationId => {
-          return await this.occupationRepository
-            .findOneOrFail({
-              where: [{ id: occupationId }],
-            })
-            .catch(() => {
-              throw new Error('Occupation not found');
-            });
-        });
-        const occupations: OccupationEntity[] = await Promise.all(occupationPromises);
+      if (command.occupationsId) {
+        if (command.occupationsId.length > 0) {
+          const occupationPromises: Promise<OccupationEntity>[] = command.occupationsId.map(async occupationId => {
+            return await this.occupationRepository
+              .findOneOrFail({
+                where: [{ id: occupationId }],
+              })
+              .catch(() => {
+                throw new Error('Occupation not found');
+              });
+          });
+          const occupations: OccupationEntity[] = await Promise.all(occupationPromises);
 
-        if (occupations.length > 0) {
-          newProfile.occupations = occupations;
+          if (occupations.length > 0) {
+            newProfile.occupations = occupations;
+          }
         }
       }
 
@@ -78,7 +81,7 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
           error: error.message,
         }),
       );
-      throw new Error(error);
+      throw error;
     }
   }
 }

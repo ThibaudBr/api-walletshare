@@ -25,6 +25,7 @@ import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.en
 import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
 import { AddressEntity } from '../../api/entities-to-create/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
+import { ProfileSubscriber } from '../../api/profile/subscriber/profile.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -103,6 +104,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
+          subscribers: [ProfileSubscriber],
+
         };
       } else if (process.env.NODE_ENV === 'dev') {
         logger.info('NODE_ENV is dev');
@@ -139,6 +142,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
           ],
+          subscribers: [ProfileSubscriber],
         };
       } else {
         logger.error('NODE_ENV is not set');

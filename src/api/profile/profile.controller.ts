@@ -106,7 +106,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async updateMyProfile(@Req() requestUser: RequestUser, @Body() profile: UpdateProfileRequest): Promise<void> {
     const { id } = requestUser.user;
-    return await this.profileService.updateProfile(id, profile).catch(error => {
+    return await this.profileService.updateMyProfile(id, profile).catch(error => {
       throw error;
     });
   }
@@ -133,9 +133,7 @@ export class ProfileController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteMyProfile(@Param('id') profileId: string): Promise<void> {
-    return await this.profileService.softDeleteProfile(profileId).catch(error => {
-      throw error;
-    });
+    return await this.profileService.softDeleteProfile(profileId);
   }
 
   @Put('/admin/restore-profile/:id')

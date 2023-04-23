@@ -36,7 +36,10 @@ export class OccupationEntity extends BaseEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToMany(() => ProfileEntity, profileEntity => profileEntity.occupations)
+  @ManyToMany(() => ProfileEntity, profileEntity => profileEntity.occupations, {
+    cascade: ['soft-remove', 'remove'],
+    onDelete: 'CASCADE',
+  })
   profiles: ProfileEntity[];
 
   @ManyToMany(() => CompanyEntity, companyEntity => companyEntity.occupations)
