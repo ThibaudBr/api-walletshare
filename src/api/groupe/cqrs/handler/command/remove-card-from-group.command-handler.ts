@@ -71,7 +71,7 @@ export class RemoveCardFromGroupCommandHandler implements ICommandHandler<Remove
       });
 
     await this.groupMembershipRepository
-      .softDelete(groupMembership.id)
+      .softRemove(groupMembership)
       .then(async () => {
         await this.eventBus.publish(new RemoveCardFromGroupEvent({ groupId: command.groupId, cardId: command.cardId }));
       })

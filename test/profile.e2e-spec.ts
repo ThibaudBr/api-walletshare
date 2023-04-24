@@ -30,6 +30,7 @@ describe('ProfileController (e2e)', () => {
     }).compile();
     app = moduleFixture.createNestApplication();
     await app.init();
+    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
 
     await request(app.getHttpServer())
       .post('/api/test/create-user-test')
@@ -185,7 +186,6 @@ describe('ProfileController (e2e)', () => {
   });
 
   afterEach(async () => {
-    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
     await app.close();
   });
 

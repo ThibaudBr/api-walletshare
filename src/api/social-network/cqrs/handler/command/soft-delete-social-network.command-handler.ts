@@ -20,7 +20,7 @@ export class SoftDeleteSocialNetworkCommandHandler implements ICommandHandler<So
       })
       .then(async socialNetwork => {
         await this.socialNetworkRepository
-          .softDelete(socialNetwork.id)
+          .softRemove(socialNetwork)
           .then(async () => {
             await this.eventBus.publish(new SoftDeleteSocialNetworkEvent(command.id));
           })

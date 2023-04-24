@@ -391,6 +391,7 @@ export class CardService {
       else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card receiver');
       else if (error.message === 'Card already connected') throw new BadRequestException('Card already connected');
       else if (error.message === 'Forbidden') throw new ForbiddenException();
+      else if (error.message === 'You can not connect your own card') throw new BadRequestException('You can not connect your own card');
       else throw error;
     }
   }
@@ -509,7 +510,7 @@ export class CardService {
   async removeConnectedCardFromMyCard(userId: string, cardId: string, connectedCardId: string): Promise<void> {
     try {
       if (
-        (await this.isCardOwnerWithUserId(userId, cardId)) ||
+        (await this.isCardOwnerWithUserId(userId, cardId)) &&
         (await this.isCardOwnerWithUserId(userId, connectedCardId))
       ) {
         await this.commandBus.execute(
@@ -524,7 +525,10 @@ export class CardService {
     } catch (error) {
       if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
+      else if (error.message === 'Card of sender not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Error while fetching relation') throw new InvalidIdHttpException(' for relation');
+      else if (error.message === 'Unauthorized') throw new BadRequestException();
       else throw error;
     }
   }
@@ -540,6 +544,9 @@ export class CardService {
     } catch (error) {
       if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Card of sender not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Error while fetching relation') throw new InvalidIdHttpException(' for relation');
       else throw error;
     }
   }
@@ -594,12 +601,12 @@ export class CardService {
           }),
         );
       } else {
-        throw new Error('Unauthorized');
+        throw new Error('Forbidden resource');
       }
     } catch (error) {
-      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException();
       else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
-      else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
+      else if (error.message === 'Forbidden resource') throw new ForbiddenException('Forbidden resource');
       else throw error;
     }
   }

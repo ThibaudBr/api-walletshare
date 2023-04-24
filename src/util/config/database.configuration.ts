@@ -26,6 +26,7 @@ import { NotificationEntity } from '../../api/entities-to-create/notification.en
 import { AddressEntity } from '../../api/entities-to-create/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
 import { ProfileSubscriber } from '../../api/profile/subscriber/profile.subscriber';
+import { ConnectedCardSubscriber } from "../../api/card/subscriber/connected-card.subscriber";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -49,6 +50,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           entities: [join(__dirname, '**/*.entity{.ts,.js}')],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PROD === 'true',
+          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
         };
       } else if (process.env.NODE_ENV === 'pprod') {
         logger.info('NODE_ENV is pprod');
@@ -68,6 +70,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           entities: [join(__dirname, '**', '*.entity.{ts,js}')],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PPROD === 'true',
+          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
         };
       } else if (process.env.NODE_ENV === 'test') {
         logger.info('NODE_ENV is test');
@@ -104,7 +107,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
-          subscribers: [ProfileSubscriber],
+          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
 
         };
       } else if (process.env.NODE_ENV === 'dev') {
@@ -142,7 +145,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
           ],
-          subscribers: [ProfileSubscriber],
+          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
         };
       } else {
         logger.error('NODE_ENV is not set');

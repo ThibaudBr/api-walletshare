@@ -40,11 +40,13 @@ export class ConnectedCardEntity extends BaseEntity {
 
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.connectedCardOne, {
     onDelete: 'CASCADE',
+    cascade: ['insert', 'update'],
   })
   cardEntityOne: CardEntity;
 
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.connectedCardTwo, {
     onDelete: 'CASCADE',
+    cascade: ['insert', 'update'],
   })
   cardEntityTwo: CardEntity;
 

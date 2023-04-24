@@ -24,7 +24,17 @@ export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnec
     try {
       const cardWhoRequest: CardEntity = await this.cardRepository
         .findOneOrFail({
-          relations: ['connectedCards'],
+          select: ['id'],
+          relations: [
+            'connectedCardOne',
+            'connectedCardTwo',
+            'connectedCardOne.cardEntityOne',
+            'connectedCardOne.cardEntityTwo',
+            'connectedCardTwo.cardEntityOne',
+            'connectedCardTwo.cardEntityTwo',
+            'owner',
+            'owner.user',
+          ],
           where: [
             {
               id: command.cardId,
@@ -37,7 +47,16 @@ export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnec
 
       const cardToConnect: CardEntity = await this.cardRepository
         .findOneOrFail({
-          relations: ['connectedCards'],
+          relations: [
+            'connectedCardOne',
+            'connectedCardTwo',
+            'connectedCardOne.cardEntityOne',
+            'connectedCardOne.cardEntityTwo',
+            'connectedCardTwo.cardEntityOne',
+            'connectedCardTwo.cardEntityTwo',
+            'owner',
+            'owner.user',
+          ],
           where: [
             {
               id: command.connectedCardId,
@@ -48,13 +67,22 @@ export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnec
           throw new ErrorInvalidIdRuntimeException('Card of receiver not found');
         });
 
+      if (cardWhoRequest.owner.user.id === cardToConnect.owner.user.id) {
+        throw new Error('You can not connect your own card');
+      }
       cardWhoRequest.connectedCardOne.forEach(card => {
-        if (card.id === cardToConnect.id) {
+        if (card.cardEntityOne.id === cardToConnect.id) {
+          throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
+        }
+        if (card.cardEntityTwo.id === cardToConnect.id) {
           throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
         }
       });
       cardWhoRequest.connectedCardTwo.forEach(card => {
-        if (card.id === cardToConnect.id) {
+        if (card.cardEntityOne.id === cardToConnect.id) {
+          throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
+        }
+        if (card.cardEntityTwo.id === cardToConnect.id) {
           throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
         }
       });
@@ -65,11 +93,11 @@ export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnec
             cardEntityTwo: cardToConnect,
           }),
         )
-        .then(newConnectedCard => {
+        .then(() => {
           this.eventBus.publish(
             new AddConnectedCardEvent({
-              id: newConnectedCard.id,
-              connectedCardId: newConnectedCard.cardEntityTwo.id,
+              id: cardWhoRequest.id,
+              connectedCardId: cardToConnect.id,
             }),
           );
         })

@@ -23,6 +23,7 @@ export class CardTestE2eService {
         ...createCardRequest,
       });
       newCard.owner = await this.profileRepository.findOneOrFail({
+        withDeleted: true,
         where: {
           id: createCardRequest.ownerId,
         },
@@ -35,71 +36,107 @@ export class CardTestE2eService {
   }
 
   async removeCard(cardId: string): Promise<void> {
-    await this.cardRepository.softDelete(cardId);
-  }
-
-  async getCard(cardId: string): Promise<CardEntity | null> {
-    return await this.cardRepository.findOne({
-      withDeleted: true,
-      relations: ['owner', 'connectedCards', 'owner.user', 'connectedCards.owner', 'connectedCards.owner.user'],
+    const cardToDelete = await this.cardRepository.findOneOrFail({
       where: {
         id: cardId,
       },
     });
+    await this.cardRepository.softRemove(cardToDelete);
+  }
+
+  async getCard(cardId: string): Promise<CardEntity | void> {
+    return await this.cardRepository
+      .findOneOrFail({
+        withDeleted: true,
+        relations: [
+          'owner',
+          'connectedCardOne',
+          'connectedCardTwo',
+          'owner.user',
+          'connectedCardOne.cardEntityTwo.owner',
+          'connectedCardOne.cardEntityTwo.owner.user',
+          'connectedCardTwo.cardEntityOne.owner',
+          'connectedCardTwo.cardEntityOne.owner.user',
+        ],
+        where: {
+          id: cardId,
+        },
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async getAllCards(): Promise<CardEntity[]> {
     return await this.cardRepository.find({
       withDeleted: true,
-      relations: ['owner', 'connectedCards', 'owner.user', 'connectedCards.owner', 'connectedCards.owner.user'],
+      relations: [
+        'owner',
+        'owner.user',
+        'connectedCardOne',
+        'connectedCardTwo',
+        'connectedCardOne.cardEntityOne',
+        'connectedCardOne.cardEntityTwo',
+        'connectedCardTwo.cardEntityOne',
+        'connectedCardTwo.cardEntityTwo',
+      ],
     });
   }
 
   async addConnectedCard(cardId: string, connectedCardId: string): Promise<void> {
-    const card = await this.cardRepository.findOneOrFail({
-      withDeleted: true,
-      where: {
-        id: cardId,
-      },
-    });
-    const connectedCard = await this.cardRepository.findOneOrFail({
-      withDeleted: true,
-      where: {
-        id: connectedCardId,
-      },
-    });
-    const connectedCardEntity = new ConnectedCardEntity();
-    connectedCardEntity.cardEntityOne = card;
-    connectedCardEntity.cardEntityTwo = connectedCard;
-    await this.connectedCardRepository.save(connectedCardEntity);
+    try {
+      const card = await this.cardRepository.findOneOrFail({
+        withDeleted: true,
+        where: {
+          id: cardId,
+        },
+      });
+      const connectedCard = await this.cardRepository.findOneOrFail({
+        withDeleted: true,
+        where: {
+          id: connectedCardId,
+        },
+      });
+      const connectedCardEntity = new ConnectedCardEntity();
+      connectedCardEntity.cardEntityOne = card;
+      connectedCardEntity.cardEntityTwo = connectedCard;
+      await this.connectedCardRepository.save(connectedCardEntity);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async removeConnectedCard(cardId: string, connectedCardId: string): Promise<void> {
-    const card = await this.cardRepository.findOneOrFail({
-      withDeleted: true,
-      where: {
-        id: cardId,
-      },
-    });
-    const connectedCard = await this.cardRepository.findOneOrFail({
-      withDeleted: true,
-      where: {
-        id: connectedCardId,
-      },
-    });
-    const connectedCardEntity = await this.connectedCardRepository.findOneOrFail({
-      relations: ['cardEntityOne', 'cardEntityTwo'],
-      withDeleted: true,
-      where: {
-        cardEntityOne: {
-          id: card.id,
+    try {
+      const card = await this.cardRepository.findOneOrFail({
+        withDeleted: true,
+        where: {
+          id: cardId,
         },
-        cardEntityTwo: {
-          id: connectedCard.id,
+      });
+      const connectedCard = await this.cardRepository.findOneOrFail({
+        withDeleted: true,
+        where: {
+          id: connectedCardId,
         },
-      },
-    });
-    await this.connectedCardRepository.softDelete(connectedCardEntity.id);
+      });
+      const connectedCardEntity = await this.connectedCardRepository.findOneOrFail({
+        relations: ['cardEntityOne', 'cardEntityTwo'],
+        withDeleted: true,
+        where: {
+          cardEntityOne: {
+            id: card.id,
+          },
+          cardEntityTwo: {
+            id: connectedCard.id,
+          },
+        },
+      });
+      await this.connectedCardRepository.softRemove(connectedCardEntity);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 
   async getConnectedCards(cardId: string): Promise<CardEntity[]> {

@@ -28,7 +28,12 @@ export class UserTestE2eService {
 
   async removeUser(userId: string): Promise<void> {
     try {
-      await this.userRepository.softDelete({ id: userId });
+      const user = await this.userRepository.findOneOrFail({
+        where: {
+          id: userId
+        }
+      })
+      await this.userRepository.softRemove(user);
     } catch (e) {
       console.log(e);
     }

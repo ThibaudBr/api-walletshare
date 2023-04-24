@@ -17,7 +17,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler<SoftDeleteC
 
   async execute(command: SoftDeleteCardCommand): Promise<void> {
     try {
-      await this.cardRepository
+      const cardToDelete = await this.cardRepository
         .findOneOrFail({
           where: [{ id: command.id }],
         })
@@ -25,7 +25,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler<SoftDeleteC
           throw new ErrorInvalidIdRuntimeException('Card not found');
         });
 
-      await this.cardRepository.softDelete(command.id);
+      await this.cardRepository.softRemove(cardToDelete);
       this.eventBus.publish(
         new SoftDeleteCardEvent({
           cardId: command.id,

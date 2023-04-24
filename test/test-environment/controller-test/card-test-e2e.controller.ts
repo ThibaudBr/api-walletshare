@@ -28,7 +28,7 @@ export class CardTestE2eController {
 
   @UsePipes(new IsTestEnvironmentPipe())
   @Get('/api/test/get-card-test/:id')
-  getCardTest(@Param('id') cardId: string): Promise<CardEntity | null> {
+  getCardTest(@Param('id') cardId: string): Promise<CardEntity | void> {
     return this.cardTestE2eService.getCard(cardId);
   }
 

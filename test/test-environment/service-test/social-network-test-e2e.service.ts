@@ -21,7 +21,12 @@ export class SocialNetworkTestE2eService {
   }
 
   async removeSocialNetwork(socialNetworkId: string): Promise<void> {
-    await this.socialNetworkRepository.softDelete(socialNetworkId);
+    const socialNetwork = await this.socialNetworkRepository.findOneOrFail({
+      where: {
+        id: socialNetworkId
+      }
+    })
+    await this.socialNetworkRepository.softRemove(socialNetwork);
   }
 
   async getSocialNetwork(socialNetworkId: string): Promise<SocialNetworkEntity | null> {

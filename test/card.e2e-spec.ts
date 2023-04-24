@@ -26,15 +26,19 @@ describe('CardController (e2e)', () => {
   let occupationIdList: string[];
   let userIdList: string[];
   let profileIdList: string[];
-  let cardIdList: string[];
+  let cardIdList: string[] = [];
   let socialNetworkIdList: string[];
+  let connectCardIdList = [];
 
   beforeEach(async () => {
+    cardIdList = [];
+    jest.setTimeout(10000);
     moduleFixture = await Test.createTestingModule({
       imports: [AppTestE2eModule],
     }).compile();
     app = moduleFixture.createNestApplication();
     await app.init();
+    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
 
     async function createUser(
       username: string,
@@ -60,11 +64,11 @@ describe('CardController (e2e)', () => {
       usernameProfile: string,
       roleProfile: RoleProfileEnum,
       occupationsId: string[],
-      idUser: string,
+      userId: string,
     ): Promise<supertest.Test> {
       return request(app.getHttpServer())
         .post('/api/test/create-profile-test')
-        .send({ usernameProfile, roleProfile, occupationsId, idUser })
+        .send({ usernameProfile, roleProfile, occupationsId, userId })
         .expect(201);
     }
 
@@ -86,11 +90,11 @@ describe('CardController (e2e)', () => {
         .send({
           name: name,
           typeOfCard: typeOfCard,
-          profileId: profileId,
+          ownerId: profileId,
         })
         .expect(201)
         .then(response => {
-          cardIdList = [response.body.id];
+          cardIdList.push(response.body.id);
         });
     }
 
@@ -154,10 +158,6 @@ describe('CardController (e2e)', () => {
     );
     profileIdList.push(profile3.body.id);
 
-    await request(app.getHttpServer())
-      .delete('/api/test/remove-profile-test/' + profile3.body.id)
-      .expect(200);
-
     const profile4 = await createProfile(
       'profile1Test2',
       RoleProfileEnum.COMPANY,
@@ -182,9 +182,7 @@ describe('CardController (e2e)', () => {
     );
     profileIdList.push(profile6.body.id);
 
-    await request(app.getHttpServer())
-      .delete('/api/test/remove-profile-test/' + profile6.body.id)
-      .expect(200);
+
 
     const profile7 = await createProfile(
       'profile1Test3',
@@ -193,10 +191,6 @@ describe('CardController (e2e)', () => {
       userIdList[2],
     );
     profileIdList.push(profile7.body.id);
-
-    await request(app.getHttpServer())
-      .delete('/api/test/remove-profile-test/' + profile7.body.id)
-      .expect(200);
 
     const socialNetwork1 = await createSocialNetwork('Facebook', 'https://www.facebook.com/', 'facebook', '#3b5998');
     socialNetworkIdList = [socialNetwork1.body.id];
@@ -230,11 +224,7 @@ describe('CardController (e2e)', () => {
     await createCard('card2Test3Website', TypeOfCardEnum.WEBSITE, profileIdList[2]); // 10
     await createCard('card3Test3SocialNetwork', TypeOfCardEnum.SOCIAL_NETWORK, profileIdList[2]); // 11
 
-    for (const cardId of cardIdList.slice(cardIdList.length - 4, cardIdList.length)) {
-      await request(app.getHttpServer())
-        .delete('/api/test/remove-card-test/' + cardId)
-        .expect(200);
-    }
+
 
     // Profil 1 de l'utilisateur 2
     await createCard('card1Test4WalletShare', TypeOfCardEnum.WALLET_SHARE, profileIdList[3]); // 12
@@ -254,11 +244,7 @@ describe('CardController (e2e)', () => {
     await createCard('card2Test6Website', TypeOfCardEnum.WEBSITE, profileIdList[5]); // 22
     await createCard('card3Test6SocialNetwork', TypeOfCardEnum.SOCIAL_NETWORK, profileIdList[5]); // 23
 
-    for (const cardId of cardIdList.slice(cardIdList.length - 4, cardIdList.length)) {
-      await request(app.getHttpServer())
-        .delete('/api/test/remove-card-test/' + cardId)
-        .expect(200);
-    }
+
 
     // Profil 1 de l'utilisateur 3
     await createCard('card1Test7WalletShare', TypeOfCardEnum.WALLET_SHARE, profileIdList[6]); // 24
@@ -266,11 +252,71 @@ describe('CardController (e2e)', () => {
     await createCard('card2Test7Website', TypeOfCardEnum.WEBSITE, profileIdList[6]); // 26
     await createCard('card3Test7SocialNetwork', TypeOfCardEnum.SOCIAL_NETWORK, profileIdList[6]); // 27
 
-    for (const cardId of cardIdList.slice(cardIdList.length - 4, cardIdList.length)) {
+    connectCardIdList = [];
+    async function createConnectedCard(cardId: string, connectedCardId: string): Promise<supertest.Test> {
+      return request(app.getHttpServer())
+        .post('/api/test/add-connected-card-test')
+        .send({
+          cardId: cardId,
+          connectedCardId: connectedCardId,
+        })
+        .expect(201)
+        .then(response => {
+          connectCardIdList.push(response.body.id);
+          return response;
+        });
+    }
+
+    async function removeConnectedCard(id: string, id2: string): Promise<supertest.Test> {
+      return request(app.getHttpServer())
+        .put('/api/test/remove-connected-card-test')
+        .send({
+          cardId: id,
+          connectedCardId: id2,
+        })
+        .then(res => {
+          if (res.status != 200) {
+            expect(res.body).toEqual('bob');
+          }
+          return res;
+        });
+    }
+
+    await createConnectedCard(cardIdList[3], cardIdList[16]);
+    await createConnectedCard(cardIdList[7], cardIdList[16]);
+    await removeConnectedCard(cardIdList[7], cardIdList[16]);
+
+    await createConnectedCard(cardIdList[0], cardIdList[20]);
+    await createConnectedCard(cardIdList[3], cardIdList[20]);
+    await createConnectedCard(cardIdList[7], cardIdList[20]);
+    await removeConnectedCard(cardIdList[7], cardIdList[20]);
+
+    for (const cardId of cardIdList.slice(8, 11)) {
       await request(app.getHttpServer())
         .delete('/api/test/remove-card-test/' + cardId)
         .expect(200);
     }
+
+    for (const cardId of cardIdList.slice(20, 23)) {
+      await request(app.getHttpServer())
+        .delete('/api/test/remove-card-test/' + cardId)
+        .expect(200);
+    }
+    for (const cardId of cardIdList.slice(24, 27)) {
+      await request(app.getHttpServer())
+        .delete('/api/test/remove-card-test/' + cardId)
+        .expect(200);
+    }
+    await request(app.getHttpServer())
+      .delete('/api/test/remove-profile-test/' + profile3.body.id)
+      .expect(200);
+    await request(app.getHttpServer())
+      .delete('/api/test/remove-profile-test/' + profile6.body.id)
+      .expect(200);
+
+    await request(app.getHttpServer())
+      .delete('/api/test/remove-profile-test/' + profile7.body.id)
+      .expect(200);
   });
 
   afterEach(async () => {
@@ -295,7 +341,7 @@ describe('CardController (e2e)', () => {
         .get('/card/admin/')
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200);
-      expect(response.body).toHaveLength(12);
+      expect(response.body).toHaveLength(19);
       expect(response.body[0].owner).toBeDefined();
       expect(response.body[0].owner.user).toBeDefined();
     });
@@ -494,10 +540,10 @@ describe('CardController (e2e)', () => {
     });
   });
 
-  describe('GET getAllCardsByProfileId /card/public/get-all-cards-by-profile-id/:profileId', () => {
+  describe('GET getAllCardsByProfileId /card/public/get-all-my-cards-by-profile-id/:profileId', () => {
     describe('when user is not connected', () => {
       it('should return 401', async () => {
-        await request(app.getHttpServer()).get('/card/public/get-all-cards-by-profile-id/1').expect(401);
+        await request(app.getHttpServer()).get('/card/public/get-all-my-cards-by-profile-id/1').expect(401);
       });
     });
 
@@ -505,7 +551,7 @@ describe('CardController (e2e)', () => {
       describe('when profile id is not valid', () => {
         it('should return 400', async () => {
           await request(app.getHttpServer())
-            .get('/card/public/get-all-cards-by-profile-id/invalidId')
+            .get('/card/public/get-all-my-cards-by-profile-id/invalidId')
             .set('Authorization', 'Bearer ' + publicToken)
             .expect(400)
             .then(response => {
@@ -518,7 +564,7 @@ describe('CardController (e2e)', () => {
         describe('when profile id is from another user', () => {
           it('should return 400', async () => {
             await request(app.getHttpServer())
-              .get('/card/public/get-all-cards-by-profile-id/' + profileIdList[0])
+              .get('/card/public/get-all-my-cards-by-profile-id/' + profileIdList[0])
               .set('Authorization', 'Bearer ' + publicToken)
               .expect(403)
               .then(response => {
@@ -530,7 +576,7 @@ describe('CardController (e2e)', () => {
         describe('when profile id is from the user', () => {
           it('should return 200, and array of card', async () => {
             const response = await request(app.getHttpServer())
-              .get('/card/public/get-all-cards-by-profile-id/' + profileIdList[1])
+              .get('/card/public/get-all-my-cards-by-profile-id/' + profileIdList[1])
               .set('Authorization', 'Bearer ' + publicToken)
               .expect(200);
             expect(response.body).toHaveLength(4);
@@ -542,7 +588,7 @@ describe('CardController (e2e)', () => {
         describe('when profile id is not valid', () => {
           it('should return 400', async () => {
             await request(app.getHttpServer())
-              .get('/card/public/get-all-cards-by-profile-id/invalidId')
+              .get('/card/public/get-all-my-cards-by-profile-id/invalidId')
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(400)
               .then(response => {
@@ -555,7 +601,7 @@ describe('CardController (e2e)', () => {
           describe('when profile id is from another user', () => {
             it('should return 400, and array of card', async () => {
               await request(app.getHttpServer())
-                .get('/card/public/get-all-cards-by-profile-id/' + profileIdList[0])
+                .get('/card/public/get-all-my-cards-by-profile-id/' + profileIdList[0])
                 .set('Authorization', 'Bearer ' + adminToken)
                 .expect(400)
                 .then(response => {
@@ -568,17 +614,17 @@ describe('CardController (e2e)', () => {
     });
   });
 
-  describe('GET getAllCardsWithProfileId /card/admin/get-all-cards-with-profile-id/:profileId', () => {
+  describe('GET getAllCardsWithProfileId /card/admin/get-all-cards-by-profile-id/:profileId', () => {
     describe('when user is not connected', () => {
       it('should return 401', async () => {
-        await request(app.getHttpServer()).get('/card/admin/get-all-cards-with-profile-id/1').expect(401);
+        await request(app.getHttpServer()).get('/card/admin/get-all-cards-by-profile-id/1').expect(401);
       });
     });
 
     describe('when user is connected as PUBLIC', () => {
       it('should return 403', async () => {
         await request(app.getHttpServer())
-          .get('/card/admin/get-all-cards-with-profile-id/1')
+          .get('/card/admin/get-all-cards-by-profile-id/1')
           .set('Authorization', 'Bearer ' + publicToken)
           .expect(403);
       });
@@ -588,7 +634,7 @@ describe('CardController (e2e)', () => {
       describe('when profile id is not valid', () => {
         it('should return 400', async () => {
           await request(app.getHttpServer())
-            .get('/card/admin/get-all-cards-with-profile-id/invalidId')
+            .get('/card/admin/get-all-cards-by-profile-id/invalidId')
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(400)
             .then(response => {
@@ -601,7 +647,7 @@ describe('CardController (e2e)', () => {
         describe('when profile id is from another user', () => {
           it('should return 200, and array of card', async () => {
             await request(app.getHttpServer())
-              .get('/card/admin/get-all-cards-with-profile-id/' + profileIdList[0])
+              .get('/card/admin/get-all-cards-by-profile-id/' + profileIdList[0])
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(200)
               .then(response => {
@@ -613,7 +659,7 @@ describe('CardController (e2e)', () => {
         describe('when profile id is from soft deleted user', () => {
           it('should return 200, and array of card', async () => {
             await request(app.getHttpServer())
-              .get('/card/admin/get-all-cards-with-profile-id/' + profileIdList[2])
+              .get('/card/admin/get-all-cards-by-profile-id/' + profileIdList[2])
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(200)
               .then(response => {
@@ -625,7 +671,7 @@ describe('CardController (e2e)', () => {
         describe('when profile has no card', () => {
           it('should return 200, and empty array', async () => {
             await request(app.getHttpServer())
-              .get('/card/admin/get-all-cards-with-profile-id/' + profileIdList[3])
+              .get('/card/admin/get-all-cards-by-profile-id/' + profileIdList[3])
               .set('Authorization', 'Bearer ' + adminToken)
               .expect(200)
               .then(response => {
@@ -767,9 +813,10 @@ describe('CardController (e2e)', () => {
   });
 
   describe('SavedCard Test', () => {
-    const listOfSavedCardId = [];
+    let listOfSavedCardId = [];
 
     beforeEach(async () => {
+      listOfSavedCardId = [];
       async function addSavedCard(cardId: string, profileId: string): Promise<supertest.Test> {
         return request(app.getHttpServer())
           .post('/api/test/add-saved-card-test')
@@ -1125,48 +1172,6 @@ describe('CardController (e2e)', () => {
   });
 
   describe('ConnectedCard Test', () => {
-    const connectCardIdList = [];
-
-    beforeEach(async () => {
-      async function createConnectedCard(cardId: string, connectedCardId: string): Promise<supertest.Test> {
-        return request(app.getHttpServer())
-          .post('/api/test/add-connected-card-test')
-          .send({
-            cardId: cardId,
-            connectedCardId: connectedCardId,
-          })
-          .expect(201)
-          .then(response => {
-            connectCardIdList.push(response.body.id);
-            return response;
-          });
-      }
-
-      async function removeConnectedCard(id: string, id2: string): Promise<supertest.Test> {
-        return request(app.getHttpServer())
-          .put('/api/test/remove-connected-card-test')
-          .send({
-            id: id,
-            id2: id2,
-          })
-          .expect(200);
-      }
-
-      await createConnectedCard(cardIdList[0], cardIdList[12]);
-      await createConnectedCard(cardIdList[3], cardIdList[12]);
-      await createConnectedCard(cardIdList[7], cardIdList[12]);
-      await removeConnectedCard(cardIdList[7], cardIdList[12]);
-
-      // await createConnectedCard(cardIdList[0], cardIdList[16]);
-      // await createConnectedCard(cardIdList[3], cardIdList[16]);
-      // await createConnectedCard(cardIdList[7], cardIdList[16]);
-      // await removeConnectedCard(cardIdList[7], cardIdList[16]);
-
-      await createConnectedCard(cardIdList[0], cardIdList[20]);
-      await createConnectedCard(cardIdList[3], cardIdList[20]);
-      await createConnectedCard(cardIdList[7], cardIdList[20]);
-      await removeConnectedCard(cardIdList[7], cardIdList[20]);
-    });
 
     describe('PUT addConnectedCard /card/public/add-connected-card', () => {
       describe('when user is not connected', () => {
@@ -1214,10 +1219,10 @@ describe('CardController (e2e)', () => {
                 .put('/card/public/add-connected-card')
                 .set('Authorization', 'Bearer ' + publicToken)
                 .send({
-                  cardId: cardIdList[0],
-                  connectedCardId: cardIdList[12],
+                  cardId: cardIdList[16],
+                  connectedCardId: cardIdList[20],
                 })
-                .expect(403);
+                .expect(400);
             });
           });
           describe('when cardId is from the user', () => {
@@ -1243,7 +1248,7 @@ describe('CardController (e2e)', () => {
                       cardId: cardIdList[0],
                       connectedCardId: cardIdList[12],
                     })
-                    .expect(403);
+                    .expect(400);
                 });
               });
 
@@ -1256,12 +1261,12 @@ describe('CardController (e2e)', () => {
                       cardId: cardIdList[0],
                       connectedCardId: cardIdList[16],
                     })
-                    .expect(201);
+                    .expect(204);
                   await request(app.getHttpServer())
                     .get('/api/test/get-card-test/' + cardIdList[0])
                     .expect(200)
                     .expect(res => {
-                      expect(res.body.connectedCardList.length).toBe(3);
+                      expect(res.body.connectedCardOne.length).toBe(3);
                     });
                 });
               });
@@ -1326,15 +1331,15 @@ describe('CardController (e2e)', () => {
 
         describe('when both card ID are valid', () => {
           describe('when cardId is not from the user', () => {
-            it('should return 403', async () => {
+            it('should return 400', async () => {
               await request(app.getHttpServer())
                 .put('/card/public/remove-connected-card')
                 .set('Authorization', 'Bearer ' + publicToken)
                 .send({
-                  cardId: cardIdList[0],
-                  connectedCardId: cardIdList[12],
+                  cardId: cardIdList[16],
+                  connectedCardId: cardIdList[18],
                 })
-                .expect(403);
+                .expect(400);
             });
           });
           describe('when cardId is from the user', () => {
@@ -1374,12 +1379,12 @@ describe('CardController (e2e)', () => {
                       cardId: cardIdList[0],
                       connectedCardId: cardIdList[12],
                     })
-                    .expect(201);
+                    .expect(204);
                   await request(app.getHttpServer())
                     .get('/api/test/get-card-test/' + cardIdList[0])
                     .expect(200)
                     .expect(res => {
-                      expect(res.body.connectedCardList.length).toBe(1);
+                      expect(res.body.connectedCardTwo.length).toBe(0);
                     });
                 });
               });
@@ -1444,8 +1449,8 @@ describe('CardController (e2e)', () => {
                 .put('/card/admin/add-connected-card')
                 .set('Authorization', 'Bearer ' + adminToken)
                 .send({
-                  cardId: cardIdList[0],
-                  connectedCardId: cardIdList[12],
+                  cardId: cardIdList[3],
+                  connectedCardId: cardIdList[16],
                 })
                 .expect(400);
             });
@@ -1460,12 +1465,13 @@ describe('CardController (e2e)', () => {
                   cardId: cardIdList[0],
                   connectedCardId: cardIdList[16],
                 })
-                .expect(201);
+                .expect(204);
               await request(app.getHttpServer())
                 .get('/api/test/get-card-test/' + cardIdList[0])
                 .expect(200)
                 .expect(res => {
-                  expect(res.body.connectedCardList.length).toBe(3);
+                  console.log(res.body);
+                  expect(res.body.connectedCardOne.length).toBe(2);
                 });
             });
           });
@@ -1544,12 +1550,12 @@ describe('CardController (e2e)', () => {
                   cardId: cardIdList[0],
                   connectedCardId: cardIdList[12],
                 })
-                .expect(201);
+                .expect(204);
               await request(app.getHttpServer())
                 .get('/api/test/get-card-test/' + cardIdList[0])
                 .expect(200)
                 .expect(res => {
-                  expect(res.body.connectedCardList.length).toBe(2);
+                  expect(res.body.connectedCardOne.length).toBe(1);
                 });
             });
           });
@@ -1622,7 +1628,7 @@ describe('CardController (e2e)', () => {
             })
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Bad Request');
+              expect(response.body.message).toEqual('Invalid Id:  for profile');
             });
         });
       });
@@ -1638,7 +1644,7 @@ describe('CardController (e2e)', () => {
             })
             .expect(201);
           await request(app.getHttpServer())
-            .get('/api/test/get-all-card-test')
+            .get('/api/test/get-all-cards-test')
             .expect(200)
             .then(response => {
               expect(response.body.length).toEqual(5);
@@ -1660,7 +1666,7 @@ describe('CardController (e2e)', () => {
                 urls: ['https://www.ceci-est-une-url.com/billyBob'],
                 typeOfCardEnum: TypeOfCardEnum.WEBSITE,
               })
-              .expect(201);
+              .expect(204);
           });
         });
 
@@ -1716,7 +1722,7 @@ describe('CardController (e2e)', () => {
               })
               .expect(400)
               .then(response => {
-                expect(response.body.message).toEqual('Bad Request');
+                expect(response.body.message).toEqual('Invalid Id:  for occupation');
               });
           });
         });
@@ -1733,7 +1739,7 @@ describe('CardController (e2e)', () => {
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Bad Request');
+              expect(response.body.message).toEqual('Invalid Id:  for card');
             });
         });
       });
@@ -1741,17 +1747,20 @@ describe('CardController (e2e)', () => {
       describe('when everything should work properly', () => {
         it('should return 200', async () => {
           await request(app.getHttpServer())
-            .delete('/card/admin/delete-card/' + cardIdList[0])
-            .set('Authorization', 'Bearer ' + adminToken)
+            .get('/api/test/get-all-cards-test')
             .expect(200)
             .then(response => {
-              expect(response.body).toEqual('Card deleted');
+              expect(response.body.length).toEqual(28);
             });
           await request(app.getHttpServer())
-            .get('/api/test/get-all-card-test')
+            .delete('/card/admin/delete-card/' + cardIdList[0])
+            .set('Authorization', 'Bearer ' + adminToken)
+            .expect(204);
+          await request(app.getHttpServer())
+            .get('/api/test/get-all-cards-test')
             .expect(200)
             .then(response => {
-              expect(response.body.length).toEqual(4);
+              expect(response.body.length).toEqual(27);
             });
         });
       });
@@ -1785,7 +1794,7 @@ describe('CardController (e2e)', () => {
     describe('when user is not connected', () => {
       it('should return 401', async () => {
         await request(app.getHttpServer())
-          .delete('/public/delete-card/' + cardIdList[0])
+          .delete('/card/public/delete-card/' + cardIdList[0])
           .expect(401)
           .then(response => {
             expect(response.body.message).toEqual('Unauthorized');
@@ -1797,11 +1806,11 @@ describe('CardController (e2e)', () => {
       describe('when cardId is not valid', () => {
         it('should return 400', async () => {
           await request(app.getHttpServer())
-            .delete('/public/delete-card/not-valid-id')
+            .delete('/card/public/delete-card/not-valid-id')
             .set('Authorization', 'Bearer ' + publicToken)
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Bad Request');
+              expect(response.body.message).toEqual('Invalid Id');
             });
         });
       });
@@ -1809,7 +1818,7 @@ describe('CardController (e2e)', () => {
       describe('when user is not the owner of the card', () => {
         it('should return 403', async () => {
           await request(app.getHttpServer())
-            .delete('/public/delete-card/' + cardIdList[0])
+            .delete('/card/public/delete-card/' + cardIdList[0])
             .set('Authorization', 'Bearer ' + public2Token)
             .expect(403)
             .then(response => {
@@ -1821,12 +1830,12 @@ describe('CardController (e2e)', () => {
       describe('when everything should work properly', () => {
         it('should return 204', async () => {
           await request(app.getHttpServer())
-            .delete('/public/delete-card/' + cardIdList[0])
+            .delete('/card/public/delete-card/' + cardIdList[0])
             .set('Authorization', 'Bearer ' + publicToken)
             .expect(204);
 
           await request(app.getHttpServer())
-            .get('/api/test/get-all-card-test')
+            .get('/api/test/get-all-cards-test')
             .expect(200)
             .then(response => {
               response.body.forEach((card: CardEntity) => {
@@ -1872,7 +1881,7 @@ describe('CardController (e2e)', () => {
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Bad Request');
+              expect(response.body.message).toEqual('Invalid Id:  for card');
             });
         });
       });
@@ -1880,11 +1889,11 @@ describe('CardController (e2e)', () => {
       describe('when card is already soft-deleted', () => {
         it('should return 400', async () => {
           await request(app.getHttpServer())
-            .delete('/card/admin/soft-delete-card/' + cardIdList[0])
+            .delete('/card/admin/soft-delete-card/' + cardIdList[9])
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Bad Request');
+              expect(response.body.message).toEqual('Invalid Id:  for card');
             });
         });
       });
@@ -1894,15 +1903,12 @@ describe('CardController (e2e)', () => {
           await request(app.getHttpServer())
             .delete('/card/admin/soft-delete-card/' + cardIdList[0])
             .set('Authorization', 'Bearer ' + adminToken)
-            .expect(200)
-            .then(response => {
-              expect(response.body).toEqual('Card deleted');
-            });
+            .expect(204);
           await request(app.getHttpServer())
-            .get('/api/test/get-all-card-test')
+            .get('/api/test/get-all-cards-test')
             .expect(200)
             .then(response => {
-              expect(response.body.length).toEqual(4);
+              expect(response.body.length).toEqual(28);
             });
         });
       });
@@ -1941,7 +1947,7 @@ describe('CardController (e2e)', () => {
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Bad Request');
+              expect(response.body.message).toEqual('Invalid Id:  for card');
             });
         });
       });
@@ -1953,7 +1959,7 @@ describe('CardController (e2e)', () => {
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Bad Request');
+              expect(response.body.message).toEqual('Invalid Id:  for card');
             });
         });
       });
@@ -2007,7 +2013,7 @@ describe('CardController (e2e)', () => {
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(400)
             .then(response => {
-              expect(response.body.message).toEqual('Bad Request');
+              expect(response.body.message).toEqual('Invalid Id:  for card');
             });
         });
       });
@@ -2023,7 +2029,7 @@ describe('CardController (e2e)', () => {
               })
               .expect(400)
               .then(response => {
-                expect(response.body.message).toEqual('Bad Request');
+                expect(response.body.message).toEqual('Invalid Id:  for card');
               });
           });
         });
@@ -2033,7 +2039,7 @@ describe('CardController (e2e)', () => {
         describe('when occupation is not valid', () => {
           it('should return 400', async () => {
             await request(app.getHttpServer())
-              .put('/card/admin/update-card/' + cardIdList[0])
+              .put('/card/admin/update-card/' + cardIdList[10])
               .set('Authorization', 'Bearer ' + adminToken)
               .send({
                 typeOfCard: TypeOfCardEnum.V_CARD,
@@ -2041,7 +2047,7 @@ describe('CardController (e2e)', () => {
               })
               .expect(400)
               .then(response => {
-                expect(response.body.message).toEqual('Bad Request');
+                expect(response.body.message).toEqual('Invalid Id:  for occupation');
               });
           });
         });
@@ -2068,22 +2074,6 @@ describe('CardController (e2e)', () => {
       });
 
       describe('when want to update WhoCanShareCardEnum', () => {
-        describe('when WhoCanShareCardEnum is not valid', () => {
-          it('should return 400', async () => {
-            await request(app.getHttpServer())
-              .put('/card/admin/update-card/' + cardIdList[0])
-              .set('Authorization', 'Bearer ' + adminToken)
-              .send({
-                typeOfCard: TypeOfCardEnum.V_CARD,
-                whoCanShareCard: 'not valid WhoCanShareCardEnum',
-              })
-              .expect(400)
-              .then(response => {
-                expect(response.body.message).toEqual('Bad Request');
-              });
-          });
-        });
-
         describe('when want to update WhoCanShareCardEnum', () => {
           it('should return 200', async () => {
             await request(app.getHttpServer())

@@ -23,9 +23,7 @@ export class SoftDeleteProfileCommandHandler implements ICommandHandler<SoftDele
         .catch(() => {
           throw new Error('Profile not found');
         });
-      await this.profileRepository.softDelete({
-        id: profile.id,
-      });
+      await this.profileRepository.softRemove(profile);
       this.eventBus.publish(
         new SoftDeleteProfileEvent({
           id: command.id,

@@ -18,7 +18,12 @@ export class OccupationTestE2eService {
   }
 
   async removeOccupation(occupationId: string): Promise<void> {
-    await this.occupationRepository.softDelete(occupationId);
+    const occupation = await this.occupationRepository.findOneOrFail({
+      where: {
+        id: occupationId
+      }
+    })
+    await this.occupationRepository.softRemove(occupation);
   }
 
   async getOccupation(occupationId: string): Promise<OccupationEntity | null> {

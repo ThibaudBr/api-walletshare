@@ -97,7 +97,9 @@ export class CardEntity extends BaseEntity {
   })
   connectedCardTwo: ConnectedCardEntity[];
 
-  @ManyToMany(() => ProfileEntity, profile => profile.savedCard)
+  @ManyToMany(() => ProfileEntity, profile => profile.savedCard, {
+    cascade: ['insert', 'update'],
+  })
   profilesWhoSavedCard: ProfileEntity[];
 
   @ManyToMany(() => OccupationEntity, occupation => occupation.cards, {
