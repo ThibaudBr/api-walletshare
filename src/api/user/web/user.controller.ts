@@ -11,14 +11,14 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { UserService } from '../user.service';
+import { UserService } from '../application/user.service';
 import { CreateUserDto } from '../domain/dto/create-user.dto';
-import { CreateUserResponse } from '../domain/response/create-user.response';
+import { CreateUserResponse } from './response/create-user.response';
 import { UpdateUserDto } from '../domain/dto/update-user.dto';
-import { RequestUser } from '../../auth/interface/request-user.interface';
+import { RequestUser } from '../../auth/domain/interface/request-user.interface';
 import { ApiTags } from '@nestjs/swagger';
-import { UserResponse } from '../domain/response/user.response';
-import { RoleGuard } from '../../auth/guards/role.guard';
+import { UserResponse } from './response/user.response';
+import { RoleGuard } from '../../auth/web/guards/role.guard';
 import { UserRoleEnum } from '../domain/enum/user-role.enum';
 import { GetUserWithCriteriaDto } from '../domain/dto/get-user-with-criteria.dto';
 import { UpdateUserCredentialDto } from '../domain/dto/update-user-credential.dto';

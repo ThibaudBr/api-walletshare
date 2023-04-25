@@ -1,25 +1,25 @@
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
-import { AuthService } from './auth.service';
-import { LocalStrategy } from './strategy/passport-local.strategy';
-import { AuthController } from './auth.controller';
+import { AuthService } from './application/auth.service';
+import { LocalStrategy } from './web/strategy/passport-local.strategy';
+import { AuthController } from './web/auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from 'dotenv';
 import { UserEntity } from '../user/domain/entities/user.entity';
-import { RegisterHandler } from './cqrs/handler/command/register.handler';
+import { RegisterHandler } from './application/cqrs/handler/command/register.handler';
 import { CqrsModule } from '@nestjs/cqrs';
-import { JwtRefreshTokenStrategy } from './strategy/jwt-refresh-token.strategy';
-import { UserService } from '../user/user.service';
-import { JwtStrategy } from './strategy/jwt.strategy';
-import { GetUserLoginQueryHandler } from '../user/cqrs/handler/query/get-user-login.query-handler';
-import { RegisterEventHandler } from './cqrs/event-handler/register.event-handler';
+import { JwtRefreshTokenStrategy } from './web/strategy/jwt-refresh-token.strategy';
+import { UserService } from '../user/application/user.service';
+import { JwtStrategy } from './web/strategy/jwt.strategy';
+import { GetUserLoginQueryHandler } from '../user/application/cqrs/handler/query/get-user-login.query-handler';
+import { RegisterEventHandler } from './application/cqrs/event-handler/register.event-handler';
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';
 import { ApiLogModule } from '../api-log/api-log.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ApiLogService } from '../api-log/api-log.service';
+import { ApiLogService } from '../api-log/application/api-log.service';
 import * as process from 'process';
-import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
+import { CreateLogCommandHandler } from '../api-log/application/cqrs/handler/command/create-log.command-handler';
 
 config();
 

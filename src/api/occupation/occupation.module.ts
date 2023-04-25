@@ -6,22 +6,22 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { OccupationController } from './web/occupation.controller';
-import { OccupationService } from './occupation.service';
-import { ApiLogService } from '../api-log/api-log.service';
-import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
-import { RestoreOccupationCommandHandler } from './cqrs/handler/command/restore-occupation.command-handler';
-import { SoftDeleteOccupationCommandHandler } from './cqrs/handler/command/soft-delete-occupation.command-handler';
-import { GetAllOccupationQueryHandler } from './cqrs/handler/query/get-all-occupation.query-handler';
-import { GetOccupationByIdQueryHandler } from './cqrs/handler/query/get-occupation-by-id.query-handler';
-import { GetOccupationWithCriteriaQueryHandler } from './cqrs/handler/query/get-occupation-with-criteria.query-handler';
-import { CreateOccupationEventHandler } from './cqrs/handler/event/create-occupation.event-handler';
-import { SoftDeleteOccupationEventHandler } from './cqrs/handler/event/soft-delete-occupation.event-handler';
-import { CreateOccupationCommandHandler } from './cqrs/handler/command/create-occupation.command-handler';
-import { UpdateOccupationCommandHandler } from './cqrs/handler/command/update-occupation.command-handler';
-import { RestoreOccupationEventHandler } from './cqrs/handler/event/restore-occupation.event-handler';
-import { DeleteOccupationCommandHandler } from './cqrs/handler/command/delete-occupation.command-handler';
-import { UpdateOccupationEventHandler } from './cqrs/handler/event/update-occupation.event-handler';
-import { DeleteOccupationEventHandler } from './cqrs/handler/event/delete-occupation.event-handler';
+import { OccupationService } from './application/occupation.service';
+import { ApiLogService } from '../api-log/application/api-log.service';
+import { CreateLogCommandHandler } from '../api-log/application/cqrs/handler/command/create-log.command-handler';
+import { RestoreOccupationCommandHandler } from './application/cqrs/handler/command/restore-occupation.command-handler';
+import { SoftDeleteOccupationCommandHandler } from './application/cqrs/handler/command/soft-delete-occupation.command-handler';
+import { GetAllOccupationQueryHandler } from './application/cqrs/handler/query/get-all-occupation.query-handler';
+import { GetOccupationByIdQueryHandler } from './application/cqrs/handler/query/get-occupation-by-id.query-handler';
+import { GetOccupationWithCriteriaQueryHandler } from './application/cqrs/handler/query/get-occupation-with-criteria.query-handler';
+import { CreateOccupationEventHandler } from './application/cqrs/handler/event/create-occupation.event-handler';
+import { SoftDeleteOccupationEventHandler } from './application/cqrs/handler/event/soft-delete-occupation.event-handler';
+import { CreateOccupationCommandHandler } from './application/cqrs/handler/command/create-occupation.command-handler';
+import { UpdateOccupationCommandHandler } from './application/cqrs/handler/command/update-occupation.command-handler';
+import { RestoreOccupationEventHandler } from './application/cqrs/handler/event/restore-occupation.event-handler';
+import { DeleteOccupationCommandHandler } from './application/cqrs/handler/command/delete-occupation.command-handler';
+import { UpdateOccupationEventHandler } from './application/cqrs/handler/event/update-occupation.event-handler';
+import { DeleteOccupationEventHandler } from './application/cqrs/handler/event/delete-occupation.event-handler';
 
 @Module({
   imports: [

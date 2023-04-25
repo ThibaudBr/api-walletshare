@@ -3,7 +3,7 @@ import * as useragent from 'useragent';
 import { Request, Response } from 'express';
 import { CreateLogDto } from '../api/api-log/domain/dto/create-log.dto';
 import { ApiTypeEnum } from '../api/api-log/domain/enum/api-type.enum';
-import { ApiLogService } from '../api/api-log/api-log.service';
+import { ApiLogService } from '../api/api-log/application/api-log.service';
 import { LoggingTypeEnum } from '../api/api-log/domain/enum/logging-type.enum';
 import { VerboseLogEnum } from '../api/api-log/domain/enum/verbose-log.enum';
 

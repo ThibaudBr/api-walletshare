@@ -12,7 +12,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { RequestLoggingMiddleware } from './middleware/request-logging.middleware';
 import { ResponseLoggingMiddleware } from './middleware/response-logging.middleware';
 import { ErrorLoggingMiddleware } from './middleware/error-logging.middleware';
-import { ApiLogService } from './api/api-log/api-log.service';
+import { ApiLogService } from './api/api-log/application/api-log.service';
 import { AuthModule } from './api/auth/auth.module';
 import { ApiMailModule } from './api/api-mail/api-mail.module';
 import { CqrsModule } from '@nestjs/cqrs';
