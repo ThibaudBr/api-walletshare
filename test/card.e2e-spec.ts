@@ -8,6 +8,9 @@ import { TypeOfCardEnum } from '../src/api/card/domain/enum/type-of-card.enum';
 import { CardEntity } from '../src/api/card/domain/entities/card.entity';
 import { WhoCanShareCardEnum } from '../src/api/card/domain/enum/who-can-share-card.enum';
 import { WhoCanCommunicateWithEnum } from '../src/api/card/domain/enum/who-can-communicate-with.enum';
+import { UserRoleEnum } from '../src/api/user/domain/enum/user-role.enum';
+import { UserEntity } from '../src/api/user/domain/entities/user.entity';
+import { ProfileEntity } from '../src/api/profile/domain/entities/profile.entity';
 
 if (process.env.NODE_ENV != 'test') {
   console.log('NODE_ENV must be set to test');
@@ -384,6 +387,111 @@ describe('CardController (e2e)', () => {
     });
 
     describe('when user is connected as PUBLIC', () => {
+      describe('when user is deleted card should not be available', () => {
+        let createdUser: UserEntity;
+        let createdProfile: ProfileEntity;
+        let createdCard: CardEntity;
+
+        beforeEach(async () => {
+          createdUser = await request(app.getHttpServer())
+            .post('/api/test/create-user-test')
+            .send({
+              username: 'userToDeleteCard',
+              mail: 'userToDeleteCard@test.fr',
+              password: 'Pass123!',
+              roles: [UserRoleEnum.PUBLIC],
+            })
+            .expect(201)
+            .then(res => {
+              if (res.status != 201) {
+                expect(res.body).toEqual('bob');
+              }
+              return new UserEntity({
+                ...res.body,
+              });
+            });
+
+          createdProfile = await request(app.getHttpServer())
+            .post('/api/test/create-profile-test')
+            .send({
+              usernameProfile: 'usernameProfileToDelete',
+              roleProfile: RoleProfileEnum.CLASSIC,
+              occupationsId: [],
+              userId: createdUser.id,
+            })
+            .expect(201)
+            .then(res => {
+              if (res.status != 201) {
+                expect(res.body).toEqual('bob');
+              }
+              return new ProfileEntity({
+                ...res.body,
+              });
+            });
+
+          createdCard = await request(app.getHttpServer())
+            .post('/api/test/create-card-test')
+            .send({
+              name: 'bob',
+              typeOfCardEnum: TypeOfCardEnum.V_CARD,
+              ownerId: createdProfile.id,
+            })
+            .expect(201)
+            .then(res => {
+              if (res.status != 201) {
+                expect(res.body).toEqual('bob');
+              }
+              return new CardEntity({
+                ...res.body,
+              });
+            });
+        });
+
+        it('when user is soft-deleted should expect 400', async () => {
+          await request(app.getHttpServer())
+            .delete('/user/admin/' + createdUser.id)
+            .set('Authorization', 'Bearer ' + adminToken)
+            .expect(204);
+          await request(app.getHttpServer())
+            .get('/card/public/get-card-by-id/' + createdCard.id)
+            .set('Authorization', 'Bearer ' + publicToken)
+            .expect(400);
+        });
+
+        it('when user is hard-deleted should expect 400', async () => {
+          await request(app.getHttpServer())
+            .delete('/user/admin/full-delete/' + createdUser.id)
+            .set('Authorization', 'Bearer ' + adminToken)
+            .expect(204);
+          await request(app.getHttpServer())
+            .get('/card/public/get-card-by-id/' + createdCard.id)
+            .set('Authorization', 'Bearer ' + publicToken)
+            .expect(400);
+        });
+
+        it('when profile is soft-deleted should expect 400', async () => {
+          await request(app.getHttpServer())
+            .delete('/profile/admin/soft-delete-profile/' + createdProfile.id)
+            .set('Authorization', 'Bearer ' + adminToken)
+            .expect(204);
+          await request(app.getHttpServer())
+            .get('/card/public/get-card-by-id/' + createdCard.id)
+            .set('Authorization', 'Bearer ' + publicToken)
+            .expect(400);
+        });
+
+        it('when profile is hard-deleted should expect 400', async () => {
+          await request(app.getHttpServer())
+            .delete('/profile/admin/delete-profile/' + createdProfile.id)
+            .set('Authorization', 'Bearer ' + adminToken)
+            .expect(204);
+          await request(app.getHttpServer())
+            .get('/card/public/get-card-by-id/' + createdCard.id)
+            .set('Authorization', 'Bearer ' + publicToken)
+            .expect(400);
+        });
+      });
+
       describe('when card is not found', () => {
         it('should return 400', async () => {
           await request(app.getHttpServer())

@@ -18,6 +18,7 @@ export class SoftDeleteUserCommandHandler implements ICommandHandler<SoftDeleteU
     try {
       const userToSoftRemove = await this.userRepository
         .findOneOrFail({
+          relations: ['profiles', 'profiles.personalCards', 'profiles.savedCard'],
           where: { id: command.userId },
         })
         .catch(() => {

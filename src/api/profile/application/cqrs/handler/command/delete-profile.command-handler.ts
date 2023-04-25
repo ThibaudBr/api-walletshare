@@ -26,7 +26,7 @@ export class DeleteProfileCommandHandler implements ICommandHandler<DeleteProfil
       await this.profileRepository.remove(profile);
       this.eventBus.publish(
         new DeleteProfileEvent({
-          deleteProfileCommand: command,
+          id: command.id
         }),
       );
     } catch (error) {
