@@ -242,8 +242,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventsHandler, IEventHandler } from &#x27;@nestjs/cqrs&#x27;;
-import { ApiLogService } from &#x27;src/api/api-log/api-log.service&#x27;;
 import { UpdateCardEvent } from &#x27;../../event/update-card.event&#x27;;
+import { ApiLogService } from &#x27;../../../../api-log/api-log.service&#x27;;
 
 @EventsHandler(UpdateCardEvent)
 export class UpdateCardEventHandler implements IEventHandler&lt;UpdateCardEvent&gt; {

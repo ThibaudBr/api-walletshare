@@ -119,8 +119,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/util/config/database.configuration.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/util/config/database.configuration.ts:33</a></div>
                 </td>
             </tr>
 
@@ -169,7 +169,8 @@ import { ReferralCodeEntity } from &#x27;../../api/entities-to-create/referal-co
 import { NotificationEntity } from &#x27;../../api/entities-to-create/notification.entity&#x27;;
 import { AddressEntity } from &#x27;../../api/entities-to-create/address.entity&#x27;;
 import { CardEntity } from &#x27;../../api/card/domain/entities/card.entity&#x27;;
-import { GroupRequestEntity } from &#x27;../../api/groupe/domain/entities/group-request.entity&#x27;;
+import { ProfileSubscriber } from &#x27;../../api/profile/subscriber/profile.subscriber&#x27;;
+import { ConnectedCardSubscriber } from &#x27;../../api/card/subscriber/connected-card.subscriber&#x27;;
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -193,6 +194,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           entities: [join(__dirname, &#x27;**/*.entity{.ts,.js}&#x27;)],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
           logging: process.env.TYPEORM_LOGGING_PROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
+          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
         };
       } else if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;pprod&#x27;) {
         logger.info(&#x27;NODE_ENV is pprod&#x27;);
@@ -212,6 +214,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           entities: [join(__dirname, &#x27;**&#x27;, &#x27;*.entity.{ts,js}&#x27;)],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
           logging: process.env.TYPEORM_LOGGING_PPROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
+          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
         };
       } else if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;test&#x27;) {
         logger.info(&#x27;NODE_ENV is test&#x27;);
@@ -245,10 +248,10 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationEntity,
             ReferralCodeEntity,
             AddressEntity,
-            GroupRequestEntity,
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
           logging: process.env.TYPEORM_LOGGING_TEST &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
+          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
         };
       } else if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;dev&#x27;) {
         logger.info(&#x27;NODE_ENV is dev&#x27;);
@@ -284,8 +287,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationEntity,
             ReferralCodeEntity,
             AddressEntity,
-            GroupRequestEntity,
           ],
+          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
         };
       } else {
         logger.error(&#x27;NODE_ENV is not set&#x27;);

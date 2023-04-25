@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:19</a></div>
                 </td>
             </tr>
 
@@ -260,12 +260,8 @@ import { CardEntity } from &#x27;../../../domain/entities/card.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { AddViewCountCardEvent } from &#x27;../../event/add-view-count-card.event&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
-import {
-  ErrorInvalidIdRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
-import {
-  ErrorUpdateRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-group-request.runtime-exception&quot;;
+import { ErrorInvalidIdRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
+import { ErrorUpdateRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-group-request.runtime-exception&#x27;;
 
 @CommandHandler(AddViewCountCardCommand)
 export class AddViewCountCardCommandHandler implements ICommandHandler&lt;AddViewCountCardCommand&gt; {
@@ -291,7 +287,7 @@ export class AddViewCountCardCommandHandler implements ICommandHandler&lt;AddVie
         .then(card &#x3D;&gt; {
           this.cardRepository
             .update(card.id, {
-              numberOfShares: card.numberOfShares++,
+              numberOfShares: card.numberOfShares + 1,
             })
             .then(() &#x3D;&gt; {
               this.eventBus.publish(

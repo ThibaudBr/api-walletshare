@@ -270,7 +270,7 @@ export class SoftDeleteGroupCommandHandler implements ICommandHandler&lt;SoftDel
   ) {}
 
   async execute(command: SoftDeleteGroupCommand): Promise&lt;void&gt; {
-    await this.groupRepository
+    const groupToDelete &#x3D; await this.groupRepository
       .findOneOrFail({
         where: [
           {
@@ -289,7 +289,7 @@ export class SoftDeleteGroupCommandHandler implements ICommandHandler&lt;SoftDel
         throw new Error(&#x27;Invalid id&#x27;);
       });
     await this.groupRepository
-      .softDelete(command.groupId)
+      .softRemove(groupToDelete)
       .then(() &#x3D;&gt; {
         this.eventBus.publish(new SoftDeleteGroupEvent({ groupId: command.groupId }));
       })

@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/card/cqrs/handler/command/soft-delete-card.command-handler.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/card/cqrs/handler/command/soft-delete-card.command-handler.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/soft-delete-card.command-handler.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/soft-delete-card.command-handler.ts:18</a></div>
                 </td>
             </tr>
 
@@ -260,9 +260,7 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { CardEntity } from &#x27;../../../domain/entities/card.entity&#x27;;
 import { SoftDeleteCardEvent } from &#x27;../../event/soft-delete-card.event&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
-import {
-  ErrorInvalidIdRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
+import { ErrorInvalidIdRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
 
 @CommandHandler(SoftDeleteCardCommand)
 export class SoftDeleteCardCommandHandler implements ICommandHandler&lt;SoftDeleteCardCommand&gt; {
@@ -274,7 +272,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler&lt;SoftDele
 
   async execute(command: SoftDeleteCardCommand): Promise&lt;void&gt; {
     try {
-      await this.cardRepository
+      const cardToDelete &#x3D; await this.cardRepository
         .findOneOrFail({
           where: [{ id: command.id }],
         })
@@ -282,7 +280,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler&lt;SoftDele
           throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
         });
 
-      await this.cardRepository.softDelete(command.id);
+      await this.cardRepository.softRemove(cardToDelete);
       this.eventBus.publish(
         new SoftDeleteCardEvent({
           cardId: command.id,

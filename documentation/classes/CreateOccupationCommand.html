@@ -198,7 +198,7 @@
 
 export class CreateOccupationCommand {
   constructor(partial: Partial&lt;CreateOccupationCommand&gt;) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly createOccupationDto: CreateOccupationDto;

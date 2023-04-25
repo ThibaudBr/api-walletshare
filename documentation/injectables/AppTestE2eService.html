@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>test/test-environment/app-test-e2e.service.ts</code>
+            <code>test/test-environment/service-test/app-test-e2e.service.ts</code>
         </p>
 
 
@@ -82,22 +82,6 @@
                                     <span class="modifier">Async</span>
                                 <a href="#clearDatabaseTest" >clearDatabaseTest</a>
                             </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#createUserTest" >createUserTest</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#getAllUsers" >getAllUsers</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#getUser" >getUser</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#removeUser" >removeUser</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -116,12 +100,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, cardRepository: <a href="../entitys/CardEntity.html" target="_self">Repository&lt;CardEntity&gt;</a>, companyRepository: <a href="../entitys/CompanyEntity.html" target="_self">Repository&lt;CompanyEntity&gt;</a>, companyEmployeeRepository: <a href="../entitys/CompanyEmployeeEntity.html" target="_self">Repository&lt;CompanyEmployeeEntity&gt;</a>, connectedCardRepository: Repository<ConnectedCardEntity>, conversationRepository: <a href="../entitys/ConversationEntity.html" target="_self">Repository&lt;ConversationEntity&gt;</a>, discountCodeRepository: <a href="../entitys/DiscountCodeEntity.html" target="_self">Repository&lt;DiscountCodeEntity&gt;</a>, groupRepository: <a href="../entitys/GroupEntity.html" target="_self">Repository&lt;GroupEntity&gt;</a>, groupMembershipRepository: <a href="../entitys/GroupMembershipEntity.html" target="_self">Repository&lt;GroupMembershipEntity&gt;</a>, invoicesRepository: <a href="../entitys/InvoicesEntity.html" target="_self">Repository&lt;InvoicesEntity&gt;</a>, joinedConversationRepository: <a href="../entitys/JoinedConversation.html" target="_self">Repository&lt;JoinedConversation&gt;</a>, mediaRepository: <a href="../entitys/MediaEntity.html" target="_self">Repository&lt;MediaEntity&gt;</a>, messageRepository: <a href="../entitys/MessageEntity.html" target="_self">Repository&lt;MessageEntity&gt;</a>, occupationRepository: <a href="../entitys/OccupationEntity.html" target="_self">Repository&lt;OccupationEntity&gt;</a>, planRepository: <a href="../entitys/PlanEntity.html" target="_self">Repository&lt;PlanEntity&gt;</a>, profileRepository: <a href="../entitys/ProfileEntity.html" target="_self">Repository&lt;ProfileEntity&gt;</a>, socialNetworkRepository: <a href="../entitys/SocialNetworkEntity.html" target="_self">Repository&lt;SocialNetworkEntity&gt;</a>, stripEventRepository: <a href="../entitys/StripEventEntity.html" target="_self">Repository&lt;StripEventEntity&gt;</a>, subscriptionRepository: <a href="../entitys/SubscriptionEntity.html" target="_self">Repository&lt;SubscriptionEntity&gt;</a>, notificationRepository: <a href="../entitys/NotificationEntity.html" target="_self">Repository&lt;NotificationEntity&gt;</a>, referralCodeRepository: <a href="../entitys/ReferralCodeEntity.html" target="_self">Repository&lt;ReferralCodeEntity&gt;</a>, addressRepository: <a href="../entitys/AddressEntity.html" target="_self">Repository&lt;AddressEntity&gt;</a>, groupRequestRepository: <a href="../entitys/GroupRequestEntity.html" target="_self">Repository&lt;GroupRequestEntity&gt;</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, cardRepository: <a href="../entitys/CardEntity.html" target="_self">Repository&lt;CardEntity&gt;</a>, companyRepository: <a href="../entitys/CompanyEntity.html" target="_self">Repository&lt;CompanyEntity&gt;</a>, companyEmployeeRepository: <a href="../entitys/CompanyEmployeeEntity.html" target="_self">Repository&lt;CompanyEmployeeEntity&gt;</a>, connectedCardRepository: Repository<ConnectedCardEntity>, conversationRepository: <a href="../entitys/ConversationEntity.html" target="_self">Repository&lt;ConversationEntity&gt;</a>, discountCodeRepository: <a href="../entitys/DiscountCodeEntity.html" target="_self">Repository&lt;DiscountCodeEntity&gt;</a>, groupRepository: <a href="../entitys/GroupEntity.html" target="_self">Repository&lt;GroupEntity&gt;</a>, groupMembershipRepository: <a href="../entitys/GroupMembershipEntity.html" target="_self">Repository&lt;GroupMembershipEntity&gt;</a>, invoicesRepository: <a href="../entitys/InvoicesEntity.html" target="_self">Repository&lt;InvoicesEntity&gt;</a>, joinedConversationRepository: <a href="../entitys/JoinedConversation.html" target="_self">Repository&lt;JoinedConversation&gt;</a>, mediaRepository: <a href="../entitys/MediaEntity.html" target="_self">Repository&lt;MediaEntity&gt;</a>, messageRepository: <a href="../entitys/MessageEntity.html" target="_self">Repository&lt;MessageEntity&gt;</a>, occupationRepository: <a href="../entitys/OccupationEntity.html" target="_self">Repository&lt;OccupationEntity&gt;</a>, planRepository: <a href="../entitys/PlanEntity.html" target="_self">Repository&lt;PlanEntity&gt;</a>, profileRepository: <a href="../entitys/ProfileEntity.html" target="_self">Repository&lt;ProfileEntity&gt;</a>, socialNetworkRepository: <a href="../entitys/SocialNetworkEntity.html" target="_self">Repository&lt;SocialNetworkEntity&gt;</a>, stripEventRepository: <a href="../entitys/StripEventEntity.html" target="_self">Repository&lt;StripEventEntity&gt;</a>, subscriptionRepository: <a href="../entitys/SubscriptionEntity.html" target="_self">Repository&lt;SubscriptionEntity&gt;</a>, notificationRepository: <a href="../entitys/NotificationEntity.html" target="_self">Repository&lt;NotificationEntity&gt;</a>, referralCodeRepository: <a href="../entitys/ReferralCodeEntity.html" target="_self">Repository&lt;ReferralCodeEntity&gt;</a>, addressRepository: <a href="../entitys/AddressEntity.html" target="_self">Repository&lt;AddressEntity&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">test/test-environment/app-test-e2e.service.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">test/test-environment/service-test/app-test-e2e.service.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -402,18 +386,6 @@
                                                     </td>
                                                     
                                                 </tr>
-                                                <tr>
-                                                        <td>groupRequestRepository</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../entitys/GroupRequestEntity.html" target="_self" >Repository&lt;GroupRequestEntity&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -450,8 +422,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">test/test-environment/app-test-e2e.service.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">test/test-environment/service-test/app-test-e2e.service.ts:76</a></div>
                 </td>
             </tr>
 
@@ -462,258 +434,6 @@
                     <div class="io-description">
                         <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createUserTest"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>createUserTest</b></span>
-                        <a href="#createUserTest"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createUserTest(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">test/test-environment/app-test-e2e.service.ts:109</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>createUserDto</td>
-                                    <td>
-                                                <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getAllUsers"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>getAllUsers</b></span>
-                        <a href="#getAllUsers"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getAllUsers()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">test/test-environment/app-test-e2e.service.ts:130</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity[]&gt;</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getUser"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>getUser</b></span>
-                        <a href="#getUser"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">test/test-environment/app-test-e2e.service.ts:122</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>userId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity | null&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="removeUser"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>removeUser</b></span>
-                        <a href="#removeUser"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">test/test-environment/app-test-e2e.service.ts:118</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>userId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -726,33 +446,30 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { AddressEntity } from &#x27;../../src/api/entities-to-create/address.entity&#x27;;
-import StripEventEntity from &#x27;../../src/api/entities-to-create/strip-event.entity&#x27;;
-import { ReferralCodeEntity } from &#x27;../../src/api/entities-to-create/referal-code.entity&#x27;;
+import { AddressEntity } from &#x27;../../../src/api/entities-to-create/address.entity&#x27;;
+import StripEventEntity from &#x27;../../../src/api/entities-to-create/strip-event.entity&#x27;;
+import { ReferralCodeEntity } from &#x27;../../../src/api/entities-to-create/referal-code.entity&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { JoinedConversation } from &#x27;../../src/api/entities-to-create/joined-conversation.entity&#x27;;
-import { SocialNetworkEntity } from &#x27;../../src/api/social-network/domain/entities/social-network.entity&#x27;;
-import { SubscriptionEntity } from &#x27;../../src/api/entities-to-create/subscription.entity&#x27;;
-import { GroupMembershipEntity } from &#x27;../../src/api/groupe/domain/entities/group-membership.entity&#x27;;
-import { UserEntity } from &#x27;../../src/api/user/domain/entities/user.entity&#x27;;
-import { ProfileEntity } from &#x27;../../src/api/profile/domain/entities/profile.entity&#x27;;
-import { DiscountCodeEntity } from &#x27;../../src/api/entities-to-create/discount-code.entity&#x27;;
-import { MessageEntity } from &#x27;../../src/api/entities-to-create/message.entity&#x27;;
-import { GroupEntity } from &#x27;../../src/api/groupe/domain/entities/group.entity&#x27;;
-import CompanyEntity from &#x27;../../src/api/entities-to-create/company.entity&#x27;;
-import { CompanyEmployeeEntity } from &#x27;../../src/api/entities-to-create/company-employee.entity&#x27;;
-import { PlanEntity } from &#x27;../../src/api/entities-to-create/plan.entity&#x27;;
-import { ConversationEntity } from &#x27;../../src/api/entities-to-create/conversation.entity&#x27;;
-import { InvoicesEntity } from &#x27;../../src/api/entities-to-create/invoices.entity&#x27;;
-import { NotificationEntity } from &#x27;../../src/api/entities-to-create/notification.entity&#x27;;
-import { ConnectedCardEntity } from &#x27;../../src/api/card/domain/entities/connected-card.entity&#x27;;
-import { MediaEntity } from &#x27;../../src/api/entities-to-create/media.entity&#x27;;
-import { OccupationEntity } from &#x27;../../src/api/occupation/domain/entities/occupation.entity&#x27;;
+import { JoinedConversation } from &#x27;../../../src/api/entities-to-create/joined-conversation.entity&#x27;;
+import { SocialNetworkEntity } from &#x27;../../../src/api/social-network/domain/entities/social-network.entity&#x27;;
+import { SubscriptionEntity } from &#x27;../../../src/api/entities-to-create/subscription.entity&#x27;;
+import { GroupMembershipEntity } from &#x27;../../../src/api/groupe/domain/entities/group-membership.entity&#x27;;
+import { UserEntity } from &#x27;../../../src/api/user/domain/entities/user.entity&#x27;;
+import { ProfileEntity } from &#x27;../../../src/api/profile/domain/entities/profile.entity&#x27;;
+import { DiscountCodeEntity } from &#x27;../../../src/api/entities-to-create/discount-code.entity&#x27;;
+import { MessageEntity } from &#x27;../../../src/api/entities-to-create/message.entity&#x27;;
+import { GroupEntity } from &#x27;../../../src/api/groupe/domain/entities/group.entity&#x27;;
+import CompanyEntity from &#x27;../../../src/api/entities-to-create/company.entity&#x27;;
+import { CompanyEmployeeEntity } from &#x27;../../../src/api/entities-to-create/company-employee.entity&#x27;;
+import { PlanEntity } from &#x27;../../../src/api/entities-to-create/plan.entity&#x27;;
+import { ConversationEntity } from &#x27;../../../src/api/entities-to-create/conversation.entity&#x27;;
+import { InvoicesEntity } from &#x27;../../../src/api/entities-to-create/invoices.entity&#x27;;
+import { NotificationEntity } from &#x27;../../../src/api/entities-to-create/notification.entity&#x27;;
+import { ConnectedCardEntity } from &#x27;../../../src/api/card/domain/entities/connected-card.entity&#x27;;
+import { MediaEntity } from &#x27;../../../src/api/entities-to-create/media.entity&#x27;;
+import { OccupationEntity } from &#x27;../../../src/api/occupation/domain/entities/occupation.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
-import { CreateUserDto } from &#x27;../../src/api/user/domain/dto/create-user.dto&#x27;;
-import * as bcrypt from &#x27;bcrypt&#x27;;
-import { GroupRequestEntity } from &#x27;../../src/api/groupe/domain/entities/group-request.entity&#x27;;
-import { CardEntity } from &#x27;../../src/api/card/domain/entities/card.entity&#x27;;
+import { CardEntity } from &#x27;../../../src/api/card/domain/entities/card.entity&#x27;;
 
 @Injectable()
 export class AppTestE2eService {
@@ -801,63 +518,39 @@ export class AppTestE2eService {
     private readonly referralCodeRepository: Repository&lt;ReferralCodeEntity&gt;,
     @InjectRepository(AddressEntity)
     private readonly addressRepository: Repository&lt;AddressEntity&gt;,
-    @InjectRepository(GroupRequestEntity)
-    private readonly groupRequestRepository: Repository&lt;GroupRequestEntity&gt;,
   ) {}
 
   async clearDatabaseTest(): Promise&lt;void&gt; {
-    await this.userRepository.query(&#x27;DELETE FROM &quot;user&quot;;&#x27;);
-    await this.cardRepository.query(&#x27;DELETE FROM &quot;card&quot;;&#x27;);
-    await this.companyRepository.query(&#x27;DELETE FROM &quot;company&quot;;&#x27;);
-    await this.companyEmployeeRepository.query(&#x27;DELETE FROM &quot;company_employee&quot;;&#x27;);
-    await this.connectedCardRepository.query(&#x27;DELETE FROM &quot;connected_card&quot;;&#x27;);
-    await this.conversationRepository.query(&#x27;DELETE FROM &quot;conversation&quot;;&#x27;);
-    await this.discountCodeRepository.query(&#x27;DELETE FROM &quot;discount_codes&quot;;&#x27;);
-    await this.groupRepository.query(&#x27;DELETE FROM &quot;group&quot;;&#x27;);
-    await this.groupMembershipRepository.query(&#x27;DELETE FROM &quot;group_membership&quot;;&#x27;);
-    await this.invoicesRepository.query(&#x27;DELETE FROM &quot;invoices&quot;;&#x27;);
-    await this.joinedConversationRepository.query(&#x27;DELETE FROM &quot;joined_conversation&quot;;&#x27;);
-    await this.mediaRepository.query(&#x27;DELETE FROM &quot;media&quot;;&#x27;);
-    await this.messageRepository.query(&#x27;DELETE FROM &quot;message&quot;;&#x27;);
-    await this.occupationRepository.query(&#x27;DELETE FROM &quot;occupation&quot;;&#x27;);
-    await this.planRepository.query(&#x27;DELETE FROM &quot;plan&quot;;&#x27;);
-    await this.profileRepository.query(&#x27;DELETE FROM &quot;profile&quot;;&#x27;);
-    await this.socialNetworkRepository.query(&#x27;DELETE FROM &quot;social_network&quot;;&#x27;);
-    await this.stripEventRepository.query(&#x27;DELETE FROM &quot;strip_event&quot;;&#x27;);
-    await this.subscriptionRepository.query(&#x27;DELETE FROM &quot;subscription&quot;;&#x27;);
-    await this.notificationRepository.query(&#x27;DELETE FROM &quot;notification&quot;;&#x27;);
-    await this.referralCodeRepository.query(&#x27;DELETE FROM &quot;referral_code&quot;;&#x27;);
-    await this.addressRepository.query(&#x27;DELETE FROM &quot;address&quot;;&#x27;);
-    await this.groupRequestRepository.query(&#x27;DELETE FROM &quot;group_request&quot;;&#x27;);
-
-    return;
-  }
-
-  async createUserTest(createUserDto: CreateUserDto): Promise&lt;UserEntity&gt; {
-    return await this.userRepository.save({
-      username: createUserDto.username,
-      mail: createUserDto.mail,
-      password: bcrypt.hashSync(createUserDto.password, 10),
-      roles: createUserDto.roles,
-    });
-  }
-
-  async removeUser(userId: string): Promise&lt;void&gt; {
-    await this.userRepository.softDelete({ id: userId });
-  }
-
-  async getUser(userId: string): Promise&lt;UserEntity | null&gt; {
-    return await this.userRepository.findOne({
-      where: {
-        id: userId,
-      },
-    });
-  }
-
-  async getAllUsers(): Promise&lt;UserEntity[]&gt; {
-    return await this.userRepository.find({
-      withDeleted: true,
-    });
+    try {
+      await this.cardRepository.query(&#x27;DELETE FROM &quot;card_occupations_occupation&quot;;&#x27;);
+      await this.cardRepository.query(&#x27;DELETE FROM &quot;connected_card&quot;;&#x27;);
+      await this.cardRepository.query(&#x27;DELETE FROM &quot;saved-card&quot;;&#x27;);
+      await this.cardRepository.query(&#x27;DELETE FROM &quot;card&quot;;&#x27;);
+      await this.cardRepository.query(&#x27;DELETE FROM &quot;profile-occupation&quot;;&#x27;);
+      await this.profileRepository.query(&#x27;DELETE FROM &quot;profile&quot;;&#x27;);
+      await this.companyRepository.query(&#x27;DELETE FROM &quot;company&quot;;&#x27;);
+      await this.companyRepository.query(&#x27;DELETE FROM &quot;company_occupations_occupation&quot;;&#x27;);
+      await this.companyEmployeeRepository.query(&#x27;DELETE FROM &quot;company_employee&quot;;&#x27;);
+      await this.conversationRepository.query(&#x27;DELETE FROM &quot;conversation&quot;;&#x27;);
+      await this.discountCodeRepository.query(&#x27;DELETE FROM &quot;discount_codes&quot;;&#x27;);
+      await this.groupRepository.query(&#x27;DELETE FROM &quot;group&quot;;&#x27;);
+      await this.groupMembershipRepository.query(&#x27;DELETE FROM &quot;group_membership&quot;;&#x27;);
+      await this.invoicesRepository.query(&#x27;DELETE FROM &quot;invoices&quot;;&#x27;);
+      await this.joinedConversationRepository.query(&#x27;DELETE FROM &quot;joined_conversation&quot;;&#x27;);
+      await this.mediaRepository.query(&#x27;DELETE FROM &quot;media&quot;;&#x27;);
+      await this.messageRepository.query(&#x27;DELETE FROM &quot;message&quot;;&#x27;);
+      await this.occupationRepository.query(&#x27;DELETE FROM &quot;occupation&quot;;&#x27;);
+      await this.planRepository.query(&#x27;DELETE FROM &quot;plan&quot;;&#x27;);
+      await this.socialNetworkRepository.query(&#x27;DELETE FROM &quot;social_network&quot;;&#x27;);
+      await this.stripEventRepository.query(&#x27;DELETE FROM &quot;strip_event&quot;;&#x27;);
+      await this.subscriptionRepository.query(&#x27;DELETE FROM &quot;subscription&quot;;&#x27;);
+      await this.notificationRepository.query(&#x27;DELETE FROM &quot;notification&quot;;&#x27;);
+      await this.referralCodeRepository.query(&#x27;DELETE FROM &quot;referral_code&quot;;&#x27;);
+      await this.addressRepository.query(&#x27;DELETE FROM &quot;address&quot;;&#x27;);
+      await this.userRepository.query(&#x27;DELETE FROM &quot;user&quot;;&#x27;);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 </code></pre>

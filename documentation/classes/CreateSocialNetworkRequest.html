@@ -295,7 +295,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class CreateSocialNetworkRequest {
   constructor(partial: Partial&lt;CreateSocialNetworkRequest&gt;) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly name: string;

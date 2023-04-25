@@ -155,7 +155,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/admin/create&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Post(&#x27;/admin/create&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -519,8 +519,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:84</a></div>
                 </td>
             </tr>
 
@@ -784,7 +784,7 @@ export class OccupationController {
   }
 
   @Post(&#x27;/admin/create&#x27;)
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createOccupation(@Body() createOccupationRequest: CreateOccupationRequest): Promise&lt;void&gt; {
     return await this.occupationService.createOccupation(createOccupationRequest).catch(error &#x3D;&gt; {
@@ -817,9 +817,7 @@ export class OccupationController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async softDeleteOccupation(@Param(&#x27;id&#x27;) occupationId: string): Promise&lt;void&gt; {
-    return await this.occupationService.softDeleteOccupation(occupationId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.occupationService.softDeleteOccupation(occupationId);
   }
 
   @Put(&#x27;/admin/restore/:id&#x27;)

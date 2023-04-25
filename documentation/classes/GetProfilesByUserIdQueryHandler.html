@@ -111,12 +111,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(profileRepository: <a href="../entitys/ProfileEntity.html" target="_self">Repository&lt;ProfileEntity&gt;</a>, userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>)</code>
+<code>constructor(profileRepository: <a href="../entitys/ProfileEntity.html" target="_self">Repository&lt;ProfileEntity&gt;</a>, userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, eventBus: EventBus)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/profile/cqrs/handler/query/get-profiles-by-user-id.query-handler.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/profile/cqrs/handler/query/get-profiles-by-user-id.query-handler.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -150,6 +150,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/UserEntity.html" target="_self" >Repository&lt;UserEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>EventBus</code>
                                                         </td>
                                                   
                                                     <td>
@@ -194,8 +206,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/api/profile/cqrs/handler/query/get-profiles-by-user-id.query-handler.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/api/profile/cqrs/handler/query/get-profiles-by-user-id.query-handler.ts:20</a></div>
                 </td>
             </tr>
 
@@ -253,13 +265,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IQueryHandler, QueryHandler } from &#x27;@nestjs/cqrs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventBus, IQueryHandler, QueryHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { GetProfilesByUserIdQuery } from &#x27;../../query/get-profiles-by-user-id.query&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { UserEntity } from &#x27;../../../../user/domain/entities/user.entity&#x27;;
 import { ProfileResponse } from &#x27;../../../domain/response/profile.response&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { ProfileEntity } from &#x27;../../../domain/entities/profile.entity&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @QueryHandler(GetProfilesByUserIdQuery)
 export class GetProfilesByUserIdQueryHandler implements IQueryHandler&lt;GetProfilesByUserIdQuery&gt; {
@@ -268,14 +281,17 @@ export class GetProfilesByUserIdQueryHandler implements IQueryHandler&lt;GetProf
     private readonly profileRepository: Repository&lt;ProfileEntity&gt;,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository&lt;UserEntity&gt;,
+    private readonly eventBus: EventBus,
   ) {}
 
   async execute(query: GetProfilesByUserIdQuery): Promise&lt;ProfileResponse[]&gt; {
     try {
       const user &#x3D; await this.userRepository
         .findOneOrFail({
-          where: [{ id: query.id }],
-          relations: [&#x27;profile&#x27;],
+          relations: [&#x27;profiles&#x27;, &#x27;profiles.occupations&#x27;],
+          where: {
+            id: query.id,
+          },
         })
         .catch(() &#x3D;&gt; {
           throw new Error(&#x27;User not found&#x27;);
@@ -284,10 +300,18 @@ export class GetProfilesByUserIdQueryHandler implements IQueryHandler&lt;GetProf
       return user.profiles.map(profile &#x3D;&gt; {
         return new ProfileResponse({
           ...profile,
+          userId: user.id,
         });
       });
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;GetProfilesByUserIdQueryHandler&#x27;,
+          localisation: &#x27;profile&#x27;,
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

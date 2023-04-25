@@ -198,7 +198,7 @@
 
 export class GetOccupationWithCriteriaQuery {
   constructor(partial: Partial&lt;GetOccupationWithCriteriaQuery&gt;) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
   public readonly criteria: GetOccupationWithCriteriaDto;
 }

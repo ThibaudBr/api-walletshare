@@ -141,6 +141,8 @@
 
 export class InvalidIdHttpException extends HttpException {
   constructor(message?: string) {
+    if (message) message &#x3D; &#x27;: &#x27; + message;
+    else message &#x3D; &#x27;&#x27;;
     super(&#x27;Invalid Id&#x27; + message, HttpStatus.BAD_REQUEST);
   }
 }

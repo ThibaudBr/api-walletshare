@@ -271,51 +271,43 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler&lt;GetCard
   async execute(query: GetCardWithCriteriaQuery): Promise&lt;CardEntity[]&gt; {
     try {
       const queryBuilder &#x3D; this.cardRepository.createQueryBuilder(&#x27;card&#x27;);
-      queryBuilder.setFindOptions({
-        relations: [&#x27;owner&#x27;, &#x27;occupations&#x27;, &#x27;socialNetwork&#x27;, &#x27;owner.user&#x27;],
-      });
 
       if (query.isDeleted) {
-        queryBuilder.setFindOptions({ withDeleted: true });
+        queryBuilder.setFindOptions({
+          withDeleted: true,
+          relations: [&#x27;owner&#x27;, &#x27;occupations&#x27;, &#x27;socialNetwork&#x27;, &#x27;owner.user&#x27;],
+        });
+      } else {
+        queryBuilder.setFindOptions({ relations: [&#x27;owner&#x27;, &#x27;occupations&#x27;, &#x27;socialNetwork&#x27;, &#x27;owner.user&#x27;] });
       }
 
       if (query.isOwnerPro !&#x3D;&#x3D; undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            isOwnerPro: query.isOwnerPro,
-          },
+        queryBuilder.where(&#x27;card.isOwnerPro &#x3D; :isOwnerPro&#x27;, {
+          isOwnerPro: query.isOwnerPro,
         });
       }
 
       if (query.companyName !&#x3D; undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            companyName: query.companyName,
-          },
+        queryBuilder.where(&#x27;card.companyName &#x3D; :companyName&#x27;, {
+          companyName: query.companyName,
         });
       }
 
       if (query.typeOfCardEnum !&#x3D; undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            typeOfCardEnum: query.typeOfCardEnum,
-          },
+        queryBuilder.where(&#x27;card.typeOfCardEnum &#x3D; :typeOfCardEnum&#x27;, {
+          typeOfCardEnum: query.typeOfCardEnum,
         });
       }
 
       if (query.firstname !&#x3D; undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            firstname: query.firstname,
-          },
+        queryBuilder.where(&#x27;card.firstname &#x3D; :firstname&#x27;, {
+          firstname: query.firstname,
         });
       }
 
       if (query.lastname !&#x3D; undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            lastname: query.lastname,
-          },
+        queryBuilder.where(&#x27;card.lastname &#x3D; :lastname&#x27;, {
+          lastname: query.lastname,
         });
       }
 
@@ -324,7 +316,8 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler&lt;GetCard
         .then(cards &#x3D;&gt; {
           return cards;
         })
-        .catch(() &#x3D;&gt; {
+        .catch(error &#x3D;&gt; {
+          console.log(error);
           throw new Error(&#x27;Error while getting cards&#x27;);
         });
     } catch (error) {

@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/api/card/cqrs/handler/command/create-card.command-handler.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/api/card/cqrs/handler/command/create-card.command-handler.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -230,8 +230,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/create-card.command-handler.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/create-card.command-handler.ts:29</a></div>
                 </td>
             </tr>
 
@@ -300,12 +300,8 @@ import { SocialNetworkEntity } from &#x27;../../../../social-network/domain/enti
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { TypeOfCardEnum } from &#x27;../../../domain/enum/type-of-card.enum&#x27;;
 import { CreateCardEvent } from &#x27;../../event/create-card.event&#x27;;
-import {
-  ErrorInvalidIdRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
-import {
-  ErrorSaveRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-save.runtime-exception&quot;;
+import { ErrorInvalidIdRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
+import { ErrorSaveRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-save.runtime-exception&#x27;;
 
 @CommandHandler(CreateCardCommand)
 export class CreateCardCommandHandler implements ICommandHandler&lt;CreateCardCommand&gt; {
@@ -353,6 +349,7 @@ export class CreateCardCommandHandler implements ICommandHandler&lt;CreateCardCo
       }
 
       if (command.occupationsId !&#x3D; undefined) {
+        newCard.occupations &#x3D; [];
         for (const occupationId of command.occupationsId) {
           const occupation &#x3D; await this.occupationRepository
             .findOneOrFail({

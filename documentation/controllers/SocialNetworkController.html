@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/social-network/social-network.controller.ts</code>
+            <code>src/api/social-network/web/social-network.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -158,7 +158,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/api/social-network/social-network.controller.ts:50</a></div>
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -236,7 +236,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/api/social-network/social-network.controller.ts:73</a></div>
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -307,14 +307,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/api/social-network/social-network.controller.ts:19</a></div>
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:19</a></div>
                 </td>
             </tr>
 
@@ -353,14 +353,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/:id&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/:id&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/api/social-network/social-network.controller.ts:28</a></div>
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:28</a></div>
                 </td>
             </tr>
 
@@ -431,14 +431,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/admin/get-with-criteria&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Post(&#x27;/admin/get-with-criteria&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/api/social-network/social-network.controller.ts:37</a></div>
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -516,7 +516,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/api/social-network/social-network.controller.ts:82</a></div>
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:82</a></div>
                 </td>
             </tr>
 
@@ -594,7 +594,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/api/social-network/social-network.controller.ts:59</a></div>
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -659,14 +659,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from &#x27;@nestjs/common&#x27;;
-import { SocialNetworkService } from &#x27;./social-network.service&#x27;;
+import { SocialNetworkService } from &#x27;../social-network.service&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { CreateSocialNetworkRequest } from &#x27;./web/request/create-social-network.request&#x27;;
-import { RoleGuard } from &#x27;../auth/guards/role.guard&#x27;;
-import { UserRoleEnum } from &#x27;../user/domain/enum/user-role.enum&#x27;;
-import { SocialNetworkResponse } from &#x27;./web/response/social-network.response&#x27;;
-import { GetSocialNetworkWithCriteriaRequest } from &#x27;./web/request/get-social-network-with-criteria.request&#x27;;
-import { UpdateSocialNetworkRequest } from &#x27;./web/request/update-social-network.request&#x27;;
+import { CreateSocialNetworkRequest } from &#x27;./request/create-social-network.request&#x27;;
+import { RoleGuard } from &#x27;../../auth/guards/role.guard&#x27;;
+import { UserRoleEnum } from &#x27;../../user/domain/enum/user-role.enum&#x27;;
+import { SocialNetworkResponse } from &#x27;./response/social-network.response&#x27;;
+import { GetSocialNetworkWithCriteriaRequest } from &#x27;./request/get-social-network-with-criteria.request&#x27;;
+import { UpdateSocialNetworkRequest } from &#x27;./request/update-social-network.request&#x27;;
 
 @Controller(&#x27;social-network&#x27;)
 @ApiTags(&#x27;SocialNetwork&#x27;)
@@ -674,7 +674,7 @@ export class SocialNetworkController {
   constructor(private readonly socialNetworkService: SocialNetworkService) {}
 
   @Get(&#x27;/public/&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllSocialNetworks(): Promise&lt;SocialNetworkResponse[]&gt; {
     return await this.socialNetworkService.getAllSocialNetwork().catch(error &#x3D;&gt; {
@@ -683,7 +683,7 @@ export class SocialNetworkController {
   }
 
   @Get(&#x27;/public/:id&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getSocialNetworkById(@Param(&#x27;id&#x27;) socialNetworkId: string): Promise&lt;SocialNetworkResponse&gt; {
     return await this.socialNetworkService.getSocialNetworkById(socialNetworkId).catch(error &#x3D;&gt; {
@@ -692,7 +692,7 @@ export class SocialNetworkController {
   }
 
   @Post(&#x27;/admin/get-with-criteria&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getSocialNetworksWithCriteria(
     @Body() getSocialNetworksWithCriteriaRequest: GetSocialNetworkWithCriteriaRequest,

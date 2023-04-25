@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/social-network/cqrs/handler/command/update-social-network.command-handler.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/social-network/cqrs/handler/command/update-social-network.command-handler.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/api/social-network/cqrs/handler/command/update-social-network.command-handler.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/api/social-network/cqrs/handler/command/update-social-network.command-handler.ts:17</a></div>
                 </td>
             </tr>
 
@@ -259,6 +259,7 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { UpdateSocialNetworkEvent } from &#x27;../../event/update-social-network.event&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { SocialNetworkEntity } from &#x27;../../../domain/entities/social-network.entity&#x27;;
+import { validate } from &#x27;class-validator&#x27;;
 
 @CommandHandler(UpdateSocialNetworkCommand)
 export class UpdateSocialNetworkCommandHandler implements ICommandHandler&lt;UpdateSocialNetworkCommand&gt; {
@@ -269,11 +270,20 @@ export class UpdateSocialNetworkCommandHandler implements ICommandHandler&lt;Upd
   ) {}
 
   async execute(command: UpdateSocialNetworkCommand): Promise&lt;void&gt; {
+    await this.socialNetworkRepository.find().then((socialNetworkEntityList: SocialNetworkEntity[]) &#x3D;&gt; {
+      socialNetworkEntityList.forEach((socialNetwork: SocialNetworkEntity) &#x3D;&gt; {
+        if (socialNetwork.id !&#x3D; command.id &amp;&amp; socialNetwork.name &#x3D;&#x3D; command.name) throw new Error(&#x27;Duplicated name&#x27;);
+      });
+    });
     await this.socialNetworkRepository
       .findOneOrFail({
         where: [{ id: command.id }],
       })
       .then(async socialNetwork &#x3D;&gt; {
+        const err &#x3D; await validate(new SocialNetworkEntity({ ...command }));
+        if (err.length &gt; 0) {
+          throw err;
+        }
         await this.socialNetworkRepository
           .update(socialNetwork.id, {
             ...command,
@@ -285,7 +295,8 @@ export class UpdateSocialNetworkCommandHandler implements ICommandHandler&lt;Upd
             throw new Error(&#x27;SocialNetwork not updated&#x27;);
           });
       })
-      .catch(() &#x3D;&gt; {
+      .catch(error &#x3D;&gt; {
+        if (error instanceof Array) throw error;
         throw new Error(&#x27;SocialNetwork not found&#x27;);
       });
   }

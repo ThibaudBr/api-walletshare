@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/occupation/cqrs/handler/command/restore-occupation.command-handler.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/occupation/cqrs/handler/command/restore-occupation.command-handler.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/api/occupation/cqrs/handler/command/restore-occupation.command-handler.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/api/occupation/cqrs/handler/command/restore-occupation.command-handler.ts:17</a></div>
                 </td>
             </tr>
 
@@ -259,6 +259,7 @@ import { RestoreOccupationCommand } from &#x27;../../command/restore-occupation.
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { RestoreOccupationEvent } from &#x27;../../event/restore-occupation.event&#x27;;
 import { OccupationEntity } from &#x27;../../../domain/entities/occupation.entity&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @CommandHandler(RestoreOccupationCommand)
 export class RestoreOccupationCommandHandler implements ICommandHandler&lt;RestoreOccupationCommand&gt; {
@@ -270,7 +271,7 @@ export class RestoreOccupationCommandHandler implements ICommandHandler&lt;Resto
 
   async execute(command: RestoreOccupationCommand): Promise&lt;void&gt; {
     try {
-      await this.occupationRepository
+      const occupation: OccupationEntity &#x3D; await this.occupationRepository
         .findOneOrFail({
           withDeleted: true,
           where: [{ id: command.occupationId }],
@@ -278,6 +279,7 @@ export class RestoreOccupationCommandHandler implements ICommandHandler&lt;Resto
         .catch(() &#x3D;&gt; {
           throw new Error(&#x27;Occupation not found&#x27;);
         });
+      if (!occupation.deletedAt) throw new Error(&#x27;Occupation is not soft deleted&#x27;);
 
       await this.occupationRepository.restore(command.occupationId);
       this.eventBus.publish(
@@ -286,7 +288,14 @@ export class RestoreOccupationCommandHandler implements ICommandHandler&lt;Resto
         }),
       );
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;RestoreOccupationCommandHandler&#x27;,
+          localisation: &#x27;occupation&#x27;,
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

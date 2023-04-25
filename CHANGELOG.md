@@ -1,3 +1,8 @@
+# [0.1.2](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.2) - 2023-04-25
+
+### Features
+- fix all code and 100% working test
+
 # [0.1.1](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.1) - 2023-04-06
 
 ### Features

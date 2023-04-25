@@ -275,6 +275,7 @@ export class RestoreSocialNetworkCommandHandler implements ICommandHandler&lt;Re
         withDeleted: true,
       })
       .then(async socialNetwork &#x3D;&gt; {
+        if (!socialNetwork.deletedAt) throw new Error(&#x27;Social network is not soft deleted&#x27;);
         await this.socialNetworkRepository
           .restore(socialNetwork.id)
           .then(async () &#x3D;&gt; {
@@ -284,7 +285,9 @@ export class RestoreSocialNetworkCommandHandler implements ICommandHandler&lt;Re
             throw new Error(&#x27;SocialNetwork not restored&#x27;);
           });
       })
-      .catch(() &#x3D;&gt; {
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Social network is not soft deleted&#x27;) throw error;
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;SocialNetwork not restored&#x27;) throw error;
         throw new Error(&#x27;SocialNetwork not found&#x27;);
       });
   }

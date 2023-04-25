@@ -273,21 +273,15 @@ export class IsCardOwnerWithUserIdQueryHandler implements IQueryHandler&lt;IsCar
       const card &#x3D; await this.cardRepository
         .findOneOrFail({
           relations: [&#x27;owner&#x27;, &#x27;owner.user&#x27;],
-          where: [
-            {
-              owner: {
-                user: {
-                  id: query.userId,
-                },
-              },
-            },
-          ],
+          where: {
+            id: query.cardId,
+          },
         })
         .catch(() &#x3D;&gt; {
           throw new Error(&#x27;Card not found&#x27;);
         });
 
-      return card.owner.id &#x3D;&#x3D;&#x3D; query.userId;
+      return card.owner.user.id &#x3D;&#x3D;&#x3D; query.userId;
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({

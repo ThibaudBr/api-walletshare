@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/social-network/cqrs/handler/command/create-social-network.command-handler.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/social-network/cqrs/handler/command/create-social-network.command-handler.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/api/social-network/cqrs/handler/command/create-social-network.command-handler.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/api/social-network/cqrs/handler/command/create-social-network.command-handler.ts:18</a></div>
                 </td>
             </tr>
 
@@ -259,7 +259,6 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { SocialNetworkEntity } from &#x27;../../../domain/entities/social-network.entity&#x27;;
 import { CreateSocialNetworkEvent } from &#x27;../../event/create-social-network.event&#x27;;
-import { InvalidClassException } from &#x27;@nestjs/core/errors/exceptions/invalid-class.exception&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
@@ -288,7 +287,7 @@ export class CreateSocialNetworkCommandHandler implements ICommandHandler&lt;Cre
 
       const err &#x3D; await validate(newSocialNetworkEntity);
       if (err.length &gt; 0) {
-        throw new InvalidClassException(&#x27;Parameter not validate&#x27;);
+        throw err;
       }
 
       this.socialNetworkRepository
@@ -307,7 +306,7 @@ export class CreateSocialNetworkCommandHandler implements ICommandHandler&lt;Cre
           error: e.message,
         }),
       );
-      throw new Error(&#x27;SocialNetwork not created&#x27;);
+      throw e;
     }
   }
 }

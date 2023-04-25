@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:25</a></div>
                 </td>
             </tr>
 
@@ -285,7 +285,6 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { UserEntity } from &#x27;../../../../user/domain/entities/user.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
-import { InvalidParameterEntityHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
 import { CreateProfileEvent } from &#x27;../../event/create-profile.event&#x27;;
 import { OccupationEntity } from &#x27;../../../../occupation/domain/entities/occupation.entity&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
@@ -304,9 +303,10 @@ export class CreateProfileCommandHandler implements ICommandHandler&lt;CreatePro
 
   async execute(command: CreateProfileCommand): Promise&lt;void&gt; {
     try {
+      if (!command.userId) throw new Error(&#x27;User not found&#x27;);
       const user &#x3D; await this.userRepository
         .findOneOrFail({
-          where: [{ id: command.userId }],
+          where: { id: command.userId },
         })
         .catch(() &#x3D;&gt; {
           throw new Error(&#x27;User not found&#x27;);
@@ -317,26 +317,28 @@ export class CreateProfileCommandHandler implements ICommandHandler&lt;CreatePro
         ...command.createProfileDto,
       });
 
-      if (command.occupationsId.length &gt; 0) {
-        const occupationPromises: Promise&lt;OccupationEntity&gt;[] &#x3D; command.occupationsId.map(async occupationId &#x3D;&gt; {
-          return await this.occupationRepository
-            .findOneOrFail({
-              where: [{ id: occupationId }],
-            })
-            .catch(() &#x3D;&gt; {
-              throw new Error(&#x27;Occupation not found&#x27;);
-            });
-        });
-        const occupations: OccupationEntity[] &#x3D; await Promise.all(occupationPromises);
+      if (command.occupationsId) {
+        if (command.occupationsId.length &gt; 0) {
+          const occupationPromises: Promise&lt;OccupationEntity&gt;[] &#x3D; command.occupationsId.map(async occupationId &#x3D;&gt; {
+            return await this.occupationRepository
+              .findOneOrFail({
+                where: [{ id: occupationId }],
+              })
+              .catch(() &#x3D;&gt; {
+                throw new Error(&#x27;Occupation not found&#x27;);
+              });
+          });
+          const occupations: OccupationEntity[] &#x3D; await Promise.all(occupationPromises);
 
-        if (occupations.length &gt; 0) {
-          newProfile.occupations &#x3D; occupations;
+          if (occupations.length &gt; 0) {
+            newProfile.occupations &#x3D; occupations;
+          }
         }
       }
 
       const err &#x3D; await validate(newProfile);
       if (err.length &gt; 0) {
-        throw new InvalidParameterEntityHttpException(err);
+        throw err;
       }
 
       const savedProfile &#x3D; await this.profileRepository.save(newProfile).then(profile &#x3D;&gt; {
@@ -357,7 +359,7 @@ export class CreateProfileCommandHandler implements ICommandHandler&lt;CreatePro
           error: error.message,
         }),
       );
-      throw new Error(error);
+      throw error;
     }
   }
 }

@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/card/cqrs/handler/command/restore-card.command-handler.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/card/cqrs/handler/command/restore-card.command-handler.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/restore-card.command-handler.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/restore-card.command-handler.ts:18</a></div>
                 </td>
             </tr>
 
@@ -260,9 +260,7 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { CardEntity } from &#x27;../../../domain/entities/card.entity&#x27;;
 import { RestoreCardEvent } from &#x27;../../event/restore-card.event&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
-import {
-  ErrorInvalidIdRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
+import { ErrorInvalidIdRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
 
 @CommandHandler(RestoreCardCommand)
 export class RestoreCardCommandHandler implements ICommandHandler&lt;RestoreCardCommand&gt; {
@@ -274,7 +272,7 @@ export class RestoreCardCommandHandler implements ICommandHandler&lt;RestoreCard
 
   async execute(command: RestoreCardCommand): Promise&lt;void&gt; {
     try {
-      await this.cardRepository
+      const cardToRestore &#x3D; await this.cardRepository
         .findOneOrFail({
           withDeleted: true,
           where: [{ id: command.id }],
@@ -283,10 +281,11 @@ export class RestoreCardCommandHandler implements ICommandHandler&lt;RestoreCard
           throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
         });
 
+      if (cardToRestore.deletedAt &#x3D;&#x3D; undefined) throw new Error(&#x27;Card not soft-deleted&#x27;);
       await this.cardRepository.restore(command.id);
       this.eventBus.publish(
         new RestoreCardEvent({
-          cardId: command.id,
+          cardId: cardToRestore.id,
         }),
       );
     } catch (error) {
@@ -297,7 +296,7 @@ export class RestoreCardCommandHandler implements ICommandHandler&lt;RestoreCard
           error: error.message,
         }),
       );
-      throw new Error(error);
+      throw error;
     }
   }
 }

@@ -96,6 +96,13 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#roleProfile" >roleProfile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#userId" >userId</a>
                             </li>
                             <li>
@@ -127,7 +134,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/api/profile/domain/response/profile.response.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/api/profile/domain/response/profile.response.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -231,10 +238,40 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="roleProfile"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>roleProfile</b></span>
+                        <a href="#roleProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/api/profile/domain/response/profile.response.ts:8</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="userId"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
                             <span class="modifier">Readonly</span>
+                            <span class="modifier">Optional</span>
                         <span ><b>userId</b></span>
                         <a href="#userId"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -297,10 +334,12 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class ProfileResponse {
   public readonly id: string;
-  public readonly userId: string;
+  public readonly userId?: string;
   public readonly usernameProfile: string;
 
   public readonly isDeleted?: boolean;
+
+  public readonly roleProfile?: string;
   constructor(partial: Partial&lt;ProfileResponse&gt;) {
     Object.assign(this, partial);
   }
