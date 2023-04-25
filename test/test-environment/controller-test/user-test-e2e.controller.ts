@@ -1,9 +1,8 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, UsePipes } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, UsePipes } from '@nestjs/common';
 import { UserTestE2eService } from '../service-test/user-test-e2e.service';
 import { IsTestEnvironmentPipe } from '../../../src/util/pipe/is-test-environment.pipe';
 import { CreateUserDto } from '../../../src/api/user/domain/dto/create-user.dto';
 import { UserEntity } from '../../../src/api/user/domain/entities/user.entity';
-import { UserIdDto } from '../../../src/api/user/domain/dto/user-id.dto';
 
 @Controller()
 export class UserTestE2eController {

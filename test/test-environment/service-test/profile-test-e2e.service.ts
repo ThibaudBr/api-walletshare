@@ -49,9 +49,9 @@ export class ProfileTestE2eService {
   async removeProfile(profileId: string): Promise<void> {
     const profile = await this.profileRepository.findOneOrFail({
       where: {
-        id: profileId
-      }
-    })
+        id: profileId,
+      },
+    });
     await this.profileRepository.softRemove(profile);
   }
 

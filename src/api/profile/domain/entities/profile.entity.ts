@@ -20,7 +20,7 @@ import CompanyEntity from '../../../entities-to-create/company.entity';
 import { NotificationEntity } from '../../../entities-to-create/notification.entity';
 import { RoleProfileEnum } from '../enum/role-profile.enum';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
-import { IsEnum, Length } from "class-validator";
+import { IsEnum, Length } from 'class-validator';
 
 @Entity({ name: 'profile' })
 export class ProfileEntity {
@@ -32,7 +32,7 @@ export class ProfileEntity {
   id: string;
 
   @Column({ nullable: false })
-  @Length( 3, 30 )
+  @Length(3, 30)
   usernameProfile: string;
 
   // ______________________________________________________

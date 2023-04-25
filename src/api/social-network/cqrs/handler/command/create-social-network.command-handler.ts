@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SocialNetworkEntity } from '../../../domain/entities/social-network.entity';
 import { CreateSocialNetworkEvent } from '../../event/create-social-network.event';
-import { InvalidClassException } from '@nestjs/core/errors/exceptions/invalid-class.exception';
 import { validate } from 'class-validator';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 

@@ -15,7 +15,6 @@ import { SubscriptionEntity } from '../../../entities-to-create/subscription.ent
 import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../../entities-to-create/notification.entity';
 import { AddressEntity } from '../../../entities-to-create/address.entity';
-import { IsEnum } from "class-validator";
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {

@@ -7,7 +7,6 @@ import { ProfileEntity } from '../../../../profile/domain/entities/profile.entit
 import { OccupationEntity } from '../../../../occupation/domain/entities/occupation.entity';
 import { SocialNetworkEntity } from '../../../../social-network/domain/entities/social-network.entity';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import { validate } from 'class-validator';
 import { UpdateCardEvent } from '../../event/update-card.event';
 import { ErrorInvalidIdRuntimeException } from '../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
 

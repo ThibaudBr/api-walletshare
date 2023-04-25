@@ -13,7 +13,6 @@ import { SocialNetworkDto } from './domain/dto/social-network.dto';
 import { SocialNetworkResponse } from './web/response/social-network.response';
 import { UpdateSocialNetworkCommand } from './cqrs/command/update-social-network.command';
 import { GetSocialNetworkByIdQuery } from './cqrs/query/get-social-network-by-id.query';
-import { InvalidClassException } from '@nestjs/core/errors/exceptions/invalid-class.exception';
 import { EntityCreationHttpException } from '../../util/exception/custom-http-exception/entity-creation.http-exception';
 import { DuplicateNameHttpException } from '../../util/exception/custom-http-exception/duplicate-name.http-exception';
 import { CommandErrorHttpException } from '../../util/exception/custom-http-exception/command-error.http-exception';

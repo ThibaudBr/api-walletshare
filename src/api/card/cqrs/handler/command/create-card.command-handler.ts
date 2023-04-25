@@ -58,7 +58,7 @@ export class CreateCardCommandHandler implements ICommandHandler<CreateCardComma
       }
 
       if (command.occupationsId != undefined) {
-        newCard.occupations = []
+        newCard.occupations = [];
         for (const occupationId of command.occupationsId) {
           const occupation = await this.occupationRepository
             .findOneOrFail({

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, UsePipes } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UsePipes } from '@nestjs/common';
 import { SocialNetworkTestE2eService } from '../service-test/social-network-test-e2e.service';
 import { CreateSocialNetworkRequest } from '../../../src/api/social-network/web/request/create-social-network.request';
 import { SocialNetworkEntity } from '../../../src/api/social-network/domain/entities/social-network.entity';

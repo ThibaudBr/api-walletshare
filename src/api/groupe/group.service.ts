@@ -31,9 +31,7 @@ import { GetGroupWithCriteriaQuery } from './cqrs/query/get-group-with-criteria.
 import { GetGroupWhereUserIdIsMemberQuery } from './cqrs/query/get-group-where-user-id-is-member.query';
 import { GetGroupMembershipWithCardIdQuery } from './cqrs/query/get-group-membership-with-card-id.query';
 import { AddCardToGroupCommand } from './cqrs/command/add-card-to-group.command';
-import {
-  ErrorListOfCardIdIsEmptyRuntimeException
-} from "../../util/exception/runtime-exception/error-list-of-card-id-is-empty.runtime-exception";
+import { ErrorListOfCardIdIsEmptyRuntimeException } from '../../util/exception/runtime-exception/error-list-of-card-id-is-empty.runtime-exception';
 
 @Injectable()
 export class GroupService {

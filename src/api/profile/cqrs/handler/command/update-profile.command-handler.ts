@@ -5,8 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileEntity } from '../../../domain/entities/profile.entity';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
-import { RoleProfileEnum } from "../../../domain/enum/role-profile.enum";
-import { validate } from "class-validator";
+import { validate } from 'class-validator';
 
 @CommandHandler(UpdateProfileCommand)
 export class UpdateProfileCommandHandler implements ICommandHandler<UpdateProfileCommand> {

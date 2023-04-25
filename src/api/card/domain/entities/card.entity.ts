@@ -16,7 +16,7 @@ import { WhoCanSeeCardInformationEnum } from '../enum/who-can-see-card-informati
 import { WhoCanCommunicateWithEnum } from '../enum/who-can-communicate-with.enum';
 import { TypeOfCardEnum } from '../enum/type-of-card.enum';
 import { SocialNetworkEntity } from '../../../social-network/domain/entities/social-network.entity';
-import { IsEmail, IsEnum, IsUrl, MaxLength } from "class-validator";
+import { IsEmail, IsUrl } from 'class-validator';
 import { ConnectedCardEntity } from './connected-card.entity';
 import { MediaEntity } from '../../../entities-to-create/media.entity';
 import { GroupMembershipEntity } from '../../../groupe/domain/entities/group-membership.entity';

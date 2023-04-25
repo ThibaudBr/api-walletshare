@@ -2,9 +2,6 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppTestE2eModule } from './test-environment/app-test-e2e.module';
 import * as request from 'supertest';
-import { CreateSocialNetworkRequest } from '../src/api/social-network/web/request/create-social-network.request';
-import { GetSocialNetworkWithCriteriaRequest } from '../src/api/social-network/web/request/get-social-network-with-criteria.request';
-import { UpdateSocialNetworkRequest } from '../src/api/social-network/web/request/update-social-network.request';
 
 if (process.env.NODE_ENV != 'test') {
   console.log('NODE_ENV must be set to test');

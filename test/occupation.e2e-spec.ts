@@ -2,8 +2,6 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppTestE2eModule } from './test-environment/app-test-e2e.module';
 import * as request from 'supertest';
-import { GetOccupationWithCriteriaRequest } from '../src/api/occupation/web/request/get-occupation-with-criteria.request';
-import { CreateOccupationRequest } from '../src/api/occupation/web/request/create-occupation.request';
 import { UpdateOccupationRequest } from '../src/api/occupation/web/request/update-occupation.request';
 
 if (process.env.NODE_ENV != 'test') {

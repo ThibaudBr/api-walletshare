@@ -47,9 +47,9 @@ export class GroupTestE2eService {
   async removeGroup(groupId: string): Promise<void> {
     const groupToDelete = await this.groupRepository.findOneOrFail({
       where: {
-        id: groupId
-      }
-    })
+        id: groupId,
+      },
+    });
     await this.groupRepository.softRemove(groupToDelete);
   }
 
@@ -101,9 +101,9 @@ export class GroupTestE2eService {
   async removeGroupMembership(groupMembershipId: string): Promise<void> {
     const groupMembershipToDelete = await this.groupMembershipRepository.findOneOrFail({
       where: {
-        id: groupMembershipId
-      }
-    })
+        id: groupMembershipId,
+      },
+    });
     await this.groupMembershipRepository.softRemove(groupMembershipToDelete);
   }
 }

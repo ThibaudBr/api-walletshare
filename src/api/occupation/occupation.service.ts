@@ -20,13 +20,8 @@ import { UpdateOccupationCommand } from './cqrs/command/update-occupation.comman
 import { DeleteOccupationCommand } from './cqrs/command/delete-occupation.command';
 import { SoftDeleteOccupationCommand } from './cqrs/command/soft-delete-occupation.command';
 import { RestoreOccupationCommand } from './cqrs/command/restore-occupation.command';
-import {
-  InvalidParameterEntityHttpException
-} from "../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception";
-import { ValidationError } from "class-validator";
-import {
-  EntityIsNotSoftDeletedHttpException
-} from "../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception";
+import { InvalidParameterEntityHttpException } from '../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
+import { EntityIsNotSoftDeletedHttpException } from '../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception';
 
 @Injectable()
 export class OccupationService {
@@ -149,7 +144,8 @@ export class OccupationService {
       );
     } catch (error) {
       if (error.message === 'Occupation not found') throw new OccupationNotFoundHttpException();
-      if (error.message === 'Occupation is not soft deleted') throw new EntityIsNotSoftDeletedHttpException(error.message);
+      if (error.message === 'Occupation is not soft deleted')
+        throw new EntityIsNotSoftDeletedHttpException(error.message);
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }

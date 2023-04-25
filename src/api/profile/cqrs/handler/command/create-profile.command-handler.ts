@@ -6,7 +6,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../../../../user/domain/entities/user.entity';
 import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
-import { InvalidParameterEntityHttpException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 import { CreateProfileEvent } from '../../event/create-profile.event';
 import { OccupationEntity } from '../../../../occupation/domain/entities/occupation.entity';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
@@ -25,7 +24,7 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
 
   async execute(command: CreateProfileCommand): Promise<void> {
     try {
-      if (!command.userId) throw new Error('User not found')
+      if (!command.userId) throw new Error('User not found');
       const user = await this.userRepository
         .findOneOrFail({
           where: { id: command.userId },

@@ -26,7 +26,7 @@ import { NotificationEntity } from '../../api/entities-to-create/notification.en
 import { AddressEntity } from '../../api/entities-to-create/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
 import { ProfileSubscriber } from '../../api/profile/subscriber/profile.subscriber';
-import { ConnectedCardSubscriber } from "../../api/card/subscriber/connected-card.subscriber";
+import { ConnectedCardSubscriber } from '../../api/card/subscriber/connected-card.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -108,7 +108,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
           subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
-
         };
       } else if (process.env.NODE_ENV === 'dev') {
         logger.info('NODE_ENV is dev');

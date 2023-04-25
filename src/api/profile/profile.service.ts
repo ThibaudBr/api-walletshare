@@ -116,7 +116,7 @@ export class ProfileService {
           }
         })
         .catch(error => {
-          if (error.message == 'User is not he owner of the profile' ) throw error;
+          if (error.message == 'User is not he owner of the profile') throw error;
           throw new Error('Profile not found');
         });
       if (updateProfileRequest.occupationsId) {

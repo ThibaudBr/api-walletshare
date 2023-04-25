@@ -35,12 +35,8 @@ import { RemoveSavedCardCommand } from './cqrs/command/remove-saved-card.command
 import { CreateCardRequest } from './web/request/create-card.request';
 import { UpdateCardRequest } from './web/request/update-card.request';
 import { GroupMembershipResponse } from '../groupe/web/response/group-membership.response';
-import {
-  EntityIsNotSoftDeletedHttpException
-} from "../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception";
-import {
-  InvalidParameterEntityHttpException
-} from "../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception";
+import { EntityIsNotSoftDeletedHttpException } from '../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception';
+import { InvalidParameterEntityHttpException } from '../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 
 @Injectable()
 export class CardService {
@@ -112,7 +108,8 @@ export class CardService {
           throw new InternalServerErrorException(error);
         });
     } catch (error) {
-      if (error.response.message.slice(0, 46) == 'Could not find any entity of type "CardEntity"') throw new InvalidIdHttpException();
+      if (error.response.message.slice(0, 46) == 'Could not find any entity of type "CardEntity"')
+        throw new InvalidIdHttpException();
       throw new InternalServerErrorException(error);
     }
   }

@@ -30,9 +30,9 @@ export class UserTestE2eService {
     try {
       const user = await this.userRepository.findOneOrFail({
         where: {
-          id: userId
-        }
-      })
+          id: userId,
+        },
+      });
       await this.userRepository.softRemove(user);
     } catch (e) {
       console.log(e);

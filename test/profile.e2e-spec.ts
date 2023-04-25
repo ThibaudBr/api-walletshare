@@ -3,10 +3,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppTestE2eModule } from './test-environment/app-test-e2e.module';
 import * as request from 'supertest';
 import { RoleProfileEnum } from '../src/api/profile/domain/enum/role-profile.enum';
-import { UserResponse } from '../src/api/user/domain/response/user.response';
 import { UserEntity } from '../src/api/user/domain/entities/user.entity';
 import { ProfileEntity } from '../src/api/profile/domain/entities/profile.entity';
-import { GetProfilesWithCriteriaRequest } from '../src/api/profile/domain/request/get-profiles-with-criteria.request';
 
 if (process.env.NODE_ENV != 'test') {
   console.log('NODE_ENV must be set to test');

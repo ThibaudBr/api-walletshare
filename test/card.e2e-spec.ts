@@ -2,13 +2,12 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppTestE2eModule } from './test-environment/app-test-e2e.module';
 import * as request from 'supertest';
+import supertest from 'supertest';
 import { RoleProfileEnum } from '../src/api/profile/domain/enum/role-profile.enum';
 import { TypeOfCardEnum } from '../src/api/card/domain/enum/type-of-card.enum';
-import supertest from 'supertest';
 import { CardEntity } from '../src/api/card/domain/entities/card.entity';
 import { WhoCanShareCardEnum } from '../src/api/card/domain/enum/who-can-share-card.enum';
 import { WhoCanCommunicateWithEnum } from '../src/api/card/domain/enum/who-can-communicate-with.enum';
-import { ProfileEntity } from '../src/api/profile/domain/entities/profile.entity';
 
 if (process.env.NODE_ENV != 'test') {
   console.log('NODE_ENV must be set to test');
@@ -256,6 +255,7 @@ describe('CardController (e2e)', () => {
     await createCard('card3Test7SocialNetwork', TypeOfCardEnum.SOCIAL_NETWORK, profileIdList[6]); // 27
 
     connectCardIdList = [];
+
     async function createConnectedCard(cardId: string, connectedCardId: string): Promise<supertest.Test> {
       return request(app.getHttpServer())
         .post('/api/test/add-connected-card-test')
@@ -799,6 +799,7 @@ describe('CardController (e2e)', () => {
 
     beforeEach(async () => {
       listOfSavedCardId = [];
+
       async function addSavedCard(cardId: string, profileId: string): Promise<supertest.Test> {
         return request(app.getHttpServer())
           .post('/api/test/add-saved-card-test')

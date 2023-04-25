@@ -40,9 +40,8 @@ import { RestoreCardEventHandler } from './cqrs/handler/event/restore-card.event
 import { SoftDeleteCardEventHandler } from './cqrs/handler/event/soft-delete-card.event-handler';
 import { UpdateCardEventHandler } from './cqrs/handler/event/update-card.event-handler';
 import { ConnectedCardEntity } from './domain/entities/connected-card.entity';
-import { RemoveSavedCardCommandHandler } from "./cqrs/handler/command/remove-saved-card.command-handler";
-import { RemoveSavedCardEvent } from "./cqrs/event/remove-saved-card.event";
-import { RemoveSavedCardEventHandler } from "./cqrs/handler/event/remove-saved-card.event-handler";
+import { RemoveSavedCardCommandHandler } from './cqrs/handler/command/remove-saved-card.command-handler';
+import { RemoveSavedCardEventHandler } from './cqrs/handler/event/remove-saved-card.event-handler';
 
 @Module({
   imports: [

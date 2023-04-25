@@ -1,6 +1,6 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { AddViewCountCardEvent } from '../../event/add-view-count-card.event';
-import { ApiLogService } from "../../../../api-log/api-log.service";
+import { ApiLogService } from '../../../../api-log/api-log.service';
 
 @EventsHandler(AddViewCountCardEvent)
 export class AddViewCountCardEventHandler implements IEventHandler<AddViewCountCardEvent> {
