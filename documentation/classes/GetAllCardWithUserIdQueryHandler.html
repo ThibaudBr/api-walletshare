@@ -271,7 +271,7 @@ export class GetAllCardWithUserIdQueryHandler implements IQueryHandler&lt;GetAll
   async execute(query: GetAllCardWithUserIdQuery): Promise&lt;CardEntity[]&gt; {
     try {
       return await this.cardRepository.find({
-        relations: [&#x27;occupation&#x27;, &#x27;owner&#x27;, &#x27;owner.user&#x27;, &#x27;socialNetwork&#x27;],
+        relations: [&#x27;occupations&#x27;, &#x27;owner&#x27;, &#x27;owner.user&#x27;, &#x27;socialNetwork&#x27;],
         loadRelationIds: true,
         loadEagerRelations: true,
         where: [

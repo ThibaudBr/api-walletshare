@@ -23,9 +23,7 @@ export class SoftDeleteGroupEventHandler implements IEventHandler<SoftDeleteGrou
       })
       .then(async group => {
         await this.groupRepository
-          .softDelete({
-            id: group.id,
-          })
+          .softRemove(group)
           .then(() => {
             this.eventBus.publish(
               new SoftDeleteGroupEvent({

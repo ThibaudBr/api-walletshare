@@ -35,7 +35,7 @@ export class ProfileController {
       },
     },
   })
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllProfiles(): Promise<ProfileResponse[]> {
     return await this.profileService.getProfiles().catch(error => {
@@ -43,8 +43,8 @@ export class ProfileController {
     });
   }
 
-  @Get('/public/:id')
-  @HttpCode(201)
+  @Get('/public/get-my-profile/:id')
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getProfileById(@Req() requestUser: RequestUser, @Param('id') profileId: string): Promise<ProfileResponse> {
     const { id } = requestUser.user;
@@ -53,8 +53,17 @@ export class ProfileController {
     });
   }
 
+  @Get('/public/get-profile/:id')
+  @HttpCode(200)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getProfile(@Param('id') profileId: string): Promise<ProfileResponse> {
+    return await this.profileService.getProfile(profileId).catch(error => {
+      throw error;
+    });
+  }
+
   @Get('/admin/with-user-id/:id')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getProfileByUserId(@Param('id') userId: string): Promise<ProfileResponse[]> {
     return await this.profileService.getProfileByUserId(userId).catch(error => {
@@ -63,7 +72,7 @@ export class ProfileController {
   }
 
   @Get('/public/get-my-profiles')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getMyProfiles(@Req() requestUser: RequestUser): Promise<ProfileResponse[]> {
     const { id } = requestUser.user;
@@ -73,7 +82,7 @@ export class ProfileController {
   }
 
   @Post('/admin/get-with-criteria')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getProfilesWithCriteria(
     @Body() getProfilesWithCriteriaRequest: GetProfilesWithCriteriaRequest,
@@ -97,7 +106,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async updateMyProfile(@Req() requestUser: RequestUser, @Body() profile: UpdateProfileRequest): Promise<void> {
     const { id } = requestUser.user;
-    return await this.profileService.updateProfile(id, profile).catch(error => {
+    return await this.profileService.updateMyProfile(id, profile).catch(error => {
       throw error;
     });
   }
@@ -120,13 +129,11 @@ export class ProfileController {
     });
   }
 
-  @Delete('/admin/delete-my-profile')
+  @Delete('/admin/soft-delete-profile/:id')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async deleteMyProfile(@Req() requestUser: RequestUser): Promise<void> {
-    return await this.profileService.deleteProfile(requestUser.user.id).catch(error => {
-      throw error;
-    });
+  async deleteMyProfile(@Param('id') profileId: string): Promise<void> {
+    return await this.profileService.softDeleteProfile(profileId);
   }
 
   @Put('/admin/restore-profile/:id')

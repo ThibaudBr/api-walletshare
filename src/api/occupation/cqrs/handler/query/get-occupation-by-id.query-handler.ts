@@ -20,7 +20,7 @@ export class GetOccupationByIdQueryHandler implements IQueryHandler<GetOccupatio
         where: [{ id: query.occupationId }],
       })
       .then(occupation => {
-        return new OccupationDto(occupation);
+        return new OccupationDto({ ...occupation });
       })
       .catch(async error => {
         await this.eventBus.publish(

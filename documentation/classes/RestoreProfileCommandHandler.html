@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/profile/cqrs/handler/command/restore-profile.command-handler.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/profile/cqrs/handler/command/restore-profile.command-handler.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/api/profile/cqrs/handler/command/restore-profile.command-handler.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/api/profile/cqrs/handler/command/restore-profile.command-handler.ts:17</a></div>
                 </td>
             </tr>
 
@@ -259,6 +259,7 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { ProfileEntity } from &#x27;../../../domain/entities/profile.entity&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { RestoreProfileCommand } from &#x27;../../command/restore-profile.command&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @CommandHandler(RestoreProfileCommand)
 export class RestoreProfileCommandHandler implements ICommandHandler&lt;RestoreProfileCommand&gt; {
@@ -270,13 +271,15 @@ export class RestoreProfileCommandHandler implements ICommandHandler&lt;RestoreP
 
   async execute(command: RestoreProfileCommand): Promise&lt;void&gt; {
     try {
-      await this.profileRepository
+      const profile &#x3D; await this.profileRepository
         .findOneOrFail({
+          withDeleted: true,
           where: [{ id: command.profileId }],
         })
         .catch(() &#x3D;&gt; {
           throw new Error(&#x27;Profile not found&#x27;);
         });
+      if (!profile.deletedAt) throw new Error(&#x27;Profile is not soft deleted&#x27;);
       await this.profileRepository.restore(command.profileId);
       this.eventBus.publish(
         new RestoreProfileEvent({
@@ -284,7 +287,14 @@ export class RestoreProfileCommandHandler implements ICommandHandler&lt;RestoreP
         }),
       );
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;RestoreProfileCommandHandler&#x27;,
+          localisation: &#x27;profile&#x27;,
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

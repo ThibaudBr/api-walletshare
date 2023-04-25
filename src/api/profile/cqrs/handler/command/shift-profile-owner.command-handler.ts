@@ -33,7 +33,7 @@ export class ShiftProfileOwnerCommandHandler implements ICommandHandler<ShiftPro
         });
       await this.profileRepository.save(profile);
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 }

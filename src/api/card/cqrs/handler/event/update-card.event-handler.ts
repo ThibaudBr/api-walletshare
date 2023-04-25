@@ -1,6 +1,6 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { ApiLogService } from 'src/api/api-log/api-log.service';
 import { UpdateCardEvent } from '../../event/update-card.event';
+import { ApiLogService } from '../../../../api-log/api-log.service';
 
 @EventsHandler(UpdateCardEvent)
 export class UpdateCardEventHandler implements IEventHandler<UpdateCardEvent> {

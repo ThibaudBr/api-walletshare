@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/profile/cqrs/handler/command/soft-delete-profile.command-handler.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/profile/cqrs/handler/command/soft-delete-profile.command-handler.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/api/profile/cqrs/handler/command/soft-delete-profile.command-handler.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/api/profile/cqrs/handler/command/soft-delete-profile.command-handler.ts:17</a></div>
                 </td>
             </tr>
 
@@ -259,6 +259,7 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { ProfileEntity } from &#x27;../../../domain/entities/profile.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { SoftDeleteProfileEvent } from &#x27;../../event/soft-delete-profile.event&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @CommandHandler(SoftDeleteProfileCommand)
 export class SoftDeleteProfileCommandHandler implements ICommandHandler&lt;SoftDeleteProfileCommand&gt; {
@@ -277,16 +278,21 @@ export class SoftDeleteProfileCommandHandler implements ICommandHandler&lt;SoftD
         .catch(() &#x3D;&gt; {
           throw new Error(&#x27;Profile not found&#x27;);
         });
-      await this.profileRepository.softDelete({
-        id: profile.id,
-      });
+      await this.profileRepository.softRemove(profile);
       this.eventBus.publish(
         new SoftDeleteProfileEvent({
           id: command.id,
         }),
       );
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;SoftDeleteProfileCommandHandler&#x27;,
+          localisation: &#x27;profile&#x27;,
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

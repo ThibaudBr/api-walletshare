@@ -299,7 +299,7 @@ export class GetSavedCardWithUserIdQueryHandler implements IQueryHandler&lt;GetS
 
       return await this.cardRepository
         .find({
-          relations: [&#x27;occupation&#x27;, &#x27;socialNetwork&#x27;, &#x27;owner&#x27;, &#x27;profilesWhoSavedCard&#x27;, &#x27;profilesWhoSavedCard.user&#x27;],
+          relations: [&#x27;occupations&#x27;, &#x27;socialNetwork&#x27;, &#x27;owner&#x27;, &#x27;profilesWhoSavedCard&#x27;, &#x27;profilesWhoSavedCard.user&#x27;],
           where: [
             {
               profilesWhoSavedCard: {

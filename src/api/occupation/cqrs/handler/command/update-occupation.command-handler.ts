@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { OccupationEntity } from '../../../domain/entities/occupation.entity';
 import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
-import { InvalidClassException } from '@nestjs/core/errors/exceptions/invalid-class.exception';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 import { UpdateOccupationCommand } from '../../command/update-occupation.command';
 import { UpdateOccupationEvent } from '../../event/update-occupation.event';
@@ -43,7 +42,7 @@ export class UpdateOccupationCommandHandler implements ICommandHandler<UpdateOcc
         });
       const err = await validate(updatedOccupationEntity);
       if (err.length > 0) {
-        throw new InvalidClassException('Parameter not validate');
+        throw err;
       }
 
       await this.occupationRepository

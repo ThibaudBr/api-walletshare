@@ -32,7 +32,7 @@ export class GetSavedCardWithUserIdQueryHandler implements IQueryHandler<GetSave
 
       return await this.cardRepository
         .find({
-          relations: ['occupation', 'socialNetwork', 'owner', 'profilesWhoSavedCard', 'profilesWhoSavedCard.user'],
+          relations: ['occupations', 'socialNetwork', 'owner', 'profilesWhoSavedCard', 'profilesWhoSavedCard.user'],
           where: [
             {
               profilesWhoSavedCard: {

@@ -20,6 +20,7 @@ import { GetProfilesWithCriteriaRequest } from './domain/request/get-profiles-wi
 import { GetProfilesByUserIdQuery } from './cqrs/query/get-profiles-by-user-id.query';
 import { NotTheOwnerHttpException } from '../../util/exception/custom-http-exception/not-the-owner.http-exception';
 import { RestoreProfileCommand } from './cqrs/command/restore-profile.command';
+import { EntityIsNotSoftDeletedHttpException } from '../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception';
 
 @Injectable()
 export class ProfileService {
@@ -33,15 +34,15 @@ export class ProfileService {
             usernameProfile: createProfileRequest.usernameProfile,
             roleProfile: createProfileRequest.roleProfile,
           },
-          userId: createProfileRequest.idUser,
+          userId: createProfileRequest.userId,
           occupationsId: createProfileRequest.occupationsId,
         }),
       );
     } catch (e) {
       if (e.message === 'User not found') throw new UserNotFoundHttpException();
-      else if (e instanceof InvalidParameterEntityHttpException) throw e;
+      else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
       else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
-      else throw new Error(e);
+      else throw e;
     }
   }
 
@@ -54,7 +55,7 @@ export class ProfileService {
       );
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdHttpException();
-      else throw new Error(e);
+      else throw e;
     }
   }
 
@@ -67,35 +68,37 @@ export class ProfileService {
       );
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdHttpException();
-      else throw new Error(e);
+      else throw e;
     }
   }
 
   async updateProfile(id: string, updateProfileRequest: UpdateProfileRequest): Promise<void> {
     try {
-      if (updateProfileRequest.occupationsId.length > 0) {
+      if (updateProfileRequest.occupationsId) {
         await this.commandBus.execute(
           new UpdateOccupationsProfileCommand({
-            id: updateProfileRequest.id,
+            id: id,
             occupations: updateProfileRequest.occupationsId,
           }),
         );
       }
-      await this.commandBus.execute(
-        new UpdateProfileCommand({
-          updateProfileDto: {
-            usernameProfile: updateProfileRequest.usernameProfile,
-            roleProfile: updateProfileRequest.roleProfile,
-          },
-          id: updateProfileRequest.id,
-        }),
-      );
+      if (updateProfileRequest.roleProfile && updateProfileRequest.usernameProfile) {
+        await this.commandBus.execute(
+          new UpdateProfileCommand({
+            updateProfileDto: {
+              usernameProfile: updateProfileRequest.usernameProfile,
+              roleProfile: updateProfileRequest.roleProfile,
+            },
+            id: id,
+          }),
+        );
+      }
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdHttpException();
-      else if (e instanceof InvalidParameterEntityHttpException) throw e;
+      else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
       else if (e.message === 'User not found') throw new UserNotFoundHttpException();
       else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
-      else throw new Error(e);
+      else throw e;
     }
   }
 
@@ -104,38 +107,43 @@ export class ProfileService {
       await this.queryBus
         .execute(
           new GetProfileByIdQuery({
-            id: updateProfileRequest.id,
+            id: updateProfileRequest.profileId,
           }),
         )
         .then(profile => {
           if (profile.userId !== id) {
             throw new Error('User is not he owner of the profile');
           }
+        })
+        .catch(error => {
+          if (error.message == 'User is not he owner of the profile') throw error;
+          throw new Error('Profile not found');
         });
-      if (updateProfileRequest.occupationsId.length > 0) {
+      if (updateProfileRequest.occupationsId) {
         await this.commandBus.execute(
           new UpdateOccupationsProfileCommand({
-            id: id,
+            id: updateProfileRequest.profileId,
             occupations: updateProfileRequest.occupationsId,
           }),
         );
       }
-      await this.commandBus.execute(
-        new UpdateProfileCommand({
-          updateProfileDto: {
-            usernameProfile: updateProfileRequest.usernameProfile,
-            roleProfile: updateProfileRequest.roleProfile,
-          },
-          id: id,
-        }),
-      );
+      if (updateProfileRequest.usernameProfile) {
+        await this.commandBus.execute(
+          new UpdateProfileCommand({
+            updateProfileDto: {
+              usernameProfile: updateProfileRequest.usernameProfile,
+            },
+            id: updateProfileRequest.profileId,
+          }),
+        );
+      }
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdHttpException();
       else if (e instanceof InvalidParameterEntityHttpException) throw e;
       else if (e.message === 'User not found') throw new UserNotFoundHttpException();
       else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
       else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerHttpException();
-      else throw new Error(e);
+      else throw e;
     }
   }
 
@@ -150,7 +158,7 @@ export class ProfileService {
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdHttpException();
       else if (e.message === 'User not found') throw new UserNotFoundHttpException();
-      else throw new Error(e);
+      else throw e;
     }
   }
 
@@ -164,7 +172,7 @@ export class ProfileService {
       );
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdHttpException();
-      else throw new Error(e);
+      else throw e;
     }
   }
 
@@ -172,7 +180,7 @@ export class ProfileService {
     try {
       return await this.queryBus.execute(new GetAllProfileQuery());
     } catch (e) {
-      throw new Error(e);
+      throw e;
     }
   }
 
@@ -190,7 +198,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
-      throw new Error(e);
+      throw e;
     }
   }
 
@@ -203,7 +211,7 @@ export class ProfileService {
       );
     } catch (e) {
       if (e.message === 'User not found') throw new UserNotFoundHttpException();
-      throw new Error(e);
+      throw e;
     }
   }
 
@@ -224,7 +232,7 @@ export class ProfileService {
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdHttpException();
       else if (e.message === 'User is not he owner of the profile') throw new NotTheOwnerHttpException();
-      else throw new Error(e);
+      else throw e;
     }
   }
 
@@ -237,7 +245,8 @@ export class ProfileService {
       );
     } catch (e) {
       if (e.message === 'Profile not found') throw new InvalidIdHttpException();
-      else throw new Error(e);
+      if (e.message === 'Profile is not soft deleted') throw new EntityIsNotSoftDeletedHttpException(e.message);
+      else throw e;
     }
   }
 }

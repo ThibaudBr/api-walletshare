@@ -274,7 +274,9 @@ export class GetProfileWithCriteriaQueryHandler implements IQueryHandler&lt;GetP
       const queryBuilder &#x3D; this.profileRepository.createQueryBuilder(&#x27;profile&#x27;);
 
       if (query.getProfileWithCriteriaDto.isDeleted) {
-        queryBuilder.setFindOptions({ withDeleted: true });
+        queryBuilder.setFindOptions({ withDeleted: true, relations: [&#x27;user&#x27;, &#x27;occupations&#x27;] });
+      } else {
+        queryBuilder.setFindOptions({ relations: [&#x27;user&#x27;, &#x27;occupations&#x27;] });
       }
 
       if (query.getProfileWithCriteriaDto.usernameProfile) {
@@ -289,6 +291,7 @@ export class GetProfileWithCriteriaQueryHandler implements IQueryHandler&lt;GetP
         profile &#x3D;&gt;
           new ProfileResponse({
             ...profile,
+            userId: profile.user.id,
           }),
       );
     } catch (error) {

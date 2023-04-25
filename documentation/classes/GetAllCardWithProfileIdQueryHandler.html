@@ -287,6 +287,7 @@ export class GetAllCardWithProfileIdQueryHandler implements IQueryHandler&lt;Get
     try {
       const profile &#x3D; await this.profileRepository
         .findOneOrFail({
+          withDeleted: query.withDeleted,
           where: {
             id: query.profileId,
           },
@@ -297,7 +298,8 @@ export class GetAllCardWithProfileIdQueryHandler implements IQueryHandler&lt;Get
 
       return await this.cardRepository
         .find({
-          relations: [&#x27;occupation&#x27;, &#x27;owner&#x27;, &#x27;socialNetwork&#x27;],
+          withDeleted: query.withDeleted,
+          relations: [&#x27;occupations&#x27;, &#x27;owner&#x27;, &#x27;socialNetwork&#x27;],
           where: [
             {
               owner: {

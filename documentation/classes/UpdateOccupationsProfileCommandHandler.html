@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/profile/cqrs/handler/command/update-occupations-profile.command-handler.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/profile/cqrs/handler/command/update-occupations-profile.command-handler.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -206,8 +206,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/api/profile/cqrs/handler/command/update-occupations-profile.command-handler.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/api/profile/cqrs/handler/command/update-occupations-profile.command-handler.ts:20</a></div>
                 </td>
             </tr>
 
@@ -272,6 +272,7 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { ProfileEntity } from &#x27;../../../domain/entities/profile.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { OccupationEntity } from &#x27;../../../../occupation/domain/entities/occupation.entity&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @CommandHandler(UpdateOccupationsProfileCommand)
 export class UpdateOccupationsProfileCommandHandler implements ICommandHandler&lt;UpdateOccupationsProfileCommand&gt; {
@@ -287,30 +288,36 @@ export class UpdateOccupationsProfileCommandHandler implements ICommandHandler&l
     try {
       const profile &#x3D; await this.profileRepository
         .findOneOrFail({
+          relations: [&#x27;occupations&#x27;],
           where: [{ id: command.id }],
         })
         .catch(() &#x3D;&gt; {
           throw new Error(&#x27;Profile not found&#x27;);
         });
 
-      const occupationPromises: Promise&lt;OccupationEntity&gt;[] &#x3D; command.occupations.map(async occupationId &#x3D;&gt; {
-        return await this.occupationRepository
-          .findOneOrFail({
-            where: [{ id: occupationId }],
-          })
-          .catch(() &#x3D;&gt; {
-            throw new Error(&#x27;Occupation not found&#x27;);
-          });
-      });
-      const occupations: OccupationEntity[] &#x3D; await Promise.all(occupationPromises);
+      if (command.occupations.length &#x3D;&#x3D; 0) {
+        profile.occupations &#x3D; [];
+        await this.profileRepository.save(profile);
+      } else {
+        const occupationPromises: Promise&lt;OccupationEntity&gt;[] &#x3D; command.occupations.map(async occupationId &#x3D;&gt; {
+          return await this.occupationRepository
+            .findOneOrFail({
+              where: [{ id: occupationId }],
+            })
+            .catch(() &#x3D;&gt; {
+              throw new Error(&#x27;Occupation not found&#x27;);
+            });
+        });
+        const occupations: OccupationEntity[] &#x3D; await Promise.all(occupationPromises);
 
-      if (occupations.length &#x3D;&#x3D; 0) {
-        throw new Error(&#x27;Occupations not found&#x27;);
+        if (occupations.length &#x3D;&#x3D; 0) {
+          throw new Error(&#x27;Occupations not found&#x27;);
+        } else {
+          profile.occupations &#x3D; occupations;
+          await this.profileRepository.save(profile);
+        }
       }
 
-      await this.profileRepository.update(profile.id, {
-        occupations: occupations,
-      });
       this.eventBus.publish(
         new UpdateOccupationsProfileEvent({
           listOfOccupationId: command.occupations,
@@ -318,7 +325,14 @@ export class UpdateOccupationsProfileCommandHandler implements ICommandHandler&l
         }),
       );
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;UpdateOccupationProfileCommandHandler&#x27;,
+          localisation: &#x27;profile&#x27;,
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

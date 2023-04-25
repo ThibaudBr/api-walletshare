@@ -1,6 +1,6 @@
 export class CreateOccupationEvent {
   constructor(partial: Partial<CreateOccupationEvent>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly occupationId: string;

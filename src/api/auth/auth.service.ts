@@ -62,7 +62,7 @@ export class AuthService {
       secret: process.env.JWT_REFRESH_TOKEN_SECRET,
     });
     if (payload.userId) {
-      return this.queryBus.execute(new GetUserQuery(payload.userId));
+      return await this.queryBus.execute(new GetUserQuery(payload.userId));
     }
     throw new Error('Invalid token');
   }

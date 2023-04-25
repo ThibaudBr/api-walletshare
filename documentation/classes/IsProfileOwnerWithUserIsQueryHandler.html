@@ -285,20 +285,14 @@ export class IsProfileOwnerWithUserIsQueryHandler implements IQueryHandler&lt;Is
 
   async execute(query: IsProfileOwnerWithUserIsQuery): Promise&lt;boolean&gt; {
     try {
-      const profile &#x3D; await this.profileRepository
-        .findOneOrFail({
-          relations: [&#x27;owner&#x27;, &#x27;owner.user&#x27;],
-          where: [
-            {
-              user: {
-                id: query.userId,
-              },
-            },
-          ],
-        })
-        .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;Profile not found&#x27;);
-        });
+      const profile &#x3D; await this.profileRepository.findOneOrFail({
+        relations: [&#x27;user&#x27;],
+        where: [
+          {
+            id: query.profileId,
+          },
+        ],
+      });
 
       return profile.user.id &#x3D;&#x3D;&#x3D; query.userId;
     } catch (error) {

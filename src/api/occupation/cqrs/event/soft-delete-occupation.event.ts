@@ -1,6 +1,6 @@
 export class SoftDeleteOccupationEvent {
   constructor(partial: Partial<SoftDeleteOccupationEvent>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly occupationId: string;

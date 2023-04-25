@@ -278,7 +278,7 @@ export class SoftDeleteOccupationCommandHandler implements ICommandHandler&lt;So
         .catch(() &#x3D;&gt; {
           throw new Error(&#x27;Occupation not found&#x27;);
         });
-      await this.occupationRepository.softDelete(occupation.id).catch(() &#x3D;&gt; {
+      await this.occupationRepository.softRemove(occupation).catch(() &#x3D;&gt; {
         throw new Error(&#x27;Occupation not soft deleted&#x27;);
       });
       this.eventBus.publish(
@@ -294,6 +294,7 @@ export class SoftDeleteOccupationCommandHandler implements ICommandHandler&lt;So
           error: e.message,
         }),
       );
+      throw e;
     }
   }
 }

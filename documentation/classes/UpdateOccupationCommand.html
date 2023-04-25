@@ -231,7 +231,7 @@
 
 export class UpdateOccupationCommand {
   constructor(partial: Partial&lt;UpdateOccupationCommand&gt;) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly updateOccupationDto: UpdateOccupationDto;

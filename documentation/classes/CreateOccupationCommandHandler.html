@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/occupation/cqrs/handler/command/create-occupation.command-handler.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/occupation/cqrs/handler/command/create-occupation.command-handler.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -194,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/api/occupation/cqrs/handler/command/create-occupation.command-handler.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/api/occupation/cqrs/handler/command/create-occupation.command-handler.ts:19</a></div>
                 </td>
             </tr>
 
@@ -260,7 +260,6 @@ import { OccupationEntity } from &#x27;../../../domain/entities/occupation.entit
 import { Repository } from &#x27;typeorm&#x27;;
 import { OccupationDto } from &#x27;../../../domain/dto/occupation.dto&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
-import { InvalidClassException } from &#x27;@nestjs/core/errors/exceptions/invalid-class.exception&#x27;;
 import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { CreateOccupationEvent } from &#x27;../../event/create-occupation.event&#x27;;
 
@@ -288,7 +287,7 @@ export class CreateOccupationCommandHandler implements ICommandHandler&lt;Create
       });
       const err &#x3D; await validate(newOccupationEntity);
       if (err.length &gt; 0) {
-        throw new InvalidClassException(&#x27;Parameter not validate&#x27;);
+        throw err;
       }
 
       return this.occupationRepository

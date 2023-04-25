@@ -563,7 +563,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/admin/create-card/:profileId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Post(&#x27;/admin/create-card/:profileId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -653,7 +653,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/public/create-card/:profileId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Post(&#x27;/public/create-card/:profileId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -923,7 +923,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/admin/&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/admin/get-all-cards&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -969,7 +969,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/admin/get-all-cards/:userId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/admin/get-all-cards/:userId&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1047,7 +1047,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/admin/get-with-criteria&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Post(&#x27;/admin/get-with-criteria&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1125,7 +1125,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/admin/get-all-cards-with-profile-id/:profileId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/admin/get-all-cards-by-profile-id/:profileId&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1203,7 +1203,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/get-all-my-cards&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/get-all-my-cards/&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1281,7 +1281,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/get-all-my-cart-with-profile-id/:profileId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/get-all-my-cards-by-profile-id/:profileId&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1371,7 +1371,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/:id&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/get-card-by-id/:id&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1449,7 +1449,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/get-my-saved-cards-with-profile-id/:profileId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/get-my-saved-cards-with-profile-id/:profileId&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1539,7 +1539,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/get-my-saved-cards-with-user-id&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/get-my-saved-cards-with-user-id&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1617,7 +1617,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/admin/get-saved-cards-with-profile-id/:profileId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/admin/get-saved-cards-with-profile-id/:profileId&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -1695,7 +1695,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/admin/get-saved-cards-with-user-id/:userId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/admin/get-saved-cards-with-user-id/:userId&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -2277,7 +2277,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;/public/update-card/:cardId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Put(&#x27;/public/update-my-card/:cardId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -2380,36 +2380,36 @@ import { UpdateCardRequest } from &#x27;./web/request/update-card.request&#x27;;
 export class CardController {
   constructor(private readonly cardService: CardService) {}
 
-  @Get(&#x27;/admin/&#x27;)
-  @HttpCode(201)
+  @Get(&#x27;/admin/get-all-cards&#x27;)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCard(): Promise&lt;CardResponse[]&gt; {
     return await this.cardService.getAllCards();
   }
 
-  @Get(&#x27;/public/:id&#x27;)
-  @HttpCode(201)
+  @Get(&#x27;/public/get-card-by-id/:id&#x27;)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getCardById(@Param(&#x27;id&#x27;) cardId: string): Promise&lt;CardResponse&gt; {
     return await this.cardService.getCardById(cardId);
   }
 
   @Get(&#x27;/admin/get-all-cards/:userId&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCardsByUserId(@Param(&#x27;userId&#x27;) userId: string): Promise&lt;CardResponse[]&gt; {
     return await this.cardService.getAllCardWithUserId(userId);
   }
 
-  @Get(&#x27;/public/get-all-my-cards&#x27;)
-  @HttpCode(201)
+  @Get(&#x27;/public/get-all-my-cards/&#x27;)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllMyCards(@Req() userRequest: RequestUser): Promise&lt;CardResponse[]&gt; {
     return await this.cardService.getAllCardWithUserId(userRequest.user.id);
   }
 
-  @Get(&#x27;/public/get-all-my-cart-with-profile-id/:profileId&#x27;)
-  @HttpCode(201)
+  @Get(&#x27;/public/get-all-my-cards-by-profile-id/:profileId&#x27;)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllMyCardsWithProfileId(
     @Param(&#x27;profileId&#x27;) profileId: string,
@@ -2418,43 +2418,43 @@ export class CardController {
     return await this.cardService.getAllMyCardWithProfileId(userRequest.user.id, profileId);
   }
 
-  @Get(&#x27;/admin/get-all-cards-with-profile-id/:profileId&#x27;)
-  @HttpCode(201)
+  @Get(&#x27;/admin/get-all-cards-by-profile-id/:profileId&#x27;)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCardsWithProfileId(@Param(&#x27;profileId&#x27;) profileId: string): Promise&lt;CardResponse[]&gt; {
     return await this.cardService.getAllCardWithProfileId(profileId);
   }
 
-  @Get(&#x27;/admin/get-with-criteria&#x27;)
-  @HttpCode(201)
+  @Post(&#x27;/admin/get-with-criteria&#x27;)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCardsWithCriteria(@Body() criteria: GetCardWithCriteriaRequest): Promise&lt;CardResponse[]&gt; {
     return await this.cardService.getCardWithCriteria(criteria);
   }
 
   @Get(&#x27;/admin/get-saved-cards-with-user-id/:userId&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getSavedCardsWithUserId(@Param(&#x27;userId&#x27;) userId: string): Promise&lt;CardResponse[]&gt; {
     return await this.cardService.getSavedCardWithUserId(userId);
   }
 
   @Get(&#x27;/public/get-my-saved-cards-with-user-id&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getMySavedCardsWithUserId(@Req() userRequest: RequestUser): Promise&lt;CardResponse[]&gt; {
     return await this.cardService.getSavedCardWithUserId(userRequest.user.id);
   }
 
   @Get(&#x27;/admin/get-saved-cards-with-profile-id/:profileId&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getSavedCardsWithProfileId(@Param(&#x27;profileId&#x27;) profileId: string): Promise&lt;CardResponse[]&gt; {
     return await this.cardService.getSavedCardWithProfileId(profileId);
   }
 
   @Get(&#x27;/public/get-my-saved-cards-with-profile-id/:profileId&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getMySavedCardsWithProfileId(
     @Param(&#x27;profileId&#x27;) profileId: string,
@@ -2543,14 +2543,14 @@ export class CardController {
   }
 
   @Post(&#x27;/admin/create-card/:profileId&#x27;)
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createCard(@Param(&#x27;profileId&#x27;) profileId: string, @Body() createCardRequest: CreateCardRequest): Promise&lt;void&gt; {
     return await this.cardService.createCard(profileId, createCardRequest);
   }
 
   @Post(&#x27;/public/create-card/:profileId&#x27;)
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async createCardForMe(
     @Param(&#x27;profileId&#x27;) profileId: string,
@@ -2595,7 +2595,7 @@ export class CardController {
     return await this.cardService.updateCard(cardId, updateCardRequest);
   }
 
-  @Put(&#x27;/public/update-card/:cardId&#x27;)
+  @Put(&#x27;/public/update-my-card/:cardId&#x27;)
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async updateMyCard(

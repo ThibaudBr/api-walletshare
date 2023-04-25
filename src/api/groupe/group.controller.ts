@@ -1,4 +1,16 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GroupService } from './group.service';
 import { RoleGuard } from '../auth/guards/role.guard';
@@ -11,14 +23,14 @@ import { InvalidIdHttpException } from '../../util/exception/custom-http-excepti
 import { RequestUser } from '../auth/interface/request-user.interface';
 import { GroupMembershipResponse } from './web/response/group-membership.response';
 import { GetGroupWithCriteriaRequest } from './web/request/get-group-with-criteria.request';
-import { AcceptGroupRequestRequest } from './web/request/accept-group-request.request';
-import { CancelGroupRequestCommand } from './cqrs/command/cancel-group-request.command';
 import { RemoveCardFromGroupRequest } from './web/request/remove-card-from-group.request';
 import { CreateGroupRequest } from './web/request/create-group.request';
 import { GiveAdminRightGroupRequest } from './web/request/give-admin-right-group.request';
 import { RemoveAdminRightGroupRequest } from './web/request/remove-admin-right-group.request';
-import { SendGroupRequestRequest } from './web/request/send-group-request.request';
 import { UpdateGroupRequest } from './web/request/update-group.request';
+import { AddCardToGroupRequest } from './web/request/add-card-to-group.request';
+import { ErrorListOfCardIdIsEmptyRuntimeException } from '../../util/exception/runtime-exception/error-list-of-card-id-is-empty.runtime-exception';
+import { ErrorCardAlreadyInGroupRuntimeException } from '../../util/exception/runtime-exception/error-card-already-in-group.runtime-exception';
 
 @Controller('group')
 @ApiTags('Group')
@@ -112,7 +124,7 @@ export class GroupController {
   ): Promise<GroupMembershipResponse[]> {
     try {
       const userId = requestUser.user.id;
-      return await this.groupService.getGroupMemberByMyGroupId(userId, groupId);
+      return await this.groupService.getGroupMemberByMyGroupId(groupId, userId);
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
@@ -129,41 +141,7 @@ export class GroupController {
   ): Promise<GroupMembershipResponse[]> {
     try {
       const userId = requestUser.user.id;
-      return await this.groupService.getGroupMembershipByMyCardId(userId, cardId);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Get('/admin/get-group-member-with-card-id-and-group-id/:cardId/:groupId')
-  @HttpCode(201)
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async getGroupMemberWithCardIdAndGroupIdAdmin(
-    @Param('cardId') cardId: string,
-    @Param('groupId') groupId: string,
-  ): Promise<GroupMembershipResponse[]> {
-    try {
-      return await this.groupService.getGroupRequestWithCardIAndGroupIdAdmin(cardId, groupId);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Get('/public/get-group-member-with-card-id-and-group-id/:cardId/:groupId')
-  @HttpCode(201)
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async getGroupMemberWithCardIdAndGroupIdPublic(
-    @Req() requestUser: RequestUser,
-    @Param('cardId') cardId: string,
-    @Param('groupId') groupId: string,
-  ): Promise<GroupMembershipResponse[]> {
-    try {
-      const userId = requestUser.user.id;
-      return await this.groupService.getMyGroupRequestWithCardIAndGroupId(userId, cardId, groupId);
+      return await this.groupService.getGroupMembershipByMyCardId(cardId, userId);
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
@@ -177,21 +155,6 @@ export class GroupController {
   async getGroupWithCriteria(@Body() groupCriteria: GetGroupWithCriteriaRequest): Promise<GroupResponse[]> {
     try {
       return await this.groupService.getGroupWithCriteriaAdmin(groupCriteria);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Post('/public/get-group-request-with-criteria')
-  @HttpCode(201)
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async getGroupRequestWithCriteria(
-    @Body() groupCriteria: GetGroupWithCriteriaRequest,
-  ): Promise<GroupMembershipResponse[]> {
-    try {
-      return await this.groupService.getGroupRequestWithCriteriaAdmin(groupCriteria);
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
@@ -229,82 +192,6 @@ export class GroupController {
     }
   }
 
-  @Put('/admin/accept-group-request')
-  @HttpCode(204)
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async acceptGroupRequest(@Body() groupRequest: AcceptGroupRequestRequest): Promise<void> {
-    try {
-      await this.groupService.acceptGroupRequestAdmin(groupRequest);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Put('/admin/decline-group-request')
-  @HttpCode(204)
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async declineGroupRequest(@Body() groupRequest: AcceptGroupRequestRequest): Promise<void> {
-    try {
-      await this.groupService.cancelGroupRequestAdmin(groupRequest);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Put('/public/accept-group-request')
-  @HttpCode(204)
-  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
-  async acceptGroupRequestPublic(
-    @Req() requestUser: RequestUser,
-    @Body() groupRequest: AcceptGroupRequestRequest,
-  ): Promise<void> {
-    try {
-      const userId = requestUser.user.id;
-      await this.groupService.acceptMyGroupRequest(userId, groupRequest);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Put('/public/decline-group-request')
-  @HttpCode(204)
-  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
-  async declineGroupRequestPublic(
-    @Req() requestUser: RequestUser,
-    @Body() groupRequest: CancelGroupRequestCommand,
-  ): Promise<void> {
-    try {
-      const userId = requestUser.user.id;
-      await this.groupService.cancelMyGroupRequest(userId, groupRequest);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Put('/public/cancel-group-request')
-  @HttpCode(204)
-  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
-  async cancelGroupRequestPublic(
-    @Req() requestUser: RequestUser,
-    @Body() groupRequest: AcceptGroupRequestRequest,
-  ): Promise<void> {
-    try {
-      const userId = requestUser.user.id;
-      await this.groupService.cancelGroupRequestGroupManager(userId, groupRequest);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
   @Put('/public/leave-group')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
@@ -369,22 +256,6 @@ export class GroupController {
   async deleteGroupAdmin(@Param('groupId') groupId: string): Promise<void> {
     try {
       await this.groupService.deleteGroupAdmin(groupId);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Delete('/admin/delete-group-request/:groupId/:cardId')
-  @HttpCode(204)
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async deleteGroupRequestAdmin(@Param('groupId') groupId: string, @Param('cardId') cardId: string): Promise<void> {
-    try {
-      await this.groupService.deleteGroupRequestAdmin({
-        groupId: groupId,
-        cardId: cardId,
-      });
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
@@ -504,36 +375,6 @@ export class GroupController {
     }
   }
 
-  @Post('/public/invite-card-to-group')
-  @HttpCode(204)
-  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
-  async inviteCardToGroupPublic(
-    @Req() requestUser: RequestUser,
-    @Body() groupRequest: SendGroupRequestRequest,
-  ): Promise<void> {
-    try {
-      const userId = requestUser.user.id;
-      await this.groupService.sendGroupRequestFromMyGroup(userId, groupRequest);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
-  @Post('/admin/invite-card-to-group')
-  @HttpCode(204)
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async inviteCardToGroupAdmin(@Body() groupRequest: SendGroupRequestRequest): Promise<void> {
-    try {
-      await this.groupService.sendGroupRequestAdmin(groupRequest);
-    } catch (error) {
-      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
-      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
-      else throw error;
-    }
-  }
-
   @Delete('/admin/soft-delete-group/:groupId')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
@@ -587,6 +428,36 @@ export class GroupController {
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put('/admin/add-card-to-group')
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async addCardToGroup(@Body() addCardToGroupRequest: AddCardToGroupRequest): Promise<void> {
+    try {
+      await this.groupService.addCardToGroupAdmin(addCardToGroupRequest.groupId, addCardToGroupRequest.cardIdList);
+    } catch (error) {
+      if (error instanceof ErrorListOfCardIdIsEmptyRuntimeException) throw new BadRequestException(error.message);
+      if (error instanceof ErrorCardAlreadyInGroupRuntimeException) throw new BadRequestException(error.message);
+      else throw error;
+    }
+  }
+
+  @Put('/public/add-card-to-group')
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async addCardToMyGroup(
+    @Req() requestUser: RequestUser,
+    @Body() addCardToGroupRequest: AddCardToGroupRequest,
+  ): Promise<void> {
+    try {
+      const userId = requestUser.user.id;
+      await this.groupService.addCardToMyGroup(userId, addCardToGroupRequest.groupId, addCardToGroupRequest.cardIdList);
+    } catch (error) {
+      if (error instanceof ErrorListOfCardIdIsEmptyRuntimeException) throw new BadRequestException(error.message);
+      if (error instanceof ErrorCardAlreadyInGroupRuntimeException) throw new BadRequestException(error.message);
       else throw error;
     }
   }

@@ -34,8 +34,8 @@ export class CardResponse {
   messagesCount?: number;
   socialNetworkResponse?: SocialNetworkResponse;
   typeOfCardEnum: TypeOfCardEnum;
-  whoCanShareCardEnums?: WhoCanShareCardEnum[];
-  whoCanSeeCardInformationEnums?: WhoCanSeeCardInformationEnum[];
+  whoCanShareCardEnum?: WhoCanShareCardEnum[];
+  whoCanSeeCardInformationEnum?: WhoCanSeeCardInformationEnum[];
   whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
   transferableStatusCardEnum?: TransferableStatusCardEnum[];
   createdAt: Date;

@@ -42,7 +42,7 @@ export class OccupationController {
   }
 
   @Post('/admin/create')
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createOccupation(@Body() createOccupationRequest: CreateOccupationRequest): Promise<void> {
     return await this.occupationService.createOccupation(createOccupationRequest).catch(error => {
@@ -75,9 +75,7 @@ export class OccupationController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async softDeleteOccupation(@Param('id') occupationId: string): Promise<void> {
-    return await this.occupationService.softDeleteOccupation(occupationId).catch(error => {
-      throw error;
-    });
+    return await this.occupationService.softDeleteOccupation(occupationId);
   }
 
   @Put('/admin/restore/:id')

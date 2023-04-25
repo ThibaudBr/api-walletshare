@@ -1,6 +1,6 @@
 export class SoftDeleteSocialNetworkCommand {
   constructor(partial: Partial<SoftDeleteSocialNetworkCommand>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly id: string;

@@ -32,7 +32,7 @@ export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCo
         .then(card => {
           this.cardRepository
             .update(card.id, {
-              numberOfShares: card.numberOfShares++,
+              numberOfShares: card.numberOfShares + 1,
             })
             .then(() => {
               this.eventBus.publish(

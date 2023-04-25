@@ -135,13 +135,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, cardEntity &#x3D;&gt; cardEntity.connectedCardOne, {onDelete: &#x27;CASCADE&#x27;})<br />
+                            @ManyToOne(undefined, cardEntity &#x3D;&gt; cardEntity.connectedCardOne, {onDelete: &#x27;CASCADE&#x27;, cascade: undefined})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -170,13 +170,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, cardEntity &#x3D;&gt; cardEntity.connectedCardTwo, {onDelete: &#x27;CASCADE&#x27;})<br />
+                            @ManyToOne(undefined, cardEntity &#x3D;&gt; cardEntity.connectedCardTwo, {onDelete: &#x27;CASCADE&#x27;, cascade: undefined})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -281,7 +281,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -351,7 +351,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -405,11 +405,13 @@ export class ConnectedCardEntity extends BaseEntity {
 
   @ManyToOne(() &#x3D;&gt; CardEntity, cardEntity &#x3D;&gt; cardEntity.connectedCardOne, {
     onDelete: &#x27;CASCADE&#x27;,
+    cascade: [&#x27;insert&#x27;, &#x27;update&#x27;],
   })
   cardEntityOne: CardEntity;
 
   @ManyToOne(() &#x3D;&gt; CardEntity, cardEntity &#x3D;&gt; cardEntity.connectedCardTwo, {
     onDelete: &#x27;CASCADE&#x27;,
+    cascade: [&#x27;insert&#x27;, &#x27;update&#x27;],
   })
   cardEntityTwo: CardEntity;
 

@@ -2,7 +2,7 @@ import { GetOccupationWithCriteriaDto } from '../../domain/dto/get-occupation-wi
 
 export class GetOccupationWithCriteriaQuery {
   constructor(partial: Partial<GetOccupationWithCriteriaQuery>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
   public readonly criteria: GetOccupationWithCriteriaDto;
 }

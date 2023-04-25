@@ -133,7 +133,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/api/occupation/occupation.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/api/occupation/occupation.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -210,8 +210,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/api/occupation/occupation.service.ts:76</a></div>
                 </td>
             </tr>
 
@@ -281,8 +281,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/api/occupation/occupation.service.ts:110</a></div>
                 </td>
             </tr>
 
@@ -352,8 +352,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/api/occupation/occupation.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -391,8 +391,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/api/occupation/occupation.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -462,8 +462,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/api/occupation/occupation.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -533,8 +533,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/api/occupation/occupation.service.ts:138</a></div>
                 </td>
             </tr>
 
@@ -604,8 +604,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:122</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/api/occupation/occupation.service.ts:124</a></div>
                 </td>
             </tr>
 
@@ -675,8 +675,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/api/occupation/occupation.service.ts:92</a></div>
                 </td>
             </tr>
 
@@ -764,6 +764,8 @@ import { UpdateOccupationCommand } from &#x27;./cqrs/command/update-occupation.c
 import { DeleteOccupationCommand } from &#x27;./cqrs/command/delete-occupation.command&#x27;;
 import { SoftDeleteOccupationCommand } from &#x27;./cqrs/command/soft-delete-occupation.command&#x27;;
 import { RestoreOccupationCommand } from &#x27;./cqrs/command/restore-occupation.command&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { EntityIsNotSoftDeletedHttpException } from &#x27;../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
 
 @Injectable()
 export class OccupationService {
@@ -825,8 +827,8 @@ export class OccupationService {
         }),
       );
     } catch (error) {
-      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicate name&#x27;) throw new DuplicateNameHttpException();
-      else if (error instanceof InvalidClassException) throw error;
+      if (error.message &#x3D;&#x3D; &#x27;Duplicated name&#x27;) throw new DuplicateNameHttpException();
+      else if (error instanceof Array) throw new InvalidParameterEntityHttpException(error);
       else throw error;
     }
   }
@@ -843,8 +845,8 @@ export class OccupationService {
       );
     } catch (error) {
       if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundHttpException();
-      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicate name&#x27;) throw new DuplicateNameHttpException();
-      else if (error instanceof InvalidClassException) throw error;
+      else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Duplicated name&#x27;) throw new DuplicateNameHttpException();
+      else if (error instanceof Array) throw new InvalidParameterEntityHttpException(error);
       else throw error;
     }
   }
@@ -886,6 +888,8 @@ export class OccupationService {
       );
     } catch (error) {
       if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new OccupationNotFoundHttpException();
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation is not soft deleted&#x27;)
+        throw new EntityIsNotSoftDeletedHttpException(error.message);
       else if (error instanceof InvalidClassException) throw error;
       else throw error;
     }

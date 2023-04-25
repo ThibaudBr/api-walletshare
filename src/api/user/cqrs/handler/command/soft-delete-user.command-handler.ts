@@ -16,7 +16,7 @@ export class SoftDeleteUserCommandHandler implements ICommandHandler<SoftDeleteU
 
   async execute(command: SoftDeleteUserCommand): Promise<void> {
     try {
-      await this.userRepository
+      const userToSoftRemove = await this.userRepository
         .findOneOrFail({
           where: { id: command.userId },
         })
@@ -24,9 +24,7 @@ export class SoftDeleteUserCommandHandler implements ICommandHandler<SoftDeleteU
           throw new Error('User not found');
         });
 
-      await this.userRepository.softDelete({
-        id: command.userId,
-      });
+      await this.userRepository.softRemove(userToSoftRemove);
       this.eventBus.publish(new SoftDeleteUserEvent(command.userId));
     } catch (error) {
       this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'DeleteUserCommandHandler', error }));

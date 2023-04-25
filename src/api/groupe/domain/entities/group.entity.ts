@@ -14,7 +14,6 @@ import { Length } from 'class-validator';
 import { ConversationEntity } from '../../../entities-to-create/conversation.entity';
 import { MediaEntity } from '../../../entities-to-create/media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';
-import { GroupRequestEntity } from './group-request.entity';
 
 @Entity({ name: 'group' })
 export class GroupEntity extends BaseEntity {
@@ -62,12 +61,6 @@ export class GroupEntity extends BaseEntity {
   })
   @JoinColumn()
   bannerPicture: MediaEntity;
-
-  @OneToMany(() => GroupRequestEntity, groupRequest => groupRequest.group, {
-    cascade: true,
-    onDelete: 'SET NULL',
-  })
-  groupRequests: GroupRequestEntity[];
 
   // ______________________________________________________
   // Timestamps

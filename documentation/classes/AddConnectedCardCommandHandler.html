@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/api/card/cqrs/handler/command/add-connected-card.command-handler.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/card/cqrs/handler/command/add-connected-card.command-handler.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -206,8 +206,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/add-connected-card.command-handler.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/api/card/cqrs/handler/command/add-connected-card.command-handler.ts:23</a></div>
                 </td>
             </tr>
 
@@ -273,15 +273,9 @@ import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handl
 import { Repository } from &#x27;typeorm&#x27;;
 import { ConnectedCardEntity } from &#x27;../../../domain/entities/connected-card.entity&#x27;;
 import { AddConnectedCardEvent } from &#x27;../../event/add-connected-card.event&#x27;;
-import {
-  ErrorInvalidIdRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&quot;;
-import {
-  ErrorCardAlreadyConnectedRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-card-already-connected.runtime-exception&quot;;
-import {
-  ErrorSaveRuntimeException
-} from &quot;../../../../../util/exception/runtime-exception/error-save.runtime-exception&quot;;
+import { ErrorInvalidIdRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
+import { ErrorCardAlreadyConnectedRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-card-already-connected.runtime-exception&#x27;;
+import { ErrorSaveRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-save.runtime-exception&#x27;;
 
 @CommandHandler(AddConnectedCardCommand)
 export class AddConnectedCardCommandHandler implements ICommandHandler&lt;AddConnectedCardCommand&gt; {
@@ -297,7 +291,17 @@ export class AddConnectedCardCommandHandler implements ICommandHandler&lt;AddCon
     try {
       const cardWhoRequest: CardEntity &#x3D; await this.cardRepository
         .findOneOrFail({
-          relations: [&#x27;connectedCards&#x27;],
+          select: [&#x27;id&#x27;],
+          relations: [
+            &#x27;connectedCardOne&#x27;,
+            &#x27;connectedCardTwo&#x27;,
+            &#x27;connectedCardOne.cardEntityOne&#x27;,
+            &#x27;connectedCardOne.cardEntityTwo&#x27;,
+            &#x27;connectedCardTwo.cardEntityOne&#x27;,
+            &#x27;connectedCardTwo.cardEntityTwo&#x27;,
+            &#x27;owner&#x27;,
+            &#x27;owner.user&#x27;,
+          ],
           where: [
             {
               id: command.cardId,
@@ -310,7 +314,16 @@ export class AddConnectedCardCommandHandler implements ICommandHandler&lt;AddCon
 
       const cardToConnect: CardEntity &#x3D; await this.cardRepository
         .findOneOrFail({
-          relations: [&#x27;connectedCards&#x27;],
+          relations: [
+            &#x27;connectedCardOne&#x27;,
+            &#x27;connectedCardTwo&#x27;,
+            &#x27;connectedCardOne.cardEntityOne&#x27;,
+            &#x27;connectedCardOne.cardEntityTwo&#x27;,
+            &#x27;connectedCardTwo.cardEntityOne&#x27;,
+            &#x27;connectedCardTwo.cardEntityTwo&#x27;,
+            &#x27;owner&#x27;,
+            &#x27;owner.user&#x27;,
+          ],
           where: [
             {
               id: command.connectedCardId,
@@ -321,13 +334,22 @@ export class AddConnectedCardCommandHandler implements ICommandHandler&lt;AddCon
           throw new ErrorInvalidIdRuntimeException(&#x27;Card of receiver not found&#x27;);
         });
 
+      if (cardWhoRequest.owner.user.id &#x3D;&#x3D;&#x3D; cardToConnect.owner.user.id) {
+        throw new Error(&#x27;You can not connect your own card&#x27;);
+      }
       cardWhoRequest.connectedCardOne.forEach(card &#x3D;&gt; {
-        if (card.id &#x3D;&#x3D;&#x3D; cardToConnect.id) {
+        if (card.cardEntityOne.id &#x3D;&#x3D;&#x3D; cardToConnect.id) {
+          throw new ErrorCardAlreadyConnectedRuntimeException(&#x27;Card already connected&#x27;);
+        }
+        if (card.cardEntityTwo.id &#x3D;&#x3D;&#x3D; cardToConnect.id) {
           throw new ErrorCardAlreadyConnectedRuntimeException(&#x27;Card already connected&#x27;);
         }
       });
       cardWhoRequest.connectedCardTwo.forEach(card &#x3D;&gt; {
-        if (card.id &#x3D;&#x3D;&#x3D; cardToConnect.id) {
+        if (card.cardEntityOne.id &#x3D;&#x3D;&#x3D; cardToConnect.id) {
+          throw new ErrorCardAlreadyConnectedRuntimeException(&#x27;Card already connected&#x27;);
+        }
+        if (card.cardEntityTwo.id &#x3D;&#x3D;&#x3D; cardToConnect.id) {
           throw new ErrorCardAlreadyConnectedRuntimeException(&#x27;Card already connected&#x27;);
         }
       });
@@ -338,11 +360,11 @@ export class AddConnectedCardCommandHandler implements ICommandHandler&lt;AddCon
             cardEntityTwo: cardToConnect,
           }),
         )
-        .then(newConnectedCard &#x3D;&gt; {
+        .then(() &#x3D;&gt; {
           this.eventBus.publish(
             new AddConnectedCardEvent({
-              id: newConnectedCard.id,
-              connectedCardId: newConnectedCard.cardEntityTwo.id,
+              id: cardWhoRequest.id,
+              connectedCardId: cardToConnect.id,
             }),
           );
         })

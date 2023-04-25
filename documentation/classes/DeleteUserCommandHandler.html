@@ -320,7 +320,17 @@ export class DeleteUserCommandHandler implements ICommandHandler&lt;DeleteUserCo
 
   async execute(command: DeleteUserCommand): Promise&lt;void&gt; {
     try {
-      await this.userRepository.delete(command.userId);
+      const userToDelete &#x3D; await this.userRepository
+        .findOneOrFail({
+          withDeleted: true,
+          where: {
+            id: command.userId,
+          },
+        })
+        .catch(() &#x3D;&gt; {
+          throw new Error(&#x27;Invalid id&#x27;);
+        });
+      await this.userRepository.remove(userToDelete);
       this.eventBus.publish(new DeleteUserEvent(command.userId));
     } catch (error) {
       this.eventBus.publish(new ErrorCustomEvent({ localisation: &#x27;user&#x27;, handler: &#x27;DeleteUserCommandHandler&#x27;, error }));

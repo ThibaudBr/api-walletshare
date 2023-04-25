@@ -17,16 +17,21 @@ export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
     if (query.userId) {
       return {
         ...(await this.userRepository.findOneOrFail({
-          where: [{ id: query.userId }],
+          relations: ['profiles'],
+          where: { id: query.userId },
         })),
       };
     }
     const userListResponse: UserListResponse = new UserListResponse();
-    await this.userRepository.find().then(userList => {
-      userList.forEach(user => {
-        userListResponse.userList.push(new UserResponse({ ...user }));
+    await this.userRepository
+      .find({
+        relations: ['profiles'],
+      })
+      .then(userList => {
+        userList.forEach(user => {
+          userListResponse.userList.push(new UserResponse({ ...user }));
+        });
       });
-    });
     return userListResponse.userList;
   }
 }

@@ -5,7 +5,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { SocialNetworkEntity } from './domain/entities/social-network.entity';
-import { SocialNetworkController } from './social-network.controller';
+import { SocialNetworkController } from './web/social-network.controller';
 import { ApiLogService } from '../api-log/api-log.service';
 import { CreateLogCommandHandler } from '../api-log/cqrs/handler/command/create-log.command-handler';
 import { GetAllSocialNetworkQueryHandler } from './cqrs/handler/query/get-all-social-network.query-handler';

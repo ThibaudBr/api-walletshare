@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { ProfileEntity } from '../../../domain/entities/profile.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestoreProfileCommand } from '../../command/restore-profile.command';
+import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(RestoreProfileCommand)
 export class RestoreProfileCommandHandler implements ICommandHandler<RestoreProfileCommand> {
@@ -15,13 +16,15 @@ export class RestoreProfileCommandHandler implements ICommandHandler<RestoreProf
 
   async execute(command: RestoreProfileCommand): Promise<void> {
     try {
-      await this.profileRepository
+      const profile = await this.profileRepository
         .findOneOrFail({
+          withDeleted: true,
           where: [{ id: command.profileId }],
         })
         .catch(() => {
           throw new Error('Profile not found');
         });
+      if (!profile.deletedAt) throw new Error('Profile is not soft deleted');
       await this.profileRepository.restore(command.profileId);
       this.eventBus.publish(
         new RestoreProfileEvent({
@@ -29,7 +32,14 @@ export class RestoreProfileCommandHandler implements ICommandHandler<RestoreProf
         }),
       );
     } catch (error) {
-      throw new Error(error);
+      this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'RestoreProfileCommandHandler',
+          localisation: 'profile',
+          error: error.message,
+        }),
+      );
+      throw error;
     }
   }
 }

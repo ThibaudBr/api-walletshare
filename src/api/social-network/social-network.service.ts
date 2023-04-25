@@ -13,11 +13,12 @@ import { SocialNetworkDto } from './domain/dto/social-network.dto';
 import { SocialNetworkResponse } from './web/response/social-network.response';
 import { UpdateSocialNetworkCommand } from './cqrs/command/update-social-network.command';
 import { GetSocialNetworkByIdQuery } from './cqrs/query/get-social-network-by-id.query';
-import { InvalidClassException } from '@nestjs/core/errors/exceptions/invalid-class.exception';
 import { EntityCreationHttpException } from '../../util/exception/custom-http-exception/entity-creation.http-exception';
 import { DuplicateNameHttpException } from '../../util/exception/custom-http-exception/duplicate-name.http-exception';
 import { CommandErrorHttpException } from '../../util/exception/custom-http-exception/command-error.http-exception';
 import { InvalidIdHttpException } from '../../util/exception/custom-http-exception/invalid-id.http-exception';
+import { InvalidParameterEntityHttpException } from '../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
+import { EntityIsNotSoftDeletedHttpException } from '../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception';
 
 @Injectable()
 export class SocialNetworkService {
@@ -81,7 +82,7 @@ export class SocialNetworkService {
       );
     } catch (error) {
       if (error.message === 'Duplicated name') throw new DuplicateNameHttpException();
-      else if (error instanceof InvalidClassException) throw error;
+      else if (error instanceof Array) throw new InvalidParameterEntityHttpException(error);
       else if (error.message === 'SocialNetwork not created') throw new EntityCreationHttpException();
       else throw new CommandErrorHttpException();
     }
@@ -100,6 +101,10 @@ export class SocialNetworkService {
       );
     } catch (error) {
       if (error.message === 'SocialNetwork not found') throw new InvalidIdHttpException();
+      if (error.message === 'Duplicated name') throw new DuplicateNameHttpException();
+      if (error.message === 'Social network is not soft deleted')
+        throw new EntityIsNotSoftDeletedHttpException('Social network is not soft deleted');
+      if (error instanceof Array) throw new InvalidParameterEntityHttpException(error);
       else throw new CommandErrorHttpException();
     }
   }
@@ -126,7 +131,10 @@ export class SocialNetworkService {
       );
     } catch (error) {
       if (error.message === 'SocialNetwork not found') throw new InvalidIdHttpException();
-      else throw new CommandErrorHttpException();
+      if (error.message === 'Social network is not soft deleted')
+        throw new EntityIsNotSoftDeletedHttpException(error.message);
+      if (error.message === 'SocialNetwork not restored') throw new CommandErrorHttpException();
+      throw error;
     }
   }
 }

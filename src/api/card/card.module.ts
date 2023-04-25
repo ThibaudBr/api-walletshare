@@ -40,6 +40,8 @@ import { RestoreCardEventHandler } from './cqrs/handler/event/restore-card.event
 import { SoftDeleteCardEventHandler } from './cqrs/handler/event/soft-delete-card.event-handler';
 import { UpdateCardEventHandler } from './cqrs/handler/event/update-card.event-handler';
 import { ConnectedCardEntity } from './domain/entities/connected-card.entity';
+import { RemoveSavedCardCommandHandler } from './cqrs/handler/command/remove-saved-card.command-handler';
+import { RemoveSavedCardEventHandler } from './cqrs/handler/event/remove-saved-card.event-handler';
 
 @Module({
   imports: [
@@ -71,6 +73,7 @@ import { ConnectedCardEntity } from './domain/entities/connected-card.entity';
     RestoreCardCommandHandler,
     SoftDeleteCardCommandHandler,
     UpdateCardCommandHandler,
+    RemoveSavedCardCommandHandler,
     // Query handlers
     GetAllCardQueryHandler,
     GetAllCardWithProfileIdQueryHandler,
@@ -91,6 +94,7 @@ import { ConnectedCardEntity } from './domain/entities/connected-card.entity';
     RestoreCardEventHandler,
     SoftDeleteCardEventHandler,
     UpdateCardEventHandler,
+    RemoveSavedCardEventHandler,
   ],
 })
 export class CardModule {}

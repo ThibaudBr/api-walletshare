@@ -2,7 +2,7 @@ import { UpdateOccupationDto } from '../../domain/dto/update-occupation.dto';
 
 export class UpdateOccupationCommand {
   constructor(partial: Partial<UpdateOccupationCommand>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly updateOccupationDto: UpdateOccupationDto;

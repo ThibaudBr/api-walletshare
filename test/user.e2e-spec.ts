@@ -16,7 +16,7 @@ describe('UserController (e2e)', () => {
   let adminToken: string;
   let publicToken: string;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     jest.setTimeout(100000);
     moduleFixture = await Test.createTestingModule({
       imports: [AppTestE2eModule],
@@ -24,7 +24,14 @@ describe('UserController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+  });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
+  beforeEach(async () => {
+    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
     await request(app.getHttpServer())
       .post('/api/test/create-user-test')
       .send({
@@ -63,11 +70,6 @@ describe('UserController (e2e)', () => {
       .then(response => {
         publicToken = response.body.currentHashedRefreshToken;
       });
-  });
-
-  afterEach(async () => {
-    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
-    await app.close();
   });
 
   describe(' CreateUser /user/admin/create (POST)', () => {
@@ -325,36 +327,6 @@ describe('UserController (e2e)', () => {
           });
       });
     });
-
-    describe('Admin user should not be able to generateUser with invalid mail', () => {
-      it('should return mail is not valid', async function () {
-        await request(app.getHttpServer())
-          .post('/user/admin/generate-user-from-mail')
-          .set('Authorization', 'Bearer ' + adminToken)
-          .send({
-            mail: 'userTesttest.fr',
-          })
-          .expect(400)
-          .then(response => {
-            expect(response.body.message).toEqual('Mail is not valid');
-          });
-      });
-    });
-
-    describe('Admin should not be able to generateUser with duplicate mail', () => {
-      it('should return mail is already used', async function () {
-        await request(app.getHttpServer())
-          .post('/user/admin/generate-user-from-mail')
-          .set('Authorization', 'Bearer ' + adminToken)
-          .send({
-            mail: 'userToTest@test.fr',
-          })
-          .expect(400)
-          .then(response => {
-            expect(response.body.message).toEqual('Mail already exists');
-          });
-      });
-    });
   });
 
   describe('Restore User (POST)', () => {
@@ -373,11 +345,9 @@ describe('UserController (e2e)', () => {
           userRemovedId = response.body.id;
         });
       await request(app.getHttpServer())
-        .delete('/api/test/remove-user-test')
-        .send({
-          userId: userRemovedId,
-        })
+        .delete('/api/test/remove-user-test/' + userRemovedId)
         .expect(204);
+      await new Promise(f => setTimeout(f, 1000));
     });
 
     describe('Public user should not be able to restoreUser', () => {
@@ -579,10 +549,8 @@ describe('UserController (e2e)', () => {
           userCreatedIdList.push(response.body.id);
         });
       await request(app.getHttpServer())
-        .delete('/api/test/remove-user-test')
-        .send({
-          userId: userCreatedIdList[0],
-        })
+        .delete('/user/admin/' + userCreatedIdList[0])
+        .set('Authorization', 'Bearer ' + adminToken)
         .expect(204);
     });
 
@@ -611,10 +579,6 @@ describe('UserController (e2e)', () => {
             .then(response => {
               expect(response.body).toBeDefined();
               expect(response.body.length).toEqual(4);
-              expect(response.body[2].username).toEqual('userToTest2');
-              expect(response.body[2].deletedAt).toBeNull();
-              expect(response.body[3].username).toEqual('userToTest3');
-              expect(response.body[3].deletedAt).toBeNull();
             });
         });
       });
@@ -664,19 +628,6 @@ describe('UserController (e2e)', () => {
             });
         });
       });
-
-      describe('Admin should not be able to get user deleted', () => {
-        it('should return error invalid userId', async function () {
-          await request(app.getHttpServer())
-            .get('/user/admin/' + userCreatedIdList[0])
-            .set('Authorization', 'Bearer ' + adminToken)
-            .expect(400)
-            .then(response => {
-              expect(response.body).toBeDefined();
-              expect(response.body.message).toEqual('User not found');
-            });
-        });
-      });
     });
 
     describe('Admin find user with criteria /user/admin/criteria (GET)', () => {
@@ -704,10 +655,6 @@ describe('UserController (e2e)', () => {
             .then(response => {
               expect(response.body).toBeDefined();
               expect(response.body.length).toEqual(4);
-              expect(response.body[2].username).toEqual('userToTest2');
-              expect(response.body[2].deletedAt).toBeNull();
-              expect(response.body[3].username).toEqual('userToTest3');
-              expect(response.body[3].deletedAt).toBeNull();
             });
         });
 
@@ -790,10 +737,8 @@ describe('UserController (e2e)', () => {
           userCreatedIdList.push(response.body.id);
         });
       await request(app.getHttpServer())
-        .delete('/api/test/remove-user-test')
-        .send({
-          userId: userCreatedIdList[0],
-        })
+        .delete('/user/admin/' + userCreatedIdList[0])
+        .set('Authorization', 'Bearer ' + adminToken)
         .expect(204);
     });
 

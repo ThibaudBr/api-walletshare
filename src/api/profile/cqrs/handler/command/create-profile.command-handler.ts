@@ -6,7 +6,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../../../../user/domain/entities/user.entity';
 import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
-import { InvalidParameterEntityHttpException } from '../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 import { CreateProfileEvent } from '../../event/create-profile.event';
 import { OccupationEntity } from '../../../../occupation/domain/entities/occupation.entity';
 import { ErrorCustomEvent } from '../../../../../util/exception/error-handler/error-custom.event';
@@ -25,9 +24,10 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
 
   async execute(command: CreateProfileCommand): Promise<void> {
     try {
+      if (!command.userId) throw new Error('User not found');
       const user = await this.userRepository
         .findOneOrFail({
-          where: [{ id: command.userId }],
+          where: { id: command.userId },
         })
         .catch(() => {
           throw new Error('User not found');
@@ -38,26 +38,28 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
         ...command.createProfileDto,
       });
 
-      if (command.occupationsId.length > 0) {
-        const occupationPromises: Promise<OccupationEntity>[] = command.occupationsId.map(async occupationId => {
-          return await this.occupationRepository
-            .findOneOrFail({
-              where: [{ id: occupationId }],
-            })
-            .catch(() => {
-              throw new Error('Occupation not found');
-            });
-        });
-        const occupations: OccupationEntity[] = await Promise.all(occupationPromises);
+      if (command.occupationsId) {
+        if (command.occupationsId.length > 0) {
+          const occupationPromises: Promise<OccupationEntity>[] = command.occupationsId.map(async occupationId => {
+            return await this.occupationRepository
+              .findOneOrFail({
+                where: [{ id: occupationId }],
+              })
+              .catch(() => {
+                throw new Error('Occupation not found');
+              });
+          });
+          const occupations: OccupationEntity[] = await Promise.all(occupationPromises);
 
-        if (occupations.length > 0) {
-          newProfile.occupations = occupations;
+          if (occupations.length > 0) {
+            newProfile.occupations = occupations;
+          }
         }
       }
 
       const err = await validate(newProfile);
       if (err.length > 0) {
-        throw new InvalidParameterEntityHttpException(err);
+        throw err;
       }
 
       const savedProfile = await this.profileRepository.save(newProfile).then(profile => {
@@ -78,7 +80,7 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
           error: error.message,
         }),
       );
-      throw new Error(error);
+      throw error;
     }
   }
 }

@@ -111,13 +111,7 @@
 
 export class EntityCreationHttpException extends HttpException {
   constructor() {
-    super(
-      {
-        status: 500,
-        message: &#x27;Entity creation failed&#x27;,
-      },
-      500,
-    );
+    super(&#x27;Entity not created&#x27;, 400);
   }
 }
 </code></pre>

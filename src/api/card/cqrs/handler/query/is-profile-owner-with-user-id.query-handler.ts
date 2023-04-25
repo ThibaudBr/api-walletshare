@@ -18,20 +18,14 @@ export class IsProfileOwnerWithUserIsQueryHandler implements IQueryHandler<IsPro
 
   async execute(query: IsProfileOwnerWithUserIsQuery): Promise<boolean> {
     try {
-      const profile = await this.profileRepository
-        .findOneOrFail({
-          relations: ['owner', 'owner.user'],
-          where: [
-            {
-              user: {
-                id: query.userId,
-              },
-            },
-          ],
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
+      const profile = await this.profileRepository.findOneOrFail({
+        relations: ['user'],
+        where: [
+          {
+            id: query.profileId,
+          },
+        ],
+      });
 
       return profile.user.id === query.userId;
     } catch (error) {

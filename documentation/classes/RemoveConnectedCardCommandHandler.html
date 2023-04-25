@@ -290,7 +290,14 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;Rem
     try {
       const cardWhoRequest: CardEntity &#x3D; await this.cardRepository
         .findOneOrFail({
-          relations: [&#x27;connectedCards&#x27;],
+          relations: [
+            &#x27;connectedCardOne&#x27;,
+            &#x27;connectedCardTwo&#x27;,
+            &#x27;connectedCardOne.cardEntityOne&#x27;,
+            &#x27;connectedCardOne.cardEntityTwo&#x27;,
+            &#x27;connectedCardTwo.cardEntityOne&#x27;,
+            &#x27;connectedCardTwo.cardEntityTwo&#x27;,
+          ],
           where: [
             {
               id: command.id,
@@ -303,7 +310,14 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;Rem
 
       const cardToDisconnect: CardEntity &#x3D; await this.cardRepository
         .findOneOrFail({
-          relations: [&#x27;connectedCards&#x27;],
+          relations: [
+            &#x27;connectedCardOne&#x27;,
+            &#x27;connectedCardTwo&#x27;,
+            &#x27;connectedCardOne.cardEntityOne&#x27;,
+            &#x27;connectedCardOne.cardEntityTwo&#x27;,
+            &#x27;connectedCardTwo.cardEntityOne&#x27;,
+            &#x27;connectedCardTwo.cardEntityTwo&#x27;,
+          ],
           where: [
             {
               id: command.connectedCardId,
@@ -314,10 +328,10 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;Rem
           throw new ErrorInvalidIdRuntimeException(&#x27;Card of receiver not found&#x27;);
         });
 
-      if (cardWhoRequest.connectedCardOne.map(card &#x3D;&gt; card.id).includes(cardToDisconnect.id)) {
+      if (!cardWhoRequest.connectedCardOne.map(card &#x3D;&gt; card.id).includes(cardToDisconnect.id)) {
         await this.connectedCardRepository
           .findOneOrFail({
-            relations: [&#x27;cardOne&#x27;, &#x27;cardTwo&#x27;],
+            relations: [&#x27;cardEntityOne&#x27;, &#x27;cardEntityTwo&#x27;],
             where: [
               {
                 cardEntityOne: {
@@ -350,7 +364,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler&lt;Rem
       } else {
         await this.connectedCardRepository
           .findOneOrFail({
-            relations: [&#x27;cardOne&#x27;, &#x27;cardTwo&#x27;],
+            relations: [&#x27;cardEntityOne&#x27;, &#x27;cardEntityTwo&#x27;],
             where: [
               {
                 cardEntityOne: {

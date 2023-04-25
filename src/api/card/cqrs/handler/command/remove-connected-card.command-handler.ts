@@ -23,7 +23,14 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
     try {
       const cardWhoRequest: CardEntity = await this.cardRepository
         .findOneOrFail({
-          relations: ['connectedCards'],
+          relations: [
+            'connectedCardOne',
+            'connectedCardTwo',
+            'connectedCardOne.cardEntityOne',
+            'connectedCardOne.cardEntityTwo',
+            'connectedCardTwo.cardEntityOne',
+            'connectedCardTwo.cardEntityTwo',
+          ],
           where: [
             {
               id: command.id,
@@ -36,7 +43,14 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
 
       const cardToDisconnect: CardEntity = await this.cardRepository
         .findOneOrFail({
-          relations: ['connectedCards'],
+          relations: [
+            'connectedCardOne',
+            'connectedCardTwo',
+            'connectedCardOne.cardEntityOne',
+            'connectedCardOne.cardEntityTwo',
+            'connectedCardTwo.cardEntityOne',
+            'connectedCardTwo.cardEntityTwo',
+          ],
           where: [
             {
               id: command.connectedCardId,
@@ -47,10 +61,10 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
           throw new ErrorInvalidIdRuntimeException('Card of receiver not found');
         });
 
-      if (cardWhoRequest.connectedCardOne.map(card => card.id).includes(cardToDisconnect.id)) {
+      if (!cardWhoRequest.connectedCardOne.map(card => card.id).includes(cardToDisconnect.id)) {
         await this.connectedCardRepository
           .findOneOrFail({
-            relations: ['cardOne', 'cardTwo'],
+            relations: ['cardEntityOne', 'cardEntityTwo'],
             where: [
               {
                 cardEntityOne: {
@@ -83,7 +97,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
       } else {
         await this.connectedCardRepository
           .findOneOrFail({
-            relations: ['cardOne', 'cardTwo'],
+            relations: ['cardEntityOne', 'cardEntityTwo'],
             where: [
               {
                 cardEntityOne: {

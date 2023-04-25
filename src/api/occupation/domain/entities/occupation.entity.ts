@@ -28,7 +28,7 @@ export class OccupationEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: false, unique: true })
+  @Column({ nullable: false })
   @Length(2, 20)
   name: string;
 
@@ -36,7 +36,10 @@ export class OccupationEntity extends BaseEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToMany(() => ProfileEntity, profileEntity => profileEntity.occupations)
+  @ManyToMany(() => ProfileEntity, profileEntity => profileEntity.occupations, {
+    cascade: ['soft-remove', 'remove'],
+    onDelete: 'CASCADE',
+  })
   profiles: ProfileEntity[];
 
   @ManyToMany(() => CompanyEntity, companyEntity => companyEntity.occupations)

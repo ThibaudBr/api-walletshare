@@ -23,7 +23,7 @@ export class SoftDeleteOccupationCommandHandler implements ICommandHandler<SoftD
         .catch(() => {
           throw new Error('Occupation not found');
         });
-      await this.occupationRepository.softDelete(occupation.id).catch(() => {
+      await this.occupationRepository.softRemove(occupation).catch(() => {
         throw new Error('Occupation not soft deleted');
       });
       this.eventBus.publish(
@@ -39,6 +39,7 @@ export class SoftDeleteOccupationCommandHandler implements ICommandHandler<SoftD
           error: e.message,
         }),
       );
+      throw e;
     }
   }
 }

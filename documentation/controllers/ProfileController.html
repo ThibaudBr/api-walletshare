@@ -105,6 +105,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getProfile" >getProfile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getProfileById" >getProfileById</a>
                             </li>
                             <li>
@@ -173,8 +177,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:117</a></div>
                 </td>
             </tr>
 
@@ -237,7 +241,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteMyProfile(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>)</code>
+                    <code>deleteMyProfile(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -245,14 +249,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/admin/delete-my-profile&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Delete(&#x27;/admin/soft-delete-profile/:id&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:135</a></div>
                 </td>
             </tr>
 
@@ -273,9 +277,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>requestUser</td>
+                                    <td>profileId</td>
                                     <td>
-                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -329,8 +333,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:126</a></div>
                 </td>
             </tr>
 
@@ -401,7 +405,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/admin/&#x27;)<br />@ApiResponse({status: 200, description: &#x27;List of profiles&#x27;, content: undefined})<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/admin/&#x27;)<br />@ApiResponse({status: 200, description: &#x27;List of profiles&#x27;, content: undefined})<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -447,14 +451,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/get-my-profiles&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/get-my-profiles&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -506,6 +510,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getProfile"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getProfile</b></span>
+                        <a href="#getProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getProfile(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/public/get-profile/:id&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ProfileResponse.html" target="_self" >Promise&lt;ProfileResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getProfileById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -525,7 +607,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/public/:id&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/public/get-my-profile/:id&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -615,14 +697,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/admin/with-user-id/:id&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Get(&#x27;/admin/with-user-id/:id&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -693,14 +775,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/admin/get-with-criteria&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                    <code>@Post(&#x27;/admin/get-with-criteria&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:87</a></div>
                 </td>
             </tr>
 
@@ -777,8 +859,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="135"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:135</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:142</a></div>
                 </td>
             </tr>
 
@@ -855,8 +937,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:107</a></div>
                 </td>
             </tr>
 
@@ -945,8 +1027,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/api/profile/profile.controller.ts:98</a></div>
                 </td>
             </tr>
 
@@ -1047,7 +1129,7 @@ export class ProfileController {
       },
     },
   })
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllProfiles(): Promise&lt;ProfileResponse[]&gt; {
     return await this.profileService.getProfiles().catch(error &#x3D;&gt; {
@@ -1055,8 +1137,8 @@ export class ProfileController {
     });
   }
 
-  @Get(&#x27;/public/:id&#x27;)
-  @HttpCode(201)
+  @Get(&#x27;/public/get-my-profile/:id&#x27;)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getProfileById(@Req() requestUser: RequestUser, @Param(&#x27;id&#x27;) profileId: string): Promise&lt;ProfileResponse&gt; {
     const { id } &#x3D; requestUser.user;
@@ -1065,8 +1147,17 @@ export class ProfileController {
     });
   }
 
+  @Get(&#x27;/public/get-profile/:id&#x27;)
+  @HttpCode(200)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getProfile(@Param(&#x27;id&#x27;) profileId: string): Promise&lt;ProfileResponse&gt; {
+    return await this.profileService.getProfile(profileId).catch(error &#x3D;&gt; {
+      throw error;
+    });
+  }
+
   @Get(&#x27;/admin/with-user-id/:id&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getProfileByUserId(@Param(&#x27;id&#x27;) userId: string): Promise&lt;ProfileResponse[]&gt; {
     return await this.profileService.getProfileByUserId(userId).catch(error &#x3D;&gt; {
@@ -1075,7 +1166,7 @@ export class ProfileController {
   }
 
   @Get(&#x27;/public/get-my-profiles&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getMyProfiles(@Req() requestUser: RequestUser): Promise&lt;ProfileResponse[]&gt; {
     const { id } &#x3D; requestUser.user;
@@ -1085,7 +1176,7 @@ export class ProfileController {
   }
 
   @Post(&#x27;/admin/get-with-criteria&#x27;)
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getProfilesWithCriteria(
     @Body() getProfilesWithCriteriaRequest: GetProfilesWithCriteriaRequest,
@@ -1109,7 +1200,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async updateMyProfile(@Req() requestUser: RequestUser, @Body() profile: UpdateProfileRequest): Promise&lt;void&gt; {
     const { id } &#x3D; requestUser.user;
-    return await this.profileService.updateProfile(id, profile).catch(error &#x3D;&gt; {
+    return await this.profileService.updateMyProfile(id, profile).catch(error &#x3D;&gt; {
       throw error;
     });
   }
@@ -1132,13 +1223,11 @@ export class ProfileController {
     });
   }
 
-  @Delete(&#x27;/admin/delete-my-profile&#x27;)
+  @Delete(&#x27;/admin/soft-delete-profile/:id&#x27;)
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async deleteMyProfile(@Req() requestUser: RequestUser): Promise&lt;void&gt; {
-    return await this.profileService.deleteProfile(requestUser.user.id).catch(error &#x3D;&gt; {
-      throw error;
-    });
+  async deleteMyProfile(@Param(&#x27;id&#x27;) profileId: string): Promise&lt;void&gt; {
+    return await this.profileService.softDeleteProfile(profileId);
   }
 
   @Put(&#x27;/admin/restore-profile/:id&#x27;)

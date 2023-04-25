@@ -21,10 +21,13 @@ import { ProfileModule } from './api/profile/profile.module';
 import { OccupationModule } from './api/occupation/occupation.module';
 import { SocialNetworkModule } from './api/social-network/social-network.module';
 import { CardModule } from './api/card/card.module';
+import { GroupModule } from './api/groupe/group.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRootAsync({
       useClass: DatabaseConfiguration,
     }),
@@ -46,6 +49,7 @@ import { CardModule } from './api/card/card.module';
     OccupationModule,
     SocialNetworkModule,
     CardModule,
+    GroupModule,
     EntitiesToMoveModule,
   ],
   controllers: [AppController],

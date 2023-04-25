@@ -133,7 +133,7 @@
                                 <a href="#occupationsId" >occupationsId</a>
                             </li>
                             <li>
-                                <a href="#owner" >owner</a>
+                                <a href="#ownerId" >ownerId</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -146,6 +146,10 @@
                             <li>
                                     <span class="modifier">Optional</span>
                                 <a href="#socialName" >socialName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#socialNetworkId" >socialNetworkId</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -169,11 +173,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#whoCanSeeCardInformationEnums" >whoCanSeeCardInformationEnums</a>
+                                <a href="#whoCanSeeCardInformationEnum" >whoCanSeeCardInformationEnum</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#whoCanShareCardEnums" >whoCanShareCardEnums</a>
+                                <a href="#whoCanShareCardEnum" >whoCanShareCardEnum</a>
                             </li>
                         </ul>
                     </td>
@@ -595,10 +599,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="owner"></a>
+                    <a name="ownerId"></a>
                     <span class="name">
-                        <span ><b>owner</b></span>
-                        <a href="#owner"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>ownerId</b></span>
+                        <a href="#ownerId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -692,6 +696,33 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/card/web/request/create-card.request.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="socialNetworkId"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>socialNetworkId</b></span>
+                        <a href="#socialNetworkId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/api/card/web/request/create-card.request.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -837,11 +868,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="whoCanSeeCardInformationEnums"></a>
+                    <a name="whoCanSeeCardInformationEnum"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>whoCanSeeCardInformationEnums</b></span>
-                        <a href="#whoCanSeeCardInformationEnums"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>whoCanSeeCardInformationEnum</b></span>
+                        <a href="#whoCanSeeCardInformationEnum"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -864,11 +895,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="whoCanShareCardEnums"></a>
+                    <a name="whoCanShareCardEnum"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>whoCanShareCardEnums</b></span>
-                        <a href="#whoCanShareCardEnums"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>whoCanShareCardEnum</b></span>
+                        <a href="#whoCanShareCardEnum"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -921,7 +952,7 @@ export class CreateCardRequest {
   birthday?: Date;
   notes?: string;
   numberOfShares: number;
-  owner: string;
+  ownerId: string;
   connectedCardsId?: string[];
   savedById?: string[];
   occupationsId?: string[];
@@ -930,10 +961,11 @@ export class CreateCardRequest {
   messagesCount?: number;
   socialNetworkName?: string;
   typeOfCardEnum?: TypeOfCardEnum;
-  whoCanShareCardEnums?: WhoCanShareCardEnum[];
-  whoCanSeeCardInformationEnums?: WhoCanSeeCardInformationEnum[];
+  whoCanShareCardEnum?: WhoCanShareCardEnum[];
+  whoCanSeeCardInformationEnum?: WhoCanSeeCardInformationEnum[];
   whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
   transferableStatusCardEnum?: TransferableStatusCardEnum[];
+  socialNetworkId?: string;
 }
 </code></pre>
     </div>

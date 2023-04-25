@@ -16,7 +16,7 @@ export class GetAllCardWithUserIdQueryHandler implements IQueryHandler<GetAllCar
   async execute(query: GetAllCardWithUserIdQuery): Promise<CardEntity[]> {
     try {
       return await this.cardRepository.find({
-        relations: ['occupation', 'owner', 'owner.user', 'socialNetwork'],
+        relations: ['occupations', 'owner', 'owner.user', 'socialNetwork'],
         loadRelationIds: true,
         loadEagerRelations: true,
         where: [

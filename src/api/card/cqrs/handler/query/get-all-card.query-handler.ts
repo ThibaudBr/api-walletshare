@@ -16,7 +16,7 @@ export class GetAllCardQueryHandler implements IQueryHandler<GetAllCardQuery> {
   async execute(): Promise<CardEntity[]> {
     try {
       return await this.cardRepository.find({
-        relations: ['occupation', 'owner', 'socialNetwork'],
+        relations: ['occupations', 'owner', 'socialNetwork', 'owner.user'],
       });
     } catch (error) {
       this.eventBus.publish(

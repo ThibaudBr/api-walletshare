@@ -1,6 +1,6 @@
 export class GetAllOccupationQuery {
   constructor(partial: Partial<GetAllOccupationQuery>) {
-    Object.assign(partial);
+    Object.assign(this, partial);
   }
 
   public readonly module: string = 'occupation';

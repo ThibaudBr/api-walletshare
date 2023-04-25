@@ -18,36 +18,36 @@ import { UpdateCardRequest } from './web/request/update-card.request';
 export class CardController {
   constructor(private readonly cardService: CardService) {}
 
-  @Get('/admin/')
-  @HttpCode(201)
+  @Get('/admin/get-all-cards')
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCard(): Promise<CardResponse[]> {
     return await this.cardService.getAllCards();
   }
 
-  @Get('/public/:id')
-  @HttpCode(201)
+  @Get('/public/get-card-by-id/:id')
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getCardById(@Param('id') cardId: string): Promise<CardResponse> {
     return await this.cardService.getCardById(cardId);
   }
 
   @Get('/admin/get-all-cards/:userId')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCardsByUserId(@Param('userId') userId: string): Promise<CardResponse[]> {
     return await this.cardService.getAllCardWithUserId(userId);
   }
 
-  @Get('/public/get-all-my-cards')
-  @HttpCode(201)
+  @Get('/public/get-all-my-cards/')
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllMyCards(@Req() userRequest: RequestUser): Promise<CardResponse[]> {
     return await this.cardService.getAllCardWithUserId(userRequest.user.id);
   }
 
-  @Get('/public/get-all-my-cart-with-profile-id/:profileId')
-  @HttpCode(201)
+  @Get('/public/get-all-my-cards-by-profile-id/:profileId')
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllMyCardsWithProfileId(
     @Param('profileId') profileId: string,
@@ -56,43 +56,43 @@ export class CardController {
     return await this.cardService.getAllMyCardWithProfileId(userRequest.user.id, profileId);
   }
 
-  @Get('/admin/get-all-cards-with-profile-id/:profileId')
-  @HttpCode(201)
+  @Get('/admin/get-all-cards-by-profile-id/:profileId')
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCardsWithProfileId(@Param('profileId') profileId: string): Promise<CardResponse[]> {
     return await this.cardService.getAllCardWithProfileId(profileId);
   }
 
-  @Get('/admin/get-with-criteria')
-  @HttpCode(201)
+  @Post('/admin/get-with-criteria')
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCardsWithCriteria(@Body() criteria: GetCardWithCriteriaRequest): Promise<CardResponse[]> {
     return await this.cardService.getCardWithCriteria(criteria);
   }
 
   @Get('/admin/get-saved-cards-with-user-id/:userId')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getSavedCardsWithUserId(@Param('userId') userId: string): Promise<CardResponse[]> {
     return await this.cardService.getSavedCardWithUserId(userId);
   }
 
   @Get('/public/get-my-saved-cards-with-user-id')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getMySavedCardsWithUserId(@Req() userRequest: RequestUser): Promise<CardResponse[]> {
     return await this.cardService.getSavedCardWithUserId(userRequest.user.id);
   }
 
   @Get('/admin/get-saved-cards-with-profile-id/:profileId')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getSavedCardsWithProfileId(@Param('profileId') profileId: string): Promise<CardResponse[]> {
     return await this.cardService.getSavedCardWithProfileId(profileId);
   }
 
   @Get('/public/get-my-saved-cards-with-profile-id/:profileId')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getMySavedCardsWithProfileId(
     @Param('profileId') profileId: string,
@@ -181,14 +181,14 @@ export class CardController {
   }
 
   @Post('/admin/create-card/:profileId')
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createCard(@Param('profileId') profileId: string, @Body() createCardRequest: CreateCardRequest): Promise<void> {
     return await this.cardService.createCard(profileId, createCardRequest);
   }
 
   @Post('/public/create-card/:profileId')
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async createCardForMe(
     @Param('profileId') profileId: string,
@@ -233,7 +233,7 @@ export class CardController {
     return await this.cardService.updateCard(cardId, updateCardRequest);
   }
 
-  @Put('/public/update-card/:cardId')
+  @Put('/public/update-my-card/:cardId')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async updateMyCard(

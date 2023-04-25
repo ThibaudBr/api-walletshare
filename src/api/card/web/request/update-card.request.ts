@@ -31,8 +31,8 @@ export class UpdateCardRequest {
   messagesCount?: number;
   socialNetworkName?: string;
   typeOfCardEnum?: TypeOfCardEnum;
-  whoCanShareCardEnums?: WhoCanShareCardEnum[];
-  whoCanSeeCardInformationEnums?: WhoCanSeeCardInformationEnum[];
+  whoCanShareCardEnum?: WhoCanShareCardEnum[];
+  whoCanSeeCardInformationEnum?: WhoCanSeeCardInformationEnum[];
   whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
   transferableStatusCardEnum?: TransferableStatusCardEnum[];
 }

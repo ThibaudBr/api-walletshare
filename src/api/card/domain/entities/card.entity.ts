@@ -16,7 +16,7 @@ import { WhoCanSeeCardInformationEnum } from '../enum/who-can-see-card-informati
 import { WhoCanCommunicateWithEnum } from '../enum/who-can-communicate-with.enum';
 import { TypeOfCardEnum } from '../enum/type-of-card.enum';
 import { SocialNetworkEntity } from '../../../social-network/domain/entities/social-network.entity';
-import { IsEmail, IsUrl, MaxLength } from 'class-validator';
+import { IsEmail, IsUrl } from 'class-validator';
 import { ConnectedCardEntity } from './connected-card.entity';
 import { MediaEntity } from '../../../entities-to-create/media.entity';
 import { GroupMembershipEntity } from '../../../groupe/domain/entities/group-membership.entity';
@@ -25,7 +25,6 @@ import { TransferableStatusCardEnum } from '../enum/transferable-status-card.enu
 import { MessageEntity } from '../../../entities-to-create/message.entity';
 import { WhoCanShareCardEnum } from '../enum/who-can-share-card.enum';
 import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
-import { GroupRequestEntity } from '../../../groupe/domain/entities/group-request.entity';
 
 @Entity({ name: 'card' })
 export class CardEntity extends BaseEntity {
@@ -41,22 +40,18 @@ export class CardEntity extends BaseEntity {
   id: string;
 
   @Column({ nullable: true })
-  @MaxLength(255)
   socialName?: string;
 
   @Column({ default: false })
   isOwnerPro: boolean;
 
   @Column({ nullable: true })
-  @MaxLength(255)
   firstname?: string;
 
   @Column({ nullable: true })
-  @MaxLength(255)
   lastname?: string;
 
   @Column({ nullable: true })
-  @MaxLength(255)
   companyName?: string;
 
   @Column('text', { array: true, default: [] })
@@ -83,7 +78,9 @@ export class CardEntity extends BaseEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() => ProfileEntity, profile => profile.personalCards)
+  @ManyToOne(() => ProfileEntity, profile => profile.personalCards, {
+    cascade: ['insert', 'update'],
+  })
   owner: ProfileEntity;
 
   @OneToMany(() => ConnectedCardEntity, connectedCard => connectedCard.cardEntityOne, {
@@ -98,11 +95,14 @@ export class CardEntity extends BaseEntity {
   })
   connectedCardTwo: ConnectedCardEntity[];
 
-  @ManyToMany(() => ProfileEntity, profile => profile.savedCard)
+  @ManyToMany(() => ProfileEntity, profile => profile.savedCard, {
+    cascade: ['insert', 'update'],
+  })
   profilesWhoSavedCard: ProfileEntity[];
 
   @ManyToMany(() => OccupationEntity, occupation => occupation.cards, {
     onDelete: 'SET NULL',
+    cascade: ['insert', 'update'],
   })
   @JoinTable()
   occupations: OccupationEntity[];
@@ -127,13 +127,9 @@ export class CardEntity extends BaseEntity {
 
   @ManyToOne(() => SocialNetworkEntity, socialNetwork => socialNetwork.cards, {
     onDelete: 'SET NULL',
+    cascade: ['insert', 'update'],
   })
   socialNetwork: SocialNetworkEntity;
-
-  @OneToMany(() => GroupRequestEntity, groupRequest => groupRequest.card, {
-    onDelete: 'SET NULL',
-  })
-  groupRequests: GroupRequestEntity[];
 
   // ______________________________________________________
   // Enum
@@ -143,10 +139,10 @@ export class CardEntity extends BaseEntity {
   typeOfCardEnum: TypeOfCardEnum;
 
   @Column('text', { array: true, default: [WhoCanShareCardEnum.DIFFUSIBLE] })
-  whoCanShareCardEnums: WhoCanShareCardEnum[];
+  whoCanShareCardEnum: WhoCanShareCardEnum[];
 
   @Column('text', { array: true, default: [WhoCanSeeCardInformationEnum.ALL] })
-  whoCanSeeCardInformationEnums: WhoCanSeeCardInformationEnum[];
+  whoCanSeeCardInformationEnum: WhoCanSeeCardInformationEnum[];
 
   @Column('text', { array: true, default: [WhoCanCommunicateWithEnum.ALL] })
   whoCanCommunicateWithEnum: WhoCanCommunicateWithEnum[];

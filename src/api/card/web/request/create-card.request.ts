@@ -20,7 +20,7 @@ export class CreateCardRequest {
   birthday?: Date;
   notes?: string;
   numberOfShares: number;
-  owner: string;
+  ownerId: string;
   connectedCardsId?: string[];
   savedById?: string[];
   occupationsId?: string[];
@@ -29,8 +29,9 @@ export class CreateCardRequest {
   messagesCount?: number;
   socialNetworkName?: string;
   typeOfCardEnum?: TypeOfCardEnum;
-  whoCanShareCardEnums?: WhoCanShareCardEnum[];
-  whoCanSeeCardInformationEnums?: WhoCanSeeCardInformationEnum[];
+  whoCanShareCardEnum?: WhoCanShareCardEnum[];
+  whoCanSeeCardInformationEnum?: WhoCanSeeCardInformationEnum[];
   whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
   transferableStatusCardEnum?: TransferableStatusCardEnum[];
+  socialNetworkId?: string;
 }

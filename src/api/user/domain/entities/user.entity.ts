@@ -1,6 +1,5 @@
 import {
   BaseEntity,
-  BeforeInsert,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -83,25 +82,32 @@ export class UserEntity extends BaseEntity {
   // Relations
   // _________________________________________________________
 
-  @OneToMany(() => ProfileEntity, profile => profile.user)
+  @OneToMany(() => ProfileEntity, profile => profile.user, {
+    cascade: ['insert', 'update', 'remove', 'soft-remove'],
+  })
   profiles: ProfileEntity[];
 
-  @OneToMany(() => SubscriptionEntity, subscription => subscription.user)
+  @OneToMany(() => SubscriptionEntity, subscription => subscription.user, {
+    cascade: ['insert', 'update', 'remove', 'soft-remove'],
+  })
   subscriptions: SubscriptionEntity[];
 
-  @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.owner)
+  @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.owner, {
+    cascade: ['insert', 'update', 'remove', 'soft-remove'],
+    onDelete: 'CASCADE',
+  })
   referralCodes: ReferralCodeEntity[];
 
   @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.usedBy)
   usedReferralCodes: ReferralCodeEntity;
 
   @OneToMany(() => NotificationEntity, notification => notification.user, {
-    cascade: true,
+    cascade: ['insert', 'update', 'remove', 'soft-remove'],
   })
   notifications: NotificationEntity[];
 
   @OneToMany(() => AddressEntity, address => address.user, {
-    cascade: true,
+    cascade: ['insert', 'update', 'remove', 'soft-remove'],
   })
   addresses: AddressEntity[];
 
@@ -116,16 +122,4 @@ export class UserEntity extends BaseEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
-
-  // ______________________________________________________
-  // Methods
-  // ______________________________________________________
-  @BeforeInsert()
-  private async addProfile(): Promise<void> {
-    if (!this.profiles) {
-      this.profiles = [];
-    }
-    const profile = new ProfileEntity({});
-    this.profiles.push(profile);
-  }
 }
