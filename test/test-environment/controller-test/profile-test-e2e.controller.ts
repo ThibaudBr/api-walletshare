@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, UsePipes } from '@nestjs/common';
 import { ProfileTestE2eService } from '../service-test/profile-test-e2e.service';
-import { CreateProfileRequest } from '../../../src/api/profile/domain/request/create-profile.request';
+import { CreateProfileRequest } from '../../../src/api/profile/web/request/create-profile.request';
 import { IsTestEnvironmentPipe } from '../../../src/util/pipe/is-test-environment.pipe';
 import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.entity';
 

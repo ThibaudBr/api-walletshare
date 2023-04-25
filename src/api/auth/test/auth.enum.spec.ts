@@ -1,4 +1,4 @@
-import { PostgresErrorCode } from '../database/postgres-error-code.enum';
+import { PostgresErrorCode } from '../domain/database/postgres-error-code.enum';
 
 describe('AuthEnum', () => {
   describe('UniqueViolation', () => {

@@ -2,7 +2,7 @@ import { Injectable, NestMiddleware } from '@nestjs/common';
 import * as useragent from 'useragent';
 import { Request, Response } from 'express';
 import { CreateLogDto } from '../api/api-log/domain/dto/create-log.dto';
-import { ApiLogService } from '../api/api-log/api-log.service';
+import { ApiLogService } from '../api/api-log/application/api-log.service';
 import { VerboseLogEnum } from '../api/api-log/domain/enum/verbose-log.enum';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateProfileRequest } from '../../../src/api/profile/domain/request/create-profile.request';
+import { CreateProfileRequest } from '../../../src/api/profile/web/request/create-profile.request';
 import { UserEntity } from '../../../src/api/user/domain/entities/user.entity';
 import { OccupationEntity } from '../../../src/api/occupation/domain/entities/occupation.entity';
 

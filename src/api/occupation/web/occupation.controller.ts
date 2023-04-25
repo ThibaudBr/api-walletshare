@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { OccupationService } from '../occupation.service';
-import { RoleGuard } from '../../auth/guards/role.guard';
+import { OccupationService } from '../application/occupation.service';
+import { RoleGuard } from '../../auth/web/guards/role.guard';
 import { OccupationResponse } from './response/occupation-response';
 import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
 import { GetOccupationWithCriteriaRequest } from './request/get-occupation-with-criteria.request';

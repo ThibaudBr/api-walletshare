@@ -2,7 +2,7 @@ import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { ErrorCustomEvent } from './error-custom.event';
 import { CreateLogDto } from '../../../api/api-log/domain/dto/create-log.dto';
 import { LoggingTypeEnum } from '../../../api/api-log/domain/enum/logging-type.enum';
-import { ApiLogService } from '../../../api/api-log/api-log.service';
+import { ApiLogService } from '../../../api/api-log/application/api-log.service';
 import { ApiTypeEnum } from '../../../api/api-log/domain/enum/api-type.enum';
 
 @EventsHandler(ErrorCustomEvent)

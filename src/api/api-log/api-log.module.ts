@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ApiLogService } from './api-log.service';
+import { ApiLogService } from './application/api-log.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';
 import { CqrsModule } from '@nestjs/cqrs';
-import { CreateLogCommandHandler } from './cqrs/handler/command/create-log.command-handler';
+import { CreateLogCommandHandler } from './application/cqrs/handler/command/create-log.command-handler';
 
 @Module({
   imports: [

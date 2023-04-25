@@ -1,4 +1,4 @@
-import { ProfileResponse } from '../../../profile/domain/response/profile.response';
+import { ProfileResponse } from '../../../profile/web/response/profile.response';
 import { OccupationResponse } from '../../../occupation/web/response/occupation-response';
 import { TypeOfCardEnum } from '../../domain/enum/type-of-card.enum';
 import { WhoCanShareCardEnum } from '../../domain/enum/who-can-share-card.enum';

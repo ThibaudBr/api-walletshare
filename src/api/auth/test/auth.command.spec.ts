@@ -1,5 +1,5 @@
-import { RegisterCommand } from '../cqrs/command/register.command';
-import { SignInDto } from '../dto/sign-in.dto';
+import { RegisterCommand } from '../application/cqrs/command/register.command';
+import { SignInDto } from '../domain/dto/sign-in.dto';
 
 describe('AuthCommand', () => {
   describe('RegisterCommand', () => {

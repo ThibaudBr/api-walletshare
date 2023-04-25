@@ -1,4 +1,4 @@
-import { RegisterEventHandler } from '../cqrs/event-handler/register.event-handler';
+import { RegisterEventHandler } from '../application/cqrs/event-handler/register.event-handler';
 import { Test } from '@nestjs/testing';
 import { logger } from '../../../util/config/winston-logger.config';
 import { UserEntity } from '../../user/domain/entities/user.entity';
