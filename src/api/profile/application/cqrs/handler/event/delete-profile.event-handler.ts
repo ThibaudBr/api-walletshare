@@ -9,7 +9,7 @@ export class DeleteProfileEventHandler implements IEventHandler<DeleteProfileEve
     await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: 'Profile with id: ' + event.deleteProfileCommand.id + ' deleted',
+      body: 'Profile with id: ' + event.id + ' deleted',
     });
   }
 }

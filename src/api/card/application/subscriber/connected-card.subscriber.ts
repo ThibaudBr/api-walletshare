@@ -1,6 +1,6 @@
 import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, SoftRemoveEvent } from 'typeorm';
-import { CardEntity } from '../domain/entities/card.entity';
-import { ConnectedCardEntity } from '../domain/entities/connected-card.entity';
+import { CardEntity } from '../../domain/entities/card.entity';
+import { ConnectedCardEntity } from '../../domain/entities/connected-card.entity';
 
 @EventSubscriber()
 export class ConnectedCardSubscriber implements EntitySubscriberInterface<CardEntity> {
