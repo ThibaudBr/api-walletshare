@@ -17,7 +17,7 @@ export class RestoreCardCommandHandler implements ICommandHandler<RestoreCardCom
 
   async execute(command: RestoreCardCommand): Promise<void> {
     try {
-      await this.cardRepository
+      const cardToRestore = await this.cardRepository
         .findOneOrFail({
           withDeleted: true,
           where: [{ id: command.id }],
@@ -26,10 +26,11 @@ export class RestoreCardCommandHandler implements ICommandHandler<RestoreCardCom
           throw new ErrorInvalidIdRuntimeException('Card not found');
         });
 
+      if (cardToRestore.deletedAt == undefined) throw new Error('Card not soft-deleted');
       await this.cardRepository.restore(command.id);
       this.eventBus.publish(
         new RestoreCardEvent({
-          cardId: command.id,
+          cardId: cardToRestore.id,
         }),
       );
     } catch (error) {

@@ -12,7 +12,6 @@ if (process.env.NODE_ENV != 'test') {
 }
 
 describe('SocialNetworkController (e2e)', () => {
-
   let app: INestApplication;
   let moduleFixture: TestingModule;
 
@@ -20,7 +19,7 @@ describe('SocialNetworkController (e2e)', () => {
   let publicToken: string;
   let socialNetworkIdList: string[];
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     jest.setTimeout(100000);
     moduleFixture = await Test.createTestingModule({
       imports: [AppTestE2eModule],
@@ -28,6 +27,13 @@ describe('SocialNetworkController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+  });
+  afterAll(async () => {
+    await app.close();
+  });
+
+  beforeEach(async () => {
+    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
 
     await request(app.getHttpServer())
       .post('/api/test/create-user-test')
@@ -113,7 +119,6 @@ describe('SocialNetworkController (e2e)', () => {
 
   afterEach(async () => {
     await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
-    await app.close();
   });
 
   describe('GET /social-network/public/', () => {

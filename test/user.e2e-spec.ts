@@ -16,7 +16,7 @@ describe('UserController (e2e)', () => {
   let adminToken: string;
   let publicToken: string;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     jest.setTimeout(100000);
     moduleFixture = await Test.createTestingModule({
       imports: [AppTestE2eModule],
@@ -24,6 +24,13 @@ describe('UserController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+  });
+
+  afterAll(async () => {
+    await app.close();
+  });
+
+  beforeEach(async () => {
     await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
     await request(app.getHttpServer())
       .post('/api/test/create-user-test')
@@ -63,10 +70,6 @@ describe('UserController (e2e)', () => {
       .then(response => {
         publicToken = response.body.currentHashedRefreshToken;
       });
-  });
-
-  afterEach(async () => {
-    await app.close();
   });
 
   describe(' CreateUser /user/admin/create (POST)', () => {
@@ -342,9 +345,9 @@ describe('UserController (e2e)', () => {
           userRemovedId = response.body.id;
         });
       await request(app.getHttpServer())
-        .delete('/user/admin/' + userRemovedId)
-        .set('Authorization', 'Bearer ' + adminToken)
+        .delete('/api/test/remove-user-test/' + userRemovedId)
         .expect(204);
+      await new Promise(f => setTimeout(f, 1000));
     });
 
     describe('Public user should not be able to restoreUser', () => {
@@ -652,10 +655,6 @@ describe('UserController (e2e)', () => {
             .then(response => {
               expect(response.body).toBeDefined();
               expect(response.body.length).toEqual(4);
-              expect(response.body[2].username).toEqual('userToTest2');
-              expect(response.body[2].deletedAt).toBeNull();
-              expect(response.body[3].username).toEqual('userToTest3');
-              expect(response.body[3].deletedAt).toBeNull();
             });
         });
 

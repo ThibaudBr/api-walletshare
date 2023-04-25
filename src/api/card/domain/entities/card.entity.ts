@@ -40,22 +40,18 @@ export class CardEntity extends BaseEntity {
   id: string;
 
   @Column({ nullable: true })
-  @MaxLength(255)
   socialName?: string;
 
   @Column({ default: false })
   isOwnerPro: boolean;
 
   @Column({ nullable: true })
-  @MaxLength(255)
   firstname?: string;
 
   @Column({ nullable: true })
-  @MaxLength(255)
   lastname?: string;
 
   @Column({ nullable: true })
-  @MaxLength(255)
   companyName?: string;
 
   @Column('text', { array: true, default: [] })
@@ -82,7 +78,9 @@ export class CardEntity extends BaseEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() => ProfileEntity, profile => profile.personalCards)
+  @ManyToOne(() => ProfileEntity, profile => profile.personalCards, {
+    cascade: ['insert', 'update'],
+  })
   owner: ProfileEntity;
 
   @OneToMany(() => ConnectedCardEntity, connectedCard => connectedCard.cardEntityOne, {
@@ -104,6 +102,7 @@ export class CardEntity extends BaseEntity {
 
   @ManyToMany(() => OccupationEntity, occupation => occupation.cards, {
     onDelete: 'SET NULL',
+    cascade: ['insert', 'update'],
   })
   @JoinTable()
   occupations: OccupationEntity[];
@@ -128,6 +127,7 @@ export class CardEntity extends BaseEntity {
 
   @ManyToOne(() => SocialNetworkEntity, socialNetwork => socialNetwork.cards, {
     onDelete: 'SET NULL',
+    cascade: ['insert', 'update'],
   })
   socialNetwork: SocialNetworkEntity;
 
@@ -136,23 +136,18 @@ export class CardEntity extends BaseEntity {
   // ______________________________________________________
 
   @Column({ type: 'enum', enum: TypeOfCardEnum, default: TypeOfCardEnum.SOCIAL_NETWORK })
-  @IsEnum(TypeOfCardEnum)
   typeOfCardEnum: TypeOfCardEnum;
 
   @Column('text', { array: true, default: [WhoCanShareCardEnum.DIFFUSIBLE] })
-  @IsEnum(WhoCanShareCardEnum)
-  whoCanShareCardEnums: WhoCanShareCardEnum[];
+  whoCanShareCardEnum: WhoCanShareCardEnum[];
 
   @Column('text', { array: true, default: [WhoCanSeeCardInformationEnum.ALL] })
-  @IsEnum(WhoCanSeeCardInformationEnum)
-  whoCanSeeCardInformationEnums: WhoCanSeeCardInformationEnum[];
+  whoCanSeeCardInformationEnum: WhoCanSeeCardInformationEnum[];
 
   @Column('text', { array: true, default: [WhoCanCommunicateWithEnum.ALL] })
-  @IsEnum(WhoCanCommunicateWithEnum)
   whoCanCommunicateWithEnum: WhoCanCommunicateWithEnum[];
 
   @Column('text', { array: true, default: [TransferableStatusCardEnum.IS_TRANSFERABLE] })
-  @IsEnum(TransferableStatusCardEnum)
   transferableStatusCardEnum: TransferableStatusCardEnum[];
 
   // ______________________________________________________

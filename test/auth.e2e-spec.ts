@@ -19,6 +19,7 @@ describe('AuthController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
   });
 
   afterAll(async () => {

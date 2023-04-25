@@ -19,7 +19,7 @@ describe('OccupationController (e2e)', () => {
   let publicToken: string;
   let occupationIdList: string[];
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     jest.setTimeout(100000);
     moduleFixture = await Test.createTestingModule({
       imports: [AppTestE2eModule],
@@ -27,6 +27,14 @@ describe('OccupationController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+  });
+
+  afterAll(async () => {
+    await app.close();
+  });
+
+  beforeEach(async () => {
+    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
 
     await request(app.getHttpServer())
       .post('/api/test/create-user-test')
@@ -99,11 +107,6 @@ describe('OccupationController (e2e)', () => {
       });
   });
 
-  afterEach(async () => {
-    await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
-    await app.close();
-  });
-
   describe('GET /occupation/public/', () => {
     it('should not return an array of occupation when user is not logged', () => {
       return request(app.getHttpServer())
@@ -154,7 +157,6 @@ describe('OccupationController (e2e)', () => {
         .set('Authorization', `Bearer ${publicToken}`)
         .expect(201)
         .expect(res => {
-          console.log(res.body);
           expect(res.body.id).toBe(occupationIdList[0]);
         });
     });

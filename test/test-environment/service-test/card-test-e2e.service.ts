@@ -57,6 +57,8 @@ export class CardTestE2eService {
           'connectedCardOne.cardEntityTwo.owner.user',
           'connectedCardTwo.cardEntityOne.owner',
           'connectedCardTwo.cardEntityOne.owner.user',
+          'socialNetwork',
+          'occupations',
         ],
         where: {
           id: cardId,
@@ -79,6 +81,8 @@ export class CardTestE2eService {
         'connectedCardOne.cardEntityTwo',
         'connectedCardTwo.cardEntityOne',
         'connectedCardTwo.cardEntityTwo',
+        'socialNetwork',
+        'occupations',
       ],
     });
   }
@@ -177,39 +181,49 @@ export class CardTestE2eService {
   }
 
   async addSavedCard(cardId: string, profileId: string): Promise<void> {
-    const card = await this.cardRepository.findOneOrFail({
-      withDeleted: true,
-      where: {
-        id: cardId,
-      },
-    });
-    const profile = await this.profileRepository.findOneOrFail({
-      withDeleted: true,
-      where: {
-        id: profileId,
-      },
-    });
-    card.profilesWhoSavedCard.push(profile);
-    await this.cardRepository.save(card);
+    try {
+      const card = await this.cardRepository.findOneOrFail({
+        withDeleted: true,
+        where: {
+          id: cardId,
+        },
+      });
+      const profile = await this.profileRepository.findOneOrFail({
+        withDeleted: true,
+        where: {
+          id: profileId,
+        },
+      });
+      if (!card.profilesWhoSavedCard) card.profilesWhoSavedCard = [];
+      card.profilesWhoSavedCard.push(profile);
+      await this.cardRepository.save(card);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async removeSavedCard(cardId: string, profileId: string): Promise<void> {
-    const card = await this.cardRepository.findOneOrFail({
-      withDeleted: true,
-      where: {
-        id: cardId,
-      },
-    });
-    const profile = await this.profileRepository.findOneOrFail({
-      withDeleted: true,
-      where: {
-        id: profileId,
-      },
-    });
-    card.profilesWhoSavedCard = card.profilesWhoSavedCard.filter(
-      profileWhoSavedCard => profileWhoSavedCard.id !== profile.id,
-    );
-    await this.cardRepository.save(card);
+    try {
+      const card = await this.cardRepository.findOneOrFail({
+        withDeleted: true,
+        relations: ['profilesWhoSavedCard'],
+        where: {
+          id: cardId,
+        },
+      });
+      const profile = await this.profileRepository.findOneOrFail({
+        withDeleted: true,
+        where: {
+          id: profileId,
+        },
+      });
+      card.profilesWhoSavedCard = card.profilesWhoSavedCard.filter(
+        profileWhoSavedCard => profileWhoSavedCard.id !== profile.id,
+      );
+      await this.cardRepository.save(card);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getSavedCards(profileId: string): Promise<CardEntity[]> {

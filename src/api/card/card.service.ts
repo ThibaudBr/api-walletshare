@@ -3,8 +3,8 @@ import {
   ForbiddenException,
   Injectable,
   InternalServerErrorException,
-  UnauthorizedException
-} from "@nestjs/common";
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { InvalidIdHttpException } from '../../util/exception/custom-http-exception/invalid-id.http-exception';
 import { IsCardOwnerWithUserIdQuery } from './cqrs/query/is-card-owner-with-user-id.query';
@@ -35,6 +35,12 @@ import { RemoveSavedCardCommand } from './cqrs/command/remove-saved-card.command
 import { CreateCardRequest } from './web/request/create-card.request';
 import { UpdateCardRequest } from './web/request/update-card.request';
 import { GroupMembershipResponse } from '../groupe/web/response/group-membership.response';
+import {
+  EntityIsNotSoftDeletedHttpException
+} from "../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception";
+import {
+  InvalidParameterEntityHttpException
+} from "../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception";
 
 @Injectable()
 export class CardService {
@@ -42,7 +48,7 @@ export class CardService {
 
   async getAllCards(): Promise<CardResponse[]> {
     try {
-      return this.queryBus
+      return await this.queryBus
         .execute(new GetAllCardQuery())
         .then((cards: CardEntity[]) => {
           return cards.map((card: CardEntity) => {
@@ -78,7 +84,7 @@ export class CardService {
 
   async getCardById(cardId: string): Promise<CardResponse> {
     try {
-      return this.queryBus
+      return await this.queryBus
         .execute(new GetCardByIdQuery({ id: cardId }))
         .then((card: CardEntity) => {
           return new CardResponse({
@@ -106,13 +112,14 @@ export class CardService {
           throw new InternalServerErrorException(error);
         });
     } catch (error) {
+      if (error.response.message.slice(0, 46) == 'Could not find any entity of type "CardEntity"') throw new InvalidIdHttpException();
       throw new InternalServerErrorException(error);
     }
   }
 
   async getAllCardWithUserId(userId: string): Promise<CardResponse[]> {
     try {
-      return this.queryBus
+      return await this.queryBus
         .execute(new GetAllCardWithUserIdQuery({ userId: userId }))
         .then((cards: CardEntity[]) => {
           return cards.map((card: CardEntity) => {
@@ -139,9 +146,11 @@ export class CardService {
           });
         })
         .catch(error => {
+          if (error.parameters[0] === 'invalidId') throw new Error('Invalid Id');
           throw new InternalServerErrorException(error);
         });
     } catch (error) {
+      if (error.message === 'Invalid Id') throw new InvalidIdHttpException('for userId');
       throw new InternalServerErrorException(error);
     }
   }
@@ -149,7 +158,7 @@ export class CardService {
   async getAllMyCardWithProfileId(userId: string, profileId: string): Promise<CardResponse[]> {
     try {
       if (await this.isProfileOwner(userId, profileId)) {
-        return this.queryBus
+        return await this.queryBus
           .execute(new GetAllCardWithProfileIdQuery({ profileId: profileId }))
           .then((cards: CardEntity[]) => {
             return cards.map((card: CardEntity) => {
@@ -176,12 +185,14 @@ export class CardService {
             });
           })
           .catch(error => {
+            if (error.message === 'Profile not found') throw error;
             throw new InternalServerErrorException(error);
           });
       } else {
         throw new Error('Unauthorized');
       }
     } catch (error) {
+      if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
       if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Unauthorized') throw new UnauthorizedException('Unauthorized');
       else throw new InternalServerErrorException(error);
@@ -190,8 +201,8 @@ export class CardService {
 
   async getAllCardWithProfileId(profileId: string): Promise<CardResponse[]> {
     try {
-      return this.queryBus
-        .execute(new GetAllCardWithProfileIdQuery({ profileId: profileId }))
+      return await this.queryBus
+        .execute(new GetAllCardWithProfileIdQuery({ profileId: profileId, withDeleted: true }))
         .then((cards: CardEntity[]) => {
           return cards.map((card: CardEntity) => {
             return new CardResponse({
@@ -217,6 +228,7 @@ export class CardService {
           });
         })
         .catch(error => {
+          if (error.message === 'Profile not found') throw error;
           throw new InternalServerErrorException(error);
         });
     } catch (error) {
@@ -229,7 +241,7 @@ export class CardService {
 
   async getCardWithCriteria(criteria: GetCardWithCriteriaRequest): Promise<CardResponse[]> {
     try {
-      return this.queryBus.execute(new GetCardWithCriteriaQuery({ ...criteria })).then((cards: CardEntity[]) => {
+      return await this.queryBus.execute(new GetCardWithCriteriaQuery({ ...criteria })).then((cards: CardEntity[]) => {
         return cards.map((card: CardEntity) => {
           return new CardResponse({
             ...card,
@@ -260,7 +272,7 @@ export class CardService {
 
   async getSavedCardWithUserId(userId: string): Promise<CardResponse[]> {
     try {
-      return this.queryBus
+      return await this.queryBus
         .execute(new GetSavedCardWithUserIdQuery({ userId: userId }))
         .then((cards: CardEntity[]) => {
           return cards.map((card: CardEntity) => {
@@ -287,9 +299,11 @@ export class CardService {
           });
         })
         .catch(error => {
+          if (error.message == 'User not found') throw error;
           throw new InternalServerErrorException(error);
         });
     } catch (error) {
+      if (error.message == 'User not found') throw new InvalidIdHttpException(' for user');
       throw new InternalServerErrorException(error);
     }
   }
@@ -297,7 +311,7 @@ export class CardService {
   async getMySavedCardWithProfileId(userId: string, profileId: string): Promise<CardResponse[]> {
     try {
       if (await this.isProfileOwner(userId, profileId)) {
-        return this.queryBus
+        return await this.queryBus
           .execute(new GetSavedCardWithProfileIdQuery({ profileId: profileId }))
           .then((cards: CardEntity[]) => {
             return cards.map((card: CardEntity) => {
@@ -339,7 +353,7 @@ export class CardService {
 
   async getSavedCardWithProfileId(profileId: string): Promise<CardResponse[]> {
     try {
-      return this.queryBus
+      return await this.queryBus
         .execute(new GetSavedCardWithProfileIdQuery({ profileId: profileId }))
         .then((cards: CardEntity[]) => {
           return cards.map((card: CardEntity) => {
@@ -391,7 +405,8 @@ export class CardService {
       else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card receiver');
       else if (error.message === 'Card already connected') throw new BadRequestException('Card already connected');
       else if (error.message === 'Forbidden') throw new ForbiddenException();
-      else if (error.message === 'You can not connect your own card') throw new BadRequestException('You can not connect your own card');
+      else if (error.message === 'You can not connect your own card')
+        throw new BadRequestException('You can not connect your own card');
       else throw error;
     }
   }
@@ -432,7 +447,7 @@ export class CardService {
       else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
       else if (error.message === 'Card of sender not found') throw new InvalidIdHttpException(' for card sender');
       else if (error.message === 'Card of receiver not found') throw new InvalidIdHttpException(' for card receiver');
-      else if (error.message === 'Card already connected') throw new BadRequestException('Card already connected');
+      else if (error.message === 'Card already saved') throw new BadRequestException(error.message);
       else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
@@ -509,10 +524,7 @@ export class CardService {
 
   async removeConnectedCardFromMyCard(userId: string, cardId: string, connectedCardId: string): Promise<void> {
     try {
-      if (
-        (await this.isCardOwnerWithUserId(userId, cardId)) &&
-        (await this.isCardOwnerWithUserId(userId, connectedCardId))
-      ) {
+      if (await this.isCardOwnerWithUserId(userId, cardId)) {
         await this.commandBus.execute(
           new RemoveConnectedCardCommand({
             id: cardId,
@@ -587,6 +599,7 @@ export class CardService {
     } catch (error) {
       if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
+      else if (error.message === 'Card not soft-deleted') throw new EntityIsNotSoftDeletedHttpException(error.message);
       else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
@@ -646,6 +659,7 @@ export class CardService {
       else if (error.message === 'Occupation not found') throw new InvalidIdHttpException(' for occupation');
       else if (error.message === 'Error saving card') throw new InternalServerErrorException('Error saving card');
       else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
+      else if (error instanceof Array) throw new InvalidParameterEntityHttpException(error);
       else throw error;
     }
   }
@@ -666,13 +680,14 @@ export class CardService {
       else if (error.message === 'Occupation not found') throw new InvalidIdHttpException(' for occupation');
       else if (error.message === 'Error saving card') throw new InternalServerErrorException('Error saving card');
       else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
+      else if (error instanceof Array) throw new InvalidParameterEntityHttpException(error);
       else throw error;
     }
   }
 
   async removeSavedCardFromMyCard(userId: string, cardId: string, profileId: string): Promise<void> {
     try {
-      if (await this.isProfileOwner(userId, cardId)) {
+      if (await this.isProfileOwner(userId, profileId)) {
         await this.commandBus.execute(
           new RemoveSavedCardCommand({
             cardId: cardId,
@@ -684,6 +699,9 @@ export class CardService {
       }
     } catch (error) {
       if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
+      if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
+      if (error.message === 'Profile have no saved card') throw new BadRequestException(error.message);
+      if (error.message === 'Card not saved in profile') throw new BadRequestException(error.message);
       else if (error.message === 'Card not found') throw new InvalidIdHttpException(' for card');
       else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;

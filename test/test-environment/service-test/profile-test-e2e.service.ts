@@ -57,7 +57,7 @@ export class ProfileTestE2eService {
 
   async getProfile(profileId: string): Promise<ProfileEntity | null> {
     return await this.profileRepository.findOne({
-      relations: ['user', 'occupations'],
+      relations: ['user', 'occupations', 'savedCard'],
       where: {
         id: profileId,
       },

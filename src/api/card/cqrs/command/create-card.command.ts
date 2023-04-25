@@ -23,8 +23,8 @@ export class CreateCardCommand {
   public readonly birthday?: Date;
   public readonly occupationsId?: string[];
   public readonly socialNetworkId?: string;
-  public readonly whoCanShareCardEnums?: WhoCanShareCardEnum[];
-  public readonly whoCanSeeCardInformationEnums?: WhoCanSeeCardInformationEnum[];
+  public readonly whoCanShareCardEnum?: WhoCanShareCardEnum[];
+  public readonly whoCanSeeCardInformationEnum?: WhoCanSeeCardInformationEnum[];
   public readonly whoCanSendMessagesEnums?: WhoCanCommunicateWithEnum[];
   public readonly transferableStatusCardEnum?: TransferableStatusCardEnum[];
 }

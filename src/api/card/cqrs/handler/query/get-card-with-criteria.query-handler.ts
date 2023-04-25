@@ -16,51 +16,43 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler<GetCardWit
   async execute(query: GetCardWithCriteriaQuery): Promise<CardEntity[]> {
     try {
       const queryBuilder = this.cardRepository.createQueryBuilder('card');
-      queryBuilder.setFindOptions({
-        relations: ['owner', 'occupations', 'socialNetwork', 'owner.user'],
-      });
 
       if (query.isDeleted) {
-        queryBuilder.setFindOptions({ withDeleted: true });
+        queryBuilder.setFindOptions({
+          withDeleted: true,
+          relations: ['owner', 'occupations', 'socialNetwork', 'owner.user'],
+        });
+      } else {
+        queryBuilder.setFindOptions({ relations: ['owner', 'occupations', 'socialNetwork', 'owner.user'] });
       }
 
       if (query.isOwnerPro !== undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            isOwnerPro: query.isOwnerPro,
-          },
+        queryBuilder.where('card.isOwnerPro = :isOwnerPro', {
+          isOwnerPro: query.isOwnerPro,
         });
       }
 
       if (query.companyName != undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            companyName: query.companyName,
-          },
+        queryBuilder.where('card.companyName = :companyName', {
+          companyName: query.companyName,
         });
       }
 
       if (query.typeOfCardEnum != undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            typeOfCardEnum: query.typeOfCardEnum,
-          },
+        queryBuilder.where('card.typeOfCardEnum = :typeOfCardEnum', {
+          typeOfCardEnum: query.typeOfCardEnum,
         });
       }
 
       if (query.firstname != undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            firstname: query.firstname,
-          },
+        queryBuilder.where('card.firstname = :firstname', {
+          firstname: query.firstname,
         });
       }
 
       if (query.lastname != undefined) {
-        queryBuilder.setFindOptions({
-          where: {
-            lastname: query.lastname,
-          },
+        queryBuilder.where('card.lastname = :lastname', {
+          lastname: query.lastname,
         });
       }
 
@@ -69,7 +61,8 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler<GetCardWit
         .then(cards => {
           return cards;
         })
-        .catch(() => {
+        .catch(error => {
+          console.log(error);
           throw new Error('Error while getting cards');
         });
     } catch (error) {

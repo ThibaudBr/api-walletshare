@@ -17,15 +17,15 @@ export class GetCardByIdQueryHandler implements IQueryHandler<GetCardByIdQuery> 
     try {
       return await this.cardRepository
         .findOneOrFail({
-          relations: ['occupation', 'owner', 'socialNetwork'],
+          relations: ['occupations', 'owner', 'socialNetwork', 'owner.user'],
           where: [
             {
               id: query.id,
             },
           ],
         })
-        .catch(() => {
-          throw new Error('Card not found');
+        .catch(error => {
+          throw error;
         });
     } catch (error) {
       this.eventBus.publish(

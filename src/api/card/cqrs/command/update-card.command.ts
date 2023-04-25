@@ -1,4 +1,8 @@
 import { TypeOfCardEnum } from '../../domain/enum/type-of-card.enum';
+import { WhoCanShareCardEnum } from "../../domain/enum/who-can-share-card.enum";
+import { WhoCanSeeCardInformationEnum } from "../../domain/enum/who-can-see-card-information.enum";
+import { WhoCanCommunicateWithEnum } from "../../domain/enum/who-can-communicate-with.enum";
+import { TransferableStatusCardEnum } from "../../domain/enum/transferable-status-card.enum";
 
 export class UpdateCardCommand {
   constructor(partial: Partial<UpdateCardCommand>) {
@@ -19,9 +23,9 @@ export class UpdateCardCommand {
   public readonly url?: string[];
   public readonly birthday?: Date;
   public readonly occupationsId?: string[];
-  public readonly whoCanShareCardEnums?: string[];
-  public readonly whoCanSeeCardInformationEnums?: string[];
-  public readonly whoCanSendMessagesEnums?: string[];
-  public readonly transferableStatusCardEnum?: string[];
+  public readonly whoCanShareCardEnum?: WhoCanShareCardEnum[];
+  public readonly whoCanSeeCardInformationEnum?: WhoCanSeeCardInformationEnum[];
+  public readonly whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
+  public readonly transferableStatusCardEnum?: TransferableStatusCardEnum[];
   public readonly socialNetworkId?: string;
 }

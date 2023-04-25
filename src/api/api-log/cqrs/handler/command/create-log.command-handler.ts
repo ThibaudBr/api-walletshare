@@ -12,15 +12,18 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
   private readonly API_VERSION: string;
   private readonly API_TYPE: ApiTypeEnum;
   private readonly verbose: VerboseLogEnum;
+  private readonly isTest: boolean;
 
   constructor(@Inject('API_LOG') private client: ClientProxy) {
     this.verbose = (process.env.VERBOSE_LOG as VerboseLogEnum) || VerboseLogEnum.NONE;
     this.API_NAME = process.env.API_NAME || 'NO-NAME';
     this.API_VERSION = process.env.API_VERSION || 'NO-VERSION';
     this.API_TYPE = ApiTypeEnum.WALLET_SHARE_API;
+    this.isTest = process.env.NODE_ENV == 'test';
   }
 
   async execute(command: CreateLogCommand): Promise<void> {
+    if (this.isTest) return;
     if (this.verbose === VerboseLogEnum.NONE) return;
     if (this.verbose === VerboseLogEnum.DEBUG) console.log('CreateLogCommandHandler: ', command);
     this.client.emit('create-log', command);

@@ -28,7 +28,7 @@ export class GetSavedCardWithProfileIdQueryHandler implements IQueryHandler<GetS
           throw new Error('Profile not found');
         });
       return await this.cardRepository.find({
-        relations: ['occupation', 'owner', 'profilesWhoSavedCard', 'socialNetwork'],
+        relations: ['occupations', 'owner', 'profilesWhoSavedCard', 'socialNetwork'],
         where: [
           {
             profilesWhoSavedCard: {

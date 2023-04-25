@@ -102,14 +102,11 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
 
       const cardUpdated = new CardEntity({
         ...cardToUpdate,
+        ...command,
       });
-      const err = await validate(cardUpdated);
-      if (err.length > 0) {
-        throw err;
-      }
 
       await this.cardRepository
-        .update(cardToUpdate.id, cardUpdated)
+        .save(cardUpdated)
         .then(() => {
           this.eventBus.publish(
             new UpdateCardEvent({

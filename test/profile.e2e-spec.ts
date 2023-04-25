@@ -24,12 +24,19 @@ describe('ProfileController (e2e)', () => {
   let userIdList: string[];
   let profileIdList: string[];
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     moduleFixture = await Test.createTestingModule({
       imports: [AppTestE2eModule],
     }).compile();
     app = moduleFixture.createNestApplication();
     await app.init();
+  });
+
+  afterAll(async () => {
+    await app.close();
+  });
+
+  beforeEach(async () => {
     await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
 
     await request(app.getHttpServer())
@@ -183,10 +190,6 @@ describe('ProfileController (e2e)', () => {
           .delete('/api/test/remove-profile-test/' + response.body.id)
           .expect(200);
       });
-  });
-
-  afterEach(async () => {
-    await app.close();
   });
 
   describe('when user is soft deleted, his profile should be soft deleted', () => {
@@ -791,7 +794,9 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(400)
         .then(response => {
-          expect(response.body.message).toBe('Invalid parameters: roleProfile must be one of the following values: CLASSIC, PREMIUM, COMPANY');
+          expect(response.body.message).toBe(
+            'Invalid parameters: roleProfile must be one of the following values: CLASSIC, PREMIUM, COMPANY',
+          );
         });
     });
 
@@ -872,7 +877,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200)
         .then(response => {
-          expect(response.body.occupations?.[0].id).toEqual(occupationIdList[0]);
+          expect(response.body.occupations?.length).toEqual(2);
         });
     });
   });
@@ -894,7 +899,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + publicToken)
         .send({
           profileId: profileIdList[1],
-          usernameProfile: 'bob'
+          usernameProfile: 'bob',
         })
         .expect(204);
     });

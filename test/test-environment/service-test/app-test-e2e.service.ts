@@ -77,13 +77,13 @@ export class AppTestE2eService {
     try {
       await this.cardRepository.query('DELETE FROM "card_occupations_occupation";');
       await this.cardRepository.query('DELETE FROM "connected_card";');
+      await this.cardRepository.query('DELETE FROM "saved-card";');
       await this.cardRepository.query('DELETE FROM "card";');
       await this.cardRepository.query('DELETE FROM "profile-occupation";');
       await this.profileRepository.query('DELETE FROM "profile";');
       await this.companyRepository.query('DELETE FROM "company";');
       await this.companyRepository.query('DELETE FROM "company_occupations_occupation";');
       await this.companyEmployeeRepository.query('DELETE FROM "company_employee";');
-      await this.connectedCardRepository.query('DELETE FROM "connected_card";');
       await this.conversationRepository.query('DELETE FROM "conversation";');
       await this.discountCodeRepository.query('DELETE FROM "discount_codes";');
       await this.groupRepository.query('DELETE FROM "group";');

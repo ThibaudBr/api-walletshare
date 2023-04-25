@@ -18,14 +18,14 @@ import { UpdateCardRequest } from './web/request/update-card.request';
 export class CardController {
   constructor(private readonly cardService: CardService) {}
 
-  @Get('/admin/')
+  @Get('/admin/get-all-cards')
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCard(): Promise<CardResponse[]> {
     return await this.cardService.getAllCards();
   }
 
-  @Get('/public/:id')
+  @Get('/public/get-card-by-id/:id')
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getCardById(@Param('id') cardId: string): Promise<CardResponse> {
@@ -39,14 +39,14 @@ export class CardController {
     return await this.cardService.getAllCardWithUserId(userId);
   }
 
-  @Get('/public/get-all-my-cards')
+  @Get('/public/get-all-my-cards/')
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllMyCards(@Req() userRequest: RequestUser): Promise<CardResponse[]> {
     return await this.cardService.getAllCardWithUserId(userRequest.user.id);
   }
 
-  @Get('/public/get-all-my-cart-by-profile-id/:profileId')
+  @Get('/public/get-all-my-cards-by-profile-id/:profileId')
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllMyCardsWithProfileId(
@@ -181,14 +181,14 @@ export class CardController {
   }
 
   @Post('/admin/create-card/:profileId')
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createCard(@Param('profileId') profileId: string, @Body() createCardRequest: CreateCardRequest): Promise<void> {
     return await this.cardService.createCard(profileId, createCardRequest);
   }
 
   @Post('/public/create-card/:profileId')
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async createCardForMe(
     @Param('profileId') profileId: string,

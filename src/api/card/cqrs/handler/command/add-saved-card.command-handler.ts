@@ -44,14 +44,14 @@ export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardC
         .catch(() => {
           throw new ErrorInvalidIdRuntimeException('Card not found');
         })
-        .then(card => {
+        .then(async card => {
           if (card.profilesWhoSavedCard.find(profile => profile.id === profileEntity.id)) {
             throw new Error('Card already saved');
           }
-          this.cardRepository
-            .update(card.id, {
-              profilesWhoSavedCard: [...card.profilesWhoSavedCard, profileEntity],
-            })
+          if (!card.profilesWhoSavedCard) card.profilesWhoSavedCard = [];
+          card.profilesWhoSavedCard.push(profileEntity);
+          await this.cardRepository
+            .save(card)
             .then(() => {
               this.eventBus.publish(
                 new AddSavedCardEvent({

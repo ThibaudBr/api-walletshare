@@ -17,9 +17,9 @@ export class UserTestE2eController {
 
   @HttpCode(204)
   @UsePipes(new IsTestEnvironmentPipe())
-  @Delete('/api/test/remove-user-test')
-  deleteUserTest(@Body() userIdDto: UserIdDto): Promise<void> {
-    return this.userTestE2eService.removeUser(userIdDto.userId);
+  @Delete('/api/test/remove-user-test/:id')
+  deleteUserTest(@Param('id') userId: string): Promise<void> {
+    return this.userTestE2eService.removeUser(userId);
   }
 
   @UsePipes(new IsTestEnvironmentPipe())

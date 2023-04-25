@@ -20,6 +20,7 @@ export class GetAllCardWithProfileIdQueryHandler implements IQueryHandler<GetAll
     try {
       const profile = await this.profileRepository
         .findOneOrFail({
+          withDeleted: query.withDeleted,
           where: {
             id: query.profileId,
           },
@@ -30,7 +31,8 @@ export class GetAllCardWithProfileIdQueryHandler implements IQueryHandler<GetAll
 
       return await this.cardRepository
         .find({
-          relations: ['occupation', 'owner', 'socialNetwork'],
+          withDeleted: query.withDeleted,
+          relations: ['occupations', 'owner', 'socialNetwork'],
           where: [
             {
               owner: {
