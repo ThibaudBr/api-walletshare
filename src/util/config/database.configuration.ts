@@ -28,6 +28,8 @@ import { CardEntity } from '../../api/card/domain/entities/card.entity';
 import { ProfileSubscriber } from '../../api/profile/application/subscriber/profile.subscriber';
 import { ConnectedCardSubscriber } from '../../api/card/application/subscriber/connected-card.subscriber';
 import { ProfileCardSubscriber } from '../../api/card/application/subscriber/profile-card.subscriber';
+import { GroupMembershipCardSubscriber } from '../../api/groupe/application/subscriber/group-card.subscriber';
+import { GroupGroupMembershipSubscriber } from '../../api/groupe/application/subscriber/group-group-membership.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -51,7 +53,13 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           entities: [join(__dirname, '**/*.entity{.ts,.js}')],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PROD === 'true',
-          subscribers: [ProfileSubscriber, ConnectedCardSubscriber, ProfileCardSubscriber],
+          subscribers: [
+            ProfileSubscriber,
+            ConnectedCardSubscriber,
+            ProfileCardSubscriber,
+            GroupMembershipCardSubscriber,
+            GroupGroupMembershipSubscriber,
+          ],
         };
       } else if (process.env.NODE_ENV === 'pprod') {
         logger.info('NODE_ENV is pprod');
@@ -71,7 +79,13 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           entities: [join(__dirname, '**', '*.entity.{ts,js}')],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PPROD === 'true',
-          subscribers: [ProfileSubscriber, ConnectedCardSubscriber, ProfileCardSubscriber],
+          subscribers: [
+            ProfileSubscriber,
+            ConnectedCardSubscriber,
+            ProfileCardSubscriber,
+            GroupMembershipCardSubscriber,
+            GroupGroupMembershipSubscriber,
+          ],
         };
       } else if (process.env.NODE_ENV === 'test') {
         logger.info('NODE_ENV is test');
@@ -108,7 +122,13 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
-          subscribers: [ProfileSubscriber, ConnectedCardSubscriber, ProfileCardSubscriber],
+          subscribers: [
+            ProfileSubscriber,
+            ConnectedCardSubscriber,
+            ProfileCardSubscriber,
+            GroupMembershipCardSubscriber,
+            GroupGroupMembershipSubscriber,
+          ],
         };
       } else if (process.env.NODE_ENV === 'dev') {
         logger.info('NODE_ENV is dev');
@@ -145,7 +165,13 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
           ],
-          subscribers: [ProfileSubscriber, ConnectedCardSubscriber, ProfileCardSubscriber],
+          subscribers: [
+            ProfileSubscriber,
+            ConnectedCardSubscriber,
+            ProfileCardSubscriber,
+            GroupMembershipCardSubscriber,
+            GroupGroupMembershipSubscriber,
+          ],
         };
       } else {
         logger.error('NODE_ENV is not set');
