@@ -67,13 +67,13 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
           ...profile,
         });
       });
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new CreateProfileEvent({
           profileResponse: new ProfileResponse(savedProfile),
         }),
       );
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'CreateProfileCommandHandler',
           localisation: 'Profile',

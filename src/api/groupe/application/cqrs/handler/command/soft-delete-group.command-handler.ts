@@ -23,8 +23,8 @@ export class SoftDeleteGroupCommandHandler implements ICommandHandler<SoftDelete
           },
         ],
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'SoftDeleteGroupCommandHandler',
@@ -35,11 +35,11 @@ export class SoftDeleteGroupCommandHandler implements ICommandHandler<SoftDelete
       });
     await this.groupRepository
       .softRemove(groupToDelete)
-      .then(() => {
-        this.eventBus.publish(new SoftDeleteGroupEvent({ groupId: command.groupId }));
+      .then(async () => {
+        await this.eventBus.publish(new SoftDeleteGroupEvent({groupId: command.groupId}));
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'SoftDeleteGroupCommandHandler',

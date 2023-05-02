@@ -19,7 +19,7 @@ export class RemoveRefreshTokenCommandHandler implements ICommandHandler<RemoveR
         currentHashedRefreshToken: undefined,
       });
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'user', handler: 'RemoveRefreshTokenCommandHandler', error: error }),
       );
     }

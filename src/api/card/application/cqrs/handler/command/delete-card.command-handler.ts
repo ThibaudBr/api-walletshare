@@ -35,8 +35,8 @@ export class DeleteCardCommandHandler implements ICommandHandler<DeleteCardComma
         .then(async card => {
           await this.cardRepository
             .remove(card)
-            .then(() => {
-              this.eventBus.publish(
+            .then(async () => {
+              await this.eventBus.publish(
                 new DeleteCardEvent({
                   cardId: command.id,
                 }),

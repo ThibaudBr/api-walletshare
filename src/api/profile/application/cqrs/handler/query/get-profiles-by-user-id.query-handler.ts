@@ -37,7 +37,7 @@ export class GetProfilesByUserIdQueryHandler implements IQueryHandler<GetProfile
         });
       });
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'GetProfilesByUserIdQueryHandler',
           localisation: 'profile',

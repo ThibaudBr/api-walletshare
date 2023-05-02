@@ -25,9 +25,9 @@ export class DeleteOccupationCommandHandler implements ICommandHandler<DeleteOcc
           throw new Error('Occupation not found');
         });
       await this.occupationRepository.remove(occupation);
-      this.eventBus.publish(new DeleteOccupationEvent({ occupationId: occupation.id }));
+      await this.eventBus.publish(new DeleteOccupationEvent({ occupationId: occupation.id }));
     } catch (e) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'DeleteOccupationCommandHandler',
           localisation: 'Occupation',

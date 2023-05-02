@@ -28,7 +28,7 @@ export class RestoreCardCommandHandler implements ICommandHandler<RestoreCardCom
 
       if (cardToRestore.deletedAt == undefined) throw new Error('Card not soft-deleted');
       await this.cardRepository.restore(command.id);
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new RestoreCardEvent({
           cardId: cardToRestore.id,
         }),

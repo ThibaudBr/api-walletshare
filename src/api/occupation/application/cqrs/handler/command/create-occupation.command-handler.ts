@@ -37,8 +37,8 @@ export class CreateOccupationCommandHandler implements ICommandHandler<CreateOcc
 
       return this.occupationRepository
         .save(newOccupationEntity)
-        .then(occupationEntity => {
-          this.eventBus.publish(
+        .then(async occupationEntity => {
+          await this.eventBus.publish(
             new CreateOccupationEvent({
               occupationId: occupationEntity.id,
             }),
@@ -51,7 +51,7 @@ export class CreateOccupationCommandHandler implements ICommandHandler<CreateOcc
           throw new Error('Occupation not created');
         });
     } catch (e) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'CreateOccupationCommandHandler',
           localisation: 'Occupation',

@@ -24,13 +24,13 @@ export class DeleteProfileCommandHandler implements ICommandHandler<DeleteProfil
           throw new Error('Profile not found');
         });
       await this.profileRepository.remove(profile);
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new DeleteProfileEvent({
           id: command.id
         }),
       );
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'DeleteProfileCommandHandler',
           error: error.message,

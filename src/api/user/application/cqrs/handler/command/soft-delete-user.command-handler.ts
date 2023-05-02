@@ -26,9 +26,9 @@ export class SoftDeleteUserCommandHandler implements ICommandHandler<SoftDeleteU
         });
 
       await this.userRepository.softRemove(userToSoftRemove);
-      this.eventBus.publish(new SoftDeleteUserEvent(command.userId));
+      await this.eventBus.publish(new SoftDeleteUserEvent(command.userId));
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'DeleteUserCommandHandler', error }));
+      await this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'DeleteUserCommandHandler', error }));
       throw error;
     }
   }

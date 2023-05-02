@@ -77,8 +77,8 @@ export class CreateCardCommandHandler implements ICommandHandler<CreateCardComma
 
       await this.cardRepository
         .save(newCard)
-        .then(() => {
-          this.eventBus.publish(
+        .then(async () => {
+          await this.eventBus.publish(
             new CreateCardEvent({
               cardId: newCard.id,
             }),

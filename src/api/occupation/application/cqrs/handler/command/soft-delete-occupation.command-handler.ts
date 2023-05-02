@@ -26,13 +26,13 @@ export class SoftDeleteOccupationCommandHandler implements ICommandHandler<SoftD
       await this.occupationRepository.softRemove(occupation).catch(() => {
         throw new Error('Occupation not soft deleted');
       });
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new SoftDeleteOccupationEvent({
           occupationId: command.occupationId,
         }),
       );
     } catch (e) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'SoftDeleteOccupationCommandHandler',
           localisation: 'Occupation',

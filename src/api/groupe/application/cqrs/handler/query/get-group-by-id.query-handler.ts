@@ -22,8 +22,8 @@ export class GetGroupByIdQueryHandler implements IQueryHandler<GetGroupByIdQuery
           },
         ],
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'GetGroupByIdQueryHandler',

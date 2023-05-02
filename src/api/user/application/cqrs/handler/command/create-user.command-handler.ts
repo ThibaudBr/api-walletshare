@@ -31,7 +31,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
     try {
       if (command.createUserDto.username) {
         if (await this.isDuplicatedUsername(command.createUserDto.username)) {
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
           );
           throw new DuplicateUsernameHttpException();
@@ -40,7 +40,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
       if (command.createUserDto.mail) {
         if (await this.isDuplicatedEmail(command.createUserDto.mail)) {
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
           );
           throw new DuplicateMailHttpException();
@@ -48,7 +48,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
       }
 
       if (!this.isValidPassword(command.createUserDto.password)) {
-        this.eventBus.publish(
+        await this.eventBus.publish(
           new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid password' }),
         );
         throw new InvalidPasswordHttpException();
@@ -56,7 +56,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
       if (command.createUserDto.mail) {
         if (!this.isValidEmail(command.createUserDto.mail)) {
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
           );
           throw new InvalidMailHttpException();
@@ -65,7 +65,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
       if (command.createUserDto.username) {
         if (!this.isValidUsername(command.createUserDto.username)) {
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid username' }),
           );
           throw new InvalidUsernameHttpException();

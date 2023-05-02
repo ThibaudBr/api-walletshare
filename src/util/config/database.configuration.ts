@@ -30,6 +30,8 @@ import { ConnectedCardSubscriber } from '../../api/card/application/subscriber/c
 import { ProfileCardSubscriber } from '../../api/card/application/subscriber/profile-card.subscriber';
 import { GroupMembershipCardSubscriber } from '../../api/groupe/application/subscriber/group-card.subscriber';
 import { GroupGroupMembershipSubscriber } from '../../api/groupe/application/subscriber/group-group-membership.subscriber';
+import {CardViewSubscriber} from "../../api/card/application/subscriber/card-view.subscriber";
+import {CardViewEntity} from "../../api/card/domain/entities/card-view.entity";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -59,6 +61,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ProfileCardSubscriber,
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
+            CardViewSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'pprod') {
@@ -85,6 +88,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ProfileCardSubscriber,
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
+            CardViewSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'test') {
@@ -119,6 +123,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationEntity,
             ReferralCodeEntity,
             AddressEntity,
+            CardViewEntity,
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
@@ -128,6 +133,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ProfileCardSubscriber,
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
+            CardViewSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'dev') {
@@ -164,6 +170,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationEntity,
             ReferralCodeEntity,
             AddressEntity,
+            CardViewEntity,
           ],
           subscribers: [
             ProfileSubscriber,
@@ -171,6 +178,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ProfileCardSubscriber,
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
+            CardViewSubscriber,
           ],
         };
       } else {

@@ -10,32 +10,28 @@ export class ConnectedCardSubscriber implements EntitySubscriberInterface<CardEn
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<CardEntity>): Promise<void> {
-    try {
-      const softRemovedCard = event.entity;
-      const connectedCardRepository = event.manager.getRepository(ConnectedCardEntity);
-      await connectedCardRepository.update(
-        {
-          cardEntityOne: {
-            id: softRemovedCard?.id,
-          },
+    const softRemovedCard = event.entity;
+    const connectedCardRepository = event.manager.getRepository(ConnectedCardEntity);
+    await connectedCardRepository.update(
+      {
+        cardEntityOne: {
+          id: softRemovedCard?.id,
         },
-        {
-          deletedAt: new Date(),
+      },
+      {
+        deletedAt: new Date(),
+      },
+    );
+    await connectedCardRepository.update(
+      {
+        cardEntityTwo: {
+          id: softRemovedCard?.id,
         },
-      );
-      await connectedCardRepository.update(
-        {
-          cardEntityTwo: {
-            id: softRemovedCard?.id,
-          },
-        },
-        {
-          deletedAt: new Date(),
-        },
-      );
-    } catch (error) {
-      throw error;
-    }
+      },
+      {
+        deletedAt: new Date(),
+      },
+    );
   }
 
   async beforeRemove(event: RemoveEvent<CardEntity>): Promise<void> {

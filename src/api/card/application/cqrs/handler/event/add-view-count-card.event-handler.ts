@@ -9,7 +9,13 @@ export class AddViewCountCardEventHandler implements IEventHandler<AddViewCountC
     await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: 'Card with id: ' + event.cardId + ' has been viewed',
+      body:
+        'Card with id: ' +
+        event.cardId +
+        ' has been viewed and the view id is ' +
+        event.cardView +
+        ' and the view count is ' +
+        event.cardViewCount,
     });
   }
 }

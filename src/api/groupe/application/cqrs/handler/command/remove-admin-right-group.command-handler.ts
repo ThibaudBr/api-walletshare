@@ -28,8 +28,8 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler<Remo
           },
         ],
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'RemoveAdminRightGroupCommandHandler',
