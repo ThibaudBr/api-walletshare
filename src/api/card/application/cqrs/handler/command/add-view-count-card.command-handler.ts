@@ -7,12 +7,15 @@ import { AddViewCountCardEvent } from '../../event/add-view-count-card.event';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { ErrorInvalidIdRuntimeException } from '../../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
 import { ErrorUpdateRuntimeException } from '../../../../../../util/exception/runtime-exception/error-group-request.runtime-exception';
+import { CardViewEntity } from '../../../../domain/entities/card-view.entity';
 
 @CommandHandler(AddViewCountCardCommand)
 export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCountCardCommand> {
   constructor(
     @InjectRepository(CardEntity)
     private readonly cardRepository: Repository<CardEntity>,
+    @InjectRepository(CardViewEntity)
+    private readonly cardViewRepository: Repository<CardViewEntity>,
     private readonly eventBus: EventBus,
   ) {}
 
@@ -29,15 +32,20 @@ export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCo
         .catch(() => {
           throw new ErrorInvalidIdRuntimeException('Card not found');
         })
-        .then(card => {
+        .then(async card => {
+          const cardView: CardViewEntity = await this.cardViewRepository.save({
+            card: card,
+          });
           this.cardRepository
             .update(card.id, {
               numberOfShares: card.numberOfShares + 1,
             })
-            .then(() => {
-              this.eventBus.publish(
+            .then(async () => {
+              await this.eventBus.publish(
                 new AddViewCountCardEvent({
                   cardId: command.cardId,
+                  cardView: cardView.id,
+                  cardViewCount: card.numberOfShares + 1,
                 }),
               );
             })

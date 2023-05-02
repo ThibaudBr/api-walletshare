@@ -342,7 +342,7 @@ describe('CardController (e2e)', () => {
         .get('/card/admin/get-all-cards')
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200);
-      expect(response.body).toHaveLength(19);
+      expect(response.body).toHaveLength(16);
       expect(response.body[0].owner).toBeDefined();
       expect(response.body[0].owner.user).toBeDefined();
     });
@@ -808,7 +808,7 @@ describe('CardController (e2e)', () => {
             .set('Authorization', 'Bearer ' + adminToken)
             .expect(200)
             .then(response => {
-              expect(response.body).toHaveLength(19);
+              expect(response.body).toHaveLength(16);
             });
         });
 

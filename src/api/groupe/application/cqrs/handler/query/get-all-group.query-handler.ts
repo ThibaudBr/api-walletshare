@@ -14,8 +14,8 @@ export class GetAllGroupQueryHandler implements IQueryHandler<GetAllGroupQuery> 
   ) {}
 
   async execute(): Promise<GroupEntity[]> {
-    return await this.groupRepository.find().catch(error => {
-      this.eventBus.publish(
+    return await this.groupRepository.find().catch(async error => {
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: 'group',
           handler: 'GetAllGroupQueryHandler',

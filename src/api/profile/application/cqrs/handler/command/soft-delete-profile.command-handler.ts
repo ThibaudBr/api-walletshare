@@ -24,13 +24,13 @@ export class SoftDeleteProfileCommandHandler implements ICommandHandler<SoftDele
           throw new Error('Profile not found');
         });
       await this.profileRepository.softRemove(profile);
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new SoftDeleteProfileEvent({
           id: command.id,
         }),
       );
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'SoftDeleteProfileCommandHandler',
           localisation: 'profile',

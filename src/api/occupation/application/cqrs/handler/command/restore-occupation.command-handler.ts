@@ -27,13 +27,13 @@ export class RestoreOccupationCommandHandler implements ICommandHandler<RestoreO
       if (!occupation.deletedAt) throw new Error('Occupation is not soft deleted');
 
       await this.occupationRepository.restore(command.occupationId);
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new RestoreOccupationEvent({
           occupationId: command.occupationId,
         }),
       );
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'RestoreOccupationCommandHandler',
           localisation: 'occupation',

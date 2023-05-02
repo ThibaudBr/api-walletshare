@@ -23,7 +23,7 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
     try {
       if (command.user.username) {
         if (await this.isDuplicatedUsername(command.user.username)) {
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
           );
           throw new DuplicateUsernameHttpException();
@@ -32,7 +32,7 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
 
       if (command.user.mail) {
         if (await this.isDuplicatedEmail(command.user.mail)) {
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
           );
           throw new DuplicateMailHttpException();
@@ -53,10 +53,10 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
       const user: UserEntity = await this.userRepository.findOneOrFail({
         where: [{ id: command.userId }],
       });
-      this.eventBus.publish(new UpdateUserEvent(command.userId));
+      await this.eventBus.publish(new UpdateUserEvent(command.userId));
       return new UserResponse({ ...user });
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: 'user',
           handler: 'UpdateUserCommandHandler',

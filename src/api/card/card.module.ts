@@ -42,6 +42,7 @@ import { UpdateCardEventHandler } from './application/cqrs/handler/event/update-
 import { ConnectedCardEntity } from './domain/entities/connected-card.entity';
 import { RemoveSavedCardCommandHandler } from './application/cqrs/handler/command/remove-saved-card.command-handler';
 import { RemoveSavedCardEventHandler } from './application/cqrs/handler/event/remove-saved-card.event-handler';
+import { CardViewEntity } from './domain/entities/card-view.entity';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { RemoveSavedCardEventHandler } from './application/cqrs/handler/event/re
       ProfileEntity,
       OccupationEntity,
       ConnectedCardEntity,
+      CardViewEntity,
     ]),
     CqrsModule,
     ApiLogModule,

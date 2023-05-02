@@ -28,8 +28,8 @@ export class GiveAdminRightGroupCommandHandler implements ICommandHandler<GiveAd
           },
         ],
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'GiveAdminRightGroupCommandHandler',

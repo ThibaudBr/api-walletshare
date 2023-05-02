@@ -20,10 +20,10 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler<GetCardWit
       if (query.isDeleted) {
         queryBuilder.setFindOptions({
           withDeleted: true,
-          relations: ['owner', 'occupations', 'socialNetwork', 'owner.user'],
+          relations: ['owner', 'occupations', 'socialNetwork', 'owner.user', 'cardViews'],
         });
       } else {
-        queryBuilder.setFindOptions({ relations: ['owner', 'occupations', 'socialNetwork', 'owner.user'] });
+        queryBuilder.setFindOptions({ relations: ['owner', 'occupations', 'socialNetwork', 'owner.user', 'cardViews'] });
       }
 
       if (query.isOwnerPro !== undefined) {
