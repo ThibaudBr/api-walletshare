@@ -1,9 +1,6 @@
 import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, SoftRemoveEvent } from 'typeorm';
 import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { ProfileEntity } from '../../domain/entities/profile.entity';
-import { EventBus } from '@nestjs/cqrs';
-import { SoftDeleteProfileEvent } from '../cqrs/event/soft-delete-profile.event';
-import { DeleteProfileEvent } from "../cqrs/event/delete-profile.event";
 
 @EventSubscriber()
 export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> {

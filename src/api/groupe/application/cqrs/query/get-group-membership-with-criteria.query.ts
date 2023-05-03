@@ -1,10 +1,6 @@
 import { RoleGroupMembershipEnum } from '../../../domain/enum/role-group-membership.enum';
 
 export class GetGroupMembershipWithCriteriaQuery {
-  constructor(partial: Partial<GetGroupMembershipWithCriteriaQuery>) {
-    Object.assign(this, partial);
-  }
-
   public cardId?: string;
   public groupId?: string;
   public isDeleted?: boolean;
@@ -15,4 +11,8 @@ export class GetGroupMembershipWithCriteriaQuery {
   public updatedAtTo?: Date;
   public deletedAtFrom?: Date;
   public deletedAtTo?: Date;
+
+  constructor(partial: Partial<GetGroupMembershipWithCriteriaQuery>) {
+    Object.assign(this, partial);
+  }
 }

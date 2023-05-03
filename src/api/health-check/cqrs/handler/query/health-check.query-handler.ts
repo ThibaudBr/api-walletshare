@@ -18,6 +18,7 @@ export class HealthCheckQueryHandler implements IQueryHandler<HealthCheckQuery> 
     private diskHealthIndicator: DiskHealthIndicator,
     private eventBus: EventBus,
   ) {}
+
   async execute(): Promise<HealthCheckResponse> {
     return new HealthCheckResponse(
       await this.healthCheckService.check([

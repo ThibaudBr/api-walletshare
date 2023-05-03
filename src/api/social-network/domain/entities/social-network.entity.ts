@@ -28,52 +28,45 @@ import { IsNotEmpty, IsUrl, Length, Matches } from 'class-validator';
  */
 @Entity({ name: 'social_network' })
 export class SocialNetworkEntity extends BaseEntity {
-  constructor(partial: Partial<SocialNetworkEntity>) {
-    super();
-    Object.assign(this, partial);
-  }
-  // ______________________________________________________
-  // Properties
-  // ______________________________________________________
-
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
   @Column()
   @Length(2, 50)
   name: string;
-
   @Column()
   @IsUrl()
   url: string;
-
   @Column()
   @IsNotEmpty()
   icon: string;
-
   @Column()
   @Matches(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, {
     message: 'The field must be a valid hexadecimal RGB value',
   })
   color: string;
-
-  // ______________________________________________________
-  // Relations
-  // ______________________________________________________
-
   @OneToMany(() => CardEntity, cardEntity => cardEntity.socialNetwork)
   cards: CardEntity[];
 
   // ______________________________________________________
-  // Timestamps
+  // Relations
   // ______________________________________________________
-
   @CreateDateColumn()
   createdAt: Date;
 
+  // ______________________________________________________
+  // Timestamps
+  // ______________________________________________________
   @UpdateDateColumn()
   updatedAt: Date;
-
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial: Partial<SocialNetworkEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

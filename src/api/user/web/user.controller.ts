@@ -76,6 +76,7 @@ export class UserController {
       );
     }
   }
+
   @Get('/admin/')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async findAll(): Promise<UserResponse[]> {

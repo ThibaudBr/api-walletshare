@@ -1,3 +1,10 @@
+
+
+# [0.1.3](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.3) - 2023-05-03
+
+### Features
+- fix logs and refacto to work with api-log V_0.0.4
+
 # [0.1.2](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.2) - 2023-04-25
 
 ### Features

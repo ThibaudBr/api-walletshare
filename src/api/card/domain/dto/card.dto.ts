@@ -5,10 +5,6 @@ import { WhoCanCommunicateWithEnum } from '../enum/who-can-communicate-with.enum
 import { TransferableStatusCardEnum } from '../enum/transferable-status-card.enum';
 
 export class CardDto {
-  constructor(partial: Partial<CardDto>) {
-    Object.assign(this, partial);
-  }
-
   id: string;
   socialName?: string;
   isOwnerPro: boolean;
@@ -37,4 +33,8 @@ export class CardDto {
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
+
+  constructor(partial: Partial<CardDto>) {
+    Object.assign(this, partial);
+  }
 }

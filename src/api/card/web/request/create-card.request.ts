@@ -5,10 +5,6 @@ import { WhoCanCommunicateWithEnum } from '../../domain/enum/who-can-communicate
 import { TransferableStatusCardEnum } from '../../domain/enum/transferable-status-card.enum';
 
 export class CreateCardRequest {
-  constructor(partial: Partial<CreateCardRequest>) {
-    Object.assign(this, partial);
-  }
-
   socialName?: string;
   isOwnerPro: boolean;
   firstName?: string;
@@ -34,4 +30,8 @@ export class CreateCardRequest {
   whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
   transferableStatusCardEnum?: TransferableStatusCardEnum[];
   socialNetworkId?: string;
+
+  constructor(partial: Partial<CreateCardRequest>) {
+    Object.assign(this, partial);
+  }
 }

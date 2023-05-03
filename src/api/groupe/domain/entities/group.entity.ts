@@ -17,35 +17,27 @@ import { GroupMembershipEntity } from './group-membership.entity';
 
 @Entity({ name: 'group' })
 export class GroupEntity extends BaseEntity {
-  constructor(partial: Partial<GroupEntity>) {
-    super();
-    Object.assign(this, partial);
-  }
-  // ______________________________________________________
-  // Properties
-  // ______________________________________________________
-
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
   @Length(5, 30)
   @Column({ nullable: false, unique: true })
   name: string;
+  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
+  members: GroupMembershipEntity[];
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
-
-  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
-  members: GroupMembershipEntity[];
-
   @OneToMany(() => ConversationEntity, conversation => conversation.group, {
     nullable: false,
     cascade: true,
   })
   @JoinColumn()
   conversations: ConversationEntity[];
-
   @OneToOne(() => MediaEntity, media => media.groupPicture, {
     cascade: true,
     nullable: true,
@@ -53,7 +45,6 @@ export class GroupEntity extends BaseEntity {
   })
   @JoinColumn()
   picture: MediaEntity;
-
   @OneToOne(() => MediaEntity, media => media.groupBannerPicture, {
     cascade: true,
     nullable: true,
@@ -61,17 +52,19 @@ export class GroupEntity extends BaseEntity {
   })
   @JoinColumn()
   bannerPicture: MediaEntity;
+  @CreateDateColumn()
+  createdAt: Date;
 
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
-
-  @CreateDateColumn()
-  createdAt: Date;
-
   @UpdateDateColumn()
   updatedAt: Date;
-
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial: Partial<GroupEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

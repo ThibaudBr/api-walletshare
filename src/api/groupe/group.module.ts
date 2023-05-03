@@ -46,7 +46,9 @@ import { AddCardToGroupEventHandler } from './application/cqrs/handler/event/add
     TypeOrmModule.forFeature([UserEntity, GroupEntity, GroupMembershipEntity, CardEntity]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([{ name: 'API_LOG', transport: Transport.TCP, options: { port: 3001 } }]),
+    ClientsModule.register([
+      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
+    ]),
   ],
   controllers: [GroupController],
   providers: [

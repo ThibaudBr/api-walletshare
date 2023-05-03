@@ -30,8 +30,8 @@ import { ConnectedCardSubscriber } from '../../api/card/application/subscriber/c
 import { ProfileCardSubscriber } from '../../api/card/application/subscriber/profile-card.subscriber';
 import { GroupMembershipCardSubscriber } from '../../api/groupe/application/subscriber/group-card.subscriber';
 import { GroupGroupMembershipSubscriber } from '../../api/groupe/application/subscriber/group-group-membership.subscriber';
-import {CardViewSubscriber} from "../../api/card/application/subscriber/card-view.subscriber";
-import {CardViewEntity} from "../../api/card/domain/entities/card-view.entity";
+import { CardViewSubscriber } from '../../api/card/application/subscriber/card-view.subscriber';
+import { CardViewEntity } from '../../api/card/domain/entities/card-view.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {

@@ -5,10 +5,6 @@ import { WhoCanCommunicateWithEnum } from '../../../domain/enum/who-can-communic
 import { TransferableStatusCardEnum } from '../../../domain/enum/transferable-status-card.enum';
 
 export class CreateCardCommand {
-  constructor(partial: Partial<CreateCardCommand>) {
-    Object.assign(this, partial);
-  }
-
   public readonly profileId: string;
   public readonly typeOfCardEnum: TypeOfCardEnum;
   public readonly socialName?: string;
@@ -27,4 +23,8 @@ export class CreateCardCommand {
   public readonly whoCanSeeCardInformationEnum?: WhoCanSeeCardInformationEnum[];
   public readonly whoCanSendMessagesEnums?: WhoCanCommunicateWithEnum[];
   public readonly transferableStatusCardEnum?: TransferableStatusCardEnum[];
+
+  constructor(partial: Partial<CreateCardCommand>) {
+    Object.assign(this, partial);
+  }
 }

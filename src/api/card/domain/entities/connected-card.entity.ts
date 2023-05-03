@@ -14,51 +14,46 @@ import { CardEntity } from './card.entity';
 
 @Entity({ name: 'connected_card' })
 export class ConnectedCardEntity extends BaseEntity {
-  constructor(partial?: Partial<ConnectedCardEntity>) {
-    super();
-    if (partial) {
-      Object.assign(this, partial);
-    }
-  }
-
-  // ______________________________________________________
-  // Properties
-  // ______________________________________________________
-
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   // ______________________________________________________
-  // Relations
+  // Properties
   // ______________________________________________________
-
   @OneToOne(() => ConversationEntity, conversation => conversation, {
     cascade: true,
   })
   @JoinColumn()
   conversation: ConversationEntity;
 
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.connectedCardOne, {
     onDelete: 'CASCADE',
     cascade: ['insert', 'update'],
   })
   cardEntityOne: CardEntity;
-
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.connectedCardTwo, {
     onDelete: 'CASCADE',
     cascade: ['insert', 'update'],
   })
   cardEntityTwo: CardEntity;
-
-  // ______________________________________________________
-  // Timestamps
   // ______________________________________________________
   @CreateDateColumn()
   createdAt: Date;
 
+  // ______________________________________________________
+  // Timestamps
   @UpdateDateColumn()
   updatedAt: Date;
-
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<ConnectedCardEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

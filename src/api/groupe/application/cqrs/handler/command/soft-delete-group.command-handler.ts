@@ -36,7 +36,7 @@ export class SoftDeleteGroupCommandHandler implements ICommandHandler<SoftDelete
     await this.groupRepository
       .softRemove(groupToDelete)
       .then(async () => {
-        await this.eventBus.publish(new SoftDeleteGroupEvent({groupId: command.groupId}));
+        await this.eventBus.publish(new SoftDeleteGroupEvent({ groupId: command.groupId }));
       })
       .catch(async error => {
         await this.eventBus.publish(

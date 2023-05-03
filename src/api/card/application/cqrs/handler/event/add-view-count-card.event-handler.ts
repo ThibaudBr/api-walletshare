@@ -5,6 +5,7 @@ import { ApiLogService } from '../../../../../api-log/application/api-log.servic
 @EventsHandler(AddViewCountCardEvent)
 export class AddViewCountCardEventHandler implements IEventHandler<AddViewCountCardEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
+
   async handle(event: AddViewCountCardEvent): Promise<void> {
     await this.apiLogService.createLogForMethode({
       module: event.module,

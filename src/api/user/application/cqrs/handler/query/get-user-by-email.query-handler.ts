@@ -18,7 +18,7 @@ export class GetUserByEmailQueryHandler implements IQueryHandler<GetUserByEmailQ
         select: ['id', 'mail', 'password', 'roles', 'createdAt', 'updatedAt'],
       });
     } catch (error) {
-      throw 'Error: no match found';
+      throw new Error('no match found');
     }
   }
 }

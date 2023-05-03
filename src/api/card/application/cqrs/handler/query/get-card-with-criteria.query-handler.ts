@@ -23,7 +23,9 @@ export class GetCardWithCriteriaQueryHandler implements IQueryHandler<GetCardWit
           relations: ['owner', 'occupations', 'socialNetwork', 'owner.user', 'cardViews'],
         });
       } else {
-        queryBuilder.setFindOptions({ relations: ['owner', 'occupations', 'socialNetwork', 'owner.user', 'cardViews'] });
+        queryBuilder.setFindOptions({
+          relations: ['owner', 'occupations', 'socialNetwork', 'owner.user', 'cardViews'],
+        });
       }
 
       if (query.isOwnerPro !== undefined) {

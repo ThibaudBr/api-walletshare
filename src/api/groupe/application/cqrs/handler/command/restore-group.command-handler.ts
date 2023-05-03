@@ -38,7 +38,7 @@ export class RestoreGroupCommandHandler implements ICommandHandler<RestoreGroupC
     await this.groupRepository
       .restore(command.groupId)
       .then(async () => {
-        await this.eventBus.publish(new RestoreGroupCommand({groupId: command.groupId}));
+        await this.eventBus.publish(new RestoreGroupCommand({ groupId: command.groupId }));
       })
       .catch(async error => {
         await this.eventBus.publish(

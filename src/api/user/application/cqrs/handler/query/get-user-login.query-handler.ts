@@ -9,6 +9,7 @@ import * as bcrypt from 'bcrypt';
 import { LoginOfUserEvent } from '../../event/login-of-user.event';
 
 config();
+
 @QueryHandler(GetUserLoginQuery)
 export class GetUserLoginQueryHandler implements IQueryHandler<GetUserLoginQuery> {
   constructor(
@@ -43,11 +44,11 @@ export class GetUserLoginQueryHandler implements IQueryHandler<GetUserLoginQuery
           this.eventBus.publish(new LoginOfUserEvent(userUsername.id));
           return userUsername;
         } else {
-          throw 'Error: no match found';
+          throw new Error('no match found');
         }
       }
     } catch (error) {
-      throw 'Error: no match found';
+      throw new Error('no match found');
     }
   }
 

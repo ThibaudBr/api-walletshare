@@ -9,13 +9,15 @@ import { VerboseLogEnum } from '../api/api-log/domain/enum/verbose-log.enum';
 @Injectable()
 export class ErrorLoggingMiddleware implements NestMiddleware {
   private readonly VERBOSE: VerboseLogEnum;
+
   constructor(private readonly apiLoggerService: ApiLogService) {
     this.VERBOSE = process.env.VERBOSE as VerboseLogEnum;
   }
+
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
   async use(req: Request, res: Response, next: NextFunction) {
     try {
-      await next();
+      next();
     } catch (error) {
       const ua = useragent.parse(req.headers['user-agent']);
 

@@ -15,49 +15,43 @@ import { CardEntity } from '../../../card/domain/entities/card.entity';
 
 @Entity('occupation')
 export class OccupationEntity extends BaseEntity {
-  constructor(partial?: Partial<OccupationEntity>) {
-    super();
-    if (partial) {
-      Object.assign(this, partial);
-    }
-  }
-  // ______________________________________________________
-  // Properties
-  // ______________________________________________________
-
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
   @Column({ nullable: false })
   @Length(2, 20)
   name: string;
-
-  // ______________________________________________________
-  // Relations
-  // ______________________________________________________
-
   @ManyToMany(() => ProfileEntity, profileEntity => profileEntity.occupations, {
     cascade: ['soft-remove', 'remove'],
     onDelete: 'CASCADE',
   })
   profiles: ProfileEntity[];
 
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
   @ManyToMany(() => CompanyEntity, companyEntity => companyEntity.occupations)
   companies: CompanyEntity[];
-
   @ManyToMany(() => CardEntity, cardEntity => cardEntity.occupations)
   cards: CardEntity[];
+  @CreateDateColumn()
+  createdAt: Date;
 
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
-
-  @CreateDateColumn()
-  createdAt: Date;
-
   @UpdateDateColumn()
   updatedAt: Date;
-
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<OccupationEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

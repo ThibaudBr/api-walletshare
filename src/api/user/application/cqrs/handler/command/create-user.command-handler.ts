@@ -98,16 +98,6 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
     }
   }
 
-  // Generate a random alphanumeric code of a given length
-  private generateCode(length: number): string {
-    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let code = '';
-    for (let i = 0; i < length; i++) {
-      code += charset.charAt(Math.floor(Math.random() * charset.length));
-    }
-    return code;
-  }
-
   // Generate a unique referral code that does not already exist in the database
   async generateUniqueReferralCode(): Promise<string> {
     let code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
@@ -120,6 +110,16 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
   async getUserByReferralCode(referralCode: string): Promise<boolean> {
     const user = await this.userRepository.findOne({ where: { referralCode: referralCode } });
     return !!user;
+  }
+
+  // Generate a random alphanumeric code of a given length
+  private generateCode(length: number): string {
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let code = '';
+    for (let i = 0; i < length; i++) {
+      code += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    return code;
   }
 
   private async isDuplicatedUsername(username: string): Promise<boolean> {

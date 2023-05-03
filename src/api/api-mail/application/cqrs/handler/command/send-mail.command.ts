@@ -7,6 +7,7 @@ import { SendMailCommand } from '../../command/send-mail.command';
 @CommandHandler(SendMailCommand)
 export class SendMailCommandHandler implements ICommandHandler<SendMailCommand> {
   constructor(@Inject('API_LOG') private client: ClientProxy, private readonly eventBus: EventBus) {}
+
   async execute(command: SendMailCommand): Promise<void> {
     this.client.emit('send-email', command);
     await this.eventBus.publish(

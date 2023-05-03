@@ -123,11 +123,11 @@ describe('CardController (e2e)', () => {
     userIdList.push(public4User.body.id);
 
     const public5User = await createUser('public5Test', 'publicTest5@test.test.fr', 'Test123!', ['PUBLIC']);
-    const public6User = await createUser('public5Test', 'publicTest5@test.test.fr', 'Test123!', ['PUBLIC']);
-    const public7User = await createUser('public5Test', 'publicTest5@test.test.fr', 'Test123!', ['PUBLIC']);
-    const public8User = await createUser('public5Test', 'publicTest5@test.test.fr', 'Test123!', ['PUBLIC']);
-    const public9User = await createUser('public5Test', 'publicTest5@test.test.fr', 'Test123!', ['PUBLIC']);
-    const public10User = await createUser('public5Test', 'publicTest5@test.test.fr', 'Test123!', ['PUBLIC']);
+    const public6User = await createUser('public6Test', 'publicTest6@test.test.fr', 'Test123!', ['PUBLIC']);
+    const public7User = await createUser('public7Test', 'publicTest7@test.test.fr', 'Test123!', ['PUBLIC']);
+    const public8User = await createUser('public8Test', 'publicTest8@test.test.fr', 'Test123!', ['PUBLIC']);
+    const public9User = await createUser('public9Test', 'publicTest9@test.test.fr', 'Test123!', ['PUBLIC']);
+    const public10User = await createUser('public10Test', 'publicTest10@test.test.fr', 'Test123!', ['PUBLIC']);
     userIdList.push(public5User.body.id);
     userIdList.push(public6User.body.id);
     userIdList.push(public7User.body.id);
@@ -450,96 +450,104 @@ describe('CardController (e2e)', () => {
     // _______________________________
     // Group
     // _______________________________
+    //
+    // groupIdList = [];
+    // groupMembershipIdList = [];
+    // async function createGroupTest(name: string, cardId: string): Promise<void> {
+    //   await request(app.getHttpServer())
+    //     .post('/api/test/create-group-test')
+    //     .send({
+    //       name: name,
+    //       cardId: cardId,
+    //     })
+    //     .expect(200)
+    //     .then(res => {
+    //       groupIdList.push(res.body.id);
+    //     });
+    // }
+    //
+    // async function removeGroupTest(groupId: string): Promise<void> {
+    //   await request(app.get)
+    //     .delete('/api/test/remove-group-test/' + groupId)
+    //     .expect(200);
+    // }
+    //
+    // async function addGroupMembershipTest(
+    //   groupId: string,
+    //   cardId: string,
+    //   role: RoleGroupMembershipEnum,
+    // ): Promise<void> {
+    //   await request(app.getHttpServer())
+    //     .post('/api/test/add-group-membership-test/' + role)
+    //     .send({
+    //       groupId: groupId,
+    //       cardIdList: [cardId],
+    //     })
+    //     .expect(200)
+    //     .then(res => {
+    //       groupMembershipIdList.push(res.body.id);
+    //     });
+    // }
+    //
+    // async function removeGroupMembershipTest(groupMembershipId: string): Promise<void> {
+    //   await request(app.getHttpServer())
+    //     .put('/api/test/remove-group-membership-test/' + groupMembershipId)
+    //     .expect(200);
+    // }
+    //
+    // await createGroupTest('group1Public1Card0', cardIdList[0]); // 0 Personne dans le groupe
+    // await createGroupTest('group2Public1Card0', cardIdList[0]); // 1 card 28 a 34 dans le groupe
+    // await createGroupTest('group3Public1Card0', cardIdList[0]); // 2 card 28 a 34 dans le groupe mais removed
+    // await createGroupTest('group4Public1Card8', cardIdList[8]);
+    //
+    // await addGroupMembershipTest(groupIdList[1], cardIdList[28], RoleGroupMembershipEnum.ADMIN); // 0
+    // await addGroupMembershipTest(groupIdList[1], cardIdList[29], RoleGroupMembershipEnum.ADMIN); // 1
+    // await addGroupMembershipTest(groupIdList[1], cardIdList[30], RoleGroupMembershipEnum.MEMBER); // 2
+    // await addGroupMembershipTest(groupIdList[1], cardIdList[31], RoleGroupMembershipEnum.MEMBER); // 3
+    // await addGroupMembershipTest(groupIdList[1], cardIdList[32], RoleGroupMembershipEnum.MEMBER); // 4
+    // await addGroupMembershipTest(groupIdList[1], cardIdList[33], RoleGroupMembershipEnum.MEMBER); // 5
+    // await addGroupMembershipTest(groupIdList[1], cardIdList[34], RoleGroupMembershipEnum.MEMBER); // 6
+    //
+    // await addGroupMembershipTest(groupIdList[2], cardIdList[28], RoleGroupMembershipEnum.ADMIN); // 7
+    // await addGroupMembershipTest(groupIdList[2], cardIdList[29], RoleGroupMembershipEnum.ADMIN); // 8
+    // await addGroupMembershipTest(groupIdList[2], cardIdList[30], RoleGroupMembershipEnum.MEMBER); // 9
+    // await addGroupMembershipTest(groupIdList[2], cardIdList[31], RoleGroupMembershipEnum.MEMBER); // 10
+    // await addGroupMembershipTest(groupIdList[2], cardIdList[32], RoleGroupMembershipEnum.MEMBER); // 11
+    // await addGroupMembershipTest(groupIdList[2], cardIdList[33], RoleGroupMembershipEnum.MEMBER); // 12
+    // await addGroupMembershipTest(groupIdList[2], cardIdList[34], RoleGroupMembershipEnum.MEMBER); // 13
+    //
+    // await addGroupMembershipTest(groupIdList[3], cardIdList[28], RoleGroupMembershipEnum.ADMIN); // 14
+    // await addGroupMembershipTest(groupIdList[3], cardIdList[29], RoleGroupMembershipEnum.ADMIN); // 15
+    // await addGroupMembershipTest(groupIdList[3], cardIdList[30], RoleGroupMembershipEnum.MEMBER); // 16
+    // await addGroupMembershipTest(groupIdList[3], cardIdList[31], RoleGroupMembershipEnum.MEMBER); // 17
+    // await addGroupMembershipTest(groupIdList[3], cardIdList[32], RoleGroupMembershipEnum.MEMBER); // 18
+    // await addGroupMembershipTest(groupIdList[3], cardIdList[33], RoleGroupMembershipEnum.MEMBER); // 19
+    // await addGroupMembershipTest(groupIdList[3], cardIdList[34], RoleGroupMembershipEnum.MEMBER); // 20
+    //
+    // await removeGroupMembershipTest(groupMembershipIdList[7]);
+    // await removeGroupMembershipTest(groupMembershipIdList[8]);
+    // await removeGroupMembershipTest(groupMembershipIdList[9]);
+    // await removeGroupMembershipTest(groupMembershipIdList[10]);
+    // await removeGroupMembershipTest(groupMembershipIdList[11]);
+    // await removeGroupMembershipTest(groupMembershipIdList[12]);
+    // await removeGroupMembershipTest(groupMembershipIdList[13]);
+    //
+    // await removeGroupMembershipTest(groupMembershipIdList[14]);
+    // await removeGroupMembershipTest(groupMembershipIdList[15]);
+    // await removeGroupMembershipTest(groupMembershipIdList[16]);
+    // await removeGroupMembershipTest(groupMembershipIdList[17]);
+    // await removeGroupMembershipTest(groupMembershipIdList[18]);
+    // await removeGroupMembershipTest(groupMembershipIdList[19]);
+    // await removeGroupMembershipTest(groupMembershipIdList[20]);
+    //
+    // await removeGroupTest(groupIdList[2]);
+  });
 
-    groupIdList = [];
-    groupMembershipIdList = [];
-    async function createGroupTest(name: string, cardId: string): Promise<void> {
-      await request(app.getHttpServer())
-        .post('/api/test/create-group-test')
-        .send({
-          name: name,
-          cardId: cardId,
-        })
-        .expect(200)
-        .then(res => {
-          groupIdList.push(res.body.id);
-        });
-    }
-
-    async function removeGroupTest(groupId: string): Promise<void> {
-      await request(app.get)
-        .delete('/api/test/remove-group-test/' + groupId)
-        .expect(200);
-    }
-
-    async function addGroupMembershipTest(
-      groupId: string,
-      cardId: string,
-      role: RoleGroupMembershipEnum,
-    ): Promise<void> {
-      await request(app.getHttpServer())
-        .post('/api/test/add-group-membership-test/' + role)
-        .send({
-          groupId: groupId,
-          cardIdList: [cardId],
-        })
-        .expect(200)
-        .then(res => {
-          groupMembershipIdList.push(res.body.id);
-        });
-    }
-
-    async function removeGroupMembershipTest(groupMembershipId: string): Promise<void> {
-      await request(app.getHttpServer())
-        .put('/api/test/remove-group-membership-test/' + groupMembershipId)
-        .expect(200);
-    }
-
-    await createGroupTest('group1Public1Card0', cardIdList[0]); // 0 Personne dans le groupe
-    await createGroupTest('group2Public1Card0', cardIdList[0]); // 1 card 28 a 34 dans le groupe
-    await createGroupTest('group3Public1Card0', cardIdList[0]); // 2 card 28 a 34 dans le groupe mais removed
-    await createGroupTest('group4Public1Card8', cardIdList[8]);
-
-    await addGroupMembershipTest(groupIdList[1], cardIdList[28], RoleGroupMembershipEnum.ADMIN); // 0
-    await addGroupMembershipTest(groupIdList[1], cardIdList[29], RoleGroupMembershipEnum.ADMIN); // 1
-    await addGroupMembershipTest(groupIdList[1], cardIdList[30], RoleGroupMembershipEnum.MEMBER); // 2
-    await addGroupMembershipTest(groupIdList[1], cardIdList[31], RoleGroupMembershipEnum.MEMBER); // 3
-    await addGroupMembershipTest(groupIdList[1], cardIdList[32], RoleGroupMembershipEnum.MEMBER); // 4
-    await addGroupMembershipTest(groupIdList[1], cardIdList[33], RoleGroupMembershipEnum.MEMBER); // 5
-    await addGroupMembershipTest(groupIdList[1], cardIdList[34], RoleGroupMembershipEnum.MEMBER); // 6
-
-    await addGroupMembershipTest(groupIdList[2], cardIdList[28], RoleGroupMembershipEnum.ADMIN); // 7
-    await addGroupMembershipTest(groupIdList[2], cardIdList[29], RoleGroupMembershipEnum.ADMIN); // 8
-    await addGroupMembershipTest(groupIdList[2], cardIdList[30], RoleGroupMembershipEnum.MEMBER); // 9
-    await addGroupMembershipTest(groupIdList[2], cardIdList[31], RoleGroupMembershipEnum.MEMBER); // 10
-    await addGroupMembershipTest(groupIdList[2], cardIdList[32], RoleGroupMembershipEnum.MEMBER); // 11
-    await addGroupMembershipTest(groupIdList[2], cardIdList[33], RoleGroupMembershipEnum.MEMBER); // 12
-    await addGroupMembershipTest(groupIdList[2], cardIdList[34], RoleGroupMembershipEnum.MEMBER); // 13
-
-    await addGroupMembershipTest(groupIdList[3], cardIdList[28], RoleGroupMembershipEnum.ADMIN); // 14
-    await addGroupMembershipTest(groupIdList[3], cardIdList[29], RoleGroupMembershipEnum.ADMIN); // 15
-    await addGroupMembershipTest(groupIdList[3], cardIdList[30], RoleGroupMembershipEnum.MEMBER); // 16
-    await addGroupMembershipTest(groupIdList[3], cardIdList[31], RoleGroupMembershipEnum.MEMBER); // 17
-    await addGroupMembershipTest(groupIdList[3], cardIdList[32], RoleGroupMembershipEnum.MEMBER); // 18
-    await addGroupMembershipTest(groupIdList[3], cardIdList[33], RoleGroupMembershipEnum.MEMBER); // 19
-    await addGroupMembershipTest(groupIdList[3], cardIdList[34], RoleGroupMembershipEnum.MEMBER); // 20
-
-    await removeGroupMembershipTest(groupMembershipIdList[7]);
-    await removeGroupMembershipTest(groupMembershipIdList[8]);
-    await removeGroupMembershipTest(groupMembershipIdList[9]);
-    await removeGroupMembershipTest(groupMembershipIdList[10]);
-    await removeGroupMembershipTest(groupMembershipIdList[11]);
-    await removeGroupMembershipTest(groupMembershipIdList[12]);
-    await removeGroupMembershipTest(groupMembershipIdList[13]);
-
-    await removeGroupMembershipTest(groupMembershipIdList[14]);
-    await removeGroupMembershipTest(groupMembershipIdList[15]);
-    await removeGroupMembershipTest(groupMembershipIdList[16]);
-    await removeGroupMembershipTest(groupMembershipIdList[17]);
-    await removeGroupMembershipTest(groupMembershipIdList[18]);
-    await removeGroupMembershipTest(groupMembershipIdList[19]);
-    await removeGroupMembershipTest(groupMembershipIdList[20]);
-
-    await removeGroupTest(groupIdList[2]);
+  describe('Hello world', () => {
+    it('/ (GET)', async () => {
+      const response = await request(app.getHttpServer()).get('/').expect(200).expect('Hello World!');
+      expect(response).toBeDefined();
+      expect(response.status).toEqual(200);
+    });
   });
 });

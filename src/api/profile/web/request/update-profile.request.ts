@@ -5,6 +5,7 @@ export class UpdateProfileRequest {
   public readonly usernameProfile: string;
   public readonly roleProfile: RoleProfileEnum;
   public readonly occupationsId: string[];
+
   constructor(partial: Partial<UpdateProfileRequest>) {
     Object.assign(this, partial);
   }

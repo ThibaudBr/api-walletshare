@@ -1,31 +1,14 @@
-import {
-  BaseEntity,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { BaseEntity, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CardEntity } from './card.entity';
 
 @Entity({ name: 'card_view' })
 export class CardViewEntity extends BaseEntity {
-  constructor(partial: Partial<CardViewEntity>) {
-    super();
-    Object.assign(this, partial);
-  }
-
-  // ______________________________________________________
-  // Properties
-  // ______________________________________________________
-
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   // ______________________________________________________
-  // Relations
+  // Properties
   // ______________________________________________________
-
   @ManyToOne(() => CardEntity, card => card.cardViews, {
     cascade: ['insert', 'update'],
     onDelete: 'CASCADE',
@@ -33,12 +16,19 @@ export class CardViewEntity extends BaseEntity {
   card: CardEntity;
 
   // ______________________________________________________
-  // Timestamps
+  // Relations
   // ______________________________________________________
-
   @CreateDateColumn()
   createdAt: Date;
 
+  // ______________________________________________________
+  // Timestamps
+  // ______________________________________________________
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial: Partial<CardViewEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

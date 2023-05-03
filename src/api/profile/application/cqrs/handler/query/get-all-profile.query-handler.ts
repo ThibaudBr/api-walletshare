@@ -13,6 +13,7 @@ export class GetAllProfileQueryHandler implements IQueryHandler<GetAllProfileQue
     private readonly profileRepository: Repository<ProfileEntity>,
     private readonly eventBus: EventBus,
   ) {}
+
   async execute(): Promise<ProfileResponse[]> {
     try {
       const profiles = await this.profileRepository.find();
