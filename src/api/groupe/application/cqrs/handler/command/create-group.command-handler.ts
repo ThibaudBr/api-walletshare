@@ -40,8 +40,8 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
           },
         ],
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'CreateGroupCommandHandler',
@@ -55,8 +55,8 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
       .save({
         name: command.name,
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'CreateGroupCommandHandler',
@@ -72,8 +72,8 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
       card: card,
     });
 
-    await this.groupMembershipRepository.save(newGroupMembership).catch(error => {
-      this.eventBus.publish(
+    await this.groupMembershipRepository.save(newGroupMembership).catch(async error => {
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: 'group',
           handler: 'CreateGroupCommandHandler',

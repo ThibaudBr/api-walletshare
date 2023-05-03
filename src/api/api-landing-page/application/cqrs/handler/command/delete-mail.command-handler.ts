@@ -13,9 +13,9 @@ export class DeleteMailCommandHandler implements ICommandHandler<DeleteMailComma
   async execute(command: DeleteMailCommand): Promise<void> {
     return await firstValueFrom(
       this.client.send({ cmd: 'delete' }, command.mail).pipe(
-        catchError(err => {
+        catchError(async err => {
           if (err.status !== undefined) {
-            this.eventBus.publish(
+            await this.eventBus.publish(
               new ErrorCustomEvent({
                 handler: 'DeleteMailCommandHandler',
                 localisation: 'api-waiting-list',
@@ -24,7 +24,7 @@ export class DeleteMailCommandHandler implements ICommandHandler<DeleteMailComma
             );
             throw new HttpException('Mail does not exist', 404);
           }
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({
               handler: 'DeleteMailCommandHandler',
               localisation: 'api-waiting-list',
@@ -34,8 +34,8 @@ export class DeleteMailCommandHandler implements ICommandHandler<DeleteMailComma
           throw new HttpException('unreachable', HttpStatus.SERVICE_UNAVAILABLE);
         }),
       ),
-    ).then(() => {
-      this.eventBus.publish(new DeleteMailEvent(command));
+    ).then(async () => {
+      await this.eventBus.publish(new DeleteMailEvent(command));
     });
   }
 }

@@ -5,6 +5,7 @@ import { ApiLogService } from '../../../../../api-log/application/api-log.servic
 @EventsHandler(DeleteUserEvent)
 export class DeleteUserEventHandler implements IEventHandler<DeleteUserEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
+
   async handle(event: DeleteUserEvent): Promise<void> {
     await this.apiLogService.createLogForMethode({
       module: event.module,

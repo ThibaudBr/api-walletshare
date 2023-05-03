@@ -28,7 +28,7 @@ export class DeleteUserCommandHandler implements ICommandHandler<DeleteUserComma
           throw new Error('Invalid id');
         });
       await this.userRepository.remove(userToDelete);
-      this.eventBus.publish(new DeleteUserEvent(command.userId));
+      await this.eventBus.publish(new DeleteUserEvent(command.userId));
     } catch (error) {
       this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'DeleteUserCommandHandler', error }));
       throw new InvalidIdHttpException();

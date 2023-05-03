@@ -10,6 +10,7 @@ export const RoleGuard = (roles: UserRoleEnum[]): Type<CanActivate> => {
     constructor(private readonly userService: UserService) {
       super();
     }
+
     async canActivate(context: ExecutionContext): Promise<boolean> {
       await super.canActivate(context);
 
@@ -18,5 +19,6 @@ export const RoleGuard = (roles: UserRoleEnum[]): Type<CanActivate> => {
       return roles.some(role => user?.roles.includes(role));
     }
   }
+
   return mixin(RoleGuardMixin);
 };

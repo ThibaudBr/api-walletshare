@@ -21,8 +21,8 @@ export class DeleteGroupMembershipCommandHandler implements ICommandHandler<Dele
           id: command.groupMembershipId,
         },
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'DeleteGroupMembershipCommandHandler',
@@ -32,8 +32,8 @@ export class DeleteGroupMembershipCommandHandler implements ICommandHandler<Dele
         throw error;
       });
 
-    await this.groupMembershipRepository.delete(groupMembership.id).catch(error => {
-      this.eventBus.publish(
+    await this.groupMembershipRepository.delete(groupMembership.id).catch(async error => {
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: 'group',
           handler: 'DeleteGroupMembershipCommandHandler',

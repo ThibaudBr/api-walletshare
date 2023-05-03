@@ -25,8 +25,8 @@ export class RestoreGroupCommandHandler implements ICommandHandler<RestoreGroupC
           },
         ],
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'RestoreGroupCommandHandler',
@@ -37,11 +37,11 @@ export class RestoreGroupCommandHandler implements ICommandHandler<RestoreGroupC
       });
     await this.groupRepository
       .restore(command.groupId)
-      .then(() => {
-        this.eventBus.publish(new RestoreGroupCommand({ groupId: command.groupId }));
+      .then(async () => {
+        await this.eventBus.publish(new RestoreGroupCommand({ groupId: command.groupId }));
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'RestoreGroupCommandHandler',

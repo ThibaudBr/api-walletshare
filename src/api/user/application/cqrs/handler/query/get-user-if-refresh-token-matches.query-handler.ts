@@ -29,7 +29,7 @@ export class GetUserIfRefreshTokenMatchesQueryHandler implements IQueryHandler<G
         return user;
       }
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: 'user',
           handler: 'GetUserIfRefreshTokenMatchesQueryHandler',

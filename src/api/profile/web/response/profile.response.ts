@@ -6,6 +6,7 @@ export class ProfileResponse {
   public readonly isDeleted?: boolean;
 
   public readonly roleProfile?: string;
+
   constructor(partial: Partial<ProfileResponse>) {
     Object.assign(this, partial);
   }

@@ -40,7 +40,7 @@ export class GetProfileWithCriteriaQueryHandler implements IQueryHandler<GetProf
           }),
       );
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: 'profile',
           handler: 'GetProfileWithCriteriaQueryHandler',

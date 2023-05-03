@@ -10,6 +10,7 @@ import { VerboseLogEnum } from '../api/api-log/domain/enum/verbose-log.enum';
 @Injectable()
 export class RequestLoggingMiddleware implements NestMiddleware {
   private readonly VERBOSE: VerboseLogEnum;
+
   constructor(private readonly apiLoggerService: ApiLogService) {
     this.VERBOSE = (process.env.VERBOSE as VerboseLogEnum) || VerboseLogEnum.NONE;
   }

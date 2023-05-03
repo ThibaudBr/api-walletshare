@@ -3,10 +3,6 @@ import { RoleGroupMembershipEnum } from '../../domain/enum/role-group-membership
 import { GroupResponse } from './group.response';
 
 export class GroupMembershipResponse {
-  constructor(partial: Partial<GroupMembershipResponse>) {
-    Object.assign(this, partial);
-  }
-
   public readonly id: string;
   public readonly cardResponse?: CardResponse;
   public readonly cardId: string;
@@ -16,4 +12,8 @@ export class GroupMembershipResponse {
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
   public readonly deletedAt?: Date;
+
+  constructor(partial: Partial<GroupMembershipResponse>) {
+    Object.assign(this, partial);
+  }
 }

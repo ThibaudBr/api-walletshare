@@ -28,7 +28,9 @@ import { SoftDeleteSocialNetworkCommandHandler } from './application/cqrs/handle
     TypeOrmModule.forFeature([UserEntity, SocialNetworkEntity]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([{ name: 'API_LOG', transport: Transport.TCP, options: { port: 3001 } }]),
+    ClientsModule.register([
+      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
+    ]),
   ],
   controllers: [SocialNetworkController],
   providers: [

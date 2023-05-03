@@ -58,7 +58,7 @@ export class UpdateOccupationCommandHandler implements ICommandHandler<UpdateOcc
           );
         });
     } catch (e) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'UpdateOccupationCommandHandler',
           localisation: 'Occupation',

@@ -9,6 +9,7 @@ import * as bcrypt from 'bcrypt';
 import { LoginOfUserEvent } from '../../event/login-of-user.event';
 
 config();
+
 @QueryHandler(GetUserLoginQuery)
 export class GetUserLoginQueryHandler implements IQueryHandler<GetUserLoginQuery> {
   constructor(
@@ -28,7 +29,7 @@ export class GetUserLoginQueryHandler implements IQueryHandler<GetUserLoginQuery
         if (!(await this.verifyPassword(query.plainTextPassword, userUsername.password))) {
           throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
         }
-        this.eventBus.publish(new LoginOfUserEvent(userUsername.id));
+        await this.eventBus.publish(new LoginOfUserEvent(userUsername.id));
 
         return userUsername;
       } else {
@@ -43,11 +44,11 @@ export class GetUserLoginQueryHandler implements IQueryHandler<GetUserLoginQuery
           this.eventBus.publish(new LoginOfUserEvent(userUsername.id));
           return userUsername;
         } else {
-          throw 'Error: no match found';
+          throw new Error('no match found');
         }
       }
     } catch (error) {
-      throw 'Error: no match found';
+      throw new Error('no match found');
     }
   }
 

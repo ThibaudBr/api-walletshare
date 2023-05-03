@@ -48,6 +48,7 @@ export class UpdateUserCredentialCommandHandler implements ICommandHandler<Updat
       throw error;
     }
   }
+
   private isValidPassword(password: string): boolean {
     return this.regexValidatePassword.test(password);
   }

@@ -10,7 +10,6 @@ export class DeleteSocialNetworkCommandHandler implements ICommandHandler<Delete
   constructor(
     @InjectRepository(SocialNetworkEntity)
     private readonly socialNetworkRepository: Repository<SocialNetworkEntity>,
-
     private readonly eventBus: EventBus,
   ) {}
 

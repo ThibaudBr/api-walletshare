@@ -8,6 +8,7 @@ import { Request } from 'express';
 import { RequestUser } from '../../domain/interface/request-user.interface';
 
 config();
+
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-refresh-token') {
   constructor(private readonly userService: UserService) {

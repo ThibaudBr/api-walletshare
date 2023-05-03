@@ -26,7 +26,7 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler<SoftDeleteC
         });
 
       await this.cardRepository.softRemove(cardToDelete);
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new SoftDeleteCardEvent({
           cardId: command.id,
         }),

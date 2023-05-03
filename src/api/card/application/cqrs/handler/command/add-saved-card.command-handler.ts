@@ -52,8 +52,8 @@ export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardC
           card.profilesWhoSavedCard.push(profileEntity);
           await this.cardRepository
             .save(card)
-            .then(() => {
-              this.eventBus.publish(
+            .then(async () => {
+              await this.eventBus.publish(
                 new AddSavedCardEvent({
                   cardId: command.cardId,
                 }),

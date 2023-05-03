@@ -23,7 +23,7 @@ export class RestoreUserCommandHandler implements ICommandHandler<RestoreUserCom
         throw new Error('User not found');
       }
       await this.userRepository.restore(command.id);
-      this.eventBus.publish(new RestoreUserEvent(command.id));
+      await this.eventBus.publish(new RestoreUserEvent(command.id));
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({ localisation: 'user', handler: 'RestoreUserCommandHandler', error }),

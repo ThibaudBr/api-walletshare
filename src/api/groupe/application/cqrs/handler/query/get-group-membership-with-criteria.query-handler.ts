@@ -89,8 +89,8 @@ export class GetGroupMembershipWithCriteriaQueryHandler implements IQueryHandler
       });
     }
 
-    return groupMembershipQueryBuilder.getMany().catch(error => {
-      this.eventBus.publish(
+    return groupMembershipQueryBuilder.getMany().catch(async error => {
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: 'group',
           handler: 'GetGroupMembershipWithCriteriaQueryHandler',

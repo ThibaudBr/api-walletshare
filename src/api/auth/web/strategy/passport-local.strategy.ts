@@ -12,6 +12,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       passwordField: 'password',
     });
   }
+
   async validate(login: string, password: string): Promise<UserEntity> {
     return this.authenticationService.login(login, password);
   }

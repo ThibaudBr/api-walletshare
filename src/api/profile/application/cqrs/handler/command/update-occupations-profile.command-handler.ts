@@ -51,14 +51,14 @@ export class UpdateOccupationsProfileCommandHandler implements ICommandHandler<U
         }
       }
 
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new UpdateOccupationsProfileEvent({
           listOfOccupationId: command.occupations,
           profileId: command.id,
         }),
       );
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'UpdateOccupationProfileCommandHandler',
           localisation: 'profile',

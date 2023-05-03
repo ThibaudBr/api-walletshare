@@ -35,7 +35,9 @@ import { DeleteUserCommandHandler } from './application/cqrs/handler/command/del
     TypeOrmModule.forFeature([UserEntity]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([{ name: 'API_LOG', transport: Transport.TCP, options: { port: 3001 } }]),
+    ClientsModule.register([
+      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
+    ]),
   ],
   controllers: [UserController],
   providers: [

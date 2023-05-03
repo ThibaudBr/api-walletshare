@@ -1,8 +1,4 @@
 export class GetGroupWithCriteriaQuery {
-  constructor(partial: Partial<GetGroupWithCriteriaQuery>) {
-    Object.assign(this, partial);
-  }
-
   public cardId?: string;
   public isDeleted?: boolean;
   public name?: string;
@@ -12,4 +8,8 @@ export class GetGroupWithCriteriaQuery {
   updateAtTo?: Date;
   deleteAtFrom?: Date;
   deleteAtTo?: Date;
+
+  constructor(partial: Partial<GetGroupWithCriteriaQuery>) {
+    Object.assign(this, partial);
+  }
 }

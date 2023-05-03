@@ -165,11 +165,11 @@ export class UserService {
     return await this.queryBus.execute(new GetUserQuery(userId));
   }
 
-  private generatePassword(): string {
-    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
-  }
-
   async fullDelete(id: string): Promise<void> {
     return await this.commandBus.execute(new DeleteUserCommand({ userId: id }));
+  }
+
+  private generatePassword(): string {
+    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
   }
 }

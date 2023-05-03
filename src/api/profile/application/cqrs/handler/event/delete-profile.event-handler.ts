@@ -5,11 +5,12 @@ import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 @EventsHandler(DeleteProfileEvent)
 export class DeleteProfileEventHandler implements IEventHandler<DeleteProfileEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
+
   async handle(event: DeleteProfileEvent): Promise<void> {
     await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: 'Profile with id: ' + event.deleteProfileCommand.id + ' deleted',
+      body: 'Profile with id: ' + event.id + ' deleted',
     });
   }
 }

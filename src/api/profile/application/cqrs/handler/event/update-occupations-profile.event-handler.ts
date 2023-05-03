@@ -5,6 +5,7 @@ import { ApiLogService } from '../../../../../api-log/application/api-log.servic
 @EventsHandler(UpdateOccupationsProfileEvent)
 export class UpdateOccupationsProfileEventHandler implements IEventHandler<UpdateOccupationsProfileEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
+
   async handle(event: UpdateOccupationsProfileEvent): Promise<void> {
     await this.apiLogService.createLogForMethode({
       module: event.module,

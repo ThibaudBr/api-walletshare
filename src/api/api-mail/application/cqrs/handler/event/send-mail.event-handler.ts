@@ -5,6 +5,7 @@ import { ApiLogService } from '../../../../../api-log/application/api-log.servic
 @EventsHandler(SendMailEvent)
 export class SendMailEventHandler implements IEventHandler<SendMailEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
+
   async handle(event: SendMailEvent): Promise<void> {
     await this.apiLogService.createLogForMethode({
       module: event.module,

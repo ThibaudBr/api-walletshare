@@ -9,10 +9,6 @@ import { SocialNetworkResponse } from '../../../social-network/web/response/soci
 import { GroupMembershipResponse } from '../../../groupe/web/response/group-membership.response';
 
 export class CardResponse {
-  constructor(partial: Partial<CardResponse>) {
-    Object.assign(this, partial);
-  }
-
   id: string;
   socialName?: string;
   isOwnerPro: boolean;
@@ -41,4 +37,8 @@ export class CardResponse {
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
+
+  constructor(partial: Partial<CardResponse>) {
+    Object.assign(this, partial);
+  }
 }

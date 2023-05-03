@@ -35,13 +35,13 @@ export class UpdateProfileCommandHandler implements ICommandHandler<UpdateProfil
       }
 
       await this.profileRepository.save(updateProfile);
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new UpdateProfileEvent({
           updateProfileCommand: command,
         }),
       );
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'UpdateProfileCommandHandler',
           error: error.message,

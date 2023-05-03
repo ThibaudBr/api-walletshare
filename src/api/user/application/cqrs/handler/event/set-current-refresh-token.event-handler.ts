@@ -5,6 +5,7 @@ import { ApiLogService } from '../../../../../api-log/application/api-log.servic
 @EventsHandler(SetCurrentRefreshTokenEvent)
 export class SetCurrentRefreshTokenEventHandler implements IEventHandler<SetCurrentRefreshTokenEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
+
   handle(event: SetCurrentRefreshTokenEvent): void {
     this.apiLogService.createLogForMethode({
       module: event.module,

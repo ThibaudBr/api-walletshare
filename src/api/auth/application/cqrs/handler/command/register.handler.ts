@@ -84,6 +84,20 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
     return insertedUser;
   }
 
+  // Generate a unique referral code that does not already exist in the database
+  async generateUniqueReferralCode(): Promise<string> {
+    let code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
+    while (await this.getUserByReferralCode(code)) {
+      code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
+    }
+    return code;
+  }
+
+  async getUserByReferralCode(referralCode: string): Promise<boolean> {
+    const user = await this.userRepository.findOne({ where: { referralCode: referralCode } });
+    return !!user;
+  }
+
   private async isDuplicatedUsername(username: string): Promise<boolean> {
     return await this.userRepository.find().then(users => {
       return users.some(user => user.username === username);
@@ -117,19 +131,5 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
       code += charset.charAt(Math.floor(Math.random() * charset.length));
     }
     return code;
-  }
-
-  // Generate a unique referral code that does not already exist in the database
-  async generateUniqueReferralCode(): Promise<string> {
-    let code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
-    while (await this.getUserByReferralCode(code)) {
-      code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
-    }
-    return code;
-  }
-
-  async getUserByReferralCode(referralCode: string): Promise<boolean> {
-    const user = await this.userRepository.findOne({ where: { referralCode: referralCode } });
-    return !!user;
   }
 }

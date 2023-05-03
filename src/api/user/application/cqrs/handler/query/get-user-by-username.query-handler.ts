@@ -18,7 +18,7 @@ export class GetUserByUsernameQueryHandler implements IQueryHandler<GetUserByUse
         select: ['id', 'username', 'password', 'roles', 'createdAt', 'updatedAt'],
       });
     } catch (error) {
-      throw 'Error: no match found';
+      throw new Error('no match found');
     }
   }
 }

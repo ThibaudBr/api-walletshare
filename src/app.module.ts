@@ -22,6 +22,7 @@ import { OccupationModule } from './api/occupation/occupation.module';
 import { SocialNetworkModule } from './api/social-network/social-network.module';
 import { CardModule } from './api/card/card.module';
 import { GroupModule } from './api/groupe/group.module';
+import * as process from 'process';
 
 @Module({
   imports: [
@@ -32,8 +33,8 @@ import { GroupModule } from './api/groupe/group.module';
       useClass: DatabaseConfiguration,
     }),
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: 3201 } },
-      { name: 'API_MAIL', transport: Transport.TCP, options: { port: 3202 } },
+      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
+      { name: 'API_MAIL', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_MAIL || 3102) } },
     ]),
     CqrsModule,
     // ________ Module ________

@@ -7,6 +7,7 @@ import { CreateMethodLogDto } from '../domain/dto/create-method-log.dto';
 @Injectable()
 export class ApiLogService {
   constructor(private readonly commandBus: CommandBus) {}
+
   async createLog(log: CreateLogDto): Promise<void> {
     await this.commandBus.execute(
       new CreateLogCommand({
@@ -21,6 +22,7 @@ export class ApiLogService {
       module: log.module,
       body: Object(log.body),
     });
+
     await this.commandBus.execute(
       new CreateLogCommand({
         ...createLogDto,

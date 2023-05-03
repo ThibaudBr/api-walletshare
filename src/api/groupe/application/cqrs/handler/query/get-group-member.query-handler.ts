@@ -27,8 +27,8 @@ export class GetGroupMemberQueryHandler implements IQueryHandler<GetGroupMemberQ
       .then(async group => {
         return group.members;
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'GetGroupByIdQueryHandler',

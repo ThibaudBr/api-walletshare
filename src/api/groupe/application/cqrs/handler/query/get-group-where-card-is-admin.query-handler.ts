@@ -29,8 +29,8 @@ export class GetGroupWhereCardIsAdminQueryHandler implements IEventHandler<GetGr
           },
         ],
       })
-      .catch(error => {
-        this.eventBus.publish(
+      .catch(async error => {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'group',
             handler: 'GetGroupWhereCardIsAdminQueryHandler',

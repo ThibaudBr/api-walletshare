@@ -11,7 +11,6 @@ import { CreateLogCommandHandler } from './application/cqrs/handler/command/crea
       { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
     ]),
     CqrsModule,
-    ApiLogModule,
   ],
   controllers: [],
   providers: [ApiLogService, ErrorCustomEventHandler, CreateLogCommandHandler],

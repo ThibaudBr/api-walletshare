@@ -383,6 +383,7 @@ export class CardService {
       else throw new InternalServerErrorException(error);
     }
   }
+
   async addConnectedCardToMyCard(userId: string, cardId: string, connectedCardId: string): Promise<void> {
     try {
       if (await this.isCardOwnerWithUserId(userId, cardId)) {

@@ -2,12 +2,6 @@ import { UserEntity } from '../../domain/entities/user.entity';
 import { UserRoleEnum } from '../../domain/enum/user-role.enum';
 
 export class UserLoginResponse {
-  constructor(partial?: Partial<UserEntity>) {
-    if (partial) {
-      Object.assign(this, partial);
-    }
-  }
-
   public readonly id: string;
   public readonly username?: string;
   public readonly email?: string;
@@ -16,4 +10,10 @@ export class UserLoginResponse {
   public token: string;
   public readonly roles: UserRoleEnum[];
   public password?: string;
+
+  constructor(partial?: Partial<UserEntity>) {
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

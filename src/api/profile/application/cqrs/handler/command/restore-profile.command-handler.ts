@@ -26,13 +26,13 @@ export class RestoreProfileCommandHandler implements ICommandHandler<RestoreProf
         });
       if (!profile.deletedAt) throw new Error('Profile is not soft deleted');
       await this.profileRepository.restore(command.profileId);
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new RestoreProfileEvent({
           profileId: command.profileId,
         }),
       );
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'RestoreProfileCommandHandler',
           localisation: 'profile',

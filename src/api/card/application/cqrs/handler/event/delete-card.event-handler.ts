@@ -5,6 +5,7 @@ import { ApiLogService } from '../../../../../api-log/application/api-log.servic
 @EventsHandler(DeleteCardEvent)
 export class DeleteCardEventHandler implements IEventHandler<DeleteCardEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
+
   async handle(event: DeleteCardEvent): Promise<void> {
     await this.apiLogService.createLogForMethode({
       module: event.module,

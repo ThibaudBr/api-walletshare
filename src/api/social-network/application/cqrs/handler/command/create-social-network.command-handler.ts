@@ -37,14 +37,14 @@ export class CreateSocialNetworkCommandHandler implements ICommandHandler<Create
 
       this.socialNetworkRepository
         .save(newSocialNetworkEntity)
-        .then(socialNetworkEntity => {
-          this.eventBus.publish(new CreateSocialNetworkEvent(socialNetworkEntity.id));
+        .then(async socialNetworkEntity => {
+          await this.eventBus.publish(new CreateSocialNetworkEvent(socialNetworkEntity.id));
         })
         .catch(() => {
           throw new Error('SocialNetwork not created');
         });
     } catch (e) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'CreateSocialNetworkCommandHandler',
           localisation: 'SocialNetwork',
