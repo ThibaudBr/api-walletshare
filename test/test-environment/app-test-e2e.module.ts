@@ -23,7 +23,7 @@ import { SubscriptionEntity } from '../../src/api/entities-to-create/subscriptio
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
 import { NotificationEntity } from '../../src/api/entities-to-create/notification.entity';
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
-import { AddressEntity } from '../../src/api/entities-to-create/address.entity';
+import { AddressEntity } from '../../src/api/address/domain/entities/address.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
 import { UserTestE2eController } from './controller-test/user-test-e2e.controller';
 import { OccupationTestE2eController } from './controller-test/occupation-test-e2e.controller';

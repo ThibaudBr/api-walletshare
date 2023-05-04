@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AddressEntity } from '../../../src/api/entities-to-create/address.entity';
+import { AddressEntity } from '../../../src/api/address/domain/entities/address.entity';
 import StripEventEntity from '../../../src/api/entities-to-create/strip-event.entity';
 import { ReferralCodeEntity } from '../../../src/api/entities-to-create/referal-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';

@@ -23,7 +23,7 @@ import { SubscriptionEntity } from '../../api/entities-to-create/subscription.en
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
 import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
-import { AddressEntity } from '../../api/entities-to-create/address.entity';
+import { AddressEntity } from '../../api/address/domain/entities/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
 import { ProfileSubscriber } from '../../api/profile/application/subscriber/profile.subscriber';
 import { ConnectedCardSubscriber } from '../../api/card/application/subscriber/connected-card.subscriber';
@@ -32,6 +32,8 @@ import { GroupMembershipCardSubscriber } from '../../api/groupe/application/subs
 import { GroupGroupMembershipSubscriber } from '../../api/groupe/application/subscriber/group-group-membership.subscriber';
 import { CardViewSubscriber } from '../../api/card/application/subscriber/card-view.subscriber';
 import { CardViewEntity } from '../../api/card/domain/entities/card-view.entity';
+import { CompanyAddressSubscriber } from '../../api/address/application/subscriber/company-address.subscriber';
+import { UserAddressSubscriber } from '../../api/address/application/subscriber/user-address.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -62,6 +64,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
             CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'pprod') {
@@ -89,6 +93,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
             CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'test') {
@@ -134,6 +140,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
             CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'dev') {
@@ -179,6 +187,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
             CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
           ],
         };
       } else {

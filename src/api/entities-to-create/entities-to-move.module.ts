@@ -19,7 +19,7 @@ import StripEventEntity from './strip-event.entity';
 import { SubscriptionEntity } from './subscription.entity';
 import { ReferralCodeEntity } from './referal-code.entity';
 import { NotificationEntity } from './notification.entity';
-import { AddressEntity } from './address.entity';
+import { AddressEntity } from '../address/domain/entities/address.entity';
 
 @Module({
   imports: [
