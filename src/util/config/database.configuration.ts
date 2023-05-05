@@ -42,7 +42,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
         return {
           type: 'postgres',
           host: process.env.TYPEORM_HOST_PROD,
-          port: process.env.TYPEORM_PORT_PROD ? parseInt(process.env.TYPEORM_PORT_PROD) : 5434,
+          port: process.env.TYPEORM_PORT_PROD,
           username: process.env.TYPEORM_USERNAME_PROD,
           password: process.env.TYPEORM_PASSWORD_PROD,
           database: process.env.TYPEORM_DATABASE_PROD,
