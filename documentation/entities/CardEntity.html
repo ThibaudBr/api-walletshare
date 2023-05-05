@@ -1,0 +1,1459 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api-walletshare documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">api-walletshare documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content entity">
+                   <div class="content-data">
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Entities</li>
+  <li >CardEntity</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/api/card/domain/entities/card.entity.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#birthday" >birthday</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#companyName" >companyName</a>
+                            </li>
+                            <li>
+                                <a href="#connectedCardOne" >connectedCardOne</a>
+                            </li>
+                            <li>
+                                <a href="#connectedCardTwo" >connectedCardTwo</a>
+                            </li>
+                            <li>
+                                <a href="#createdAt" >createdAt</a>
+                            </li>
+                            <li>
+                                <a href="#deletedAt" >deletedAt</a>
+                            </li>
+                            <li>
+                                <a href="#emails" >emails</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#firstname" >firstname</a>
+                            </li>
+                            <li>
+                                <a href="#groupMemberships" >groupMemberships</a>
+                            </li>
+                            <li>
+                                <a href="#id" >id</a>
+                            </li>
+                            <li>
+                                <a href="#isOwnerPro" >isOwnerPro</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#lastname" >lastname</a>
+                            </li>
+                            <li>
+                                <a href="#media" >media</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#messages" >messages</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#notes" >notes</a>
+                            </li>
+                            <li>
+                                <a href="#numberOfShares" >numberOfShares</a>
+                            </li>
+                            <li>
+                                <a href="#occupations" >occupations</a>
+                            </li>
+                            <li>
+                                <a href="#owner" >owner</a>
+                            </li>
+                            <li>
+                                <a href="#phones" >phones</a>
+                            </li>
+                            <li>
+                                <a href="#profilesWhoSavedCard" >profilesWhoSavedCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#socialName" >socialName</a>
+                            </li>
+                            <li>
+                                <a href="#socialNetwork" >socialNetwork</a>
+                            </li>
+                            <li>
+                                <a href="#transferableStatusCardEnum" >transferableStatusCardEnum</a>
+                            </li>
+                            <li>
+                                <a href="#typeOfCardEnum" >typeOfCardEnum</a>
+                            </li>
+                            <li>
+                                <a href="#updatedAt" >updatedAt</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#urls" >urls</a>
+                            </li>
+                            <li>
+                                <a href="#whoCanCommunicateWithEnum" >whoCanCommunicateWithEnum</a>
+                            </li>
+                            <li>
+                                <a href="#whoCanSeeCardInformationEnum" >whoCanSeeCardInformationEnum</a>
+                            </li>
+                            <li>
+                                <a href="#whoCanShareCardEnum" >whoCanShareCardEnum</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="birthday"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>birthday</b></span>
+                        <a href="#birthday"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="companyName"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>companyName</b></span>
+                        <a href="#companyName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectedCardOne"></a>
+                    <span class="name">
+                        <span ><b>connectedCardOne</b></span>
+                        <a href="#connectedCardOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ConnectedCardEntity[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToMany(undefined, connectedCard &#x3D;&gt; connectedCard.cardEntityOne, {cascade: true, onDelete: &#x27;SET NULL&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectedCardTwo"></a>
+                    <span class="name">
+                        <span ><b>connectedCardTwo</b></span>
+                        <a href="#connectedCardTwo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ConnectedCardEntity[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToMany(undefined, connectedCard &#x3D;&gt; connectedCard.cardEntityTwo, {cascade: true, onDelete: &#x27;SET NULL&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createdAt"></a>
+                    <span class="name">
+                        <span ><b>createdAt</b></span>
+                        <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @CreateDateColumn()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:158</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deletedAt"></a>
+                    <span class="name">
+                        <span ><b>deletedAt</b></span>
+                        <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @DeleteDateColumn()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:164</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emails"></a>
+                    <span class="name">
+                        <span ><b>emails</b></span>
+                        <a href="#emails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column(&#x27;text&#x27;, {array: true, default: undefined})<br />@IsEmail({}, {each: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstname"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>firstname</b></span>
+                        <a href="#firstname"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupMemberships"></a>
+                    <span class="name">
+                        <span ><b>groupMemberships</b></span>
+                        <a href="#groupMemberships"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/GroupMembershipEntity.html" target="_self" >GroupMembershipEntity[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToMany(undefined, groupMembership &#x3D;&gt; groupMembership.card, {cascade: true, onDelete: &#x27;SET NULL&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="id"></a>
+                    <span class="name">
+                        <span ><b>id</b></span>
+                        <a href="#id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @PrimaryGeneratedColumn(&#x27;uuid&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isOwnerPro"></a>
+                    <span class="name">
+                        <span ><b>isOwnerPro</b></span>
+                        <a href="#isOwnerPro"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({default: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastname"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>lastname</b></span>
+                        <a href="#lastname"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="media"></a>
+                    <span class="name">
+                        <span ><b>media</b></span>
+                        <a href="#media"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/MediaEntity.html" target="_self" >MediaEntity</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToOne(undefined, media &#x3D;&gt; media.CardPicture, {cascade: true, onDelete: &#x27;SET NULL&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="messages"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>messages</b></span>
+                        <a href="#messages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/MessageEntity.html" target="_self" >MessageEntity[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToMany(undefined, message &#x3D;&gt; message.author, {cascade: true, onDelete: &#x27;SET NULL&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notes"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>notes</b></span>
+                        <a href="#notes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column(&#x27;text&#x27;, {nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numberOfShares"></a>
+                    <span class="name">
+                        <span ><b>numberOfShares</b></span>
+                        <a href="#numberOfShares"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;integer&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="occupations"></a>
+                    <span class="name">
+                        <span ><b>occupations</b></span>
+                        <a href="#occupations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/OccupationEntity.html" target="_self" >OccupationEntity[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToMany(undefined, occupation &#x3D;&gt; occupation.cards, {onDelete: &#x27;SET NULL&#x27;, cascade: undefined})<br />@JoinTable()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="owner"></a>
+                    <span class="name">
+                        <span ><b>owner</b></span>
+                        <a href="#owner"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/ProfileEntity.html" target="_self" >ProfileEntity</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToOne(undefined, profile &#x3D;&gt; profile.personalCards, {cascade: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="phones"></a>
+                    <span class="name">
+                        <span ><b>phones</b></span>
+                        <a href="#phones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column(&#x27;text&#x27;, {array: true, default: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="profilesWhoSavedCard"></a>
+                    <span class="name">
+                        <span ><b>profilesWhoSavedCard</b></span>
+                        <a href="#profilesWhoSavedCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/ProfileEntity.html" target="_self" >ProfileEntity[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToMany(undefined, profile &#x3D;&gt; profile.savedCard, {cascade: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="socialName"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>socialName</b></span>
+                        <a href="#socialName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="socialNetwork"></a>
+                    <span class="name">
+                        <span ><b>socialNetwork</b></span>
+                        <a href="#socialNetwork"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/SocialNetworkEntity.html" target="_self" >SocialNetworkEntity</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToOne(undefined, socialNetwork &#x3D;&gt; socialNetwork.cards, {onDelete: &#x27;SET NULL&#x27;, cascade: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:132</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transferableStatusCardEnum"></a>
+                    <span class="name">
+                        <span ><b>transferableStatusCardEnum</b></span>
+                        <a href="#transferableStatusCardEnum"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#TransferableStatusCardEnum" target="_self" >TransferableStatusCardEnum[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column(&#x27;text&#x27;, {array: true, default: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="typeOfCardEnum"></a>
+                    <span class="name">
+                        <span ><b>typeOfCardEnum</b></span>
+                        <a href="#typeOfCardEnum"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#TypeOfCardEnum" target="_self" >TypeOfCardEnum</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;enum&#x27;, enum: TypeOfCardEnum, default: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatedAt"></a>
+                    <span class="name">
+                        <span ><b>updatedAt</b></span>
+                        <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @UpdateDateColumn()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="urls"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>urls</b></span>
+                        <a href="#urls"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column(&#x27;text&#x27;, {array: true, default: undefined})<br />@IsUrl({}, {each: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="whoCanCommunicateWithEnum"></a>
+                    <span class="name">
+                        <span ><b>whoCanCommunicateWithEnum</b></span>
+                        <a href="#whoCanCommunicateWithEnum"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#WhoCanCommunicateWithEnum" target="_self" >WhoCanCommunicateWithEnum[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column(&#x27;text&#x27;, {array: true, default: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="whoCanSeeCardInformationEnum"></a>
+                    <span class="name">
+                        <span ><b>whoCanSeeCardInformationEnum</b></span>
+                        <a href="#whoCanSeeCardInformationEnum"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#WhoCanSeeCardInformationEnum" target="_self" >WhoCanSeeCardInformationEnum[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column(&#x27;text&#x27;, {array: true, default: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="whoCanShareCardEnum"></a>
+                    <span class="name">
+                        <span ><b>whoCanShareCardEnum</b></span>
+                        <a href="#whoCanShareCardEnum"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#WhoCanShareCardEnum" target="_self" >WhoCanShareCardEnum[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column(&#x27;text&#x27;, {array: true, default: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/api/card/domain/entities/card.entity.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from &#x27;typeorm&#x27;;
+import { WhoCanSeeCardInformationEnum } from &#x27;../enum/who-can-see-card-information.enum&#x27;;
+import { WhoCanCommunicateWithEnum } from &#x27;../enum/who-can-communicate-with.enum&#x27;;
+import { TypeOfCardEnum } from &#x27;../enum/type-of-card.enum&#x27;;
+import { SocialNetworkEntity } from &#x27;../../../social-network/domain/entities/social-network.entity&#x27;;
+import { IsEmail, IsUrl } from &#x27;class-validator&#x27;;
+import { ConnectedCardEntity } from &#x27;./connected-card.entity&#x27;;
+import { MediaEntity } from &#x27;../../../entities-to-create/media.entity&#x27;;
+import { GroupMembershipEntity } from &#x27;../../../groupe/domain/entities/group-membership.entity&#x27;;
+import { ProfileEntity } from &#x27;../../../profile/domain/entities/profile.entity&#x27;;
+import { TransferableStatusCardEnum } from &#x27;../enum/transferable-status-card.enum&#x27;;
+import { MessageEntity } from &#x27;../../../entities-to-create/message.entity&#x27;;
+import { WhoCanShareCardEnum } from &#x27;../enum/who-can-share-card.enum&#x27;;
+import { OccupationEntity } from &#x27;../../../occupation/domain/entities/occupation.entity&#x27;;
+
+@Entity({ name: &#x27;card&#x27; })
+export class CardEntity extends BaseEntity {
+  constructor(partial: Partial&lt;CardEntity&gt;) {
+    super();
+    Object.assign(this, partial);
+  }
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
+
+  @PrimaryGeneratedColumn(&#x27;uuid&#x27;)
+  id: string;
+
+  @Column({ nullable: true })
+  socialName?: string;
+
+  @Column({ default: false })
+  isOwnerPro: boolean;
+
+  @Column({ nullable: true })
+  firstname?: string;
+
+  @Column({ nullable: true })
+  lastname?: string;
+
+  @Column({ nullable: true })
+  companyName?: string;
+
+  @Column(&#x27;text&#x27;, { array: true, default: [] })
+  phones: string[];
+
+  @Column(&#x27;text&#x27;, { array: true, default: [] })
+  @IsEmail({}, { each: true })
+  emails: string[];
+
+  @Column(&#x27;text&#x27;, { array: true, default: [] })
+  @IsUrl({}, { each: true })
+  urls?: string[];
+
+  @Column({ nullable: true })
+  birthday?: Date;
+
+  @Column(&#x27;text&#x27;, { nullable: true })
+  notes?: string;
+
+  @Column({ type: &#x27;integer&#x27;, default: 0 })
+  numberOfShares: number;
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
+
+  @ManyToOne(() &#x3D;&gt; ProfileEntity, profile &#x3D;&gt; profile.personalCards, {
+    cascade: [&#x27;insert&#x27;, &#x27;update&#x27;],
+  })
+  owner: ProfileEntity;
+
+  @OneToMany(() &#x3D;&gt; ConnectedCardEntity, connectedCard &#x3D;&gt; connectedCard.cardEntityOne, {
+    cascade: true,
+    onDelete: &#x27;SET NULL&#x27;,
+  })
+  connectedCardOne: ConnectedCardEntity[];
+
+  @OneToMany(() &#x3D;&gt; ConnectedCardEntity, connectedCard &#x3D;&gt; connectedCard.cardEntityTwo, {
+    cascade: true,
+    onDelete: &#x27;SET NULL&#x27;,
+  })
+  connectedCardTwo: ConnectedCardEntity[];
+
+  @ManyToMany(() &#x3D;&gt; ProfileEntity, profile &#x3D;&gt; profile.savedCard, {
+    cascade: [&#x27;insert&#x27;, &#x27;update&#x27;],
+  })
+  profilesWhoSavedCard: ProfileEntity[];
+
+  @ManyToMany(() &#x3D;&gt; OccupationEntity, occupation &#x3D;&gt; occupation.cards, {
+    onDelete: &#x27;SET NULL&#x27;,
+    cascade: [&#x27;insert&#x27;, &#x27;update&#x27;],
+  })
+  @JoinTable()
+  occupations: OccupationEntity[];
+
+  @OneToMany(() &#x3D;&gt; GroupMembershipEntity, groupMembership &#x3D;&gt; groupMembership.card, {
+    cascade: true,
+    onDelete: &#x27;SET NULL&#x27;,
+  })
+  groupMemberships: GroupMembershipEntity[];
+
+  @OneToOne(() &#x3D;&gt; MediaEntity, media &#x3D;&gt; media.CardPicture, {
+    cascade: true,
+    onDelete: &#x27;SET NULL&#x27;,
+  })
+  media: MediaEntity;
+
+  @OneToMany(() &#x3D;&gt; MessageEntity, message &#x3D;&gt; message.author, {
+    cascade: true,
+    onDelete: &#x27;SET NULL&#x27;,
+  })
+  messages?: MessageEntity[];
+
+  @ManyToOne(() &#x3D;&gt; SocialNetworkEntity, socialNetwork &#x3D;&gt; socialNetwork.cards, {
+    onDelete: &#x27;SET NULL&#x27;,
+    cascade: [&#x27;insert&#x27;, &#x27;update&#x27;],
+  })
+  socialNetwork: SocialNetworkEntity;
+
+  // ______________________________________________________
+  // Enum
+  // ______________________________________________________
+
+  @Column({ type: &#x27;enum&#x27;, enum: TypeOfCardEnum, default: TypeOfCardEnum.SOCIAL_NETWORK })
+  typeOfCardEnum: TypeOfCardEnum;
+
+  @Column(&#x27;text&#x27;, { array: true, default: [WhoCanShareCardEnum.DIFFUSIBLE] })
+  whoCanShareCardEnum: WhoCanShareCardEnum[];
+
+  @Column(&#x27;text&#x27;, { array: true, default: [WhoCanSeeCardInformationEnum.ALL] })
+  whoCanSeeCardInformationEnum: WhoCanSeeCardInformationEnum[];
+
+  @Column(&#x27;text&#x27;, { array: true, default: [WhoCanCommunicateWithEnum.ALL] })
+  whoCanCommunicateWithEnum: WhoCanCommunicateWithEnum[];
+
+  @Column(&#x27;text&#x27;, { array: true, default: [TransferableStatusCardEnum.IS_TRANSFERABLE] })
+  transferableStatusCardEnum: TransferableStatusCardEnum[];
+
+  // ______________________________________________________
+  // Timestamps
+  // ______________________________________________________
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
+            var COMPODOC_CURRENT_PAGE_URL = 'CardEntity.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

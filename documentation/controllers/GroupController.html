@@ -1,0 +1,3198 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api-walletshare documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">api-walletshare documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content controller">
+                   <div class="content-data">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Controllers</li>
+  <li >GroupController</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/api/groupe/group.controller.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>group</code>
+            </p>
+
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addCardToGroup" >addCardToGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addCardToMyGroup" >addCardToMyGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createGroupAdmin" >createGroupAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createGroupPublic" >createGroupPublic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteGroupAdmin" >deleteGroupAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteGroupMembershipAdmin" >deleteGroupMembershipAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteGroupPublic" >deleteGroupPublic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getGroupMemberWithCardIdPublic" >getGroupMemberWithCardIdPublic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getGroupMemberWithGroupId" >getGroupMemberWithGroupId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getGroupMemberWithGroupIdPublic" >getGroupMemberWithGroupIdPublic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getGroupWhereCardIdIsAdmin" >getGroupWhereCardIdIsAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getGroupWhereCardIdIsAdminAdmin" >getGroupWhereCardIdIsAdminAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getGroupWithCriteria" >getGroupWithCriteria</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getGroupWithUserId" >getGroupWithUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getMyGroup" >getMyGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getMyGroups" >getMyGroups</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#giveAdminRightsAdmin" >giveAdminRightsAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#giveAdminRightsPublic" >giveAdminRightsPublic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#leaveGroupPublic" >leaveGroupPublic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeAdminRightsAdmin" >removeAdminRightsAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeAdminRightsPublic" >removeAdminRightsPublic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeCardFromGroupAdmin" >removeCardFromGroupAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeCardFromGroupPublic" >removeCardFromGroupPublic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#restoreGroupAdmin" >restoreGroupAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#softDeleteGroupAdmin" >softDeleteGroupAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateGroupAdmin" >updateGroupAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateGroupPublic" >updateGroupPublic</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addCardToGroup"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addCardToGroup</b></span>
+                        <a href="#addCardToGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addCardToGroup(addCardToGroupRequest: <a href="../classes/AddCardToGroupRequest.html" target="_self">AddCardToGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/admin/add-card-to-group&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="438"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:438</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>addCardToGroupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/AddCardToGroupRequest.html" target="_self" >AddCardToGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addCardToMyGroup"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addCardToMyGroup</b></span>
+                        <a href="#addCardToMyGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addCardToMyGroup(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, addCardToGroupRequest: <a href="../classes/AddCardToGroupRequest.html" target="_self">AddCardToGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/public/add-card-to-group&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="451"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:451</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>addCardToGroupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/AddCardToGroupRequest.html" target="_self" >AddCardToGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createGroupAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createGroupAdmin</b></span>
+                        <a href="#createGroupAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createGroupAdmin(groupRequest: <a href="../classes/CreateGroupRequest.html" target="_self">CreateGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/admin/create-group&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:229</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateGroupRequest.html" target="_self" >CreateGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createGroupPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createGroupPublic</b></span>
+                        <a href="#createGroupPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createGroupPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupRequest: <a href="../classes/CreateGroupRequest.html" target="_self">CreateGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/public/create-group&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:215</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateGroupRequest.html" target="_self" >CreateGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteGroupAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteGroupAdmin</b></span>
+                        <a href="#deleteGroupAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteGroupAdmin(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/admin/delete-group/:groupId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:256</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteGroupMembershipAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteGroupMembershipAdmin</b></span>
+                        <a href="#deleteGroupMembershipAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteGroupMembershipAdmin(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/admin/delete-group-membership/:groupId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="425"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:425</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteGroupPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteGroupPublic</b></span>
+                        <a href="#deleteGroupPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteGroupPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/public/delete-group/:groupId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:242</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/admin/find-all&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:43</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupResponse.html" target="_self" >Promise&lt;GroupResponse[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/admin/:groupId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupResponse.html" target="_self" >Promise&lt;GroupResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroupMemberWithCardIdPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getGroupMemberWithCardIdPublic</b></span>
+                        <a href="#getGroupMemberWithCardIdPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGroupMemberWithCardIdPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/public/get-group-member-with-card-id/:cardId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:138</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupMembershipResponse.html" target="_self" >Promise&lt;GroupMembershipResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroupMemberWithGroupId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getGroupMemberWithGroupId</b></span>
+                        <a href="#getGroupMemberWithGroupId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGroupMemberWithGroupId(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/admin/get-group-member-with-group-id/:groupId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:108</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupMembershipResponse.html" target="_self" >Promise&lt;GroupMembershipResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroupMemberWithGroupIdPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getGroupMemberWithGroupIdPublic</b></span>
+                        <a href="#getGroupMemberWithGroupIdPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGroupMemberWithGroupIdPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/public/get-group-member-with-group-id/:groupId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:121</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupMembershipResponse.html" target="_self" >Promise&lt;GroupMembershipResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroupWhereCardIdIsAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getGroupWhereCardIdIsAdmin</b></span>
+                        <a href="#getGroupWhereCardIdIsAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGroupWhereCardIdIsAdmin(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/public/get-group-where-card-id-is-admin/:cardId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="168"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:168</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupResponse.html" target="_self" >Promise&lt;GroupResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroupWhereCardIdIsAdminAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getGroupWhereCardIdIsAdminAdmin</b></span>
+                        <a href="#getGroupWhereCardIdIsAdminAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGroupWhereCardIdIsAdminAdmin(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/admin/get-group-where-card-id-is-admin/:cardId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:185</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupResponse.html" target="_self" >Promise&lt;GroupResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroupWithCriteria"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getGroupWithCriteria</b></span>
+                        <a href="#getGroupWithCriteria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGroupWithCriteria(groupCriteria: <a href="../classes/GetGroupWithCriteriaRequest.html" target="_self">GetGroupWithCriteriaRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/admin/get-group-with-criteria&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:155</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupCriteria</td>
+                                    <td>
+                                                <code><a href="../classes/GetGroupWithCriteriaRequest.html" target="_self" >GetGroupWithCriteriaRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupResponse.html" target="_self" >Promise&lt;GroupResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGroupWithUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getGroupWithUserId</b></span>
+                        <a href="#getGroupWithUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGroupWithUserId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/admin/get-group-with-user-id/:userId&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupResponse.html" target="_self" >Promise&lt;GroupResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMyGroup"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getMyGroup</b></span>
+                        <a href="#getMyGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMyGroup(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/public/get-my-group/:groupId&#x27;)<br />@HttpCode(201)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:67</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupResponse.html" target="_self" >Promise&lt;GroupResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMyGroups"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getMyGroups</b></span>
+                        <a href="#getMyGroups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMyGroups(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/public/get-my-groups&#x27;)<br />@HttpCode(201)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:81</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GroupResponse.html" target="_self" >Promise&lt;GroupResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="giveAdminRightsAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>giveAdminRightsAdmin</b></span>
+                        <a href="#giveAdminRightsAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>giveAdminRightsAdmin(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupRequest: <a href="../classes/GiveAdminRightGroupRequest.html" target="_self">GiveAdminRightGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/admin/give-admin-rights&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="303"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:303</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/GiveAdminRightGroupRequest.html" target="_self" >GiveAdminRightGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="giveAdminRightsPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>giveAdminRightsPublic</b></span>
+                        <a href="#giveAdminRightsPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>giveAdminRightsPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupRequest: <a href="../classes/GiveAdminRightGroupRequest.html" target="_self">GiveAdminRightGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/public/give-admin-rights&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="269"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:269</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/GiveAdminRightGroupRequest.html" target="_self" >GiveAdminRightGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="leaveGroupPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>leaveGroupPublic</b></span>
+                        <a href="#leaveGroupPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>leaveGroupPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupRequest: <a href="../classes/RemoveCardFromGroupRequest.html" target="_self">RemoveCardFromGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/public/leave-group&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:198</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveCardFromGroupRequest.html" target="_self" >RemoveCardFromGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAdminRightsAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeAdminRightsAdmin</b></span>
+                        <a href="#removeAdminRightsAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeAdminRightsAdmin(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupRequest: <a href="../classes/RemoveAdminRightGroupRequest.html" target="_self">RemoveAdminRightGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/admin/remove-admin-rights&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="319"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:319</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveAdminRightGroupRequest.html" target="_self" >RemoveAdminRightGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAdminRightsPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeAdminRightsPublic</b></span>
+                        <a href="#removeAdminRightsPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeAdminRightsPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupRequest: <a href="../classes/RemoveAdminRightGroupRequest.html" target="_self">RemoveAdminRightGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/public/remove-admin-rights&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="286"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:286</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveAdminRightGroupRequest.html" target="_self" >RemoveAdminRightGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCardFromGroupAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeCardFromGroupAdmin</b></span>
+                        <a href="#removeCardFromGroupAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeCardFromGroupAdmin(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupRequest: <a href="../classes/RemoveCardFromGroupRequest.html" target="_self">RemoveCardFromGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/admin/remove-card-from-group&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="352"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:352</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveCardFromGroupRequest.html" target="_self" >RemoveCardFromGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCardFromGroupPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeCardFromGroupPublic</b></span>
+                        <a href="#removeCardFromGroupPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeCardFromGroupPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupRequest: <a href="../classes/RemoveCardFromGroupRequest.html" target="_self">RemoveCardFromGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/public/remove-card-from-group&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="335"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:335</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveCardFromGroupRequest.html" target="_self" >RemoveCardFromGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="restoreGroupAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>restoreGroupAdmin</b></span>
+                        <a href="#restoreGroupAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>restoreGroupAdmin(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/admin/restore-group/:groupId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="368"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:368</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softDeleteGroupAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>softDeleteGroupAdmin</b></span>
+                        <a href="#softDeleteGroupAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softDeleteGroupAdmin(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/admin/soft-delete-group/:groupId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="381"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:381</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateGroupAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateGroupAdmin</b></span>
+                        <a href="#updateGroupAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateGroupAdmin(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupRequest: <a href="../classes/UpdateGroupRequest.html" target="_self">UpdateGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/admin/update-group/:groupId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="394"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:394</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateGroupRequest.html" target="_self" >UpdateGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateGroupPublic"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateGroupPublic</b></span>
+                        <a href="#updateGroupPublic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateGroupPublic(requestUser: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupRequest: <a href="../classes/UpdateGroupRequest.html" target="_self">UpdateGroupRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/public/update-group/:groupId&#x27;)<br />@HttpCode(204)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="407"
+                            class="link-to-prism">src/api/groupe/group.controller.ts:407</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestUser</td>
+                                    <td>
+                                                <code><a href="../interfaces/RequestUser.html" target="_self" >RequestUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>groupRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateGroupRequest.html" target="_self" >UpdateGroupRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BadRequestException,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+} from &#x27;@nestjs/common&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import { GroupService } from &#x27;./group.service&#x27;;
+import { RoleGuard } from &#x27;../auth/guards/role.guard&#x27;;
+import { UserRoleEnum } from &#x27;../user/domain/enum/user-role.enum&#x27;;
+import { RuntimeException } from &#x27;@nestjs/core/errors/exceptions&#x27;;
+import { QueryErrorHttpException } from &#x27;../../util/exception/custom-http-exception/query-error.http-exception&#x27;;
+import { GroupResponse } from &#x27;./web/response/group.response&#x27;;
+import { ErrorInvalidIdRuntimeException } from &#x27;../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
+import { InvalidIdHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
+import { RequestUser } from &#x27;../auth/interface/request-user.interface&#x27;;
+import { GroupMembershipResponse } from &#x27;./web/response/group-membership.response&#x27;;
+import { GetGroupWithCriteriaRequest } from &#x27;./web/request/get-group-with-criteria.request&#x27;;
+import { RemoveCardFromGroupRequest } from &#x27;./web/request/remove-card-from-group.request&#x27;;
+import { CreateGroupRequest } from &#x27;./web/request/create-group.request&#x27;;
+import { GiveAdminRightGroupRequest } from &#x27;./web/request/give-admin-right-group.request&#x27;;
+import { RemoveAdminRightGroupRequest } from &#x27;./web/request/remove-admin-right-group.request&#x27;;
+import { UpdateGroupRequest } from &#x27;./web/request/update-group.request&#x27;;
+import { AddCardToGroupRequest } from &#x27;./web/request/add-card-to-group.request&#x27;;
+import { ErrorListOfCardIdIsEmptyRuntimeException } from &#x27;../../util/exception/runtime-exception/error-list-of-card-id-is-empty.runtime-exception&#x27;;
+import { ErrorCardAlreadyInGroupRuntimeException } from &#x27;../../util/exception/runtime-exception/error-card-already-in-group.runtime-exception&#x27;;
+
+@Controller(&#x27;group&#x27;)
+@ApiTags(&#x27;Group&#x27;)
+export class GroupController {
+  constructor(private readonly groupService: GroupService) {}
+
+  @Get(&#x27;/admin/find-all&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async findAll(): Promise&lt;GroupResponse[]&gt; {
+    try {
+      return await this.groupService.getAllGroups();
+    } catch (error) {
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/admin/:groupId&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async findOne(@Param(&#x27;groupId&#x27;) groupId: string): Promise&lt;GroupResponse&gt; {
+    try {
+      return await this.groupService.getGroupById(groupId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/public/get-my-group/:groupId&#x27;)
+  @HttpCode(201)
+  async getMyGroup(@Req() requestUser: RequestUser, @Param(&#x27;groupId&#x27;) groupId: string): Promise&lt;GroupResponse&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      return await this.groupService.getMyGroup(userId, groupId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/public/get-my-groups&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async getMyGroups(@Req() requestUser: RequestUser): Promise&lt;GroupResponse[]&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      return await this.groupService.getAllMyGroups(userId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/admin/get-group-with-user-id/:userId&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getGroupWithUserId(@Param(&#x27;userId&#x27;) userId: string): Promise&lt;GroupResponse[]&gt; {
+    try {
+      return await this.groupService.getGroupWhereUserIdAdmin(userId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/admin/get-group-member-with-group-id/:groupId&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getGroupMemberWithGroupId(@Param(&#x27;groupId&#x27;) groupId: string): Promise&lt;GroupMembershipResponse[]&gt; {
+    try {
+      return await this.groupService.getGroupMemberByGroupIdAdmin(groupId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/public/get-group-member-with-group-id/:groupId&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async getGroupMemberWithGroupIdPublic(
+    @Req() requestUser: RequestUser,
+    @Param(&#x27;groupId&#x27;) groupId: string,
+  ): Promise&lt;GroupMembershipResponse[]&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      return await this.groupService.getGroupMemberByMyGroupId(groupId, userId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/public/get-group-member-with-card-id/:cardId&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async getGroupMemberWithCardIdPublic(
+    @Req() requestUser: RequestUser,
+    @Param(&#x27;cardId&#x27;) cardId: string,
+  ): Promise&lt;GroupMembershipResponse[]&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      return await this.groupService.getGroupMembershipByMyCardId(cardId, userId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Post(&#x27;/admin/get-group-with-criteria&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getGroupWithCriteria(@Body() groupCriteria: GetGroupWithCriteriaRequest): Promise&lt;GroupResponse[]&gt; {
+    try {
+      return await this.groupService.getGroupWithCriteriaAdmin(groupCriteria);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/public/get-group-where-card-id-is-admin/:cardId&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async getGroupWhereCardIdIsAdmin(
+    @Req() requestUser: RequestUser,
+    @Param(&#x27;cardId&#x27;) cardId: string,
+  ): Promise&lt;GroupResponse[]&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      return await this.groupService.getGroupWhereMyCardIsAdminRole(userId, cardId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Get(&#x27;/admin/get-group-where-card-id-is-admin/:cardId&#x27;)
+  @HttpCode(201)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getGroupWhereCardIdIsAdminAdmin(@Param(&#x27;cardId&#x27;) cardId: string): Promise&lt;GroupResponse[]&gt; {
+    try {
+      return await this.groupService.getGroupWhereCardIsAdminRoleAdmin(cardId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/public/leave-group&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async leaveGroupPublic(
+    @Req() requestUser: RequestUser,
+    @Body() groupRequest: RemoveCardFromGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      await this.groupService.leaveGroup(userId, groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Post(&#x27;/public/create-group&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async createGroupPublic(@Req() requestUser: RequestUser, @Body() groupRequest: CreateGroupRequest): Promise&lt;void&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      await this.groupService.createMyGroup(userId, groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Post(&#x27;/admin/create-group&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async createGroupAdmin(@Body() groupRequest: CreateGroupRequest): Promise&lt;void&gt; {
+    try {
+      await this.groupService.createGroupAdmin(groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Delete(&#x27;/public/delete-group/:groupId&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async deleteGroupPublic(@Req() requestUser: RequestUser, @Param(&#x27;groupId&#x27;) groupId: string): Promise&lt;void&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      await this.groupService.softDeleteMyGroup(userId, groupId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Delete(&#x27;/admin/delete-group/:groupId&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async deleteGroupAdmin(@Param(&#x27;groupId&#x27;) groupId: string): Promise&lt;void&gt; {
+    try {
+      await this.groupService.deleteGroupAdmin(groupId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/public/give-admin-rights&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async giveAdminRightsPublic(
+    @Req() requestUser: RequestUser,
+    @Body() groupRequest: GiveAdminRightGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      await this.groupService.giveMyGroupRightToCard(userId, groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/public/remove-admin-rights&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async removeAdminRightsPublic(
+    @Req() requestUser: RequestUser,
+    @Body() groupRequest: RemoveAdminRightGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      await this.groupService.removeMyGroupRightToCard(userId, groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/admin/give-admin-rights&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async giveAdminRightsAdmin(
+    @Req() requestUser: RequestUser,
+    @Body() groupRequest: GiveAdminRightGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      await this.groupService.giveGroupRightToCardAdmin(groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/admin/remove-admin-rights&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async removeAdminRightsAdmin(
+    @Req() requestUser: RequestUser,
+    @Body() groupRequest: RemoveAdminRightGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      await this.groupService.removeGroupRightToCardAdmin(groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/public/remove-card-from-group&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async removeCardFromGroupPublic(
+    @Req() requestUser: RequestUser,
+    @Body() groupRequest: RemoveCardFromGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      await this.groupService.removeCardFromMyGroup(userId, groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/admin/remove-card-from-group&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async removeCardFromGroupAdmin(
+    @Req() requestUser: RequestUser,
+    @Body() groupRequest: RemoveCardFromGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      await this.groupService.removeCardFromGroupAdmin(groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/admin/restore-group/:groupId&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async restoreGroupAdmin(@Param(&#x27;groupId&#x27;) groupId: string): Promise&lt;void&gt; {
+    try {
+      await this.groupService.restoreGroupAdmin(groupId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Delete(&#x27;/admin/soft-delete-group/:groupId&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async softDeleteGroupAdmin(@Param(&#x27;groupId&#x27;) groupId: string): Promise&lt;void&gt; {
+    try {
+      await this.groupService.softDeleteGroupAdmin(groupId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/admin/update-group/:groupId&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async updateGroupAdmin(@Param(&#x27;groupId&#x27;) groupId: string, @Body() groupRequest: UpdateGroupRequest): Promise&lt;void&gt; {
+    try {
+      await this.groupService.updateGroupAdmin(groupId, groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/public/update-group/:groupId&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
+  async updateGroupPublic(
+    @Req() requestUser: RequestUser,
+    @Param(&#x27;groupId&#x27;) groupId: string,
+    @Body() groupRequest: UpdateGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      await this.groupService.updateMyGroup(userId, groupId, groupRequest);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Delete(&#x27;/admin/delete-group-membership/:groupId&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async deleteGroupMembershipAdmin(@Param(&#x27;groupId&#x27;) groupId: string): Promise&lt;void&gt; {
+    try {
+      await this.groupService.deleteGroupMembershipAdmin(groupId);
+    } catch (error) {
+      if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof RuntimeException) throw new QueryErrorHttpException();
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/admin/add-card-to-group&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async addCardToGroup(@Body() addCardToGroupRequest: AddCardToGroupRequest): Promise&lt;void&gt; {
+    try {
+      await this.groupService.addCardToGroupAdmin(addCardToGroupRequest.groupId, addCardToGroupRequest.cardIdList);
+    } catch (error) {
+      if (error instanceof ErrorListOfCardIdIsEmptyRuntimeException) throw new BadRequestException(error.message);
+      if (error instanceof ErrorCardAlreadyInGroupRuntimeException) throw new BadRequestException(error.message);
+      else throw error;
+    }
+  }
+
+  @Put(&#x27;/public/add-card-to-group&#x27;)
+  @HttpCode(204)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async addCardToMyGroup(
+    @Req() requestUser: RequestUser,
+    @Body() addCardToGroupRequest: AddCardToGroupRequest,
+  ): Promise&lt;void&gt; {
+    try {
+      const userId &#x3D; requestUser.user.id;
+      await this.groupService.addCardToMyGroup(userId, addCardToGroupRequest.groupId, addCardToGroupRequest.cardIdList);
+    } catch (error) {
+      if (error instanceof ErrorListOfCardIdIsEmptyRuntimeException) throw new BadRequestException(error.message);
+      if (error instanceof ErrorCardAlreadyInGroupRuntimeException) throw new BadRequestException(error.message);
+      else throw error;
+    }
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'GroupController.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
