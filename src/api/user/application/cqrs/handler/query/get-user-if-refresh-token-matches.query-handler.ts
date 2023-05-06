@@ -33,7 +33,7 @@ export class GetUserIfRefreshTokenMatchesQueryHandler implements IQueryHandler<G
         new ErrorCustomEvent({
           localisation: 'user',
           handler: 'GetUserIfRefreshTokenMatchesQueryHandler',
-          error: error,
+          error: error.message,
         }),
       );
     }

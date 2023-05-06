@@ -27,75 +27,92 @@ export class CreateCardCommandHandler implements ICommandHandler<CreateCardComma
   ) {}
 
   async execute(command: CreateCardCommand): Promise<void> {
-    try {
-      const newCard = new CardEntity({
-        ...command,
+    const newCard = new CardEntity({
+      ...command,
+    });
+    newCard.owner = await this.profileRepository
+      .findOneOrFail({
+        where: [
+          {
+            id: command.profileId,
+          },
+        ],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: error.message,
+            handler: 'CreateCardCommandHandler',
+            localisation: 'profileRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Profile not found');
       });
-      newCard.owner = await this.profileRepository
+
+    if (command.typeOfCardEnum === TypeOfCardEnum.SOCIAL_NETWORK) {
+      newCard.socialNetwork = await this.socialNetworkRepository
         .findOneOrFail({
           where: [
             {
-              id: command.profileId,
+              id: command.socialNetworkId,
             },
           ],
         })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Profile not found');
+        .catch(async error => {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              error: error.message,
+              handler: 'CreateCardCommandHandler',
+              localisation: 'socialNetworkRepository.findOneOrFail',
+            }),
+          );
+          throw new ErrorInvalidIdRuntimeException('Social Network not found');
         });
+    }
 
-      if (command.typeOfCardEnum === TypeOfCardEnum.SOCIAL_NETWORK) {
-        newCard.socialNetwork = await this.socialNetworkRepository
+    if (command.occupationsId != undefined) {
+      newCard.occupations = [];
+      for (const occupationId of command.occupationsId) {
+        const occupation = await this.occupationRepository
           .findOneOrFail({
             where: [
               {
-                id: command.socialNetworkId,
+                id: occupationId,
               },
             ],
           })
-          .catch(() => {
-            throw new ErrorInvalidIdRuntimeException('Social Network not found');
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: 'CreateCardCommandHandler',
+                localisation: 'occupationRepository.findOneOrFail',
+              }),
+            );
+            throw new ErrorInvalidIdRuntimeException('Occupation not found');
           });
+        newCard.occupations.push(occupation);
       }
-
-      if (command.occupationsId != undefined) {
-        newCard.occupations = [];
-        for (const occupationId of command.occupationsId) {
-          const occupation = await this.occupationRepository
-            .findOneOrFail({
-              where: [
-                {
-                  id: occupationId,
-                },
-              ],
-            })
-            .catch(() => {
-              throw new ErrorInvalidIdRuntimeException('Occupation not found');
-            });
-          newCard.occupations.push(occupation);
-        }
-      }
-
-      await this.cardRepository
-        .save(newCard)
-        .then(async () => {
-          await this.eventBus.publish(
-            new CreateCardEvent({
-              cardId: newCard.id,
-            }),
-          );
-        })
-        .catch(() => {
-          throw new ErrorSaveRuntimeException('Error saving card');
-        });
-    } catch (error) {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          handler: 'CreateCardCommandHandler',
-          localisation: 'card',
-          error: error.message,
-        }),
-      );
-      throw error;
     }
+
+    await this.cardRepository
+      .save(newCard)
+      .then(async () => {
+        await this.eventBus.publish(
+          new CreateCardEvent({
+            cardId: newCard.id,
+          }),
+        );
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: error.message,
+            handler: 'CreateCardCommandHandler',
+            localisation: 'cardRepository.save',
+          }),
+        );
+        throw new ErrorSaveRuntimeException('Error saving card');
+      });
   }
 }

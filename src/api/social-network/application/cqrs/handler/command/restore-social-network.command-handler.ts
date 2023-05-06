@@ -4,6 +4,7 @@ import { SocialNetworkEntity } from '../../../../domain/entities/social-network.
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestoreSocialNetworkEvent } from '../../event/restore-social-network.event';
+import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(RestoreSocialNetworkCommand)
 export class RestoreSocialNetworkCommandHandler implements ICommandHandler<RestoreSocialNetworkCommand> {
@@ -30,7 +31,14 @@ export class RestoreSocialNetworkCommandHandler implements ICommandHandler<Resto
             throw new Error('SocialNetwork not restored');
           });
       })
-      .catch(error => {
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'socialNetworkRepository.findOneOrFail',
+            handler: 'RestoreSocialNetworkCommandHandler',
+            error: error.message,
+          }),
+        );
         if (error.message === 'Social network is not soft deleted') throw error;
         if (error.message === 'SocialNetwork not restored') throw error;
         throw new Error('SocialNetwork not found');

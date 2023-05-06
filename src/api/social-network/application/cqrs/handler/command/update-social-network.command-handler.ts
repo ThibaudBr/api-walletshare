@@ -5,6 +5,7 @@ import { UpdateSocialNetworkEvent } from '../../event/update-social-network.even
 import { InjectRepository } from '@nestjs/typeorm';
 import { SocialNetworkEntity } from '../../../../domain/entities/social-network.entity';
 import { validate } from 'class-validator';
+import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(UpdateSocialNetworkCommand)
 export class UpdateSocialNetworkCommandHandler implements ICommandHandler<UpdateSocialNetworkCommand> {
@@ -15,10 +16,19 @@ export class UpdateSocialNetworkCommandHandler implements ICommandHandler<Update
   ) {}
 
   async execute(command: UpdateSocialNetworkCommand): Promise<void> {
-    await this.socialNetworkRepository.find().then((socialNetworkEntityList: SocialNetworkEntity[]) => {
-      socialNetworkEntityList.forEach((socialNetwork: SocialNetworkEntity) => {
-        if (socialNetwork.id != command.id && socialNetwork.name == command.name) throw new Error('Duplicated name');
-      });
+    await this.socialNetworkRepository.find().then(async (socialNetworkEntityList: SocialNetworkEntity[]) => {
+      for (const socialNetwork of socialNetworkEntityList) {
+        if (socialNetwork.id != command.id && socialNetwork.name == command.name) {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              localisation: 'socialNetworkRepository.find',
+              handler: 'UpdateSocialNetworkCommandHandler',
+              error: 'Duplicated name',
+            }),
+          );
+          throw new Error('Duplicated name');
+        }
+      }
     });
     await this.socialNetworkRepository
       .findOneOrFail({
@@ -27,6 +37,13 @@ export class UpdateSocialNetworkCommandHandler implements ICommandHandler<Update
       .then(async socialNetwork => {
         const err = await validate(new SocialNetworkEntity({ ...command }));
         if (err.length > 0) {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              handler: 'UpdateSocialNetworkCommandHandler',
+              error: err.map(e => e.constraints).toString(),
+              localisation: 'validate',
+            }),
+          );
           throw err;
         }
         await this.socialNetworkRepository
@@ -36,11 +53,25 @@ export class UpdateSocialNetworkCommandHandler implements ICommandHandler<Update
           .then(async () => {
             await this.eventBus.publish(new UpdateSocialNetworkEvent(command.id));
           })
-          .catch(() => {
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                localisation: 'socialNetworkRepository.update',
+                handler: 'UpdateSocialNetworkCommandHandler',
+                error: error.message,
+              }),
+            );
             throw new Error('SocialNetwork not updated');
           });
       })
-      .catch(error => {
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'socialNetworkRepository.findOneOrFail',
+            handler: 'UpdateSocialNetworkCommandHandler',
+            error: error.message,
+          }),
+        );
         if (error instanceof Array) throw error;
         throw new Error('SocialNetwork not found');
       });

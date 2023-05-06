@@ -14,8 +14,8 @@ export class GetAllCardWithUserIdQueryHandler implements IQueryHandler<GetAllCar
   ) {}
 
   async execute(query: GetAllCardWithUserIdQuery): Promise<CardEntity[]> {
-    try {
-      return await this.cardRepository.find({
+    return await this.cardRepository
+      .find({
         relations: ['occupations', 'owner', 'owner.user', 'socialNetwork'],
         loadRelationIds: true,
         loadEagerRelations: true,
@@ -28,16 +28,16 @@ export class GetAllCardWithUserIdQueryHandler implements IQueryHandler<GetAllCar
             },
           },
         ],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetAllCardWithUserIdQueryHandler',
+            localisation: 'cardRepository.find',
+            error: error.message,
+          }),
+        );
+        throw new Error('invalidId');
       });
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'card',
-          handler: 'GetAllCardWithUserIdQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
   }
 }

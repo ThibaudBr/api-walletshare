@@ -15,29 +15,33 @@ export class DeleteProfileCommandHandler implements ICommandHandler<DeleteProfil
   ) {}
 
   async execute(command: DeleteProfileCommand): Promise<void> {
-    try {
-      const profile = await this.profileRepository
-        .findOneOrFail({
-          where: [{ id: command.id }],
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
-      await this.profileRepository.remove(profile);
-      await this.eventBus.publish(
-        new DeleteProfileEvent({
-          id: command.id,
-        }),
-      );
-    } catch (error) {
+    const profile = await this.profileRepository
+      .findOneOrFail({
+        where: [{ id: command.id }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'profileRepository.findOneOrFail',
+            handler: 'DeleteProfileCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Profile not found');
+      });
+    await this.profileRepository.remove(profile).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'DeleteProfileCommandHandler',
           error: error.message,
-          localisation: 'profile',
+          localisation: 'profileRepository.remove',
         }),
       );
-      throw error;
-    }
+    });
+    await this.eventBus.publish(
+      new DeleteProfileEvent({
+        id: command.id,
+      }),
+    );
   }
 }

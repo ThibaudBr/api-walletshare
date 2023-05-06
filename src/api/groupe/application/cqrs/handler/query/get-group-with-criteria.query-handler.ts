@@ -53,7 +53,7 @@ export class GetGroupWithCriteriaQueryHandler implements IQueryHandler<GetGroupW
     return await groupQueryBuilder.getMany().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'group',
+          localisation: 'groupRepository.find',
           handler: 'GetGroupWithCriteriaQueryHandler',
           error: error.message,
         }),

@@ -16,42 +16,61 @@ export class CreateSocialNetworkCommandHandler implements ICommandHandler<Create
   ) {}
 
   async execute(command: CreateSocialNetworkCommand): Promise<void> {
-    try {
-      const socialNetwork = await this.socialNetworkRepository.find();
-      if (socialNetwork.length > 0) {
-        socialNetwork.forEach(socialNetwork => {
-          if (socialNetwork.name === command.name) {
-            throw new Error('Duplicated name');
-          }
-        });
+    const socialNetworks = await this.socialNetworkRepository.find().catch(async error => {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'socialNetworkRepository.find',
+          handler: 'CreateSocialNetworkCommandHandler',
+          error: error.message,
+        }),
+      );
+      throw new Error('Social network not found');
+    });
+    if (socialNetworks.length > 0) {
+      for (const socialNetwork of socialNetworks) {
+        if (socialNetwork.name === command.name) {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              handler: 'CreateSocialNetworkCommandHandler',
+              error: 'Duplicated name',
+              localisation: 'socialNetworkRepository.find',
+            }),
+          );
+          throw new Error('Duplicated name');
+        }
       }
+    }
 
-      const newSocialNetworkEntity: SocialNetworkEntity = new SocialNetworkEntity({
-        ...command,
-      });
+    const newSocialNetworkEntity: SocialNetworkEntity = new SocialNetworkEntity({
+      ...command,
+    });
 
-      const err = await validate(newSocialNetworkEntity);
-      if (err.length > 0) {
-        throw err;
-      }
-
-      this.socialNetworkRepository
-        .save(newSocialNetworkEntity)
-        .then(async socialNetworkEntity => {
-          await this.eventBus.publish(new CreateSocialNetworkEvent(socialNetworkEntity.id));
-        })
-        .catch(() => {
-          throw new Error('SocialNetwork not created');
-        });
-    } catch (e) {
+    const err = await validate(newSocialNetworkEntity);
+    if (err.length > 0) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'CreateSocialNetworkCommandHandler',
-          localisation: 'SocialNetwork',
-          error: e.message,
+          error: err.map(e => e.constraints).toString(),
+          localisation: 'validate',
         }),
       );
-      throw e;
+      throw err;
     }
+
+    this.socialNetworkRepository
+      .save(newSocialNetworkEntity)
+      .then(async socialNetworkEntity => {
+        await this.eventBus.publish(new CreateSocialNetworkEvent(socialNetworkEntity.id));
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'CreateSocialNetworkCommandHandler',
+            error: error.message,
+            localisation: 'socialNetworkRepository.save',
+          }),
+        );
+        throw new Error('SocialNetwork not created');
+      });
   }
 }

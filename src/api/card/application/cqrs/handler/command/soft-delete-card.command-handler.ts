@@ -16,30 +16,35 @@ export class SoftDeleteCardCommandHandler implements ICommandHandler<SoftDeleteC
   ) {}
 
   async execute(command: SoftDeleteCardCommand): Promise<void> {
-    try {
-      const cardToDelete = await this.cardRepository
-        .findOneOrFail({
-          where: [{ id: command.id }],
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Card not found');
-        });
+    const cardToDelete = await this.cardRepository
+      .findOneOrFail({
+        where: [{ id: command.id }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'SoftDeleteCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+            error: error.message,
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Card not found');
+      });
 
-      await this.cardRepository.softRemove(cardToDelete);
+    await this.cardRepository.softRemove(cardToDelete).catch(async error => {
       await this.eventBus.publish(
-        new SoftDeleteCardEvent({
-          cardId: command.id,
-        }),
-      );
-    } catch (error) {
-      this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'SoftDeleteCardCommandHandler',
-          localisation: 'card',
+          localisation: 'cardRepository.softRemove',
           error: error.message,
         }),
       );
-      throw error;
-    }
+      throw new Error('Card not soft-deleted');
+    });
+    await this.eventBus.publish(
+      new SoftDeleteCardEvent({
+        cardId: command.id,
+      }),
+    );
   }
 }

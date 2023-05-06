@@ -31,7 +31,7 @@ export class UpdateGroupCommandHandler implements ICommandHandler<UpdateGroupCom
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'UpdateGroupCommandHandler',
             error: error.message,
           }),
@@ -53,7 +53,7 @@ export class UpdateGroupCommandHandler implements ICommandHandler<UpdateGroupCom
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.save',
             handler: 'UpdateGroupCommandHandler',
             error: error.message,
           }),

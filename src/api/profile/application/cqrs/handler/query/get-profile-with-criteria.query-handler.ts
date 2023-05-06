@@ -15,39 +15,37 @@ export class GetProfileWithCriteriaQueryHandler implements IQueryHandler<GetProf
   ) {}
 
   async execute(query: GetProfileWithCriteriaQuery): Promise<ProfileResponse[]> {
-    try {
-      const queryBuilder = this.profileRepository.createQueryBuilder('profile');
+    const queryBuilder = this.profileRepository.createQueryBuilder('profile');
 
-      if (query.getProfileWithCriteriaDto.isDeleted) {
-        queryBuilder.setFindOptions({ withDeleted: true, relations: ['user', 'occupations'] });
-      } else {
-        queryBuilder.setFindOptions({ relations: ['user', 'occupations'] });
-      }
+    if (query.getProfileWithCriteriaDto.isDeleted) {
+      queryBuilder.setFindOptions({ withDeleted: true, relations: ['user', 'occupations'] });
+    } else {
+      queryBuilder.setFindOptions({ relations: ['user', 'occupations'] });
+    }
 
-      if (query.getProfileWithCriteriaDto.usernameProfile) {
-        queryBuilder.where('profile.usernameProfile = :usernameProfile', {
-          usernameProfile: query.getProfileWithCriteriaDto.usernameProfile,
-        });
-      }
+    if (query.getProfileWithCriteriaDto.usernameProfile) {
+      queryBuilder.where('profile.usernameProfile = :usernameProfile', {
+        usernameProfile: query.getProfileWithCriteriaDto.usernameProfile,
+      });
+    }
 
-      const profiles = await queryBuilder.getMany();
-
-      return profiles.map(
-        profile =>
-          new ProfileResponse({
-            ...profile,
-            userId: profile.user.id,
-          }),
-      );
-    } catch (error) {
+    const profiles = await queryBuilder.getMany().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'profile',
           handler: 'GetProfileWithCriteriaQueryHandler',
+          localisation: 'profileRepository.find',
           error: error.message,
         }),
       );
-      throw error;
-    }
+      throw new Error('Profile not found');
+    });
+
+    return profiles.map(
+      profile =>
+        new ProfileResponse({
+          ...profile,
+          userId: profile.user.id,
+        }),
+    );
   }
 }

@@ -31,7 +31,7 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler<Remo
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'RemoveAdminRightGroupCommandHandler',
             error: error.message,
           }),
@@ -40,6 +40,13 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler<Remo
       });
 
     if (group.members.filter(member => member.id === command.cardId).length === 0) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'group.filter',
+          handler: 'RemoveAdminRightGroupCommandHandler',
+          error: 'Card is not in this group',
+        }),
+      );
       throw new Error('Card is not in this group');
     }
 
@@ -60,7 +67,7 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler<Remo
       .catch(error => {
         this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'RemoveAdminRightGroupCommandHandler',
             error: error.message,
           }),
@@ -70,7 +77,16 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler<Remo
 
     if (groupMembership.role === RoleGroupMembershipEnum.ADMIN) {
       groupMembership.role = RoleGroupMembershipEnum.MEMBER;
-      await this.groupMembershipRepository.save(groupMembership);
+      await this.groupMembershipRepository.save(groupMembership).catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'groupMembershipRepository.save',
+            handler: 'RemoveAdminRightGroupCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Invalid id');
+      });
       await this.eventBus.publish(new RemoveAdminRightGroupEvent({ cardId: command.cardId, groupId: command.groupId }));
     }
   }

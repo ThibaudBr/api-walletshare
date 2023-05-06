@@ -18,33 +18,29 @@ export class GetProfilesByUserIdQueryHandler implements IQueryHandler<GetProfile
   ) {}
 
   async execute(query: GetProfilesByUserIdQuery): Promise<ProfileResponse[]> {
-    try {
-      const user = await this.userRepository
-        .findOneOrFail({
-          relations: ['profiles', 'profiles.occupations'],
-          where: {
-            id: query.id,
-          },
-        })
-        .catch(() => {
-          throw new Error('User not found');
-        });
-
-      return user.profiles.map(profile => {
-        return new ProfileResponse({
-          ...profile,
-          userId: user.id,
-        });
+    const user = await this.userRepository
+      .findOneOrFail({
+        relations: ['profiles', 'profiles.occupations'],
+        where: {
+          id: query.id,
+        },
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetProfilesByUserIdQueryHandler',
+            localisation: 'userRepository.findOneOrFail',
+            error: error.message,
+          }),
+        );
+        throw new Error('User not found');
       });
-    } catch (error) {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          handler: 'GetProfilesByUserIdQueryHandler',
-          localisation: 'profile',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
+
+    return user.profiles.map(profile => {
+      return new ProfileResponse({
+        ...profile,
+        userId: user.id,
+      });
+    });
   }
 }

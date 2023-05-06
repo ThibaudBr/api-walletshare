@@ -26,7 +26,7 @@ export class GetAllOccupationQueryHandler implements IQueryHandler<GetAllOccupat
         await this.eventBus.publish(
           new ErrorCustomEvent({
             handler: 'GetAllOccupationQueryHandler',
-            localisation: 'Occupation',
+            localisation: 'OccupationRepository.find',
             error: error.message,
           }),
         );

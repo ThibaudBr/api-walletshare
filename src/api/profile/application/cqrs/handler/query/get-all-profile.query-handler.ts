@@ -15,23 +15,21 @@ export class GetAllProfileQueryHandler implements IQueryHandler<GetAllProfileQue
   ) {}
 
   async execute(): Promise<ProfileResponse[]> {
-    try {
-      const profiles = await this.profileRepository.find();
-      return profiles.map(
-        profile =>
-          new ProfileResponse({
-            ...profile,
-          }),
-      );
-    } catch (error) {
+    const profiles = await this.profileRepository.find().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'profile',
           handler: 'GetAllProfileQueryHandler',
+          localisation: 'profileRepository.find',
           error: error.message,
         }),
       );
-      throw error;
-    }
+      throw new Error('Profile not found');
+    });
+    return profiles.map(
+      profile =>
+        new ProfileResponse({
+          ...profile,
+        }),
+    );
   }
 }
