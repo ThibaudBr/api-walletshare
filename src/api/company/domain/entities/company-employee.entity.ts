@@ -8,8 +8,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import CompanyEntity from './company.entity';
-import { ProfileEntity } from '../profile/domain/entities/profile.entity';
-import { RoleCompanyEmployeeEnum } from './enum/role-company-employee.enum';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
+import { RoleCompanyEmployeeEnum } from '../enum/role-company-employee.enum';
 
 @Entity('company_employee')
 export class CompanyEmployeeEntity {
@@ -21,20 +21,23 @@ export class CompanyEmployeeEntity {
   // ______________________________________________________
   @Column('text', { array: true, default: [RoleCompanyEmployeeEnum.EMPLOYEE] })
   roles: RoleCompanyEmployeeEnum[];
-  @ManyToOne(() => CompanyEntity, company => company.employees)
-  company: CompanyEntity;
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
+
+  @ManyToOne(() => CompanyEntity, company => company.employees)
+  company: CompanyEntity;
+
   @ManyToOne(() => ProfileEntity, profile => profile.companies)
   profile: ProfileEntity;
-  @CreateDateColumn()
-  createdAt: Date;
 
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
+
+  @CreateDateColumn()
+  createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
   @DeleteDateColumn()

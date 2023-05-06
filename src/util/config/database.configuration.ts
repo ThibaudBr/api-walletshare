@@ -3,8 +3,8 @@ import { join } from 'path';
 import { Injectable } from '@nestjs/common';
 import * as process from 'process';
 import { logger } from './winston-logger.config';
-import CompanyEntity from '../../api/entities-to-create/company.entity';
-import { CompanyEmployeeEntity } from '../../api/entities-to-create/company-employee.entity';
+import CompanyEntity from '../../api/company/domain/entities/company.entity';
+import { CompanyEmployeeEntity } from '../../api/company/domain/entities/company-employee.entity';
 import { ConnectedCardEntity } from '../../api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../api/entities-to-create/conversation.entity';
 import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
@@ -34,6 +34,8 @@ import { CardViewSubscriber } from '../../api/card/application/subscriber/card-v
 import { CardViewEntity } from '../../api/card/domain/entities/card-view.entity';
 import { CompanyAddressSubscriber } from '../../api/address/application/subscriber/company-address.subscriber';
 import { UserAddressSubscriber } from '../../api/address/application/subscriber/user-address.subscriber';
+import { CompanyCompanyEmployeeSubscriber } from '../../api/company/application/subscriber/company-company-employee.subscriber';
+import { ProfileCompanyEmployeeSubscriber } from '../../api/company/application/subscriber/profile-company-employee.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -66,6 +68,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewSubscriber,
             CompanyAddressSubscriber,
             UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'pprod') {
@@ -95,6 +99,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewSubscriber,
             CompanyAddressSubscriber,
             UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'test') {
@@ -142,6 +148,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewSubscriber,
             CompanyAddressSubscriber,
             UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'dev') {
@@ -189,6 +197,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewSubscriber,
             CompanyAddressSubscriber,
             UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
           ],
         };
       } else {

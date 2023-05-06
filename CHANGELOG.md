@@ -1,5 +1,8 @@
+# [0.1.4](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.4) - 2023-05-06
 
-
+### Features
+- add company module
+- add Address module
 # [0.1.3](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.3) - 2023-05-03
 
 ### Features

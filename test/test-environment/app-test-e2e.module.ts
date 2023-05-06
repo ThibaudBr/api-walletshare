@@ -3,8 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppTestE2eController } from './controller-test/app-test-e2e.controller';
 import { AppTestE2eService } from './service-test/app-test-e2e.service';
 import { AppModule } from '../../src/app.module';
-import CompanyEntity from '../../src/api/entities-to-create/company.entity';
-import { CompanyEmployeeEntity } from '../../src/api/entities-to-create/company-employee.entity';
+import CompanyEntity from '../../src/api/company/domain/entities/company.entity';
+import { CompanyEmployeeEntity } from '../../src/api/company/domain/entities/company-employee.entity';
 import { ConnectedCardEntity } from '../../src/api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../src/api/entities-to-create/conversation.entity';
 import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
@@ -37,6 +37,7 @@ import { CardTestE2eController } from './controller-test/card-test-e2e.controlle
 import { CardTestE2eService } from './service-test/card-test-e2e.service';
 import { GroupTestE2eController } from './controller-test/group-test-e2e.controller';
 import { GroupTestE2eService } from './service-test/group-test-e2e.service';
+import {CardViewEntity} from "../../src/api/card/domain/entities/card-view.entity";
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { GroupTestE2eService } from './service-test/group-test-e2e.service';
       NotificationEntity,
       ReferralCodeEntity,
       AddressEntity,
+      CardViewEntity,
     ]),
   ],
   controllers: [
