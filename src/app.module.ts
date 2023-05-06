@@ -23,6 +23,8 @@ import { SocialNetworkModule } from './api/social-network/social-network.module'
 import { CardModule } from './api/card/card.module';
 import { GroupModule } from './api/groupe/group.module';
 import * as process from 'process';
+import { AddressModule } from './api/address/address.module';
+import { CompanyModule } from './api/company/company.module';
 
 @Module({
   imports: [
@@ -51,6 +53,10 @@ import * as process from 'process';
     SocialNetworkModule,
     CardModule,
     GroupModule,
+    AddressModule,
+    CompanyModule,
+
+    // ________ Module to remove ________
     EntitiesToMoveModule,
   ],
   controllers: [AppController],

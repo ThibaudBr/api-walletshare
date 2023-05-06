@@ -1,4 +1,4 @@
-import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, SoftRemoveEvent } from 'typeorm';
+import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, SoftRemoveEvent } from 'typeorm';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { GroupEntity } from '../../domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../domain/entities/group-membership.entity';
@@ -12,10 +12,11 @@ export class GroupMembershipCardSubscriber implements EntitySubscriberInterface<
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<CardEntity>): Promise<void> {
-    const softRemovedCard = event.entity;
-    const groupMembershipRepository = event.manager.getRepository(GroupMembershipEntity);
-    const groupRepository = event.manager.getRepository(GroupEntity);
-    const groupMemberships = await groupMembershipRepository.find({
+    const softRemovedCard: CardEntity | undefined = event.entity;
+    const groupMembershipRepository: Repository<GroupMembershipEntity> =
+      event.manager.getRepository(GroupMembershipEntity);
+    const groupRepository: Repository<GroupEntity> = event.manager.getRepository(GroupEntity);
+    const groupMemberships: GroupMembershipEntity[] = await groupMembershipRepository.find({
       relations: ['group', 'card', 'group.members', 'group.members.card'],
       where: {
         card: {
@@ -34,10 +35,11 @@ export class GroupMembershipCardSubscriber implements EntitySubscriberInterface<
   }
 
   async beforeRemove(event: RemoveEvent<CardEntity>): Promise<void> {
-    const removedCard = event.entity;
-    const groupMembershipRepository = event.manager.getRepository(GroupMembershipEntity);
-    const groupRepository = event.manager.getRepository(GroupEntity);
-    const groupMemberships = await groupMembershipRepository.find({
+    const removedCard: CardEntity | undefined = event.entity;
+    const groupMembershipRepository: Repository<GroupMembershipEntity> =
+      event.manager.getRepository(GroupMembershipEntity);
+    const groupRepository: Repository<GroupEntity> = event.manager.getRepository(GroupEntity);
+    const groupMemberships: GroupMembershipEntity[] = await groupMembershipRepository.find({
       relations: ['group', 'card', 'group.members', 'group.members.card'],
       withDeleted: true,
       where: {

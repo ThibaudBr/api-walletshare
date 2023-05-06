@@ -1,4 +1,4 @@
-import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, SoftRemoveEvent } from 'typeorm';
+import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, SoftRemoveEvent } from 'typeorm';
 import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { ProfileEntity } from '../../domain/entities/profile.entity';
 
@@ -10,9 +10,9 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<UserEntity>): Promise<void> {
-    const softRemovedUser = event.entity;
-    const profileRepository = event.manager.getRepository(ProfileEntity);
-    const profiles = await profileRepository.find({
+    const softRemovedUser: UserEntity | undefined = event.entity;
+    const profileRepository: Repository<ProfileEntity> = event.manager.getRepository(ProfileEntity);
+    const profiles: ProfileEntity[] = await profileRepository.find({
       relations: ['user'],
       where: {
         user: {
@@ -25,9 +25,9 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
   }
 
   async beforeRemove(event: RemoveEvent<UserEntity>): Promise<void> {
-    const softRemovedUser = event.entity;
-    const profileRepository = event.manager.getRepository(ProfileEntity);
-    const profiles = await profileRepository.find({
+    const softRemovedUser: UserEntity | undefined = event.entity;
+    const profileRepository: Repository<ProfileEntity> = event.manager.getRepository(ProfileEntity);
+    const profiles: ProfileEntity[] = await profileRepository.find({
       relations: ['user'],
       withDeleted: true,
       where: {

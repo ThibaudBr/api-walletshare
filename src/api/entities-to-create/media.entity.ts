@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { GroupEntity } from '../groupe/domain/entities/group.entity';
-import CompanyEntity from './company.entity';
+import CompanyEntity from '../company/domain/entities/company.entity';
 import { CardEntity } from '../card/domain/entities/card.entity';
 
 @Entity({ name: 'media' })

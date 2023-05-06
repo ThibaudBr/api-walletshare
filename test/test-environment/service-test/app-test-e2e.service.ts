@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AddressEntity } from '../../../src/api/entities-to-create/address.entity';
+import { AddressEntity } from '../../../src/api/address/domain/entities/address.entity';
 import StripEventEntity from '../../../src/api/entities-to-create/strip-event.entity';
 import { ReferralCodeEntity } from '../../../src/api/entities-to-create/referal-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,8 +12,8 @@ import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.
 import { DiscountCodeEntity } from '../../../src/api/entities-to-create/discount-code.entity';
 import { MessageEntity } from '../../../src/api/entities-to-create/message.entity';
 import { GroupEntity } from '../../../src/api/groupe/domain/entities/group.entity';
-import CompanyEntity from '../../../src/api/entities-to-create/company.entity';
-import { CompanyEmployeeEntity } from '../../../src/api/entities-to-create/company-employee.entity';
+import CompanyEntity from '../../../src/api/company/domain/entities/company.entity';
+import { CompanyEmployeeEntity } from '../../../src/api/company/domain/entities/company-employee.entity';
 import { PlanEntity } from '../../../src/api/entities-to-create/plan.entity';
 import { ConversationEntity } from '../../../src/api/entities-to-create/conversation.entity';
 import { InvoicesEntity } from '../../../src/api/entities-to-create/invoices.entity';
