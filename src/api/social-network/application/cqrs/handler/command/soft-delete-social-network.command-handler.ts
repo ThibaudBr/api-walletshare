@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { SocialNetworkEntity } from '../../../../domain/entities/social-network.entity';
 import { Repository } from 'typeorm';
 import { SoftDeleteSocialNetworkEvent } from '../../event/soft-delete-social-network.event';
+import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(SoftDeleteSocialNetworkCommand)
 export class SoftDeleteSocialNetworkCommandHandler implements ICommandHandler<SoftDeleteSocialNetworkCommand> {
@@ -24,11 +25,25 @@ export class SoftDeleteSocialNetworkCommandHandler implements ICommandHandler<So
           .then(async () => {
             await this.eventBus.publish(new SoftDeleteSocialNetworkEvent(command.id));
           })
-          .catch(() => {
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                localisation: 'socialNetworkRepository.softRemove',
+                handler: 'SoftDeleteSocialNetworkCommandHandler',
+                error: error.message,
+              }),
+            );
             throw new Error('SocialNetwork not deleted');
           });
       })
-      .catch(() => {
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'socialNetworkRepository.findOneOrFail',
+            handler: 'SoftDeleteSocialNetworkCommandHandler',
+            error: error.message,
+          }),
+        );
         throw new Error('SocialNetwork not found');
       });
   }

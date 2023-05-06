@@ -26,7 +26,7 @@ export class SoftDeleteGroupCommandHandler implements ICommandHandler<SoftDelete
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'SoftDeleteGroupCommandHandler',
             error: error.message,
           }),
@@ -41,7 +41,7 @@ export class SoftDeleteGroupCommandHandler implements ICommandHandler<SoftDelete
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.softRemove',
             handler: 'SoftDeleteGroupCommandHandler',
             error: error.message,
           }),

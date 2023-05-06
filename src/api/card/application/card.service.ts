@@ -143,7 +143,7 @@ export class CardService {
           });
         })
         .catch(error => {
-          if (error.parameters[0] === 'invalidId') throw new Error('Invalid Id');
+          if (error.message === 'invalidId') throw new Error('Invalid Id');
           throw new InternalServerErrorException(error);
         });
     } catch (error) {

@@ -23,64 +23,95 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
   ) {}
 
   async execute(command: CreateProfileCommand): Promise<void> {
-    try {
-      if (!command.userId) throw new Error('User not found');
-      const user = await this.userRepository
-        .findOneOrFail({
-          where: { id: command.userId },
-        })
-        .catch(() => {
-          throw new Error('User not found');
-        });
-
-      const newProfile = new ProfileEntity({
-        user: user,
-        ...command.createProfileDto,
-      });
-
-      if (command.occupationsId) {
-        if (command.occupationsId.length > 0) {
-          const occupationPromises: Promise<OccupationEntity>[] = command.occupationsId.map(async occupationId => {
-            return await this.occupationRepository
-              .findOneOrFail({
-                where: [{ id: occupationId }],
-              })
-              .catch(() => {
-                throw new Error('Occupation not found');
-              });
-          });
-          const occupations: OccupationEntity[] = await Promise.all(occupationPromises);
-
-          if (occupations.length > 0) {
-            newProfile.occupations = occupations;
-          }
-        }
-      }
-
-      const err = await validate(newProfile);
-      if (err.length > 0) {
-        throw err;
-      }
-
-      const savedProfile = await this.profileRepository.save(newProfile).then(profile => {
-        return new ProfileResponse({
-          ...profile,
-        });
-      });
-      await this.eventBus.publish(
-        new CreateProfileEvent({
-          profileResponse: new ProfileResponse(savedProfile),
-        }),
-      );
-    } catch (error) {
+    if (!command.userId) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'CreateProfileCommandHandler',
-          localisation: 'Profile',
-          error: error.message,
+          error: 'UserId not found',
+          localisation: 'command.userId',
         }),
       );
-      throw error;
+      throw new Error('User not found');
     }
+    const user = await this.userRepository
+      .findOneOrFail({
+        where: { id: command.userId },
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'CreateProfileCommandHandler',
+            error: error.message,
+            localisation: 'userRepository.findOneOrFail',
+          }),
+        );
+        throw new Error('User not found');
+      });
+
+    const newProfile = new ProfileEntity({
+      user: user,
+      ...command.createProfileDto,
+    });
+
+    if (command.occupationsId) {
+      if (command.occupationsId.length > 0) {
+        const occupationPromises: Promise<OccupationEntity>[] = command.occupationsId.map(async occupationId => {
+          return await this.occupationRepository
+            .findOneOrFail({
+              where: [{ id: occupationId }],
+            })
+            .catch(async error => {
+              await this.eventBus.publish(
+                new ErrorCustomEvent({
+                  handler: 'CreateProfileCommandHandler',
+                  error: error.message,
+                  localisation: 'occupationRepository.findOneOrFail',
+                }),
+              );
+              throw new Error('Occupation not found');
+            });
+        });
+        const occupations: OccupationEntity[] = await Promise.all(occupationPromises);
+
+        if (occupations.length > 0) {
+          newProfile.occupations = occupations;
+        }
+      }
+    }
+
+    const err = await validate(newProfile);
+    if (err.length > 0) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'CreateProfileCommandHandler',
+          error: err.map(e => e.constraints).toString(),
+          localisation: 'validate',
+        }),
+      );
+      throw err;
+    }
+
+    const savedProfile = await this.profileRepository
+      .save(newProfile)
+      .then(profile => {
+        return new ProfileResponse({
+          ...profile,
+        });
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'CreateProfileCommandHandler',
+            error: error.message,
+            localisation: 'profileRepository.save',
+          }),
+        );
+        throw new Error('Profile not saved');
+      });
+    await this.eventBus.publish(
+      new CreateProfileEvent({
+        profileResponse: new ProfileResponse(savedProfile),
+      }),
+    );
   }
 }

@@ -26,7 +26,7 @@ export class GetAllSocialNetworkQueryHandler implements IQueryHandler<GetAllSoci
         await this.eventBus.publish(
           new ErrorCustomEvent({
             handler: 'GetAllSocialNetworkQueryHandler',
-            localisation: 'SocialNetwork',
+            localisation: 'SocialNetworkRepository.find',
             error: error.message,
           }),
         );

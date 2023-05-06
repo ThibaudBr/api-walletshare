@@ -14,28 +14,24 @@ export class GetCardByIdQueryHandler implements IQueryHandler<GetCardByIdQuery> 
   ) {}
 
   async execute(query: GetCardByIdQuery): Promise<CardEntity> {
-    try {
-      return await this.cardRepository
-        .findOneOrFail({
-          relations: ['occupations', 'owner', 'socialNetwork', 'owner.user'],
-          where: [
-            {
-              id: query.id,
-            },
-          ],
-        })
-        .catch(error => {
-          throw error;
-        });
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'card',
-          handler: 'GetCardByIdQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
+    return await this.cardRepository
+      .findOneOrFail({
+        relations: ['occupations', 'owner', 'socialNetwork', 'owner.user'],
+        where: [
+          {
+            id: query.id,
+          },
+        ],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetCardByIdQueryHandler',
+            localisation: 'cardRepository.findOneOrFail',
+            error: error.message,
+          }),
+        );
+        throw error;
+      });
   }
 }

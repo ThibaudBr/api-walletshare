@@ -26,7 +26,7 @@ export class GetSocialNetworkByIdQueryHandler implements IQueryHandler<GetSocial
         await this.eventBus.publish(
           new ErrorCustomEvent({
             handler: 'GetSocialNetworkByIdQueryHandler',
-            localisation: 'SocialNetwork',
+            localisation: 'SocialNetworkRepository.findOneOrFail',
             error: error.message,
           }),
         );

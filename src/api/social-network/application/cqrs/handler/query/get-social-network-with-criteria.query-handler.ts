@@ -15,35 +15,33 @@ export class GetSocialNetworkWithCriteriaQueryHandler implements IQueryHandler<G
   ) {}
 
   async execute(query: GetSocialNetworkWithCriteriaQuery): Promise<SocialNetworkDto[]> {
-    try {
-      const queryBuilder = this.socialNetworkRepository.createQueryBuilder('socialNetwork');
-      if (query.isDeleted) {
-        queryBuilder.setFindOptions({ withDeleted: true });
-      }
+    const queryBuilder = this.socialNetworkRepository.createQueryBuilder('socialNetwork');
+    if (query.isDeleted) {
+      queryBuilder.setFindOptions({ withDeleted: true });
+    }
 
-      if (query.name) {
-        queryBuilder.where('socialNetwork.name = :nameSocialNetwork', {
-          nameSocialNetwork: query.name,
-        });
-      }
+    if (query.name) {
+      queryBuilder.where('socialNetwork.name = :nameSocialNetwork', {
+        nameSocialNetwork: query.name,
+      });
+    }
 
-      const socialNetworks = await queryBuilder.getMany();
-
-      return socialNetworks.map(
-        socialNetwork =>
-          new SocialNetworkDto({
-            ...socialNetwork,
-          }),
-      );
-    } catch (error) {
+    const socialNetworks = await queryBuilder.getMany().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'socialNetwork',
           handler: 'GetSocialNetworkWithCriteriaQueryHandler',
+          localisation: 'SocialNetworkRepository.find',
           error: error.message,
         }),
       );
-      throw error;
-    }
+      throw new Error('Error while getting all social networks');
+    });
+
+    return socialNetworks.map(
+      socialNetwork =>
+        new SocialNetworkDto({
+          ...socialNetwork,
+        }),
+    );
   }
 }

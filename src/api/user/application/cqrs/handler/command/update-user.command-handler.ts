@@ -60,7 +60,7 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
         new ErrorCustomEvent({
           localisation: 'user',
           handler: 'UpdateUserCommandHandler',
-          error: error,
+          error: error.message,
         }),
       );
       throw error;

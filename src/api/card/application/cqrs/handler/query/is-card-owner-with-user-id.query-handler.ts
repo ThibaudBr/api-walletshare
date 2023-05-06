@@ -14,28 +14,24 @@ export class IsCardOwnerWithUserIdQueryHandler implements IQueryHandler<IsCardOw
   ) {}
 
   async execute(query: IsCardOwnerWithUserIdQuery): Promise<boolean> {
-    try {
-      const card = await this.cardRepository
-        .findOneOrFail({
-          relations: ['owner', 'owner.user'],
-          where: {
-            id: query.cardId,
-          },
-        })
-        .catch(() => {
-          throw new Error('Card not found');
-        });
+    const card = await this.cardRepository
+      .findOneOrFail({
+        relations: ['owner', 'owner.user'],
+        where: {
+          id: query.cardId,
+        },
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'IsCardOwnerWithUserIdQueryHandler',
+            localisation: 'cardRepository.findOneOrFail',
+            error: error.message,
+          }),
+        );
+        throw new Error('Card not found');
+      });
 
-      return card.owner.user.id === query.userId;
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'card',
-          handler: 'IsCardOwnerWithUserIdQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
+    return card.owner.user.id === query.userId;
   }
 }

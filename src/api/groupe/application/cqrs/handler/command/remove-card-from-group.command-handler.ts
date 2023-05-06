@@ -33,7 +33,7 @@ export class RemoveCardFromGroupCommandHandler implements ICommandHandler<Remove
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'RemoveCardFromGroupCommandHandler',
             error: error.message,
           }),
@@ -42,6 +42,13 @@ export class RemoveCardFromGroupCommandHandler implements ICommandHandler<Remove
       });
 
     if (group.members.filter(member => member.id === command.cardId).length === 0) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'group.filter',
+          handler: 'RemoveCardFromGroupCommandHandler',
+          error: 'Card is not in group',
+        }),
+      );
       throw new ErrorCardNotInGroupRuntimeException('Card is not in group');
     }
 
@@ -62,7 +69,7 @@ export class RemoveCardFromGroupCommandHandler implements ICommandHandler<Remove
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'RemoveCardFromGroupCommandHandler',
             error: error.message,
           }),
@@ -78,7 +85,7 @@ export class RemoveCardFromGroupCommandHandler implements ICommandHandler<Remove
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.softRemove',
             handler: 'RemoveCardFromGroupCommandHandler',
             error: error.message,
           }),

@@ -20,48 +20,62 @@ export class AddViewCountCardCommandHandler implements ICommandHandler<AddViewCo
   ) {}
 
   async execute(command: AddViewCountCardCommand): Promise<void> {
-    try {
-      await this.cardRepository
-        .findOneOrFail({
-          where: [
-            {
-              id: command.cardId,
-            },
-          ],
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Card not found');
-        })
-        .then(async card => {
-          const cardView: CardViewEntity = await this.cardViewRepository.save({
+    await this.cardRepository
+      .findOneOrFail({
+        where: [
+          {
+            id: command.cardId,
+          },
+        ],
+      })
+      .catch(async () => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Card not found',
+            handler: 'AddViewCountCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Card not found');
+      })
+      .then(async card => {
+        const cardView: CardViewEntity = await this.cardViewRepository
+          .save({
             card: card,
+          })
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: 'AddViewCountCardCommandHandler',
+                localisation: 'cardViewRepository.save',
+              }),
+            );
+            throw new ErrorUpdateRuntimeException('Error while updating in database');
           });
-          this.cardRepository
-            .update(card.id, {
-              numberOfShares: card.numberOfShares + 1,
-            })
-            .then(async () => {
-              await this.eventBus.publish(
-                new AddViewCountCardEvent({
-                  cardId: command.cardId,
-                  cardView: cardView.id,
-                  cardViewCount: card.numberOfShares + 1,
-                }),
-              );
-            })
-            .catch(() => {
-              throw new ErrorUpdateRuntimeException('Error while updating in database');
-            });
-        });
-    } catch (e) {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          handler: 'AddViewCountCardCommandHandler',
-          localisation: 'card',
-          error: e.message,
-        }),
-      );
-      throw e;
-    }
+        this.cardRepository
+          .update(card.id, {
+            numberOfShares: card.numberOfShares + 1,
+          })
+          .then(async () => {
+            await this.eventBus.publish(
+              new AddViewCountCardEvent({
+                cardId: command.cardId,
+                cardView: cardView.id,
+                cardViewCount: card.numberOfShares + 1,
+              }),
+            );
+          })
+          .catch(error => {
+            this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: 'AddViewCountCardCommandHandler',
+                localisation: 'cardRepository.update',
+              }),
+            );
+            throw new ErrorUpdateRuntimeException('Error while updating in database');
+          });
+      });
   }
 }

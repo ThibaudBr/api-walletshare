@@ -92,7 +92,7 @@ export class GetGroupMembershipWithCriteriaQueryHandler implements IQueryHandler
     return groupMembershipQueryBuilder.getMany().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'group',
+          localisation: 'groupRepository.findOneOrFail',
           handler: 'GetGroupMembershipWithCriteriaQueryHandler',
           error: error.message,
         }),

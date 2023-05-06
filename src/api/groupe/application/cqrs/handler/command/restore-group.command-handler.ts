@@ -28,7 +28,7 @@ export class RestoreGroupCommandHandler implements ICommandHandler<RestoreGroupC
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'RestoreGroupCommandHandler',
             error: error.message,
           }),
@@ -43,7 +43,7 @@ export class RestoreGroupCommandHandler implements ICommandHandler<RestoreGroupC
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.restore',
             handler: 'RestoreGroupCommandHandler',
             error: error.message,
           }),

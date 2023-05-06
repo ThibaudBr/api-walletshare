@@ -32,7 +32,7 @@ export class GetGroupWhereCardIsAdminQueryHandler implements IEventHandler<GetGr
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'GetGroupWhereCardIsAdminQueryHandler',
             error: error.message,
           }),

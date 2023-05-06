@@ -18,54 +18,82 @@ export class UpdateOccupationsProfileCommandHandler implements ICommandHandler<U
   ) {}
 
   async execute(command: UpdateOccupationsProfileCommand): Promise<void> {
-    try {
-      const profile = await this.profileRepository
-        .findOneOrFail({
-          relations: ['occupations'],
-          where: [{ id: command.id }],
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
+    const profile = await this.profileRepository
+      .findOneOrFail({
+        relations: ['occupations'],
+        where: [{ id: command.id }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'profileRepository.findOneOrFail',
+            handler: 'UpdateOccupationsProfileCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Profile not found');
+      });
 
-      if (command.occupations.length == 0) {
-        profile.occupations = [];
-        await this.profileRepository.save(profile);
+    if (command.occupations.length == 0) {
+      profile.occupations = [];
+      await this.profileRepository.save(profile).catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'UpdateOccupationsProfileCommandHandler',
+            error: error.message,
+            localisation: 'profileRepository.save',
+          }),
+        );
+        throw new Error('Error saving profile');
+      });
+    } else {
+      const occupationPromises: Promise<OccupationEntity>[] = command.occupations.map(async occupationId => {
+        return await this.occupationRepository
+          .findOneOrFail({
+            where: [{ id: occupationId }],
+          })
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                handler: 'UpdateOccupationsProfileCommandHandler',
+                error: error.message,
+                localisation: 'occupationRepository.findOneOrFail',
+              }),
+            );
+            throw new Error('Occupation not found');
+          });
+      });
+      const occupations: OccupationEntity[] = await Promise.all(occupationPromises);
+
+      if (occupations.length == 0) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'UpdateOccupationsProfileCommandHandler',
+            error: 'Occupations not found',
+            localisation: 'occupationRepository.findOneOrFail',
+          }),
+        );
+        throw new Error('Occupations not found');
       } else {
-        const occupationPromises: Promise<OccupationEntity>[] = command.occupations.map(async occupationId => {
-          return await this.occupationRepository
-            .findOneOrFail({
-              where: [{ id: occupationId }],
-            })
-            .catch(() => {
-              throw new Error('Occupation not found');
-            });
+        profile.occupations = occupations;
+        await this.profileRepository.save(profile).catch(async error => {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              handler: 'UpdateOccupationsProfileCommandHandler',
+              error: error.message,
+              localisation: 'profileRepository.save',
+            }),
+          );
+          throw new Error('Error saving profile');
         });
-        const occupations: OccupationEntity[] = await Promise.all(occupationPromises);
-
-        if (occupations.length == 0) {
-          throw new Error('Occupations not found');
-        } else {
-          profile.occupations = occupations;
-          await this.profileRepository.save(profile);
-        }
       }
-
-      await this.eventBus.publish(
-        new UpdateOccupationsProfileEvent({
-          listOfOccupationId: command.occupations,
-          profileId: command.id,
-        }),
-      );
-    } catch (error) {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          handler: 'UpdateOccupationProfileCommandHandler',
-          localisation: 'profile',
-          error: error.message,
-        }),
-      );
-      throw error;
     }
+
+    await this.eventBus.publish(
+      new UpdateOccupationsProfileEvent({
+        listOfOccupationId: command.occupations,
+        profileId: command.id,
+      }),
+    );
   }
 }

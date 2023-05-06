@@ -16,56 +16,85 @@ export class UpdateOccupationCommandHandler implements ICommandHandler<UpdateOcc
   ) {}
 
   async execute(command: UpdateOccupationCommand): Promise<void> {
-    try {
-      const occupationList: OccupationEntity[] = await this.occupationRepository.find();
-
-      if (occupationList.length > 0) {
-        occupationList.forEach(occupation => {
-          if (occupation.name === command.updateOccupationDto.name && occupation.id !== command.occupationId) {
-            throw new Error('Duplicated name');
-          }
-        });
-      }
-
-      const updatedOccupationEntity: OccupationEntity = await this.occupationRepository
-        .findOneOrFail({
-          where: [{ id: command.occupationId }],
-        })
-        .catch(() => {
-          throw new Error('Occupation not found');
-        })
-        .then(occupationEntity => {
-          return new OccupationEntity({
-            ...occupationEntity,
-            ...command.updateOccupationDto,
-          });
-        });
-      const err = await validate(updatedOccupationEntity);
-      if (err.length > 0) {
-        throw err;
-      }
-
-      await this.occupationRepository
-        .update(command.occupationId, updatedOccupationEntity)
-        .catch(() => {
-          throw new Error('Occupation not updated');
-        })
-        .then(async () => {
-          await this.eventBus.publish(
-            new UpdateOccupationEvent({
-              occupationId: command.occupationId,
-            }),
-          );
-        });
-    } catch (e) {
+    const occupationList: OccupationEntity[] = await this.occupationRepository.find().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
+          localisation: 'occupationRepository.find',
           handler: 'UpdateOccupationCommandHandler',
-          localisation: 'Occupation',
-          error: e.message,
+          error: error.message,
         }),
       );
-      throw e;
+      throw new Error('Occupation not found');
+    });
+
+    if (occupationList.length > 0) {
+      for (const occupation of occupationList) {
+        if (occupation.name === command.updateOccupationDto.name && occupation.id !== command.occupationId) {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              localisation: 'occupationRepository.find',
+              handler: 'UpdateOccupationCommandHandler',
+              error: 'Duplicated name',
+            }),
+          );
+          throw new Error('Duplicated name');
+        }
+      }
     }
+
+    const updatedOccupationEntity: OccupationEntity = await this.occupationRepository
+      .findOneOrFail({
+        where: [{ id: command.occupationId }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'occupationRepository.findOneOrFail',
+            handler: 'UpdateOccupationCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Occupation not found');
+      })
+      .then(occupationEntity => {
+        return new OccupationEntity({
+          ...occupationEntity,
+          ...command.updateOccupationDto,
+        });
+      });
+    const err = await validate(updatedOccupationEntity);
+    if (err.length > 0) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'validate',
+          handler: 'UpdateOccupationCommandHandler',
+          error: err
+            .map(e => e.toString())
+            .join(', ')
+            .toString(),
+        }),
+      );
+      throw err;
+    }
+
+    await this.occupationRepository
+      .update(command.occupationId, updatedOccupationEntity)
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'occupationRepository.update',
+            handler: 'UpdateOccupationCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Occupation not updated');
+      })
+      .then(async () => {
+        await this.eventBus.publish(
+          new UpdateOccupationEvent({
+            occupationId: command.occupationId,
+          }),
+        );
+      });
   }
 }

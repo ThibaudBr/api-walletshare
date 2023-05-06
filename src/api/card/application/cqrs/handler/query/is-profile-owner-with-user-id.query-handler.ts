@@ -17,26 +17,26 @@ export class IsProfileOwnerWithUserIsQueryHandler implements IQueryHandler<IsPro
   ) {}
 
   async execute(query: IsProfileOwnerWithUserIsQuery): Promise<boolean> {
-    try {
-      const profile = await this.profileRepository.findOneOrFail({
+    const profile = await this.profileRepository
+      .findOneOrFail({
         relations: ['user'],
         where: [
           {
             id: query.profileId,
           },
         ],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'IsProfileOwnerWithUserIsQueryHandler',
+            localisation: 'profileRepository.findOneOrFail',
+            error: error.message,
+          }),
+        );
+        throw error;
       });
 
-      return profile.user.id === query.userId;
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'profile',
-          handler: 'IsProfileOwnerWithUserIsQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
+    return profile.user.id === query.userId;
   }
 }

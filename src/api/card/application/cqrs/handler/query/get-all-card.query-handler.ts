@@ -14,19 +14,19 @@ export class GetAllCardQueryHandler implements IQueryHandler<GetAllCardQuery> {
   ) {}
 
   async execute(): Promise<CardEntity[]> {
-    try {
-      return await this.cardRepository.find({
+    return await this.cardRepository
+      .find({
         relations: ['occupations', 'owner', 'socialNetwork', 'owner.user'],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetAllCardQueryHandler',
+            localisation: 'cardRepository.find',
+            error: error.message,
+          }),
+        );
+        throw new Error('Cards not found');
       });
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'card',
-          handler: 'GetAllCardQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
   }
 }

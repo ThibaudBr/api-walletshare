@@ -15,29 +15,34 @@ export class SoftDeleteProfileCommandHandler implements ICommandHandler<SoftDele
   ) {}
 
   async execute(command: SoftDeleteProfileCommand): Promise<void> {
-    try {
-      const profile = await this.profileRepository
-        .findOneOrFail({
-          where: [{ id: command.id }],
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
-      await this.profileRepository.softRemove(profile);
-      await this.eventBus.publish(
-        new SoftDeleteProfileEvent({
-          id: command.id,
-        }),
-      );
-    } catch (error) {
+    const profile = await this.profileRepository
+      .findOneOrFail({
+        where: [{ id: command.id }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'profileRepository.findOneOrFail',
+            handler: 'SoftDeleteProfileCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Profile not found');
+      });
+    await this.profileRepository.softRemove(profile).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'SoftDeleteProfileCommandHandler',
-          localisation: 'profile',
           error: error.message,
+          localisation: 'profileRepository.softRemove',
         }),
       );
-      throw error;
-    }
+      throw new Error('Profile not soft deleted');
+    });
+    await this.eventBus.publish(
+      new SoftDeleteProfileEvent({
+        id: command.id,
+      }),
+    );
   }
 }

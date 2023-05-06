@@ -15,26 +15,31 @@ export class DeleteOccupationCommandHandler implements ICommandHandler<DeleteOcc
   ) {}
 
   async execute(command: DeleteOccupationCommand): Promise<void> {
-    try {
-      const occupation = await this.occupationRepository
-        .findOneOrFail({
-          withDeleted: true,
-          where: [{ id: command.occupationId }],
-        })
-        .catch(() => {
-          throw new Error('Occupation not found');
-        });
-      await this.occupationRepository.remove(occupation);
-      await this.eventBus.publish(new DeleteOccupationEvent({ occupationId: occupation.id }));
-    } catch (e) {
+    const occupation = await this.occupationRepository
+      .findOneOrFail({
+        withDeleted: true,
+        where: [{ id: command.occupationId }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'occupationRepository.findOneOrFail',
+            handler: 'DeleteOccupationCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Occupation not found');
+      });
+    await this.occupationRepository.remove(occupation).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
+          localisation: 'occupationRepository.remove',
           handler: 'DeleteOccupationCommandHandler',
-          localisation: 'Occupation',
-          error: e.message,
+          error: error.message,
         }),
       );
-      throw e;
-    }
+      throw new Error('Occupation not found');
+    });
+    await this.eventBus.publish(new DeleteOccupationEvent({ occupationId: occupation.id }));
   }
 }

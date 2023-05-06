@@ -17,45 +17,48 @@ export class GetAllCardWithProfileIdQueryHandler implements IQueryHandler<GetAll
   ) {}
 
   async execute(query: GetAllCardWithProfileIdQuery): Promise<CardEntity[]> {
-    try {
-      const profile = await this.profileRepository
-        .findOneOrFail({
-          withDeleted: query.withDeleted,
-          where: {
-            id: query.profileId,
-          },
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
+    const profile = await this.profileRepository
+      .findOneOrFail({
+        withDeleted: query.withDeleted,
+        where: {
+          id: query.profileId,
+        },
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: error.message,
+            handler: 'GetAllCardWithProfileIdQueryHandler',
+            localisation: 'profileRepository.findOneOrFail',
+          }),
+        );
+        throw new Error('Profile not found');
+      });
 
-      return await this.cardRepository
-        .find({
-          withDeleted: query.withDeleted,
-          relations: ['occupations', 'owner', 'socialNetwork'],
-          where: [
-            {
-              owner: {
-                id: profile.id,
-              },
+    return await this.cardRepository
+      .find({
+        withDeleted: query.withDeleted,
+        relations: ['occupations', 'owner', 'socialNetwork'],
+        where: [
+          {
+            owner: {
+              id: profile.id,
             },
-          ],
-        })
-        .catch(() => {
-          throw new Error('Cards not found');
-        })
-        .then(cards => {
-          return cards;
-        });
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'card',
-          handler: 'GetAllCardWithProfileIdQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
+          },
+        ],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetAllCardWithProfileIdQueryHandler',
+            localisation: 'cardRepository.find',
+            error: error.message,
+          }),
+        );
+        throw new Error('Cards not found');
+      })
+      .then(cards => {
+        return cards;
+      });
   }
 }

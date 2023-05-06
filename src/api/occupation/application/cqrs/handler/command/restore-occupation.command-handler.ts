@@ -15,32 +15,37 @@ export class RestoreOccupationCommandHandler implements ICommandHandler<RestoreO
   ) {}
 
   async execute(command: RestoreOccupationCommand): Promise<void> {
-    try {
-      const occupation: OccupationEntity = await this.occupationRepository
-        .findOneOrFail({
-          withDeleted: true,
-          where: [{ id: command.occupationId }],
-        })
-        .catch(() => {
-          throw new Error('Occupation not found');
-        });
-      if (!occupation.deletedAt) throw new Error('Occupation is not soft deleted');
+    const occupation: OccupationEntity = await this.occupationRepository
+      .findOneOrFail({
+        withDeleted: true,
+        where: [{ id: command.occupationId }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'occupationRepository.findOneOrFail',
+            handler: 'RestoreOccupationCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Occupation not found');
+      });
+    if (!occupation.deletedAt) throw new Error('Occupation is not soft deleted');
 
-      await this.occupationRepository.restore(command.occupationId);
-      await this.eventBus.publish(
-        new RestoreOccupationEvent({
-          occupationId: command.occupationId,
-        }),
-      );
-    } catch (error) {
+    await this.occupationRepository.restore(command.occupationId).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
+          localisation: 'occupationRepository.restore',
           handler: 'RestoreOccupationCommandHandler',
-          localisation: 'occupation',
           error: error.message,
         }),
       );
-      throw error;
-    }
+      throw new Error('Occupation not restored');
+    });
+    await this.eventBus.publish(
+      new RestoreOccupationEvent({
+        occupationId: command.occupationId,
+      }),
+    );
   }
 }

@@ -15,36 +15,34 @@ export class GetOccupationWithCriteriaQueryHandler implements IQueryHandler<GetO
   ) {}
 
   async execute(query: GetOccupationWithCriteriaQuery): Promise<OccupationDto[]> {
-    try {
-      const queryBuilder = this.occupationRepository.createQueryBuilder('occupation');
+    const queryBuilder = this.occupationRepository.createQueryBuilder('occupation');
 
-      if (query.criteria.isDeleted) {
-        queryBuilder.setFindOptions({ withDeleted: true });
-      }
+    if (query.criteria.isDeleted) {
+      queryBuilder.setFindOptions({ withDeleted: true });
+    }
 
-      if (query.criteria.name) {
-        queryBuilder.where('occupation.name = :nameOccupation', {
-          nameOccupation: query.criteria.name,
-        });
-      }
+    if (query.criteria.name) {
+      queryBuilder.where('occupation.name = :nameOccupation', {
+        nameOccupation: query.criteria.name,
+      });
+    }
 
-      const occupations = await queryBuilder.getMany();
-
-      return occupations.map(
-        occupation =>
-          new OccupationDto({
-            ...occupation,
-          }),
-      );
-    } catch (error) {
+    const occupations = await queryBuilder.getMany().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'occupation',
           handler: 'GetOccupationWithCriteriaQueryHandler',
+          localisation: 'OccupationRepository.find',
           error: error.message,
         }),
       );
-      throw error;
-    }
+      throw new Error('Error while getting all occupations');
+    });
+
+    return occupations.map(
+      occupation =>
+        new OccupationDto({
+          ...occupation,
+        }),
+    );
   }
 }

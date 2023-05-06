@@ -43,7 +43,7 @@ export class IsUserIdHaveRoleInGroupQueryHandler implements IQueryHandler<IsUser
       .catch(async () => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'IsUserIdHaveRoleInGroupQueryHandler',
             error: 'User is not in group',
           }),
