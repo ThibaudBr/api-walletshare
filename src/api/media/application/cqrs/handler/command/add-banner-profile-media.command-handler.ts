@@ -1,25 +1,29 @@
 import { CommandBus, CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
-import { AddAvatarProfileCommand } from '../../command/add-avatar-profile.command';
+import { AddBannerProfileMediaCommand } from '../../command/add-banner-profile-media.command';
+import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileEntity } from '../../../../../profile/domain/entities/profile.entity';
 import { Repository } from 'typeorm';
-import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
-import { AddAvatarProfileEvent } from '../../event/add-avatar-profile.event';
-import { RemoveMediaCommand } from '../../command/remove-media.command';
+import { MediaEntity } from '../../../../domain/entities/media.entity';
+import { AddBannerProfileMediaEvent } from '../../event/add-banner-profile-media.event';
+import { SoftRemoveMediaCommand } from '../../command/soft-remove-media.command';
 
-@CommandHandler(AddAvatarProfileCommand)
-export class AddAvatarProfileCommandHandler implements ICommandHandler<AddAvatarProfileCommand> {
+@CommandHandler(AddBannerProfileMediaCommand)
+export class AddBannerProfileMediaCommandHandler implements ICommandHandler<AddBannerProfileMediaCommand> {
   constructor(
     @InjectRepository(ProfileEntity)
     private readonly profileRepository: Repository<ProfileEntity>,
     private readonly eventBus: EventBus,
     private readonly commandBus: CommandBus,
+    @InjectRepository(MediaEntity)
+    private readonly mediaRepository: Repository<MediaEntity>,
   ) {}
 
-  async execute(command: AddAvatarProfileCommand): Promise<void> {
+  async execute(command: AddBannerProfileMediaCommand): Promise<void> {
     const profile: ProfileEntity = await this.profileRepository
       .findOneOrFail({
-        relations: ['avatarMedia'],
+        loadEagerRelations: false,
+        relations: ['bannerMedia'],
         where: {
           id: command.profileId,
         },
@@ -27,7 +31,7 @@ export class AddAvatarProfileCommandHandler implements ICommandHandler<AddAvatar
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            handler: 'AddAvatarProfileCommandHandler',
+            handler: 'AddBannerProfileMediaCommandHandler',
             localisation: 'ProfileRepository.findOneOrFail',
             error: error,
           }),
@@ -35,19 +39,19 @@ export class AddAvatarProfileCommandHandler implements ICommandHandler<AddAvatar
         throw new Error('Profile not found');
       });
 
-    if (profile.avatarMedia) {
+    if (profile.bannerMedia) {
       await this.commandBus.execute(
-        new RemoveMediaCommand({
-          mediaId: profile.avatarMedia.id,
+        new SoftRemoveMediaCommand({
+          mediaId: profile.bannerMedia.id,
         }),
       );
     }
 
-    profile.avatarMedia = command.mediaEntity;
+    profile.bannerMedia = command.mediaEntity;
     await this.profileRepository.save(profile).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          handler: 'AddAvatarProfileCommandHandler',
+          handler: 'AddBannerProfileMediaCommandHandler',
           localisation: 'ProfileRepository.save',
           error: error,
         }),
@@ -55,7 +59,7 @@ export class AddAvatarProfileCommandHandler implements ICommandHandler<AddAvatar
       throw new Error('Profile not saved');
     });
     await this.eventBus.publish(
-      new AddAvatarProfileEvent({
+      new AddBannerProfileMediaEvent({
         profileId: profile.id,
         mediaId: command.mediaEntity.id,
       }),

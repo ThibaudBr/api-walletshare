@@ -27,7 +27,6 @@ export class GroupEntity extends BaseEntity {
   @Column({ nullable: false, unique: true })
   name: string;
 
-
   // ______________________________________________________
   // Relations
   // ______________________________________________________

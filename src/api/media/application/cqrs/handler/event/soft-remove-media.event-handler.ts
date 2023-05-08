@@ -1,6 +1,6 @@
-import {EventsHandler, IEventHandler} from "@nestjs/cqrs";
-import {SoftRemoveMediaEvent} from "../../event/soft-remove-media.event";
-import {ApiLogService} from "../../../../../api-log/application/api-log.service";
+import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
+import { SoftRemoveMediaEvent } from '../../event/soft-remove-media.event';
+import { ApiLogService } from '../../../../../api-log/application/api-log.service';
 
 @EventsHandler(SoftRemoveMediaEvent)
 export class SoftRemoveMediaEventHandler implements IEventHandler<SoftRemoveMediaEvent> {

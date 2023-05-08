@@ -1,6 +1,6 @@
-import {EventsHandler, IEventHandler} from "@nestjs/cqrs";
-import {ApiLogService} from "../../../../../api-log/application/api-log.service";
-import {RestoreMediaEvent} from "../../event/restore-media.event";
+import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
+import { ApiLogService } from '../../../../../api-log/application/api-log.service';
+import { RestoreMediaEvent } from '../../event/restore-media.event';
 
 @EventsHandler(RestoreMediaEvent)
 export class RestoreMediaEventHandler implements IEventHandler<RestoreMediaEvent> {

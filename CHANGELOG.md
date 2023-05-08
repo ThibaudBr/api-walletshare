@@ -1,3 +1,8 @@
+# [0.1.6](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.6) - 2023-05-08
+
+### Features
+- add media module
+
 # [0.1.5](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.5) - 2023-05-06
 
 ### Features

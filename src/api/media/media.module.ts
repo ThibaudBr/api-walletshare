@@ -13,8 +13,8 @@ import { GroupEntity } from '../groupe/domain/entities/group.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { CardEntity } from '../card/domain/entities/card.entity';
 import { CompanyEntity } from '../company/domain/entities/company.entity';
-import { AddAvatarProfileCommandHandler } from './application/cqrs/handler/command/add-avatar-profile.command-handler';
-import { AddAvatarProfileEventHandler } from './application/cqrs/handler/event/add-avatar-profile.event-handler';
+import { AddAvatarProfileMediaCommandHandler } from './application/cqrs/handler/command/add-avatar-profile-media.command-handler';
+import { AddAvatarProfileMediaEventHandler } from './application/cqrs/handler/event/add-avatar-profile-media.event-handler';
 import { RemoveMediaEventHandler } from './application/cqrs/handler/event/remove-media-event.handler';
 import { RestoreMediaEventHandler } from './application/cqrs/handler/event/restore-media.event-handler';
 import { RemoveMediaCommandHandler } from './application/cqrs/handler/command/remove-media-command.handler';
@@ -27,7 +27,21 @@ import { GetAllMediaWithDeletedQueryHandler } from './application/cqrs/handler/q
 import { GetMediaWithIdQueryHandler } from './application/cqrs/handler/query/get-media-with-id.query-handler';
 import { IsUserIdOwnerOfMediaQueryHandler } from './application/cqrs/handler/query/is-user-id-owner-of-media.query-handler';
 import { IsProfileOwnerWithUserIsQuery } from '../card/application/cqrs/query/is-profile-owner-with-user-is.query';
-import {GetTemporaryMediaUrlQueryHandler} from "./application/cqrs/handler/query/get-temporary-media-url.query-handler";
+import { GetTemporaryMediaUrlQueryHandler } from './application/cqrs/handler/query/get-temporary-media-url.query-handler';
+import { IsRoleInCompanyQuery } from '../company/application/cqrs/query/is-role-in-company.query';
+import { IsUserIdHaveRoleInGroupQuery } from '../groupe/application/cqrs/query/is-user-id-have-role-in-group.query';
+import { AddAvatarCompanyMediaCommandHandler } from './application/cqrs/handler/command/add-avatar-company-media.command-handler';
+import { AddAvatarGroupMediaCommandHandler } from './application/cqrs/handler/command/add-avatar-group-media.command-handler';
+import { AddBannerCompanyMediaCommandHandler } from './application/cqrs/handler/command/add-banner-company-media.command-handler';
+import { AddBannerGroupMediaCommandHandler } from './application/cqrs/handler/command/add-banner-group-media.command-handler';
+import { AddBannerProfileMediaCommandHandler } from './application/cqrs/handler/command/add-banner-profile-media.command-handler';
+import { AddCardMediaCommandHandler } from './application/cqrs/handler/command/add-card-media.command-handler';
+import { AddAvatarCompanyMediaEventHandler } from './application/cqrs/handler/event/add-avatar-company-media.event-handler';
+import { AddAvatarGroupMediaEventHandler } from './application/cqrs/handler/event/add-avatar-group-media.event-handler';
+import { AddCardMediaEventHandler } from './application/cqrs/handler/event/add-card-media.event-handler';
+import { AddBannerProfileMediaEventHandler } from './application/cqrs/handler/event/add-banner-profile-media.event-handler';
+import { AddBannerCompanyMediaEventHandler } from './application/cqrs/handler/event/add-banner-company-media.event-handler';
+import { AddBannerGroupMediaEventHandler } from './application/cqrs/handler/event/add-banner-group-media.event-handler';
 
 @Module({
   imports: [
@@ -45,7 +59,13 @@ import {GetTemporaryMediaUrlQueryHandler} from "./application/cqrs/handler/query
     ApiLogService,
     CreateLogCommandHandler,
     // Command handlers
-    AddAvatarProfileCommandHandler,
+    AddAvatarCompanyMediaCommandHandler,
+    AddAvatarGroupMediaCommandHandler,
+    AddAvatarProfileMediaCommandHandler,
+    AddBannerCompanyMediaCommandHandler,
+    AddBannerGroupMediaCommandHandler,
+    AddBannerProfileMediaCommandHandler,
+    AddCardMediaCommandHandler,
     RemoveMediaCommandHandler,
     RestoreMediaCommandHandler,
     SoftRemoveMediaCommandHandler,
@@ -56,13 +76,21 @@ import {GetTemporaryMediaUrlQueryHandler} from "./application/cqrs/handler/query
     IsUserIdOwnerOfMediaQueryHandler,
     GetTemporaryMediaUrlQueryHandler,
     // Event handlers
-    AddAvatarProfileEventHandler,
+    AddAvatarCompanyMediaEventHandler,
+    AddAvatarGroupMediaEventHandler,
+    AddAvatarProfileMediaEventHandler,
+    AddBannerCompanyMediaEventHandler,
+    AddBannerGroupMediaEventHandler,
+    AddBannerProfileMediaEventHandler,
+    AddCardMediaEventHandler,
     RemoveMediaEventHandler,
     RestoreMediaEventHandler,
     SoftRemoveMediaEventHandler,
     UploadMediaEventHandler,
     // import from other module
     IsProfileOwnerWithUserIsQuery,
+    IsRoleInCompanyQuery,
+    IsUserIdHaveRoleInGroupQuery,
   ],
 })
 export class MediaModule {}
