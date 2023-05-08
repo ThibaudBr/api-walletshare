@@ -3,7 +3,7 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
+  Entity, JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -59,14 +59,16 @@ export class CardEntity extends BaseEntity {
   notes?: string;
   @Column({ type: 'integer', default: 0 })
   numberOfShares: number;
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
+
   @ManyToOne(() => ProfileEntity, profile => profile.personalCards, {
     cascade: ['insert', 'update'],
   })
   owner: ProfileEntity;
 
-  // ______________________________________________________
-  // Relations
-  // ______________________________________________________
   @OneToMany(() => ConnectedCardEntity, connectedCard => connectedCard.cardEntityOne, {
     cascade: true,
     onDelete: 'SET NULL',
@@ -96,6 +98,7 @@ export class CardEntity extends BaseEntity {
     cascade: true,
     onDelete: 'SET NULL',
   })
+  @JoinColumn()
   media: MediaEntity;
   @OneToMany(() => MessageEntity, message => message.author, {
     cascade: true,

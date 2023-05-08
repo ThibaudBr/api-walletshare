@@ -26,6 +26,7 @@ export class MediaController {
   }
 
   @Get('/public/get-all-media')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllMedia(): Promise<MediaResponse[]> {
     return await this.mediaService.getAllMedia();
   }

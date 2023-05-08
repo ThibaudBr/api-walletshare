@@ -22,9 +22,6 @@ export class MediaEntity {
   id: string;
 
   @Column()
-  public url: string;
-
-  @Column()
   public key: string;
 
   // ______________________________________________________

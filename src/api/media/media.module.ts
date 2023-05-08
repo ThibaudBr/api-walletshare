@@ -27,6 +27,7 @@ import { GetAllMediaWithDeletedQueryHandler } from './application/cqrs/handler/q
 import { GetMediaWithIdQueryHandler } from './application/cqrs/handler/query/get-media-with-id.query-handler';
 import { IsUserIdOwnerOfMediaQueryHandler } from './application/cqrs/handler/query/is-user-id-owner-of-media.query-handler';
 import { IsProfileOwnerWithUserIsQuery } from '../card/application/cqrs/query/is-profile-owner-with-user-is.query';
+import {GetTemporaryMediaUrlQueryHandler} from "./application/cqrs/handler/query/get-temporary-media-url.query-handler";
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { IsProfileOwnerWithUserIsQuery } from '../card/application/cqrs/query/is
     GetAllMediaWithDeletedQueryHandler,
     GetMediaWithIdQueryHandler,
     IsUserIdOwnerOfMediaQueryHandler,
+    GetTemporaryMediaUrlQueryHandler,
     // Event handlers
     AddAvatarProfileEventHandler,
     RemoveMediaEventHandler,

@@ -36,20 +36,20 @@ export class RemoveMediaCommandHandler implements ICommandHandler<RemoveMediaCom
       });
 
     const s3: S3 = new S3();
-    if (!process.env.AWS_PUBLIC_BUCKET_NAME) {
+    if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'RemoveMediaCommandHandler',
-          localisation: 'Process.env.AWS_PUBLIC_BUCKET_NAME',
-          error: 'Process.env.AWS_PUBLIC_BUCKET_NAME is not defined',
+          localisation: 'Process.env.AWS_PRIVATE_BUCKET_NAME',
+          error: 'Process.env.AWS_PRIVATE_BUCKET_NAME is not defined',
         }),
       );
-      throw new Error('AWS_PUBLIC_BUCKET_NAME not found');
+      throw new Error('AWS_PRIVATE_BUCKET_NAME not found');
     }
 
     await s3
       .deleteObject({
-        Bucket: process.env.AWS_PUBLIC_BUCKET_NAME,
+        Bucket: process.env.AWS_PRIVATE_BUCKET_NAME,
         Key: mediaToDelete.key,
       })
       .promise();

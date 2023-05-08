@@ -9,7 +9,7 @@ export class MediaResponse {
   }
 
   public readonly id: string;
-  public readonly url: string;
+  public url?: string;
   public readonly key: string;
 
   public readonly avatarGroupMedia?: GroupResponse;

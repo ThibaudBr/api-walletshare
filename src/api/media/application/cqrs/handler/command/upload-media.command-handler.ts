@@ -19,21 +19,31 @@ export class UploadMediaCommandHandler implements ICommandHandler<UploadMediaCom
 
   async execute(command: UploadMediaCommand): Promise<MediaEntity> {
     const s3: S3 = new S3();
-    if (!process.env.AWS_PUBLIC_BUCKET_NAME) {
+    if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'UploadMediaCommandHandler',
-          localisation: 'Process.env.AWS_PUBLIC_BUCKET_NAME',
-          error: 'Process.env.AWS_PUBLIC_BUCKET_NAME is not defined',
+          localisation: 'Process.env.AWS_PRIVATE_BUCKET_NAME',
+          error: 'Process.env.AWS_PRIVATE_BUCKET_NAME is not defined',
         }),
       );
-      throw new Error('Process.env.AWS_PUBLIC_BUCKET_NAME is not defined');
+      throw new Error('Process.env.AWS_PRIVATE_BUCKET_NAME is not defined');
+    }
+    if (command.dataBuffer.length > Number(process.env.AWS_MAX_FILE_SIZE_MB) || 1.5 * 1024 * 1024) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'UploadMediaCommandHandler',
+          localisation: 'command.dataBuffer.length',
+          error: 'File is too big',
+        }),
+      );
+      throw new Error('File is too big');
     }
     const uploadResult = await s3
       .upload({
-        Bucket: process.env.AWS_PUBLIC_BUCKET_NAME,
+        Bucket: process.env.AWS_PRIVATE_BUCKET_NAME,
         Body: command.dataBuffer,
-        Key: `${uuid()}-${command.filename}`,
+        Key: `${uuid()}-${command.filename.replace(' ', '-')}`,
       })
       .promise()
       .catch(async error => {
@@ -48,7 +58,6 @@ export class UploadMediaCommandHandler implements ICommandHandler<UploadMediaCom
       });
 
     const newMedia: MediaEntity = this.mediaRepository.create({
-      url: uploadResult.Location,
       key: uploadResult.Key,
     });
     const savedMedia: MediaEntity = await this.mediaRepository.save(newMedia);

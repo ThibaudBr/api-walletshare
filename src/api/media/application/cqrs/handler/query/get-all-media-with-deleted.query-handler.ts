@@ -16,6 +16,7 @@ export class GetAllMediaWithDeletedQueryHandler implements IQueryHandler<GetAllM
   async execute(): Promise<MediaEntity[]> {
     return await this.mediaRepository
       .find({
+        loadEagerRelations: false,
         withDeleted: true,
         relations: [
           'avatarGroupMedia',

@@ -10,7 +10,9 @@ import { GetAllMediaWithDeletedQuery } from './cqrs/query/get-all-media-with-del
 import { IsProfileOwnerWithUserIsQuery } from '../../card/application/cqrs/query/is-profile-owner-with-user-is.query';
 import { ErrorCustomEvent } from '../../../util/exception/error-handler/error-custom.event';
 import { IsUserIdOwnerOfMediaQuery } from './cqrs/query/is-user-id-owner-of-media.query';
-import {InvalidIdHttpException} from "../../../util/exception/custom-http-exception/invalid-id.http-exception";
+import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
+import { MediaEntity } from '../domain/entities/media.entity';
+import { GetTemporaryMediaUrlQuery } from './cqrs/query/get-temporary-media-url.query';
 
 @Injectable()
 export class MediaService {
@@ -21,15 +23,21 @@ export class MediaService {
   ) {}
 
   async getMediaWithId(mediaId: string): Promise<MediaResponse> {
-    return await this.queryBus.execute(new GetMediaWithIdQuery({ mediaId: mediaId })).catch(async error => {
-      if (error.message === 'Media not found') throw new Error('Media not found');
-      throw error;
-    });
+    return await this.queryBus
+      .execute(new GetMediaWithIdQuery({ mediaId: mediaId }))
+      .catch(async error => {
+        if (error.message === 'Media not found') throw new InvalidIdHttpException('Media not found');
+        throw error;
+      })
+      .then(async (media: MediaResponse) => {
+        media.url = await this.queryBus.execute(new GetTemporaryMediaUrlQuery({ mediaKey: media.key }));
+        return media;
+      });
   }
 
   async getAllMedia(): Promise<MediaResponse[]> {
     return await this.queryBus.execute(new GetAllMediaWithDeletedQuery()).catch(async error => {
-      if (error.message === 'Media not found') throw new Error('Media not found');
+      if (error.message === 'Media not found') throw new InvalidIdHttpException('Media not found');
       throw error;
     });
   }

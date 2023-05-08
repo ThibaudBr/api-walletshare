@@ -2,7 +2,7 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
+  Entity, JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -60,11 +60,13 @@ export class CompanyEntity {
     cascade: true,
     onDelete: 'SET NULL',
   })
+  @JoinColumn()
   avatarMedia?: MediaEntity;
   @OneToOne(() => MediaEntity, media => media.bannerProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
   })
+  @JoinColumn()
   bannerMedia?: MediaEntity;
   @OneToMany(() => AddressEntity, address => address.company, {
     cascade: true,
