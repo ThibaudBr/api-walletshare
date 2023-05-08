@@ -18,7 +18,7 @@ import { TypeOfCardEnum } from '../enum/type-of-card.enum';
 import { SocialNetworkEntity } from '../../../social-network/domain/entities/social-network.entity';
 import { IsEmail, IsUrl } from 'class-validator';
 import { ConnectedCardEntity } from './connected-card.entity';
-import { MediaEntity } from '../../../entities-to-create/media.entity';
+import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { GroupMembershipEntity } from '../../../groupe/domain/entities/group-membership.entity';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { TransferableStatusCardEnum } from '../enum/transferable-status-card.enum';
@@ -92,7 +92,7 @@ export class CardEntity extends BaseEntity {
     onDelete: 'SET NULL',
   })
   groupMemberships: GroupMembershipEntity[];
-  @OneToOne(() => MediaEntity, media => media.CardPicture, {
+  @OneToOne(() => MediaEntity, media => media.cardMedia, {
     cascade: true,
     onDelete: 'SET NULL',
   })

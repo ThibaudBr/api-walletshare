@@ -2,7 +2,7 @@ import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { SoftRemoveCompanyCommand } from '../../command/soft-remove-company.command';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { InjectRepository } from '@nestjs/typeorm';
-import CompanyEntity from '../../../../domain/entities/company.entity';
+import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { Repository } from 'typeorm';
 
 @CommandHandler(SoftRemoveCompanyCommand)

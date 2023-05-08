@@ -12,14 +12,14 @@ import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.
 import { DiscountCodeEntity } from '../../../src/api/entities-to-create/discount-code.entity';
 import { MessageEntity } from '../../../src/api/entities-to-create/message.entity';
 import { GroupEntity } from '../../../src/api/groupe/domain/entities/group.entity';
-import CompanyEntity from '../../../src/api/company/domain/entities/company.entity';
+import { CompanyEntity } from '../../../src/api/company/domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../../../src/api/company/domain/entities/company-employee.entity';
 import { PlanEntity } from '../../../src/api/entities-to-create/plan.entity';
 import { ConversationEntity } from '../../../src/api/entities-to-create/conversation.entity';
 import { InvoicesEntity } from '../../../src/api/entities-to-create/invoices.entity';
 import { NotificationEntity } from '../../../src/api/entities-to-create/notification.entity';
 import { ConnectedCardEntity } from '../../../src/api/card/domain/entities/connected-card.entity';
-import { MediaEntity } from '../../../src/api/entities-to-create/media.entity';
+import { MediaEntity } from '../../../src/api/media/domain/entities/media.entity';
 import { OccupationEntity } from '../../../src/api/occupation/domain/entities/occupation.entity';
 import { Repository } from 'typeorm';
 import { CardEntity } from '../../../src/api/card/domain/entities/card.entity';

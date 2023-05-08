@@ -2,7 +2,7 @@ import { ConflictException, ForbiddenException, Injectable } from '@nestjs/commo
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { GetAllCompanyQuery } from './cqrs/query/get-all-company.query';
 import { CompanyResponse } from '../web/response/company.response';
-import CompanyEntity from '../domain/entities/company.entity';
+import { CompanyEntity } from '../domain/entities/company.entity';
 import { GetCompanyByIdQuery } from './cqrs/query/get-company-by-id.query';
 import { GetCompanyDiscoveryQuery } from './cqrs/query/get-company-discovery.query';
 import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';

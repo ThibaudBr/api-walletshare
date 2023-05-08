@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CompanyController } from './web/company.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../user/domain/entities/user.entity';
-import CompanyEntity from './domain/entities/company.entity';
+import { CompanyEntity } from './domain/entities/company.entity';
 import { CompanyEmployeeEntity } from './domain/entities/company-employee.entity';
 import { AddressEntity } from '../address/domain/entities/address.entity';
 import { CqrsModule } from '@nestjs/cqrs';

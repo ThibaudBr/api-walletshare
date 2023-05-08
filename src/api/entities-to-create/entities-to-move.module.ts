@@ -4,7 +4,6 @@ import { ConversationEntity } from './conversation.entity';
 import { DiscountCodeEntity } from './discount-code.entity';
 import { InvoicesEntity } from './invoices.entity';
 import { JoinedConversation } from './joined-conversation.entity';
-import { MediaEntity } from './media.entity';
 import { MessageEntity } from './message.entity';
 import { PlanEntity } from './plan.entity';
 import StripEventEntity from './strip-event.entity';
@@ -20,7 +19,6 @@ import { NotificationEntity } from './notification.entity';
       DiscountCodeEntity,
       InvoicesEntity,
       JoinedConversation,
-      MediaEntity,
       MessageEntity,
       PlanEntity,
       StripEventEntity,

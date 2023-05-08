@@ -14,11 +14,11 @@ import {
 import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
-import { MediaEntity } from '../../../entities-to-create/media.entity';
+import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
 
 @Entity({ name: 'company' })
-export default class CompanyEntity {
+export class CompanyEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -56,16 +56,16 @@ export default class CompanyEntity {
   })
   ownerProfile: ProfileEntity;
 
-  @OneToOne(() => MediaEntity, media => media.profileEntityProfilePicture, {
+  @OneToOne(() => MediaEntity, media => media.avatarProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  profilePicture?: MediaEntity;
-  @OneToOne(() => MediaEntity, media => media.profileEntityBanner, {
+  avatarMedia?: MediaEntity;
+  @OneToOne(() => MediaEntity, media => media.bannerProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  bannerPicture?: MediaEntity;
+  bannerMedia?: MediaEntity;
   @OneToMany(() => AddressEntity, address => address.company, {
     cascade: true,
   })

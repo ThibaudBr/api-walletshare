@@ -2,7 +2,7 @@ import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { CreateAddressCommand } from '../../command/create-address.command';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AddressEntity } from '../../../../domain/entities/address.entity';
-import CompanyEntity from '../../../../../company/domain/entities/company.entity';
+import { CompanyEntity } from '../../../../../company/domain/entities/company.entity';
 import { UserEntity } from '../../../../../user/domain/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateAddressEvent } from '../../event/create-address.event';

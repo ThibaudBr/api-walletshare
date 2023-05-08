@@ -2,7 +2,7 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
+  Entity, JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -14,9 +14,9 @@ import {
 import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 import { CompanyEmployeeEntity } from '../../../company/domain/entities/company-employee.entity';
-import { MediaEntity } from '../../../entities-to-create/media.entity';
+import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { JoinedConversation } from '../../../entities-to-create/joined-conversation.entity';
-import CompanyEntity from '../../../company/domain/entities/company.entity';
+import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { NotificationEntity } from '../../../entities-to-create/notification.entity';
 import { RoleProfileEnum } from '../enum/role-profile.enum';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
@@ -68,7 +68,7 @@ export class ProfileEntity {
       name: 'card_id',
     },
   })
-  savedCard?: CardEntity[];
+  savedCard: CardEntity[];
 
   @ManyToMany(() => OccupationEntity, occupation => occupation.profiles, {
     cascade: ['update', 'insert'],
@@ -83,37 +83,41 @@ export class ProfileEntity {
       name: 'occupation_id',
     },
   })
-  occupations?: OccupationEntity[];
+  occupations: OccupationEntity[];
 
   @OneToMany(() => CompanyEmployeeEntity, companyEmployee => companyEmployee.profile, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  companies?: CompanyEmployeeEntity[];
+  companies: CompanyEmployeeEntity[];
 
-  @OneToOne(() => MediaEntity, media => media.profileEntityProfilePicture, {
+  @OneToOne(() => MediaEntity, media => media.avatarProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
+    eager: true,
   })
-  profilePicture?: MediaEntity;
+  @JoinColumn()
+  avatarMedia: MediaEntity;
 
-  @OneToOne(() => MediaEntity, media => media.profileEntityBanner, {
+  @OneToOne(() => MediaEntity, media => media.bannerProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
+    eager: true,
   })
-  bannerPicture?: MediaEntity;
+  @JoinColumn()
+  bannerMedia: MediaEntity;
 
   @OneToMany(() => JoinedConversation, joinedConversation => joinedConversation.profile, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  joinedConversations?: JoinedConversation[];
+  joinedConversations: JoinedConversation[];
 
   @OneToMany(() => CompanyEntity, companyEntity => companyEntity.ownerProfile, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  ownerCompanies?: CompanyEntity[];
+  ownerCompanies: CompanyEntity[];
 
   @OneToMany(() => NotificationEntity, notification => notification.profile, {
     cascade: true,
@@ -138,3 +142,4 @@ export class ProfileEntity {
     Object.assign(this, partial);
   }
 }
+

@@ -1,7 +1,7 @@
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { RemoveCompanyEmployeeCommand } from '../../command/remove-company-employee.command';
 import { InjectRepository } from '@nestjs/typeorm';
-import CompanyEntity from '../../../../domain/entities/company.entity';
+import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../../../../domain/entities/company-employee.entity';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';

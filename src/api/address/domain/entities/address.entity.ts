@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import CompanyEntity from '../../../company/domain/entities/company.entity';
+import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { IsNotEmpty, IsString } from 'class-validator';
 

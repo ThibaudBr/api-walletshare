@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ProfileResponse } from '../web/response/profile.response';
 import { CreateProfileCommand } from './cqrs/command/create-profile.command';
@@ -26,7 +26,28 @@ import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/cus
 export class ProfileService {
   constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
-  async createProfile(createProfileRequest: CreateProfileRequest): Promise<ProfileResponse> {
+  async createProfile(userId: string, createProfileRequest: CreateProfileRequest): Promise<ProfileResponse> {
+    // TODO: Check if user already have a profile Classic and user can create a profile with every role need to change
+    try {
+      return await this.commandBus.execute(
+        new CreateProfileCommand({
+          createProfileDto: {
+            usernameProfile: createProfileRequest.usernameProfile,
+            roleProfile: createProfileRequest.roleProfile,
+          },
+          userId: userId,
+          occupationsId: createProfileRequest.occupationsId,
+        }),
+      );
+    } catch (e) {
+      if (e.message === 'User not found') throw new UserNotFoundHttpException();
+      else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
+      else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
+      else throw e;
+    }
+  }
+
+  async createProfileAdmin(createProfileRequest: CreateProfileRequest): Promise<ProfileResponse> {
     try {
       return await this.commandBus.execute(
         new CreateProfileCommand({

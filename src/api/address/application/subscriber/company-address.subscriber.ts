@@ -1,5 +1,5 @@
 import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, SoftRemoveEvent } from 'typeorm';
-import CompanyEntity from '../../../company/domain/entities/company.entity';
+import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { AddressEntity } from '../../domain/entities/address.entity';
 
 @EventSubscriber()
