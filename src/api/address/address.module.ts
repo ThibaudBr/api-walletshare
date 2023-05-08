@@ -5,7 +5,7 @@ import { UserEntity } from '../user/domain/entities/user.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import CompanyEntity from '../company/domain/entities/company.entity';
+import { CompanyEntity } from '../company/domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../company/domain/entities/company-employee.entity';
 import { AddressEntity } from './domain/entities/address.entity';
 import { AddressService } from './application/address.service';

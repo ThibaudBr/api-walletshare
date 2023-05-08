@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as process from 'process';
 import { MicroserviceOptions, TcpOptions, Transport } from '@nestjs/microservices';
+import { config } from 'aws-sdk';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -31,6 +32,11 @@ async function bootstrap(): Promise<void> {
       port: Number(process.env.PORT_TCP || 3100),
     },
   };
+
+  config.update({
+    region: process.env.AWS_REGION,
+  });
+
   app.connectMicroservice<MicroserviceOptions>(tcpOptions);
   await app.startAllMicroservices();
   await app.listen(process.env.PORT || 3000);

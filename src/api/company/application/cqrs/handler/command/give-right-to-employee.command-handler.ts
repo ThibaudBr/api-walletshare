@@ -1,7 +1,7 @@
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { GiveRightToEmployeeCommand } from '../../command/give-right-to-employee.command';
 import { InjectRepository } from '@nestjs/typeorm';
-import CompanyEntity from '../../../../domain/entities/company.entity';
+import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { Repository } from 'typeorm';
 import { ProfileEntity } from '../../../../../profile/domain/entities/profile.entity';
 import { CompanyEmployeeEntity } from '../../../../domain/entities/company-employee.entity';

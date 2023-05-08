@@ -1,7 +1,7 @@
 import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetCompanyWithProfileIdQuery } from '../../query/get-company-with-profile-id.query';
 import { InjectRepository } from '@nestjs/typeorm';
-import CompanyEntity from '../../../../domain/entities/company.entity';
+import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 

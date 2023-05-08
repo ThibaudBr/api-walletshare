@@ -1,6 +1,6 @@
 import { CommandHandler, EventBus, IEventHandler } from '@nestjs/cqrs';
 import { CreateCompanyCommand } from '../../command/create-company.command';
-import CompanyEntity from '../../../../domain/entities/company.entity';
+import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { validate } from 'class-validator';
 import { CreateCompanyEvent } from '../../event/create-company.event';
 import { InjectRepository } from '@nestjs/typeorm';

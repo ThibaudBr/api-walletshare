@@ -2,7 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileEntity } from '../../../../../profile/domain/entities/profile.entity';
 import { CompanyEmployeeEntity } from '../../../../domain/entities/company-employee.entity';
 import { Repository } from 'typeorm';
-import CompanyEntity from '../../../../domain/entities/company.entity';
+import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { AddCompanyEmployeeCommand } from '../../command/add-company-employee.command';
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { AddCompanyEmployeeEvent } from '../../event/add-company-employee.event';

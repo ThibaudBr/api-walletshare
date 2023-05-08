@@ -139,7 +139,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
   }
 
   private isValidUsername(username: string): boolean {
-    return username.length > 4 && username.length < 20;
+    return username.length >= 3 && username.length < 20;
   }
 
   private isValidEmail(email: string): boolean {

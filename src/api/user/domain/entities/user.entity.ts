@@ -26,7 +26,7 @@ export class UserEntity extends BaseEntity {
   // ______________________________________________________
   @Column({ unique: true, nullable: true })
   mail?: string;
-  @Column()
+
   @Column({ unique: true, nullable: true })
   username?: string;
   /**

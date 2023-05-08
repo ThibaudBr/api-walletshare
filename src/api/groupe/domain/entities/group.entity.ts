@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 import { Length } from 'class-validator';
 import { ConversationEntity } from '../../../entities-to-create/conversation.entity';
-import { MediaEntity } from '../../../entities-to-create/media.entity';
+import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';
 
 @Entity({ name: 'group' })
@@ -26,32 +26,35 @@ export class GroupEntity extends BaseEntity {
   @Length(5, 30)
   @Column({ nullable: false, unique: true })
   name: string;
-  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
-  members: GroupMembershipEntity[];
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
+
+  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
+  members: GroupMembershipEntity[];
+
   @OneToMany(() => ConversationEntity, conversation => conversation.group, {
     nullable: false,
     cascade: true,
   })
   @JoinColumn()
   conversations: ConversationEntity[];
-  @OneToOne(() => MediaEntity, media => media.groupPicture, {
+  @OneToOne(() => MediaEntity, media => media.avatarGroupMedia, {
     cascade: true,
     nullable: true,
     onDelete: 'SET NULL',
   })
   @JoinColumn()
-  picture: MediaEntity;
-  @OneToOne(() => MediaEntity, media => media.groupBannerPicture, {
+  avatarMedia: MediaEntity;
+  @OneToOne(() => MediaEntity, media => media.bannerGroupMedia, {
     cascade: true,
     nullable: true,
     onDelete: 'SET NULL',
   })
   @JoinColumn()
-  bannerPicture: MediaEntity;
+  bannerMedia: MediaEntity;
+
   @CreateDateColumn()
   createdAt: Date;
 

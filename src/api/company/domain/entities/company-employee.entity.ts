@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import CompanyEntity from './company.entity';
+import { CompanyEntity } from './company.entity';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { RoleCompanyEmployeeEnum } from '../enum/role-company-employee.enum';
 

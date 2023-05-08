@@ -2,7 +2,7 @@ import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetAllCompanyQuery } from '../../query/get-all-company.query';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { InjectRepository } from '@nestjs/typeorm';
-import CompanyEntity from '../../../../domain/entities/company.entity';
+import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { Repository } from 'typeorm';
 
 @QueryHandler(GetAllCompanyQuery)

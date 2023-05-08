@@ -25,6 +25,7 @@ import { GroupModule } from './api/groupe/group.module';
 import * as process from 'process';
 import { AddressModule } from './api/address/address.module';
 import { CompanyModule } from './api/company/company.module';
+import { MediaModule } from './api/media/media.module';
 
 @Module({
   imports: [
@@ -55,7 +56,7 @@ import { CompanyModule } from './api/company/company.module';
     GroupModule,
     AddressModule,
     CompanyModule,
-
+    MediaModule,
     // ________ Module to remove ________
     EntitiesToMoveModule,
   ],

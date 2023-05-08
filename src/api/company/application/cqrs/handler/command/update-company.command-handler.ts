@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileEntity } from '../../../../../profile/domain/entities/profile.entity';
 import { OccupationEntity } from '../../../../../occupation/domain/entities/occupation.entity';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
-import CompanyEntity from '../../../../domain/entities/company.entity';
+import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { Repository } from 'typeorm';
 import { validate, ValidationError } from 'class-validator';
 import { UpdateCompanyEvent } from '../../event/update-company.event';
