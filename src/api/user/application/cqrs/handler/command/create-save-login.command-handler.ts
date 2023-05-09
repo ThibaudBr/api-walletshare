@@ -5,7 +5,7 @@ import { UserLoginEntity } from '../../../../domain/entities/user-login.entity';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../../../../domain/entities/user.entity';
 import { CreateSaveLoginEvent } from '../../event/create-save-login.event';
-import {ErrorCustomEvent} from "../../../../../../util/exception/error-handler/error-custom.event";
+import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(CreateSaveLoginCommand)
 export class CreateSaveLoginCommandHandler implements ICommandHandler<CreateSaveLoginCommand> {

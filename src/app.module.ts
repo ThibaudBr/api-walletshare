@@ -27,7 +27,7 @@ import { AddressModule } from './api/address/address.module';
 import { CompanyModule } from './api/company/company.module';
 import { MediaModule } from './api/media/media.module';
 import { SaveUserLoginMiddleware } from './middleware/save-user-login.middleware';
-import {UserService} from "./api/user/application/user.service";
+import { UserService } from './api/user/application/user.service';
 
 @Module({
   imports: [

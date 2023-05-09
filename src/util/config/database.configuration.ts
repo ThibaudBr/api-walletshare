@@ -39,7 +39,7 @@ import { ProfileCompanyEmployeeSubscriber } from '../../api/company/application/
 import { CardMediaSubscriber } from '../../api/media/application/subscriber/card-media.subscriber';
 import { CompanyMediaSubscriber } from '../../api/media/application/subscriber/company-media.subscriber';
 import { ProfileMediaSubscriber } from '../../api/media/application/subscriber/profile-media.subscriber';
-import {UserLoginEntity} from "../../api/user/domain/entities/user-login.entity";
+import { UserLoginEntity } from '../../api/user/domain/entities/user-login.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {

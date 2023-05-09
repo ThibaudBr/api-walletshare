@@ -1,17 +1,17 @@
-import {Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards} from '@nestjs/common';
-import {ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags} from '@nestjs/swagger';
-import {CompanyService} from '../application/company.service';
-import {CompanyResponse} from './response/company.response';
-import {RoleGuard} from '../../auth/web/guards/role.guard';
-import {GetCompanyDiscoveryRequest} from './request/get-company-discovery.request';
-import {RequestUser} from '../../auth/domain/interface/request-user.interface';
-import {AddCompanyEmployeeRequest} from './request/add-company-employee.request';
-import {UserRoleEnum} from '../../user/domain/enum/user-role.enum';
-import {GetCompanyWithCriteriaQuery} from '../application/cqrs/query/get-company-with-criteria.query';
-import {CreateCompanyRequest} from './request/create-company.request';
-import {UpdateCompanyRequest} from './request/update-company.request';
-import {TransferOwnershipOfCompanyRequest} from './request/transfer-ownership-of-company.request';
-import {CreateUserForCompanyRequest} from "./request/create-user-for-company.request";
+import { Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { CompanyService } from '../application/company.service';
+import { CompanyResponse } from './response/company.response';
+import { RoleGuard } from '../../auth/web/guards/role.guard';
+import { GetCompanyDiscoveryRequest } from './request/get-company-discovery.request';
+import { RequestUser } from '../../auth/domain/interface/request-user.interface';
+import { AddCompanyEmployeeRequest } from './request/add-company-employee.request';
+import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
+import { GetCompanyWithCriteriaQuery } from '../application/cqrs/query/get-company-with-criteria.query';
+import { CreateCompanyRequest } from './request/create-company.request';
+import { UpdateCompanyRequest } from './request/update-company.request';
+import { TransferOwnershipOfCompanyRequest } from './request/transfer-ownership-of-company.request';
+import { CreateUserForCompanyRequest } from './request/create-user-for-company.request';
 
 @Controller('company')
 @ApiTags('Company')
@@ -70,7 +70,7 @@ export class CompanyController {
   }
 
   @Post('/company/create-user-and-profile-for-company')
-  @ApiOperation({summary: 'create user for company'})
+  @ApiOperation({ summary: 'create user for company' })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
   async createUserForCompany(
     @Req() requestUser: RequestUser,
