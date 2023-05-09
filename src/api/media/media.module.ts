@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module} from '@nestjs/common';
 import { MediaController } from './web/media.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../user/domain/entities/user.entity';
@@ -42,9 +42,14 @@ import { AddCardMediaEventHandler } from './application/cqrs/handler/event/add-c
 import { AddBannerProfileMediaEventHandler } from './application/cqrs/handler/event/add-banner-profile-media.event-handler';
 import { AddBannerCompanyMediaEventHandler } from './application/cqrs/handler/event/add-banner-company-media.event-handler';
 import { AddBannerGroupMediaEventHandler } from './application/cqrs/handler/event/add-banner-group-media.event-handler';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
+    CacheModule.register({
+      max: Number(process.env.CACHE_MEDIA_NUMBER_POOL_MAX) || 1000,
+      ttl: Number(process.env.CACHE_MEDIA_MAX_DURATION) || 60 * 15,
+    }),
     TypeOrmModule.forFeature([UserEntity, MediaEntity, GroupEntity, ProfileEntity, CardEntity, CompanyEntity]),
     CqrsModule,
     ApiLogModule,
