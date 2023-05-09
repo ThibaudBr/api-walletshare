@@ -1,5 +1,5 @@
 import { ConflictException, ForbiddenException, Injectable } from '@nestjs/common';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { GetAllCompanyQuery } from './cqrs/query/get-all-company.query';
 import { CompanyResponse } from '../web/response/company.response';
 import { CompanyEntity } from '../domain/entities/company.entity';
@@ -28,10 +28,22 @@ import { TransferOwnershipOfCompanyCommand } from './cqrs/command/transfer-owner
 import { SoftRemoveCompanyCommand } from './cqrs/command/soft-remove-company.command';
 import { UpdateCompanyCommand } from './cqrs/command/update-company.command';
 import { CreateCompanyCommand } from './cqrs/command/create-company.command';
+import { CreateUserForCompanyRequest } from '../web/request/create-user-for-company.request';
+import { ErrorCustomEvent } from '../../../util/exception/error-handler/error-custom.event';
+import { CreateUserCommand } from '../../user/application/cqrs/command/create-user.command';
+import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
+import { UserResponse } from '../../user/web/response/user.response';
+import { CreateProfileCommand } from '../../profile/application/cqrs/command/create-profile.command';
+import { UserNotFoundHttpException } from '../../../util/exception/custom-http-exception/user-not-found.http-exception';
+import { InvalidParameterEntityHttpException } from '../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 
 @Injectable()
 export class CompanyService {
-  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+    private readonly eventBus: EventBus,
+  ) {}
 
   public async getAllCompanies(): Promise<CompanyResponse[]> {
     return this.queryBus
@@ -411,6 +423,60 @@ export class CompanyService {
     await this.commandBus.execute(new RestoreCompanyCommand({ companyId: companyId })).catch(async error => {
       if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
       throw error;
+    });
+  }
+
+  async createUserAndProfileForCompany(id: string, createUserForCompany: CreateUserForCompanyRequest): Promise<void> {
+    if (
+      !(await this.queryBus.execute(
+        new IsRoleInCompanyQuery({
+          userId: id,
+          companyId: createUserForCompany.companyId,
+          roles: [RoleCompanyEmployeeEnum.ADMIN, RoleCompanyEmployeeEnum.OWNER],
+        }),
+      ))
+    ) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'CreateUserAndProfileForCompany',
+          localisation: 'Company',
+          error: 'User is not allowed to create user and profile for this company',
+        }),
+      );
+      throw new ForbiddenException('You are not allowed to create user and profile for this company');
+    }
+
+    const userResponse: UserResponse = await this.commandBus
+      .execute(
+        new CreateUserCommand({
+          ...createUserForCompany.createUserDto,
+          roles: [UserRoleEnum.COMPANY_ACCOUNT, UserRoleEnum.PUBLIC],
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'User already exists') throw new ConflictException('User already exists');
+        throw error;
+      });
+
+    const profileId: string = await this.commandBus
+      .execute(
+        new CreateProfileCommand({
+          userId: userResponse.id,
+          createProfileDto: createUserForCompany.createProfileDto,
+        }),
+      )
+      .catch(async e => {
+        if (e.message === 'User not found') throw new UserNotFoundHttpException();
+        else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
+        else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
+        else if (e.message === 'Profile with given role already exist') throw new ForbiddenException(e.message);
+        else throw e;
+      });
+
+    await this.addCompanyEmployeeAdmin({
+      profileId: profileId,
+      companyId: createUserForCompany.companyId,
+      roles: createUserForCompany.companyEmployeeRoles,
     });
   }
 }

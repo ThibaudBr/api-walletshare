@@ -22,7 +22,7 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(command: CreateProfileCommand): Promise<void> {
+  async execute(command: CreateProfileCommand): Promise<string> {
     if (!command.userId) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
@@ -113,5 +113,6 @@ export class CreateProfileCommandHandler implements ICommandHandler<CreateProfil
         profileResponse: new ProfileResponse(savedProfile),
       }),
     );
+    return savedProfile.id;
   }
 }
