@@ -18,46 +18,56 @@ export class DeleteCardCommandHandler implements ICommandHandler<DeleteCardComma
   ) {}
 
   async execute(command: DeleteCardCommand): Promise<void> {
-    try {
-      if (!command.id) {
-        throw new ErrorParameterNotProvidedRuntimeException('Card id not provided');
-      }
-
-      await this.cardRepository
-        .findOneOrFail({
-          withDeleted: true,
-          where: [
-            {
-              id: command.id,
-            },
-          ],
-        })
-        .then(async card => {
-          await this.cardRepository
-            .remove(card)
-            .then(async () => {
-              await this.eventBus.publish(
-                new DeleteCardEvent({
-                  cardId: command.id,
-                }),
-              );
-            })
-            .catch(() => {
-              throw new ErrorDeleteRuntimeException('Error while deleting in database');
-            });
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Card not found');
-        });
-    } catch (e) {
+    if (!command.id) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'DeleteCardCommandHandler',
           localisation: 'card',
-          error: e.message,
+          error: 'Card id not provided',
         }),
       );
-      throw e;
+      throw new ErrorParameterNotProvidedRuntimeException('Card id not provided');
     }
+
+    await this.cardRepository
+      .findOneOrFail({
+        withDeleted: true,
+        where: [
+          {
+            id: command.id,
+          },
+        ],
+      })
+      .then(async card => {
+        await this.cardRepository
+          .remove(card)
+          .then(async () => {
+            await this.eventBus.publish(
+              new DeleteCardEvent({
+                cardId: command.id,
+              }),
+            );
+          })
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                handler: 'DeleteCardCommandHandler',
+                localisation: 'cardRepository.remove',
+                error: error.message,
+              }),
+            );
+            throw new ErrorDeleteRuntimeException('Error while deleting in database');
+          });
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'DeleteCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+            error: error.message,
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Card not found');
+      });
   }
 }

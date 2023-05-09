@@ -17,44 +17,50 @@ export class GetSavedCardWithUserIdQueryHandler implements IQueryHandler<GetSave
   ) {}
 
   async execute(query: GetSavedCardWithUserIdQuery): Promise<CardEntity[]> {
-    try {
-      const user = await this.userRepository
-        .findOneOrFail({
-          where: [
-            {
-              id: query.userId,
-            },
-          ],
-        })
-        .catch(() => {
-          throw new Error('User not found');
-        });
+    const user = await this.userRepository
+      .findOneOrFail({
+        where: [
+          {
+            id: query.userId,
+          },
+        ],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetSavedCardWithUserIdQueryHandler',
+            localisation: 'userRepository.findOneOrFail',
+            error: error.message,
+          }),
+        );
+        throw new Error('User not found');
+      });
 
-      return await this.cardRepository
-        .find({
-          relations: ['occupations', 'socialNetwork', 'owner', 'profilesWhoSavedCard', 'profilesWhoSavedCard.user'],
-          where: [
-            {
-              profilesWhoSavedCard: {
-                user: {
-                  id: user.id,
-                },
+    return await this.cardRepository
+      .find({
+        relations: ['occupations', 'socialNetwork', 'owner', 'profilesWhoSavedCard', 'profilesWhoSavedCard.user'],
+        where: [
+          {
+            profilesWhoSavedCard: {
+              user: {
+                id: user.id,
               },
             },
-          ],
-        })
-        .then(cards => {
-          return cards;
-        });
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'card',
-          handler: 'GetSavedCardWithUserIdQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
+          },
+        ],
+      })
+      .then(cards => {
+        return cards;
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetSavedCardWithUserIdQueryHandler',
+            localisation: 'cardRepository.find',
+            error: error.message,
+          }),
+        );
+        throw new Error('Cards not found');
+      });
   }
 }

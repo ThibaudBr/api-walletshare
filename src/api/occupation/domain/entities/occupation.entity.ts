@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import CompanyEntity from '../../../entities-to-create/company.entity';
+import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { Length } from 'class-validator';
 import { CardEntity } from '../../../card/domain/entities/card.entity';

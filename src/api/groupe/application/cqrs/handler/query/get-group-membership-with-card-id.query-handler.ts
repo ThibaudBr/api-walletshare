@@ -28,7 +28,7 @@ export class GetGroupMembershipWithCardIdQueryHandler implements IQueryHandler<G
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'GetGroupMembershipWithCardIdQueryHandler',
             error: error.message,
           }),

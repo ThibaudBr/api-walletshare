@@ -31,7 +31,7 @@ export class GiveAdminRightGroupCommandHandler implements ICommandHandler<GiveAd
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'GiveAdminRightGroupCommandHandler',
             error: error.message,
           }),
@@ -40,6 +40,13 @@ export class GiveAdminRightGroupCommandHandler implements ICommandHandler<GiveAd
       });
 
     if (group.members.filter(member => member.id === command.cardId).length === 0) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'group.filter',
+          handler: 'GiveAdminRightGroupCommandHandler',
+          error: 'Card is not in this group',
+        }),
+      );
       throw new Error('Card is not in this group');
     }
 
@@ -60,7 +67,7 @@ export class GiveAdminRightGroupCommandHandler implements ICommandHandler<GiveAd
       .catch(error => {
         this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'GiveAdminRightGroupCommandHandler',
             error: error.message,
           }),
@@ -75,7 +82,7 @@ export class GiveAdminRightGroupCommandHandler implements ICommandHandler<GiveAd
       .catch(error => {
         this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.save',
             handler: 'GiveAdminRightGroupCommandHandler',
             error: error.message,
           }),

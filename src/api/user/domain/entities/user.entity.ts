@@ -14,7 +14,8 @@ import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
 import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../../entities-to-create/notification.entity';
-import { AddressEntity } from '../../../entities-to-create/address.entity';
+import { AddressEntity } from '../../../address/domain/entities/address.entity';
+import { UserLoginEntity } from './user-login.entity';
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -26,7 +27,7 @@ export class UserEntity extends BaseEntity {
   // ______________________________________________________
   @Column({ unique: true, nullable: true })
   mail?: string;
-  @Column()
+
   @Column({ unique: true, nullable: true })
   username?: string;
   /**
@@ -88,12 +89,18 @@ export class UserEntity extends BaseEntity {
     cascade: ['insert', 'update', 'remove', 'soft-remove'],
   })
   addresses: AddressEntity[];
-  // ______________________________________________________
-  @CreateDateColumn()
-  createdAt: Date;
+
+  @OneToMany(() => UserLoginEntity, userLogin => userLogin.user, {
+    cascade: ['insert', 'update'],
+  })
+  userLogins: UserLoginEntity[];
 
   // ______________________________________________________
   // Timestamps
+  // ______________________________________________________
+
+  @CreateDateColumn()
+  createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
   @DeleteDateColumn()

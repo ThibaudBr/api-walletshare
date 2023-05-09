@@ -4,6 +4,7 @@ import { SocialNetworkEntity } from '../../../../domain/entities/social-network.
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteSocialNetworkEvent } from '../../event/delete-social-network.event';
+import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(DeleteSocialNetworkCommand)
 export class DeleteSocialNetworkCommandHandler implements ICommandHandler<DeleteSocialNetworkCommand> {
@@ -29,7 +30,14 @@ export class DeleteSocialNetworkCommandHandler implements ICommandHandler<Delete
             throw new Error('SocialNetwork not deleted');
           });
       })
-      .catch(() => {
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'socialNetworkRepository.findOneOrFail',
+            handler: 'DeleteSocialNetworkCommandHandler',
+            error: error.message,
+          }),
+        );
         throw new Error('SocialNetwork not found');
       });
   }

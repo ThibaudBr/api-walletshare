@@ -15,32 +15,31 @@ export class GetProfileByIdQueryHandler implements IQueryHandler<GetProfileByIdQ
   ) {}
 
   async execute(query: GetProfileByIdQuery): Promise<ProfileResponse> {
-    try {
-      return await this.profileRepository
-        .findOneOrFail({
-          relations: ['user', 'occupations'],
-          where: [
-            {
-              id: query.id,
-            },
-          ],
-        })
-        .then(
-          profile =>
-            new ProfileResponse({
-              ...profile,
-              userId: profile.user?.id,
-            }),
+    return await this.profileRepository
+      .findOneOrFail({
+        relations: ['user', 'occupations'],
+        where: [
+          {
+            id: query.id,
+          },
+        ],
+      })
+      .then(
+        profile =>
+          new ProfileResponse({
+            ...profile,
+            userId: profile.user?.id,
+          }),
+      )
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetProfileByIdQueryHandler',
+            localisation: 'profileRepository.findOneOrFail',
+            error: error.message,
+          }),
         );
-    } catch (error) {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'profile',
-          handler: 'GetProfileByIdQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
+        throw new Error('Profile not found');
+      });
   }
 }

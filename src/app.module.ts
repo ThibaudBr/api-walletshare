@@ -23,6 +23,11 @@ import { SocialNetworkModule } from './api/social-network/social-network.module'
 import { CardModule } from './api/card/card.module';
 import { GroupModule } from './api/groupe/group.module';
 import * as process from 'process';
+import { AddressModule } from './api/address/address.module';
+import { CompanyModule } from './api/company/company.module';
+import { MediaModule } from './api/media/media.module';
+import { SaveUserLoginMiddleware } from './middleware/save-user-login.middleware';
+import { UserService } from './api/user/application/user.service';
 
 @Module({
   imports: [
@@ -51,14 +56,19 @@ import * as process from 'process';
     SocialNetworkModule,
     CardModule,
     GroupModule,
+    AddressModule,
+    CompanyModule,
+    MediaModule,
+    // ________ Module to remove ________
     EntitiesToMoveModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ApiLogService],
+  providers: [AppService, ApiLogService, UserService],
 })
 export class AppModule implements NestModule {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(RequestLoggingMiddleware, ResponseLoggingMiddleware, ErrorLoggingMiddleware).forRoutes('*');
+    consumer.apply(SaveUserLoginMiddleware).forRoutes('/auth/login');
   }
 }

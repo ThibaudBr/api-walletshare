@@ -29,6 +29,10 @@ import { InvalidPasswordHttpException } from '../../../util/exception/custom-htt
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
 import { DeleteUserCommand } from './cqrs/command/delete-user.command';
 import { SendMailCommand } from '../../api-mail/application/cqrs/command/send-mail.command';
+import { SaveUserLoginDto } from '../domain/dto/save-user-login.dto';
+import { CreateSaveLoginCommand } from './cqrs/command/create-save-login.command';
+import { SaveUserLoginResponse } from '../web/response/save-user-login.response';
+import { GetSavedCardWithUserIdQuery } from '../../card/application/cqrs/query/get-saved-card-with-user-id.query';
 
 @Injectable()
 export class UserService {
@@ -171,5 +175,26 @@ export class UserService {
 
   private generatePassword(): string {
     return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
+  }
+
+  async saveUserLogin(saveUserLogin: SaveUserLoginDto): Promise<void> {
+    return await this.commandBus
+      .execute(
+        new CreateSaveLoginCommand({
+          ...saveUserLogin,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'User not found') throw new UserNotFoundHttpException();
+        else throw error;
+      });
+  }
+
+  async getLoginHistory(userId: string): Promise<SaveUserLoginResponse[]> {
+    return await this.queryBus.execute(
+      new GetSavedCardWithUserIdQuery({
+        userId: userId,
+      }),
+    );
   }
 }

@@ -25,9 +25,23 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
 
   async execute(command: CreateGroupCommand): Promise<void> {
     if (command.name === undefined || command.name === null) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'group',
+          handler: 'CreateGroupCommandHandler',
+          error: 'Name is undefined or null',
+        }),
+      );
       throw new ErrorInvalidGroupNameRuntimeException('Invalid group name');
     }
     if (command.name.length < 3 || command.name.length > 20) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'group',
+          handler: 'CreateGroupCommandHandler',
+          error: 'Name length is not between 3 and 20',
+        }),
+      );
       throw new ErrorInvalidGroupNameRuntimeException('Invalid group name');
     }
 
@@ -43,7 +57,7 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'cardRepository.findOneOrFail',
             handler: 'CreateGroupCommandHandler',
             error: error.message,
           }),
@@ -58,7 +72,7 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.save',
             handler: 'CreateGroupCommandHandler',
             error: error.message,
           }),
@@ -75,7 +89,7 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
     await this.groupMembershipRepository.save(newGroupMembership).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'group',
+          localisation: 'groupRepository.save',
           handler: 'CreateGroupCommandHandler',
           error: error.message,
         }),

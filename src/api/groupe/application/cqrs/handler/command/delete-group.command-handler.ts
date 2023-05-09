@@ -25,7 +25,7 @@ export class DeleteGroupCommandHandler implements ICommandHandler<DeleteGroupCom
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'DeleteGroupCommandHandler',
             error: error.message,
           }),
@@ -40,7 +40,7 @@ export class DeleteGroupCommandHandler implements ICommandHandler<DeleteGroupCom
       .catch(error => {
         this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.delete',
             handler: 'DeleteGroupCommandHandler',
             error: error.message,
           }),

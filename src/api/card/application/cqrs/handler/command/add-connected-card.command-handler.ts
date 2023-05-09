@@ -21,98 +21,137 @@ export class AddConnectedCardCommandHandler implements ICommandHandler<AddConnec
   ) {}
 
   async execute(command: AddConnectedCardCommand): Promise<void> {
-    try {
-      const cardWhoRequest: CardEntity = await this.cardRepository
-        .findOneOrFail({
-          select: ['id'],
-          relations: [
-            'connectedCardOne',
-            'connectedCardTwo',
-            'connectedCardOne.cardEntityOne',
-            'connectedCardOne.cardEntityTwo',
-            'connectedCardTwo.cardEntityOne',
-            'connectedCardTwo.cardEntityTwo',
-            'owner',
-            'owner.user',
-          ],
-          where: [
-            {
-              id: command.cardId,
-            },
-          ],
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Card of sender not found');
-        });
-
-      const cardToConnect: CardEntity = await this.cardRepository
-        .findOneOrFail({
-          relations: [
-            'connectedCardOne',
-            'connectedCardTwo',
-            'connectedCardOne.cardEntityOne',
-            'connectedCardOne.cardEntityTwo',
-            'connectedCardTwo.cardEntityOne',
-            'connectedCardTwo.cardEntityTwo',
-            'owner',
-            'owner.user',
-          ],
-          where: [
-            {
-              id: command.connectedCardId,
-            },
-          ],
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Card of receiver not found');
-        });
-
-      if (cardWhoRequest.owner.user.id === cardToConnect.owner.user.id) {
-        throw new Error('You can not connect your own card');
-      }
-      cardWhoRequest.connectedCardOne.forEach(card => {
-        if (card.cardEntityOne.id === cardToConnect.id) {
-          throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
-        }
-        if (card.cardEntityTwo.id === cardToConnect.id) {
-          throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
-        }
-      });
-      cardWhoRequest.connectedCardTwo.forEach(card => {
-        if (card.cardEntityOne.id === cardToConnect.id) {
-          throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
-        }
-        if (card.cardEntityTwo.id === cardToConnect.id) {
-          throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
-        }
-      });
-      await this.connectedCardRepository
-        .save(
-          new ConnectedCardEntity({
-            cardEntityOne: cardWhoRequest,
-            cardEntityTwo: cardToConnect,
+    const cardWhoRequest: CardEntity = await this.cardRepository
+      .findOneOrFail({
+        select: ['id'],
+        relations: [
+          'connectedCardOne',
+          'connectedCardTwo',
+          'connectedCardOne.cardEntityOne',
+          'connectedCardOne.cardEntityTwo',
+          'connectedCardTwo.cardEntityOne',
+          'connectedCardTwo.cardEntityTwo',
+          'owner',
+          'owner.user',
+        ],
+        where: [
+          {
+            id: command.cardId,
+          },
+        ],
+      })
+      .catch(async () => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Card of sender not found',
+            handler: 'AddConnectedCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
           }),
-        )
-        .then(() => {
-          this.eventBus.publish(
-            new AddConnectedCardEvent({
-              id: cardWhoRequest.id,
-              connectedCardId: cardToConnect.id,
-            }),
-          );
-        })
-        .catch(() => {
-          throw new ErrorSaveRuntimeException('Error while saving connected card');
-        });
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'card',
-          handler: 'AddConnectedCardCommandHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
+        );
+        throw new ErrorInvalidIdRuntimeException('Card of sender not found');
+      });
+
+    const cardToConnect: CardEntity = await this.cardRepository
+      .findOneOrFail({
+        relations: [
+          'connectedCardOne',
+          'connectedCardTwo',
+          'connectedCardOne.cardEntityOne',
+          'connectedCardOne.cardEntityTwo',
+          'connectedCardTwo.cardEntityOne',
+          'connectedCardTwo.cardEntityTwo',
+          'owner',
+          'owner.user',
+        ],
+        where: [
+          {
+            id: command.connectedCardId,
+          },
+        ],
+      })
+      .catch(async () => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Card of receiver not found',
+            handler: 'AddConnectedCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Card of receiver not found');
+      });
+
+    if (cardWhoRequest.owner.user.id === cardToConnect.owner.user.id) {
+      throw new Error('You can not connect your own card');
     }
+    for (const card of cardWhoRequest.connectedCardOne) {
+      if (card.cardEntityOne.id === cardToConnect.id) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Card already connected',
+            handler: 'AddConnectedCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
+      }
+      if (card.cardEntityTwo.id === cardToConnect.id) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Card already connected',
+            handler: 'AddConnectedCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
+      }
+    }
+    for (const card of cardWhoRequest.connectedCardTwo) {
+      if (card.cardEntityOne.id === cardToConnect.id) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Card already connected',
+            handler: 'AddConnectedCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
+      }
+      if (card.cardEntityTwo.id === cardToConnect.id) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Card already connected',
+            handler: 'AddConnectedCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+
+        throw new ErrorCardAlreadyConnectedRuntimeException('Card already connected');
+      }
+    }
+    await this.connectedCardRepository
+      .save(
+        new ConnectedCardEntity({
+          cardEntityOne: cardWhoRequest,
+          cardEntityTwo: cardToConnect,
+        }),
+      )
+      .then(() => {
+        this.eventBus.publish(
+          new AddConnectedCardEvent({
+            id: cardWhoRequest.id,
+            connectedCardId: cardToConnect.id,
+          }),
+        );
+      })
+      .catch(async () => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Error while saving connected card',
+            handler: 'AddConnectedCardCommandHandler',
+            localisation: 'connectedCardRepository.save',
+          }),
+        );
+        throw new ErrorSaveRuntimeException('Error while saving connected card');
+      });
   }
 }

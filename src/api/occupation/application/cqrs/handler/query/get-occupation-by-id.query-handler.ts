@@ -26,7 +26,7 @@ export class GetOccupationByIdQueryHandler implements IQueryHandler<GetOccupatio
         await this.eventBus.publish(
           new ErrorCustomEvent({
             handler: 'GetOccupationByIdQueryHandler',
-            localisation: 'Occupation',
+            localisation: 'OccupationRepository.findOneOrFail',
             error: error.message,
           }),
         );

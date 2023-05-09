@@ -17,17 +17,24 @@ export class GetSavedCardWithProfileIdQueryHandler implements IQueryHandler<GetS
   ) {}
 
   async execute(query: GetSavedCardWithProfileIdQuery): Promise<CardEntity[]> {
-    try {
-      const profile: ProfileEntity = await this.profileRepository
-        .findOneOrFail({
-          where: {
-            id: query.profileId,
-          },
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
-      return await this.cardRepository.find({
+    const profile: ProfileEntity = await this.profileRepository
+      .findOneOrFail({
+        where: {
+          id: query.profileId,
+        },
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: error.message,
+            handler: 'GetSavedCardWithProfileIdQueryHandler',
+            localisation: 'profileRepository.findOneOrFail',
+          }),
+        );
+        throw new Error('Profile not found');
+      });
+    return await this.cardRepository
+      .find({
         relations: ['occupations', 'owner', 'profilesWhoSavedCard', 'socialNetwork'],
         where: [
           {
@@ -36,16 +43,16 @@ export class GetSavedCardWithProfileIdQueryHandler implements IQueryHandler<GetS
             },
           },
         ],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetSavedCardWithProfileIdQueryHandler',
+            localisation: 'cardRepository.find',
+            error: error.message,
+          }),
+        );
+        throw new Error('Cards not found');
       });
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'card',
-          handler: 'GetSavedCardWithProfileIdQueryHandler',
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
   }
 }

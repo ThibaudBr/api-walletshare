@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AddressEntity } from '../../../src/api/entities-to-create/address.entity';
+import { AddressEntity } from '../../../src/api/address/domain/entities/address.entity';
 import StripEventEntity from '../../../src/api/entities-to-create/strip-event.entity';
 import { ReferralCodeEntity } from '../../../src/api/entities-to-create/referal-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,14 +12,14 @@ import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.
 import { DiscountCodeEntity } from '../../../src/api/entities-to-create/discount-code.entity';
 import { MessageEntity } from '../../../src/api/entities-to-create/message.entity';
 import { GroupEntity } from '../../../src/api/groupe/domain/entities/group.entity';
-import CompanyEntity from '../../../src/api/entities-to-create/company.entity';
-import { CompanyEmployeeEntity } from '../../../src/api/entities-to-create/company-employee.entity';
+import { CompanyEntity } from '../../../src/api/company/domain/entities/company.entity';
+import { CompanyEmployeeEntity } from '../../../src/api/company/domain/entities/company-employee.entity';
 import { PlanEntity } from '../../../src/api/entities-to-create/plan.entity';
 import { ConversationEntity } from '../../../src/api/entities-to-create/conversation.entity';
 import { InvoicesEntity } from '../../../src/api/entities-to-create/invoices.entity';
 import { NotificationEntity } from '../../../src/api/entities-to-create/notification.entity';
 import { ConnectedCardEntity } from '../../../src/api/card/domain/entities/connected-card.entity';
-import { MediaEntity } from '../../../src/api/entities-to-create/media.entity';
+import { MediaEntity } from '../../../src/api/media/domain/entities/media.entity';
 import { OccupationEntity } from '../../../src/api/occupation/domain/entities/occupation.entity';
 import { Repository } from 'typeorm';
 import { CardEntity } from '../../../src/api/card/domain/entities/card.entity';
@@ -75,6 +75,8 @@ export class AppTestE2eService {
 
   async clearDatabaseTest(): Promise<void> {
     try {
+      await this.userRepository.query('DELETE FROM "user-login";');
+      await this.mediaRepository.query('DELETE FROM "media";');
       await this.cardRepository.query('DELETE FROM "card_occupations_occupation";');
       await this.cardRepository.query('DELETE FROM "connected_card";');
       await this.cardRepository.query('DELETE FROM "saved-card";');
@@ -90,7 +92,6 @@ export class AppTestE2eService {
       await this.groupMembershipRepository.query('DELETE FROM "group_membership";');
       await this.invoicesRepository.query('DELETE FROM "invoices";');
       await this.joinedConversationRepository.query('DELETE FROM "joined_conversation";');
-      await this.mediaRepository.query('DELETE FROM "media";');
       await this.messageRepository.query('DELETE FROM "message";');
       await this.occupationRepository.query('DELETE FROM "occupation";');
       await this.planRepository.query('DELETE FROM "plan";');

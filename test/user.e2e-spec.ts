@@ -200,12 +200,12 @@ describe('UserController (e2e)', () => {
           });
       });
 
-      it('should return username is too short', async function () {
+      it('should return username is too short ( < 3) ', async function () {
         await request(app.getHttpServer())
           .post('/user/admin/create')
           .set('Authorization', 'Bearer ' + adminToken)
           .send({
-            username: 'tes',
+            username: 'te',
             mail: 'test@test.fr',
             password: 'Test123!',
           })

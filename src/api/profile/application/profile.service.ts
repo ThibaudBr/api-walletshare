@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { ForbiddenException, Injectable } from '@nestjs/common';
+import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { ProfileResponse } from '../web/response/profile.response';
 import { CreateProfileCommand } from './cqrs/command/create-profile.command';
 import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
@@ -21,12 +21,67 @@ import { GetProfilesByUserIdQuery } from './cqrs/query/get-profiles-by-user-id.q
 import { NotTheOwnerHttpException } from '../../../util/exception/custom-http-exception/not-the-owner.http-exception';
 import { RestoreProfileCommand } from './cqrs/command/restore-profile.command';
 import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception';
+import { RoleProfileEnum } from '../domain/enum/role-profile.enum';
+import { ErrorCustomEvent } from '../../../util/exception/error-handler/error-custom.event';
+import { IsProfileWithGivenRoleAlreadyExistQuery } from './cqrs/query/is-profile-with-given-role-already-exist.query';
 
 @Injectable()
 export class ProfileService {
-  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+    private readonly eventBus: EventBus,
+  ) {}
 
-  async createProfile(createProfileRequest: CreateProfileRequest): Promise<ProfileResponse> {
+  async createProfile(userId: string, createProfileRequest: CreateProfileRequest): Promise<ProfileResponse> {
+    try {
+      if (createProfileRequest.roleProfile !== RoleProfileEnum.CLASSIC) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'ProfileService.createProfile',
+            handler: 'ProfileService',
+            error: 'User can only have one profile with role classic',
+          }),
+        );
+        throw new ForbiddenException('User can only have one profile with role classic');
+      }
+      if (
+        !(await this.queryBus.execute(
+          new IsProfileWithGivenRoleAlreadyExistQuery({
+            roleProfile: createProfileRequest.roleProfile,
+            userId: userId,
+          }),
+        ))
+      ) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'ProfileService.createProfile',
+            handler: 'ProfileService',
+            error: 'Profile with given role already exist',
+          }),
+        );
+        throw new ForbiddenException('Profile with given role already exist');
+      }
+      return await this.commandBus.execute(
+        new CreateProfileCommand({
+          createProfileDto: {
+            usernameProfile: createProfileRequest.usernameProfile,
+            roleProfile: createProfileRequest.roleProfile,
+          },
+          userId: userId,
+          occupationsId: createProfileRequest.occupationsId,
+        }),
+      );
+    } catch (e) {
+      if (e.message === 'User not found') throw new UserNotFoundHttpException();
+      else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
+      else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
+      else if (e.message === 'Profile with given role already exist') throw new ForbiddenException(e.message);
+      else throw e;
+    }
+  }
+
+  async createProfileAdmin(createProfileRequest: CreateProfileRequest): Promise<ProfileResponse> {
     try {
       return await this.commandBus.execute(
         new CreateProfileCommand({

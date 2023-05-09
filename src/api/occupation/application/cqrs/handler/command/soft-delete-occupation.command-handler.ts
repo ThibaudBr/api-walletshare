@@ -15,31 +15,34 @@ export class SoftDeleteOccupationCommandHandler implements ICommandHandler<SoftD
   ) {}
 
   async execute(command: SoftDeleteOccupationCommand): Promise<void> {
-    try {
-      const occupation = await this.occupationRepository
-        .findOneOrFail({
-          where: [{ id: command.occupationId }],
-        })
-        .catch(() => {
-          throw new Error('Occupation not found');
-        });
-      await this.occupationRepository.softRemove(occupation).catch(() => {
-        throw new Error('Occupation not soft deleted');
+    const occupation = await this.occupationRepository
+      .findOneOrFail({
+        where: [{ id: command.occupationId }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'occupationRepository.findOneOrFail',
+            handler: 'SoftDeleteOccupationCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Occupation not found');
       });
-      await this.eventBus.publish(
-        new SoftDeleteOccupationEvent({
-          occupationId: command.occupationId,
-        }),
-      );
-    } catch (e) {
+    await this.occupationRepository.softRemove(occupation).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
+          localisation: 'occupationRepository.softRemove',
           handler: 'SoftDeleteOccupationCommandHandler',
-          localisation: 'Occupation',
-          error: e.message,
+          error: error.message,
         }),
       );
-      throw e;
-    }
+      throw new Error('Occupation not soft deleted');
+    });
+    await this.eventBus.publish(
+      new SoftDeleteOccupationEvent({
+        occupationId: command.occupationId,
+      }),
+    );
   }
 }

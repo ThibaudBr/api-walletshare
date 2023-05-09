@@ -20,58 +20,68 @@ export class AddSavedCardCommandHandler implements ICommandHandler<AddSavedCardC
   ) {}
 
   async execute(command: AddSavedCardCommand): Promise<void> {
-    try {
-      const profileEntity = await this.profileRepository
-        .findOneOrFail({
-          where: [
-            {
-              id: command.profileId,
-            },
-          ],
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Profile not found');
-        });
-      await this.cardRepository
-        .findOneOrFail({
-          relations: ['profilesWhoSavedCard'],
-          where: [
-            {
-              id: command.cardId,
-            },
-          ],
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Card not found');
-        })
-        .then(async card => {
-          if (card.profilesWhoSavedCard.find(profile => profile.id === profileEntity.id)) {
-            throw new Error('Card already saved');
-          }
-          if (!card.profilesWhoSavedCard) card.profilesWhoSavedCard = [];
-          card.profilesWhoSavedCard.push(profileEntity);
-          await this.cardRepository
-            .save(card)
-            .then(async () => {
-              await this.eventBus.publish(
-                new AddSavedCardEvent({
-                  cardId: command.cardId,
-                }),
-              );
-            })
-            .catch(() => {
-              throw new ErrorUpdateRuntimeException('Error while updating in database');
-            });
-        });
-    } catch (e) {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          handler: 'AddSavedCardCommandHandler',
-          localisation: 'card',
-          error: e.message,
-        }),
-      );
-      throw e;
-    }
+    const profileEntity = await this.profileRepository
+      .findOneOrFail({
+        where: [
+          {
+            id: command.profileId,
+          },
+        ],
+      })
+      .catch(async () => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Profile not found',
+            handler: 'AddSavedCardCommandHandler',
+            localisation: 'profileRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Profile not found');
+      });
+    await this.cardRepository
+      .findOneOrFail({
+        relations: ['profilesWhoSavedCard'],
+        where: [
+          {
+            id: command.cardId,
+          },
+        ],
+      })
+      .catch(async () => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: 'Card not found',
+            handler: 'AddSavedCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Card not found');
+      })
+      .then(async card => {
+        if (card.profilesWhoSavedCard.find(profile => profile.id === profileEntity.id)) {
+          throw new Error('Card already saved');
+        }
+        if (!card.profilesWhoSavedCard) card.profilesWhoSavedCard = [];
+        card.profilesWhoSavedCard.push(profileEntity);
+        await this.cardRepository
+          .save(card)
+          .then(async () => {
+            await this.eventBus.publish(
+              new AddSavedCardEvent({
+                cardId: command.cardId,
+              }),
+            );
+          })
+          .catch(async () => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: 'Error while updating in database',
+                handler: 'AddSavedCardCommandHandler',
+                localisation: 'cardRepository.save',
+              }),
+            );
+            throw new ErrorUpdateRuntimeException('Error while updating in database');
+          });
+      });
   }
 }

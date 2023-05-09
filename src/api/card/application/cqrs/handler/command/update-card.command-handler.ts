@@ -25,106 +25,130 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
   ) {}
 
   async execute(command: UpdateCardCommand): Promise<void> {
-    try {
-      const cardToUpdate = await this.cardRepository
-        .findOneOrFail({
-          relations: ['owner', 'socialNetwork', 'occupations'],
-          where: [
-            {
-              id: command.cardId,
-            },
-          ],
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Card not found');
-        });
-
-      if (command.profileId != undefined) {
-        if (cardToUpdate.owner.id !== command.profileId) {
-          cardToUpdate.owner = await this.profileRepository
-            .findOneOrFail({
-              where: [
-                {
-                  id: command.profileId,
-                },
-              ],
-            })
-            .catch(() => {
-              throw new ErrorInvalidIdRuntimeException('Profile not found');
-            })
-            .then(profile => {
-              return profile;
-            });
-        }
-      }
-
-      if (command.socialNetworkId != undefined) {
-        if (cardToUpdate.socialNetwork.id !== command.socialNetworkId) {
-          cardToUpdate.socialNetwork = await this.socialNetworkRepository
-            .findOneOrFail({
-              where: [
-                {
-                  id: command.socialNetworkId,
-                },
-              ],
-            })
-            .catch(() => {
-              throw new ErrorInvalidIdRuntimeException('Social Network not found');
-            })
-            .then(socialNetwork => {
-              return socialNetwork;
-            });
-        }
-      }
-
-      if (command.occupationsId != undefined) {
-        for (const occupationId of command.occupationsId) {
-          if (!cardToUpdate.occupations.find(occupation => occupation.id === occupationId)) {
-            const occupation = await this.occupationRepository
-              .findOneOrFail({
-                where: [
-                  {
-                    id: occupationId,
-                  },
-                ],
-              })
-              .catch(() => {
-                throw new ErrorInvalidIdRuntimeException('Occupation not found');
-              })
-              .then(occupation => {
-                return occupation;
-              });
-            cardToUpdate.occupations.push(occupation);
-          }
-        }
-      }
-
-      const cardUpdated = new CardEntity({
-        ...cardToUpdate,
-        ...command,
+    const cardToUpdate = await this.cardRepository
+      .findOneOrFail({
+        relations: ['owner', 'socialNetwork', 'occupations'],
+        where: [
+          {
+            id: command.cardId,
+          },
+        ],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: error.message,
+            handler: 'UpdateCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Card not found');
       });
 
-      await this.cardRepository
-        .save(cardUpdated)
-        .then(() => {
-          this.eventBus.publish(
-            new UpdateCardEvent({
-              cardId: command.cardId,
-            }),
-          );
-        })
-        .catch(() => {
-          throw new Error('Card not updated');
-        });
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          error: error.message,
-          handler: 'UpdateCardCommandHandler',
-          localisation: 'card',
-        }),
-      );
-      throw error;
+    if (command.profileId != undefined) {
+      if (cardToUpdate.owner.id !== command.profileId) {
+        cardToUpdate.owner = await this.profileRepository
+          .findOneOrFail({
+            where: [
+              {
+                id: command.profileId,
+              },
+            ],
+          })
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: 'UpdateCardCommandHandler',
+                localisation: 'profileRepository.findOneOrFail',
+              }),
+            );
+            throw new ErrorInvalidIdRuntimeException('Profile not found');
+          })
+          .then(profile => {
+            return profile;
+          });
+      }
     }
+
+    if (command.socialNetworkId != undefined) {
+      if (cardToUpdate.socialNetwork.id !== command.socialNetworkId) {
+        cardToUpdate.socialNetwork = await this.socialNetworkRepository
+          .findOneOrFail({
+            where: [
+              {
+                id: command.socialNetworkId,
+              },
+            ],
+          })
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: 'UpdateCardCommandHandler',
+                localisation: 'socialNetworkRepository.findOneOrFail',
+              }),
+            );
+            throw new ErrorInvalidIdRuntimeException('Social Network not found');
+          })
+          .then(socialNetwork => {
+            return socialNetwork;
+          });
+      }
+    }
+
+    if (command.occupationsId != undefined) {
+      for (const occupationId of command.occupationsId) {
+        if (!cardToUpdate.occupations.find(occupation => occupation.id === occupationId)) {
+          const occupation = await this.occupationRepository
+            .findOneOrFail({
+              where: [
+                {
+                  id: occupationId,
+                },
+              ],
+            })
+            .catch(async error => {
+              await this.eventBus.publish(
+                new ErrorCustomEvent({
+                  error: error.message,
+                  handler: 'UpdateCardCommandHandler',
+                  localisation: 'occupationRepository.findOneOrFail',
+                }),
+              );
+              throw new ErrorInvalidIdRuntimeException('Occupation not found');
+            })
+            .then(occupation => {
+              return occupation;
+            });
+          cardToUpdate.occupations.push(occupation);
+        }
+      }
+    }
+
+    const cardUpdated = new CardEntity({
+      ...cardToUpdate,
+      ...command,
+    });
+
+    await this.cardRepository
+      .save(cardUpdated)
+      .then(() => {
+        this.eventBus.publish(
+          new UpdateCardEvent({
+            cardId: command.cardId,
+          }),
+        );
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: error.message,
+            handler: 'UpdateCardCommandHandler',
+            localisation: 'cardRepository.save',
+          }),
+        );
+        throw new Error('Card not updated');
+      });
   }
 }

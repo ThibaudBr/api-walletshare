@@ -29,10 +29,14 @@ import { UpdateUserCredentialCommandHandler } from './application/cqrs/handler/c
 import { UpdateUserRoleCommandHandler } from './application/cqrs/handler/command/update-user-role.command-handler';
 import { RestoreUserCommandHandler } from './application/cqrs/handler/command/restore-user.command-handler';
 import { DeleteUserCommandHandler } from './application/cqrs/handler/command/delete-user.command-handler';
+import { UserLoginEntity } from './domain/entities/user-login.entity';
+import { CreateSaveLoginCommandHandler } from './application/cqrs/handler/command/create-save-login.command-handler';
+import { GetUserLoginByIdQueryHandler } from './application/cqrs/handler/query/get-user-login-by-id.query-handler';
+import { CreateSaveLoginUserEventHandler } from './application/cqrs/handler/event/create-save-login-user.event-handler';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, UserLoginEntity]),
     CqrsModule,
     ApiLogModule,
     ClientsModule.register([
@@ -55,6 +59,7 @@ import { DeleteUserCommandHandler } from './application/cqrs/handler/command/del
     UpdateUserRoleCommandHandler,
     RestoreUserCommandHandler,
     DeleteUserCommandHandler,
+    CreateSaveLoginCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,
@@ -62,6 +67,7 @@ import { DeleteUserCommandHandler } from './application/cqrs/handler/command/del
     GetUserIfRefreshTokenMatchesQueryHandler,
     GetUserQueryHandler,
     GetUserWithCriteriaQueryHandler,
+    GetUserLoginByIdQueryHandler,
     // Event handlers
     CreateUserEventHandler,
     DeleteUserEventHandler,
@@ -69,6 +75,7 @@ import { DeleteUserCommandHandler } from './application/cqrs/handler/command/del
     SetCurrentRefreshTokenEventHandler,
     LoginOfUserEventHandler,
     UpdateUserEventHandler,
+    CreateSaveLoginUserEventHandler,
   ],
 })
 export class UserModule {}

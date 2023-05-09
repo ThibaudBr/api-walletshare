@@ -16,32 +16,45 @@ export class RestoreCardCommandHandler implements ICommandHandler<RestoreCardCom
   ) {}
 
   async execute(command: RestoreCardCommand): Promise<void> {
-    try {
-      const cardToRestore = await this.cardRepository
-        .findOneOrFail({
-          withDeleted: true,
-          where: [{ id: command.id }],
-        })
-        .catch(() => {
-          throw new ErrorInvalidIdRuntimeException('Card not found');
-        });
+    const cardToRestore = await this.cardRepository
+      .findOneOrFail({
+        withDeleted: true,
+        where: [{ id: command.id }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'RestoreCardCommandHandler',
+            localisation: 'cardRepository.findOneOrFail',
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException('Card not found');
+      });
 
-      if (cardToRestore.deletedAt == undefined) throw new Error('Card not soft-deleted');
-      await this.cardRepository.restore(command.id);
+    if (cardToRestore.deletedAt == undefined) {
       await this.eventBus.publish(
-        new RestoreCardEvent({
-          cardId: cardToRestore.id,
-        }),
-      );
-    } catch (error) {
-      this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'RestoreCardCommandHandler',
-          localisation: 'card',
-          error: error.message,
+          localisation: 'cardRepository.findOneOrFail',
+          error: 'Card not soft-deleted',
         }),
       );
-      throw error;
+      throw new Error('Card not soft-deleted');
     }
+    await this.cardRepository.restore(command.id).catch(async error => {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          error: error.message,
+          handler: 'RestoreCardCommandHandler',
+          localisation: 'cardRepository.restore',
+        }),
+      );
+      throw new Error('Card not restored');
+    });
+    await this.eventBus.publish(
+      new RestoreCardEvent({
+        cardId: cardToRestore.id,
+      }),
+    );
   }
 }

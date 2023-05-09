@@ -25,6 +25,7 @@ import { UpdateUserCredentialDto } from '../domain/dto/update-user-credential.dt
 import { GenerateUserDto } from '../domain/dto/generate-user.dto';
 import { ListRolesDto } from '../domain/dto/list-roles.dto';
 import { UserIdDto } from '../domain/dto/user-id.dto';
+import { SaveUserLoginResponse } from './response/save-user-login.response';
 
 @Controller('user')
 @ApiTags('user')
@@ -34,6 +35,31 @@ export class UserController {
   @Post('/admin/create')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createUser(@Body() createUserDto: CreateUserDto): Promise<CreateUserResponse> {
+    try {
+      return await this.userService.createUser(createUserDto);
+    } catch (error) {
+      throw new HttpException(
+        {
+          message: error.message,
+        },
+        error.status,
+      );
+    }
+  }
+
+  @Post('/admin/create/:passwordSuperAdmin')
+  async createSuperAdmin(
+    @Param('passwordSuperAdmin') passwordSuperAdmin: string,
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<CreateUserResponse> {
+    if (passwordSuperAdmin !== process.env.PASSWORD_SUPER_ADMIN) {
+      throw new HttpException(
+        {
+          message: 'Password super admin is not correct',
+        },
+        403,
+      );
+    }
     try {
       return await this.userService.createUser(createUserDto);
     } catch (error) {
@@ -249,5 +275,19 @@ export class UserController {
         error.status,
       );
     }
+  }
+
+  @HttpCode(200)
+  @Get('/public/get-my-last-login')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getMyLastLogin(@Req() requestUser: RequestUser): Promise<SaveUserLoginResponse[]> {
+    return await this.userService.getLoginHistory(requestUser.user.id);
+  }
+
+  @HttpCode(200)
+  @Get('/admin/get-user-last-login/:id')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getUserLastLogin(@Param('id') id: string): Promise<SaveUserLoginResponse[]> {
+    return await this.userService.getLoginHistory(id);
   }
 }

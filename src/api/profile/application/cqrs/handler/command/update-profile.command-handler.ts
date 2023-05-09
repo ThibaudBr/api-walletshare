@@ -16,39 +16,51 @@ export class UpdateProfileCommandHandler implements ICommandHandler<UpdateProfil
   ) {}
 
   async execute(command: UpdateProfileCommand): Promise<void> {
-    try {
-      const profile = await this.profileRepository
-        .findOneOrFail({
-          where: [{ id: command.id }],
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
-      const updateProfile = new ProfileEntity({
-        ...profile,
-        ...command.updateProfileDto,
+    const profile = await this.profileRepository
+      .findOneOrFail({
+        where: [{ id: command.id }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'profileRepository.findOneOrFail',
+            handler: 'UpdateProfileCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Profile not found');
       });
+    const updateProfile = new ProfileEntity({
+      ...profile,
+      ...command.updateProfileDto,
+    });
 
-      const err = await validate(updateProfile);
-      if (err.length > 0) {
-        throw err;
-      }
-
-      await this.profileRepository.save(updateProfile);
+    const err = await validate(updateProfile);
+    if (err.length > 0) {
       await this.eventBus.publish(
-        new UpdateProfileEvent({
-          updateProfileCommand: command,
+        new ErrorCustomEvent({
+          handler: 'UpdateProfileCommandHandler',
+          error: err.map(e => e.constraints).toString(),
+          localisation: 'validate',
         }),
       );
-    } catch (error) {
+      throw err;
+    }
+
+    await this.profileRepository.save(updateProfile).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'UpdateProfileCommandHandler',
           error: error.message,
-          localisation: 'profile',
+          localisation: 'profileRepository.save',
         }),
       );
-      throw error;
-    }
+      throw new Error('Profile not updated');
+    });
+    await this.eventBus.publish(
+      new UpdateProfileEvent({
+        updateProfileCommand: command,
+      }),
+    );
   }
 }

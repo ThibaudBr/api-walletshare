@@ -1,4 +1,32 @@
+# [0.1.8](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.8) - 2023-05-09
 
+### Features
+- add route for create user and profile for company
+- add save-login entity to save when user login
+- update Amazon S3 sdk from V2 to V3
+
+# [0.1.7](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.7) - 2023-05-09
+
+### Features
+- fix package.json
+- fix log
+- add route to create user-admin
+
+# [0.1.6](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.6) - 2023-05-08
+
+### Features
+- add media module
+
+# [0.1.5](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.5) - 2023-05-06
+
+### Features
+- Refacto to log every error in api-log
+
+# [0.1.4](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.4) - 2023-05-06
+
+### Features
+- add company module
+- add Address module
 
 # [0.1.3](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.3) - 2023-05-03
 

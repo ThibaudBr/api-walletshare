@@ -30,7 +30,7 @@ export class GetGroupMemberQueryHandler implements IQueryHandler<GetGroupMemberQ
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: 'group',
+            localisation: 'groupRepository.findOneOrFail',
             handler: 'GetGroupByIdQueryHandler',
             error: error.message,
           }),

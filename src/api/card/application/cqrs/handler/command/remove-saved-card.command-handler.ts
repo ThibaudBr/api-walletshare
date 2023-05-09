@@ -16,39 +16,61 @@ export class RemoveSavedCardCommandHandler implements ICommandHandler<RemoveSave
   ) {}
 
   async execute(command: RemoveSavedCardCommand): Promise<void> {
-    try {
-      const profileToUpdate = await this.profileEntity
-        .findOneOrFail({
-          relations: ['savedCard'],
-          where: {
-            id: command.profileId,
-          },
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
+    const profileToUpdate = await this.profileEntity
+      .findOneOrFail({
+        relations: ['savedCard'],
+        where: {
+          id: command.profileId,
+        },
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: error.message,
+            handler: 'RemoveSavedCardCommandHandler',
+            localisation: 'profileRepository.findOneOrFail',
+          }),
+        );
+        throw new Error('Profile not found');
+      });
 
-      if (!profileToUpdate.savedCard) throw new Error('Profile have no saved card');
-      const saveTemp = profileToUpdate.savedCard.length;
-      profileToUpdate.savedCard = profileToUpdate.savedCard.filter((card: CardEntity) => card.id != command.cardId);
-      if (saveTemp == profileToUpdate.savedCard.length) throw new Error('Card not saved in profile');
-      await this.profileEntity.save(profileToUpdate);
-
+    if (!profileToUpdate.savedCard) {
       await this.eventBus.publish(
-        new RemoveSavedCardEvent({
-          cardId: command.cardId,
-          profileId: command.profileId,
-        }),
-      );
-    } catch (e) {
-      this.eventBus.publish(
         new ErrorCustomEvent({
+          error: 'Profile have no saved card',
           handler: 'RemoveSavedCardCommandHandler',
-          localisation: 'card',
-          error: e.message,
+          localisation: 'profileToUpdate.savedCard',
         }),
       );
-      throw e;
+      throw new Error('Profile have no saved card');
     }
+    const saveTemp = profileToUpdate.savedCard.length;
+    profileToUpdate.savedCard = profileToUpdate.savedCard.filter((card: CardEntity) => card.id != command.cardId);
+    if (saveTemp == profileToUpdate.savedCard.length) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          error: 'Card not saved in profile',
+          handler: 'RemoveSavedCardCommandHandler',
+          localisation: 'profileToUpdate.savedCard',
+        }),
+      );
+      throw new Error('Card not saved in profile');
+    }
+    await this.profileEntity.save(profileToUpdate).catch(async error => {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          error: error.message,
+          handler: 'RemoveSavedCardCommandHandler',
+          localisation: 'profileRepository.save',
+        }),
+      );
+    });
+
+    await this.eventBus.publish(
+      new RemoveSavedCardEvent({
+        cardId: command.cardId,
+        profileId: command.profileId,
+      }),
+    );
   }
 }

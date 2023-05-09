@@ -7,8 +7,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import CompanyEntity from './company.entity';
-import { UserEntity } from '../user/domain/entities/user.entity';
+import { CompanyEntity } from '../../../company/domain/entities/company.entity';
+import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { IsNotEmpty, IsString } from 'class-validator';
 
 @Entity({ name: 'address' })
@@ -68,4 +68,10 @@ export class AddressEntity {
 
   @ManyToOne(() => CompanyEntity, companyEntity => companyEntity.addresses, { nullable: true, onDelete: 'CASCADE' })
   company: CompanyEntity;
+
+  constructor(partial?: Partial<AddressEntity>) {
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

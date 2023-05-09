@@ -28,7 +28,7 @@ describe('AuthController (e2e)', () => {
   });
 
   describe('Register /api/v1/auth/register (POST)', () => {
-    beforeAll(async () => {
+    beforeEach(async () => {
       await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
       await request(app.getHttpServer())
         .post('/api/test/create-user-test')
@@ -137,18 +137,6 @@ describe('AuthController (e2e)', () => {
   });
 
   describe('Login /auth/login (POST)', () => {
-    beforeAll(async () => {
-      await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
-
-      await request(app.getHttpServer())
-        .post('/api/test/create-user-test')
-        .send({
-          username: 'loginTest',
-          mail: 'loginTest@test.fr',
-          password: 'Test123!',
-        })
-        .expect(201);
-    });
     describe('With valid data', () => {
       it('should return new users and refreshToken', async () => {
         const response = await request(app.getHttpServer())
@@ -196,18 +184,6 @@ describe('AuthController (e2e)', () => {
   });
 
   describe('Refresh /auth/refresh (GET)', () => {
-    beforeAll(async () => {
-      await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
-
-      await request(app.getHttpServer())
-        .post('/api/test/create-user-test')
-        .send({
-          username: 'loginTest',
-          mail: 'loginTest@test.fr',
-          password: 'Test123!',
-        })
-        .expect(201);
-    });
     it('should return new accessToken', async () => {
       const response = await request(app.getHttpServer())
         .post('/auth/login')
@@ -258,18 +234,6 @@ describe('AuthController (e2e)', () => {
   });
 
   describe('Actual /auth/actual (GET)', () => {
-    beforeAll(async () => {
-      await request(app.getHttpServer()).get('/api/test/clear-database-test').expect(200);
-
-      await request(app.getHttpServer())
-        .post('/api/test/create-user-test')
-        .send({
-          username: 'loginTest',
-          mail: 'loginTest@test.fr',
-          password: 'Test123!',
-        })
-        .expect(201);
-    });
     it('should return users', async () => {
       const response = await request(app.getHttpServer())
         .post('/auth/login')

@@ -3,8 +3,8 @@ import { join } from 'path';
 import { Injectable } from '@nestjs/common';
 import * as process from 'process';
 import { logger } from './winston-logger.config';
-import CompanyEntity from '../../api/entities-to-create/company.entity';
-import { CompanyEmployeeEntity } from '../../api/entities-to-create/company-employee.entity';
+import { CompanyEntity } from '../../api/company/domain/entities/company.entity';
+import { CompanyEmployeeEntity } from '../../api/company/domain/entities/company-employee.entity';
 import { ConnectedCardEntity } from '../../api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../api/entities-to-create/conversation.entity';
 import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
@@ -12,7 +12,7 @@ import { GroupEntity } from '../../api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../api/entities-to-create/invoices.entity';
 import { JoinedConversation } from '../../api/entities-to-create/joined-conversation.entity';
-import { MediaEntity } from '../../api/entities-to-create/media.entity';
+import { MediaEntity } from '../../api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../api/entities-to-create/message.entity';
 import { OccupationEntity } from '../../api/occupation/domain/entities/occupation.entity';
 import { PlanEntity } from '../../api/entities-to-create/plan.entity';
@@ -23,7 +23,7 @@ import { SubscriptionEntity } from '../../api/entities-to-create/subscription.en
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
 import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
-import { AddressEntity } from '../../api/entities-to-create/address.entity';
+import { AddressEntity } from '../../api/address/domain/entities/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
 import { ProfileSubscriber } from '../../api/profile/application/subscriber/profile.subscriber';
 import { ConnectedCardSubscriber } from '../../api/card/application/subscriber/connected-card.subscriber';
@@ -32,6 +32,14 @@ import { GroupMembershipCardSubscriber } from '../../api/groupe/application/subs
 import { GroupGroupMembershipSubscriber } from '../../api/groupe/application/subscriber/group-group-membership.subscriber';
 import { CardViewSubscriber } from '../../api/card/application/subscriber/card-view.subscriber';
 import { CardViewEntity } from '../../api/card/domain/entities/card-view.entity';
+import { CompanyAddressSubscriber } from '../../api/address/application/subscriber/company-address.subscriber';
+import { UserAddressSubscriber } from '../../api/address/application/subscriber/user-address.subscriber';
+import { CompanyCompanyEmployeeSubscriber } from '../../api/company/application/subscriber/company-company-employee.subscriber';
+import { ProfileCompanyEmployeeSubscriber } from '../../api/company/application/subscriber/profile-company-employee.subscriber';
+import { CardMediaSubscriber } from '../../api/media/application/subscriber/card-media.subscriber';
+import { CompanyMediaSubscriber } from '../../api/media/application/subscriber/company-media.subscriber';
+import { ProfileMediaSubscriber } from '../../api/media/application/subscriber/profile-media.subscriber';
+import { UserLoginEntity } from '../../api/user/domain/entities/user-login.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -52,7 +60,32 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
               rejectUnauthorized: false,
             },
           },
-          entities: [join(__dirname, '**/*.entity{.ts,.js}')],
+          entities: [
+            CardEntity,
+            CompanyEntity,
+            CompanyEmployeeEntity,
+            ConnectedCardEntity,
+            ConversationEntity,
+            DiscountCodeEntity,
+            GroupEntity,
+            GroupMembershipEntity,
+            InvoicesEntity,
+            JoinedConversation,
+            MediaEntity,
+            MessageEntity,
+            OccupationEntity,
+            PlanEntity,
+            ProfileEntity,
+            SocialNetworkEntity,
+            StripEventEntity,
+            SubscriptionEntity,
+            UserEntity,
+            NotificationEntity,
+            ReferralCodeEntity,
+            AddressEntity,
+            CardViewEntity,
+            UserLoginEntity,
+          ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PROD === 'true',
           subscribers: [
@@ -62,6 +95,13 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
             CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
+            CardMediaSubscriber,
+            CompanyMediaSubscriber,
+            ProfileMediaSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'pprod') {
@@ -79,7 +119,32 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
               rejectUnauthorized: false,
             },
           },
-          entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+          entities: [
+            CardEntity,
+            CompanyEntity,
+            CompanyEmployeeEntity,
+            ConnectedCardEntity,
+            ConversationEntity,
+            DiscountCodeEntity,
+            GroupEntity,
+            GroupMembershipEntity,
+            InvoicesEntity,
+            JoinedConversation,
+            MediaEntity,
+            MessageEntity,
+            OccupationEntity,
+            PlanEntity,
+            ProfileEntity,
+            SocialNetworkEntity,
+            StripEventEntity,
+            SubscriptionEntity,
+            UserEntity,
+            NotificationEntity,
+            ReferralCodeEntity,
+            AddressEntity,
+            CardViewEntity,
+            UserLoginEntity,
+          ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PPROD === 'true',
           subscribers: [
@@ -89,6 +154,13 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
             CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
+            CardMediaSubscriber,
+            CompanyMediaSubscriber,
+            ProfileMediaSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'test') {
@@ -124,6 +196,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
             CardViewEntity,
+            UserLoginEntity,
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
@@ -134,6 +207,13 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
             CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
+            CardMediaSubscriber,
+            CompanyMediaSubscriber,
+            ProfileMediaSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'dev') {
@@ -171,6 +251,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
             CardViewEntity,
+            UserLoginEntity,
           ],
           subscribers: [
             ProfileSubscriber,
@@ -179,6 +260,13 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupMembershipCardSubscriber,
             GroupGroupMembershipSubscriber,
             CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
+            CardMediaSubscriber,
+            CompanyMediaSubscriber,
+            ProfileMediaSubscriber,
           ],
         };
       } else {

@@ -1,4 +1,4 @@
-import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, SoftRemoveEvent } from 'typeorm';
+import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, SoftRemoveEvent } from 'typeorm';
 import { GroupEntity } from '../../domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../domain/entities/group-membership.entity';
 
@@ -10,9 +10,10 @@ export class GroupGroupMembershipSubscriber implements EntitySubscriberInterface
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<GroupEntity>): Promise<void> {
-    const softRemovedGroup = event.entity;
-    const groupMembershipRepository = event.manager.getRepository(GroupMembershipEntity);
-    const groupMemberships = await groupMembershipRepository.find({
+    const softRemovedGroup: GroupEntity | undefined = event.entity;
+    const groupMembershipRepository: Repository<GroupMembershipEntity> =
+      event.manager.getRepository(GroupMembershipEntity);
+    const groupMemberships: GroupMembershipEntity[] = await groupMembershipRepository.find({
       relations: ['members'],
       where: {
         group: {
@@ -27,9 +28,10 @@ export class GroupGroupMembershipSubscriber implements EntitySubscriberInterface
   }
 
   async beforeRemove(event: RemoveEvent<GroupEntity>): Promise<void> {
-    const removedGroup = event.entity;
-    const groupMembershipRepository = event.manager.getRepository(GroupMembershipEntity);
-    const groupMemberships = await groupMembershipRepository.find({
+    const removedGroup: GroupEntity | undefined = event.entity;
+    const groupMembershipRepository: Repository<GroupMembershipEntity> =
+      event.manager.getRepository(GroupMembershipEntity);
+    const groupMemberships: GroupMembershipEntity[] = await groupMembershipRepository.find({
       relations: ['members'],
       where: {
         group: {

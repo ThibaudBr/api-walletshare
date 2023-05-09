@@ -15,31 +15,36 @@ export class RestoreProfileCommandHandler implements ICommandHandler<RestoreProf
   ) {}
 
   async execute(command: RestoreProfileCommand): Promise<void> {
-    try {
-      const profile = await this.profileRepository
-        .findOneOrFail({
-          withDeleted: true,
-          where: [{ id: command.profileId }],
-        })
-        .catch(() => {
-          throw new Error('Profile not found');
-        });
-      if (!profile.deletedAt) throw new Error('Profile is not soft deleted');
-      await this.profileRepository.restore(command.profileId);
-      await this.eventBus.publish(
-        new RestoreProfileEvent({
-          profileId: command.profileId,
-        }),
-      );
-    } catch (error) {
+    const profile = await this.profileRepository
+      .findOneOrFail({
+        withDeleted: true,
+        where: [{ id: command.profileId }],
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'profileRepository.findOneOrFail',
+            handler: 'RestoreProfileCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Profile not found');
+      });
+    if (!profile.deletedAt) throw new Error('Profile is not soft deleted');
+    await this.profileRepository.restore(command.profileId).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'RestoreProfileCommandHandler',
-          localisation: 'profile',
           error: error.message,
+          localisation: 'profileRepository.restore',
         }),
       );
-      throw error;
-    }
+      throw new Error('Profile not restored');
+    });
+    await this.eventBus.publish(
+      new RestoreProfileEvent({
+        profileId: command.profileId,
+      }),
+    );
   }
 }

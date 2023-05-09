@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -11,14 +12,14 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
+import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 import { CompanyEmployeeEntity } from './company-employee.entity';
-import { ProfileEntity } from '../profile/domain/entities/profile.entity';
-import { MediaEntity } from './media.entity';
-import { AddressEntity } from './address.entity';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
+import { MediaEntity } from '../../../media/domain/entities/media.entity';
+import { AddressEntity } from '../../../address/domain/entities/address.entity';
 
 @Entity({ name: 'company' })
-export default class CompanyEntity {
+export class CompanyEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -36,48 +37,48 @@ export default class CompanyEntity {
   @Column({ nullable: true })
   website?: string;
   @Column({ nullable: true })
-  address?: string;
-  @Column({ nullable: true })
-  zip_code?: string;
-  @Column({ nullable: true })
-  city?: string;
-  @Column({ nullable: true })
-  country?: string;
-  @Column({ nullable: true })
   phone?: string;
   @Column({ nullable: true })
   email?: string;
-  @OneToMany(() => CompanyEmployeeEntity, companyEmployeeEntity => companyEmployeeEntity.company)
-  employees: CompanyEmployeeEntity[];
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
+
+  @OneToMany(() => CompanyEmployeeEntity, companyEmployeeEntity => companyEmployeeEntity.company)
+  employees: CompanyEmployeeEntity[];
+
   @ManyToMany(() => OccupationEntity, occupationEntity => occupationEntity.companies)
   @JoinTable()
   occupations: OccupationEntity[];
-  @ManyToOne(() => ProfileEntity, profileEntity => profileEntity.ownerCompanies)
+
+  @ManyToOne(() => ProfileEntity, profileEntity => profileEntity.ownerCompanies, {
+    cascade: ['update'],
+  })
   ownerProfile: ProfileEntity;
-  @OneToOne(() => MediaEntity, media => media.profileEntityProfilePicture, {
+
+  @OneToOne(() => MediaEntity, media => media.avatarProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  profilePicture?: MediaEntity;
-  @OneToOne(() => MediaEntity, media => media.profileEntityBanner, {
+  @JoinColumn()
+  avatarMedia?: MediaEntity;
+  @OneToOne(() => MediaEntity, media => media.bannerProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  bannerPicture?: MediaEntity;
+  @JoinColumn()
+  bannerMedia?: MediaEntity;
   @OneToMany(() => AddressEntity, address => address.company, {
     cascade: true,
   })
   addresses: AddressEntity[];
-  @CreateDateColumn()
-  createdAt: Date;
 
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
+  @CreateDateColumn()
+  createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
   @DeleteDateColumn()

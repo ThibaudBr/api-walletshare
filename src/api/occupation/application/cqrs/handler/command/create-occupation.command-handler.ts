@@ -17,48 +17,70 @@ export class CreateOccupationCommandHandler implements ICommandHandler<CreateOcc
   ) {}
 
   async execute(command: CreateOccupationCommand): Promise<OccupationDto> {
-    try {
-      const occupationList: OccupationEntity[] = await this.occupationRepository.find();
-
-      if (occupationList.length > 0) {
-        occupationList.forEach(occupation => {
-          if (occupation.name === command.createOccupationDto.name) {
-            throw new Error('Duplicated name');
-          }
-        });
-      }
-      const newOccupationEntity: OccupationEntity = new OccupationEntity({
-        ...command.createOccupationDto,
-      });
-      const err = await validate(newOccupationEntity);
-      if (err.length > 0) {
-        throw err;
-      }
-
-      return this.occupationRepository
-        .save(newOccupationEntity)
-        .then(async occupationEntity => {
-          await this.eventBus.publish(
-            new CreateOccupationEvent({
-              occupationId: occupationEntity.id,
-            }),
-          );
-          return new OccupationDto({
-            ...occupationEntity,
-          });
-        })
-        .catch(() => {
-          throw new Error('Occupation not created');
-        });
-    } catch (e) {
+    const occupationList: OccupationEntity[] = await this.occupationRepository.find().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
+          localisation: 'occupationRepository.find',
           handler: 'CreateOccupationCommandHandler',
-          localisation: 'Occupation',
-          error: e.message,
+          error: error.message,
         }),
       );
-      throw e;
+      throw error;
+    });
+
+    if (occupationList.length > 0) {
+      for (const occupation of occupationList) {
+        if (occupation.name === command.createOccupationDto.name) {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              localisation: 'occupationList.forEach',
+              handler: 'CreateOccupationCommandHandler',
+              error: 'Duplicated name',
+            }),
+          );
+          throw new Error('Duplicated name');
+        }
+      }
     }
+    const newOccupationEntity: OccupationEntity = new OccupationEntity({
+      ...command.createOccupationDto,
+    });
+    const err = await validate(newOccupationEntity);
+    if (err.length > 0) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'validate',
+          handler: 'CreateOccupationCommandHandler',
+          error: err
+            .map(e => e.toString())
+            .join(', ')
+            .toString(),
+        }),
+      );
+      throw err;
+    }
+
+    return this.occupationRepository
+      .save(newOccupationEntity)
+      .then(async occupationEntity => {
+        await this.eventBus.publish(
+          new CreateOccupationEvent({
+            occupationId: occupationEntity.id,
+          }),
+        );
+        return new OccupationDto({
+          ...occupationEntity,
+        });
+      })
+      .catch(async error => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'occupationRepository.save',
+            handler: 'CreateOccupationCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Occupation not created');
+      });
   }
 }
