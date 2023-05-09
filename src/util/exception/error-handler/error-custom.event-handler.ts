@@ -8,21 +8,21 @@ import { ApiTypeEnum } from '../../../api/api-log/domain/enum/api-type.enum';
 @EventsHandler(ErrorCustomEvent)
 export class ErrorCustomEventHandler implements IEventHandler<ErrorCustomEvent> {
   private readonly API_NAME: string;
-  private readonly API_VERSION: string;
+  private readonly npm_package_version: string;
   private readonly API_TYPE: ApiTypeEnum = ApiTypeEnum.WALLET_SHARE_API;
 
   private readonly VERBOSE: boolean;
 
   constructor(private readonly apiLoggerService: ApiLogService) {
     this.API_NAME = process.env.API_NAME || 'NO-NAME';
-    this.API_VERSION = process.env.API_VERSION || 'NO-VERSION';
+    this.npm_package_version = process.env.npm_package_version || 'NO-VERSION';
     this.VERBOSE = process.env.VERBOSE_ERROR === 'true';
   }
 
   async handle(event: ErrorCustomEvent): Promise<void> {
     const createLogDto = new CreateLogDto({});
     createLogDto.apiName = this.API_NAME;
-    createLogDto.apiVersion = this.API_VERSION;
+    createLogDto.apiVersion = this.npm_package_version;
     createLogDto.loggingType = LoggingTypeEnum.ERROR;
     createLogDto.apiType = this.API_TYPE;
     createLogDto.method = event.localisation;

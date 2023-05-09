@@ -9,14 +9,14 @@ import { ApiTypeEnum } from '../../../../domain/enum/api-type.enum';
 @CommandHandler(CreateLogCommand)
 export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand> {
   private readonly API_NAME: string;
-  private readonly API_VERSION: string;
+  private readonly npm_package_version: string;
   private readonly API_TYPE: ApiTypeEnum;
   private readonly verbose: VerboseLogEnum;
 
   constructor(@Inject('API_LOG') private client: ClientProxy) {
     this.verbose = (process.env.VERBOSE_LOG as VerboseLogEnum) || VerboseLogEnum.NONE;
     this.API_NAME = process.env.API_NAME || 'NO-NAME';
-    this.API_VERSION = process.env.API_VERSION || 'NO-VERSION';
+    this.npm_package_version = process.env.npm_package_version || 'NO-VERSION';
     this.API_TYPE = ApiTypeEnum.WALLET_SHARE_API;
   }
 
@@ -24,7 +24,7 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
     if (this.verbose === VerboseLogEnum.NONE) return;
     if (this.verbose === VerboseLogEnum.DEBUG) console.log('CreateLogCommandHandler: ', command);
     command.apiName = this.API_NAME;
-    command.apiVersion = this.API_VERSION;
+    command.apiVersion = this.npm_package_version;
     command.apiType = this.API_TYPE;
     this.client.emit('create-log', command);
   }

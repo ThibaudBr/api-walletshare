@@ -6,8 +6,10 @@ import { AddressResponse } from './response/address.response';
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
 import { CreateAddressRequest } from './request/create-address.request';
 import { UpdateAddressRequest } from './request/update-address.request';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('address')
+@ApiTags('Address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
 

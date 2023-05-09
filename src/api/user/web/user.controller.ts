@@ -46,6 +46,31 @@ export class UserController {
     }
   }
 
+  @Post('/admin/create/:passwordSuperAdmin')
+  async createSuperAdmin(
+    @Param('passwordSuperAdmin') passwordSuperAdmin: string,
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<CreateUserResponse> {
+    if (passwordSuperAdmin !== process.env.PASSWORD_SUPER_ADMIN) {
+      throw new HttpException(
+        {
+          message: 'Password super admin is not correct',
+        },
+        403,
+      );
+    }
+    try {
+      return await this.userService.createUser(createUserDto);
+    } catch (error) {
+      throw new HttpException(
+        {
+          message: error.message,
+        },
+        error.status,
+      );
+    }
+  }
+
   @Post('/admin/generate-user-from-mail')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async generateUserFromMail(@Body() generateUserDto: GenerateUserDto): Promise<CreateUserResponse> {

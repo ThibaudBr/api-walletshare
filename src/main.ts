@@ -12,7 +12,7 @@ async function bootstrap(): Promise<void> {
   const swaggerConfig = new DocumentBuilder()
     .setTitle('API Wallet Share Main')
     .setDescription('API developed for Application Wallet Share')
-    .setVersion(process.env.API_VERSION || '0.0.1')
+    .setVersion(process.env.npm_package_version || '0.0.1')
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);

@@ -1,6 +1,18 @@
 import { SignUpDto } from '../domain/dto/sign-up.dto';
 import { AuthService } from '../application/auth.service';
-import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post, Req, Res, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Param,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { UserEntity } from '../../user/domain/entities/user.entity';
 import { LocalAuthenticationGuard } from './guards/auth.guard';
 import { RequestUser } from '../domain/interface/request-user.interface';
@@ -20,6 +32,7 @@ export class AuthController {
   constructor(private readonly userService: UserService, private readonly authService: AuthService) {}
 
   @Post('/register')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async signUp(@Body() signUpDto: SignUpDto): Promise<UserResponse | HttpException> {
     try {
       return await this.authService.signup(signUpDto);

@@ -5,8 +5,10 @@ import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaResponse } from './response/media.response';
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('media')
+@ApiTags('Media')
 export class MediaController {
   constructor(private readonly mediaService: MediaService) {}
 
