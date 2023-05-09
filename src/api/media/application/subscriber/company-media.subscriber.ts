@@ -2,7 +2,7 @@ import { EntitySubscriberInterface, EventSubscriber, Repository, SoftRemoveEvent
 import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { MediaEntity } from '../../domain/entities/media.entity';
 import process from 'process';
-import { S3 } from 'aws-sdk';
+import { S3 } from '@aws-sdk/client-s3';
 
 @EventSubscriber()
 export class CompanyMediaSubscriber implements EntitySubscriberInterface<CompanyEntity> {
@@ -55,17 +55,17 @@ export class CompanyMediaSubscriber implements EntitySubscriberInterface<Company
       ],
     });
     if (medias.length == 0) return;
-    const s3: S3 = new S3();
+    const s3: S3 = new S3({
+      region: process.env.AWS_REGION,
+    });
     if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
       throw new Error('AWS_PRIVATE_BUCKET_NAME is not defined');
     }
     for (const media of medias) {
-      await s3
-        .deleteObject({
-          Bucket: process.env.AWS_BUCKET_NAME || '',
-          Key: media.key,
-        })
-        .promise();
+      await s3.deleteObject({
+        Bucket: process.env.AWS_BUCKET_NAME || '',
+        Key: media.key,
+      });
     }
     await mediaRepository.remove(medias);
   }

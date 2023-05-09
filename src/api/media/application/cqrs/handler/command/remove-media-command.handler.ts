@@ -1,6 +1,6 @@
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { RemoveMediaCommand } from '../../command/remove-media.command';
-import { S3 } from 'aws-sdk';
+import { S3 } from '@aws-sdk/client-s3';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MediaEntity } from '../../../../domain/entities/media.entity';
 import { Repository } from 'typeorm';
@@ -35,7 +35,9 @@ export class RemoveMediaCommandHandler implements ICommandHandler<RemoveMediaCom
         throw new Error('Media not found');
       });
 
-    const s3: S3 = new S3();
+    const s3: S3 = new S3({
+      region: process.env.AWS_REGION,
+    });
     if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
@@ -47,12 +49,10 @@ export class RemoveMediaCommandHandler implements ICommandHandler<RemoveMediaCom
       throw new Error('AWS_PRIVATE_BUCKET_NAME not found');
     }
 
-    await s3
-      .deleteObject({
-        Bucket: process.env.AWS_PRIVATE_BUCKET_NAME,
-        Key: mediaToDelete.key,
-      })
-      .promise();
+    await s3.deleteObject({
+      Bucket: process.env.AWS_PRIVATE_BUCKET_NAME,
+      Key: mediaToDelete.key,
+    });
     await this.mediaRepository.softRemove(mediaToDelete);
     await this.eventBus.publish(
       new RemoveMediaEvent({

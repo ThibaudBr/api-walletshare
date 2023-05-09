@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { NewMediaDto } from '../domain/dto/new-media.dto';
 import { UploadMediaCommand } from './cqrs/command/upload-media.command';
@@ -74,12 +74,17 @@ export class MediaService {
       throw new ForbiddenException('User is not owner or admin of company');
     }
 
-    const newMedia = await this.commandBus.execute(
-      new UploadMediaCommand({
-        dataBuffer: newMediaDto.imageBuffer,
-        filename: newMediaDto.fileName,
-      }),
-    );
+    const newMedia = await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'File is too big') throw new BadRequestException('File is too big');
+        throw error;
+      });
 
     await this.commandBus
       .execute(
@@ -115,12 +120,17 @@ export class MediaService {
       throw new ForbiddenException('User is not owner or admin of group');
     }
 
-    const newMedia = await this.commandBus.execute(
-      new UploadMediaCommand({
-        dataBuffer: newMediaDto.imageBuffer,
-        filename: newMediaDto.fileName,
-      }),
-    );
+    const newMedia = await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'File is too big') throw new BadRequestException('File is too big');
+        throw error;
+      });
 
     await this.commandBus
       .execute(
@@ -154,12 +164,17 @@ export class MediaService {
       );
       throw new ForbiddenException('User is not owner of profile');
     }
-    const newMedia = await this.commandBus.execute(
-      new UploadMediaCommand({
-        dataBuffer: newMediaDto.imageBuffer,
-        filename: newMediaDto.fileName,
-      }),
-    );
+    const newMedia = await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'File is too big') throw new BadRequestException('File is too big');
+        throw error;
+      });
 
     await this.commandBus
       .execute(
@@ -195,12 +210,17 @@ export class MediaService {
       throw new ForbiddenException('User is not owner or admin of company');
     }
 
-    const newMedia = await this.commandBus.execute(
-      new UploadMediaCommand({
-        dataBuffer: newMediaDto.imageBuffer,
-        filename: newMediaDto.fileName,
-      }),
-    );
+    const newMedia = await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'File is too big') throw new BadRequestException('File not found');
+        throw error;
+      });
 
     await this.commandBus
       .execute(
@@ -236,12 +256,17 @@ export class MediaService {
       throw new ForbiddenException('User is not owner or admin of group');
     }
 
-    const newMedia = await this.commandBus.execute(
-      new UploadMediaCommand({
-        dataBuffer: newMediaDto.imageBuffer,
-        filename: newMediaDto.fileName,
-      }),
-    );
+    const newMedia = await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'File is too big') throw new BadRequestException('File is too big');
+        throw error;
+      });
 
     await this.commandBus
       .execute(
@@ -276,12 +301,17 @@ export class MediaService {
       throw new ForbiddenException('User is not owner of profile');
     }
 
-    const newMedia = await this.commandBus.execute(
-      new UploadMediaCommand({
-        dataBuffer: newMediaDto.imageBuffer,
-        filename: newMediaDto.fileName,
-      }),
-    );
+    const newMedia = await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'File is too big') throw new BadRequestException('File is too big');
+        throw error;
+      });
 
     await this.commandBus
       .execute(
@@ -316,12 +346,17 @@ export class MediaService {
       throw new ForbiddenException('User is not owner of card');
     }
 
-    const newMedia = await this.commandBus.execute(
-      new UploadMediaCommand({
-        dataBuffer: newMediaDto.imageBuffer,
-        filename: newMediaDto.fileName,
-      }),
-    );
+    const newMedia = await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'File is too big') throw new BadRequestException('File is too big');
+        throw error;
+      });
 
     await this.commandBus
       .execute(

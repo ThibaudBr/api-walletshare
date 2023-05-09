@@ -17,6 +17,7 @@ export class GetMediaWithIdQueryHandler implements IQueryHandler<GetMediaWithIdQ
     return await this.mediaRepository
       .findOneOrFail({
         loadEagerRelations: false,
+        loadRelationIds: true,
         relations: [
           'avatarGroupMedia',
           'bannerGroupMedia',
