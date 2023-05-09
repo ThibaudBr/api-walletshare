@@ -25,6 +25,7 @@ import { UpdateUserCredentialDto } from '../domain/dto/update-user-credential.dt
 import { GenerateUserDto } from '../domain/dto/generate-user.dto';
 import { ListRolesDto } from '../domain/dto/list-roles.dto';
 import { UserIdDto } from '../domain/dto/user-id.dto';
+import { SaveUserLoginResponse } from './response/save-user-login.response';
 
 @Controller('user')
 @ApiTags('user')
@@ -274,5 +275,19 @@ export class UserController {
         error.status,
       );
     }
+  }
+
+  @HttpCode(200)
+  @Get('/public/get-my-last-login')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getMyLastLogin(@Req() requestUser: RequestUser): Promise<SaveUserLoginResponse[]> {
+    return await this.userService.getLoginHistory(requestUser.user.id);
+  }
+
+  @HttpCode(200)
+  @Get('/admin/get-user-last-login/:id')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getUserLastLogin(@Param('id') id: string): Promise<SaveUserLoginResponse[]> {
+    return await this.userService.getLoginHistory(id);
   }
 }
