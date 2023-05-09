@@ -75,6 +75,8 @@ export class AppTestE2eService {
 
   async clearDatabaseTest(): Promise<void> {
     try {
+      await this.userRepository.query('DELETE FROM "user-login";');
+      await this.mediaRepository.query('DELETE FROM "media";');
       await this.cardRepository.query('DELETE FROM "card_occupations_occupation";');
       await this.cardRepository.query('DELETE FROM "connected_card";');
       await this.cardRepository.query('DELETE FROM "saved-card";');
@@ -90,7 +92,6 @@ export class AppTestE2eService {
       await this.groupMembershipRepository.query('DELETE FROM "group_membership";');
       await this.invoicesRepository.query('DELETE FROM "invoices";');
       await this.joinedConversationRepository.query('DELETE FROM "joined_conversation";');
-      await this.mediaRepository.query('DELETE FROM "media";');
       await this.messageRepository.query('DELETE FROM "message";');
       await this.occupationRepository.query('DELETE FROM "occupation";');
       await this.planRepository.query('DELETE FROM "plan";');

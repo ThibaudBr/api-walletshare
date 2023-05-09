@@ -39,6 +39,7 @@ import { ProfileCompanyEmployeeSubscriber } from '../../api/company/application/
 import { CardMediaSubscriber } from '../../api/media/application/subscriber/card-media.subscriber';
 import { CompanyMediaSubscriber } from '../../api/media/application/subscriber/company-media.subscriber';
 import { ProfileMediaSubscriber } from '../../api/media/application/subscriber/profile-media.subscriber';
+import {UserLoginEntity} from "../../api/user/domain/entities/user-login.entity";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -83,6 +84,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
             CardViewEntity,
+            UserLoginEntity,
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PROD === 'true',
@@ -141,6 +143,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
             CardViewEntity,
+            UserLoginEntity,
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD === 'true',
           logging: process.env.TYPEORM_LOGGING_PPROD === 'true',
@@ -193,6 +196,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
             CardViewEntity,
+            UserLoginEntity,
           ],
           synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
           logging: process.env.TYPEORM_LOGGING_TEST === 'true',
@@ -247,6 +251,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             ReferralCodeEntity,
             AddressEntity,
             CardViewEntity,
+            UserLoginEntity,
           ],
           subscribers: [
             ProfileSubscriber,

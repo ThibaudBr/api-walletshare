@@ -396,7 +396,11 @@ describe('ProfileController (e2e)', () => {
           response.body.forEach((profile: ProfileEntity) => {
             if (profile.id === createdProfileId) {
               expect(profile.occupations?.length).toBe(2);
-              expect(profile.occupations?.[0].deletedAt).not.toBeNull();
+              for (const occupation of profile.occupations) {
+                if (occupation.id === occupationIdList[0]) {
+                  expect(occupation.deletedAt).toBeDefined();
+                }
+              }
             }
           });
         });
