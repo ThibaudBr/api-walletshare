@@ -9,9 +9,11 @@ import { VerboseLogEnum } from '../api/api-log/domain/enum/verbose-log.enum';
 @Injectable()
 export class ErrorLoggingMiddleware implements NestMiddleware {
   private readonly VERBOSE: VerboseLogEnum;
+  private readonly LOG_ERROR_BOOL: boolean;
 
   constructor(private readonly apiLoggerService: ApiLogService) {
     this.VERBOSE = process.env.VERBOSE as VerboseLogEnum;
+    this.LOG_ERROR_BOOL = process.env.LOG_ERROR == 'true' || false;
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
@@ -19,28 +21,30 @@ export class ErrorLoggingMiddleware implements NestMiddleware {
     try {
       next();
     } catch (error) {
-      const ua = useragent.parse(req.headers['user-agent']);
+      if (this.LOG_ERROR_BOOL) {
+        const ua = useragent.parse(req.headers['user-agent']);
 
-      const os = ua.os.toString();
-      const device = ua.device.toString();
+        const os = ua.os.toString();
+        const device = ua.device.toString();
 
-      const createLogDto = new CreateLogDto({});
-      createLogDto.loggingType = LoggingTypeEnum.ERROR;
-      createLogDto.method = req.method;
-      createLogDto.route = req.baseUrl;
-      createLogDto.headers = req.headers || undefined;
-      createLogDto.body = this.VERBOSE ? req.body : undefined;
-      createLogDto.status = res.statusCode;
-      createLogDto.responseHeaders = res.getHeaders();
-      createLogDto.responseBody = res.locals.responseBody;
-      createLogDto.error = error.message;
-      createLogDto.os = os;
-      createLogDto.ip = req.ip;
-      createLogDto.platform = device;
-      createLogDto.screenSize = undefined;
+        const createLogDto = new CreateLogDto({});
+        createLogDto.loggingType = LoggingTypeEnum.ERROR;
+        createLogDto.method = req.method;
+        createLogDto.route = req.baseUrl;
+        createLogDto.headers = req.headers || undefined;
+        createLogDto.body = this.VERBOSE ? req.body : undefined;
+        createLogDto.status = res.statusCode;
+        createLogDto.responseHeaders = res.getHeaders();
+        createLogDto.responseBody = res.locals.responseBody;
+        createLogDto.error = error.message;
+        createLogDto.os = os;
+        createLogDto.ip = req.ip;
+        createLogDto.platform = device;
+        createLogDto.screenSize = undefined;
 
-      this.apiLoggerService.createLog(createLogDto);
-      throw error;
+        await this.apiLoggerService.createLog(createLogDto);
+        throw error;
+      }
     }
   }
 }

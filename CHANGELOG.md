@@ -1,3 +1,10 @@
+# [0.1.7](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.7) - 2023-05-09
+
+### Features
+- fix package.json
+- fix log
+- add route to create user-admin
+
 # [0.1.6](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.6) - 2023-05-08
 
 ### Features

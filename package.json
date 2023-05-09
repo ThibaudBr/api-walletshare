@@ -1,6 +1,6 @@
 {
   "name": "api-walletshare",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "",
   "author": "",
   "private": true,
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "NODE_ENV=dev nest start",
+    "start": "nest start",
     "start:dev": "NODE_ENV=dev nest start --watch",
     "start:debug": " NODE_ENV=dev nest start --debug --watch",
     "start:prod": "NODE_ENV=prod nest start",
