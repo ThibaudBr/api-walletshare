@@ -8,11 +8,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ConnectedCardEntity } from '../card/domain/entities/connected-card.entity';
-import { GroupEntity } from '../groupe/domain/entities/group.entity';
+import { ConnectedCardEntity } from '../../../card/domain/entities/connected-card.entity';
+import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
 import { JoinedConversation } from './joined-conversation.entity';
 import { MessageEntity } from './message.entity';
-import { NotificationEntity } from './notification.entity';
+import { NotificationEntity } from '../../../entities-to-create/notification.entity';
 
 @Entity({ name: 'conversation' })
 export class ConversationEntity {
@@ -32,7 +32,7 @@ export class ConversationEntity {
   @OneToOne(() => ConnectedCardEntity, connectedCardEntity => connectedCardEntity.conversation)
   connectedCard: ConnectedCardEntity;
 
-  @OneToMany(() => GroupEntity, groupEntity => groupEntity.conversations)
+  @OneToOne(() => GroupEntity, groupEntity => groupEntity.conversation)
   group: GroupEntity[];
 
   @OneToMany(() => MessageEntity, message => message.conversation, {})

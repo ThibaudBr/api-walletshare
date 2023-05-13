@@ -11,7 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Length } from 'class-validator';
-import { ConversationEntity } from '../../../entities-to-create/conversation.entity';
+import { ConversationEntity } from '../../../conversation/domain/entities/conversation.entity';
 import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';
 
@@ -34,12 +34,13 @@ export class GroupEntity extends BaseEntity {
   @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
   members: GroupMembershipEntity[];
 
-  @OneToMany(() => ConversationEntity, conversation => conversation.group, {
+  @OneToOne(() => ConversationEntity, conversation => conversation.group, {
     nullable: false,
     cascade: true,
   })
   @JoinColumn()
-  conversations: ConversationEntity[];
+  conversation: ConversationEntity;
+
   @OneToOne(() => MediaEntity, media => media.avatarGroupMedia, {
     cascade: true,
     nullable: true,

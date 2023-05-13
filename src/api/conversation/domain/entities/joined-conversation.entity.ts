@@ -3,15 +3,16 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { ConversationEntity } from './conversation.entity';
-import { CardEntity } from '../card/domain/entities/card.entity';
 
-@Entity({ name: 'message' })
-export class MessageEntity {
+@Entity({ name: 'joined_conversation' })
+export class JoinedConversation {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -20,16 +21,18 @@ export class MessageEntity {
   id: string;
 
   @Column()
-  public content: string;
+  socketId: string;
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() => CardEntity, cardEntity => cardEntity.messages, { onDelete: 'CASCADE' })
-  public author: CardEntity;
+  @ManyToOne(() => ProfileEntity, profileEntity => profileEntity.joinedConversations)
+  @JoinColumn()
+  profile: ProfileEntity;
 
-  @ManyToOne(() => ConversationEntity, conversation => conversation.messages)
+  @ManyToOne(() => ConversationEntity, conversation => conversation.joinedProfiles)
+  @JoinColumn()
   conversation: ConversationEntity;
 
   // ______________________________________________________
