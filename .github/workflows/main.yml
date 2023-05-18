@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    needs: [ lint ]
     strategy:
       matrix:
         node-version: [18.2.0]
