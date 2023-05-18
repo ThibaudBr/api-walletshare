@@ -54,12 +54,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           username: process.env.TYPEORM_USERNAME_PROD,
           password: process.env.TYPEORM_PASSWORD_PROD,
           database: process.env.TYPEORM_DATABASE_PROD,
-          ssl: true,
-          extra: {
-            ssl: {
-              rejectUnauthorized: false,
-            },
-          },
           entities: [
             CardEntity,
             CompanyEntity,
