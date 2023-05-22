@@ -16,12 +16,29 @@ import { UserService } from '../user/application/user.service';
 @Module({
   imports: [
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
-      { name: 'API_MAIL', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_MAIL) || 3102 } },
+      {
+        name: 'API_LOG',
+        transport: Transport.TCP,
+        options: {
+          host: process.env.HOST_API_LOG || 'localhost',
+          port: Number(process.env.PORT_API_LOG) || 3101,
+        },
+      },
+      {
+        name: 'API_MAIL',
+        transport: Transport.TCP,
+        options: {
+          host: process.env.HOST_API_MAIL || 'localhost',
+          port: Number(process.env.PORT_API_MAIL) || 3102,
+        },
+      },
       {
         name: 'API_WAITING_LIST',
         transport: Transport.TCP,
-        options: { port: Number(process.env.PORT_API_WAITING_LIST) || 3103 },
+        options: {
+          host: process.env.HOST_API_WAITING_LIST || 'localhost',
+          port: Number(process.env.PORT_API_WAITING_LIST) || 3103,
+        },
       },
     ]),
     CqrsModule,

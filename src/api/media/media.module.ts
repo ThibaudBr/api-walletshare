@@ -1,4 +1,4 @@
-import { Module} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { MediaController } from './web/media.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../user/domain/entities/user.entity';
@@ -54,7 +54,14 @@ import { CacheModule } from '@nestjs/cache-manager';
     CqrsModule,
     ApiLogModule,
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
+      {
+        name: 'API_LOG',
+        transport: Transport.TCP,
+        options: {
+          host: process.env.HOST_API_LOG || 'localhost',
+          port: Number(process.env.PORT_API_LOG) || 3101,
+        },
+      },
     ]),
   ],
   controllers: [MediaController],
