@@ -24,7 +24,7 @@ export class ChatGateway implements OnGatewayConnection {
   server: Server;
 
   constructor(private readonly conversationService: ConversationService) {
-    this.conversationService.deletedAllJoiknedConversation().then();
+    this.conversationService.deletedAllJoinedConversation().then();
   }
 
   async handleConnection(socket: Socket): Promise<void> {
@@ -106,11 +106,11 @@ export class ChatGateway implements OnGatewayConnection {
   @SubscribeMessage('request_all_messages')
   async requestAllMessages(
     @ConnectedSocket() socket: Socket,
-    @MessageBody() getMessageFromConversastionRequest: GetMessageFromConversationRequest,
+    @MessageBody() getMessageFromConversationRequest: GetMessageFromConversationRequest,
   ): Promise<void> {
     const conversation: ConversationEntity = await this.conversationService.getConversationWhereUserConnected(
       socket.id,
-      getMessageFromConversastionRequest,
+      getMessageFromConversationRequest,
     );
 
     const messageResponses: ReceiveMessageResponse[] = conversation.messages.map((message: MessageEntity) => {

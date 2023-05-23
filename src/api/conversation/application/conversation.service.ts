@@ -18,7 +18,32 @@ export class ConversationService {
     throw new Error('Not implemented');
   }
 
+  async saveJoinedConversation(socketId: string, createJoinConversationDto: CreateJoinConversationDto) {
+    // TODO: Implement this method
+    throw new Error('Not implemented');
+  }
+
   async deleteJoinedConversationWithSocketId(socketId: string): Promise<void> {
+    // TODO: Implement this method
+    throw new Error('Not implemented');
+  }
+
+  async deletedJoinedConversation(socketId: string): Promise<void> {
+    // TODO: Implement this method
+    throw new Error('Not implemented');
+  }
+
+  async deletedAllJoinedConversation(): Promise<void> {
+    // TODO: Implement this method
+    throw new Error('Not implemented');
+  }
+
+  async removeMessageFromConversation(messageId: string): Promise<void> {
+    // TODO: Implement this method
+    throw new Error('Not implemented');
+  }
+
+  async softRemoveMessageFromConversation(messageId: string, userId: string): Promise<void> {
     // TODO: Implement this method
     throw new Error('Not implemented');
   }
@@ -27,11 +52,6 @@ export class ConversationService {
     socketId: string,
     getMessageFromConversationRequest: GetMessageFromConversationRequest,
   ): Promise<ConversationEntity> {
-    // TODO: Implement this method
-    throw new Error('Not implemented');
-  }
-
-  async saveJoinedConversation(socketId: string, createJoinConversationDto: CreateJoinConversationDto) {
     // TODO: Implement this method
     throw new Error('Not implemented');
   }
@@ -51,17 +71,7 @@ export class ConversationService {
     throw new Error('Not implemented');
   }
 
-  async deletedJoinedConversation(socketId: string): Promise<void> {
-    // TODO: Implement this method
-    throw new Error('Not implemented');
-  }
-
   async getAllConversationByProfilesAndCard(profiles: ProfileEntity[]): Promise<CreateJoinConversationDto[]> {
-    // TODO: Implement this method
-    throw new Error('Not implemented');
-  }
-
-  async deletedAllJoinedConversation(): Promise<void> {
     // TODO: Implement this method
     throw new Error('Not implemented');
   }

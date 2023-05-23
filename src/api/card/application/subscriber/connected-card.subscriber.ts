@@ -1,4 +1,4 @@
-import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, SoftRemoveEvent } from 'typeorm';
+import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, SoftRemoveEvent } from 'typeorm';
 import { CardEntity } from '../../domain/entities/card.entity';
 import { ConnectedCardEntity } from '../../domain/entities/connected-card.entity';
 
@@ -10,42 +10,47 @@ export class ConnectedCardSubscriber implements EntitySubscriberInterface<CardEn
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<CardEntity>): Promise<void> {
-    const softRemovedCard = event.entity;
-    const connectedCardRepository = event.manager.getRepository(ConnectedCardEntity);
-    await connectedCardRepository.update(
-      {
-        cardEntityOne: {
-          id: softRemovedCard?.id,
+    const softRemovedCard: CardEntity | undefined = event.entity;
+    const connectedCardRepository: Repository<ConnectedCardEntity> = event.manager.getRepository(ConnectedCardEntity);
+    const connectedCards: ConnectedCardEntity[] = await connectedCardRepository.find({
+      relations: ['cardEntityOne', 'cardEntityTwo'],
+      where: [
+        {
+          cardEntityOne: {
+            id: softRemovedCard?.id,
+          },
         },
-      },
-      {
-        deletedAt: new Date(),
-      },
-    );
-    await connectedCardRepository.update(
-      {
-        cardEntityTwo: {
-          id: softRemovedCard?.id,
+        {
+          cardEntityTwo: {
+            id: softRemovedCard?.id,
+          },
         },
-      },
-      {
-        deletedAt: new Date(),
-      },
-    );
+      ],
+    });
+    if (connectedCards.length == 0) return;
+    await connectedCardRepository.softRemove(connectedCards);
   }
 
   async beforeRemove(event: RemoveEvent<CardEntity>): Promise<void> {
-    const softRemovedCard = event.entity;
-    const connectedCardRepository = event.manager.getRepository(ConnectedCardEntity);
-    await connectedCardRepository.delete({
-      cardEntityTwo: {
-        id: softRemovedCard?.id,
-      },
+    const softRemovedCard: CardEntity | undefined = event.entity;
+    const connectedCardRepository: Repository<ConnectedCardEntity> = event.manager.getRepository(ConnectedCardEntity);
+    const connectedCards: ConnectedCardEntity[] = await connectedCardRepository.find({
+      relations: ['cardEntityOne', 'cardEntityTwo'],
+      withDeleted: true,
+      where: [
+        {
+          cardEntityOne: {
+            id: softRemovedCard?.id,
+          },
+        },
+        {
+          cardEntityTwo: {
+            id: softRemovedCard?.id,
+          },
+        },
+      ],
     });
-    await connectedCardRepository.delete({
-      cardEntityOne: {
-        id: softRemovedCard?.id,
-      },
-    });
+    if (connectedCards.length == 0) return;
+    await connectedCardRepository.remove(connectedCards);
   }
 }

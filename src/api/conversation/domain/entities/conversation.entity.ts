@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -15,7 +16,7 @@ import { MessageEntity } from './message.entity';
 import { NotificationEntity } from '../../../entities-to-create/notification.entity';
 
 @Entity({ name: 'conversation' })
-export class ConversationEntity {
+export class ConversationEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -33,7 +34,7 @@ export class ConversationEntity {
   connectedCard: ConnectedCardEntity;
 
   @OneToOne(() => GroupEntity, groupEntity => groupEntity.conversation)
-  group: GroupEntity[];
+  group: GroupEntity;
 
   @OneToMany(() => MessageEntity, message => message.conversation, {})
   messages: MessageEntity[];
@@ -56,4 +57,11 @@ export class ConversationEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<ConversationEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }
