@@ -1,4 +1,4 @@
-import {EntitySubscriberInterface, EventSubscriber, InsertEvent, RemoveEvent, SoftRemoveEvent} from 'typeorm';
+import { EntitySubscriberInterface, EventSubscriber, InsertEvent, RemoveEvent, SoftRemoveEvent } from 'typeorm';
 import { ConnectedCardEntity } from '../../../card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../domain/entities/conversation.entity';
 

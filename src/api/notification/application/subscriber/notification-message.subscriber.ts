@@ -3,6 +3,7 @@ import { MessageEntity } from '../../../conversation/domain/entities/message.ent
 import { NotificationEntity } from '../../domain/entities/notification.entity';
 import { GroupMembershipEntity } from '../../../groupe/domain/entities/group-membership.entity';
 import { NotificationTypeEnum } from '../../domain/enum/notification-type.enum';
+import { ConnectedCardEntity } from '../../../card/domain/entities/connected-card.entity';
 
 @EventSubscriber()
 export class NotificationMessageSubscriber implements EntitySubscriberInterface<MessageEntity> {
@@ -16,11 +17,41 @@ export class NotificationMessageSubscriber implements EntitySubscriberInterface<
     const messageRepository: Repository<MessageEntity> = event.manager.getRepository(MessageEntity);
     const notificationRepository: Repository<NotificationEntity> = event.manager.getRepository(NotificationEntity);
     const messageEntity: MessageEntity | null = await messageRepository.findOne({
-      relations: ['conversation', 'conversation.group'],
+      relations: ['conversation', 'conversation.group', 'conversation.connectedCard', 'author'],
       where: {
         id: message?.id,
       },
     });
+    if (messageEntity?.conversation.connectedCard) {
+      const connectedCardRepository: Repository<ConnectedCardEntity> = event.manager.getRepository(ConnectedCardEntity);
+      const connectedCard: ConnectedCardEntity | null = await connectedCardRepository.findOne({
+        relations: ['card', 'card.owner', 'card.owner.user'],
+        where: {
+          id: messageEntity?.conversation.connectedCard.id,
+        },
+      });
+      if (!connectedCard) return;
+      const notification: NotificationEntity = new NotificationEntity({
+        user:
+          connectedCard.cardEntityOne.id === messageEntity?.author.id
+            ? connectedCard.cardEntityTwo.owner.user
+            : connectedCard.cardEntityOne.owner.user,
+        title: 'New Message from ' + messageEntity?.author.firstname + ' ' + messageEntity?.author.lastname,
+        profile:
+          connectedCard.cardEntityOne.id === messageEntity?.author.id
+            ? connectedCard.cardEntityTwo.owner
+            : connectedCard.cardEntityOne.owner,
+        description:
+          'Card ' +
+          messageEntity?.author.firstname +
+          ' ' +
+          messageEntity?.author.lastname +
+          ' has sent a message you a new message ',
+        type: NotificationTypeEnum.NEW_MESSAGE,
+      });
+      await notificationRepository.save(notification);
+      return;
+    }
     const groupMembershipRepository: Repository<GroupMembershipEntity> =
       event.manager.getRepository(GroupMembershipEntity);
     const groupMembership: GroupMembershipEntity | null = await groupMembershipRepository.findOne({

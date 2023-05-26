@@ -1,10 +1,10 @@
 import {
   EntitySubscriberInterface,
   EventSubscriber,
+  InsertEvent,
+  RemoveEvent,
   Repository,
   SoftRemoveEvent,
-  InsertEvent,
-  RemoveEvent
 } from 'typeorm';
 import { ConversationEntity } from '../../domain/entities/conversation.entity';
 import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
@@ -39,6 +39,7 @@ export class ConversationGroupSubscriber implements EntitySubscriberInterface<Gr
     if (conversations.length == 0) return;
     await conversationRepository.softRemove(conversations);
   }
+
   async beforeRemove(event: RemoveEvent<GroupEntity>): Promise<void> {
     const softRemovedGroup: GroupEntity | undefined = event.entity;
     const conversationRepository: Repository<ConversationEntity> = event.manager.getRepository(ConversationEntity);

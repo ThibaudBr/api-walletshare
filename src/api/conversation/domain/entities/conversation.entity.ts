@@ -13,7 +13,6 @@ import { ConnectedCardEntity } from '../../../card/domain/entities/connected-car
 import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
 import { JoinedConversation } from './joined-conversation.entity';
 import { MessageEntity } from './message.entity';
-import { NotificationEntity } from '../../../entities-to-create/notification.entity';
 
 @Entity({ name: 'conversation' })
 export class ConversationEntity extends BaseEntity {
@@ -41,9 +40,6 @@ export class ConversationEntity extends BaseEntity {
 
   @OneToMany(() => JoinedConversation, joinedConversation => joinedConversation.conversation)
   joinedProfiles: JoinedConversation[];
-
-  @OneToMany(() => NotificationEntity, notification => notification.conversation, { nullable: true })
-  notifications: NotificationEntity[];
 
   // ______________________________________________________
   // Timestamps
