@@ -18,7 +18,7 @@ import { CompanyEmployeeEntity } from '../../../company/domain/entities/company-
 import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { JoinedConversation } from '../../../conversation/domain/entities/joined-conversation.entity';
 import { CompanyEntity } from '../../../company/domain/entities/company.entity';
-import { NotificationEntity } from '../../../entities-to-create/notification.entity';
+import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 import { RoleProfileEnum } from '../enum/role-profile.enum';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { IsEnum, Length } from 'class-validator';

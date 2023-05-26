@@ -14,6 +14,7 @@ import { Length } from 'class-validator';
 import { ConversationEntity } from '../../../conversation/domain/entities/conversation.entity';
 import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { GroupMembershipEntity } from './group-membership.entity';
+import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 
 @Entity({ name: 'group' })
 export class GroupEntity extends BaseEntity {
@@ -56,12 +57,15 @@ export class GroupEntity extends BaseEntity {
   @JoinColumn()
   bannerMedia: MediaEntity;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @OneToMany(() => NotificationEntity, notification => notification.group, { nullable: true })
+  notifications: NotificationEntity[];
 
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
+
+  @CreateDateColumn()
+  createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
   @DeleteDateColumn()

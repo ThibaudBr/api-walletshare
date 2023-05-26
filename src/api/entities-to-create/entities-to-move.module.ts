@@ -6,7 +6,6 @@ import { PlanEntity } from './plan.entity';
 import StripEventEntity from './strip-event.entity';
 import { SubscriptionEntity } from './subscription.entity';
 import { ReferralCodeEntity } from './referal-code.entity';
-import { NotificationEntity } from './notification.entity';
 
 @Module({
   imports: [
@@ -18,7 +17,6 @@ import { NotificationEntity } from './notification.entity';
       StripEventEntity,
       SubscriptionEntity,
       ReferralCodeEntity,
-      NotificationEntity,
     ]),
   ],
   controllers: [],

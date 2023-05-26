@@ -7,6 +7,7 @@ import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler
 @QueryHandler(GetTemporaryMediaUrlQuery)
 export class GetTemporaryMediaUrlQueryHandler implements IQueryHandler<GetTemporaryMediaUrlQuery> {
   constructor(private readonly eventBus: EventBus) {}
+
   async execute(query: GetTemporaryMediaUrlQuery): Promise<string> {
     if (
       !process.env.AWS_ACCESS_KEY_ID ||

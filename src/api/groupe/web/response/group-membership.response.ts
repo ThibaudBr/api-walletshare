@@ -5,8 +5,8 @@ import { GroupResponse } from './group.response';
 export class GroupMembershipResponse {
   public readonly id: string;
   public readonly cardResponse?: CardResponse;
-  public readonly cardId: string;
-  public readonly groupId: string;
+  public readonly cardId?: string;
+  public readonly groupId?: string;
   public readonly groupResponse?: GroupResponse;
   public readonly role: RoleGroupMembershipEnum;
   public readonly createdAt: Date;
