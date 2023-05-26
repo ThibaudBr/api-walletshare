@@ -6,4 +6,5 @@ export enum NotificationTypeEnum {
   JOIN_NEW_GROUP = 'JOIN_NEW_GROUP',
   NEW_GROUP_MESSAGE = 'NEW_GROUP_MESSAGE',
   NEW_CALL = 'NEW_CALL',
+  LEAVE_GROUP = 'LEAVE_GROUP',
 }

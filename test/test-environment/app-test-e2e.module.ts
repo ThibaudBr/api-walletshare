@@ -21,7 +21,7 @@ import { SocialNetworkEntity } from '../../src/api/social-network/domain/entitie
 import StripEventEntity from '../../src/api/entities-to-create/strip-event.entity';
 import { SubscriptionEntity } from '../../src/api/entities-to-create/subscription.entity';
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
-import { NotificationEntity } from '../../src/api/entities-to-create/notification.entity';
+import { NotificationEntity } from '../../src/api/notification/domain/entities/notification.entity';
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
 import { AddressEntity } from '../../src/api/address/domain/entities/address.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
