@@ -42,14 +42,26 @@ import { AddCardMediaEventHandler } from './application/cqrs/handler/event/add-c
 import { AddBannerProfileMediaEventHandler } from './application/cqrs/handler/event/add-banner-profile-media.event-handler';
 import { AddBannerCompanyMediaEventHandler } from './application/cqrs/handler/event/add-banner-company-media.event-handler';
 import { AddBannerGroupMediaEventHandler } from './application/cqrs/handler/event/add-banner-group-media.event-handler';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
+    CacheModule.register({
+      max: Number(process.env.CACHE_MEDIA_NUMBER_POOL_MAX) || 1000,
+      ttl: Number(process.env.CACHE_MEDIA_MAX_DURATION) || 60 * 15,
+    }),
     TypeOrmModule.forFeature([UserEntity, MediaEntity, GroupEntity, ProfileEntity, CardEntity, CompanyEntity]),
     CqrsModule,
     ApiLogModule,
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
+      {
+        name: 'API_LOG',
+        transport: Transport.TCP,
+        options: {
+          host: process.env.HOST_API_LOG || 'localhost',
+          port: Number(process.env.PORT_API_LOG) || 3101,
+        },
+      },
     ]),
   ],
   controllers: [MediaController],

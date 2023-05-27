@@ -6,12 +6,14 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaResponse } from './response/media.response';
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
 import { ApiTags } from '@nestjs/swagger';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @Controller('media')
 @ApiTags('Media')
 export class MediaController {
   constructor(private readonly mediaService: MediaService) {}
 
+  @UseInterceptors(CacheInterceptor)
   @Get('/public/get-media-with-id/:mediaId')
   async getMediaWithId(@Param('mediaId') mediaId: string): Promise<MediaResponse> {
     return await this.mediaService.getMediaWithId(mediaId);

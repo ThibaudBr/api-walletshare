@@ -29,7 +29,14 @@ import { SoftDeleteSocialNetworkCommandHandler } from './application/cqrs/handle
     CqrsModule,
     ApiLogModule,
     ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
+      {
+        name: 'API_LOG',
+        transport: Transport.TCP,
+        options: {
+          host: process.env.HOST_API_LOG || 'localhost',
+          port: Number(process.env.PORT_API_LOG) || 3101,
+        },
+      },
     ]),
   ],
   controllers: [SocialNetworkController],
