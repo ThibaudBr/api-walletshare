@@ -3,7 +3,7 @@ import { AddressEntity } from '../../../src/api/address/domain/entities/address.
 import StripEventEntity from '../../../src/api/entities-to-create/strip-event.entity';
 import { ReferralCodeEntity } from '../../../src/api/entities-to-create/referal-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { JoinedConversation } from '../../../src/api/conversation/domain/entities/joined-conversation.entity';
+import { JoinedConversationEntity } from '../../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { SocialNetworkEntity } from '../../../src/api/social-network/domain/entities/social-network.entity';
 import { SubscriptionEntity } from '../../../src/api/entities-to-create/subscription.entity';
 import { GroupMembershipEntity } from '../../../src/api/groupe/domain/entities/group-membership.entity';
@@ -47,8 +47,8 @@ export class AppTestE2eService {
     private readonly groupMembershipRepository: Repository<GroupMembershipEntity>,
     @InjectRepository(InvoicesEntity)
     private readonly invoicesRepository: Repository<InvoicesEntity>,
-    @InjectRepository(JoinedConversation)
-    private readonly joinedConversationRepository: Repository<JoinedConversation>,
+    @InjectRepository(JoinedConversationEntity)
+    private readonly joinedConversationRepository: Repository<JoinedConversationEntity>,
     @InjectRepository(MediaEntity)
     private readonly mediaRepository: Repository<MediaEntity>,
     @InjectRepository(MessageEntity)

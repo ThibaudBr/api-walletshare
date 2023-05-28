@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { ConnectedCardEntity } from '../../../card/domain/entities/connected-card.entity';
 import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
-import { JoinedConversation } from './joined-conversation.entity';
+import { JoinedConversationEntity } from './joined-conversation.entity';
 import { MessageEntity } from './message.entity';
 
 @Entity({ name: 'conversation' })
@@ -38,8 +38,8 @@ export class ConversationEntity extends BaseEntity {
   @OneToMany(() => MessageEntity, message => message.conversation, {})
   messages: MessageEntity[];
 
-  @OneToMany(() => JoinedConversation, joinedConversation => joinedConversation.conversation)
-  joinedProfiles: JoinedConversation[];
+  @OneToMany(() => JoinedConversationEntity, joinedConversation => joinedConversation.conversation)
+  joinedProfiles: JoinedConversationEntity[];
 
   // ______________________________________________________
   // Timestamps

@@ -11,7 +11,7 @@ import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-co
 import { GroupEntity } from '../../src/api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../src/api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../src/api/entities-to-create/invoices.entity';
-import { JoinedConversation } from '../../src/api/conversation/domain/entities/joined-conversation.entity';
+import { JoinedConversationEntity } from '../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../src/api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../src/api/conversation/domain/entities/message.entity';
 import { OccupationEntity } from '../../src/api/occupation/domain/entities/occupation.entity';
@@ -52,7 +52,7 @@ import {CardViewEntity} from "../../src/api/card/domain/entities/card-view.entit
       GroupEntity,
       GroupMembershipEntity,
       InvoicesEntity,
-      JoinedConversation,
+      JoinedConversationEntity,
       MediaEntity,
       MessageEntity,
       OccupationEntity,

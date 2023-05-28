@@ -10,7 +10,7 @@ import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.e
 import { GroupEntity } from '../../api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../api/entities-to-create/invoices.entity';
-import { JoinedConversation } from '../../api/conversation/domain/entities/joined-conversation.entity';
+import { JoinedConversationEntity } from '../../api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../api/conversation/domain/entities/message.entity';
 import { OccupationEntity } from '../../api/occupation/domain/entities/occupation.entity';
@@ -77,7 +77,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
@@ -144,7 +144,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
@@ -205,7 +205,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
@@ -268,7 +268,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,

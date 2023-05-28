@@ -16,7 +16,7 @@ import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 import { CompanyEmployeeEntity } from '../../../company/domain/entities/company-employee.entity';
 import { MediaEntity } from '../../../media/domain/entities/media.entity';
-import { JoinedConversation } from '../../../conversation/domain/entities/joined-conversation.entity';
+import { JoinedConversationEntity } from '../../../conversation/domain/entities/joined-conversation.entity';
 import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 import { RoleProfileEnum } from '../enum/role-profile.enum';
@@ -108,11 +108,11 @@ export class ProfileEntity {
   @JoinColumn()
   bannerMedia: MediaEntity;
 
-  @OneToMany(() => JoinedConversation, joinedConversation => joinedConversation.profile, {
+  @OneToMany(() => JoinedConversationEntity, joinedConversation => joinedConversation.profile, {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  joinedConversations: JoinedConversation[];
+  joinedConversations: JoinedConversationEntity[];
 
   @OneToMany(() => CompanyEntity, companyEntity => companyEntity.ownerProfile, {
     cascade: true,

@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -11,7 +12,7 @@ import { ConversationEntity } from './conversation.entity';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 
 @Entity({ name: 'message' })
-export class MessageEntity {
+export class MessageEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -44,4 +45,11 @@ export class MessageEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<MessageEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

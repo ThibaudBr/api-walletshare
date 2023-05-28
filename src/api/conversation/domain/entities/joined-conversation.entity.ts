@@ -12,7 +12,7 @@ import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { ConversationEntity } from './conversation.entity';
 
 @Entity({ name: 'joined_conversation' })
-export class JoinedConversation {
+export class JoinedConversationEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
