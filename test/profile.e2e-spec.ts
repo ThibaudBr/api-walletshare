@@ -17,6 +17,7 @@ describe('ProfileController (e2e)', () => {
 
   let adminToken: string;
   let publicToken: string;
+  let publicToken4: string;
 
   let occupationIdList: string[];
   let userIdList: string[];
@@ -86,6 +87,18 @@ describe('ProfileController (e2e)', () => {
         userIdList.push(response.body.id);
       });
     await request(app.getHttpServer())
+      .post('/api/test/create-user-test')
+      .send({
+        username: 'publicTest4',
+        mail: 'publicTest4@test.fr',
+        password: 'Test123!',
+        roles: ['PUBLIC'],
+      })
+      .expect(201)
+      .then(response => {
+        userIdList.push(response.body.id);
+      });
+    await request(app.getHttpServer())
       .post('/auth/login')
       .send({
         login: 'adminTest',
@@ -104,6 +117,16 @@ describe('ProfileController (e2e)', () => {
       .expect(200)
       .then(response => {
         publicToken = response.body.currentHashedRefreshToken;
+      });
+    await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({
+        login: 'publicTest4',
+        password: 'Test123!',
+      })
+      .expect(200)
+      .then(response => {
+        publicToken4 = response.body.currentHashedRefreshToken;
       });
 
     await request(app.getHttpServer())
@@ -1122,6 +1145,20 @@ describe('ProfileController (e2e)', () => {
         .then(response => {
           expect(response.body.message).toBe('Profile is not soft deleted');
         });
+    });
+  });
+
+  describe('POST /profile/public/create-profile', () => {
+    it('should create a new profile for user when user have nor profile', async function () {
+      await request(app.getHttpServer())
+        .post('/profile/public/create-profile')
+        .set('Authorization', 'Bearer ' + publicToken4)
+        .send({
+          usernameProfile: 'Seenix',
+          roleProfile: 'CLASSIC',
+          occupationsId: [occupationIdList[0]],
+        })
+        .expect(201);
     });
   });
 });
