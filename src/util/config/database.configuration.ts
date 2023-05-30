@@ -1,19 +1,18 @@
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
-import { join } from 'path';
 import { Injectable } from '@nestjs/common';
 import * as process from 'process';
 import { logger } from './winston-logger.config';
 import { CompanyEntity } from '../../api/company/domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../../api/company/domain/entities/company-employee.entity';
 import { ConnectedCardEntity } from '../../api/card/domain/entities/connected-card.entity';
-import { ConversationEntity } from '../../api/entities-to-create/conversation.entity';
+import { ConversationEntity } from '../../api/conversation/domain/entities/conversation.entity';
 import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../api/entities-to-create/invoices.entity';
-import { JoinedConversation } from '../../api/entities-to-create/joined-conversation.entity';
+import { JoinedConversationEntity } from '../../api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../api/media/domain/entities/media.entity';
-import { MessageEntity } from '../../api/entities-to-create/message.entity';
+import { MessageEntity } from '../../api/conversation/domain/entities/message.entity';
 import { OccupationEntity } from '../../api/occupation/domain/entities/occupation.entity';
 import { PlanEntity } from '../../api/entities-to-create/plan.entity';
 import { ProfileEntity } from '../../api/profile/domain/entities/profile.entity';
@@ -22,7 +21,7 @@ import StripEventEntity from '../../api/entities-to-create/strip-event.entity';
 import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
 import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
-import { NotificationEntity } from '../../api/entities-to-create/notification.entity';
+import { NotificationEntity } from '../../api/notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../api/address/domain/entities/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
 import { ProfileSubscriber } from '../../api/profile/application/subscriber/profile.subscriber';
@@ -40,6 +39,14 @@ import { CardMediaSubscriber } from '../../api/media/application/subscriber/card
 import { CompanyMediaSubscriber } from '../../api/media/application/subscriber/company-media.subscriber';
 import { ProfileMediaSubscriber } from '../../api/media/application/subscriber/profile-media.subscriber';
 import { UserLoginEntity } from '../../api/user/domain/entities/user-login.entity';
+import { ConversationConnectedCardSubscriber } from '../../api/conversation/application/subscriber/conversation-connected-card.subscriber';
+import { ConversationGroupSubscriber } from '../../api/conversation/application/subscriber/conversation-group.subscriber';
+import { MessageConversationSubscriber } from '../../api/conversation/application/subscriber/message-conversation.subscriber';
+import { NotificationGroupSubscriber } from '../../api/notification/application/subscriber/notification-group.subscriber';
+import { NotificationGroupMembershipSubscriber } from '../../api/notification/application/subscriber/notification-group-membership.subscriber';
+import { NotificationMessageSubscriber } from '../../api/notification/application/subscriber/notification-message.subscriber';
+import { NotificationProfileSubscriber } from '../../api/notification/application/subscriber/notification-profile.subscriber';
+import { NotificationUserSubscriber } from '../../api/notification/application/subscriber/notification-user.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -70,7 +77,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
@@ -102,6 +109,14 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardMediaSubscriber,
             CompanyMediaSubscriber,
             ProfileMediaSubscriber,
+            ConversationConnectedCardSubscriber,
+            ConversationGroupSubscriber,
+            MessageConversationSubscriber,
+            NotificationGroupSubscriber,
+            NotificationGroupMembershipSubscriber,
+            NotificationMessageSubscriber,
+            NotificationProfileSubscriber,
+            NotificationUserSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'pprod') {
@@ -129,7 +144,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
@@ -161,6 +176,14 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardMediaSubscriber,
             CompanyMediaSubscriber,
             ProfileMediaSubscriber,
+            ConversationConnectedCardSubscriber,
+            ConversationGroupSubscriber,
+            MessageConversationSubscriber,
+            NotificationGroupSubscriber,
+            NotificationGroupMembershipSubscriber,
+            NotificationMessageSubscriber,
+            NotificationProfileSubscriber,
+            NotificationUserSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'test') {
@@ -182,7 +205,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
@@ -214,6 +237,14 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardMediaSubscriber,
             CompanyMediaSubscriber,
             ProfileMediaSubscriber,
+            ConversationConnectedCardSubscriber,
+            ConversationGroupSubscriber,
+            MessageConversationSubscriber,
+            NotificationGroupSubscriber,
+            NotificationGroupMembershipSubscriber,
+            NotificationMessageSubscriber,
+            NotificationProfileSubscriber,
+            NotificationUserSubscriber,
           ],
         };
       } else if (process.env.NODE_ENV === 'dev') {
@@ -237,7 +268,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
@@ -267,6 +298,14 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardMediaSubscriber,
             CompanyMediaSubscriber,
             ProfileMediaSubscriber,
+            ConversationConnectedCardSubscriber,
+            ConversationGroupSubscriber,
+            MessageConversationSubscriber,
+            NotificationGroupSubscriber,
+            NotificationGroupMembershipSubscriber,
+            NotificationMessageSubscriber,
+            NotificationProfileSubscriber,
+            NotificationUserSubscriber,
           ],
         };
       } else {

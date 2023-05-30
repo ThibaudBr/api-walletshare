@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -8,11 +9,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ProfileEntity } from '../profile/domain/entities/profile.entity';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { ConversationEntity } from './conversation.entity';
 
 @Entity({ name: 'joined_conversation' })
-export class JoinedConversation {
+export class JoinedConversationEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -47,4 +48,11 @@ export class JoinedConversation {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<JoinedConversationEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

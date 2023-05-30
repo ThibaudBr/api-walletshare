@@ -1,17 +1,21 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ConversationEntity } from './conversation.entity';
-import { CardEntity } from '../card/domain/entities/card.entity';
+import { CardEntity } from '../../../card/domain/entities/card.entity';
+import { MediaEntity } from '../../../media/domain/entities/media.entity';
 
 @Entity({ name: 'message' })
-export class MessageEntity {
+export class MessageEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -20,17 +24,21 @@ export class MessageEntity {
   id: string;
 
   @Column()
-  public content: string;
+  content: string;
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
 
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.messages, { onDelete: 'CASCADE' })
-  public author: CardEntity;
+  author: CardEntity;
 
   @ManyToOne(() => ConversationEntity, conversation => conversation.messages)
   conversation: ConversationEntity;
+
+  @OneToOne(() => MediaEntity, media => media.messageMedia, { onDelete: 'CASCADE' })
+  @JoinColumn()
+  media: MediaEntity;
 
   // ______________________________________________________
   // Timestamps
@@ -44,4 +52,11 @@ export class MessageEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<MessageEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

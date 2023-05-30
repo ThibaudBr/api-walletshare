@@ -23,7 +23,7 @@ import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { GroupMembershipEntity } from '../../../groupe/domain/entities/group-membership.entity';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { TransferableStatusCardEnum } from '../enum/transferable-status-card.enum';
-import { MessageEntity } from '../../../entities-to-create/message.entity';
+import { MessageEntity } from '../../../conversation/domain/entities/message.entity';
 import { WhoCanShareCardEnum } from '../enum/who-can-share-card.enum';
 import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 import { CardViewEntity } from './card-view.entity';

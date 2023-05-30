@@ -173,10 +173,6 @@ export class UserService {
     return await this.commandBus.execute(new DeleteUserCommand({ userId: id }));
   }
 
-  private generatePassword(): string {
-    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
-  }
-
   async saveUserLogin(saveUserLogin: SaveUserLoginDto): Promise<void> {
     return await this.commandBus
       .execute(
@@ -196,5 +192,9 @@ export class UserService {
         userId: userId,
       }),
     );
+  }
+
+  private generatePassword(): string {
+    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
   }
 }

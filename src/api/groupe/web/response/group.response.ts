@@ -7,7 +7,7 @@ export class GroupResponse {
   public readonly updatedAt: Date;
   public readonly deletedAt: Date;
   public readonly groupMemberships: GroupMembershipResponse[];
-  public readonly groupRequests: GroupMembershipResponse[];
+  public readonly groupRequests?: GroupMembershipResponse[];
 
   constructor(partial: Partial<GroupResponse>) {
     Object.assign(this, partial);

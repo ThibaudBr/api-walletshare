@@ -13,7 +13,7 @@ import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
 import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';
-import { NotificationEntity } from '../../../entities-to-create/notification.entity';
+import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
 import { UserLoginEntity } from './user-login.entity';
 

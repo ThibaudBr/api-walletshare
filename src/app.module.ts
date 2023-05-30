@@ -28,6 +28,8 @@ import { CompanyModule } from './api/company/company.module';
 import { MediaModule } from './api/media/media.module';
 import { SaveUserLoginMiddleware } from './middleware/save-user-login.middleware';
 import { UserService } from './api/user/application/user.service';
+import { ConversationModule } from './api/conversation/conversation.module';
+import { NotificationModule } from './api/notification/notification.module';
 
 @Module({
   imports: [
@@ -73,6 +75,8 @@ import { UserService } from './api/user/application/user.service';
     AddressModule,
     CompanyModule,
     MediaModule,
+    ConversationModule,
+    NotificationModule,
     // ________ Module to remove ________
     EntitiesToMoveModule,
   ],

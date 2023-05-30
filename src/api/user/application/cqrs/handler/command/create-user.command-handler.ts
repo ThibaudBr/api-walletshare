@@ -24,7 +24,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
     public readonly userRepository: Repository<UserEntity>,
     public readonly eventBus: EventBus,
   ) {
-    this.regexValidatePassword = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$');
+    this.regexValidatePassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
   }
 
   async execute(command: CreateUserCommand): Promise<CreateUserResponse> {
@@ -143,7 +143,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
   }
 
   private isValidEmail(email: string): boolean {
-    const regex = new RegExp('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$');
+    const regex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/;
     return regex.test(email);
   }
 }
