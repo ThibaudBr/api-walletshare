@@ -23,10 +23,15 @@ import { DeleteAllJoinedConversationEventHandler } from './application/cqrs/hand
 import { DeleteJoinedConversationWithSocketIdEventHandler } from './application/cqrs/handler/event/delete-joined-conversation-with-socket-id.event-handler';
 import { RemoveMessageConversationEventHandler } from './application/cqrs/handler/event/remove-message-conversation.event-handler';
 import { SoftRemoveMessageConversationEventHandler } from './application/cqrs/handler/event/soft-remove-message-conversation.event-handler';
+import {MediaEntity} from "../media/domain/entities/media.entity";
+import {UploadMediaCommandHandler} from "../media/application/cqrs/handler/command/upload-media.command-handler";
+import {UploadMediaEventHandler} from "../media/application/cqrs/handler/event/upload-media.event-handler";
+import {RemoveMediaCommandHandler} from "../media/application/cqrs/handler/command/remove-media-command.handler";
+import {RemoveMediaEventHandler} from "../media/application/cqrs/handler/event/remove-media-event.handler";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ConversationEntity, JoinedConversationEntity, MessageEntity, CardEntity]),
+    TypeOrmModule.forFeature([ConversationEntity, JoinedConversationEntity, MessageEntity, CardEntity, MediaEntity]),
     CqrsModule,
     ApiLogModule,
     ClientsModule.register([
@@ -54,6 +59,11 @@ import { SoftRemoveMessageConversationEventHandler } from './application/cqrs/ha
     DeleteJoinedConversationWithSocketIdEventHandler,
     RemoveMessageConversationEventHandler,
     SoftRemoveMessageConversationEventHandler,
+    // imported from other modules
+    UploadMediaCommandHandler,
+    UploadMediaEventHandler,
+    RemoveMediaCommandHandler,
+    RemoveMediaEventHandler,
   ],
 })
 export class ConversationModule {}

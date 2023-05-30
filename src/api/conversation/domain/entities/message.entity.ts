@@ -3,13 +3,14 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
-  ManyToOne,
+  Entity, JoinColumn,
+  ManyToOne, OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ConversationEntity } from './conversation.entity';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
+import {MediaEntity} from "../../../media/domain/entities/media.entity";
 
 @Entity({ name: 'message' })
 export class MessageEntity extends BaseEntity {
@@ -32,6 +33,10 @@ export class MessageEntity extends BaseEntity {
 
   @ManyToOne(() => ConversationEntity, conversation => conversation.messages)
   conversation: ConversationEntity;
+
+  @OneToOne(() => MediaEntity, media => media.messageMedia, { onDelete: 'CASCADE' })
+  @JoinColumn()
+  media: MediaEntity;
 
   // ______________________________________________________
   // Timestamps

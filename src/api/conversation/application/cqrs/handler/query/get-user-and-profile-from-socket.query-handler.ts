@@ -4,34 +4,79 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ConversationEntity } from '../../../../domain/entities/conversation.entity';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import {UserEntity} from "../../../../../user/domain/entities/user.entity";
 
 @QueryHandler(GetUserAndProfileFromSocketQuery)
 export class GetUserAndProfileFromSocketQueryHandler implements IQueryHandler<GetUserAndProfileFromSocketQuery> {
   constructor(
-    @InjectRepository(ConversationEntity)
-    private readonly conversationRepository: Repository<ConversationEntity>,
+    @InjectRepository(UserEntity)
+    private readonly userEntityRepository: Repository<UserEntity>,
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(query: GetUserAndProfileFromSocketQuery): Promise<ConversationEntity[]> {
-    return await this.conversationRepository
+  async execute(query: GetUserAndProfileFromSocketQuery): Promise<UserEntity[]> {
+    return await this.userEntityRepository
       .find({
         relations: [
-          'connectedCard',
-          'connectedCard.cardEntityOne',
-          'connectedCard.cardEntityOne.owner',
-          'connectedCard.cardEntityTwo',
-          'connectedCard.cardEntityTwo.owner',
-          'group',
-          'group.members',
-          'group.members.card',
-          'group.members.card.owner',
-          'joinedProfiles',
+          'profiles',
+          'profiles.personalCards',
+          'profiles.personalCards.connectedCardOne.cardEntityOne',
+          'profiles.personalCards.connectedCardOne.cardEntityOne.owner',
+          'profiles.personalCards.connectedCardOne.cardEntityTwo',
+          'profiles.personalCards.connectedCardOne.cardEntityTwo.owner',
+          'profiles.personalCards.connectedCardOne.conversation.joinedProfiles',
+          'profiles.personalCards.connectedCardTwo.cardEntityOne',
+          'profiles.personalCards.connectedCardTwo.cardEntityOne.owner',
+          'profiles.personalCards.connectedCardTwo.cardEntityTwo',
+          'profiles.personalCards.connectedCardTwo.cardEntityTwo.owner',
+          'profiles.personalCards.connectedCardTwo.conversation.joinedProfiles',
+          'profiles.personalCards.group',
+          'profiles.personalCards.group.members',
+          'profiles.personalCards.group.members.card',
+          'profiles.personalCards.group.members.card.owner',
+          'profiles.personalCards.group.conversation.joinedProfiles',
         ],
-        where: {
-          joinedProfiles: {
-            socketId: query.socketId,
+        where: [
+          {
+            profiles: {
+              personalCards: {
+                connectedCardOne: {
+                  conversation: {
+                    joinedProfiles: {
+                      socketId: query.socketId,
+                    }
+                  }
+                }
+              }
+            }
           },
+          {
+            profiles: {
+              personalCards: {
+                connectedCardTwo: {
+                  conversation: {
+                    joinedProfiles: {
+                      id: query.socketId,
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            profiles: {
+              personalCards: {
+                group: {
+                  conversation: {
+                    joinedProfiles: {
+                      socketId: query.socketId,
+                    }
+                  }
+                }
+              }
+            }
+          },
+        ]
         },
       })
       .catch(async err => {

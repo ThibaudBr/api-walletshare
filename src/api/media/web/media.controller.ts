@@ -1,4 +1,15 @@
-import { Controller, Delete, Get, Param, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Req,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors
+} from '@nestjs/common';
 import { MediaService } from '../application/media.service';
 import { RoleGuard } from '../../auth/web/guards/role.guard';
 import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
@@ -6,6 +17,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { MediaResponse } from './response/media.response';
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
 import { ApiTags } from '@nestjs/swagger';
+import {SentMessageRequest} from "../../conversation/web/request/sent-message.request";
 
 @Controller('media')
 @ApiTags('Media')
