@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -8,14 +9,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ConnectedCardEntity } from '../card/domain/entities/connected-card.entity';
-import { GroupEntity } from '../groupe/domain/entities/group.entity';
-import { JoinedConversation } from './joined-conversation.entity';
+import { ConnectedCardEntity } from '../../../card/domain/entities/connected-card.entity';
+import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
+import { JoinedConversationEntity } from './joined-conversation.entity';
 import { MessageEntity } from './message.entity';
-import { NotificationEntity } from './notification.entity';
 
 @Entity({ name: 'conversation' })
-export class ConversationEntity {
+export class ConversationEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -32,17 +32,14 @@ export class ConversationEntity {
   @OneToOne(() => ConnectedCardEntity, connectedCardEntity => connectedCardEntity.conversation)
   connectedCard: ConnectedCardEntity;
 
-  @OneToMany(() => GroupEntity, groupEntity => groupEntity.conversations)
-  group: GroupEntity[];
+  @OneToOne(() => GroupEntity, groupEntity => groupEntity.conversation)
+  group: GroupEntity;
 
   @OneToMany(() => MessageEntity, message => message.conversation, {})
   messages: MessageEntity[];
 
-  @OneToMany(() => JoinedConversation, joinedConversation => joinedConversation.conversation)
-  joinedProfiles: JoinedConversation[];
-
-  @OneToMany(() => NotificationEntity, notification => notification.conversation, { nullable: true })
-  notifications: NotificationEntity[];
+  @OneToMany(() => JoinedConversationEntity, joinedConversation => joinedConversation.conversation)
+  joinedProfiles: JoinedConversationEntity[];
 
   // ______________________________________________________
   // Timestamps
@@ -56,4 +53,11 @@ export class ConversationEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<ConversationEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

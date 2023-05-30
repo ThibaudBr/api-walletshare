@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -7,14 +8,14 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { NotificationTypeEnum } from './enum/notification-type.enum';
-import { ProfileEntity } from '../profile/domain/entities/profile.entity';
-import { ConversationEntity } from './conversation.entity';
+import { NotificationTypeEnum } from '../enum/notification-type.enum';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { IsNotEmpty, IsString } from 'class-validator';
-import { UserEntity } from '../user/domain/entities/user.entity';
+import { UserEntity } from '../../../user/domain/entities/user.entity';
+import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
 
 @Entity({ name: 'notification' })
-export class NotificationEntity {
+export class NotificationEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -51,11 +52,11 @@ export class NotificationEntity {
   @ManyToOne(() => ProfileEntity, profileEntity => profileEntity.notifications, { nullable: true, onDelete: 'CASCADE' })
   profile: ProfileEntity;
 
-  @ManyToOne(() => ConversationEntity, conversationEntity => conversationEntity.notifications, {
+  @ManyToOne(() => GroupEntity, groupEntity => groupEntity.notifications, {
     nullable: true,
     onDelete: 'CASCADE',
   })
-  conversation: ConversationEntity;
+  group: GroupEntity;
 
   // ______________________________________________________
   // Timestamps
@@ -69,4 +70,11 @@ export class NotificationEntity {
 
   @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
   deletedAt: Date;
+
+  constructor(partial?: Partial<NotificationEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

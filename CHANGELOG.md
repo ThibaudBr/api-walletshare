@@ -1,3 +1,12 @@
+# [0.1.9](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.9) - 2023-05-31
+
+### Features
+- fix things with feedBack of mobile dev
+- add rout for chat
+- add cache for photo
+- change server for production (first one got hacked)
+- add module conversation
+
 # [0.1.8](https://github.com/WalletShareOrg/api-wallet-share/releases/tag/V_0.1.8) - 2023-05-09
 
 ### Features

@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {ForbiddenException, Injectable, InternalServerErrorException} from '@nestjs/common';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { ProfileResponse } from '../web/response/profile.response';
 import { CreateProfileCommand } from './cqrs/command/create-profile.command';
@@ -24,6 +24,7 @@ import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/cus
 import { RoleProfileEnum } from '../domain/enum/role-profile.enum';
 import { ErrorCustomEvent } from '../../../util/exception/error-handler/error-custom.event';
 import { IsProfileWithGivenRoleAlreadyExistQuery } from './cqrs/query/is-profile-with-given-role-already-exist.query';
+import {of} from "rxjs";
 
 @Injectable()
 export class ProfileService {
@@ -46,7 +47,7 @@ export class ProfileService {
         throw new ForbiddenException('User can only have one profile with role classic');
       }
       if (
-        !(await this.queryBus.execute(
+        (await this.queryBus.execute(
           new IsProfileWithGivenRoleAlreadyExistQuery({
             roleProfile: createProfileRequest.roleProfile,
             userId: userId,
@@ -76,7 +77,8 @@ export class ProfileService {
       if (e.message === 'User not found') throw new UserNotFoundHttpException();
       else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
       else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
-      else if (e.message === 'Profile with given role already exist') throw new ForbiddenException(e.message);
+      else if (e instanceof ForbiddenException) throw new ForbiddenException(e.message);
+      else if (e.message === 'Profile no saved') throw new InternalServerErrorException('Profile no saved');
       else throw e;
     }
   }
@@ -232,11 +234,7 @@ export class ProfileService {
   }
 
   async getProfiles(): Promise<ProfileResponse[]> {
-    try {
-      return await this.queryBus.execute(new GetAllProfileQuery());
-    } catch (e) {
-      throw e;
-    }
+    return await this.queryBus.execute(new GetAllProfileQuery());
   }
 
   async getProfilesWithCriteria(
@@ -253,6 +251,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
+      if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
       throw e;
     }
   }

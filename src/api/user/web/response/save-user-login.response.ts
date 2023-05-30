@@ -1,8 +1,4 @@
 export class SaveUserLoginResponse {
-  constructor(partial: Partial<SaveUserLoginResponse>) {
-    Object.assign(this, partial);
-  }
-
   public readonly id: string;
   public readonly userId: string;
   public readonly os?: string;
@@ -12,4 +8,8 @@ export class SaveUserLoginResponse {
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
   public readonly deletedAt?: Date;
+
+  constructor(partial: Partial<SaveUserLoginResponse>) {
+    Object.assign(this, partial);
+  }
 }

@@ -1,7 +1,7 @@
 export class GetUserLoginByUserIdQuery {
+  public readonly userId: string;
+
   constructor(partial: Partial<GetUserLoginByUserIdQuery>) {
     Object.assign(this, partial);
   }
-
-  public readonly userId: string;
 }

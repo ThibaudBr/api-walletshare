@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ConversationEntity } from '../../../entities-to-create/conversation.entity';
+import { ConversationEntity } from '../../../conversation/domain/entities/conversation.entity';
 import { CardEntity } from './card.entity';
 
 @Entity({ name: 'connected_card' })
@@ -20,15 +20,16 @@ export class ConnectedCardEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
-  @OneToOne(() => ConversationEntity, conversation => conversation, {
+
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
+  @OneToOne(() => ConversationEntity, conversation => conversation.connectedCard, {
     cascade: true,
   })
   @JoinColumn()
   conversation: ConversationEntity;
 
-  // ______________________________________________________
-  // Relations
-  // ______________________________________________________
   @ManyToOne(() => CardEntity, cardEntity => cardEntity.connectedCardOne, {
     onDelete: 'CASCADE',
     cascade: ['insert', 'update'],
@@ -40,11 +41,10 @@ export class ConnectedCardEntity extends BaseEntity {
   })
   cardEntityTwo: CardEntity;
   // ______________________________________________________
+  // Timestamps
+  // ______________________________________________________
   @CreateDateColumn()
   createdAt: Date;
-
-  // ______________________________________________________
-  // Timestamps
   @UpdateDateColumn()
   updatedAt: Date;
   @DeleteDateColumn()

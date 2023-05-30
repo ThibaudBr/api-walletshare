@@ -16,6 +16,7 @@ export class CreateCardRequest {
   urls?: string[];
   birthday?: Date;
   notes?: string;
+  ownerId: string;
   connectedCardsId?: string[];
   savedById?: string[];
   occupationsId?: string[];

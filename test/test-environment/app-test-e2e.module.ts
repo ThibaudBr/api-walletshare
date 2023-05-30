@@ -6,14 +6,14 @@ import { AppModule } from '../../src/app.module';
 import { CompanyEntity } from '../../src/api/company/domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../../src/api/company/domain/entities/company-employee.entity';
 import { ConnectedCardEntity } from '../../src/api/card/domain/entities/connected-card.entity';
-import { ConversationEntity } from '../../src/api/entities-to-create/conversation.entity';
+import { ConversationEntity } from '../../src/api/conversation/domain/entities/conversation.entity';
 import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../src/api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../src/api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../src/api/entities-to-create/invoices.entity';
-import { JoinedConversation } from '../../src/api/entities-to-create/joined-conversation.entity';
+import { JoinedConversationEntity } from '../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../src/api/media/domain/entities/media.entity';
-import { MessageEntity } from '../../src/api/entities-to-create/message.entity';
+import { MessageEntity } from '../../src/api/conversation/domain/entities/message.entity';
 import { OccupationEntity } from '../../src/api/occupation/domain/entities/occupation.entity';
 import { PlanEntity } from '../../src/api/entities-to-create/plan.entity';
 import { ProfileEntity } from '../../src/api/profile/domain/entities/profile.entity';
@@ -21,7 +21,7 @@ import { SocialNetworkEntity } from '../../src/api/social-network/domain/entitie
 import StripEventEntity from '../../src/api/entities-to-create/strip-event.entity';
 import { SubscriptionEntity } from '../../src/api/entities-to-create/subscription.entity';
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
-import { NotificationEntity } from '../../src/api/entities-to-create/notification.entity';
+import { NotificationEntity } from '../../src/api/notification/domain/entities/notification.entity';
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
 import { AddressEntity } from '../../src/api/address/domain/entities/address.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
@@ -52,7 +52,7 @@ import {CardViewEntity} from "../../src/api/card/domain/entities/card-view.entit
       GroupEntity,
       GroupMembershipEntity,
       InvoicesEntity,
-      JoinedConversation,
+      JoinedConversationEntity,
       MediaEntity,
       MessageEntity,
       OccupationEntity,

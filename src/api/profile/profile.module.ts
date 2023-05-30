@@ -28,6 +28,9 @@ import { SoftDeleteProfileCommandHandler } from './application/cqrs/handler/comm
 import { UpdateOccupationsProfileEventHandler } from './application/cqrs/handler/event/update-occupations-profile.event-handler';
 import { RestoreProfileCommandHandler } from './application/cqrs/handler/command/restore-profile.command-handler';
 import { RestoreProfileEventHandler } from './application/cqrs/handler/event/restore-profile.event-handler';
+import {
+  IsProfileWithGivenRoleAlreadyExistQueryHandler
+} from "./application/cqrs/handler/query/is-profile-with-given-role-already-exist.query-handler";
 
 @Module({
   imports: [
@@ -64,6 +67,7 @@ import { RestoreProfileEventHandler } from './application/cqrs/handler/event/res
     GetProfilesByUserIdQueryHandler,
     GetAllProfileQueryHandler,
     GetProfileWithCriteriaQueryHandler,
+    IsProfileWithGivenRoleAlreadyExistQueryHandler,
     // Event handlers
     CreateProfileEventHandler,
     DeleteProfileEventHandler,

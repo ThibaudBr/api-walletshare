@@ -11,6 +11,7 @@ import {
 import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
 import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
+import { MessageEntity } from '../../../conversation/domain/entities/message.entity';
 
 @Entity({ name: 'media' })
 export class MediaEntity {
@@ -48,6 +49,9 @@ export class MediaEntity {
   avatarCompanyMedia: CompanyEntity;
   @OneToOne(() => CompanyEntity, companyEntity => companyEntity.bannerMedia, { onDelete: 'CASCADE' })
   bannerCompanyMedia: CompanyEntity;
+
+  @OneToOne(() => MessageEntity, messageEntity => messageEntity.media, { onDelete: 'CASCADE' })
+  messageMedia: MessageEntity;
 
   // ______________________________________________________
   // Timestamps
