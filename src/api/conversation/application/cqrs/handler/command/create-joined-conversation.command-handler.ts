@@ -7,6 +7,8 @@ import { Repository } from 'typeorm';
 import { ConversationEntity } from '../../../../domain/entities/conversation.entity';
 import { CardEntity } from '../../../../../card/domain/entities/card.entity';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import { JoinedConversationEntity } from '../../../../domain/entities/joined-conversation.entity';
+import { CreateJoinedConversationEvent } from '../../event/create-joined-conversation.event';
 
 @CommandHandler(CreateJoinedConversationCommand)
 export class CreateJoinedConversationCommandHandler implements ICommandHandler<CreateJoinedConversationCommand> {
@@ -19,27 +21,12 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
     private readonly cardRepository: Repository<CardEntity>,
     @InjectRepository(ProfileEntity)
     private readonly profileRepository: Repository<ProfileEntity>,
+    @InjectRepository(JoinedConversationEntity)
+    private readonly joinedConversationRepository: Repository<JoinedConversationEntity>,
     private readonly eventBus: EventBus,
   ) {}
 
   async execute(command: CreateJoinedConversationCommand): Promise<void> {
-    const user: UserEntity = await this.userRepository
-      .findOneOrFail({
-        where: {
-          id: command.userId,
-        },
-      })
-      .catch(async error => {
-        await this.eventBus.publish(
-          new ErrorCustomEvent({
-            handler: 'CreateJoinedConversationCommandHandler',
-            localisation: 'UserEntity.findOneOrFail',
-            error: error,
-          }),
-        );
-        throw new Error('User not found');
-      });
-
     const profile: ProfileEntity = await this.profileRepository
       .findOneOrFail({
         where: {
@@ -56,25 +43,6 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
         );
         throw new Error('Profile not found');
       });
-    let card = undefined;
-    if (command.cardId) {
-      card = await this.cardRepository
-        .findOneOrFail({
-          where: {
-            id: command.cardId,
-          },
-        })
-        .catch(async error => {
-          await this.eventBus.publish(
-            new ErrorCustomEvent({
-              handler: 'CreateJoinedConversationCommandHandler',
-              localisation: 'CardEntity.findOneOrFail',
-              error: error,
-            }),
-          );
-          throw new Error('Card not found');
-        });
-    }
 
     const conversation: ConversationEntity = await this.conversationRepository
       .findOneOrFail({
@@ -93,7 +61,29 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
         throw new Error('Conversation not found');
       });
 
-    // TODO: finir la fonctionnalité de rejoindre une conversation
-    throw new Error('Not implemented');
+    const joinedConversation: JoinedConversationEntity = new JoinedConversationEntity({
+      socketId: command.socketId,
+      profile: profile,
+      conversation: conversation,
+    });
+
+    await this.joinedConversationRepository.save(joinedConversation).catch(async error => {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'CreateJoinedConversationCommandHandler',
+          localisation: 'JoinedConversationEntity.save',
+          error: error,
+        }),
+      );
+      throw new Error('JoinedConversation not saved');
+    });
+
+    await this.eventBus.publish(
+      new CreateJoinedConversationEvent({
+        conversationId: conversation.id,
+        profileId: profile.id,
+        socketId: command.socketId,
+      }),
+    );
   }
 }

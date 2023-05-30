@@ -232,11 +232,7 @@ export class ProfileService {
   }
 
   async getProfiles(): Promise<ProfileResponse[]> {
-    try {
-      return await this.queryBus.execute(new GetAllProfileQuery());
-    } catch (e) {
-      throw e;
-    }
+    return await this.queryBus.execute(new GetAllProfileQuery());
   }
 
   async getProfilesWithCriteria(
@@ -253,6 +249,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
+      if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
       throw e;
     }
   }

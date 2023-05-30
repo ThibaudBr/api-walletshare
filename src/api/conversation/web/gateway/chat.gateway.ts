@@ -90,7 +90,6 @@ export class ChatGateway implements OnGatewayConnection {
     );
 
     const createJoinConversationDto: CreateJoinConversationDto = new CreateJoinConversationDto({
-      cardId: author.id,
       conversationEntity: conversation,
       profileEntity: author.owner,
       userId: user.id,
@@ -103,7 +102,7 @@ export class ChatGateway implements OnGatewayConnection {
     await this.conversationService.deleteJoinedConversationWithSocketId(socket.id);
   }
 
-  @SubscribeMessage('request_all_messages')
+  @SubscribeMessage('request_messages_from_conversation')
   async requestAllMessages(
     @ConnectedSocket() socket: Socket,
     @MessageBody() getMessageFromConversationRequest: GetMessageFromConversationRequest,

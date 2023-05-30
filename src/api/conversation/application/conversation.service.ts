@@ -1,31 +1,33 @@
-import {BadRequestException, Injectable} from '@nestjs/common';
-import {CommandBus, QueryBus} from '@nestjs/cqrs';
-import {Socket} from 'socket.io';
-import {MessageEntity} from '../domain/entities/message.entity';
-import {CardEntity} from '../../card/domain/entities/card.entity';
-import {ConversationEntity} from '../domain/entities/conversation.entity';
-import {GetMessageFromConversationRequest} from '../web/request/get-message-from-conversation.request';
-import {CreateJoinConversationDto} from '../domain/dto/create-join-conversation.dto';
-import {UserEntity} from '../../user/domain/entities/user.entity';
-import {ProfileEntity} from '../../profile/domain/entities/profile.entity';
-import {SentMessageRequest} from '../web/request/sent-message.request';
-import {NewMediaDto} from '../../media/domain/dto/new-media.dto';
-import {UploadMediaCommand} from '../../media/application/cqrs/command/upload-media.command';
-import {RemoveMediaCommand} from '../../media/application/cqrs/command/remove-media.command';
-import {InvalidIdHttpException} from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
-import {AddMessageWithMediaCommand} from './cqrs/command/add-message-with-media.command';
-import {MessageResponse} from '../web/response/message.response';
-import {CreateConversationMessageCommand} from './cqrs/command/create-conversation-message.command';
-import {CreateJoinedConversationCommand} from './cqrs/command/create-joined-conversation.command';
-import {
-  DeleteJoinedConversationWithSocketIdCommand
-} from './cqrs/command/delete-joined-conversation-with-socket-id.command';
-import {DeleteAllJoinedConversationCommand} from './cqrs/command/delete-all-joined-conversation.command';
-import {RemoveMessageConversationCommand} from './cqrs/command/remove-message-conversation.command';
-import {IsUserIdOwnerOfMessageQuery} from "./cqrs/query/is-user-id-owner-of-message.query";
-import {GetConversationWhereUserConnectedQuery} from "./cqrs/query/get-conversation-where-user-connected.query";
-import {GetConversationByIdQuery} from "./cqrs/query/get-conversation-by-id.query";
-import {GetCardByIdForConversationQuery} from "./cqrs/query/get-card-by-id-for-conversation.query";
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { Socket } from 'socket.io';
+import { MessageEntity } from '../domain/entities/message.entity';
+import { CardEntity } from '../../card/domain/entities/card.entity';
+import { ConversationEntity } from '../domain/entities/conversation.entity';
+import { GetMessageFromConversationRequest } from '../web/request/get-message-from-conversation.request';
+import { CreateJoinConversationDto } from '../domain/dto/create-join-conversation.dto';
+import { UserEntity } from '../../user/domain/entities/user.entity';
+import { ProfileEntity } from '../../profile/domain/entities/profile.entity';
+import { SentMessageRequest } from '../web/request/sent-message.request';
+import { NewMediaDto } from '../../media/domain/dto/new-media.dto';
+import { UploadMediaCommand } from '../../media/application/cqrs/command/upload-media.command';
+import { RemoveMediaCommand } from '../../media/application/cqrs/command/remove-media.command';
+import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
+import { AddMessageWithMediaCommand } from './cqrs/command/add-message-with-media.command';
+import { MessageResponse } from '../web/response/message.response';
+import { CreateConversationMessageCommand } from './cqrs/command/create-conversation-message.command';
+import { CreateJoinedConversationCommand } from './cqrs/command/create-joined-conversation.command';
+import { DeleteJoinedConversationWithSocketIdCommand } from './cqrs/command/delete-joined-conversation-with-socket-id.command';
+import { DeleteAllJoinedConversationCommand } from './cqrs/command/delete-all-joined-conversation.command';
+import { RemoveMessageConversationCommand } from './cqrs/command/remove-message-conversation.command';
+import { IsUserIdOwnerOfMessageQuery } from './cqrs/query/is-user-id-owner-of-message.query';
+import { GetConversationByIdQuery } from './cqrs/query/get-conversation-by-id.query';
+import { GetCardByIdForConversationQuery } from './cqrs/query/get-card-by-id-for-conversation.query';
+import { GetUserAndProfileFromSocketQuery } from './cqrs/query/get-user-and-profile-from-socket.query';
+import { GetAllConversationByProfilesAndCardQuery } from './cqrs/query/get-all-conversation-by-profiles-and-card.query';
+import { GetMessageFromConversationQuery } from './cqrs/query/get-message-from-conversation.query';
+import { SoftRemoveMessageConversationCommand } from './cqrs/command/soft-remove-message-conversation.command';
+import { RemoveAllJoinedConversationWithSocketIdCommand } from './cqrs/command/remove-all-joined-conversation-with-socket-id.command';
 
 @Injectable()
 export class ConversationService {
@@ -51,7 +53,7 @@ export class ConversationService {
     await this.commandBus
       .execute(
         new CreateJoinedConversationCommand({
-          cardId: createJoinConversationDto.cardId,
+          socketId: socketId,
           conversationEntity: createJoinConversationDto.conversationEntity,
           userId: createJoinConversationDto.userId,
           profileEntity: createJoinConversationDto.profileEntity,
@@ -82,7 +84,7 @@ export class ConversationService {
   async deletedJoinedConversation(socketId: string): Promise<void> {
     await this.commandBus
       .execute(
-        new DeleteJoinedConversationWithSocketIdCommand({
+        new RemoveAllJoinedConversationWithSocketIdCommand({
           socketId: socketId,
         }),
       )
@@ -113,10 +115,9 @@ export class ConversationService {
   }
 
   async softRemoveMessageFromConversation(messageId: string, userId: string): Promise<void> {
-    if ()
     await this.commandBus
       .execute(
-        new RemoveMessageConversationCommand({
+        new SoftRemoveMessageConversationCommand({
           messageId: messageId,
         }),
       )
@@ -132,8 +133,10 @@ export class ConversationService {
   ): Promise<ConversationEntity> {
     return await this.queryBus
       .execute(
-        new GetConversationWhereUserConnectedQuery({
-          socketId: socketId,
+        new GetMessageFromConversationQuery({
+          conversationId: getMessageFromConversationRequest.conversationId,
+          nbMessage: getMessageFromConversationRequest.nbMessage,
+          skip: getMessageFromConversationRequest.skip,
         }),
       )
       .catch(async error => {
@@ -171,9 +174,9 @@ export class ConversationService {
   async getUserAndProfilesFromSocket(socket: Socket): Promise<UserEntity> {
     return await this.queryBus
       .execute(
-        new GetUserAndProfilesFromSocketQuery({
-          socket: socket,
-        })
+        new GetUserAndProfileFromSocketQuery({
+          socketId: socket.id,
+        }),
       )
       .catch(async error => {
         if (error.message === 'User not found') throw new InvalidIdHttpException('User not found');
@@ -182,11 +185,23 @@ export class ConversationService {
   }
 
   async getAllConversationByProfilesAndCard(profiles: ProfileEntity[]): Promise<CreateJoinConversationDto[]> {
-    // TODO: Implement this method
-    throw new Error('Not implemented');
+    return await this.queryBus
+      .execute(
+        new GetAllConversationByProfilesAndCardQuery({
+          profilesId: profiles.map(profile => profile.id),
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Conversation not found') throw new InvalidIdHttpException('Conversation not found');
+        throw new Error(error);
+      });
   }
 
-  async addMessageWithMedia(messageRequest: SentMessageRequest, newMediaDto: NewMediaDto): Promise<MessageResponse> {
+  async addMessageWithMedia(
+    userId: string,
+    messageRequest: SentMessageRequest,
+    newMediaDto: NewMediaDto,
+  ): Promise<MessageResponse> {
     const newMedia = await this.commandBus
       .execute(
         new UploadMediaCommand({

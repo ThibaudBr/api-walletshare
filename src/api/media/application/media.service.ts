@@ -25,7 +25,6 @@ import { AddCardMediaCommand } from './cqrs/command/add-card-media.command';
 import { IsCardOwnerWithUserIdQuery } from '../../card/application/cqrs/query/is-card-owner-with-user-id.query';
 import { RestoreMediaCommand } from './cqrs/command/restore-media.command';
 import { SoftRemoveMediaCommand } from './cqrs/command/soft-remove-media.command';
-import { SentMessageRequest } from '../../conversation/web/request/sent-message.request';
 
 @Injectable()
 export class MediaService {

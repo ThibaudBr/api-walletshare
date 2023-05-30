@@ -3,14 +3,16 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
-  Entity, JoinColumn,
-  ManyToOne, OneToOne,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ConversationEntity } from './conversation.entity';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
-import {MediaEntity} from "../../../media/domain/entities/media.entity";
+import { MediaEntity } from '../../../media/domain/entities/media.entity';
 
 @Entity({ name: 'message' })
 export class MessageEntity extends BaseEntity {

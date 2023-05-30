@@ -23,15 +23,35 @@ import { DeleteAllJoinedConversationEventHandler } from './application/cqrs/hand
 import { DeleteJoinedConversationWithSocketIdEventHandler } from './application/cqrs/handler/event/delete-joined-conversation-with-socket-id.event-handler';
 import { RemoveMessageConversationEventHandler } from './application/cqrs/handler/event/remove-message-conversation.event-handler';
 import { SoftRemoveMessageConversationEventHandler } from './application/cqrs/handler/event/soft-remove-message-conversation.event-handler';
-import {MediaEntity} from "../media/domain/entities/media.entity";
-import {UploadMediaCommandHandler} from "../media/application/cqrs/handler/command/upload-media.command-handler";
-import {UploadMediaEventHandler} from "../media/application/cqrs/handler/event/upload-media.event-handler";
-import {RemoveMediaCommandHandler} from "../media/application/cqrs/handler/command/remove-media-command.handler";
-import {RemoveMediaEventHandler} from "../media/application/cqrs/handler/event/remove-media-event.handler";
+import { MediaEntity } from '../media/domain/entities/media.entity';
+import { UploadMediaCommandHandler } from '../media/application/cqrs/handler/command/upload-media.command-handler';
+import { UploadMediaEventHandler } from '../media/application/cqrs/handler/event/upload-media.event-handler';
+import { RemoveMediaCommandHandler } from '../media/application/cqrs/handler/command/remove-media-command.handler';
+import { RemoveMediaEventHandler } from '../media/application/cqrs/handler/event/remove-media-event.handler';
+import { GetMessageFromConversationQueryHandler } from './application/cqrs/handler/query/get-message-from-conversation.query-handler';
+import { IsUserIdOwnerOfMessageQueryHandler } from './application/cqrs/handler/query/is-user-id-owner-of-message.query-handler';
+import { AddMessageWithMediaCommandHandler } from './application/cqrs/handler/command/add-message-with-media.command-handler';
+import { CreateConversationMessageCommandHandler } from './application/cqrs/handler/command/create-conversation-message.command-handler';
+import { CreateJoinedConversationCommandHandler } from './application/cqrs/handler/command/create-joined-conversation.command-handler';
+import { DeleteAllJoinedConversationCommandHandler } from './application/cqrs/handler/command/delete-all-joined-conversation.command-handler';
+import { DeleteJoinedConversationCommandHandler } from './application/cqrs/handler/command/delete-joined-conversation.command-handler';
+import { RemoveMessageConversationCommandHandler } from './application/cqrs/handler/command/remove-message-conversation.command-handler';
+import { SoftRemoveMessageConversationCommandHandler } from './application/cqrs/handler/command/soft-remove-message-conversation.command-handler';
+import { AddMessageWithMediaEventHandler } from './application/cqrs/handler/event/add-message-with-media-event.handler';
+import { UserEntity } from '../user/domain/entities/user.entity';
+import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ConversationEntity, JoinedConversationEntity, MessageEntity, CardEntity, MediaEntity]),
+    TypeOrmModule.forFeature([
+      UserEntity,
+      ProfileEntity,
+      ConversationEntity,
+      JoinedConversationEntity,
+      MessageEntity,
+      CardEntity,
+      MediaEntity,
+    ]),
     CqrsModule,
     ApiLogModule,
     ClientsModule.register([
@@ -45,6 +65,13 @@ import {RemoveMediaEventHandler} from "../media/application/cqrs/handler/event/r
     ApiLogService,
     CreateLogCommandHandler,
     // Command handlers
+    AddMessageWithMediaCommandHandler,
+    CreateConversationMessageCommandHandler,
+    CreateJoinedConversationCommandHandler,
+    DeleteAllJoinedConversationCommandHandler,
+    DeleteJoinedConversationCommandHandler,
+    RemoveMessageConversationCommandHandler,
+    SoftRemoveMessageConversationCommandHandler,
     // Query handlers
     GetAllConversationQueryHandler,
     GetAllConversationByProfilesAndCardQueryHandler,
@@ -52,7 +79,10 @@ import {RemoveMediaEventHandler} from "../media/application/cqrs/handler/event/r
     GetConversationByIdQueryHandler,
     GetConversationWhereUserConnectedQueryHandler,
     GetUserAndProfileFromSocketQueryHandler,
+    GetMessageFromConversationQueryHandler,
+    IsUserIdOwnerOfMessageQueryHandler,
     // Events handlers
+    AddMessageWithMediaEventHandler,
     CreateConversationMessageEventHandler,
     CreateJoinedConversationEventHandler,
     DeleteAllJoinedConversationEventHandler,

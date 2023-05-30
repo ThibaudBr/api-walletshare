@@ -42,6 +42,13 @@ export class NotificationService {
             ...notificationEntity,
             conversation: new ConversationResponse({
               ...notificationEntity.group.conversation,
+              messages: notificationEntity.group.conversation.messages.map(message => {
+                return {
+                  ...message,
+                  media: undefined,
+                  conversation: undefined,
+                };
+              }),
               group: new GroupResponse({
                 ...notificationEntity.group,
                 groupMemberships: notificationEntity.group.members.map((groupMembership: GroupMembershipEntity) => {
@@ -73,6 +80,13 @@ export class NotificationService {
             ...notificationEntity,
             conversation: new ConversationResponse({
               ...notificationEntity.group.conversation,
+              messages: notificationEntity.group.conversation.messages.map(message => {
+                return {
+                  ...message,
+                  media: undefined,
+                  conversation: undefined,
+                };
+              }),
               group: new GroupResponse({
                 ...notificationEntity.group,
                 groupMemberships: notificationEntity.group.members.map((groupMembership: GroupMembershipEntity) => {

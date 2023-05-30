@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -12,7 +13,7 @@ import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { ConversationEntity } from './conversation.entity';
 
 @Entity({ name: 'joined_conversation' })
-export class JoinedConversationEntity {
+export class JoinedConversationEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -47,4 +48,11 @@ export class JoinedConversationEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<JoinedConversationEntity>) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }

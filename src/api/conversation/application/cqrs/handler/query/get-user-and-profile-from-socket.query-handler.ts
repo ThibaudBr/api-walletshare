@@ -2,9 +2,8 @@ import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetUserAndProfileFromSocketQuery } from '../../query/get-user-and-profile-from-socket.query';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ConversationEntity } from '../../../../domain/entities/conversation.entity';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
-import {UserEntity} from "../../../../../user/domain/entities/user.entity";
+import { UserEntity } from '../../../../../user/domain/entities/user.entity';
 
 @QueryHandler(GetUserAndProfileFromSocketQuery)
 export class GetUserAndProfileFromSocketQueryHandler implements IQueryHandler<GetUserAndProfileFromSocketQuery> {
@@ -44,11 +43,11 @@ export class GetUserAndProfileFromSocketQueryHandler implements IQueryHandler<Ge
                   conversation: {
                     joinedProfiles: {
                       socketId: query.socketId,
-                    }
-                  }
-                }
-              }
-            }
+                    },
+                  },
+                },
+              },
+            },
           },
           {
             profiles: {
@@ -57,27 +56,28 @@ export class GetUserAndProfileFromSocketQueryHandler implements IQueryHandler<Ge
                   conversation: {
                     joinedProfiles: {
                       id: query.socketId,
-                    }
-                  }
-                }
-              }
-            }
+                    },
+                  },
+                },
+              },
+            },
           },
           {
             profiles: {
               personalCards: {
-                group: {
-                  conversation: {
-                    joinedProfiles: {
-                      socketId: query.socketId,
-                    }
-                  }
-                }
-              }
-            }
+                groupMemberships: {
+                  group: {
+                    conversation: {
+                      joinedProfiles: {
+                        socketId: query.socketId,
+                      },
+                    },
+                  },
+                },
+              },
+            },
           },
-        ]
-        },
+        ],
       })
       .catch(async err => {
         await this.eventBus.publish(
