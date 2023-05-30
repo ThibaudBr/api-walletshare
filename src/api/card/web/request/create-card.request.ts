@@ -5,6 +5,7 @@ import { WhoCanCommunicateWithEnum } from '../../domain/enum/who-can-communicate
 import { TransferableStatusCardEnum } from '../../domain/enum/transferable-status-card.enum';
 
 export class CreateCardRequest {
+  typeOfCardEnum: TypeOfCardEnum;
   socialName?: string;
   isOwnerPro: boolean;
   firstName?: string;
@@ -15,16 +16,12 @@ export class CreateCardRequest {
   urls?: string[];
   birthday?: Date;
   notes?: string;
-  numberOfShares: number;
-  ownerId: string;
   connectedCardsId?: string[];
   savedById?: string[];
   occupationsId?: string[];
   groupMembershipsId?: string[];
   mediaUrl?: string;
   messagesCount?: number;
-  socialNetworkName?: string;
-  typeOfCardEnum?: TypeOfCardEnum;
   whoCanShareCardEnum?: WhoCanShareCardEnum[];
   whoCanSeeCardInformationEnum?: WhoCanSeeCardInformationEnum[];
   whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
