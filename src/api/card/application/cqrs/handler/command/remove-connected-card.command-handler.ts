@@ -89,9 +89,9 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
             },
           ],
         })
-        .then(cardConnected => {
-          this.connectedCardRepository
-            .delete(cardConnected.id)
+        .then(async cardConnected => {
+          await this.connectedCardRepository
+            .remove(cardConnected)
             .then(() => {
               this.eventBus.publish(
                 new RemoveConnectedCardEvent({

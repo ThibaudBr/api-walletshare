@@ -1,4 +1,4 @@
-import {ForbiddenException, Injectable, InternalServerErrorException} from '@nestjs/common';
+import { ForbiddenException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { ProfileResponse } from '../web/response/profile.response';
 import { CreateProfileCommand } from './cqrs/command/create-profile.command';
@@ -24,7 +24,7 @@ import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/cus
 import { RoleProfileEnum } from '../domain/enum/role-profile.enum';
 import { ErrorCustomEvent } from '../../../util/exception/error-handler/error-custom.event';
 import { IsProfileWithGivenRoleAlreadyExistQuery } from './cqrs/query/is-profile-with-given-role-already-exist.query';
-import {of} from "rxjs";
+import { of } from 'rxjs';
 
 @Injectable()
 export class ProfileService {
@@ -47,12 +47,12 @@ export class ProfileService {
         throw new ForbiddenException('User can only have one profile with role classic');
       }
       if (
-        (await this.queryBus.execute(
+        await this.queryBus.execute(
           new IsProfileWithGivenRoleAlreadyExistQuery({
             roleProfile: createProfileRequest.roleProfile,
             userId: userId,
           }),
-        ))
+        )
       ) {
         await this.eventBus.publish(
           new ErrorCustomEvent({

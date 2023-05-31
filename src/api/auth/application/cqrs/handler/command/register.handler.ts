@@ -23,7 +23,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
     private userRepository: Repository<UserEntity>,
     private eventBus: EventBus,
   ) {
-    this.regexValidatePassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+    this.regexValidatePassword = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$');
   }
 
   async execute(command: RegisterCommand): Promise<UserEntity> {
@@ -119,7 +119,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
   }
 
   private isValidEmail(email: string): boolean {
-    const regex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/;
+    const regex = new RegExp('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$');
     return regex.test(email);
   }
 

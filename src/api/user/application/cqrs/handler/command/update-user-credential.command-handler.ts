@@ -16,7 +16,7 @@ export class UpdateUserCredentialCommandHandler implements ICommandHandler<Updat
     private userRepository: Repository<UserEntity>,
     private eventBus: EventBus,
   ) {
-    this.regexValidatePassword = /^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{4,}$/;
+    this.regexValidatePassword = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$');
   }
 
   async execute(command: UpdateUserCredentialCommand): Promise<void> {
