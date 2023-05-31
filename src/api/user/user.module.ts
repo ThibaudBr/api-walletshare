@@ -33,6 +33,12 @@ import { UserLoginEntity } from './domain/entities/user-login.entity';
 import { CreateSaveLoginCommandHandler } from './application/cqrs/handler/command/create-save-login.command-handler';
 import { GetUserLoginByIdQueryHandler } from './application/cqrs/handler/query/get-user-login-by-id.query-handler';
 import { CreateSaveLoginUserEventHandler } from './application/cqrs/handler/event/create-save-login-user.event-handler';
+import {
+  CreateStripeCustomerCommandHandler
+} from "../payment/application/cqrs/handler/command/create-stripe-customer.command-handler";
+import {
+  CreateStripeCustomerEventHandler
+} from "../payment/application/cqrs/handler/event/create-stripe-customer.event-handler";
 
 @Module({
   imports: [
@@ -67,6 +73,7 @@ import { CreateSaveLoginUserEventHandler } from './application/cqrs/handler/even
     RestoreUserCommandHandler,
     DeleteUserCommandHandler,
     CreateSaveLoginCommandHandler,
+    CreateStripeCustomerCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,
@@ -83,6 +90,7 @@ import { CreateSaveLoginUserEventHandler } from './application/cqrs/handler/even
     LoginOfUserEventHandler,
     UpdateUserEventHandler,
     CreateSaveLoginUserEventHandler,
+    CreateStripeCustomerEventHandler,
   ],
 })
 export class UserModule {}

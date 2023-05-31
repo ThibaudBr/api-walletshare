@@ -62,14 +62,18 @@ export class UserEntity extends BaseEntity {
   public isRegisteredWithGoogle: boolean;
   @Column('text', { array: true, default: [UserRoleEnum.PUBLIC] })
   roles: UserRoleEnum[];
+
+  @Column({ nullable: true })
+  public stripeCustomerId: string;
+
+  // _________________________________________________________
+  // Relations
+  // _________________________________________________________
   @OneToMany(() => ProfileEntity, profile => profile.user, {
     cascade: ['insert', 'update', 'remove', 'soft-remove'],
   })
   profiles: ProfileEntity[];
 
-  // _________________________________________________________
-  // Relations
-  // _________________________________________________________
   @OneToMany(() => SubscriptionEntity, subscription => subscription.user, {
     cascade: ['insert', 'update', 'remove', 'soft-remove'],
   })

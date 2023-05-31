@@ -9,14 +9,27 @@ import { UserEntity } from '../../user/domain/entities/user.entity';
 import { GetUserQuery } from '../../user/application/cqrs/query/get-user.query';
 import { GetUserLoginQuery } from '../../user/application/cqrs/query/get-user-login.query';
 import { UserResponse } from '../../user/web/response/user.response';
+import { CreateStripeCustomerCommand } from '../../payment/application/cqrs/command/create-stripe-customer.command';
 
 @Injectable()
 export class AuthService {
   constructor(private jwtService: JwtService, private commandBus: CommandBus, private queryBus: QueryBus) {}
 
   async signup(signUpDto: SignUpDto): Promise<UserResponse> {
+    const user: UserEntity = await this.commandBus.execute(
+      new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password),
+    );
+
+    await this.commandBus.execute(
+      new CreateStripeCustomerCommand({
+        userId: user.id,
+        username: user.username,
+        email: user.mail,
+      }),
+    );
+
     return new UserResponse({
-      ...(await this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password))),
+      ...user,
     });
   }
 

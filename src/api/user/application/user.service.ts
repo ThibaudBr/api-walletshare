@@ -33,13 +33,24 @@ import { SaveUserLoginDto } from '../domain/dto/save-user-login.dto';
 import { CreateSaveLoginCommand } from './cqrs/command/create-save-login.command';
 import { SaveUserLoginResponse } from '../web/response/save-user-login.response';
 import { GetSavedCardWithUserIdQuery } from '../../card/application/cqrs/query/get-saved-card-with-user-id.query';
+import { CreateStripeCustomerCommand } from '../../payment/application/cqrs/command/create-stripe-customer.command';
 
 @Injectable()
 export class UserService {
   constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<CreateUserResponse> {
-    return await this.commandBus.execute(new CreateUserCommand(createUserDto));
+    const createdUser: CreateUserResponse = await this.commandBus.execute(new CreateUserCommand(createUserDto));
+
+    await this.commandBus.execute(
+      new CreateStripeCustomerCommand({
+        userId: createdUser.id,
+        email: createdUser.mail,
+        username: createdUser.username,
+      }),
+    );
+
+    return createdUser;
   }
 
   async getUserIfRefreshTokenMatches(refreshToken: string, userId: string): Promise<RequestUser> {
@@ -102,6 +113,15 @@ export class UserService {
           }),
         ),
       );
+
+      await this.commandBus.execute(
+        new CreateStripeCustomerCommand({
+          userId: user.id,
+          email: user.mail,
+          username: user.username,
+        }),
+      );
+
       try {
         await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
         await this.commandBus.execute(
