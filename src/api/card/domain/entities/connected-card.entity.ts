@@ -26,6 +26,7 @@ export class ConnectedCardEntity extends BaseEntity {
   // ______________________________________________________
   @OneToOne(() => ConversationEntity, conversation => conversation.connectedCard, {
     cascade: true,
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   conversation: ConversationEntity;

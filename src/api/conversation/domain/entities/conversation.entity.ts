@@ -23,7 +23,7 @@ export class ConversationEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255, nullable: true, name: 'title' })
   content: string;
 
   // ______________________________________________________

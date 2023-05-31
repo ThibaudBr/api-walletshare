@@ -86,12 +86,12 @@ export class AppTestE2eService {
       await this.companyRepository.query('DELETE FROM "company";');
       await this.companyRepository.query('DELETE FROM "company_occupations_occupation";');
       await this.companyEmployeeRepository.query('DELETE FROM "company_employee";');
+      await this.joinedConversationRepository.query('DELETE FROM "joined_conversation";');
       await this.conversationRepository.query('DELETE FROM "conversation";');
       await this.discountCodeRepository.query('DELETE FROM "discount_codes";');
       await this.groupRepository.query('DELETE FROM "group";');
       await this.groupMembershipRepository.query('DELETE FROM "group_membership";');
       await this.invoicesRepository.query('DELETE FROM "invoices";');
-      await this.joinedConversationRepository.query('DELETE FROM "joined_conversation";');
       await this.messageRepository.query('DELETE FROM "message";');
       await this.occupationRepository.query('DELETE FROM "occupation";');
       await this.planRepository.query('DELETE FROM "plan";');

@@ -1476,7 +1476,9 @@ describe('CardController (e2e)', () => {
                       cardId: cardIdList[3],
                       connectedCardId: cardIdList[16],
                     })
-                    .expect(204);
+                    .then(res => {
+                      expect(res.status).toBe(204);
+                    });
                   await request(app.getHttpServer())
                     .get('/api/test/get-card-test/' + cardIdList[0])
                     .expect(200)
@@ -1646,12 +1648,14 @@ describe('CardController (e2e)', () => {
                   cardId: cardIdList[3],
                   connectedCardId: cardIdList[16],
                 })
-                .expect(204);
+                .then(res => {
+                  expect(res.status).toBe(204);
+                });
               await request(app.getHttpServer())
                 .get('/api/test/get-card-test/' + cardIdList[0])
                 .expect(200)
                 .expect(res => {
-                  expect(res.body.connectedCardOne.length).toBe(1);
+                  expect(res.body.connectedCardOne.length).toBe(0);
                 });
             });
           });
@@ -1832,7 +1836,9 @@ describe('CardController (e2e)', () => {
           await request(app.getHttpServer())
             .delete('/card/admin/delete-card/' + cardIdList[0])
             .set('Authorization', 'Bearer ' + adminToken)
-            .expect(204);
+            .then(response => {
+              expect(response.status).toEqual(204);
+            });
           await request(app.getHttpServer())
             .get('/api/test/get-all-cards-test')
             .expect(200)

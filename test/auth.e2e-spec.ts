@@ -66,6 +66,10 @@ describe('AuthController (e2e)', () => {
             username: 'testRegister',
             mail: 'testRegister@test.fr',
             password: 'Test123!',
+          })
+          .then((res) => {
+            expect(res.status).toEqual(201);
+            return res;
           });
         expect(responseRegister.status).toEqual(201);
         expect(responseRegister.body).toHaveProperty('id');

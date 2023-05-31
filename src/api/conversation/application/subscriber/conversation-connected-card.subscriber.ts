@@ -33,7 +33,7 @@ export class ConversationConnectedCardSubscriber implements EntitySubscriberInte
     await conversationRepository.softRemove(conversations);
   }
 
-  async beforeRemove(event: RemoveEvent<ConnectedCardEntity>): Promise<void> {
+  async afterRemove(event: RemoveEvent<ConnectedCardEntity>): Promise<void> {
     const softRemovedConnectedCard: ConnectedCardEntity | undefined = event.entity;
     const conversationRepository = event.manager.getRepository(ConversationEntity);
     const conversations: ConversationEntity[] = await conversationRepository.find({
@@ -46,6 +46,11 @@ export class ConversationConnectedCardSubscriber implements EntitySubscriberInte
       },
     });
     if (conversations.length == 0) return;
-    await conversationRepository.remove(conversations);
+    await event.manager
+      .getRepository(ConversationEntity)
+      .remove(conversations)
+      .catch(async err => {
+        throw new Error('An error occurred while removing conversation');
+      });
   }
 }

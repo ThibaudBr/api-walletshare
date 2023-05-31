@@ -125,7 +125,10 @@ describe('UserController (e2e)', () => {
             password: 'Test123!',
             roles: ['ADMIN'],
           })
-          .expect(201);
+          .then(response => {
+            expect(response.status).toEqual(201);
+            return response;
+          });
         expect(newUser).toBeDefined();
         expect(newUser.body).toBeDefined();
         expect(newUser.body.username).toEqual('test123');
@@ -142,7 +145,10 @@ describe('UserController (e2e)', () => {
             mail: 'test@test.fr',
             password: 'Test123!',
           })
-          .expect(201);
+          .then(response => {
+            expect(response.status).toEqual(201);
+            return response;
+          });
         expect(newUser).toBeDefined();
         expect(newUser.body).toBeDefined();
         expect(newUser.body.username).toEqual('test123');
@@ -160,7 +166,10 @@ describe('UserController (e2e)', () => {
             password: 'Test123!',
             roles: ['ADMIN', 'PUBLIC'],
           })
-          .expect(201);
+          .then(response => {
+            expect(response.status).toEqual(201);
+            return response;
+          });
         expect(newUser).toBeDefined();
         expect(newUser.body).toBeDefined();
         expect(newUser.body.username).toEqual('test123');
