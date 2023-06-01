@@ -32,9 +32,11 @@ import { CreateStripeEventCommandHandler } from './stripe-webhook/application/cq
 import { CreateStripeEventEventHandler } from './stripe-webhook/application/cqrs/handler/event/create-stripe-event.event-handler';
 import { UpdateMonthlySubscriptionStatusCommandHandler } from './subscription/application/cqrs/handler/command/update-monthly-subscription-status.command-handler';
 import { UpdateMonthlySubscriptionStatusEventHandler } from './subscription/application/cqrs/handler/event/update-monthly-subscription-status.event-handler';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule,
     TypeOrmModule.forFeature([UserEntity, StripeEventEntity]),
     CqrsModule,
     ApiLogModule,

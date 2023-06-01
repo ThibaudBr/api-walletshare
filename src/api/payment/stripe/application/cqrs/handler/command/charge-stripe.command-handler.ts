@@ -2,13 +2,14 @@ import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import Stripe from 'stripe';
 import { ChargeStripeCommand } from '../../command/charge-stripe.command';
 import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
+import { ConfigService } from '@nestjs/config';
 
 @CommandHandler(ChargeStripeCommand)
 export class ChargeStripeCommandHandler implements ICommandHandler<ChargeStripeCommand> {
   private stripe: Stripe;
 
-  constructor(private readonly eventBus: EventBus) {
-    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'error', {
+  constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
+    this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY') || 'error', {
       apiVersion: '2022-11-15',
     });
   }
@@ -19,7 +20,7 @@ export class ChargeStripeCommandHandler implements ICommandHandler<ChargeStripeC
         amount: command.amount,
         customer: command.stripeCustomerId,
         payment_method: command.paymentMethodId,
-        currency: process.env.STRIPE_CURRENCY || 'eur',
+        currency: this.configService.get('STRIPE_CURRENCY') || 'eur',
         off_session: true,
         confirm: true,
       })

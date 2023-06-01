@@ -2,13 +2,14 @@ import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { AttachCreditCardCommand } from '../../command/attach-credit-card.command';
 import Stripe from 'stripe';
 import { AttachCreditCardEvent } from '../../event/attach-credit-card.event';
+import { ConfigService } from '@nestjs/config';
 
 @CommandHandler(AttachCreditCardCommand)
 export class AttachCreditCardCommandHandler implements ICommandHandler<AttachCreditCardCommand> {
   private stripe: Stripe;
 
-  constructor(private readonly eventBus: EventBus) {
-    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'error', {
+  constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
+    this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY') || 'error', {
       apiVersion: '2022-11-15',
     });
   }

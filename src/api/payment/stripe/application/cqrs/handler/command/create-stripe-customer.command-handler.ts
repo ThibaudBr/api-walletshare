@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { UserEntity } from '../../../../../../user/domain/entities/user.entity';
 import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
 import { CreateStripeCustomerEvent } from '../../event/create-stripe-customer.event';
+import { ConfigService } from '@nestjs/config';
 
 @CommandHandler(CreateStripeCustomerCommand)
 export class CreateStripeCustomerCommandHandler implements ICommandHandler<CreateStripeCustomerCommand> {
@@ -15,8 +16,9 @@ export class CreateStripeCustomerCommandHandler implements ICommandHandler<Creat
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
     private readonly eventBus: EventBus,
+    private readonly configService: ConfigService,
   ) {
-    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'error', {
+    this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY') || 'error', {
       apiVersion: '2022-11-15',
     });
   }

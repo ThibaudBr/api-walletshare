@@ -3,17 +3,18 @@ import { CreateSubscriptionStripeCommand } from '../../command/create-subscripti
 import Stripe from 'stripe';
 import { CreateSubscriptionStripeEvent } from '../../event/create-subscription-stripe.event';
 import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
+import { ConfigService } from '@nestjs/config';
 
 @CommandHandler(CreateSubscriptionStripeCommand)
 export class CreateSubscriptionStripeCommandHandler implements ICommandHandler<CreateSubscriptionStripeCommand> {
   private readonly stripe: Stripe;
   private readonly trialPeriod: number;
 
-  constructor(private readonly eventBus: EventBus) {
-    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'error', {
+  constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
+    this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY') || 'error', {
       apiVersion: '2022-11-15',
     });
-    this.trialPeriod = Number(process.env.STRIP_MONTLY_TRIAL_PERIOD_DAYS) || 30;
+    this.trialPeriod = this.configService.get('STRIP_MONTHLY_TRIAL_PERIOD_DAYS') || 30;
   }
 
   async execute(command: CreateSubscriptionStripeCommand): Promise<Stripe.Response<Stripe.Subscription>> {

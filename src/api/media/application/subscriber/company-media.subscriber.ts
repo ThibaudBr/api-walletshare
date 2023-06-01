@@ -2,9 +2,12 @@ import { EntitySubscriberInterface, EventSubscriber, Repository, SoftRemoveEvent
 import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { MediaEntity } from '../../domain/entities/media.entity';
 import { S3 } from '@aws-sdk/client-s3';
+import { ConfigService } from '@nestjs/config';
 
 @EventSubscriber()
 export class CompanyMediaSubscriber implements EntitySubscriberInterface<CompanyEntity> {
+  constructor(private readonly configService: ConfigService) {}
+
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
   listenTo() {
     return CompanyEntity;
@@ -55,14 +58,14 @@ export class CompanyMediaSubscriber implements EntitySubscriberInterface<Company
     });
     if (medias.length == 0) return;
     const s3: S3 = new S3({
-      region: process.env.AWS_REGION,
+      region: this.configService.get('AWS_REGION'),
     });
-    if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
+    if (!this.configService.get('AWS_PRIVATE_BUCKET_NAME')) {
       throw new Error('AWS_PRIVATE_BUCKET_NAME is not defined');
     }
     for (const media of medias) {
       await s3.deleteObject({
-        Bucket: process.env.AWS_BUCKET_NAME || '',
+        Bucket: this.configService.get('AWS_BUCKET_NAME') || '',
         Key: media.key,
       });
     }

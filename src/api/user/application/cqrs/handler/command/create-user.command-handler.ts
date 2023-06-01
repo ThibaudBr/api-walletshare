@@ -14,12 +14,14 @@ import { InvalidPasswordHttpException } from '../../../../../../util/exception/c
 import { InvalidMailHttpException } from '../../../../../../util/exception/custom-http-exception/invalid-mail.http-exception';
 import { InvalidUsernameHttpException } from '../../../../../../util/exception/custom-http-exception/invalid-username.http-exception';
 import * as bcrypt from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler<CreateUserCommand> {
   private regexValidatePassword;
 
   constructor(
+    private readonly configService: ConfigService,
     @InjectRepository(UserEntity)
     public readonly userRepository: Repository<UserEntity>,
     public readonly eventBus: EventBus,
@@ -100,9 +102,9 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
   // Generate a unique referral code that does not already exist in the database
   async generateUniqueReferralCode(): Promise<string> {
-    let code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
+    let code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') || 6);
     while (await this.getUserByReferralCode(code)) {
-      code = this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
+      code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') || 6);
     }
     return code;
   }

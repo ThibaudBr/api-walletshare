@@ -3,13 +3,14 @@ import { SetDefaultCreditCardStripeCommand } from '../../command/set-default-cre
 import Stripe from 'stripe';
 import { SetDefaultCreditCardStripeEvent } from '../../event/set-default-credit-card-stripe.event';
 import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
+import { ConfigService } from '@nestjs/config';
 
 @CommandHandler(SetDefaultCreditCardStripeCommand)
 export class SetDefaultCreditCardStripeCommandHandler implements ICommandHandler<SetDefaultCreditCardStripeCommand> {
   private stripe: Stripe;
 
-  constructor(private readonly eventBus: EventBus) {
-    this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'error', {
+  constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
+    this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY') || 'error', {
       apiVersion: '2022-11-15',
     });
   }

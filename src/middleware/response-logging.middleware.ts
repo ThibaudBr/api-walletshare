@@ -4,15 +4,16 @@ import { Request, Response } from 'express';
 import { CreateLogDto } from '../api/api-log/domain/dto/create-log.dto';
 import { ApiLogService } from '../api/api-log/application/api-log.service';
 import { VerboseLogEnum } from '../api/api-log/domain/enum/verbose-log.enum';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ResponseLoggingMiddleware implements NestMiddleware {
   private readonly VERBOSE: VerboseLogEnum;
   private readonly LOG_RESPONSE_BOOL: boolean;
 
-  constructor(private readonly apiLoggerService: ApiLogService) {
-    this.VERBOSE = (process.env.VERBOSE as VerboseLogEnum) || VerboseLogEnum.NONE;
-    this.LOG_RESPONSE_BOOL = process.env.LOG_RESPONSE == 'true' || false;
+  constructor(private readonly apiLoggerService: ApiLogService, private readonly configService: ConfigService) {
+    this.VERBOSE = this.configService.get('VERBOSE') as VerboseLogEnum;
+    this.LOG_RESPONSE_BOOL = this.configService.get('LOG_RESPONSE_BOOL') || false;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
