@@ -37,10 +37,12 @@ import { CardTestE2eController } from './controller-test/card-test-e2e.controlle
 import { CardTestE2eService } from './service-test/card-test-e2e.service';
 import { GroupTestE2eController } from './controller-test/group-test-e2e.controller';
 import { GroupTestE2eService } from './service-test/group-test-e2e.service';
-import {CardViewEntity} from "../../src/api/card/domain/entities/card-view.entity";
+import { CardViewEntity } from '../../src/api/card/domain/entities/card-view.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule,
     AppModule,
     TypeOrmModule.forFeature([
       CardEntity,
