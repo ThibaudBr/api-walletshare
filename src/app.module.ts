@@ -73,7 +73,8 @@ import * as Joi from 'joi';
         STRIP_MONTHLY_TRIAL_PERIOD_DAYS: Joi.number().required(),
         STRIPE_WEBHOOK_SECRET: Joi.string().required(),
         STRIPE_CURRENCY: Joi.string().required(),
-        STRIPE_SECRET_KEY: Joi.string().required(),
+        STRIPE_SECRET_KEY_TEST: Joi.string().required(),
+        STRIPE_SECRET_KEY_PROD: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRootAsync({

@@ -8,9 +8,15 @@ export class GetListSavedCreditCardOfUserQueryHandler implements IQueryHandler<G
   private stripe: Stripe;
 
   constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
-    this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY') || 'error', {
-      apiVersion: '2022-11-15',
-    });
+    if (this.configService.get('NODE_ENV') == 'prod') {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') || 'error', {
+        apiVersion: '2022-11-15',
+      });
+    } else {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') || 'error', {
+        apiVersion: '2022-11-15',
+      });
+    }
   }
 
   async execute(query: GetListSavedCreditCardOfUserQuery): Promise<Stripe.ApiList<Stripe.PaymentMethod>> {
