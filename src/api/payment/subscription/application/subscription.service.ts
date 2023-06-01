@@ -4,6 +4,7 @@ import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import Stripe from 'stripe';
 import { ErrorCustomEvent } from '../../../../util/exception/error-handler/error-custom.event';
 import { UpdateMonthlySubscriptionStatusCommand } from './cqrs/command/update-monthly-subscription-status.command';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class SubscriptionService {
@@ -14,8 +15,9 @@ export class SubscriptionService {
     private readonly queryBus: QueryBus,
     private readonly eventBus: EventBus,
     private readonly stripeService: StripeService,
+    private readonly configService: ConfigService,
   ) {
-    this.monthlySubscriptionPriceId = process.env.STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID || 'error';
+    this.monthlySubscriptionPriceId = this.configService.get('STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID') || 'error';
   }
 
   async createMonthlySubscription(stripCustomerId: string): Promise<Stripe.Response<Stripe.Subscription>> {

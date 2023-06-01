@@ -47,20 +47,22 @@ import { NotificationGroupMembershipSubscriber } from '../../api/notification/ap
 import { NotificationMessageSubscriber } from '../../api/notification/application/subscriber/notification-message.subscriber';
 import { NotificationProfileSubscriber } from '../../api/notification/application/subscriber/notification-profile.subscriber';
 import { NotificationUserSubscriber } from '../../api/notification/application/subscriber/notification-user.subscriber';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
+  constructor(private readonly configService: ConfigService) {}
   createTypeOrmOptions(): TypeOrmModuleOptions {
     try {
-      if (process.env.NODE_ENV === 'prod') {
+      if (this.configService.get('NODE_ENV') === 'prod') {
         logger.info('NODE_ENV is prod');
         return {
           type: 'postgres',
-          host: process.env.TYPEORM_HOST_PROD,
-          port: process.env.TYPEORM_PORT_PROD ? parseInt(process.env.TYPEORM_PORT_PROD) : 5432,
-          username: process.env.TYPEORM_USERNAME_PROD,
-          password: process.env.TYPEORM_PASSWORD_PROD,
-          database: process.env.TYPEORM_DATABASE_PROD,
+          host: this.configService.get('TYPEORM_HOST_PROD'),
+          port: this.configService.get('TYPEORM_PORT_PROD'),
+          username: this.configService.get('TYPEORM_USERNAME_PROD'),
+          password: this.configService.get('TYPEORM_PASSWORD_PROD'),
+          database: this.configService.get('TYPEORM_DATABASE_PROD'),
           ssl: true,
           extra: {
             ssl: {
@@ -93,8 +95,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
           ],
-          synchronize: process.env.TYPEORM_SYNCHRONIZE_PROD === 'true',
-          logging: process.env.TYPEORM_LOGGING_PROD === 'true',
+          synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
+          logging: this.configService.get('TYPEORM_LOGGING_PROD'),
           subscribers: [
             ProfileSubscriber,
             ConnectedCardSubscriber,
@@ -119,15 +121,15 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationUserSubscriber,
           ],
         };
-      } else if (process.env.NODE_ENV === 'pprod') {
+      } else if (this.configService.get('NODE_ENV') === 'pprod') {
         logger.info('NODE_ENV is pprod');
         return {
           type: 'postgres',
-          host: process.env.TYPEORM_HOST_PPROD,
-          port: process.env.TYPEORM_PORT_PPROD ? parseInt(process.env.TYPEORM_PORT_PPROD) : 5432,
-          username: process.env.TYPEORM_USERNAME_PPROD,
-          password: process.env.TYPEORM_PASSWORD_PPROD,
-          database: process.env.TYPEORM_DATABASE_PPROD,
+          host: this.configService.get('TYPEORM_HOST_PPROD'),
+          port: this.configService.get('TYPEORM_PORT_PPROD'),
+          username: this.configService.get('TYPEORM_USERNAME_PPROD'),
+          password: this.configService.get('TYPEORM_PASSWORD_PPROD'),
+          database: this.configService.get('TYPEORM_DATABASE_PPROD'),
           ssl: true,
           extra: {
             ssl: {
@@ -160,8 +162,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
           ],
-          synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD === 'true',
-          logging: process.env.TYPEORM_LOGGING_PPROD === 'true',
+          synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
+          logging: this.configService.get('TYPEORM_LOGGING_PPROD'),
           subscribers: [
             ProfileSubscriber,
             ConnectedCardSubscriber,
@@ -186,15 +188,15 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationUserSubscriber,
           ],
         };
-      } else if (process.env.NODE_ENV === 'test') {
+      } else if (this.configService.get('NODE_ENV') === 'test') {
         logger.info('NODE_ENV is test');
         return {
           type: 'postgres',
-          host: process.env.TYPEORM_HOST_TEST,
-          port: process.env.TYPEORM_PORT_TEST ? parseInt(process.env.TYPEORM_PORT_TEST) : 5432,
-          username: process.env.TYPEORM_USERNAME_TEST,
-          password: process.env.TYPEORM_PASSWORD_TEST,
-          database: process.env.TYPEORM_DATABASE_TEST,
+          host: this.configService.get('TYPEORM_HOST_TEST'),
+          port: this.configService.get('TYPEORM_PORT_TEST'),
+          username: this.configService.get('TYPEORM_USERNAME_TEST'),
+          password: this.configService.get('TYPEORM_PASSWORD_TEST'),
+          database: this.configService.get('TYPEORM_DATABASE_TEST'),
           entities: [
             CardEntity,
             CompanyEntity,
@@ -221,8 +223,8 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
           ],
-          synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST === 'true',
-          logging: process.env.TYPEORM_LOGGING_TEST === 'true',
+          synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_TEST'),
+          logging: this.configService.get('TYPEORM_LOGGING_TEST'),
           subscribers: [
             ProfileSubscriber,
             ConnectedCardSubscriber,
@@ -247,17 +249,17 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationUserSubscriber,
           ],
         };
-      } else if (process.env.NODE_ENV === 'dev') {
+      } else if (this.configService.get('NODE_ENV') === 'dev') {
         logger.info('NODE_ENV is dev');
         return {
           type: 'postgres',
-          host: process.env.TYPEORM_HOST_DEV,
-          port: process.env.TYPEORM_PORT_DEV ? parseInt(process.env.TYPEORM_PORT_DEV) : 5432,
-          username: process.env.TYPEORM_USERNAME_DEV,
-          password: process.env.TYPEORM_PASSWORD_DEV,
-          database: process.env.TYPEORM_DATABASE_DEV,
-          logging: process.env.TYPEORM_LOGGING_DEV === 'true',
-          synchronize: process.env.TYPEORM_SYNCHRONIZE_DEV === 'true',
+          host: this.configService.get('TYPEORM_HOST_DEV'),
+          port: this.configService.get('TYPEORM_PORT_DEV'),
+          username: this.configService.get('TYPEORM_USERNAME_DEV'),
+          password: this.configService.get('TYPEORM_PASSWORD_DEV'),
+          database: this.configService.get('TYPEORM_DATABASE_DEV'),
+          logging: this.configService.get('TYPEORM_LOGGING_DEV'),
+          synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_DEV'),
           entities: [
             CardEntity,
             CompanyEntity,

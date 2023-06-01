@@ -33,15 +33,13 @@ import { UserLoginEntity } from './domain/entities/user-login.entity';
 import { CreateSaveLoginCommandHandler } from './application/cqrs/handler/command/create-save-login.command-handler';
 import { GetUserLoginByIdQueryHandler } from './application/cqrs/handler/query/get-user-login-by-id.query-handler';
 import { CreateSaveLoginUserEventHandler } from './application/cqrs/handler/event/create-save-login-user.event-handler';
-import {
-  CreateStripeCustomerCommandHandler
-} from "../payment/stripe/application/cqrs/handler/command/create-stripe-customer.command-handler";
-import {
-  CreateStripeCustomerEventHandler
-} from "../payment/stripe/application/cqrs/handler/event/create-stripe-customer.event-handler";
+import { CreateStripeCustomerCommandHandler } from '../payment/stripe/application/cqrs/handler/command/create-stripe-customer.command-handler';
+import { CreateStripeCustomerEventHandler } from '../payment/stripe/application/cqrs/handler/event/create-stripe-customer.event-handler';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule,
     TypeOrmModule.forFeature([UserEntity, UserLoginEntity]),
     CqrsModule,
     ApiLogModule,

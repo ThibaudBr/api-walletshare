@@ -22,16 +22,22 @@ import * as process from 'process';
 import { CreateLogCommandHandler } from '../api-log/application/cqrs/handler/command/create-log.command-handler';
 import { CreateStripeCustomerCommandHandler } from '../payment/stripe/application/cqrs/handler/command/create-stripe-customer.command-handler';
 import { CreateStripeCustomerEventHandler } from '../payment/stripe/application/cqrs/handler/event/create-stripe-customer.event-handler';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 config();
 
 @Module({
   imports: [
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: {
-        expiresIn: process.env.JWT_EXPIRATION_TIME,
-      },
+    ConfigModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => ({
+        secret: config.get('JWT_SECRET'),
+        signOptions: {
+          expiresIn: config.get('JWT_EXPIRATION_TIME'),
+        },
+      }),
     }),
     ClientsModule.register([
       {
