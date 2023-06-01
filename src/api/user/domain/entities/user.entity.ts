@@ -63,8 +63,14 @@ export class UserEntity extends BaseEntity {
   @Column('text', { array: true, default: [UserRoleEnum.PUBLIC] })
   roles: UserRoleEnum[];
 
+  // _________________________________________________________
+  // Stripe
+  // _________________________________________________________
+
   @Column({ nullable: true })
   public stripeCustomerId: string;
+  @Column({ nullable: true })
+  public monthlySubscriptionStatus?: string;
 
   // _________________________________________________________
   // Relations

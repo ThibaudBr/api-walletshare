@@ -5,7 +5,9 @@ import * as process from 'process';
 import { MicroserviceOptions, TcpOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    rawBody: true,
+  });
 
   // Swagger
   const swaggerConfig = new DocumentBuilder()

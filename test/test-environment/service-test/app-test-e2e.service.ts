@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AddressEntity } from '../../../src/api/address/domain/entities/address.entity';
-import StripEventEntity from '../../../src/api/entities-to-create/strip-event.entity';
+import StripeEventEntity from '../../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity';
 import { ReferralCodeEntity } from '../../../src/api/entities-to-create/referal-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JoinedConversationEntity } from '../../../src/api/conversation/domain/entities/joined-conversation.entity';
@@ -61,8 +61,8 @@ export class AppTestE2eService {
     private readonly profileRepository: Repository<ProfileEntity>,
     @InjectRepository(SocialNetworkEntity)
     private readonly socialNetworkRepository: Repository<SocialNetworkEntity>,
-    @InjectRepository(StripEventEntity)
-    private readonly stripEventRepository: Repository<StripEventEntity>,
+    @InjectRepository(StripeEventEntity)
+    private readonly stripEventRepository: Repository<StripeEventEntity>,
     @InjectRepository(SubscriptionEntity)
     private readonly subscriptionRepository: Repository<SubscriptionEntity>,
     @InjectRepository(NotificationEntity)

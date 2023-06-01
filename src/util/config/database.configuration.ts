@@ -17,7 +17,7 @@ import { OccupationEntity } from '../../api/occupation/domain/entities/occupatio
 import { PlanEntity } from '../../api/entities-to-create/plan.entity';
 import { ProfileEntity } from '../../api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../api/social-network/domain/entities/social-network.entity';
-import StripEventEntity from '../../api/entities-to-create/strip-event.entity';
+import StripeEventEntity from '../../api/payment/stripe-webhook/domain/entities/stripe-event.entity';
 import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
 import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
@@ -84,7 +84,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             PlanEntity,
             ProfileEntity,
             SocialNetworkEntity,
-            StripEventEntity,
+            StripeEventEntity,
             SubscriptionEntity,
             UserEntity,
             NotificationEntity,
@@ -151,7 +151,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             PlanEntity,
             ProfileEntity,
             SocialNetworkEntity,
-            StripEventEntity,
+            StripeEventEntity,
             SubscriptionEntity,
             UserEntity,
             NotificationEntity,
@@ -212,7 +212,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             PlanEntity,
             ProfileEntity,
             SocialNetworkEntity,
-            StripEventEntity,
+            StripeEventEntity,
             SubscriptionEntity,
             UserEntity,
             NotificationEntity,
@@ -275,7 +275,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             PlanEntity,
             ProfileEntity,
             SocialNetworkEntity,
-            StripEventEntity,
+            StripeEventEntity,
             SubscriptionEntity,
             UserEntity,
             NotificationEntity,

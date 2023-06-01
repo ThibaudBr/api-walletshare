@@ -35,10 +35,10 @@ import { GetUserLoginByIdQueryHandler } from './application/cqrs/handler/query/g
 import { CreateSaveLoginUserEventHandler } from './application/cqrs/handler/event/create-save-login-user.event-handler';
 import {
   CreateStripeCustomerCommandHandler
-} from "../payment/application/cqrs/handler/command/create-stripe-customer.command-handler";
+} from "../payment/stripe/application/cqrs/handler/command/create-stripe-customer.command-handler";
 import {
   CreateStripeCustomerEventHandler
-} from "../payment/application/cqrs/handler/event/create-stripe-customer.event-handler";
+} from "../payment/stripe/application/cqrs/handler/event/create-stripe-customer.event-handler";
 
 @Module({
   imports: [

@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DiscountCodeEntity } from './discount-code.entity';
 import { InvoicesEntity } from './invoices.entity';
 import { PlanEntity } from './plan.entity';
-import StripEventEntity from './strip-event.entity';
 import { SubscriptionEntity } from './subscription.entity';
 import { ReferralCodeEntity } from './referal-code.entity';
 
@@ -14,7 +13,6 @@ import { ReferralCodeEntity } from './referal-code.entity';
       DiscountCodeEntity,
       InvoicesEntity,
       PlanEntity,
-      StripEventEntity,
       SubscriptionEntity,
       ReferralCodeEntity,
     ]),

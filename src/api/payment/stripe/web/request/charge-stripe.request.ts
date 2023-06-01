@@ -1,0 +1,8 @@
+export class ChargeStripeRequest {
+  constructor(partial: Partial<ChargeStripeRequest>) {
+    Object.assign(this, partial);
+  }
+
+  public readonly amount: number;
+  public readonly paymentMethodId: string;
+}

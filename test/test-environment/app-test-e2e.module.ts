@@ -18,7 +18,7 @@ import { OccupationEntity } from '../../src/api/occupation/domain/entities/occup
 import { PlanEntity } from '../../src/api/entities-to-create/plan.entity';
 import { ProfileEntity } from '../../src/api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../src/api/social-network/domain/entities/social-network.entity';
-import StripEventEntity from '../../src/api/entities-to-create/strip-event.entity';
+import StripeEventEntity from '../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity';
 import { SubscriptionEntity } from '../../src/api/entities-to-create/subscription.entity';
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
 import { NotificationEntity } from '../../src/api/notification/domain/entities/notification.entity';
@@ -59,7 +59,7 @@ import {CardViewEntity} from "../../src/api/card/domain/entities/card-view.entit
       PlanEntity,
       ProfileEntity,
       SocialNetworkEntity,
-      StripEventEntity,
+      StripeEventEntity,
       SubscriptionEntity,
       UserEntity,
       NotificationEntity,

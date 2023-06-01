@@ -33,7 +33,7 @@ import { SaveUserLoginDto } from '../domain/dto/save-user-login.dto';
 import { CreateSaveLoginCommand } from './cqrs/command/create-save-login.command';
 import { SaveUserLoginResponse } from '../web/response/save-user-login.response';
 import { GetSavedCardWithUserIdQuery } from '../../card/application/cqrs/query/get-saved-card-with-user-id.query';
-import { CreateStripeCustomerCommand } from '../../payment/application/cqrs/command/create-stripe-customer.command';
+import { CreateStripeCustomerCommand } from '../../payment/stripe/application/cqrs/command/create-stripe-customer.command';
 
 @Injectable()
 export class UserService {
