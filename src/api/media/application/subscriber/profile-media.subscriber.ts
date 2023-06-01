@@ -2,7 +2,6 @@ import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, So
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { MediaEntity } from '../../domain/entities/media.entity';
 import { S3 } from '@aws-sdk/client-s3';
-import process from 'process';
 
 @EventSubscriber()
 export class ProfileMediaSubscriber implements EntitySubscriberInterface<ProfileEntity> {

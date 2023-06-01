@@ -1,7 +1,6 @@
 import { EntitySubscriberInterface, EventSubscriber, Repository, SoftRemoveEvent } from 'typeorm';
 import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { MediaEntity } from '../../domain/entities/media.entity';
-import process from 'process';
 import { S3 } from '@aws-sdk/client-s3';
 
 @EventSubscriber()

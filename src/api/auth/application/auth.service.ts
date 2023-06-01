@@ -9,7 +9,7 @@ import { UserEntity } from '../../user/domain/entities/user.entity';
 import { GetUserQuery } from '../../user/application/cqrs/query/get-user.query';
 import { GetUserLoginQuery } from '../../user/application/cqrs/query/get-user-login.query';
 import { UserResponse } from '../../user/web/response/user.response';
-import { CreateStripeCustomerCommand } from '../../payment/application/cqrs/command/create-stripe-customer.command';
+import { CreateStripeCustomerCommand } from '../../payment/stripe/application/cqrs/command/create-stripe-customer.command';
 
 @Injectable()
 export class AuthService {

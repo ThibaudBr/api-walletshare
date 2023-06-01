@@ -20,8 +20,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ApiLogService } from '../api-log/application/api-log.service';
 import * as process from 'process';
 import { CreateLogCommandHandler } from '../api-log/application/cqrs/handler/command/create-log.command-handler';
-import { CreateStripeCustomerCommandHandler } from '../payment/application/cqrs/handler/command/create-stripe-customer.command-handler';
-import { CreateStripeCustomerEventHandler } from '../payment/application/cqrs/handler/event/create-stripe-customer.event-handler';
+import { CreateStripeCustomerCommandHandler } from '../payment/stripe/application/cqrs/handler/command/create-stripe-customer.command-handler';
+import { CreateStripeCustomerEventHandler } from '../payment/stripe/application/cqrs/handler/event/create-stripe-customer.event-handler';
 
 config();
 
