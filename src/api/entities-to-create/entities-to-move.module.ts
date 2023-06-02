@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DiscountCodeEntity } from './discount-code.entity';
 import { InvoicesEntity } from './invoices.entity';
-import { PlanEntity } from './plan.entity';
+import { ProductEntity } from '../payment/product/domain/entities/product.entity';
 import { SubscriptionEntity } from './subscription.entity';
 import { ReferralCodeEntity } from './referal-code.entity';
 
@@ -12,7 +12,7 @@ import { ReferralCodeEntity } from './referal-code.entity';
       // ________ Entity ________
       DiscountCodeEntity,
       InvoicesEntity,
-      PlanEntity,
+      ProductEntity,
       SubscriptionEntity,
       ReferralCodeEntity,
     ]),

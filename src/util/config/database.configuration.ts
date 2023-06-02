@@ -14,7 +14,7 @@ import { JoinedConversationEntity } from '../../api/conversation/domain/entities
 import { MediaEntity } from '../../api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../api/conversation/domain/entities/message.entity';
 import { OccupationEntity } from '../../api/occupation/domain/entities/occupation.entity';
-import { PlanEntity } from '../../api/entities-to-create/plan.entity';
+import { ProductEntity } from '../../api/payment/product/domain/entities/product.entity';
 import { ProfileEntity } from '../../api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../api/social-network/domain/entities/social-network.entity';
 import StripeEventEntity from '../../api/payment/stripe-webhook/domain/entities/stripe-event.entity';
@@ -48,6 +48,7 @@ import { NotificationMessageSubscriber } from '../../api/notification/applicatio
 import { NotificationProfileSubscriber } from '../../api/notification/application/subscriber/notification-profile.subscriber';
 import { NotificationUserSubscriber } from '../../api/notification/application/subscriber/notification-user.subscriber';
 import { ConfigService } from '@nestjs/config';
+import {PriceEntity} from "../../api/payment/price/domain/entities/price.entity";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -83,7 +84,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             MediaEntity,
             MessageEntity,
             OccupationEntity,
-            PlanEntity,
+            ProductEntity,
             ProfileEntity,
             SocialNetworkEntity,
             StripeEventEntity,
@@ -94,6 +95,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             AddressEntity,
             CardViewEntity,
             UserLoginEntity,
+            PriceEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PROD'),
@@ -150,7 +152,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             MediaEntity,
             MessageEntity,
             OccupationEntity,
-            PlanEntity,
+            ProductEntity,
             ProfileEntity,
             SocialNetworkEntity,
             StripeEventEntity,
@@ -161,6 +163,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             AddressEntity,
             CardViewEntity,
             UserLoginEntity,
+            PriceEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PPROD'),
@@ -211,7 +214,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             MediaEntity,
             MessageEntity,
             OccupationEntity,
-            PlanEntity,
+            ProductEntity,
             ProfileEntity,
             SocialNetworkEntity,
             StripeEventEntity,
@@ -222,6 +225,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             AddressEntity,
             CardViewEntity,
             UserLoginEntity,
+            PriceEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_TEST'),
           logging: this.configService.get('TYPEORM_LOGGING_TEST'),
@@ -274,7 +278,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             MediaEntity,
             MessageEntity,
             OccupationEntity,
-            PlanEntity,
+            ProductEntity,
             ProfileEntity,
             SocialNetworkEntity,
             StripeEventEntity,
@@ -285,6 +289,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             AddressEntity,
             CardViewEntity,
             UserLoginEntity,
+            PriceEntity,
           ],
           subscribers: [
             ProfileSubscriber,

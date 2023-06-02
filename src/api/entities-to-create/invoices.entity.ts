@@ -99,7 +99,6 @@ export class InvoicesEntity {
   // ______________________________________________________
 
   @ManyToOne(() => SubscriptionEntity, subscriptionEntity => subscriptionEntity.invoices)
-  @ValidateNested()
   subscription: SubscriptionEntity;
 
   // ______________________________________________________

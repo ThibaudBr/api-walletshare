@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -7,10 +8,15 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { SubscriptionEntity } from './subscription.entity';
+import { SubscriptionEntity } from '../../../../entities-to-create/subscription.entity';
+import {PriceEntity} from "../../../price/domain/entities/price.entity";
 
 @Entity({ name: 'plan' })
-export class PlanEntity {
+export class ProductEntity extends BaseEntity {
+  constructor(partial?: Partial<ProductEntity>) {
+    super();
+    if (partial) Object.assign(this, partial);
+  }
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -24,14 +30,17 @@ export class PlanEntity {
   @Column({ name: 'description', type: 'varchar', length: 255 })
   description: string;
 
-  @Column({ name: 'price', type: 'float' })
-  price: number;
+  @Column({ name: 'stripe_price_id', type: 'varchar', length: 255 })
+  stripeProductId: string;
 
-  @Column({ name: 'duration', type: 'int' })
-  duration: number;
+  @Column({ name: 'default_stripe_price_id', type: 'varchar', length: 255 })
+  defaultStripePriceId: string;
 
-  @Column({ name: 'discounted_price', type: 'float' })
-  discountedPrice: number;
+  @Column({ name: 'json_metadata', type: 'json', nullable: true })
+  jsonStripeMetadata: object;
+
+  @Column({ name: 'active', type: 'boolean', default: true })
+  active: boolean;
 
   // ______________________________________________________
   // Relations
@@ -39,6 +48,9 @@ export class PlanEntity {
 
   @OneToMany(() => SubscriptionEntity, subscriptionEntity => subscriptionEntity.plan)
   subscriptions: SubscriptionEntity[];
+
+  @OneToMany(() => PriceEntity, priceEntity => priceEntity.product)
+  prices: PriceEntity[];
 
   // ______________________________________________________
   // Timestamps

@@ -15,7 +15,7 @@ import { JoinedConversationEntity } from '../../src/api/conversation/domain/enti
 import { MediaEntity } from '../../src/api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../src/api/conversation/domain/entities/message.entity';
 import { OccupationEntity } from '../../src/api/occupation/domain/entities/occupation.entity';
-import { PlanEntity } from '../../src/api/entities-to-create/plan.entity';
+import { ProductEntity } from '../../src/api/payment/product/domain/entities/product.entity';
 import { ProfileEntity } from '../../src/api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../src/api/social-network/domain/entities/social-network.entity';
 import StripeEventEntity from '../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity';
@@ -39,6 +39,8 @@ import { GroupTestE2eController } from './controller-test/group-test-e2e.control
 import { GroupTestE2eService } from './service-test/group-test-e2e.service';
 import { CardViewEntity } from '../../src/api/card/domain/entities/card-view.entity';
 import { ConfigModule } from '@nestjs/config';
+import {UserLoginEntity} from "../../src/api/user/domain/entities/user-login.entity";
+import {PriceEntity} from "../../src/api/payment/price/domain/entities/price.entity";
 
 @Module({
   imports: [
@@ -58,7 +60,7 @@ import { ConfigModule } from '@nestjs/config';
       MediaEntity,
       MessageEntity,
       OccupationEntity,
-      PlanEntity,
+      ProductEntity,
       ProfileEntity,
       SocialNetworkEntity,
       StripeEventEntity,
@@ -68,6 +70,8 @@ import { ConfigModule } from '@nestjs/config';
       ReferralCodeEntity,
       AddressEntity,
       CardViewEntity,
+      UserLoginEntity,
+      PriceEntity,
     ]),
   ],
   controllers: [

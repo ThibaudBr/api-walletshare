@@ -11,10 +11,16 @@ import { AttachCreditCardRequest } from '../web/request/attach-credit-card.reque
 import { GetListSavedCreditCardOfUserQuery } from './cqrs/query/get-list-saved-credit-card-of-user.query';
 import { SetDefaultCreditCardStripeCommand } from './cqrs/command/set-default-credit-card-stripe.command';
 import { SetDefaultCreditCardStripRequest } from '../web/request/set-default-credit-card-strip.request';
-import { CreateSubscriptionStripeEvent } from './cqrs/event/create-subscription-stripe.event';
 import { CreateSubscriptionStripeCommand } from './cqrs/command/create-subscription-stripe.command';
 import { GetListSubscriptionStripeQuery } from './cqrs/query/get-list-subscription-stripe.query';
 import { ConstructEventFromPayloadStripeCommand } from './cqrs/command/construct-event-from-payload-stripe.command';
+import { CancelSubscriptionStripeCommand } from './cqrs/command/cancel-subscription-stripe.command';
+import { CreateProductStripeCommand } from './cqrs/command/create-product-stripe.command';
+import { GetProductStripeByIdQuery } from './cqrs/query/get-product-stripe-by-id.query';
+import { GetAllProductStripeQuery } from './cqrs/query/get-all-product-stripe.query';
+import { UpdateProductStripeCommand } from './cqrs/command/update-product-stripe.command';
+import { RemoveProductStripeCommand } from './cqrs/command/remove-product-stripe.command';
+import { UpdateProductStripRequest } from '../web/request/update-product-strip.request';
 
 @Injectable()
 export class StripeService {
@@ -141,6 +147,122 @@ export class StripeService {
         signature: stripeSignature,
       }),
     );
+  }
+
+  public async cancelSubscription(
+    stripeCustomerId: string,
+    subscriptionId: string,
+  ): Promise<Stripe.Response<Stripe.Subscription>> {
+    return await this.commandBus
+      .execute(
+        new CancelSubscriptionStripeCommand({
+          stripeCustomerId: stripeCustomerId,
+          subscriptionId: subscriptionId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the subscription cancellation')
+          throw new InvalidIdHttpException('Error during the subscription cancellation');
+        throw new Error('Error during the subscription cancellation');
+      });
+  }
+
+  public async getAllProducts(limit: number, offset: string): Promise<Stripe.ApiList<Stripe.Product>> {
+    return await this.queryBus
+      .execute(
+        new GetAllProductStripeQuery({
+          limit: limit,
+          offset: offset,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching list of products')
+          throw new InvalidIdHttpException('Error while fetching list of products');
+        throw new Error('Error while fetching list of products');
+      });
+  }
+
+  public async getProductById(productId: string): Promise<Stripe.Product> {
+    return await this.queryBus.execute(new GetProductStripeByIdQuery({ id: productId })).catch(error => {
+      if (error.message === 'Error while fetching product')
+        throw new InvalidIdHttpException('Error while fetching product');
+      throw new Error('Error while fetching product');
+    });
+  }
+
+  public async createProductStripe(name: string, description: string): Promise<Stripe.Product> {
+    return await this.commandBus
+      .execute(
+        new CreateProductStripeCommand({
+          name: name,
+          description: description,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the creation of the product')
+          throw new InvalidIdHttpException('Error during the creation of the product');
+        throw new Error('Error during the creation of the product');
+      });
+  }
+
+  public async updateProductStripe(updateProductStripeRequest: UpdateProductStripRequest): Promise<Stripe.Product> {
+    return await this.commandBus
+      .execute(
+        new UpdateProductStripeCommand({
+          productStripeId: updateProductStripeRequest.productStripeId,
+          name: updateProductStripeRequest.name,
+          description: updateProductStripeRequest.description,
+          defaultPriceId: updateProductStripeRequest.defaultPriceId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the update of the product')
+          throw new InvalidIdHttpException('Error during the update of the product');
+        throw new Error('Error during the update of the product');
+      });
+  }
+
+  public async removeProductStripe(productStripeId: string): Promise<Stripe.DeletedProduct> {
+    return await this.commandBus
+      .execute(
+        new RemoveProductStripeCommand({
+          id: productStripeId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the remove of the product')
+          throw new InvalidIdHttpException('Error during the remove of the product');
+        throw new Error('Error during the remove of the product');
+      });
+  }
+
+  public async getAllProductStripe(): Promise<Stripe.Product[]> {
+    return await this.queryBus
+      .execute(
+        new GetAllProductStripeQuery({
+          limit: 10,
+          offset: '0',
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching list of products')
+          throw new InvalidIdHttpException('Error while fetching list of products');
+        throw new Error('Error while fetching list of products');
+      });
+  }
+
+  public async getProductStripeById(productStripeId: string): Promise<Stripe.Product> {
+    return await this.queryBus
+      .execute(
+        new GetProductStripeByIdQuery({
+          id: productStripeId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching product')
+          throw new InvalidIdHttpException('Error while fetching product');
+        throw new Error('Error while fetching product');
+      });
   }
 
   private async isUserIdOwnerOfStripeCustomerId(userId: string, stripeCustomerId: string): Promise<boolean> {

@@ -14,7 +14,7 @@ import { MessageEntity } from '../../../src/api/conversation/domain/entities/mes
 import { GroupEntity } from '../../../src/api/groupe/domain/entities/group.entity';
 import { CompanyEntity } from '../../../src/api/company/domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../../../src/api/company/domain/entities/company-employee.entity';
-import { PlanEntity } from '../../../src/api/entities-to-create/plan.entity';
+import { ProductEntity } from '../../../src/api/payment/product/domain/entities/product.entity';
 import { ConversationEntity } from '../../../src/api/conversation/domain/entities/conversation.entity';
 import { InvoicesEntity } from '../../../src/api/entities-to-create/invoices.entity';
 import { NotificationEntity } from '../../../src/api/notification/domain/entities/notification.entity';
@@ -55,8 +55,8 @@ export class AppTestE2eService {
     private readonly messageRepository: Repository<MessageEntity>,
     @InjectRepository(OccupationEntity)
     private readonly occupationRepository: Repository<OccupationEntity>,
-    @InjectRepository(PlanEntity)
-    private readonly planRepository: Repository<PlanEntity>,
+    @InjectRepository(ProductEntity)
+    private readonly planRepository: Repository<ProductEntity>,
     @InjectRepository(ProfileEntity)
     private readonly profileRepository: Repository<ProfileEntity>,
     @InjectRepository(SocialNetworkEntity)

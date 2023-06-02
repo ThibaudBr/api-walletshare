@@ -10,7 +10,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IsDate } from 'class-validator';
-import { PlanEntity } from './plan.entity';
+import { ProductEntity } from '../payment/product/domain/entities/product.entity';
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { InvoicesEntity } from './invoices.entity';
 import { DiscountCodeEntity } from './discount-code.entity';
@@ -48,8 +48,8 @@ export class SubscriptionEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() => PlanEntity, planEntity => planEntity.subscriptions)
-  public plan: PlanEntity;
+  @ManyToOne(() => ProductEntity, planEntity => planEntity.subscriptions)
+  public plan: ProductEntity;
 
   @ManyToOne(() => UserEntity, userEntity => userEntity.subscriptions)
   user: UserEntity;
