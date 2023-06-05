@@ -15,7 +15,7 @@ export class ProductController {
   @Get('/public/list-product?:offset&:limit')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getListProduct(@Param('offset') offset: number, @Param('limit') limit: number): Promise<ProductResponse[]> {
-    return await this.productService.getProducts(offset, limit);
+    return await this.productService.getProducts(limit, offset);
   }
 
   @Get('/admin/list-product-admin?:offset&:limit')
@@ -24,7 +24,7 @@ export class ProductController {
     @Param('offset') offset: number,
     @Param('limit') limit: number,
   ): Promise<ProductResponse[]> {
-    return await this.productService.getProductsAdmin(offset, limit);
+    return await this.productService.getProductsAdmin(limit, offset);
   }
 
   @Get('/public/get-product/:id')
