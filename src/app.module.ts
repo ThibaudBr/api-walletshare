@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseConfiguration } from './util/config/database.configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import HealthCheckModule from './api/health-check/health-check.module';
 import { EntitiesToMoveModule } from './api/entities-to-create/entities-to-move.module';
 import { UserModule } from './api/user/user.module';
@@ -30,13 +30,61 @@ import { SaveUserLoginMiddleware } from './middleware/save-user-login.middleware
 import { UserService } from './api/user/application/user.service';
 import { ConversationModule } from './api/conversation/conversation.module';
 import { NotificationModule } from './api/notification/notification.module';
+import * as Joi from 'joi';
+import {SubscriptionModule} from "./api/payment/subscription/subscriptionModule";
+import {StripeWebhookModule} from "./api/payment/stripe-webhook/stripe-webhook.module";
+import {StripeModule} from "./api/payment/stripe/stripe.module";
+import {ProductModule} from "./api/payment/product/product.module";
+import {PriceModule} from "./api/payment/price/price.module";
 
 @Module({
+  controllers: [AppController],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      validationSchema: Joi.object({
+        NODE_ENV: Joi.string().required(),
+        API_NAME: Joi.string().required(),
+        VERBOSE: Joi.string().required(),
+        VERBOSE_LOG: Joi.string().required(),
+        LOG_REQUEST_BOOL: Joi.bool().required(),
+        LOG_RESPONSE_BOOL: Joi.bool().required(),
+        LOG_ERROR_BOOL: Joi.bool().required(),
+        PORT: Joi.number().required(),
+        PORT_TCP: Joi.number().required(),
+        PORT_API_LOG: Joi.number().required(),
+        PORT_API_MAIL: Joi.number().required(),
+        PORT_API_WAITING_LIST: Joi.number().required(),
+        HOST_API_LOG: Joi.string().required(),
+        HOST_API_MAIL: Joi.string().required(),
+        HOST_API_WAITING_LIST: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_REFRESH_TOKEN_SECRET: Joi.string().required(),
+        JWT_REFRESH_TOKEN_EXPIRATION_TIME: Joi.string().required(),
+        JWT_ACCESS_TOKEN_SECRET: Joi.string().required(),
+        JWT_ACCESS_TOKEN_EXPIRATION_TIME: Joi.string().required(),
+        LENGTH_REFERRAL_CODE: Joi.number().required(),
+        CACHE_MEDIA_NUMBER_POOL_MAX: Joi.number().required(),
+        CACHE_MEDIA_MAX_DURATION: Joi.number().required(),
+        AWS_REGION: Joi.string().required(),
+        AWS_ACCESS_KEY_ID: Joi.string().required(),
+        AWS_SECRET_ACCESS_KEY: Joi.string().required(),
+        AWS_PRIVATE_BUCKET_NAME: Joi.string().required(),
+        AWS_SIGNED_URL_EXPIRATION: Joi.number().required(),
+        AWS_MAX_FILE_SIZE_KILO: Joi.number().required(),
+        PASSWORD_SUP_ADMIN: Joi.string().required(),
+        FRONTEND_URL: Joi.string().required(),
+        STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID: Joi.string().required(),
+        STRIP_MONTHLY_TRIAL_PERIOD_DAYS: Joi.number().required(),
+        STRIPE_WEBHOOK_SECRET: Joi.string().required(),
+        STRIPE_CURRENCY: Joi.string().required(),
+        STRIPE_SECRET_KEY_TEST: Joi.string().required(),
+        STRIPE_SECRET_KEY_PROD: Joi.string().required(),
+      }),
     }),
     TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
       useClass: DatabaseConfiguration,
     }),
     ClientsModule.register([
@@ -77,10 +125,14 @@ import { NotificationModule } from './api/notification/notification.module';
     MediaModule,
     ConversationModule,
     NotificationModule,
+    SubscriptionModule,
+    StripeWebhookModule,
+    StripeModule,
+    ProductModule,
+    PriceModule,
     // ________ Module to remove ________
     EntitiesToMoveModule,
   ],
-  controllers: [AppController],
   providers: [AppService, ApiLogService, UserService],
 })
 export class AppModule implements NestModule {

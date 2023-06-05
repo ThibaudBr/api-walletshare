@@ -325,7 +325,9 @@ describe('ProfileController (e2e)', () => {
       await request(app.getHttpServer())
         .delete('/user/admin/full-delete/' + userToSoftDeleteId)
         .set('Authorization', 'Bearer ' + adminToken)
-        .expect(204);
+        .then(response => {
+          expect(response.status).toBe(204);
+        });
 
       await request(app.getHttpServer())
         .get('/api/test/get-all-profiles-test')

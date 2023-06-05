@@ -5,8 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { MediaEntity } from '../../../../domain/entities/media.entity';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
-import * as process from 'process';
 import { RemoveMediaEvent } from '../../event/remove-media.event';
+import { ConfigService } from '@nestjs/config';
 
 @CommandHandler(RemoveMediaCommand)
 export class RemoveMediaCommandHandler implements ICommandHandler<RemoveMediaCommand> {
@@ -14,6 +14,7 @@ export class RemoveMediaCommandHandler implements ICommandHandler<RemoveMediaCom
     @InjectRepository(MediaEntity)
     private readonly mediaRepository: Repository<MediaEntity>,
     private readonly eventBus: EventBus,
+    private readonly configService: ConfigService,
   ) {}
 
   async execute(command: RemoveMediaCommand): Promise<void> {
@@ -36,9 +37,9 @@ export class RemoveMediaCommandHandler implements ICommandHandler<RemoveMediaCom
       });
 
     const s3: S3 = new S3({
-      region: process.env.AWS_REGION,
+      region: this.configService.get('AWS_REGION'),
     });
-    if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
+    if (!this.configService.get('AWS_PRIVATE_BUCKET_NAME')) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'RemoveMediaCommandHandler',
@@ -50,7 +51,7 @@ export class RemoveMediaCommandHandler implements ICommandHandler<RemoveMediaCom
     }
 
     await s3.deleteObject({
-      Bucket: process.env.AWS_PRIVATE_BUCKET_NAME,
+      Bucket: this.configService.get('AWS_PRIVATE_BUCKET_NAME'),
       Key: mediaToDelete.key,
     });
     await this.mediaRepository.softRemove(mediaToDelete);

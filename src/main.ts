@@ -5,7 +5,9 @@ import * as process from 'process';
 import { MicroserviceOptions, TcpOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    rawBody: true,
+  });
 
   // Swagger
   const swaggerConfig = new DocumentBuilder()
@@ -17,7 +19,7 @@ async function bootstrap(): Promise<void> {
   SwaggerModule.setup('api', app, document);
 
   app.enableCors({
-    origin: ['*'],
+    origin: ['*', process.env.FRONTEND_URL || 'http://localhost:8080'],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     preflightContinue: false,
     optionsSuccessStatus: 200,

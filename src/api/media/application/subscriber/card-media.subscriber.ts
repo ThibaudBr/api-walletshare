@@ -2,10 +2,12 @@ import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, So
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { MediaEntity } from '../../domain/entities/media.entity';
 import { S3 } from '@aws-sdk/client-s3';
-import process from 'process';
+import { ConfigService } from '@nestjs/config';
 
 @EventSubscriber()
 export class CardMediaSubscriber implements EntitySubscriberInterface<CardEntity> {
+  constructor(private readonly configService: ConfigService) {}
+
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
   listenTo() {
     return CardEntity;
@@ -42,14 +44,14 @@ export class CardMediaSubscriber implements EntitySubscriberInterface<CardEntity
     });
     if (medias.length == 0) return;
     const s3: S3 = new S3({
-      region: process.env.AWS_REGION,
+      region: this.configService.get('AWS_REGION'),
     });
-    if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
+    if (!this.configService.get('AWS_PRIVATE_BUCKET_NAME')) {
       throw new Error('AWS_PRIVATE_BUCKET_NAME is not defined');
     }
     for (const media of medias) {
       await s3.deleteObject({
-        Bucket: process.env.AWS_BUCKET_NAME || '',
+        Bucket: this.configService.get('AWS_BUCKET_NAME') || '',
         Key: media.key,
       });
     }

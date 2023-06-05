@@ -5,3 +5,4 @@
 - [ ] add confirming mail [confirming-mail-address](https://wanago.io/2021/07/12/api-nestjs-confirming-email/)
 - [ ] add database migrations and cron [typeorm-migrations](https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
 - [ ] add flag feature [flag-feature](https://wanago.io/2022/08/22/api-nestjs-feature-flags-feature-toggles/)
+- [ ] Refacto add companyEmployee with userId if user exist and add comapnyEmployee with email and generate new user with public profile and company profile

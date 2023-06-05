@@ -1,17 +1,17 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryColumn } from 'typeorm';
 
 /**
- * @name StripEventEntity
- * @class StripEventEntity
+ * @name StripeEventEntity
+ * @class StripeEventEntity
  * @extends {BaseEntity}
  * @memberof PaymentEntity
  */
 @Entity({ name: 'strip_event' })
-export default class StripEventEntity {
+export default class StripeEventEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
 
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   public id: string;
 }

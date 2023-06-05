@@ -10,10 +10,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IsDate } from 'class-validator';
-import { PlanEntity } from './plan.entity';
+import { ProductEntity } from '../payment/product/domain/entities/product.entity';
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { InvoicesEntity } from './invoices.entity';
 import { DiscountCodeEntity } from './discount-code.entity';
+import { StatusSubscriptionEnum } from './enum/status-subscription.enum';
 
 @Entity({ name: 'subscription' })
 export class SubscriptionEntity {
@@ -32,15 +33,8 @@ export class SubscriptionEntity {
   @IsDate()
   public endDate: Date;
 
-  // @Column({ type: 'enum', enum: StatusSubscriptionEnum, default: StatusSubscriptionEnum.ACTIVE })
-  // public status: StatusSubscriptionEnum;
-
-  /**
-   * @description
-   * This is a flag to indicate if the user has a stripe customer id.
-   */
-  @Column({ unique: true, nullable: true })
-  public stripCustomerId?: string;
+  @Column({ type: 'enum', enum: StatusSubscriptionEnum, default: StatusSubscriptionEnum.ACTIVE })
+  public status: StatusSubscriptionEnum;
 
   @Column({ name: 'trial_start_date', type: 'date', nullable: true })
   @IsDate()
@@ -54,8 +48,8 @@ export class SubscriptionEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() => PlanEntity, planEntity => planEntity.subscriptions)
-  public plan: PlanEntity;
+  @ManyToOne(() => ProductEntity, planEntity => planEntity.subscriptions)
+  public plan: ProductEntity;
 
   @ManyToOne(() => UserEntity, userEntity => userEntity.subscriptions)
   user: UserEntity;

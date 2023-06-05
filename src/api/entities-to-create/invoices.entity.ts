@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { SubscriptionEntity } from './subscription.entity';
 
 @Entity('invoices')
@@ -99,7 +99,6 @@ export class InvoicesEntity {
   // ______________________________________________________
 
   @ManyToOne(() => SubscriptionEntity, subscriptionEntity => subscriptionEntity.invoices)
-  @ValidateNested()
   subscription: SubscriptionEntity;
 
   // ______________________________________________________

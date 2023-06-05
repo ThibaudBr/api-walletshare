@@ -24,7 +24,6 @@ import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/cus
 import { RoleProfileEnum } from '../domain/enum/role-profile.enum';
 import { ErrorCustomEvent } from '../../../util/exception/error-handler/error-custom.event';
 import { IsProfileWithGivenRoleAlreadyExistQuery } from './cqrs/query/is-profile-with-given-role-already-exist.query';
-import { of } from 'rxjs';
 
 @Injectable()
 export class ProfileService {
