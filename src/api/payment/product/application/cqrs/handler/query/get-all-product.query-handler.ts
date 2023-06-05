@@ -16,6 +16,7 @@ export class GetAllProductQueryHandler implements IQueryHandler<GetAllProductQue
   async execute(query: GetAllProductQuery): Promise<ProductEntity[]> {
     return await this.productRepository
       .find({
+        relations: ['prices'],
         take: query.limit,
         skip: query.offset,
       })

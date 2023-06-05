@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import Stripe from 'stripe';
 import { CreateStripeCustomerCommand } from './cqrs/command/create-stripe-customer.command';
 import { InvalidIdHttpException } from '../../../../util/exception/custom-http-exception/invalid-id.http-exception';
@@ -21,6 +21,13 @@ import { GetAllProductStripeQuery } from './cqrs/query/get-all-product-stripe.qu
 import { UpdateProductStripeCommand } from './cqrs/command/update-product-stripe.command';
 import { RemoveProductStripeCommand } from './cqrs/command/remove-product-stripe.command';
 import { UpdateProductStripRequest } from '../web/request/update-product-strip.request';
+import { GetAllPriceStripeQuery } from './cqrs/query/get-all-price-stripe.query';
+import { GetPriceByIdStripeQuery } from './cqrs/query/get-price-by-id-stripe.query';
+import { CreatePriceStripeCommand } from './cqrs/command/create-price-stripe.command';
+import { CreatePriceStripeRequest } from '../web/request/create-price-stripe.request';
+import { UpdatePriceStripeCommand } from './cqrs/command/update-price-stripe.command';
+import { UpdatePriceStripeRequest } from '../web/request/update-price-stripe.request';
+import { RemovePriceStripeCommand } from './cqrs/command/remove-price-stripe.command';
 
 @Injectable()
 export class StripeService {
@@ -262,6 +269,87 @@ export class StripeService {
         if (error.message === 'Error while fetching product')
           throw new InvalidIdHttpException('Error while fetching product');
         throw new Error('Error while fetching product');
+      });
+  }
+
+  // Prices
+  public async getAllPrices(limit: number): Promise<Stripe.ApiList<Stripe.Price>> {
+    return await this.queryBus
+      .execute(
+        new GetAllPriceStripeQuery({
+          limit: limit,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching list of prices')
+          throw new InvalidIdHttpException('Error while fetching list of prices');
+        throw new Error('Error while fetching list of prices');
+      });
+  }
+
+  public async getPriceById(priceId: string): Promise<Stripe.Price> {
+    return await this.queryBus
+      .execute(
+        new GetPriceByIdStripeQuery({
+          priceStripeId: priceId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching price')
+          throw new InvalidIdHttpException('Error while fetching price');
+        throw new Error('Error while fetching price');
+      });
+  }
+
+  public async createPriceStripe(createPriceStripeRequest: CreatePriceStripeRequest): Promise<Stripe.Price> {
+    return await this.commandBus
+      .execute(
+        new CreatePriceStripeCommand({
+          productId: createPriceStripeRequest.productId,
+          unitAmount: createPriceStripeRequest.unitAmount,
+          interval: createPriceStripeRequest.interval,
+          usageType: createPriceStripeRequest.usageType,
+          productStripeId: createPriceStripeRequest.productStripeId,
+          active: createPriceStripeRequest.active,
+          trialPeriodDays: createPriceStripeRequest.trialPeriodDays,
+          intervalCount: createPriceStripeRequest.intervalCount,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the creation of the price')
+          throw new InvalidIdHttpException('Error during the creation of the price');
+        throw new Error('Error during the creation of the price');
+      });
+  }
+
+  public async updatePriceStripe(updatePriceStripeRequest: UpdatePriceStripeRequest): Promise<Stripe.Price> {
+    return await this.commandBus
+      .execute(
+        new UpdatePriceStripeCommand({
+          priceStripeId: updatePriceStripeRequest.priceStripeId,
+          active: updatePriceStripeRequest.active,
+          priceId: updatePriceStripeRequest.priceId,
+          productId: updatePriceStripeRequest.productId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the update of the price')
+          throw new InvalidIdHttpException('Error during the update of the price');
+        throw new Error('Error during the update of the price');
+      });
+  }
+
+  public async removePriceStripe(priceStripeId: string): Promise<Stripe.DeletedPrice> {
+    return await this.commandBus
+      .execute(
+        new RemovePriceStripeCommand({
+          priceStripeId: priceStripeId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the remove of the price')
+          throw new InvalidIdHttpException('Error during the remove of the price');
+        throw new Error('Error during the remove of the price');
       });
   }
 

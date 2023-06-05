@@ -1,8 +1,8 @@
-import {EventBus, IQueryHandler, QueryHandler} from "@nestjs/cqrs";
-import Stripe from "stripe";
-import {ConfigService} from "@nestjs/config";
-import {ErrorCustomEvent} from "../../../../../../../util/exception/error-handler/error-custom.event";
-import {GetProductStripeByIdQuery} from "../../query/get-product-stripe-by-id.query";
+import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import Stripe from 'stripe';
+import { ConfigService } from '@nestjs/config';
+import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
+import { GetProductStripeByIdQuery } from '../../query/get-product-stripe-by-id.query';
 
 @QueryHandler(GetProductStripeByIdQuery)
 export class GetProductStripeByIdQueryHandler implements IQueryHandler<GetProductStripeByIdQuery> {
@@ -28,5 +28,4 @@ export class GetProductStripeByIdQueryHandler implements IQueryHandler<GetProduc
       throw new Error('Error during the listing of the products');
     });
   }
-
 }

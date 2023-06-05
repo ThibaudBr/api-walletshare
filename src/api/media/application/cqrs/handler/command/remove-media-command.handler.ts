@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { MediaEntity } from '../../../../domain/entities/media.entity';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
-import * as process from 'process';
 import { RemoveMediaEvent } from '../../event/remove-media.event';
 import { ConfigService } from '@nestjs/config';
 

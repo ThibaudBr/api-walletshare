@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { SubscriptionEntity } from './subscription.entity';
 
 @Entity('invoices')

@@ -1,5 +1,5 @@
 import { RegisterCommand } from '../../command/register.command';
-import { CommandBus, CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../../../../../user/domain/entities/user.entity';
 import { Repository } from 'typeorm';

@@ -14,7 +14,7 @@ import { ProductEntity } from '../payment/product/domain/entities/product.entity
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { InvoicesEntity } from './invoices.entity';
 import { DiscountCodeEntity } from './discount-code.entity';
-import {StatusSubscriptionEnum} from "./enum/status-subscription.enum";
+import { StatusSubscriptionEnum } from './enum/status-subscription.enum';
 
 @Entity({ name: 'subscription' })
 export class SubscriptionEntity {

@@ -34,6 +34,14 @@ import { RemoveProductStripeEventHandler } from './application/cqrs/handler/even
 import { UpdateProductStripeEventHandler } from './application/cqrs/handler/event/update-product-stripe.event-handler';
 import { GetAllProductStripeQueryHandler } from './application/cqrs/handler/query/get-all-product-stripe.query-handler';
 import { GetProductStripeByIdQueryHandler } from './application/cqrs/handler/query/get-product-stripe-by-id-query.handler';
+import { CreatePriceStripeCommandHandler } from './application/cqrs/handler/command/create-price-stripe.command-handler';
+import { RemovePriceStripCommandHandler } from './application/cqrs/handler/command/remove-price-strip.command-handler';
+import { UpdatePriceStripeCommandHandler } from './application/cqrs/handler/command/update-price-stripe.command-handler';
+import { CreatePriceStripeEventHandler } from './application/cqrs/handler/event/create-price-stripe.event-handler';
+import { RemovePriceStripeEventHandler } from './application/cqrs/handler/event/remove-price-stripe.event-handler';
+import { UpdatePriceStripeEventHandler } from './application/cqrs/handler/event/update-price-stripe.event-handler';
+import { GetAllPriceStripeQueryHandler } from './application/cqrs/handler/query/get-all-price-stripe.query-handler';
+import { GetPriceByIdStripeQueryHandler } from './application/cqrs/handler/query/get-price-by-id-stripe.query-handler';
 
 @Module({
   imports: [
@@ -64,27 +72,35 @@ import { GetProductStripeByIdQueryHandler } from './application/cqrs/handler/que
     CancelSubscriptionStripeCommandHandler,
     ChargeStripeCommandHandler,
     ConstructEventFromPayloadStripeCommandHandler,
+    CreatePriceStripeCommandHandler,
     CreateProductStripeCommandHandler,
     CreateStripeCustomerCommandHandler,
     CreateSubscriptionStripeCommandHandler,
+    RemovePriceStripCommandHandler,
     RemoveProductStripeCommandHandler,
     SetDefaultCreditCardStripeCommandHandler,
+    UpdatePriceStripeCommandHandler,
     UpdateProductStripeCommandHandler,
     // Event Handlers
     AttachCreditCardEventHandler,
     CancelSubscriptionStripeEventHandler,
     ChargeStripeEventHandler,
     ConstructEventFromPayloadStripeEventHandler,
+    CreatePriceStripeEventHandler,
     CreateProductStripeEventHandler,
     CreateStripeCustomerEventHandler,
     CreateSubscriptionStripeEventHandler,
+    RemovePriceStripeEventHandler,
     RemoveProductStripeEventHandler,
     SetDefaultCreditCardStripeEventHandler,
+    UpdatePriceStripeEventHandler,
     UpdateProductStripeEventHandler,
     // Query Handlers
+    GetAllPriceStripeQueryHandler,
     GetAllProductStripeQueryHandler,
     GetListSavedCreditCardOfUserQueryHandler,
     GetListSubscriptionStripeQueryHandler,
+    GetPriceByIdStripeQueryHandler,
     GetProductStripeByIdQueryHandler,
     IsUserIdOwnerOfStripeCustomerIdQueryQueryHandler,
   ],

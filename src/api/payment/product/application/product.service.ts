@@ -15,7 +15,8 @@ import Stripe from 'stripe';
 import { ProductResponse } from '../web/response/product.response';
 import { GetAllProductQuery } from './cqrs/query/get-all-product.query';
 import { GetAllProductAdminQuery } from './cqrs/query/get-all-product-admin.query';
-import {GetProductByIdQuery} from "./cqrs/query/get-product-by-id.query";
+import { GetProductByIdQuery } from './cqrs/query/get-product-by-id.query';
+import { PriceResponse } from '../../price/web/response/price.response';
 
 @Injectable()
 export class ProductService {
@@ -225,6 +226,13 @@ export class ProductService {
           productEntity =>
             new ProductResponse({
               ...productEntity,
+              prices: productEntity.prices.map(
+                priceEntity =>
+                  new PriceResponse({
+                    ...priceEntity,
+                    unitAmountDecimal: Number(priceEntity.unitAmountDecimal),
+                  }),
+              ),
             }),
         );
       });
@@ -247,6 +255,13 @@ export class ProductService {
           productEntity =>
             new ProductResponse({
               ...productEntity,
+              prices: productEntity.prices.map(
+                priceEntity =>
+                  new PriceResponse({
+                    ...priceEntity,
+                    unitAmountDecimal: Number(priceEntity.unitAmountDecimal),
+                  }),
+              ),
             }),
         );
       });

@@ -1,10 +1,6 @@
-import {PriceResponse} from "../../../price/web/response/price.response";
+import { PriceResponse } from '../../../price/web/response/price.response';
 
 export class ProductResponse {
-  constructor(partial: Partial<ProductResponse>) {
-    Object.assign(this, partial);
-  }
-
   public readonly id: string;
   public readonly name: string;
   public readonly description: string;
@@ -15,4 +11,8 @@ export class ProductResponse {
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
   public readonly deletedAt?: Date;
+
+  constructor(partial: Partial<ProductResponse>) {
+    Object.assign(this, partial);
+  }
 }

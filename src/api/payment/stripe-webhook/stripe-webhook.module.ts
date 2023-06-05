@@ -16,7 +16,7 @@ import { SubscriptionService } from '../subscription/application/subscription.se
 import { UpdateMonthlySubscriptionStatusCommandHandler } from '../subscription/application/cqrs/handler/command/update-monthly-subscription-status.command-handler';
 import { UpdateMonthlySubscriptionStatusEventHandler } from '../subscription/application/cqrs/handler/event/update-monthly-subscription-status.event-handler';
 import { SubscriptionModule } from '../subscription/subscriptionModule';
-import {StripeService} from "../stripe/application/stripe.service";
+import { StripeService } from '../stripe/application/stripe.service';
 
 @Module({
   imports: [

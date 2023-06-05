@@ -35,6 +35,7 @@ import {SubscriptionModule} from "./api/payment/subscription/subscriptionModule"
 import {StripeWebhookModule} from "./api/payment/stripe-webhook/stripe-webhook.module";
 import {StripeModule} from "./api/payment/stripe/stripe.module";
 import {ProductModule} from "./api/payment/product/product.module";
+import {PriceModule} from "./api/payment/price/price.module";
 
 @Module({
   controllers: [AppController],
@@ -128,6 +129,7 @@ import {ProductModule} from "./api/payment/product/product.module";
     StripeWebhookModule,
     StripeModule,
     ProductModule,
+    PriceModule,
     // ________ Module to remove ________
     EntitiesToMoveModule,
   ],

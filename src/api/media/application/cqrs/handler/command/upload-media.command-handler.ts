@@ -7,7 +7,6 @@ import { Upload } from '@aws-sdk/lib-storage';
 import { S3 } from '@aws-sdk/client-s3';
 import { v4 as uuid } from 'uuid';
 import { UploadMediaEvent } from '../../event/upload-media.event';
-import * as process from 'process';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { ConfigService } from '@nestjs/config';
 

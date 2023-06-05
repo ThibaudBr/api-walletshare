@@ -1,8 +1,6 @@
 import { StripeService } from '../../stripe/application/stripe.service';
-import { BadRequestException, Controller, Post, RawBodyRequest, Req, Headers } from '@nestjs/common';
+import { BadRequestException, Controller, Headers, Post, RawBodyRequest, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import Stripe from 'stripe';
-import { SubscriptionService } from '../../subscription/application/subscription.service';
 import { StripeWebhookService } from '../application/stripe-webhook.service';
 
 @Controller('webhook')

@@ -1,8 +1,4 @@
 export class PriceResponse {
-  constructor(partial: Partial<PriceResponse>) {
-    Object.assign(this, partial);
-  }
-
   public readonly id: string;
   public readonly price: number;
   public readonly currency: string;
@@ -16,4 +12,8 @@ export class PriceResponse {
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
   public readonly deletedAt?: Date;
+
+  constructor(partial: Partial<PriceResponse>) {
+    Object.assign(this, partial);
+  }
 }
