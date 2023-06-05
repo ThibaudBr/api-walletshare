@@ -2,7 +2,7 @@ import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../../user/domain/entities/user.entity';
-import { SubscriptionEntity } from '../../entities-to-create/subscription.entity';
+import { SubscriptionEntity } from './domain/entities/subscription.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../../api-log/api-log.module';
 import { StripeModule } from '../stripe/stripe.module';

@@ -1,7 +1,8 @@
 export class CreateSubscriptionStripeCommand {
   public readonly stripeCustomerId: string;
   public readonly priceId: string;
-  public readonly trialPeriod: boolean = false;
+  public readonly trialPeriod?: number;
+  public readonly promotionCode?: string;
 
   constructor(partial: Partial<CreateSubscriptionStripeCommand>) {
     Object.assign(this, partial);

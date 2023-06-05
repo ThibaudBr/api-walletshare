@@ -18,7 +18,7 @@ import { ProductEntity } from '../../api/payment/product/domain/entities/product
 import { ProfileEntity } from '../../api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../api/social-network/domain/entities/social-network.entity';
 import StripeEventEntity from '../../api/payment/stripe-webhook/domain/entities/stripe-event.entity';
-import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../api/payment/subscription/domain/entities/subscription.entity';
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
 import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../api/notification/domain/entities/notification.entity';

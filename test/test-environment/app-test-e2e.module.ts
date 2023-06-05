@@ -19,7 +19,7 @@ import { ProductEntity } from '../../src/api/payment/product/domain/entities/pro
 import { ProfileEntity } from '../../src/api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../src/api/social-network/domain/entities/social-network.entity';
 import StripeEventEntity from '../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity';
-import { SubscriptionEntity } from '../../src/api/entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../src/api/payment/subscription/domain/entities/subscription.entity';
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
 import { NotificationEntity } from '../../src/api/notification/domain/entities/notification.entity';
 import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';

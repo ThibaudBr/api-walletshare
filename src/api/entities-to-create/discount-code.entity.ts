@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IsDate, IsNotEmpty, IsNumber } from 'class-validator';
-import { SubscriptionEntity } from './subscription.entity';
+import { SubscriptionEntity } from '../payment/subscription/domain/entities/subscription.entity';
 
 @Entity({ name: 'discount_codes' })
 export class DiscountCodeEntity {

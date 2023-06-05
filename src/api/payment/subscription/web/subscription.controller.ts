@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {Body, Controller, Get, Post, Req, UseGuards} from '@nestjs/common';
 import { SubscriptionService } from '../application/subscription.service';
 import Stripe from 'stripe';
 import { RoleGuard } from '../../../auth/web/guards/role.guard';
 import { UserRoleEnum } from '../../../user/domain/enum/user-role.enum';
 import { RequestUser } from '../../../auth/domain/interface/request-user.interface';
+import {CreateSubscriptionRequest} from "./request/create-subscription.request";
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -19,5 +20,11 @@ export class SubscriptionController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getListSubscription(@Req() requestUser: RequestUser): Promise<Stripe.ApiList<Stripe.Subscription>> {
     return await this.subscriptionService.getListSubscription(requestUser.user.stripeCustomerId);
+  }
+
+  @Post('/public/create-subscription')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async createSubscription(@Req() requestUser: RequestUser, @Body() createSubscriptionRequest: CreateSubscriptionRequest): Promise<Stripe.Response<Stripe.Subscription>> {
+    return await this.subscriptionService.createSubscription(requestUser.user.id, requestUser.user.stripeCustomerId, createSubscriptionRequest);
   }
 }

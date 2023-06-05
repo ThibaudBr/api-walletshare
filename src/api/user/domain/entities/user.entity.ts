@@ -11,7 +11,7 @@ import {
 import { Exclude } from 'class-transformer';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { UserRoleEnum } from '../enum/user-role.enum';
-import { SubscriptionEntity } from '../../../entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../../payment/subscription/domain/entities/subscription.entity';
 import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';
 import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
@@ -84,13 +84,16 @@ export class UserEntity extends BaseEntity {
     cascade: ['insert', 'update', 'remove', 'soft-remove'],
   })
   subscriptions: SubscriptionEntity[];
+
   @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.owner, {
     cascade: ['insert', 'update', 'remove', 'soft-remove'],
     onDelete: 'CASCADE',
   })
   referralCodes: ReferralCodeEntity[];
+
   @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.usedBy)
   usedReferralCodes: ReferralCodeEntity;
+
   @OneToMany(() => NotificationEntity, notification => notification.user, {
     cascade: ['insert', 'update', 'remove', 'soft-remove'],
   })

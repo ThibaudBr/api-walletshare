@@ -5,7 +5,7 @@ import { ReferralCodeEntity } from '../../../src/api/entities-to-create/referal-
 import { InjectRepository } from '@nestjs/typeorm';
 import { JoinedConversationEntity } from '../../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { SocialNetworkEntity } from '../../../src/api/social-network/domain/entities/social-network.entity';
-import { SubscriptionEntity } from '../../../src/api/entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../../src/api/payment/subscription/domain/entities/subscription.entity';
 import { GroupMembershipEntity } from '../../../src/api/groupe/domain/entities/group-membership.entity';
 import { UserEntity } from '../../../src/api/user/domain/entities/user.entity';
 import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.entity';

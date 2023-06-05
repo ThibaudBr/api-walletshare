@@ -114,12 +114,14 @@ export class StripeService {
   public async createSubscription(
     stripeCustomerId: string,
     price: string,
+    referralCode?: string,
   ): Promise<Stripe.Response<Stripe.Subscription>> {
     return await this.commandBus
       .execute(
         new CreateSubscriptionStripeCommand({
           stripeCustomerId: stripeCustomerId,
           priceId: price,
+          promotionCode: referralCode,
         }),
       )
       .catch(error => {
@@ -360,5 +362,20 @@ export class StripeService {
         stripeCustomerId: stripeCustomerId,
       }),
     );
+  }
+
+  async processPayment(event: Stripe.Event, jsonObject: object): Promise<void> {
+    // TODO: not implemented
+    throw new Error('Method not implemented.');
+  }
+
+  async processInvoice(event: Stripe.Event, jsonObject: object): Promise<void> {
+    // TODO: not implemented
+    throw new Error('Method not implemented.');
+  }
+
+  async processCharge(event: Stripe.Event, jsonObject: object): Promise<void> {
+    // TODO: not implemented
+    throw new Error('Method not implemented.');
   }
 }
