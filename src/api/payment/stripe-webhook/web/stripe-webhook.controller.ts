@@ -22,8 +22,6 @@ export class StripeWebhookController {
     if (!req.rawBody) {
       throw new BadRequestException('Invalid payload');
     }
-    const raw = req.rawBody.toString('utf8');
-    const json = JSON.parse(raw);
     const event = await this.stripService.constructEventFromStripeWebhook(signature, req.rawBody);
     if (event.type === 'customer.subscription.updated' || event.type === 'customer.subscription.created') {
       return this.stripeWebhookService.processSubscriptionUpdate(event);
