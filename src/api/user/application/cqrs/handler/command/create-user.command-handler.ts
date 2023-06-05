@@ -15,6 +15,7 @@ import { InvalidMailHttpException } from '../../../../../../util/exception/custo
 import { InvalidUsernameHttpException } from '../../../../../../util/exception/custom-http-exception/invalid-username.http-exception';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
+import { CreateUserEvent } from '../../event/create-user.event';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler<CreateUserCommand> {
@@ -87,6 +88,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
       const savedUser: UserEntity = await this.userRepository.save(newUser);
 
+      await this.eventBus.publish(new CreateUserEvent(savedUser.id, command.createUserDto));
       return new CreateUserResponse({
         id: savedUser.id,
         username: savedUser.username,
