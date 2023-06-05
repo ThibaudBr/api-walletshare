@@ -72,7 +72,7 @@ import {PriceModule} from "./api/payment/price/price.module";
         AWS_PRIVATE_BUCKET_NAME: Joi.string().required(),
         AWS_SIGNED_URL_EXPIRATION: Joi.number().required(),
         AWS_MAX_FILE_SIZE_KILO: Joi.number().required(),
-        PASSWORD_SUP_ADMIN: Joi.string().required(),
+        PASSWORD_SUPER_ADMIN: Joi.string().required(),
         FRONTEND_URL: Joi.string().required(),
         STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID: Joi.string().required(),
         STRIP_MONTHLY_TRIAL_PERIOD_DAYS: Joi.number().required(),
