@@ -64,12 +64,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
           username: this.configService.get('TYPEORM_USERNAME_PROD'),
           password: this.configService.get('TYPEORM_PASSWORD_PROD'),
           database: this.configService.get('TYPEORM_DATABASE_PROD'),
-          ssl: true,
-          extra: {
-            ssl: {
-              rejectUnauthorized: false,
-            },
-          },
           entities: [
             CardEntity,
             CompanyEntity,
