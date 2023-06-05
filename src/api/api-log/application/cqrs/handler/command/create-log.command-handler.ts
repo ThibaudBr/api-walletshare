@@ -27,7 +27,6 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
     command.apiName = this.API_NAME;
     command.apiVersion = this.npm_package_version;
     command.apiType = this.API_TYPE;
-    console.log(await this.client.connect());
     this.client.emit('create-log', command);
   }
 }
