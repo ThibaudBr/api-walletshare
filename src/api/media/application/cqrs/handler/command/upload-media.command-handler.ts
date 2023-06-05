@@ -7,8 +7,8 @@ import { Upload } from '@aws-sdk/lib-storage';
 import { S3 } from '@aws-sdk/client-s3';
 import { v4 as uuid } from 'uuid';
 import { UploadMediaEvent } from '../../event/upload-media.event';
-import * as process from 'process';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import { ConfigService } from '@nestjs/config';
 
 @CommandHandler(UploadMediaCommand)
 export class UploadMediaCommandHandler implements ICommandHandler<UploadMediaCommand> {
@@ -16,13 +16,14 @@ export class UploadMediaCommandHandler implements ICommandHandler<UploadMediaCom
     @InjectRepository(MediaEntity)
     private readonly mediaRepository: Repository<MediaEntity>,
     private readonly eventBus: EventBus,
+    private readonly configService: ConfigService,
   ) {}
 
   async execute(command: UploadMediaCommand): Promise<MediaEntity> {
     const s3: S3 = new S3({
-      region: process.env.AWS_REGION,
+      region: this.configService.get('AWS_REGION'),
     });
-    if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
+    if (!this.configService.get('AWS_PRIVATE_BUCKET_NAME')) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'UploadMediaCommandHandler',
@@ -32,7 +33,7 @@ export class UploadMediaCommandHandler implements ICommandHandler<UploadMediaCom
       );
       throw new Error('Process.env.AWS_PRIVATE_BUCKET_NAME is not defined');
     }
-    if (command.dataBuffer.length > Number(process.env.AWS_MAX_FILE_SIZE_KILO || 1500000)) {
+    if (command.dataBuffer.length > this.configService.get('AWS_MAX_FILE_SIZE_KILO') || 1500000) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'UploadMediaCommandHandler',
@@ -47,7 +48,7 @@ export class UploadMediaCommandHandler implements ICommandHandler<UploadMediaCom
       client: s3,
 
       params: {
-        Bucket: process.env.AWS_PRIVATE_BUCKET_NAME,
+        Bucket: this.configService.get('AWS_PRIVATE_BUCKET_NAME'),
         Body: command.dataBuffer,
         Key: `${uuid()}-${command.filename.replace(' ', '-')}`,
       },

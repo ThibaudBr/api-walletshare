@@ -4,6 +4,7 @@ import { CreateLogDto } from '../../../api/api-log/domain/dto/create-log.dto';
 import { LoggingTypeEnum } from '../../../api/api-log/domain/enum/logging-type.enum';
 import { ApiLogService } from '../../../api/api-log/application/api-log.service';
 import { ApiTypeEnum } from '../../../api/api-log/domain/enum/api-type.enum';
+import { ConfigService } from '@nestjs/config';
 
 @EventsHandler(ErrorCustomEvent)
 export class ErrorCustomEventHandler implements IEventHandler<ErrorCustomEvent> {
@@ -11,12 +12,9 @@ export class ErrorCustomEventHandler implements IEventHandler<ErrorCustomEvent> 
   private readonly npm_package_version: string;
   private readonly API_TYPE: ApiTypeEnum = ApiTypeEnum.WALLET_SHARE_API;
 
-  private readonly VERBOSE: boolean;
-
-  constructor(private readonly apiLoggerService: ApiLogService) {
-    this.API_NAME = process.env.API_NAME || 'NO-NAME';
+  constructor(private readonly apiLoggerService: ApiLogService, private readonly configService: ConfigService) {
+    this.API_NAME = this.configService.get('API_NAME') || 'NO-NAME';
     this.npm_package_version = process.env.npm_package_version || 'NO-VERSION';
-    this.VERBOSE = process.env.VERBOSE_ERROR === 'true';
   }
 
   async handle(event: ErrorCustomEvent): Promise<void> {

@@ -26,11 +26,12 @@ import { GenerateUserDto } from '../domain/dto/generate-user.dto';
 import { ListRolesDto } from '../domain/dto/list-roles.dto';
 import { UserIdDto } from '../domain/dto/user-id.dto';
 import { SaveUserLoginResponse } from './response/save-user-login.response';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('user')
 @ApiTags('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService, private readonly configService: ConfigService) {}
 
   @Post('/admin/create')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
@@ -52,7 +53,7 @@ export class UserController {
     @Param('passwordSuperAdmin') passwordSuperAdmin: string,
     @Body() createUserDto: CreateUserDto,
   ): Promise<CreateUserResponse> {
-    if (passwordSuperAdmin !== process.env.PASSWORD_SUPER_ADMIN) {
+    if (passwordSuperAdmin !== this.configService.get('PASSWORD_SUPER_ADMIN')) {
       throw new HttpException(
         {
           message: 'Password super admin is not correct',

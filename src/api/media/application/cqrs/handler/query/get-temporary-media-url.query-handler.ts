@@ -3,18 +3,19 @@ import { GetTemporaryMediaUrlQuery } from '../../query/get-temporary-media-url.q
 import { GetObjectCommand, GetObjectCommandInput, S3 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import { ConfigService } from '@nestjs/config';
 
 @QueryHandler(GetTemporaryMediaUrlQuery)
 export class GetTemporaryMediaUrlQueryHandler implements IQueryHandler<GetTemporaryMediaUrlQuery> {
-  constructor(private readonly eventBus: EventBus) {}
+  constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {}
 
   async execute(query: GetTemporaryMediaUrlQuery): Promise<string> {
     if (
-      !process.env.AWS_ACCESS_KEY_ID ||
-      !process.env.AWS_SECRET_ACCESS_KEY ||
-      !process.env.AWS_SIGNED_URL_EXPIRATION ||
-      !process.env.AWS_REGION ||
-      !process.env.AWS_PRIVATE_BUCKET_NAME
+      !this.configService.get('AWS_ACCESS_KEY_ID') ||
+      !this.configService.get('AWS_SECRET_ACCESS_KEY') ||
+      !this.configService.get('AWS_SIGNED_URL_EXPIRATION') ||
+      !this.configService.get('AWS_REGION') ||
+      !this.configService.get('AWS_PRIVATE_BUCKET_NAME')
     ) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
@@ -27,15 +28,15 @@ export class GetTemporaryMediaUrlQueryHandler implements IQueryHandler<GetTempor
       throw new Error('AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY is not defined');
     }
     const s3: S3 = new S3({
-      region: process.env.AWS_REGION,
+      region: this.configService.get('AWS_REGION'),
     });
 
     const options: GetObjectCommandInput = {
-      Bucket: process.env.AWS_PRIVATE_BUCKET_NAME || '',
+      Bucket: this.configService.get('AWS_PRIVATE_BUCKET_NAME') || '',
       Key: query.mediaKey,
     };
 
     const command = new GetObjectCommand(options);
-    return await getSignedUrl(s3, command, { expiresIn: Number(process.env.AWS_SIGNED_URL_EXPIRATION) || 60 });
+    return await getSignedUrl(s3, command, { expiresIn: this.configService.get('AWS_SIGNED_URL_EXPIRATION') || 60 });
   }
 }

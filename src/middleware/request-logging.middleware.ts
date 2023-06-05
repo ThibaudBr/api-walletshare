@@ -6,15 +6,16 @@ import { ApiTypeEnum } from '../api/api-log/domain/enum/api-type.enum';
 import { ApiLogService } from '../api/api-log/application/api-log.service';
 import { LoggingTypeEnum } from '../api/api-log/domain/enum/logging-type.enum';
 import { VerboseLogEnum } from '../api/api-log/domain/enum/verbose-log.enum';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class RequestLoggingMiddleware implements NestMiddleware {
   private readonly VERBOSE: VerboseLogEnum;
   private readonly LOG_REQUEST_BOOL: boolean;
 
-  constructor(private readonly apiLoggerService: ApiLogService) {
-    this.VERBOSE = (process.env.VERBOSE as VerboseLogEnum) || VerboseLogEnum.NONE;
-    this.LOG_REQUEST_BOOL = process.env.LOG_REQUEST == 'true' || false;
+  constructor(private readonly apiLoggerService: ApiLogService, private readonly configService: ConfigService) {
+    this.VERBOSE = (this.configService.get('VERBOSE') as VerboseLogEnum) || VerboseLogEnum.NONE;
+    this.LOG_REQUEST_BOOL = this.configService.get('LOG_REQUEST_BOOL') || false;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
