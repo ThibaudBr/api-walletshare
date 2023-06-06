@@ -4,7 +4,6 @@ import { UserEntity } from '../user/domain/entities/user.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { GroupEntity } from '../groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../groupe/domain/entities/group-membership.entity';
 import { NotificationEntity } from './domain/entities/notification.entity';
@@ -25,15 +24,14 @@ import { MarkNotificationAsReadEventHandler } from './application/cqrs/handler/e
 import { RemoveNotificationEventHandler } from './application/cqrs/handler/event/remove-notification.event-handler';
 import { SoftRemoveNotificationEventHandler } from './application/cqrs/handler/event/soft-remove-notification.event-handler';
 import { RestoreNotificationEventHandler } from './application/cqrs/handler/event/restore-notification.event-handler';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity, ProfileEntity, GroupEntity, GroupMembershipEntity, NotificationEntity]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
-    ]),
+    HttpModule,
   ],
   controllers: [NotificationController],
   providers: [

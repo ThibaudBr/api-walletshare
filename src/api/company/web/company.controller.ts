@@ -18,8 +18,6 @@ import { CreateUserForCompanyRequest } from './request/create-user-for-company.r
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
-  // implement all the endpoint of CompanyService here with exemple of GroupController
-
   @Get('/public/get-company-by-id/:id')
   @ApiOperation({ summary: 'Get company by id' })
   @ApiOkResponse({ type: CompanyResponse })

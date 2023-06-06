@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { CompanyEntity } from '../company/domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../company/domain/entities/company-employee.entity';
 import { AddressEntity } from './domain/entities/address.entity';
@@ -25,22 +24,14 @@ import { RemoveAddressCommandHandler } from './application/cqrs/handler/command/
 import { RestoreAddressCommandHandler } from './application/cqrs/handler/command/restore-address.command-handler';
 import { SoftRemoveAddressCommandHandler } from './application/cqrs/handler/command/soft-remove-address.command-handler';
 import { UpdateAddressCommandHandler } from './application/cqrs/handler/command/update-address.command-handler';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity, CompanyEntity, CompanyEmployeeEntity, AddressEntity]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
+    HttpModule,
   ],
   controllers: [AddressController],
   providers: [

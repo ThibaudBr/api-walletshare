@@ -39,8 +39,8 @@ import { GroupTestE2eController } from './controller-test/group-test-e2e.control
 import { GroupTestE2eService } from './service-test/group-test-e2e.service';
 import { CardViewEntity } from '../../src/api/card/domain/entities/card-view.entity';
 import { ConfigModule } from '@nestjs/config';
-import {UserLoginEntity} from "../../src/api/user/domain/entities/user-login.entity";
-import {PriceEntity} from "../../src/api/payment/price/domain/entities/price.entity";
+import { UserLoginEntity } from '../../src/api/user/domain/entities/user-login.entity';
+import { PriceEntity } from '../../src/api/payment/price/domain/entities/price.entity';
 
 @Module({
   imports: [

@@ -1,24 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ApiLogService } from './application/api-log.service';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';
 import { CqrsModule } from '@nestjs/cqrs';
 import { CreateLogCommandHandler } from './application/cqrs/handler/command/create-log.command-handler';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
-    CqrsModule,
-  ],
+  imports: [HttpModule, CqrsModule],
   controllers: [],
   providers: [ApiLogService, ErrorCustomEventHandler, CreateLogCommandHandler],
 })

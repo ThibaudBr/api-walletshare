@@ -1,6 +1,5 @@
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import * as process from 'process';
 import { logger } from './winston-logger.config';
 import { CompanyEntity } from '../../api/company/domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../../api/company/domain/entities/company-employee.entity';
@@ -48,11 +47,12 @@ import { NotificationMessageSubscriber } from '../../api/notification/applicatio
 import { NotificationProfileSubscriber } from '../../api/notification/application/subscriber/notification-profile.subscriber';
 import { NotificationUserSubscriber } from '../../api/notification/application/subscriber/notification-user.subscriber';
 import { ConfigService } from '@nestjs/config';
-import {PriceEntity} from "../../api/payment/price/domain/entities/price.entity";
+import { PriceEntity } from '../../api/payment/price/domain/entities/price.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
   constructor(private readonly configService: ConfigService) {}
+
   createTypeOrmOptions(): TypeOrmModuleOptions {
     try {
       if (this.configService.get('NODE_ENV') === 'prod') {

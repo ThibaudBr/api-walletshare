@@ -5,7 +5,6 @@ import { OccupationEntity } from '../occupation/domain/entities/occupation.entit
 import { ProfileEntity } from './domain/entities/profile.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ProfileController } from './web/profile.controller';
 import { ProfileService } from './application/profile.service';
 import { ApiLogService } from '../api-log/application/api-log.service';
@@ -29,22 +28,14 @@ import { UpdateOccupationsProfileEventHandler } from './application/cqrs/handler
 import { RestoreProfileCommandHandler } from './application/cqrs/handler/command/restore-profile.command-handler';
 import { RestoreProfileEventHandler } from './application/cqrs/handler/event/restore-profile.event-handler';
 import { IsProfileWithGivenRoleAlreadyExistQueryHandler } from './application/cqrs/handler/query/is-profile-with-given-role-already-exist.query-handler';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity, ProfileEntity, OccupationEntity]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
+    HttpModule,
   ],
   controllers: [ProfileController],
   providers: [
