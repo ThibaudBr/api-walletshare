@@ -10,8 +10,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { SubscriptionEntity } from '../payment/subscription/domain/entities/subscription.entity';
-import { UserEntity } from '../user/domain/entities/user.entity';
+import { SubscriptionEntity } from './subscription.entity';
+import { UserEntity } from '../../../../user/domain/entities/user.entity';
 
 @Entity('referral_code')
 export class ReferralCodeEntity extends BaseEntity {

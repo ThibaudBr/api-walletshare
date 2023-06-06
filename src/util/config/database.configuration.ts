@@ -20,7 +20,7 @@ import { SocialNetworkEntity } from '../../api/social-network/domain/entities/so
 import StripeEventEntity from '../../api/payment/stripe-webhook/domain/entities/stripe-event.entity';
 import { SubscriptionEntity } from '../../api/payment/subscription/domain/entities/subscription.entity';
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
-import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
+import { ReferralCodeEntity } from '../../api/payment/subscription/domain/entities/referal-code.entity';
 import { NotificationEntity } from '../../api/notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../api/address/domain/entities/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';

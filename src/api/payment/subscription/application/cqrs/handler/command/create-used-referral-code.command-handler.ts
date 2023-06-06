@@ -5,7 +5,7 @@ import { UserEntity } from '../../../../../../user/domain/entities/user.entity';
 import { Repository } from 'typeorm';
 import { SubscriptionEntity } from '../../../../domain/entities/subscription.entity';
 import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
-import { ReferralCodeEntity } from '../../../../../../entities-to-create/referal-code.entity';
+import { ReferralCodeEntity } from '../../../../domain/entities/referal-code.entity';
 import { CreateUsedReferralCodeEvent } from '../../event/create-used-referral-code.event';
 
 @CommandHandler(CreateUsedReferralCodeCommand)

@@ -12,10 +12,12 @@ import { Exclude } from 'class-transformer';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../payment/subscription/domain/entities/subscription.entity';
-import { ReferralCodeEntity } from '../../../entities-to-create/referal-code.entity';
+import { ReferralCodeEntity } from '../../../payment/subscription/domain/entities/referal-code.entity';
 import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
 import { UserLoginEntity } from './user-login.entity';
+import {RoleProfileEnum} from "../../../profile/domain/enum/role-profile.enum";
+import {UserAccountStatusEnum} from "../enum/user-account-status.enum";
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -62,6 +64,8 @@ export class UserEntity extends BaseEntity {
   public isRegisteredWithGoogle: boolean;
   @Column('text', { array: true, default: [UserRoleEnum.PUBLIC] })
   roles: UserRoleEnum[];
+  @Column({ type: 'enum', enum: UserAccountStatusEnum, default: UserAccountStatusEnum.FREE })
+  public accountStatus: UserAccountStatusEnum;
 
   // _________________________________________________________
   // Stripe

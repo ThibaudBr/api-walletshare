@@ -13,6 +13,8 @@ import { GetUserWithReferralCodeByUserIdQuery } from './cqrs/query/get-user-with
 import { CreateSubscriptionCommand } from './cqrs/command/create-subscription.command';
 import { CreateUsedReferralCodeCommand } from './cqrs/command/create-used-referral-code.command';
 import { CancelSubscriptionCommand } from './cqrs/command/cancel-subscription.command';
+import {UpdateAccountStatusCommand} from "./cqrs/command/update-account-status.command";
+import {UserAccountStatusEnum} from "../../../user/domain/enum/user-account-status.enum";
 
 @Injectable()
 export class SubscriptionService {
@@ -92,7 +94,7 @@ export class SubscriptionService {
     userId: string,
     stripeCustomerId: string,
     createSubscriptionRequest: CreateSubscriptionRequest,
-  ): Promise<void> {
+  ): Promise<Stripe.Response<Stripe.Subscription>> {
     const subscription: Stripe.ApiList<Stripe.Subscription> = await this.stripeService.getListSubscription(
       stripeCustomerId,
       createSubscriptionRequest.priceId,
@@ -188,6 +190,8 @@ export class SubscriptionService {
         if (error.message === 'Error while saving referral code') throw new InternalServerErrorException(error.message);
         throw error;
       });
+
+    return stripeSubscription;
   }
 
   async cancelSubscription(subscriptionId: string): Promise<void> {
@@ -199,6 +203,29 @@ export class SubscriptionService {
       )
       .catch(async error => {
         if (error.message === 'Error while canceling subscription')
+          throw new InternalServerErrorException(error.message);
+        throw error;
+      });
+  }
+
+  async handlerUserCancelSubscription(userId: string, stipeUserId: string, subscriptionId: string): Promise<void> {
+    const stripSubscription: Stripe.Subscription = await this.stripeService.getSubscription(subscriptionId);
+
+    await this.stripeService.cancelSubscription(stipeUserId, stripSubscription.id);
+    await this.cancelSubscription(subscriptionId);
+    await this.updateUserSubscriptionEnum(userId, UserAccountStatusEnum.FREE);
+  }
+
+  updateUserSubscriptionEnum(userId: string, subscriptionStatus: UserAccountStatusEnum): Promise<void> {
+    return this.commandBus
+      .execute(
+        new UpdateAccountStatusCommand({
+          status: subscriptionStatus,
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Error while updating subscription')
           throw new InternalServerErrorException(error.message);
         throw error;
       });
