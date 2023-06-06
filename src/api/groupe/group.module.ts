@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { GroupEntity } from './domain/entities/group.entity';
 import { GroupMembershipEntity } from './domain/entities/group-membership.entity';
 import { GroupController } from './web/group.controller';
@@ -40,22 +39,14 @@ import { GroupService } from './application/group.service';
 import { CardEntity } from '../card/domain/entities/card.entity';
 import { AddCardToGroupCommandHandler } from './application/cqrs/handler/command/add-card-to-group.command-handler';
 import { AddCardToGroupEventHandler } from './application/cqrs/handler/event/add-card-to-group.event-handler';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity, GroupEntity, GroupMembershipEntity, CardEntity]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
+    HttpModule,
   ],
   controllers: [GroupController],
   providers: [

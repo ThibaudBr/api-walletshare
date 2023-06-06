@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConversationController } from './web/conversation.controller';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConversationEntity } from './domain/entities/conversation.entity';
 import { JoinedConversationEntity } from './domain/entities/joined-conversation.entity';
@@ -40,6 +39,7 @@ import { SoftRemoveMessageConversationCommandHandler } from './application/cqrs/
 import { AddMessageWithMediaEventHandler } from './application/cqrs/handler/event/add-message-with-media-event.handler';
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -54,9 +54,7 @@ import { ProfileEntity } from '../profile/domain/entities/profile.entity';
     ]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([
-      { name: 'API_LOG', transport: Transport.TCP, options: { port: Number(process.env.PORT_API_LOG) || 3101 } },
-    ]),
+    HttpModule,
   ],
   controllers: [ConversationController],
   providers: [

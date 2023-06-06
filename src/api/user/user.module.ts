@@ -12,7 +12,6 @@ import { GetUserIfRefreshTokenMatchesQueryHandler } from './application/cqrs/han
 import { GetUserQueryHandler } from './application/cqrs/handler/query/get-user.query-handler';
 import { ApiLogModule } from '../api-log/api-log.module';
 import { ApiLogService } from '../api-log/application/api-log.service';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { SetCurrentRefreshTokenCommandHandler } from './application/cqrs/handler/command/set-current-refresh-token.command-handler';
 import { UpdateUserCommandHandler } from './application/cqrs/handler/command/update-user.command-handler';
 import { RemoveRefreshTokenCommandHandler } from './application/cqrs/handler/command/remove-refresh-token.command-handler';
@@ -36,6 +35,7 @@ import { CreateSaveLoginUserEventHandler } from './application/cqrs/handler/even
 import { CreateStripeCustomerCommandHandler } from '../payment/stripe/application/cqrs/handler/command/create-stripe-customer.command-handler';
 import { CreateStripeCustomerEventHandler } from '../payment/stripe/application/cqrs/handler/event/create-stripe-customer.event-handler';
 import { ConfigModule } from '@nestjs/config';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -43,16 +43,7 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forFeature([UserEntity, UserLoginEntity]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
+    HttpModule,
   ],
   controllers: [UserController],
   providers: [

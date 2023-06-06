@@ -7,7 +7,6 @@ import { CompanyEmployeeEntity } from './domain/entities/company-employee.entity
 import { AddressEntity } from '../address/domain/entities/address.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
 import { CompanyService } from './application/company.service';
 import { ApiLogService } from '../api-log/application/api-log.service';
@@ -39,6 +38,7 @@ import { RemoveCompanyEventHandler } from './application/cqrs/handler/event/remo
 import { RestoreCompanyEventHandler } from './application/cqrs/handler/event/restore-company.event-handler';
 import { SoftRemoveCompanyEventHandler } from './application/cqrs/handler/event/soft-remove-company.event-handler';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -52,16 +52,7 @@ import { ProfileEntity } from '../profile/domain/entities/profile.entity';
     ]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
+    HttpModule,
   ],
   controllers: [CompanyController],
   providers: [

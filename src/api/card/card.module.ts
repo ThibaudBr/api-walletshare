@@ -5,7 +5,6 @@ import { UserEntity } from '../user/domain/entities/user.entity';
 import { SocialNetworkEntity } from '../social-network/domain/entities/social-network.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { CardEntity } from './domain/entities/card.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { OccupationEntity } from '../occupation/domain/entities/occupation.entity';
@@ -43,6 +42,7 @@ import { ConnectedCardEntity } from './domain/entities/connected-card.entity';
 import { RemoveSavedCardCommandHandler } from './application/cqrs/handler/command/remove-saved-card.command-handler';
 import { RemoveSavedCardEventHandler } from './application/cqrs/handler/event/remove-saved-card.event-handler';
 import { CardViewEntity } from './domain/entities/card-view.entity';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -57,16 +57,7 @@ import { CardViewEntity } from './domain/entities/card-view.entity';
     ]),
     CqrsModule,
     ApiLogModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
+    HttpModule,
   ],
   controllers: [CardController],
   providers: [
