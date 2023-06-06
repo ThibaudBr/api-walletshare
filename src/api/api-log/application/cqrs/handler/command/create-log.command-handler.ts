@@ -1,11 +1,11 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { CreateLogCommand } from '../../command/create-log.command';
 import { VerboseLogEnum } from '../../../../domain/enum/verbose-log.enum';
-import { Inject } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
 import * as process from 'process';
 import { ApiTypeEnum } from '../../../../domain/enum/api-type.enum';
 import { ConfigService } from '@nestjs/config';
+import { HttpService } from '@nestjs/axios';
+import { firstValueFrom } from 'rxjs';
 
 @CommandHandler(CreateLogCommand)
 export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand> {
@@ -13,11 +13,13 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
   private readonly npm_package_version: string;
   private readonly API_TYPE: ApiTypeEnum;
   private readonly verbose: VerboseLogEnum;
+  private readonly apiLogUrl: string;
 
-  constructor(@Inject('API_LOG') private client: ClientProxy, private readonly configService: ConfigService) {
+  constructor(private httpService: HttpService, private readonly configService: ConfigService) {
     this.verbose = (configService.get('VERBOSE_LOG') as VerboseLogEnum) || VerboseLogEnum.NONE;
     this.API_NAME = configService.get('API_NAME') || 'NO-NAME';
     this.npm_package_version = process.env.npm_package_version || 'NO-VERSION';
+    this.apiLogUrl = configService.get('HOST_API_LOG') || 'NO-URL';
     this.API_TYPE = ApiTypeEnum.WALLET_SHARE_API;
   }
 
@@ -27,6 +29,8 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
     command.apiName = this.API_NAME;
     command.apiVersion = this.npm_package_version;
     command.apiType = this.API_TYPE;
-    this.client.emit('create-log', command);
+    await firstValueFrom(this.httpService.post(this.apiLogUrl + '/create-log', command)).catch(() => {
+      return;
+    });
   }
 }

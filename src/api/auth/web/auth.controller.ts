@@ -10,7 +10,6 @@ import { UserService } from '../../user/application/user.service';
 import { ApiTags } from '@nestjs/swagger';
 import { RoleGuard } from './guards/role.guard';
 import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
-import { MessagePattern } from '@nestjs/microservices';
 import { UserLoginResponse } from '../../user/web/response/user-login.response';
 import { UserResponse } from '../../user/web/response/user.response';
 
@@ -84,9 +83,8 @@ export class AuthController {
   }
 
   // MessagePatern
-
-  @MessagePattern({ cmd: 'validate-token' })
-  async validateToken(data: string): Promise<UserLoginResponse> {
+  @Post('/validate-token')
+  async validateToken(@Body('data') data: string): Promise<UserLoginResponse> {
     try {
       return await this.authService.getUserFromAuthToken(data);
     } catch (e) {
