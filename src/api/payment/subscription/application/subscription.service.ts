@@ -13,8 +13,8 @@ import { GetUserWithReferralCodeByUserIdQuery } from './cqrs/query/get-user-with
 import { CreateSubscriptionCommand } from './cqrs/command/create-subscription.command';
 import { CreateUsedReferralCodeCommand } from './cqrs/command/create-used-referral-code.command';
 import { CancelSubscriptionCommand } from './cqrs/command/cancel-subscription.command';
-import {UpdateAccountStatusCommand} from "./cqrs/command/update-account-status.command";
-import {UserAccountStatusEnum} from "../../../user/domain/enum/user-account-status.enum";
+import { UpdateAccountStatusCommand } from './cqrs/command/update-account-status.command';
+import { UserAccountStatusEnum } from '../../../user/domain/enum/user-account-status.enum';
 
 @Injectable()
 export class SubscriptionService {

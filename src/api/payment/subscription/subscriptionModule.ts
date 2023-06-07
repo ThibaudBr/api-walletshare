@@ -14,6 +14,8 @@ import { SubscriptionService } from './application/subscription.service';
 import { UpdateMonthlySubscriptionStatusCommandHandler } from './application/cqrs/handler/command/update-monthly-subscription-status.command-handler';
 import { UpdateMonthlySubscriptionStatusEventHandler } from './application/cqrs/handler/event/update-monthly-subscription-status.event-handler';
 import { HttpModule } from '@nestjs/axios';
+import { PriceService } from '../price/application/price.service';
+import { PriceModule } from '../price/price.module';
 
 @Module({
   imports: [
@@ -22,6 +24,7 @@ import { HttpModule } from '@nestjs/axios';
     CqrsModule,
     ApiLogModule,
     StripeModule,
+    PriceModule,
     HttpModule,
   ],
   controllers: [SubscriptionController],
@@ -30,8 +33,10 @@ import { HttpModule } from '@nestjs/axios';
     StripeService,
     // log
     ApiLogService,
+    PriceService,
     CreateLogCommandHandler,
     // Subscription module
+    SubscriptionService,
     SubscriptionService,
     // Command Handlers
     UpdateMonthlySubscriptionStatusCommandHandler,
