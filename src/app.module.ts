@@ -75,6 +75,7 @@ import { HttpModule } from '@nestjs/axios';
         STRIPE_CURRENCY: Joi.string().required(),
         STRIPE_SECRET_KEY_TEST: Joi.string().required(),
         STRIPE_SECRET_KEY_PROD: Joi.string().required(),
+        API_LOG_TOKEN: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRootAsync({
