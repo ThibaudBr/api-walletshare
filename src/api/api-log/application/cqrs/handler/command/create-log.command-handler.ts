@@ -14,6 +14,7 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
   private readonly API_TYPE: ApiTypeEnum;
   private readonly verbose: VerboseLogEnum;
   private readonly apiLogUrl: string;
+  private readonly API_LOG_TOKEN: string;
 
   constructor(private httpService: HttpService, private readonly configService: ConfigService) {
     this.verbose = (configService.get('VERBOSE_LOG') as VerboseLogEnum) || VerboseLogEnum.NONE;
@@ -21,6 +22,7 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
     this.npm_package_version = process.env.npm_package_version || 'NO-VERSION';
     this.apiLogUrl = configService.get('HOST_API_LOG') || 'NO-URL';
     this.API_TYPE = ApiTypeEnum.WALLET_SHARE_API;
+    this.API_LOG_TOKEN = configService.get('API_LOG_TOKEN') || 'NO-TOKEN';
   }
 
   async execute(command: CreateLogCommand): Promise<void> {
@@ -29,7 +31,13 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
     command.apiName = this.API_NAME;
     command.apiVersion = this.npm_package_version;
     command.apiType = this.API_TYPE;
-    await firstValueFrom(this.httpService.post(this.apiLogUrl + '/create-log', command)).catch(() => {
+    await firstValueFrom(
+      this.httpService.post(this.apiLogUrl + '/create-log', command, {
+        headers: {
+          Authorization: `Bearer ${this.API_LOG_TOKEN}`,
+        },
+      }),
+    ).catch(() => {
       return;
     });
   }
