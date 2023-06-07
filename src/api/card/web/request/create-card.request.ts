@@ -28,6 +28,7 @@ export class CreateCardRequest {
   whoCanCommunicateWithEnum?: WhoCanCommunicateWithEnum[];
   transferableStatusCardEnum?: TransferableStatusCardEnum[];
   socialNetworkId?: string;
+  presetId?: string;
 
   constructor(partial: Partial<CreateCardRequest>) {
     Object.assign(this, partial);

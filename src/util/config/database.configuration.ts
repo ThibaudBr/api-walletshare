@@ -5,7 +5,6 @@ import { CompanyEntity } from '../../api/company/domain/entities/company.entity'
 import { CompanyEmployeeEntity } from '../../api/company/domain/entities/company-employee.entity';
 import { ConnectedCardEntity } from '../../api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../api/conversation/domain/entities/conversation.entity';
-import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../api/payment/invoices/domain/entities/invoices.entity';
@@ -48,6 +47,7 @@ import { NotificationProfileSubscriber } from '../../api/notification/applicatio
 import { NotificationUserSubscriber } from '../../api/notification/application/subscriber/notification-user.subscriber';
 import { ConfigService } from '@nestjs/config';
 import { PriceEntity } from '../../api/payment/price/domain/entities/price.entity';
+import {CardPresetEntity} from "../../api/company/domain/entities/card-preset.entity";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -70,7 +70,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
@@ -90,6 +89,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
             PriceEntity,
+            CardPresetEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PROD'),
@@ -138,7 +138,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
@@ -158,6 +157,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
             PriceEntity,
+            CardPresetEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PPROD'),
@@ -200,7 +200,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
@@ -220,6 +219,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
             PriceEntity,
+            CardPresetEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_TEST'),
           logging: this.configService.get('TYPEORM_LOGGING_TEST'),
@@ -264,7 +264,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
@@ -284,6 +283,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
             PriceEntity,
+            CardPresetEntity,
           ],
           subscribers: [
             ProfileSubscriber,

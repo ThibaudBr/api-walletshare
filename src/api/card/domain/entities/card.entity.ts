@@ -27,6 +27,7 @@ import { MessageEntity } from '../../../conversation/domain/entities/message.ent
 import { WhoCanShareCardEnum } from '../enum/who-can-share-card.enum';
 import { OccupationEntity } from '../../../occupation/domain/entities/occupation.entity';
 import { CardViewEntity } from './card-view.entity';
+import {CardPresetEntity} from "../../../company/domain/entities/card-preset.entity";
 
 @Entity({ name: 'card' })
 export class CardEntity extends BaseEntity {
@@ -118,6 +119,12 @@ export class CardEntity extends BaseEntity {
   cardViews: CardViewEntity[];
   @Column({ type: 'enum', enum: TypeOfCardEnum, default: TypeOfCardEnum.SOCIAL_NETWORK })
   typeOfCardEnum: TypeOfCardEnum;
+
+  @ManyToOne(() => CardPresetEntity, cardPreset => cardPreset.cards, {
+    onDelete: 'SET NULL',
+    cascade: ['insert', 'update'],
+  })
+  preset: CardPresetEntity;
 
   // ______________________________________________________
   // Enum
