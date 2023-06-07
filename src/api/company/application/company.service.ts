@@ -450,7 +450,7 @@ export class CompanyService {
       .execute(
         new CreateUserCommand({
           ...createUserForCompany.createUserDto,
-          roles: [UserRoleEnum.COMPANY_ACCOUNT, UserRoleEnum.PUBLIC],
+          roles: [UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT, UserRoleEnum.PUBLIC],
         }),
       )
       .catch(async error => {

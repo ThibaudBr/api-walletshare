@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../../user/domain/entities/user.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../../api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { StripeController } from './web/stripe.controller';
 import { ApiLogService } from '../../api-log/application/api-log.service';
 import { CreateLogCommandHandler } from '../../api-log/application/cqrs/handler/command/create-log.command-handler';
@@ -54,24 +53,10 @@ import { CreateReferralCodeStripeEventHandler } from './application/cqrs/handler
 import { DeleteCouponStripeEventHandler } from './application/cqrs/handler/event/delete-coupon-stripe.event-handler';
 import { UpdateCouponStripeEventHandler } from './application/cqrs/handler/event/update-coupon-stripe.event-handler';
 import { GetCouponByIdStripeQueryHandler } from './application/cqrs/handler/query/get-coupon-by-id-stripe.query-handler';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [
-    ConfigModule,
-    TypeOrmModule.forFeature([UserEntity]),
-    CqrsModule,
-    ApiLogModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
-  ],
+  imports: [ConfigModule, TypeOrmModule.forFeature([UserEntity]), CqrsModule, ApiLogModule, HttpModule],
   controllers: [StripeController],
   providers: [
     // log

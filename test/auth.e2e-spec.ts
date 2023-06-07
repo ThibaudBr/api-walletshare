@@ -67,7 +67,7 @@ describe('AuthController (e2e)', () => {
             mail: 'testRegister@test.fr',
             password: 'Test123!',
           })
-          .then((res) => {
+          .then(res => {
             expect(res.status).toEqual(201);
             return res;
           });

@@ -6,7 +6,6 @@ import { SubscriptionEntity } from './domain/entities/subscription.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../../api-log/api-log.module';
 import { StripeModule } from '../stripe/stripe.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { SubscriptionController } from './web/subscription.controller';
 import { StripeService } from '../stripe/application/stripe.service';
 import { ApiLogService } from '../../api-log/application/api-log.service';
@@ -14,6 +13,7 @@ import { CreateLogCommandHandler } from '../../api-log/application/cqrs/handler/
 import { SubscriptionService } from './application/subscription.service';
 import { UpdateMonthlySubscriptionStatusCommandHandler } from './application/cqrs/handler/command/update-monthly-subscription-status.command-handler';
 import { UpdateMonthlySubscriptionStatusEventHandler } from './application/cqrs/handler/event/update-monthly-subscription-status.event-handler';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -22,16 +22,7 @@ import { UpdateMonthlySubscriptionStatusEventHandler } from './application/cqrs/
     CqrsModule,
     ApiLogModule,
     StripeModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
+    HttpModule,
   ],
   controllers: [SubscriptionController],
   providers: [

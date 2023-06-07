@@ -8,7 +8,6 @@ import HealthCheckModule from './api/health-check/health-check.module';
 import { EntitiesToMoveModule } from './api/entities-to-create/entities-to-move.module';
 import { UserModule } from './api/user/user.module';
 import { ApiLogModule } from './api/api-log/api-log.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { RequestLoggingMiddleware } from './middleware/request-logging.middleware';
 import { ResponseLoggingMiddleware } from './middleware/response-logging.middleware';
 import { ErrorLoggingMiddleware } from './middleware/error-logging.middleware';
@@ -22,7 +21,6 @@ import { OccupationModule } from './api/occupation/occupation.module';
 import { SocialNetworkModule } from './api/social-network/social-network.module';
 import { CardModule } from './api/card/card.module';
 import { GroupModule } from './api/groupe/group.module';
-import * as process from 'process';
 import { AddressModule } from './api/address/address.module';
 import { CompanyModule } from './api/company/company.module';
 import { MediaModule } from './api/media/media.module';
@@ -31,11 +29,12 @@ import { UserService } from './api/user/application/user.service';
 import { ConversationModule } from './api/conversation/conversation.module';
 import { NotificationModule } from './api/notification/notification.module';
 import * as Joi from 'joi';
-import {SubscriptionModule} from "./api/payment/subscription/subscriptionModule";
-import {StripeWebhookModule} from "./api/payment/stripe-webhook/stripe-webhook.module";
-import {StripeModule} from "./api/payment/stripe/stripe.module";
-import {ProductModule} from "./api/payment/product/product.module";
-import {PriceModule} from "./api/payment/price/price.module";
+import { SubscriptionModule } from './api/payment/subscription/subscriptionModule';
+import { StripeWebhookModule } from './api/payment/stripe-webhook/stripe-webhook.module';
+import { StripeModule } from './api/payment/stripe/stripe.module';
+import { ProductModule } from './api/payment/product/product.module';
+import { PriceModule } from './api/payment/price/price.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   controllers: [AppController],
@@ -51,10 +50,6 @@ import {PriceModule} from "./api/payment/price/price.module";
         LOG_RESPONSE_BOOL: Joi.bool().required(),
         LOG_ERROR_BOOL: Joi.bool().required(),
         PORT: Joi.number().required(),
-        PORT_TCP: Joi.number().required(),
-        PORT_API_LOG: Joi.number().required(),
-        PORT_API_MAIL: Joi.number().required(),
-        PORT_API_WAITING_LIST: Joi.number().required(),
         HOST_API_LOG: Joi.string().required(),
         HOST_API_MAIL: Joi.string().required(),
         HOST_API_WAITING_LIST: Joi.string().required(),
@@ -72,7 +67,7 @@ import {PriceModule} from "./api/payment/price/price.module";
         AWS_PRIVATE_BUCKET_NAME: Joi.string().required(),
         AWS_SIGNED_URL_EXPIRATION: Joi.number().required(),
         AWS_MAX_FILE_SIZE_KILO: Joi.number().required(),
-        PASSWORD_SUP_ADMIN: Joi.string().required(),
+        PASSWORD_SUPER_ADMIN: Joi.string().required(),
         FRONTEND_URL: Joi.string().required(),
         STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID: Joi.string().required(),
         STRIP_MONTHLY_TRIAL_PERIOD_DAYS: Joi.number().required(),
@@ -80,6 +75,8 @@ import {PriceModule} from "./api/payment/price/price.module";
         STRIPE_CURRENCY: Joi.string().required(),
         STRIPE_SECRET_KEY_TEST: Joi.string().required(),
         STRIPE_SECRET_KEY_PROD: Joi.string().required(),
+        API_LOG_TOKEN: Joi.string().required(),
+        STRIP_CREATE_CUSTOMER: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRootAsync({
@@ -87,24 +84,7 @@ import {PriceModule} from "./api/payment/price/price.module";
       inject: [ConfigService],
       useClass: DatabaseConfiguration,
     }),
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-      {
-        name: 'API_MAIL',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_MAIL || 'localhost',
-          port: Number(process.env.PORT_API_MAIL || 3102),
-        },
-      },
-    ]),
+    HttpModule,
     CqrsModule,
     // ________ Module ________
     ApiMailModule,

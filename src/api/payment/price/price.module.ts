@@ -6,7 +6,6 @@ import { ProductEntity } from '../product/domain/entities/product.entity';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../../api-log/api-log.module';
 import { StripeModule } from '../stripe/stripe.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { PriceEntity } from './domain/entities/price.entity';
 import { PriceController } from './web/price.controller';
 import { ApiLogService } from '../../api-log/application/api-log.service';
@@ -26,6 +25,7 @@ import { UpdatePriceStripeEventHandler } from './application/cqrs/handler/event/
 import { GetAllPriceQueryHandler } from './application/cqrs/handler/query/get-all-price.query-handler';
 import { GetAllPriceByProductIdQueryHandler } from './application/cqrs/handler/query/get-all-price-by-product-id.query-handler';
 import { GetPriceByIdQueryHandler } from './application/cqrs/handler/query/get-price-by-id.query-handler';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -34,31 +34,12 @@ import { GetPriceByIdQueryHandler } from './application/cqrs/handler/query/get-p
     CqrsModule,
     ApiLogModule,
     StripeModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
     ConfigModule,
     TypeOrmModule.forFeature([UserEntity, ProductEntity]),
     CqrsModule,
     ApiLogModule,
     StripeModule,
-    ClientsModule.register([
-      {
-        name: 'API_LOG',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.HOST_API_LOG || 'localhost',
-          port: Number(process.env.PORT_API_LOG) || 3101,
-        },
-      },
-    ]),
+    HttpModule,
   ],
   controllers: [PriceController],
   providers: [

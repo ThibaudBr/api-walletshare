@@ -1,22 +1,24 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetAllMailQuery } from '../../query/get-all-mail.query';
-import { HttpException, Inject } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
-import { catchError, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { MailLandingPageDto } from '../../../../domain/dto/mail-landing-page.dto';
+import { HttpService } from '@nestjs/axios';
+import { ConfigService } from '@nestjs/config';
+import { AxiosResponse } from 'axios';
 
 @QueryHandler(GetAllMailQuery)
 export class GetAllMailQueryHandler implements IQueryHandler<GetAllMailQuery> {
-  constructor(@Inject('API_WAITING_LIST') private client: ClientProxy) {}
+  private readonly apiWaitingListUrl: string;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async execute(query: GetAllMailQuery): Promise<MailLandingPageDto[]> {
-    return await firstValueFrom(
-      this.client.send({ cmd: 'get-all' }, '').pipe(
-        catchError(() => {
-          throw new HttpException('unreachable', 401);
-        }),
-      ),
-    ).then((mailsLandingPageList: MailLandingPageDto[]) => mailsLandingPageList);
+  constructor(private httpService: HttpService, private readonly configService: ConfigService) {
+    this.apiWaitingListUrl = this.configService.get('API_WAITING_LIST_URL') || 'NO-URL';
+  }
+
+  async execute(): Promise<MailLandingPageDto[]> {
+    return await firstValueFrom(this.httpService.get(this.apiWaitingListUrl + '/all')).then(
+      async (response: AxiosResponse) => {
+        return response.data;
+      },
+    );
   }
 }

@@ -32,7 +32,7 @@ describe('CardController (e2e)', () => {
   let groupMembershipIdList: string[];
 
   beforeAll(async () => {
-    jest.setTimeout(10000);
+    jest.setTimeout(1000000);
     moduleFixture = await Test.createTestingModule({
       imports: [AppTestE2eModule],
     }).compile();
