@@ -10,7 +10,7 @@ import { ConversationEntity } from '../../src/api/conversation/domain/entities/c
 import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../src/api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../src/api/groupe/domain/entities/group-membership.entity';
-import { InvoicesEntity } from '../../src/api/entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../src/api/payment/invoices/domain/entities/invoices.entity';
 import { JoinedConversationEntity } from '../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../src/api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../src/api/conversation/domain/entities/message.entity';
@@ -19,10 +19,10 @@ import { ProductEntity } from '../../src/api/payment/product/domain/entities/pro
 import { ProfileEntity } from '../../src/api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../src/api/social-network/domain/entities/social-network.entity';
 import StripeEventEntity from '../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity';
-import { SubscriptionEntity } from '../../src/api/entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../src/api/payment/subscription/domain/entities/subscription.entity';
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
 import { NotificationEntity } from '../../src/api/notification/domain/entities/notification.entity';
-import { ReferralCodeEntity } from '../../src/api/entities-to-create/referal-code.entity';
+import { ReferralCodeEntity } from '../../src/api/payment/subscription/domain/entities/referal-code.entity';
 import { AddressEntity } from '../../src/api/address/domain/entities/address.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
 import { UserTestE2eController } from './controller-test/user-test-e2e.controller';

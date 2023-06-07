@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -10,14 +11,14 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IsDate } from 'class-validator';
-import { ProductEntity } from '../payment/product/domain/entities/product.entity';
-import { UserEntity } from '../user/domain/entities/user.entity';
-import { InvoicesEntity } from './invoices.entity';
-import { DiscountCodeEntity } from './discount-code.entity';
-import { StatusSubscriptionEnum } from './enum/status-subscription.enum';
+import { UserEntity } from '../../../../user/domain/entities/user.entity';
+import { InvoicesEntity } from '../../../invoices/domain/entities/invoices.entity';
+import { DiscountCodeEntity } from '../../../../entities-to-create/discount-code.entity';
+import { StatusSubscriptionEnum } from '../enum/status-subscription.enum';
+import { PriceEntity } from '../../../price/domain/entities/price.entity';
 
 @Entity({ name: 'subscription' })
-export class SubscriptionEntity {
+export class SubscriptionEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -28,10 +29,6 @@ export class SubscriptionEntity {
   @Column({ name: 'start_date', type: 'date' })
   @IsDate()
   public startDate: Date;
-
-  @Column({ name: 'end_date', type: 'date' })
-  @IsDate()
-  public endDate: Date;
 
   @Column({ type: 'enum', enum: StatusSubscriptionEnum, default: StatusSubscriptionEnum.ACTIVE })
   public status: StatusSubscriptionEnum;
@@ -48,8 +45,8 @@ export class SubscriptionEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() => ProductEntity, planEntity => planEntity.subscriptions)
-  public plan: ProductEntity;
+  @ManyToOne(() => PriceEntity, priceEntity => priceEntity.subscriptions)
+  price: PriceEntity;
 
   @ManyToOne(() => UserEntity, userEntity => userEntity.subscriptions)
   user: UserEntity;
@@ -72,4 +69,9 @@ export class SubscriptionEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<SubscriptionEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

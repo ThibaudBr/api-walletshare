@@ -8,8 +8,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { SubscriptionEntity } from '../../../../entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
 import { PriceEntity } from '../../../price/domain/entities/price.entity';
+import {UserAccountStatusEnum} from "../../../../user/domain/enum/user-account-status.enum";
 
 @Entity({ name: 'plan' })
 export class ProductEntity extends BaseEntity {
@@ -31,8 +32,8 @@ export class ProductEntity extends BaseEntity {
   jsonStripeMetadata: object;
   @Column({ name: 'active', type: 'boolean', default: true })
   active: boolean;
-  @OneToMany(() => SubscriptionEntity, subscriptionEntity => subscriptionEntity.plan)
-  subscriptions: SubscriptionEntity[];
+  @Column({ type: 'enum', enum: UserAccountStatusEnum, default: UserAccountStatusEnum.FREE })
+  public accountStatus: UserAccountStatusEnum;
 
   // ______________________________________________________
   // Relations

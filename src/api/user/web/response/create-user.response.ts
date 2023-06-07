@@ -6,7 +6,8 @@ export class CreateUserResponse {
   public readonly mail: string;
   public readonly createdAt: Date;
   public readonly roles: UserRoleEnum[];
-  public readonly referralCode?: string;
+  public referralCode?: string;
+  public stripCustomerId?: string;
 
   constructor(partial?: Partial<CreateUserResponse>) {
     if (partial) {

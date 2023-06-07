@@ -20,6 +20,7 @@ export class CreateProductCommandHandler implements ICommandHandler<CreateProduc
       description: command.description,
       jsonStripeMetadata: command.jsonStripeMetadata,
       stripeProductId: command.stripeProductId,
+      accountStatus: command.userAccountStatus,
     });
 
     const newProduct: ProductEntity = await this.productRepository.save(newProductEntity).catch(async (error: any) => {

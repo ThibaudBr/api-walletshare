@@ -29,7 +29,7 @@ export class CreateStripeCustomerCommandHandler implements ICommandHandler<Creat
     }
   }
 
-  async execute(command: CreateStripeCustomerCommand): Promise<void> {
+  async execute(command: CreateStripeCustomerCommand): Promise<string> {
     const user: UserEntity = await this.userRepository
       .findOneOrFail({
         where: {
@@ -70,5 +70,6 @@ export class CreateStripeCustomerCommandHandler implements ICommandHandler<Creat
         stripeCustomerId: user.stripeCustomerId,
       }),
     );
+    return stripCustomer.id;
   }
 }

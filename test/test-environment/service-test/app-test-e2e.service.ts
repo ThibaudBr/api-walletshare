@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { AddressEntity } from '../../../src/api/address/domain/entities/address.entity';
 import StripeEventEntity from '../../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity';
-import { ReferralCodeEntity } from '../../../src/api/entities-to-create/referal-code.entity';
+import { ReferralCodeEntity } from '../../../src/api/payment/subscription/domain/entities/referal-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JoinedConversationEntity } from '../../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { SocialNetworkEntity } from '../../../src/api/social-network/domain/entities/social-network.entity';
-import { SubscriptionEntity } from '../../../src/api/entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../../src/api/payment/subscription/domain/entities/subscription.entity';
 import { GroupMembershipEntity } from '../../../src/api/groupe/domain/entities/group-membership.entity';
 import { UserEntity } from '../../../src/api/user/domain/entities/user.entity';
 import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.entity';
@@ -16,7 +16,7 @@ import { CompanyEntity } from '../../../src/api/company/domain/entities/company.
 import { CompanyEmployeeEntity } from '../../../src/api/company/domain/entities/company-employee.entity';
 import { ProductEntity } from '../../../src/api/payment/product/domain/entities/product.entity';
 import { ConversationEntity } from '../../../src/api/conversation/domain/entities/conversation.entity';
-import { InvoicesEntity } from '../../../src/api/entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../../src/api/payment/invoices/domain/entities/invoices.entity';
 import { NotificationEntity } from '../../../src/api/notification/domain/entities/notification.entity';
 import { ConnectedCardEntity } from '../../../src/api/card/domain/entities/connected-card.entity';
 import { MediaEntity } from '../../../src/api/media/domain/entities/media.entity';

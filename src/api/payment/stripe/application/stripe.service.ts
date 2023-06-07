@@ -28,6 +28,16 @@ import { CreatePriceStripeRequest } from '../web/request/create-price-stripe.req
 import { UpdatePriceStripeCommand } from './cqrs/command/update-price-stripe.command';
 import { UpdatePriceStripeRequest } from '../web/request/update-price-stripe.request';
 import { RemovePriceStripeCommand } from './cqrs/command/remove-price-stripe.command';
+import { GetSubscriptionStripeQuery } from './cqrs/query/get-subscription-stripe.query';
+import { GetAllSubscriptionFromCustomerIdStripeQuery } from './cqrs/query/get-all-subscription-from-customer-id-stripe.query';
+import { GetAllInvoiceByCustomerIdStripeQuery } from './cqrs/query/get-all-invoice-by-customer-id-stripe.query';
+import { CreateCouponStripeCommand } from './cqrs/command/create-coupon-stripe.command';
+import { CreateReferralCodeStripeCommand } from './cqrs/command/create-referral-code-stripe.command';
+import { UpdateCouponStripeCommand } from './cqrs/command/update-coupon-stripe.command';
+import { DeleteCouponStripeCommand } from './cqrs/command/delete-coupon-stripe.command';
+import { UpdateCouponStripeRequest } from '../web/request/update-coupon-stripe.request';
+import { CreateReferralCodeStripeRequest } from '../web/request/create-referral-code-stripe.request';
+import { CreateCouponStripeRequest } from '../web/request/create-coupon-stripe.request';
 
 @Injectable()
 export class StripeService {
@@ -114,12 +124,14 @@ export class StripeService {
   public async createSubscription(
     stripeCustomerId: string,
     price: string,
+    referralCode?: string,
   ): Promise<Stripe.Response<Stripe.Subscription>> {
     return await this.commandBus
       .execute(
         new CreateSubscriptionStripeCommand({
           stripeCustomerId: stripeCustomerId,
           priceId: price,
+          promotionCode: referralCode,
         }),
       )
       .catch(error => {
@@ -360,5 +372,131 @@ export class StripeService {
         stripeCustomerId: stripeCustomerId,
       }),
     );
+  }
+
+  async processPayment(event: Stripe.Event, jsonObject: object): Promise<void> {
+    // TODO: not implemented
+    throw new Error('Method not implemented.');
+  }
+
+  async processInvoice(event: Stripe.Event, jsonObject: object): Promise<void> {
+    // TODO: not implemented
+    throw new Error('Method not implemented.');
+  }
+
+  async processCharge(event: Stripe.Event, jsonObject: object): Promise<void> {
+    // TODO: not implemented
+    throw new Error('Method not implemented.');
+  }
+
+  async getSubscription(subscriptionId: string): Promise<Stripe.Response<Stripe.Subscription>> {
+    return await this.queryBus
+      .execute(
+        new GetSubscriptionStripeQuery({
+          subscriptionId: subscriptionId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching subscription')
+          throw new InvalidIdHttpException('Error while fetching subscription');
+        throw new Error('Error while fetching subscription');
+      });
+  }
+
+  async getAllSubscriptionsFromCustomerId(customerId: string): Promise<Stripe.ApiList<Stripe.Subscription>> {
+    return await this.queryBus
+      .execute(
+        new GetAllSubscriptionFromCustomerIdStripeQuery({
+          customerId: customerId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching subscriptions')
+          throw new InvalidIdHttpException('Error while fetching subscriptions');
+        throw new Error('Error while fetching subscriptions');
+      });
+  }
+
+  async getAllInvoiceByCustomerId(customerId: string): Promise<Stripe.ApiList<Stripe.Invoice>> {
+    return await this.queryBus
+      .execute(
+        new GetAllInvoiceByCustomerIdStripeQuery({
+          customerId: customerId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching invoices')
+          throw new InvalidIdHttpException('Error while fetching invoices');
+        throw new Error('Error while fetching invoices');
+      });
+  }
+
+  async createCouponStripe(
+    createCouponStripeRequest: CreateCouponStripeRequest,
+  ): Promise<Stripe.Response<Stripe.Coupon>> {
+    return await this.commandBus
+      .execute(
+        new CreateCouponStripeCommand({
+          percentOff: createCouponStripeRequest.percentOff,
+          duration: createCouponStripeRequest.duration,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the creation of the coupon')
+          throw new InvalidIdHttpException('Error during the creation of the coupon');
+        throw new Error('Error during the creation of the coupon');
+      });
+  }
+
+  async createReferralCodeStripe(
+    createReferralCodeStripeRequest: CreateReferralCodeStripeRequest,
+  ): Promise<Stripe.Coupon> {
+    return await this.commandBus
+      .execute(
+        new CreateReferralCodeStripeCommand({
+          customerStripeId: createReferralCodeStripeRequest.customerStripeId,
+          couponStripeId: createReferralCodeStripeRequest.couponStripeId,
+          code: createReferralCodeStripeRequest.code,
+          userId: createReferralCodeStripeRequest.userId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the creation of the coupon')
+          throw new InvalidIdHttpException('Error during the creation of the coupon');
+        throw new Error('Error during the creation of the coupon');
+      });
+  }
+
+  async deleteCouponStripe(couponStripeId: string): Promise<Stripe.Response<Stripe.DeletedCoupon>> {
+    return await this.commandBus
+      .execute(
+        new DeleteCouponStripeCommand({
+          couponId: couponStripeId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the remove of the coupon')
+          throw new InvalidIdHttpException('Error during the remove of the coupon');
+        throw new Error('Error during the remove of the coupon');
+      });
+  }
+
+  async updateCouponStripe(
+    couponId: string,
+    updateCouponStripeRequest: UpdateCouponStripeRequest,
+  ): Promise<Stripe.Response<Stripe.Coupon>> {
+    return await this.commandBus
+      .execute(
+        new UpdateCouponStripeCommand({
+          couponId: couponId,
+          percentOff: updateCouponStripeRequest.percentOff,
+          duration: updateCouponStripeRequest.duration,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error during the update of the coupon')
+          throw new InvalidIdHttpException('Error during the update of the coupon');
+        throw new Error('Error during the update of the coupon');
+      });
   }
 }

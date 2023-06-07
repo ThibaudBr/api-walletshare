@@ -8,7 +8,7 @@ import { ConversationEntity } from '../../api/conversation/domain/entities/conve
 import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../api/groupe/domain/entities/group-membership.entity';
-import { InvoicesEntity } from '../../api/entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../api/payment/invoices/domain/entities/invoices.entity';
 import { JoinedConversationEntity } from '../../api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../api/conversation/domain/entities/message.entity';
@@ -17,9 +17,9 @@ import { ProductEntity } from '../../api/payment/product/domain/entities/product
 import { ProfileEntity } from '../../api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../api/social-network/domain/entities/social-network.entity';
 import StripeEventEntity from '../../api/payment/stripe-webhook/domain/entities/stripe-event.entity';
-import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../api/payment/subscription/domain/entities/subscription.entity';
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
-import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
+import { ReferralCodeEntity } from '../../api/payment/subscription/domain/entities/referal-code.entity';
 import { NotificationEntity } from '../../api/notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../api/address/domain/entities/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
