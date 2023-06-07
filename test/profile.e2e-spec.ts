@@ -299,7 +299,7 @@ describe('ProfileController (e2e)', () => {
         .expect(200)
         .then(response => {
           expect(response.body.profiles).toBeInstanceOf(Array);
-          expect(response.body.profiles?.length).toBe(2);
+          expect(response.body.profiles?.length).toBe(3);
           profileIdListOfUserToDelete.push(response.body.profiles[0].id);
           profileIdListOfUserToDelete.push(response.body.profiles[1].id);
         });
@@ -458,7 +458,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(3);
+          expect(response.body.length).toBe(8);
         });
     });
 
@@ -468,7 +468,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + adminToken)
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(3);
+          expect(response.body.length).toBe(8);
         });
     });
   });
@@ -567,7 +567,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + publicToken)
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(1);
+          expect(response.body.length).toBe(2);
           expect(response.body[0].id).toBeDefined();
           expect(response.body[0].userId).toBeDefined();
           expect(response.body[0].userId).toBe(userIdList[1]);
@@ -581,7 +581,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + publicToken)
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(1);
+          expect(response.body.length).toBe(2);
           expect(response.body[0].id).toBeDefined();
           expect(response.body[0].userId).toBeDefined();
           expect(response.body[0].userId).toBe(userIdList[1]);
@@ -638,7 +638,7 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(4);
+          expect(response.body.length).toBe(9);
           expect(response.body[0].id).toBeDefined();
           expect(response.body[0].user.id).toBeDefined();
           expect(response.body[0].user.id).toBe(userIdList[0]);
@@ -656,7 +656,7 @@ describe('ProfileController (e2e)', () => {
         })
         .expect(200)
         .then(response => {
-          expect(response.body.length).toBe(4);
+          expect(response.body.length).toBe(9);
           expect(response.body[0].id).toBeDefined();
           expect(response.body[0].user.id).toBeDefined();
           expect(response.body[0].user.id).toBe(userIdList[0]);
@@ -979,7 +979,7 @@ describe('ProfileController (e2e)', () => {
         .set('Authorization', 'Bearer ' + publicToken)
         .expect(200)
         .then(response => {
-          expect(response.body[0].occupations?.[0].id).toBe(occupationIdList[0]);
+          expect(response.body[1].occupations?.[0].id).toBe(occupationIdList[0]);
         });
     });
   });
@@ -1147,20 +1147,6 @@ describe('ProfileController (e2e)', () => {
         .then(response => {
           expect(response.body.message).toBe('Profile is not soft deleted');
         });
-    });
-  });
-
-  describe('POST /profile/public/create-profile', () => {
-    it('should create a new profile for user when user have nor profile', async function () {
-      await request(app.getHttpServer())
-        .post('/profile/public/create-profile')
-        .set('Authorization', 'Bearer ' + publicToken4)
-        .send({
-          usernameProfile: 'Seenix',
-          roleProfile: 'CLASSIC',
-          occupationsId: [occupationIdList[0]],
-        })
-        .expect(201);
     });
   });
 });

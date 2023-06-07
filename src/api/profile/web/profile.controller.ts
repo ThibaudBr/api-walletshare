@@ -111,18 +111,6 @@ export class ProfileController {
     });
   }
 
-  @Post('/public/create-profile')
-  @HttpCode(201)
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async createProfile(
-    @Req() userRequest: RequestUser,
-    @Body() profile: CreateProfileRequest,
-  ): Promise<ProfileResponse> {
-    return await this.profileService.createProfile(userRequest.user.id, profile).catch(error => {
-      throw error;
-    });
-  }
-
   @Post('/admin/create-profile')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
