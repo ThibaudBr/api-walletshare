@@ -10,7 +10,7 @@ import { ConversationEntity } from '../../src/api/conversation/domain/entities/c
 import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../src/api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../src/api/groupe/domain/entities/group-membership.entity';
-import { InvoicesEntity } from '../../src/api/entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../src/api/payment/invoices/domain/entities/invoices.entity';
 import { JoinedConversationEntity } from '../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../src/api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../src/api/conversation/domain/entities/message.entity';

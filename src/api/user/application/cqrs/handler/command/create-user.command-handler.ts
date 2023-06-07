@@ -77,7 +77,6 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
       const newUser: UserEntity = new UserEntity({
         ...command.createUserDto,
         password: bcrypt.hashSync(command.createUserDto.password, 10),
-        referralCode: await this.generateUniqueReferralCode(),
       });
 
       const err = await validate(newUser);
@@ -98,15 +97,6 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
       this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'CreateUser', error: error }));
       throw error;
     }
-  }
-
-  // Generate a unique referral code that does not already exist in the database
-  async generateUniqueReferralCode(): Promise<string> {
-    let code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') || 6);
-    while (await this.getUserByReferralCode(code)) {
-      code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') || 6);
-    }
-    return code;
   }
 
   async getUserByReferralCode(referralCode: string): Promise<boolean> {

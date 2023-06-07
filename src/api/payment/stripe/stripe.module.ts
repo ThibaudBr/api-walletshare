@@ -42,6 +42,18 @@ import { RemovePriceStripeEventHandler } from './application/cqrs/handler/event/
 import { UpdatePriceStripeEventHandler } from './application/cqrs/handler/event/update-price-stripe.event-handler';
 import { GetAllPriceStripeQueryHandler } from './application/cqrs/handler/query/get-all-price-stripe.query-handler';
 import { GetPriceByIdStripeQueryHandler } from './application/cqrs/handler/query/get-price-by-id-stripe.query-handler';
+import { GetAllInvoiceByCustomerIdStripeQueryHandler } from './application/cqrs/handler/query/get-all-invoice-by-customer-id-stripe.query-handler';
+import { GetAllSubscriptionFromCustomerIdStripeQueryHandler } from './application/cqrs/handler/query/get-all-subscription-from-customer-id-stripe.query-handler';
+import { GetSubscriptionStripeQueryHandler } from './application/cqrs/handler/query/get-subscription-stripe.query-handler';
+import { CreateCouponStripeCommandHandler } from './application/cqrs/handler/command/create-coupon-stripe.command-handler';
+import { CreateReferralCodeStripeCommandHandler } from './application/cqrs/handler/command/create-referral-code-stripe.command-handler';
+import { DeleteCouponStripeCommandHandler } from './application/cqrs/handler/command/delete-coupon-stripe.command-handler';
+import { UpdateCouponStripeCommandHandler } from './application/cqrs/handler/command/update-coupon-stripe.command-handler';
+import { CreateCouponStripeEventHandler } from './application/cqrs/handler/event/create-coupon-stripe.event-handler';
+import { CreateReferralCodeStripeEventHandler } from './application/cqrs/handler/event/create-referral-code-stripe.event-handler';
+import { DeleteCouponStripeEventHandler } from './application/cqrs/handler/event/delete-coupon-stripe.event-handler';
+import { UpdateCouponStripeEventHandler } from './application/cqrs/handler/event/update-coupon-stripe.event-handler';
+import { GetCouponByIdStripeQueryHandler } from './application/cqrs/handler/query/get-coupon-by-id-stripe.query-handler';
 
 @Module({
   imports: [
@@ -73,12 +85,16 @@ import { GetPriceByIdStripeQueryHandler } from './application/cqrs/handler/query
     ChargeStripeCommandHandler,
     ConstructEventFromPayloadStripeCommandHandler,
     CreatePriceStripeCommandHandler,
+    CreateCouponStripeCommandHandler,
     CreateProductStripeCommandHandler,
     CreateStripeCustomerCommandHandler,
+    CreateReferralCodeStripeCommandHandler,
     CreateSubscriptionStripeCommandHandler,
     RemovePriceStripCommandHandler,
+    DeleteCouponStripeCommandHandler,
     RemoveProductStripeCommandHandler,
     SetDefaultCreditCardStripeCommandHandler,
+    UpdateCouponStripeCommandHandler,
     UpdatePriceStripeCommandHandler,
     UpdateProductStripeCommandHandler,
     // Event Handlers
@@ -86,22 +102,31 @@ import { GetPriceByIdStripeQueryHandler } from './application/cqrs/handler/query
     CancelSubscriptionStripeEventHandler,
     ChargeStripeEventHandler,
     ConstructEventFromPayloadStripeEventHandler,
+    CreateCouponStripeEventHandler,
     CreatePriceStripeEventHandler,
     CreateProductStripeEventHandler,
+    CreateReferralCodeStripeEventHandler,
     CreateStripeCustomerEventHandler,
     CreateSubscriptionStripeEventHandler,
+    DeleteCouponStripeEventHandler,
     RemovePriceStripeEventHandler,
     RemoveProductStripeEventHandler,
     SetDefaultCreditCardStripeEventHandler,
+    UpdateCouponStripeEventHandler,
     UpdatePriceStripeEventHandler,
     UpdateProductStripeEventHandler,
     // Query Handlers
+    GetAllInvoiceByCustomerIdStripeQueryHandler,
     GetAllPriceStripeQueryHandler,
     GetAllProductStripeQueryHandler,
+    GetAllSubscriptionFromCustomerIdStripeQueryHandler,
+    GetCouponByIdStripeQueryHandler,
+    GetAllSubscriptionFromCustomerIdStripeQueryHandler,
     GetListSavedCreditCardOfUserQueryHandler,
     GetListSubscriptionStripeQueryHandler,
     GetPriceByIdStripeQueryHandler,
     GetProductStripeByIdQueryHandler,
+    GetSubscriptionStripeQueryHandler,
     IsUserIdOwnerOfStripeCustomerIdQueryQueryHandler,
   ],
 })

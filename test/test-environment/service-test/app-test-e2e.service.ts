@@ -16,7 +16,7 @@ import { CompanyEntity } from '../../../src/api/company/domain/entities/company.
 import { CompanyEmployeeEntity } from '../../../src/api/company/domain/entities/company-employee.entity';
 import { ProductEntity } from '../../../src/api/payment/product/domain/entities/product.entity';
 import { ConversationEntity } from '../../../src/api/conversation/domain/entities/conversation.entity';
-import { InvoicesEntity } from '../../../src/api/entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../../src/api/payment/invoices/domain/entities/invoices.entity';
 import { NotificationEntity } from '../../../src/api/notification/domain/entities/notification.entity';
 import { ConnectedCardEntity } from '../../../src/api/card/domain/entities/connected-card.entity';
 import { MediaEntity } from '../../../src/api/media/domain/entities/media.entity';

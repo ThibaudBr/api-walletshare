@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 import { IsDate } from 'class-validator';
 import { UserEntity } from '../../../../user/domain/entities/user.entity';
-import { InvoicesEntity } from '../../../../entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../../invoices/domain/entities/invoices.entity';
 import { DiscountCodeEntity } from '../../../../entities-to-create/discount-code.entity';
 import { StatusSubscriptionEnum } from '../enum/status-subscription.enum';
 import { PriceEntity } from '../../../price/domain/entities/price.entity';

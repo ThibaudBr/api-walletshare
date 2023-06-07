@@ -16,7 +16,6 @@ import { ReferralCodeEntity } from '../../../payment/subscription/domain/entitie
 import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
 import { UserLoginEntity } from './user-login.entity';
-import {RoleProfileEnum} from "../../../profile/domain/enum/role-profile.enum";
 import {UserAccountStatusEnum} from "../enum/user-account-status.enum";
 
 @Entity({ name: 'user' })

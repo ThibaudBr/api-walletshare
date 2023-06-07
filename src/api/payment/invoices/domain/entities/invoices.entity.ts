@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { SubscriptionEntity } from '../payment/subscription/domain/entities/subscription.entity';
+import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
 
 @Entity('invoices')
 export class InvoicesEntity {

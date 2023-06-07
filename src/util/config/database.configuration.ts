@@ -9,7 +9,7 @@ import { ConversationEntity } from '../../api/conversation/domain/entities/conve
 import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../api/groupe/domain/entities/group-membership.entity';
-import { InvoicesEntity } from '../../api/entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../api/payment/invoices/domain/entities/invoices.entity';
 import { JoinedConversationEntity } from '../../api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../api/conversation/domain/entities/message.entity';
