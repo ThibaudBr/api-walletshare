@@ -23,7 +23,7 @@ export class GetCompanyDiscoveryQueryHandler implements IQueryHandler<GetCompany
           'ownerProfile',
           'ownerProfile.user',
           'addresses',
-          'profilePicture',
+          'avatarMedia',
           'bannerPicture',
           'employees',
           'employees.profile',
