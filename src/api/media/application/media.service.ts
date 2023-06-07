@@ -25,6 +25,7 @@ import { AddCardMediaCommand } from './cqrs/command/add-card-media.command';
 import { IsCardOwnerWithUserIdQuery } from '../../card/application/cqrs/query/is-card-owner-with-user-id.query';
 import { RestoreMediaCommand } from './cqrs/command/restore-media.command';
 import { SoftRemoveMediaCommand } from './cqrs/command/soft-remove-media.command';
+import { AddCardPresetMediaCommand } from './cqrs/command/add-card-preset-media.command';
 
 @Injectable()
 export class MediaService {
@@ -323,6 +324,57 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
+        throw error;
+      });
+  }
+
+  async addCardPresetMedia(
+    userId: string,
+    companyId: string,
+    cardPresetId: string,
+    newMediaDto: NewMediaDto,
+  ): Promise<void> {
+    if (
+      !(await this.queryBus.execute(
+        new IsRoleInCompanyQuery({
+          companyId: companyId,
+          userId: userId,
+          roles: [RoleCompanyEmployeeEnum.OWNER, RoleCompanyEmployeeEnum.ADMIN],
+        }),
+      ))
+    ) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: 'AddCardPresetMediaCommandHandler',
+          localisation: 'IsRoleInCompanyQuery',
+          error: 'User is not owner or admin of company',
+        }),
+      );
+      throw new ForbiddenException('User is not owner or admin of company');
+    }
+
+    const newMedia = await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'File is too big') throw new BadRequestException('File not found');
+        throw error;
+      });
+
+    await this.commandBus
+      .execute(
+        new AddCardPresetMediaCommand({
+          cardPresetId: cardPresetId,
+          mediaEntity: newMedia,
+        }),
+      )
+      .catch(async error => {
+        await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
+        if (error.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
         throw error;
       });
   }

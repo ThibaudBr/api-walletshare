@@ -44,6 +44,8 @@ import { AddBannerGroupMediaEventHandler } from './application/cqrs/handler/even
 import { CacheModule } from '@nestjs/cache-manager';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
+import { AddCardPresetMediaCommandHandler } from './application/cqrs/handler/command/add-card-preset-media.command-handler';
+import { AddCardPresetMediaEventHandler } from './application/cqrs/handler/event/add-card-preset-media.event-handler';
 
 @Module({
   imports: [
@@ -75,6 +77,7 @@ import { HttpModule } from '@nestjs/axios';
     AddBannerGroupMediaCommandHandler,
     AddBannerProfileMediaCommandHandler,
     AddCardMediaCommandHandler,
+    AddCardPresetMediaCommandHandler,
     RemoveMediaCommandHandler,
     RestoreMediaCommandHandler,
     SoftRemoveMediaCommandHandler,
@@ -92,6 +95,7 @@ import { HttpModule } from '@nestjs/axios';
     AddBannerGroupMediaEventHandler,
     AddBannerProfileMediaEventHandler,
     AddCardMediaEventHandler,
+    AddCardPresetMediaEventHandler,
     RemoveMediaEventHandler,
     RestoreMediaEventHandler,
     SoftRemoveMediaEventHandler,

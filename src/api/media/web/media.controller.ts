@@ -39,6 +39,21 @@ export class MediaController {
     });
   }
 
+  @Post('/public/add-card-preset/:companyId/:cardPresetId')
+  @UseInterceptors(FileInterceptor('file'))
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async addCardPreset(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+    @Param('cardPresetId') cardPresetId: string,
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<void> {
+    await this.mediaService.addCardPresetMedia(requestUser.user.id, companyId, cardPresetId, {
+      imageBuffer: file.buffer,
+      fileName: file.originalname,
+    });
+  }
+
   @Post('/public/add-avatar-group/:groupId')
   @UseInterceptors(FileInterceptor('file'))
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
