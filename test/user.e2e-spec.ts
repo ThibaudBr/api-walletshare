@@ -330,7 +330,7 @@ describe('UserController (e2e)', () => {
           .then(newUser => {
             expect(newUser).toBeDefined();
             expect(newUser.body).toBeDefined();
-            expect(newUser.body?.username).toBeNull();
+            expect(newUser.body?.username).toBeUndefined();
             expect(newUser.body.mail).toEqual('userTest@test.fr');
             expect(newUser.body.roles).toEqual(['ADMIN']);
           });

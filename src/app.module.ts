@@ -76,6 +76,7 @@ import { HttpModule } from '@nestjs/axios';
         STRIPE_SECRET_KEY_TEST: Joi.string().required(),
         STRIPE_SECRET_KEY_PROD: Joi.string().required(),
         API_LOG_TOKEN: Joi.string().required(),
+        STRIP_CREATE_CUSTOMER: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRootAsync({
