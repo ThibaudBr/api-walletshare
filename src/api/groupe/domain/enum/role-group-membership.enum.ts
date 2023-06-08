@@ -1,5 +1,5 @@
-export class RoleGroupMembershipEnum {
-  static readonly MEMBER = 'MEMBER';
-  static readonly ADMIN = 'ADMIN';
-  static readonly OWNER = 'OWNER';
+export enum RoleGroupMembershipEnum {
+  MEMBER = 'MEMBER',
+  ADMIN = 'ADMIN',
+  OWNER = 'OWNER',
 }
