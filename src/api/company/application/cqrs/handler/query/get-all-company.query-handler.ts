@@ -13,7 +13,7 @@ export class GetAllCompanyQueryHandler implements IQueryHandler<GetAllCompanyQue
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(query:GetAllCompanyQuery): Promise<CompanyEntity[]> {
+  async execute(query: GetAllCompanyQuery): Promise<CompanyEntity[]> {
     try {
       return await this.companyRepository.find({
         relations: [

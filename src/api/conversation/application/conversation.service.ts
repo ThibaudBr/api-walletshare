@@ -28,7 +28,7 @@ import { GetAllConversationByProfilesAndCardQuery } from './cqrs/query/get-all-c
 import { GetMessageFromConversationQuery } from './cqrs/query/get-message-from-conversation.query';
 import { SoftRemoveMessageConversationCommand } from './cqrs/command/soft-remove-message-conversation.command';
 import { RemoveAllJoinedConversationWithSocketIdCommand } from './cqrs/command/remove-all-joined-conversation-with-socket-id.command';
-import {GetActiveConversationCountQuery} from "./cqrs/query/get-active-conversation-count.query";
+import { GetActiveConversationCountQuery } from './cqrs/query/get-active-conversation-count.query';
 
 @Injectable()
 export class ConversationService {

@@ -369,10 +369,7 @@ export class CompanyController {
   @ApiOperation({ summary: 'Get all card view count' })
   @ApiOkResponse({ type: Number })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
-  async getAllCardViewCount(
-    @Req() requestUser: RequestUser,
-    @Param('companyId') companyId: string,
-  ): Promise<number> {
+  async getAllCardViewCount(@Req() requestUser: RequestUser, @Param('companyId') companyId: string): Promise<number> {
     return await this.companyService.getAllCardViewCount(requestUser.user.id, companyId);
   }
 

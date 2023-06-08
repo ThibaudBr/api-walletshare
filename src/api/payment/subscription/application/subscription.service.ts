@@ -15,7 +15,7 @@ import { CreateUsedReferralCodeCommand } from './cqrs/command/create-used-referr
 import { CancelSubscriptionCommand } from './cqrs/command/cancel-subscription.command';
 import { UpdateAccountStatusCommand } from './cqrs/command/update-account-status.command';
 import { UserAccountStatusEnum } from '../../../user/domain/enum/user-account-status.enum';
-import {GetAllActiveSubscriptionQuery} from "./cqrs/query/get-all-active-subscription.query";
+import { GetAllActiveSubscriptionQuery } from './cqrs/query/get-all-active-subscription.query';
 
 @Injectable()
 export class SubscriptionService {
