@@ -17,8 +17,8 @@ import { UpdateMonthlySubscriptionStatusEventHandler } from '../subscription/app
 import { SubscriptionModule } from '../subscription/subscriptionModule';
 import { StripeService } from '../stripe/application/stripe.service';
 import { HttpModule } from '@nestjs/axios';
-import {PriceModule} from "../price/price.module";
-import {PriceService} from "../price/application/price.service";
+import { PriceModule } from '../price/price.module';
+import { PriceService } from '../price/application/price.service';
 
 @Module({
   imports: [

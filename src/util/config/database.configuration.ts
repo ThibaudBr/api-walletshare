@@ -47,7 +47,8 @@ import { NotificationProfileSubscriber } from '../../api/notification/applicatio
 import { NotificationUserSubscriber } from '../../api/notification/application/subscriber/notification-user.subscriber';
 import { ConfigService } from '@nestjs/config';
 import { PriceEntity } from '../../api/payment/price/domain/entities/price.entity';
-import {CardPresetEntity} from "../../api/company/domain/entities/card-preset.entity";
+import { CardPresetEntity } from '../../api/company/domain/entities/card-preset.entity';
+import { CompanyCardPresetSubscriber } from '../../api/company/application/subscriber/company-card-preset.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -115,6 +116,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationMessageSubscriber,
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'pprod') {
@@ -183,6 +185,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationMessageSubscriber,
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'test') {
@@ -245,6 +248,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationMessageSubscriber,
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'dev') {
@@ -307,6 +311,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationMessageSubscriber,
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
           ],
         };
       } else {

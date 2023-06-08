@@ -3,7 +3,7 @@ import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { ConfigService } from '@nestjs/config';
 import { CreateCouponStripeCommand } from '../../command/create-coupon-stripe.command';
 import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
-import {CreateCouponStripeEvent} from "../../event/create-coupon-stripe.event";
+import { CreateCouponStripeEvent } from '../../event/create-coupon-stripe.event';
 
 @CommandHandler(CreateCouponStripeCommand)
 export class CreateCouponStripeCommandHandler implements ICommandHandler<CreateCouponStripeCommand> {

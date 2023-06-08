@@ -22,8 +22,7 @@ export class UpdateCouponStripeCommandHandler implements ICommandHandler<UpdateC
 
   async execute(command: UpdateCouponStripeCommand): Promise<Stripe.Response<Stripe.Coupon>> {
     return await this.stripe.coupons
-      .update(command.couponId, {
-      })
+      .update(command.couponId, {})
       .catch(error => {
         this.eventBus.publish(
           new ErrorCustomEvent({ localisation: 'payment', handler: 'UpdateCouponStripeCommandHandler', error: error }),

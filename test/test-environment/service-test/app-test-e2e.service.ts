@@ -9,7 +9,6 @@ import { SubscriptionEntity } from '../../../src/api/payment/subscription/domain
 import { GroupMembershipEntity } from '../../../src/api/groupe/domain/entities/group-membership.entity';
 import { UserEntity } from '../../../src/api/user/domain/entities/user.entity';
 import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.entity';
-import { DiscountCodeEntity } from '../../../src/api/entities-to-create/discount-code.entity';
 import { MessageEntity } from '../../../src/api/conversation/domain/entities/message.entity';
 import { GroupEntity } from '../../../src/api/groupe/domain/entities/group.entity';
 import { CompanyEntity } from '../../../src/api/company/domain/entities/company.entity';
@@ -39,8 +38,6 @@ export class AppTestE2eService {
     private readonly connectedCardRepository: Repository<ConnectedCardEntity>,
     @InjectRepository(ConversationEntity)
     private readonly conversationRepository: Repository<ConversationEntity>,
-    @InjectRepository(DiscountCodeEntity)
-    private readonly discountCodeRepository: Repository<DiscountCodeEntity>,
     @InjectRepository(GroupEntity)
     private readonly groupRepository: Repository<GroupEntity>,
     @InjectRepository(GroupMembershipEntity)
@@ -88,7 +85,6 @@ export class AppTestE2eService {
       await this.companyEmployeeRepository.query('DELETE FROM "company_employee";');
       await this.joinedConversationRepository.query('DELETE FROM "joined_conversation";');
       await this.conversationRepository.query('DELETE FROM "conversation";');
-      await this.discountCodeRepository.query('DELETE FROM "discount_codes";');
       await this.groupRepository.query('DELETE FROM "group";');
       await this.groupMembershipRepository.query('DELETE FROM "group_membership";');
       await this.invoicesRepository.query('DELETE FROM "invoices";');
