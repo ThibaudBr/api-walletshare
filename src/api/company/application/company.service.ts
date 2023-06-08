@@ -56,9 +56,15 @@ export class CompanyService {
     private readonly eventBus: EventBus,
   ) {}
 
-  public async getAllCompanies(): Promise<CompanyResponse[]> {
+  public async getAllCompanies(deleted: boolean, take: number, skip: number): Promise<CompanyResponse[]> {
     return this.queryBus
-      .execute(new GetAllCompanyQuery())
+      .execute(new GetAllCompanyQuery(
+        {
+          deleted: deleted,
+          take: take,
+          skip: skip
+        }
+      ))
       .then((companies: CompanyEntity[]) => {
         return companies.map((company: CompanyEntity) => {
           return new CompanyResponse({
@@ -622,5 +628,12 @@ export class CompanyService {
         throw new ConflictException('Error while deleting card preset');
       throw error;
     });
+  }
+
+  async getAllCompanyCount(): Promise<number> {
+    return await this.getAllCompanies(false, -1, -1)
+      .then((companies: CompanyEntity[]) => {
+        return companies.length;
+      });
   }
 }

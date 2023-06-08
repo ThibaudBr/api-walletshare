@@ -80,13 +80,19 @@ export class CompanyController {
     return await this.companyService.createUserAndProfileForCompany(requestUser.user.id, createUserForCompany);
   }
 
-  @Get('/admin/get-all-companies')
+  @Get('/admin/get-all-companies/:deleted/:take/:skip')
   @ApiOperation({ summary: 'Get all companies' })
   @ApiOkResponse({ type: CompanyResponse })
   @ApiNotFoundResponse({ description: 'Company not found' })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async getAllCompanies(): Promise<CompanyResponse[]> {
-    return await this.companyService.getAllCompanies();
+  async getAllCompanies(
+    @Param('deleted') deleted: boolean = false,
+    @Param('take') take: number = -1,
+    @Param('skip') skip: number = -1,
+  ): Promise<CompanyResponse[]> {
+    return await this.companyService.getAllCompanies(
+      deleted, take, skip,
+    );
   }
 
   @Post('/public/add-company-employee')
@@ -332,5 +338,13 @@ export class CompanyController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async adminSoftRemoveCardPreset(@Param('cardPresetId') cardPresetId: string): Promise<void> {
     return await this.companyService.softRemoveCardPresetAdmin(cardPresetId);
+  }
+
+  @Get('/admin/get-all-company-count')
+  @ApiOperation({ summary: 'Get all company count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getAllCompanyCount(): Promise<number> {
+    return await this.companyService.getAllCompanyCount();
   }
 }

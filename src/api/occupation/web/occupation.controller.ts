@@ -16,18 +16,14 @@ export class OccupationController {
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllOccupations(): Promise<OccupationResponse[]> {
-    return await this.occupationService.getAllOccupation().catch(error => {
-      throw error;
-    });
+    return await this.occupationService.getAllOccupation();
   }
 
   @Get('/public/:id')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getOccupationById(@Param('id') occupationId: string): Promise<OccupationResponse> {
-    return await this.occupationService.getOccupationById(occupationId).catch(error => {
-      throw error;
-    });
+    return await this.occupationService.getOccupationById(occupationId);
   }
 
   @Post('/admin/get-with-criteria')
@@ -36,18 +32,14 @@ export class OccupationController {
   async getOccupationsWithCriteria(
     @Body() getOccupationsWithCriteriaRequest: GetOccupationWithCriteriaRequest,
   ): Promise<OccupationResponse[]> {
-    return await this.occupationService.getOccupationWithCriteria(getOccupationsWithCriteriaRequest).catch(error => {
-      throw error;
-    });
+    return await this.occupationService.getOccupationWithCriteria(getOccupationsWithCriteriaRequest);
   }
 
   @Post('/admin/create')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createOccupation(@Body() createOccupationRequest: CreateOccupationRequest): Promise<void> {
-    return await this.occupationService.createOccupation(createOccupationRequest).catch(error => {
-      throw error;
-    });
+    return await this.occupationService.createOccupation(createOccupationRequest);
   }
 
   @Put('/admin/update/:id')
@@ -57,18 +49,14 @@ export class OccupationController {
     @Param('id') occupationId: string,
     @Body() createOccupationRequest: CreateOccupationRequest,
   ): Promise<void> {
-    return await this.occupationService.updateOccupation(occupationId, createOccupationRequest).catch(error => {
-      throw error;
-    });
+    return await this.occupationService.updateOccupation(occupationId, createOccupationRequest);
   }
 
   @Delete('/admin/delete/:id')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteOccupation(@Param('id') occupationId: string): Promise<void> {
-    return await this.occupationService.deleteOccupation(occupationId).catch(error => {
-      throw error;
-    });
+    return await this.occupationService.deleteOccupation(occupationId);
   }
 
   @Delete('/admin/soft-delete/:id')
@@ -82,8 +70,6 @@ export class OccupationController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async restoreOccupation(@Param('id') occupationId: string): Promise<void> {
-    return await this.occupationService.restoreOccupation(occupationId).catch(error => {
-      throw error;
-    });
+    return await this.occupationService.restoreOccupation(occupationId);
   }
 }

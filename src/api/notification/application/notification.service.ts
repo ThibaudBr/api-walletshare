@@ -189,4 +189,12 @@ export class NotificationService {
         });
       });
   }
+
+  async getAllUnreadNotificationCount(): Promise<number> {
+    return await this.getAllNotifications().then((notifications: NotificationResponse[]) => {
+      return notifications.filter((notification: NotificationResponse) => {
+        return !notification.isRead;
+      }).length;
+    });
+  }
 }

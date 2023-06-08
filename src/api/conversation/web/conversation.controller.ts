@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Param, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Req,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ConversationService } from '../application/conversation.service';
 import { RoleGuard } from '../../auth/web/guards/role.guard';
@@ -39,5 +50,11 @@ export class ConversationController {
       imageBuffer: file.buffer,
       fileName: file.originalname,
     });
+  }
+
+  @Get('/admin/get-active-conversation')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getActiveConversation(): Promise<number> {
+    return await this.conversationService.getActiveConversation();
   }
 }

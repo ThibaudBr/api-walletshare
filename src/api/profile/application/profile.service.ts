@@ -302,4 +302,10 @@ export class ProfileService {
       else throw e;
     }
   }
+
+  async getAllProfileCount(): Promise<number> {
+    return await this.getProfiles().then(profiles => {
+      return profiles.length;
+    });
+  }
 }

@@ -231,4 +231,8 @@ export class UserService {
   private generatePassword(): string {
     return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
   }
+
+  async getAllUserCount(): Promise<number> {
+    return await this.findAll().then(users => users.length);
+  }
 }
