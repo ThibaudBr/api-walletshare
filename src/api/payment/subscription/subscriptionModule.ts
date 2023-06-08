@@ -16,8 +16,15 @@ import { UpdateMonthlySubscriptionStatusEventHandler } from './application/cqrs/
 import { HttpModule } from '@nestjs/axios';
 import { PriceService } from '../price/application/price.service';
 import { PriceModule } from '../price/price.module';
+import {
+  GetUserWithReferralCodeByUserIdQueryHandler
+} from "./application/cqrs/handler/query/get-user-with-referral-code-by-user-id.query-handler";
+import {
+  GetAllActiveSubscriptionQueryHandler
+} from "./application/cqrs/handler/query/get-all-active-subscription.query-handler";
 
 @Module({
+  controllers: [SubscriptionController],
   imports: [
     ConfigModule,
     TypeOrmModule.forFeature([UserEntity, SubscriptionEntity]),
@@ -27,7 +34,6 @@ import { PriceModule } from '../price/price.module';
     PriceModule,
     HttpModule,
   ],
-  controllers: [SubscriptionController],
   providers: [
     // Stripe module
     StripeService,
@@ -43,6 +49,8 @@ import { PriceModule } from '../price/price.module';
     // Event Handlers
     UpdateMonthlySubscriptionStatusEventHandler,
     // Query Handlers
+    GetAllActiveSubscriptionQueryHandler,
+    GetUserWithReferralCodeByUserIdQueryHandler,
   ],
 })
 export class SubscriptionModule {}

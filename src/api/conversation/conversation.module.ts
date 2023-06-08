@@ -40,6 +40,9 @@ import { AddMessageWithMediaEventHandler } from './application/cqrs/handler/even
 import { UserEntity } from '../user/domain/entities/user.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { HttpModule } from '@nestjs/axios';
+import {
+  GetActiveConversationCountQueryHandler
+} from "./application/cqrs/handler/query/get-active-conversation-count.query-handler";
 
 @Module({
   imports: [
@@ -87,6 +90,7 @@ import { HttpModule } from '@nestjs/axios';
     DeleteJoinedConversationWithSocketIdEventHandler,
     RemoveMessageConversationEventHandler,
     SoftRemoveMessageConversationEventHandler,
+    GetActiveConversationCountQueryHandler,
     // imported from other modules
     UploadMediaCommandHandler,
     UploadMediaEventHandler,

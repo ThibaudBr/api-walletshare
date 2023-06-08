@@ -288,7 +288,8 @@ export class CardService {
                         createdAt: groupMembership.createdAt,
                         updatedAt: groupMembership.updatedAt,
                         deletedAt: groupMembership.deletedAt,
-                        role: groupMembership.role,
+                        role: groupMembership.
+                          role,
                       }),
                   )
                 : undefined,
@@ -704,5 +705,9 @@ export class CardService {
       else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }
+  }
+
+  async getAllCardCount(): Promise<number> {
+    return await this.getAllCards().then((cards) => cards.length);
   }
 }
