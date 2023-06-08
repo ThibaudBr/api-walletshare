@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,21 +36,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >SocialNetworkController</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >SocialNetworkController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -70,7 +76,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -84,30 +90,51 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#createSocialNetwork" >createSocialNetwork</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteSocialNetwork" >deleteSocialNetwork</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllSocialNetworks" >getAllSocialNetworks</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getSocialNetworkById" >getSocialNetworkById</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getSocialNetworksWithCriteria" >getSocialNetworksWithCriteria</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#restoreSocialNetwork" >restoreSocialNetwork</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#updateSocialNetwork" >updateSocialNetwork</a>
                             </li>
@@ -123,7 +150,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -134,6 +161,9 @@
                 <td class="col-md-4">
                     <a name="createSocialNetwork"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>createSocialNetwork</b></span>
                         <a href="#createSocialNetwork"><span class="icon ion-ios-link"></span></a>
@@ -157,8 +187,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -212,6 +242,9 @@
                 <td class="col-md-4">
                     <a name="deleteSocialNetwork"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>deleteSocialNetwork</b></span>
                         <a href="#deleteSocialNetwork"><span class="icon ion-ios-link"></span></a>
@@ -235,8 +268,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:67</a></div>
                 </td>
             </tr>
 
@@ -290,6 +323,9 @@
                 <td class="col-md-4">
                     <a name="getAllSocialNetworks"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllSocialNetworks</b></span>
                         <a href="#getAllSocialNetworks"><span class="icon ion-ios-link"></span></a>
@@ -336,6 +372,9 @@
                 <td class="col-md-4">
                     <a name="getSocialNetworkById"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getSocialNetworkById</b></span>
                         <a href="#getSocialNetworkById"><span class="icon ion-ios-link"></span></a>
@@ -359,8 +398,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:26</a></div>
                 </td>
             </tr>
 
@@ -414,6 +453,9 @@
                 <td class="col-md-4">
                     <a name="getSocialNetworksWithCriteria"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getSocialNetworksWithCriteria</b></span>
                         <a href="#getSocialNetworksWithCriteria"><span class="icon ion-ios-link"></span></a>
@@ -437,8 +479,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:33</a></div>
                 </td>
             </tr>
 
@@ -492,6 +534,9 @@
                 <td class="col-md-4">
                     <a name="restoreSocialNetwork"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>restoreSocialNetwork</b></span>
                         <a href="#restoreSocialNetwork"><span class="icon ion-ios-link"></span></a>
@@ -515,8 +560,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -570,6 +615,9 @@
                 <td class="col-md-4">
                     <a name="updateSocialNetwork"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>updateSocialNetwork</b></span>
                         <a href="#updateSocialNetwork"><span class="icon ion-ios-link"></span></a>
@@ -593,8 +641,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/api/social-network/web/social-network.controller.ts:53</a></div>
                 </td>
             </tr>
 
@@ -657,12 +705,12 @@
 </section>    </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from &#x27;@nestjs/common&#x27;;
-import { SocialNetworkService } from &#x27;../social-network.service&#x27;;
+import { SocialNetworkService } from &#x27;../application/social-network.service&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { CreateSocialNetworkRequest } from &#x27;./request/create-social-network.request&#x27;;
-import { RoleGuard } from &#x27;../../auth/guards/role.guard&#x27;;
+import { RoleGuard } from &#x27;../../auth/web/guards/role.guard&#x27;;
 import { UserRoleEnum } from &#x27;../../user/domain/enum/user-role.enum&#x27;;
 import { SocialNetworkResponse } from &#x27;./response/social-network.response&#x27;;
 import { GetSocialNetworkWithCriteriaRequest } from &#x27;./request/get-social-network-with-criteria.request&#x27;;
@@ -677,18 +725,14 @@ export class SocialNetworkController {
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllSocialNetworks(): Promise&lt;SocialNetworkResponse[]&gt; {
-    return await this.socialNetworkService.getAllSocialNetwork().catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.socialNetworkService.getAllSocialNetwork();
   }
 
   @Get(&#x27;/public/:id&#x27;)
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getSocialNetworkById(@Param(&#x27;id&#x27;) socialNetworkId: string): Promise&lt;SocialNetworkResponse&gt; {
-    return await this.socialNetworkService.getSocialNetworkById(socialNetworkId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.socialNetworkService.getSocialNetworkById(socialNetworkId);
   }
 
   @Post(&#x27;/admin/get-with-criteria&#x27;)
@@ -708,9 +752,7 @@ export class SocialNetworkController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createSocialNetwork(@Body() createSocialNetworkRequest: CreateSocialNetworkRequest): Promise&lt;void&gt; {
-    return await this.socialNetworkService.createSocialNetwork(createSocialNetworkRequest).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.socialNetworkService.createSocialNetwork(createSocialNetworkRequest);
   }
 
   @Put(&#x27;/admin/update/:id&#x27;)
@@ -731,18 +773,14 @@ export class SocialNetworkController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteSocialNetwork(@Param(&#x27;id&#x27;) socialNetworkId: string): Promise&lt;void&gt; {
-    return await this.socialNetworkService.deleteSocialNetwork(socialNetworkId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.socialNetworkService.deleteSocialNetwork(socialNetworkId);
   }
 
   @Put(&#x27;/admin/restore/:id&#x27;)
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async restoreSocialNetwork(@Param(&#x27;id&#x27;) socialNetworkId: string): Promise&lt;void&gt; {
-    return await this.socialNetworkService.restoreSocialNetwork(socialNetworkId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.socialNetworkService.restoreSocialNetwork(socialNetworkId);
   }
 }
 </code></pre>

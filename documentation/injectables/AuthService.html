@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,33 +39,39 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >AuthService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >AuthService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/auth/auth.service.ts</code>
+            <code>src/api/auth/application/auth.service.ts</code>
         </p>
 
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -114,18 +120,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(jwtService: JwtService, commandBus: CommandBus, queryBus: QueryBus)</code>
+<code>constructor(configService: ConfigService, jwtService: JwtService, commandBus: CommandBus, queryBus: QueryBus)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/auth/auth.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/api/auth/application/auth.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -142,6 +148,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>jwtService</td>
                                                   
@@ -187,7 +205,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -214,8 +232,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/api/auth/auth.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/api/auth/application/auth.service.ts:79</a></div>
                 </td>
             </tr>
 
@@ -253,8 +271,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/api/auth/auth.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/api/auth/application/auth.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -324,8 +342,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/api/auth/auth.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/api/auth/application/auth.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -395,8 +413,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/api/auth/auth.service.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/api/auth/application/auth.service.ts:83</a></div>
                 </td>
             </tr>
 
@@ -466,8 +484,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/api/auth/auth.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/api/auth/application/auth.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -549,8 +567,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/api/auth/auth.service.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/api/auth/application/auth.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -603,26 +621,45 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
 import { HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
 import { JwtService } from &#x27;@nestjs/jwt&#x27;;
-import { TokenPayload } from &#x27;./interface/token-payload.interface&#x27;;
-import { SignUpDto } from &#x27;./dto/sign-up.dto&#x27;;
+import { TokenPayload } from &#x27;../domain/interface/token-payload.interface&#x27;;
+import { SignUpDto } from &#x27;../domain/dto/sign-up.dto&#x27;;
 import { RegisterCommand } from &#x27;./cqrs/command/register.command&#x27;;
-import { UserLoginResponse } from &#x27;../user/domain/response/user-login.response&#x27;;
-import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
-import { GetUserQuery } from &#x27;../user/cqrs/query/get-user.query&#x27;;
-import { GetUserLoginQuery } from &#x27;../user/cqrs/query/get-user-login.query&#x27;;
-import { UserResponse } from &#x27;../user/domain/response/user.response&#x27;;
+import { UserLoginResponse } from &#x27;../../user/web/response/user-login.response&#x27;;
+import { UserEntity } from &#x27;../../user/domain/entities/user.entity&#x27;;
+import { GetUserQuery } from &#x27;../../user/application/cqrs/query/get-user.query&#x27;;
+import { GetUserLoginQuery } from &#x27;../../user/application/cqrs/query/get-user-login.query&#x27;;
+import { UserResponse } from &#x27;../../user/web/response/user.response&#x27;;
+import { CreateStripeCustomerCommand } from &#x27;../../payment/stripe/application/cqrs/command/create-stripe-customer.command&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
 
 @Injectable()
 export class AuthService {
-  constructor(private jwtService: JwtService, private commandBus: CommandBus, private queryBus: QueryBus) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private jwtService: JwtService,
+    private commandBus: CommandBus,
+    private queryBus: QueryBus,
+  ) {}
 
   async signup(signUpDto: SignUpDto): Promise&lt;UserResponse&gt; {
+    const user: UserEntity &#x3D; await this.commandBus.execute(
+      new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password),
+    );
+
+    await this.commandBus.execute(
+      new CreateStripeCustomerCommand({
+        userId: user.id,
+        username: user.username,
+        email: user.mail,
+      }),
+    );
+
     return new UserResponse({
-      ...(await this.commandBus.execute(new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password))),
+      ...user,
     });
   }
 
@@ -637,22 +674,26 @@ export class AuthService {
   public getCookieWithJwtToken(userId: string): { token: string; auth: string } {
     const payload: TokenPayload &#x3D; { userId };
     const token &#x3D; this.jwtService.sign(payload, {
-      secret: process.env.JWT_ACCESS_TOKEN_SECRET,
-      expiresIn: &#x60;${process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME}&#x60;,
+      secret: this.configService.get(&#x27;JWT_ACCESS_TOKEN_SECRET&#x27;),
+      expiresIn: &#x60;${this.configService.get(&#x27;JWT_ACCESS_TOKEN_EXPIRATION_TIME&#x27;)}&#x60;,
     });
     return {
       token: token,
-      auth: &#x60;Authentication&#x3D;${token}; HttpOnly; Path&#x3D;/; Max-Age&#x3D;${process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME}&#x60;,
+      auth: &#x60;Authentication&#x3D;${token}; HttpOnly; Path&#x3D;/; Max-Age&#x3D;${this.configService.get(
+        &#x27;JWT_ACCESS_TOKEN_EXPIRATION_TIME&#x27;,
+      )}&#x60;,
     };
   }
 
   public getCookieWithJwtRefreshToken(userId: string): { cookie: string; token: string } {
     const payload: TokenPayload &#x3D; { userId };
     const token &#x3D; this.jwtService.sign(payload, {
-      secret: process.env.JWT_REFRESH_TOKEN_SECRET,
-      expiresIn: &#x60;${process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME}&#x60;,
+      secret: this.configService.get(&#x27;JWT_REFRESH_TOKEN_SECRET&#x27;),
+      expiresIn: &#x60;${this.configService.get(&#x27;JWT_REFRESH_TOKEN_EXPIRATION_TIME&#x27;)}&#x60;,
     });
-    const cookie &#x3D; &#x60;Refresh&#x3D;${token}; HttpOnly; Path&#x3D;/; Max-Age&#x3D;${process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME}&#x60;;
+    const cookie &#x3D; &#x60;Refresh&#x3D;${token}; HttpOnly; Path&#x3D;/; Max-Age&#x3D;${this.configService.get(
+      &#x27;JWT_REFRESH_TOKEN_EXPIRATION_TIME&#x27;,
+    )}&#x60;;
     return {
       cookie,
       token,
@@ -665,7 +706,7 @@ export class AuthService {
 
   async getUserFromAuthToken(authenticationToken: string): Promise&lt;UserLoginResponse&gt; {
     const payload: TokenPayload &#x3D; this.jwtService.verify(authenticationToken, {
-      secret: process.env.JWT_REFRESH_TOKEN_SECRET,
+      secret: this.configService.get(&#x27;JWT_REFRESH_TOKEN_SECRET&#x27;),
     });
     if (payload.userId) {
       return await this.queryBus.execute(new GetUserQuery(payload.userId));

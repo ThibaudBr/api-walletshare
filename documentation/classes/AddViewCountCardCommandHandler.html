@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >AddViewCountCardCommandHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >AddViewCountCardCommandHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts</code>
+            <code>src/api/card/application/cqrs/handler/command/add-view-count-card.command-handler.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -105,18 +111,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(cardRepository: <a href="../entitys/CardEntity.html" target="_self">Repository&lt;CardEntity&gt;</a>, eventBus: EventBus)</code>
+<code>constructor(cardRepository: <a href="../entitys/CardEntity.html" target="_self">Repository&lt;CardEntity&gt;</a>, cardViewRepository: <a href="../entitys/CardViewEntity.html" target="_self">Repository&lt;CardViewEntity&gt;</a>, eventBus: EventBus)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/card/application/cqrs/handler/command/add-view-count-card.command-handler.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -146,6 +152,18 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>cardViewRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/CardViewEntity.html" target="_self" >Repository&lt;CardViewEntity&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>eventBus</td>
                                                   
                                                         <td>
@@ -167,7 +185,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -194,8 +212,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/api/card/cqrs/handler/command/add-view-count-card.command-handler.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/api/card/application/cqrs/handler/command/add-view-count-card.command-handler.ts:22</a></div>
                 </td>
             </tr>
 
@@ -252,64 +270,86 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommandHandler, EventBus, ICommandHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { AddViewCountCardCommand } from &#x27;../../command/add-view-count-card.command&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { CardEntity } from &#x27;../../../domain/entities/card.entity&#x27;;
+import { CardEntity } from &#x27;../../../../domain/entities/card.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { AddViewCountCardEvent } from &#x27;../../event/add-view-count-card.event&#x27;;
-import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
-import { ErrorInvalidIdRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
-import { ErrorUpdateRuntimeException } from &#x27;../../../../../util/exception/runtime-exception/error-group-request.runtime-exception&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import { ErrorInvalidIdRuntimeException } from &#x27;../../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception&#x27;;
+import { ErrorUpdateRuntimeException } from &#x27;../../../../../../util/exception/runtime-exception/error-group-request.runtime-exception&#x27;;
+import { CardViewEntity } from &#x27;../../../../domain/entities/card-view.entity&#x27;;
 
 @CommandHandler(AddViewCountCardCommand)
 export class AddViewCountCardCommandHandler implements ICommandHandler&lt;AddViewCountCardCommand&gt; {
   constructor(
     @InjectRepository(CardEntity)
     private readonly cardRepository: Repository&lt;CardEntity&gt;,
+    @InjectRepository(CardViewEntity)
+    private readonly cardViewRepository: Repository&lt;CardViewEntity&gt;,
     private readonly eventBus: EventBus,
   ) {}
 
   async execute(command: AddViewCountCardCommand): Promise&lt;void&gt; {
-    try {
-      await this.cardRepository
-        .findOneOrFail({
-          where: [
-            {
-              id: command.cardId,
-            },
-          ],
-        })
-        .catch(() &#x3D;&gt; {
-          throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
-        })
-        .then(card &#x3D;&gt; {
-          this.cardRepository
-            .update(card.id, {
-              numberOfShares: card.numberOfShares + 1,
-            })
-            .then(() &#x3D;&gt; {
-              this.eventBus.publish(
-                new AddViewCountCardEvent({
-                  cardId: command.cardId,
-                }),
-              );
-            })
-            .catch(() &#x3D;&gt; {
-              throw new ErrorUpdateRuntimeException(&#x27;Error while updating in database&#x27;);
-            });
-        });
-    } catch (e) {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          handler: &#x27;AddViewCountCardCommandHandler&#x27;,
-          localisation: &#x27;card&#x27;,
-          error: e.message,
-        }),
-      );
-      throw e;
-    }
+    await this.cardRepository
+      .findOneOrFail({
+        where: [
+          {
+            id: command.cardId,
+          },
+        ],
+      })
+      .catch(async () &#x3D;&gt; {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            error: &#x27;Card not found&#x27;,
+            handler: &#x27;AddViewCountCardCommandHandler&#x27;,
+            localisation: &#x27;cardRepository.findOneOrFail&#x27;,
+          }),
+        );
+        throw new ErrorInvalidIdRuntimeException(&#x27;Card not found&#x27;);
+      })
+      .then(async card &#x3D;&gt; {
+        const cardView: CardViewEntity &#x3D; await this.cardViewRepository
+          .save({
+            card: card,
+          })
+          .catch(async error &#x3D;&gt; {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: &#x27;AddViewCountCardCommandHandler&#x27;,
+                localisation: &#x27;cardViewRepository.save&#x27;,
+              }),
+            );
+            throw new ErrorUpdateRuntimeException(&#x27;Error while updating in database&#x27;);
+          });
+        this.cardRepository
+          .update(card.id, {
+            numberOfShares: card.numberOfShares + 1,
+          })
+          .then(async () &#x3D;&gt; {
+            await this.eventBus.publish(
+              new AddViewCountCardEvent({
+                cardId: command.cardId,
+                cardView: cardView.id,
+                cardViewCount: card.numberOfShares + 1,
+              }),
+            );
+          })
+          .catch(error &#x3D;&gt; {
+            this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: &#x27;AddViewCountCardCommandHandler&#x27;,
+                localisation: &#x27;cardRepository.update&#x27;,
+              }),
+            );
+            throw new ErrorUpdateRuntimeException(&#x27;Error while updating in database&#x27;);
+          });
+      });
   }
 }
 </code></pre>

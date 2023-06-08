@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,33 +39,39 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >OccupationService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >OccupationService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/occupation/occupation.service.ts</code>
+            <code>src/api/occupation/application/occupation.service.ts</code>
         </p>
 
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -122,7 +128,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -133,7 +139,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/api/occupation/occupation.service.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/api/occupation/application/occupation.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -183,7 +189,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -211,7 +217,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:76</a></div>
+                            class="link-to-prism">src/api/occupation/application/occupation.service.ts:76</a></div>
                 </td>
             </tr>
 
@@ -282,7 +288,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:110</a></div>
+                            class="link-to-prism">src/api/occupation/application/occupation.service.ts:110</a></div>
                 </td>
             </tr>
 
@@ -353,7 +359,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:30</a></div>
+                            class="link-to-prism">src/api/occupation/application/occupation.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -392,7 +398,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:42</a></div>
+                            class="link-to-prism">src/api/occupation/application/occupation.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -463,7 +469,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:55</a></div>
+                            class="link-to-prism">src/api/occupation/application/occupation.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -534,7 +540,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:138</a></div>
+                            class="link-to-prism">src/api/occupation/application/occupation.service.ts:138</a></div>
                 </td>
             </tr>
 
@@ -605,7 +611,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:124</a></div>
+                            class="link-to-prism">src/api/occupation/application/occupation.service.ts:124</a></div>
                 </td>
             </tr>
 
@@ -676,7 +682,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/api/occupation/occupation.service.ts:92</a></div>
+                            class="link-to-prism">src/api/occupation/application/occupation.service.ts:92</a></div>
                 </td>
             </tr>
 
@@ -741,31 +747,31 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
 import { GetAllOccupationQuery } from &#x27;./cqrs/query/get-all-occupation.query&#x27;;
-import { QueryErrorHttpException } from &#x27;../../util/exception/custom-http-exception/query-error.http-exception&#x27;;
-import { OccupationDto } from &#x27;./domain/dto/occupation.dto&#x27;;
-import { OccupationResponse } from &#x27;./web/response/occupation-response&#x27;;
-import { OccupationNotFoundHttpException } from &#x27;../../util/exception/custom-http-exception/occupation-not-found.http-exception&#x27;;
+import { QueryErrorHttpException } from &#x27;../../../util/exception/custom-http-exception/query-error.http-exception&#x27;;
+import { OccupationDto } from &#x27;../domain/dto/occupation.dto&#x27;;
+import { OccupationResponse } from &#x27;../web/response/occupation-response&#x27;;
+import { OccupationNotFoundHttpException } from &#x27;../../../util/exception/custom-http-exception/occupation-not-found.http-exception&#x27;;
 import { GetOccupationByIdQuery } from &#x27;./cqrs/query/get-occupation-by-id.query&#x27;;
-import { GetOccupationWithCriteriaRequest } from &#x27;./web/request/get-occupation-with-criteria.request&#x27;;
+import { GetOccupationWithCriteriaRequest } from &#x27;../web/request/get-occupation-with-criteria.request&#x27;;
 import { GetOccupationWithCriteriaQuery } from &#x27;./cqrs/query/get-occupation-with-criteria.query&#x27;;
-import { GetOccupationWithCriteriaDto } from &#x27;./domain/dto/get-occupation-with-criteria.dto&#x27;;
+import { GetOccupationWithCriteriaDto } from &#x27;../domain/dto/get-occupation-with-criteria.dto&#x27;;
 import { CreateOccupationCommand } from &#x27;./cqrs/command/create-occupation.command&#x27;;
-import { CreateOccupationDto } from &#x27;./domain/dto/create-occupation.dto&#x27;;
+import { CreateOccupationDto } from &#x27;../domain/dto/create-occupation.dto&#x27;;
 import { InvalidClassException } from &#x27;@nestjs/core/errors/exceptions/invalid-class.exception&#x27;;
-import { DuplicateNameHttpException } from &#x27;../../util/exception/custom-http-exception/duplicate-name.http-exception&#x27;;
-import { CreateOccupationRequest } from &#x27;./web/request/create-occupation.request&#x27;;
-import { UpdateOccupationRequest } from &#x27;./web/request/update-occupation.request&#x27;;
-import { UpdateOccupationDto } from &#x27;./domain/dto/update-occupation.dto&#x27;;
+import { DuplicateNameHttpException } from &#x27;../../../util/exception/custom-http-exception/duplicate-name.http-exception&#x27;;
+import { CreateOccupationRequest } from &#x27;../web/request/create-occupation.request&#x27;;
+import { UpdateOccupationRequest } from &#x27;../web/request/update-occupation.request&#x27;;
+import { UpdateOccupationDto } from &#x27;../domain/dto/update-occupation.dto&#x27;;
 import { UpdateOccupationCommand } from &#x27;./cqrs/command/update-occupation.command&#x27;;
 import { DeleteOccupationCommand } from &#x27;./cqrs/command/delete-occupation.command&#x27;;
 import { SoftDeleteOccupationCommand } from &#x27;./cqrs/command/soft-delete-occupation.command&#x27;;
 import { RestoreOccupationCommand } from &#x27;./cqrs/command/restore-occupation.command&#x27;;
-import { InvalidParameterEntityHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
-import { EntityIsNotSoftDeletedHttpException } from &#x27;../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { EntityIsNotSoftDeletedHttpException } from &#x27;../../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
 
 @Injectable()
 export class OccupationService {

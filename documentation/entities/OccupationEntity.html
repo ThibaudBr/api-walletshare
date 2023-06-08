@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -37,21 +37,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >OccupationEntity</li>
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >OccupationEntity</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -62,7 +68,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -75,27 +81,36 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#cards" >cards</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#companies" >companies</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#createdAt" >createdAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#deletedAt" >deletedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#name" >name</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#profiles" >profiles</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#updatedAt" >updatedAt</a>
                             </li>
                         </ul>
@@ -111,7 +126,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -122,6 +137,7 @@
                 <td class="col-md-4">
                     <a name="cards"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>cards</b></span>
                         <a href="#cards"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -144,7 +160,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -157,6 +173,7 @@
                 <td class="col-md-4">
                     <a name="companies"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>companies</b></span>
                         <a href="#companies"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -179,7 +196,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -192,6 +209,7 @@
                 <td class="col-md-4">
                     <a name="createdAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>createdAt</b></span>
                         <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -214,7 +232,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -227,6 +245,7 @@
                 <td class="col-md-4">
                     <a name="deletedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>deletedAt</b></span>
                         <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -249,7 +268,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -262,6 +281,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -284,7 +304,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -297,6 +317,8 @@
                 <td class="col-md-4">
                     <a name="name"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>name</b></span>
                         <a href="#name"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -319,7 +341,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -332,6 +354,7 @@
                 <td class="col-md-4">
                     <a name="profiles"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>profiles</b></span>
                         <a href="#profiles"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -354,7 +377,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -367,6 +390,7 @@
                 <td class="col-md-4">
                     <a name="updatedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>updatedAt</b></span>
                         <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -389,7 +413,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/api/occupation/domain/entities/occupation.entity.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -400,7 +424,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   BaseEntity,
   Column,
@@ -411,58 +435,52 @@
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import CompanyEntity from &#x27;../../../entities-to-create/company.entity&#x27;;
+import { CompanyEntity } from &#x27;../../../company/domain/entities/company.entity&#x27;;
 import { ProfileEntity } from &#x27;../../../profile/domain/entities/profile.entity&#x27;;
 import { Length } from &#x27;class-validator&#x27;;
 import { CardEntity } from &#x27;../../../card/domain/entities/card.entity&#x27;;
 
 @Entity(&#x27;occupation&#x27;)
 export class OccupationEntity extends BaseEntity {
-  constructor(partial?: Partial&lt;OccupationEntity&gt;) {
-    super();
-    if (partial) {
-      Object.assign(this, partial);
-    }
-  }
-  // ______________________________________________________
-  // Properties
-  // ______________________________________________________
-
   @PrimaryGeneratedColumn(&#x27;uuid&#x27;)
   id: string;
 
+  // ______________________________________________________
+  // Properties
+  // ______________________________________________________
   @Column({ nullable: false })
   @Length(2, 20)
   name: string;
-
-  // ______________________________________________________
-  // Relations
-  // ______________________________________________________
-
   @ManyToMany(() &#x3D;&gt; ProfileEntity, profileEntity &#x3D;&gt; profileEntity.occupations, {
     cascade: [&#x27;soft-remove&#x27;, &#x27;remove&#x27;],
     onDelete: &#x27;CASCADE&#x27;,
   })
   profiles: ProfileEntity[];
 
+  // ______________________________________________________
+  // Relations
+  // ______________________________________________________
   @ManyToMany(() &#x3D;&gt; CompanyEntity, companyEntity &#x3D;&gt; companyEntity.occupations)
   companies: CompanyEntity[];
-
   @ManyToMany(() &#x3D;&gt; CardEntity, cardEntity &#x3D;&gt; cardEntity.occupations)
   cards: CardEntity[];
+  @CreateDateColumn()
+  createdAt: Date;
 
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
-
-  @CreateDateColumn()
-  createdAt: Date;
-
   @UpdateDateColumn()
   updatedAt: Date;
-
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial&lt;OccupationEntity&gt;) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }
 </code></pre>
     </div>

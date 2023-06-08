@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >DeleteSocialNetworkCommandHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >DeleteSocialNetworkCommandHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/social-network/cqrs/handler/command/delete-social-network.command-handler.ts</code>
+            <code>src/api/social-network/application/cqrs/handler/command/delete-social-network.command-handler.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -105,7 +111,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -116,7 +122,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/social-network/cqrs/handler/command/delete-social-network.command-handler.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/social-network/application/cqrs/handler/command/delete-social-network.command-handler.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -167,7 +173,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -195,7 +201,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/api/social-network/cqrs/handler/command/delete-social-network.command-handler.ts:17</a></div>
+                            class="link-to-prism">src/api/social-network/application/cqrs/handler/command/delete-social-network.command-handler.ts:17</a></div>
                 </td>
             </tr>
 
@@ -252,20 +258,20 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommandHandler, EventBus, ICommandHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { DeleteSocialNetworkCommand } from &#x27;../../command/delete-social-network.command&#x27;;
-import { SocialNetworkEntity } from &#x27;../../../domain/entities/social-network.entity&#x27;;
+import { SocialNetworkEntity } from &#x27;../../../../domain/entities/social-network.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { DeleteSocialNetworkEvent } from &#x27;../../event/delete-social-network.event&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @CommandHandler(DeleteSocialNetworkCommand)
 export class DeleteSocialNetworkCommandHandler implements ICommandHandler&lt;DeleteSocialNetworkCommand&gt; {
   constructor(
     @InjectRepository(SocialNetworkEntity)
     private readonly socialNetworkRepository: Repository&lt;SocialNetworkEntity&gt;,
-
     private readonly eventBus: EventBus,
   ) {}
 
@@ -285,7 +291,14 @@ export class DeleteSocialNetworkCommandHandler implements ICommandHandler&lt;Del
             throw new Error(&#x27;SocialNetwork not deleted&#x27;);
           });
       })
-      .catch(() &#x3D;&gt; {
+      .catch(async error &#x3D;&gt; {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: &#x27;socialNetworkRepository.findOneOrFail&#x27;,
+            handler: &#x27;DeleteSocialNetworkCommandHandler&#x27;,
+            error: error.message,
+          }),
+        );
         throw new Error(&#x27;SocialNetwork not found&#x27;);
       });
   }

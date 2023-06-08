@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -37,32 +37,38 @@
 
 
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >AddressEntity</li>
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >AddressEntity</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/entities-to-create/address.entity.ts</code>
+            <code>src/api/address/domain/entities/address.entity.ts</code>
         </p>
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -75,45 +81,73 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#city" >city</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#company" >company</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#country" >country</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#createdAt" >createdAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#deletedAt" >deletedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#isActive" >isActive</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#latitude" >latitude</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#longitude" >longitude</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#state" >state</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#street" >street</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#updatedAt" >updatedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#user" >user</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#zipCode" >zipCode</a>
                             </li>
                         </ul>
@@ -129,7 +163,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -140,6 +174,9 @@
                 <td class="col-md-4">
                     <a name="city"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>city</b></span>
                         <a href="#city"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -162,7 +199,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/api/entities-to-create/address.entity.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -175,6 +212,7 @@
                 <td class="col-md-4">
                     <a name="company"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>company</b></span>
                         <a href="#company"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -197,7 +235,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/api/entities-to-create/address.entity.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -210,6 +248,9 @@
                 <td class="col-md-4">
                     <a name="country"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>country</b></span>
                         <a href="#country"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -232,7 +273,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/entities-to-create/address.entity.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -245,6 +286,7 @@
                 <td class="col-md-4">
                     <a name="createdAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>createdAt</b></span>
                         <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -267,7 +309,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/api/entities-to-create/address.entity.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -280,6 +322,7 @@
                 <td class="col-md-4">
                     <a name="deletedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>deletedAt</b></span>
                         <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -302,7 +345,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/api/entities-to-create/address.entity.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -315,6 +358,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -337,7 +381,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/entities-to-create/address.entity.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -350,6 +394,7 @@
                 <td class="col-md-4">
                     <a name="isActive"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>isActive</b></span>
                         <a href="#isActive"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -372,7 +417,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/api/entities-to-create/address.entity.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -385,6 +430,9 @@
                 <td class="col-md-4">
                     <a name="latitude"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>latitude</b></span>
                         <a href="#latitude"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -407,7 +455,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/api/entities-to-create/address.entity.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -420,6 +468,9 @@
                 <td class="col-md-4">
                     <a name="longitude"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>longitude</b></span>
                         <a href="#longitude"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -442,7 +493,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/entities-to-create/address.entity.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -455,6 +506,9 @@
                 <td class="col-md-4">
                     <a name="state"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>state</b></span>
                         <a href="#state"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -477,7 +531,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/api/entities-to-create/address.entity.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -490,6 +544,9 @@
                 <td class="col-md-4">
                     <a name="street"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>street</b></span>
                         <a href="#street"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -512,7 +569,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/api/entities-to-create/address.entity.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -525,6 +582,7 @@
                 <td class="col-md-4">
                     <a name="updatedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>updatedAt</b></span>
                         <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -547,7 +605,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/api/entities-to-create/address.entity.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -560,6 +618,7 @@
                 <td class="col-md-4">
                     <a name="user"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>user</b></span>
                         <a href="#user"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -582,7 +641,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/api/entities-to-create/address.entity.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -595,6 +654,9 @@
                 <td class="col-md-4">
                     <a name="zipCode"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>zipCode</b></span>
                         <a href="#zipCode"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -617,7 +679,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/api/entities-to-create/address.entity.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/api/address/domain/entities/address.entity.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -628,7 +690,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Column,
   CreateDateColumn,
@@ -638,8 +700,8 @@
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import CompanyEntity from &#x27;./company.entity&#x27;;
-import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
+import { CompanyEntity } from &#x27;../../../company/domain/entities/company.entity&#x27;;
+import { UserEntity } from &#x27;../../../user/domain/entities/user.entity&#x27;;
 import { IsNotEmpty, IsString } from &#x27;class-validator&#x27;;
 
 @Entity({ name: &#x27;address&#x27; })
@@ -699,6 +761,12 @@ export class AddressEntity {
 
   @ManyToOne(() &#x3D;&gt; CompanyEntity, companyEntity &#x3D;&gt; companyEntity.addresses, { nullable: true, onDelete: &#x27;CASCADE&#x27; })
   company: CompanyEntity;
+
+  constructor(partial?: Partial&lt;AddressEntity&gt;) {
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }
 </code></pre>
     </div>

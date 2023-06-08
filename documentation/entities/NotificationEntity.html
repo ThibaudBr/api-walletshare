@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -37,32 +37,38 @@
 
 
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >NotificationEntity</li>
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >NotificationEntity</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/entities-to-create/notification.entity.ts</code>
+            <code>src/api/notification/domain/entities/notification.entity.ts</code>
         </p>
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -75,39 +81,55 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#conversation" >conversation</a>
-                            </li>
-                            <li>
+                                    <span class="modifier"></span>
                                 <a href="#createdAt" >createdAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#deletedAt" >deletedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#description" >description</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                <a href="#group" >group</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#isRead" >isRead</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#link" >link</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#profile" >profile</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#title" >title</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#type" >type</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#updatedAt" >updatedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#user" >user</a>
                             </li>
                         </ul>
@@ -123,7 +145,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -132,43 +154,9 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="conversation"></a>
-                    <span class="name">
-                        <span ><b>conversation</b></span>
-                        <a href="#conversation"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/ConversationEntity.html" target="_self" >ConversationEntity</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ManyToOne(undefined, conversationEntity &#x3D;&gt; conversationEntity.notifications, {nullable: true, onDelete: &#x27;CASCADE&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:58</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="createdAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>createdAt</b></span>
                         <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -191,7 +179,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -204,6 +192,7 @@
                 <td class="col-md-4">
                     <a name="deletedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>deletedAt</b></span>
                         <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -226,7 +215,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -239,6 +228,9 @@
                 <td class="col-md-4">
                     <a name="description"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>description</b></span>
                         <a href="#description"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -261,7 +253,43 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="group"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>group</b></span>
+                        <a href="#group"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/GroupEntity.html" target="_self" >GroupEntity</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToOne(undefined, groupEntity &#x3D;&gt; groupEntity.notifications, {nullable: true, onDelete: &#x27;CASCADE&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -274,6 +302,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -296,7 +325,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -309,6 +338,7 @@
                 <td class="col-md-4">
                     <a name="isRead"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>isRead</b></span>
                         <a href="#isRead"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -331,7 +361,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -344,6 +374,7 @@
                 <td class="col-md-4">
                     <a name="link"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>link</b></span>
                         <a href="#link"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -366,7 +397,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -379,6 +410,7 @@
                 <td class="col-md-4">
                     <a name="profile"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>profile</b></span>
                         <a href="#profile"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -401,7 +433,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -414,6 +446,9 @@
                 <td class="col-md-4">
                     <a name="title"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>title</b></span>
                         <a href="#title"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -436,7 +471,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -449,6 +484,7 @@
                 <td class="col-md-4">
                     <a name="type"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>type</b></span>
                         <a href="#type"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -471,7 +507,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -484,6 +520,7 @@
                 <td class="col-md-4">
                     <a name="updatedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>updatedAt</b></span>
                         <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -506,7 +543,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -519,6 +556,7 @@
                 <td class="col-md-4">
                     <a name="user"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>user</b></span>
                         <a href="#user"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -541,7 +579,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/api/entities-to-create/notification.entity.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/api/notification/domain/entities/notification.entity.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -552,8 +590,9 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -562,14 +601,14 @@
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import { NotificationTypeEnum } from &#x27;./enum/notification-type.enum&#x27;;
-import { ProfileEntity } from &#x27;../profile/domain/entities/profile.entity&#x27;;
-import { ConversationEntity } from &#x27;./conversation.entity&#x27;;
+import { NotificationTypeEnum } from &#x27;../enum/notification-type.enum&#x27;;
+import { ProfileEntity } from &#x27;../../../profile/domain/entities/profile.entity&#x27;;
 import { IsNotEmpty, IsString } from &#x27;class-validator&#x27;;
-import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
+import { UserEntity } from &#x27;../../../user/domain/entities/user.entity&#x27;;
+import { GroupEntity } from &#x27;../../../groupe/domain/entities/group.entity&#x27;;
 
 @Entity({ name: &#x27;notification&#x27; })
-export class NotificationEntity {
+export class NotificationEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -606,11 +645,11 @@ export class NotificationEntity {
   @ManyToOne(() &#x3D;&gt; ProfileEntity, profileEntity &#x3D;&gt; profileEntity.notifications, { nullable: true, onDelete: &#x27;CASCADE&#x27; })
   profile: ProfileEntity;
 
-  @ManyToOne(() &#x3D;&gt; ConversationEntity, conversationEntity &#x3D;&gt; conversationEntity.notifications, {
+  @ManyToOne(() &#x3D;&gt; GroupEntity, groupEntity &#x3D;&gt; groupEntity.notifications, {
     nullable: true,
     onDelete: &#x27;CASCADE&#x27;,
   })
-  conversation: ConversationEntity;
+  group: GroupEntity;
 
   // ______________________________________________________
   // Timestamps
@@ -624,6 +663,13 @@ export class NotificationEntity {
 
   @DeleteDateColumn({ name: &#x27;deleted_at&#x27;, type: &#x27;timestamp&#x27;, nullable: true })
   deletedAt: Date;
+
+  constructor(partial?: Partial&lt;NotificationEntity&gt;) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }
 </code></pre>
     </div>

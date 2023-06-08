@@ -1,0 +1,1311 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api-walletshare documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">api-walletshare documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >AddressService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/api/address/application/address.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createAddress" >createAddress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAddressById" >getAddressById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAddressByIdAdmin" >getAddressByIdAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllAddress" >getAllAddress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#isAbleToUpdateAddress" >isAbleToUpdateAddress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeAddress" >removeAddress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#restoreAddress" >restoreAddress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#softRemoveAddress" >softRemoveAddress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#softRemoveAddressByUser" >softRemoveAddressByUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateAddressByAdmin" >updateAddressByAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateAddressByUser" >updateAddressByUser</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(commandBus: CommandBus, queryBus: QueryBus)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/api/address/application/address.service.ts:21</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>commandBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>CommandBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>queryBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>QueryBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createAddress"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createAddress</b></span>
+                        <a href="#createAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createAddress(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createAddressRequest: <a href="../classes/CreateAddressRequest.html" target="_self">CreateAddressRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/api/address/application/address.service.ts:24</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>createAddressRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateAddressRequest.html" target="_self" >CreateAddressRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAddressById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAddressById</b></span>
+                        <a href="#getAddressById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAddressById(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, addressId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/api/address/application/address.service.ts:148</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>addressId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/AddressResponse.html" target="_self" >Promise&lt;AddressResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAddressByIdAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAddressByIdAdmin</b></span>
+                        <a href="#getAddressByIdAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAddressByIdAdmin(addressId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/api/address/application/address.service.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>addressId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/AddressResponse.html" target="_self" >Promise&lt;AddressResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllAddress"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllAddress</b></span>
+                        <a href="#getAllAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllAddress()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/api/address/application/address.service.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/AddressResponse.html" target="_self" >Promise&lt;AddressResponse[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAbleToUpdateAddress"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>isAbleToUpdateAddress</b></span>
+                        <a href="#isAbleToUpdateAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isAbleToUpdateAddress(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, addressId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/api/address/application/address.service.ts:175</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>addressId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAddress"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeAddress</b></span>
+                        <a href="#removeAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeAddress(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/api/address/application/address.service.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="restoreAddress"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>restoreAddress</b></span>
+                        <a href="#restoreAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>restoreAddress(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/api/address/application/address.service.ts:61</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softRemoveAddress"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>softRemoveAddress</b></span>
+                        <a href="#softRemoveAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softRemoveAddress(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/api/address/application/address.service.ts:74</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softRemoveAddressByUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>softRemoveAddressByUser</b></span>
+                        <a href="#softRemoveAddressByUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softRemoveAddressByUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, addressId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/api/address/application/address.service.ts:87</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>addressId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAddressByAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateAddressByAdmin</b></span>
+                        <a href="#updateAddressByAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateAddressByAdmin(addressId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateAddressRequest: <a href="../classes/UpdateAddressRequest.html" target="_self">UpdateAddressRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/api/address/application/address.service.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>addressId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateAddressRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateAddressRequest.html" target="_self" >UpdateAddressRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAddressByUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateAddressByUser</b></span>
+                        <a href="#updateAddressByUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateAddressByUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, addressId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateAddressRequest: <a href="../classes/UpdateAddressRequest.html" target="_self">UpdateAddressRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">src/api/address/application/address.service.ts:120</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>addressId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateAddressRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateAddressRequest.html" target="_self" >UpdateAddressRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
+import { CreateAddressCommand } from &#x27;./cqrs/command/create-address.command&#x27;;
+import { CreateAddressRequest } from &#x27;../web/request/create-address.request&#x27;;
+import { InvalidIdHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { IsAbleToUpdateAddressQuery } from &#x27;./cqrs/query/is-able-to-update-address.query&#x27;;
+import { IsRoleInCompanyQuery } from &#x27;../../company/application/cqrs/query/is-role-in-company.query&#x27;;
+import { RoleCompanyEmployeeEnum } from &#x27;../../company/domain/enum/role-company-employee.enum&#x27;;
+import { UnauthorizedRequestHttpException } from &#x27;../../../util/exception/custom-http-exception/unauthorized-request.http-exception&#x27;;
+import { AddressResponse } from &#x27;../web/response/address.response&#x27;;
+import { GetAllAddressQuery } from &#x27;./cqrs/query/get-all-address.query&#x27;;
+import { GetAddressByIdQuery } from &#x27;./cqrs/query/get-address-by-id.query&#x27;;
+import { RemoveAddressCommand } from &#x27;./cqrs/command/remove-address.command&#x27;;
+import { UpdateAddressCommand } from &#x27;./cqrs/command/update-address.command&#x27;;
+import { UpdateAddressRequest } from &#x27;../web/request/update-address.request&#x27;;
+import { RestoreAddressCommand } from &#x27;./cqrs/command/restore-address.command&#x27;;
+import { SoftRemoveAddressCommand } from &#x27;./cqrs/command/soft-remove-address.command&#x27;;
+
+@Injectable()
+export class AddressService {
+  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
+
+  async createAddress(userId: string, createAddressRequest: CreateAddressRequest): Promise&lt;string&gt; {
+    if (createAddressRequest.companyId) {
+      if (
+        !(await this.commandBus.execute(
+          new IsRoleInCompanyQuery({
+            userId: userId,
+            companyId: createAddressRequest.companyId,
+            roles: [RoleCompanyEmployeeEnum.OWNER, RoleCompanyEmployeeEnum.ADMIN],
+          }),
+        ))
+      ) {
+        throw new UnauthorizedRequestHttpException();
+      }
+    }
+    return await this.commandBus.execute(new CreateAddressCommand(createAddressRequest)).catch(error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new InvalidIdHttpException(&#x27;for user&#x27;);
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;for company&#x27;);
+      if (error.message instanceof Array) throw new InvalidParameterEntityHttpException(error);
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;User or Company must be provided&#x27;)
+        throw new InvalidIdHttpException(&#x27;must provide id for user or company&#x27;);
+      throw error;
+    });
+  }
+
+  async removeAddress(id: string): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new RemoveAddressCommand({
+          addressId: id,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        throw error;
+      });
+  }
+
+  async restoreAddress(id: string): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new RestoreAddressCommand({
+          addressId: id,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        throw error;
+      });
+  }
+
+  async softRemoveAddress(id: string): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new SoftRemoveAddressCommand({
+          addressId: id,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        throw error;
+      });
+  }
+
+  async softRemoveAddressByUser(userId: string, addressId: string): Promise&lt;void&gt; {
+    if (!(await this.isAbleToUpdateAddress(userId, addressId))) throw new UnauthorizedRequestHttpException();
+    await this.commandBus
+      .execute(
+        new SoftRemoveAddressCommand({
+          addressId: addressId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        throw error;
+      });
+  }
+
+  async updateAddressByAdmin(addressId: string, updateAddressRequest: UpdateAddressRequest): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new UpdateAddressCommand({
+          addressId: addressId,
+          addressDto: updateAddressRequest,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new InvalidIdHttpException(&#x27;for user&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;for company&#x27;);
+        if (error.message instanceof Array) throw new InvalidParameterEntityHttpException(error);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User or Company must be provided&#x27;)
+          throw new InvalidIdHttpException(&#x27;must provide id for user or company&#x27;);
+        throw error;
+      });
+  }
+
+  async updateAddressByUser(
+    userId: string,
+    addressId: string,
+    updateAddressRequest: UpdateAddressRequest,
+  ): Promise&lt;void&gt; {
+    if (!(await this.isAbleToUpdateAddress(userId, addressId))) throw new UnauthorizedRequestHttpException();
+    await this.commandBus
+      .execute(
+        new UpdateAddressCommand({
+          addressId: addressId,
+          addressDto: updateAddressRequest,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new InvalidIdHttpException(&#x27;for user&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;for company&#x27;);
+        if (error.message instanceof Array) throw new InvalidParameterEntityHttpException(error);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User or Company must be provided&#x27;)
+          throw new InvalidIdHttpException(&#x27;must provide id for user or company&#x27;);
+        throw error;
+      });
+  }
+
+  async getAllAddress(): Promise&lt;AddressResponse[]&gt; {
+    return await this.queryBus.execute(new GetAllAddressQuery());
+  }
+
+  async getAddressById(userId: string, addressId: string): Promise&lt;AddressResponse&gt; {
+    if (!(await this.isAbleToUpdateAddress(userId, addressId))) throw new UnauthorizedRequestHttpException();
+    return await this.queryBus
+      .execute(
+        new GetAddressByIdQuery({
+          addressId: addressId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        throw error;
+      });
+  }
+
+  async getAddressByIdAdmin(addressId: string): Promise&lt;AddressResponse&gt; {
+    return await this.queryBus
+      .execute(
+        new GetAddressByIdQuery({
+          addressId: addressId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        throw error;
+      });
+  }
+
+  async isAbleToUpdateAddress(userId: string, addressId: string): Promise&lt;boolean&gt; {
+    return await this.queryBus
+      .execute(
+        new IsAbleToUpdateAddressQuery({
+          userId: userId,
+          addressId: addressId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Address not found&#x27;) throw new InvalidIdHttpException(&#x27;for address&#x27;);
+        throw error;
+      });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AddressService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

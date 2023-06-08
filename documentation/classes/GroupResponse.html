@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,21 +43,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >GroupResponse</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >GroupResponse</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -70,7 +76,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -100,6 +106,7 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#groupRequests" >groupRequests</a>
                             </li>
                             <li>
@@ -130,7 +137,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -141,7 +148,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/api/groupe/web/response/group.response.ts:3</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/groupe/web/response/group.response.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -179,7 +186,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -205,7 +212,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/groupe/web/response/group.response.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/api/groupe/web/response/group.response.ts:6</a></div>
                         </td>
                     </tr>
 
@@ -233,7 +240,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/groupe/web/response/group.response.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/api/groupe/web/response/group.response.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -261,7 +268,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/groupe/web/response/group.response.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/groupe/web/response/group.response.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -276,6 +283,7 @@
                     <span class="name">
                             <span class="modifier">Public</span>
                             <span class="modifier">Readonly</span>
+                            <span class="modifier">Optional</span>
                         <span ><b>groupRequests</b></span>
                         <a href="#groupRequests"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -289,7 +297,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/api/groupe/web/response/group.response.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/api/groupe/web/response/group.response.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -317,7 +325,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/api/groupe/web/response/group.response.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/api/groupe/web/response/group.response.ts:4</a></div>
                         </td>
                     </tr>
 
@@ -345,7 +353,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/groupe/web/response/group.response.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/api/groupe/web/response/group.response.ts:5</a></div>
                         </td>
                     </tr>
 
@@ -373,7 +381,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/groupe/web/response/group.response.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/api/groupe/web/response/group.response.ts:7</a></div>
                         </td>
                     </tr>
 
@@ -391,22 +399,21 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GroupMembershipResponse } from &#x27;./group-membership.response&#x27;;
 
 export class GroupResponse {
-  constructor(partial: Partial&lt;GroupResponse&gt;) {
-    Object.assign(this, partial);
-  }
-
   public readonly id: string;
   public readonly name: string;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
   public readonly deletedAt: Date;
-
   public readonly groupMemberships: GroupMembershipResponse[];
-  public readonly groupRequests: GroupMembershipResponse[];
+  public readonly groupRequests?: GroupMembershipResponse[];
+
+  constructor(partial: Partial&lt;GroupResponse&gt;) {
+    Object.assign(this, partial);
+  }
 }
 </code></pre>
     </div>

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +39,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >DatabaseConfiguration</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >DatabaseConfiguration</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -65,7 +71,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -93,8 +99,56 @@
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(configService: ConfigService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/util/config/database.configuration.ts:54</a></div>
+                            </td>
+                        </tr>
 
-            <section>
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -119,8 +173,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/util/config/database.configuration.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/util/config/database.configuration.ts:57</a></div>
                 </td>
             </tr>
 
@@ -141,154 +195,322 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from &#x27;@nestjs/typeorm&#x27;;
-import { join } from &#x27;path&#x27;;
 import { Injectable } from &#x27;@nestjs/common&#x27;;
-import * as process from &#x27;process&#x27;;
 import { logger } from &#x27;./winston-logger.config&#x27;;
-import CompanyEntity from &#x27;../../api/entities-to-create/company.entity&#x27;;
-import { CompanyEmployeeEntity } from &#x27;../../api/entities-to-create/company-employee.entity&#x27;;
+import { CompanyEntity } from &#x27;../../api/company/domain/entities/company.entity&#x27;;
+import { CompanyEmployeeEntity } from &#x27;../../api/company/domain/entities/company-employee.entity&#x27;;
 import { ConnectedCardEntity } from &#x27;../../api/card/domain/entities/connected-card.entity&#x27;;
-import { ConversationEntity } from &#x27;../../api/entities-to-create/conversation.entity&#x27;;
-import { DiscountCodeEntity } from &#x27;../../api/entities-to-create/discount-code.entity&#x27;;
+import { ConversationEntity } from &#x27;../../api/conversation/domain/entities/conversation.entity&#x27;;
 import { GroupEntity } from &#x27;../../api/groupe/domain/entities/group.entity&#x27;;
 import { GroupMembershipEntity } from &#x27;../../api/groupe/domain/entities/group-membership.entity&#x27;;
-import { InvoicesEntity } from &#x27;../../api/entities-to-create/invoices.entity&#x27;;
-import { JoinedConversation } from &#x27;../../api/entities-to-create/joined-conversation.entity&#x27;;
-import { MediaEntity } from &#x27;../../api/entities-to-create/media.entity&#x27;;
-import { MessageEntity } from &#x27;../../api/entities-to-create/message.entity&#x27;;
+import { InvoicesEntity } from &#x27;../../api/payment/invoices/domain/entities/invoices.entity&#x27;;
+import { JoinedConversationEntity } from &#x27;../../api/conversation/domain/entities/joined-conversation.entity&#x27;;
+import { MediaEntity } from &#x27;../../api/media/domain/entities/media.entity&#x27;;
+import { MessageEntity } from &#x27;../../api/conversation/domain/entities/message.entity&#x27;;
 import { OccupationEntity } from &#x27;../../api/occupation/domain/entities/occupation.entity&#x27;;
-import { PlanEntity } from &#x27;../../api/entities-to-create/plan.entity&#x27;;
+import { ProductEntity } from &#x27;../../api/payment/product/domain/entities/product.entity&#x27;;
 import { ProfileEntity } from &#x27;../../api/profile/domain/entities/profile.entity&#x27;;
 import { SocialNetworkEntity } from &#x27;../../api/social-network/domain/entities/social-network.entity&#x27;;
-import StripEventEntity from &#x27;../../api/entities-to-create/strip-event.entity&#x27;;
-import { SubscriptionEntity } from &#x27;../../api/entities-to-create/subscription.entity&#x27;;
+import StripeEventEntity from &#x27;../../api/payment/stripe-webhook/domain/entities/stripe-event.entity&#x27;;
+import { SubscriptionEntity } from &#x27;../../api/payment/subscription/domain/entities/subscription.entity&#x27;;
 import { UserEntity } from &#x27;../../api/user/domain/entities/user.entity&#x27;;
-import { ReferralCodeEntity } from &#x27;../../api/entities-to-create/referal-code.entity&#x27;;
-import { NotificationEntity } from &#x27;../../api/entities-to-create/notification.entity&#x27;;
-import { AddressEntity } from &#x27;../../api/entities-to-create/address.entity&#x27;;
+import { ReferralCodeEntity } from &#x27;../../api/payment/subscription/domain/entities/referal-code.entity&#x27;;
+import { NotificationEntity } from &#x27;../../api/notification/domain/entities/notification.entity&#x27;;
+import { AddressEntity } from &#x27;../../api/address/domain/entities/address.entity&#x27;;
 import { CardEntity } from &#x27;../../api/card/domain/entities/card.entity&#x27;;
-import { ProfileSubscriber } from &#x27;../../api/profile/subscriber/profile.subscriber&#x27;;
-import { ConnectedCardSubscriber } from &#x27;../../api/card/subscriber/connected-card.subscriber&#x27;;
+import { ProfileSubscriber } from &#x27;../../api/profile/application/subscriber/profile.subscriber&#x27;;
+import { ConnectedCardSubscriber } from &#x27;../../api/card/application/subscriber/connected-card.subscriber&#x27;;
+import { ProfileCardSubscriber } from &#x27;../../api/card/application/subscriber/profile-card.subscriber&#x27;;
+import { GroupMembershipCardSubscriber } from &#x27;../../api/groupe/application/subscriber/group-card.subscriber&#x27;;
+import { GroupGroupMembershipSubscriber } from &#x27;../../api/groupe/application/subscriber/group-group-membership.subscriber&#x27;;
+import { CardViewSubscriber } from &#x27;../../api/card/application/subscriber/card-view.subscriber&#x27;;
+import { CardViewEntity } from &#x27;../../api/card/domain/entities/card-view.entity&#x27;;
+import { CompanyAddressSubscriber } from &#x27;../../api/address/application/subscriber/company-address.subscriber&#x27;;
+import { UserAddressSubscriber } from &#x27;../../api/address/application/subscriber/user-address.subscriber&#x27;;
+import { CompanyCompanyEmployeeSubscriber } from &#x27;../../api/company/application/subscriber/company-company-employee.subscriber&#x27;;
+import { ProfileCompanyEmployeeSubscriber } from &#x27;../../api/company/application/subscriber/profile-company-employee.subscriber&#x27;;
+import { CardMediaSubscriber } from &#x27;../../api/media/application/subscriber/card-media.subscriber&#x27;;
+import { CompanyMediaSubscriber } from &#x27;../../api/media/application/subscriber/company-media.subscriber&#x27;;
+import { ProfileMediaSubscriber } from &#x27;../../api/media/application/subscriber/profile-media.subscriber&#x27;;
+import { UserLoginEntity } from &#x27;../../api/user/domain/entities/user-login.entity&#x27;;
+import { ConversationConnectedCardSubscriber } from &#x27;../../api/conversation/application/subscriber/conversation-connected-card.subscriber&#x27;;
+import { ConversationGroupSubscriber } from &#x27;../../api/conversation/application/subscriber/conversation-group.subscriber&#x27;;
+import { MessageConversationSubscriber } from &#x27;../../api/conversation/application/subscriber/message-conversation.subscriber&#x27;;
+import { NotificationGroupSubscriber } from &#x27;../../api/notification/application/subscriber/notification-group.subscriber&#x27;;
+import { NotificationGroupMembershipSubscriber } from &#x27;../../api/notification/application/subscriber/notification-group-membership.subscriber&#x27;;
+import { NotificationMessageSubscriber } from &#x27;../../api/notification/application/subscriber/notification-message.subscriber&#x27;;
+import { NotificationProfileSubscriber } from &#x27;../../api/notification/application/subscriber/notification-profile.subscriber&#x27;;
+import { NotificationUserSubscriber } from &#x27;../../api/notification/application/subscriber/notification-user.subscriber&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import { PriceEntity } from &#x27;../../api/payment/price/domain/entities/price.entity&#x27;;
+import { CardPresetEntity } from &#x27;../../api/company/domain/entities/card-preset.entity&#x27;;
+import { CompanyCardPresetSubscriber } from &#x27;../../api/company/application/subscriber/company-card-preset.subscriber&#x27;;
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
+  constructor(private readonly configService: ConfigService) {}
+
   createTypeOrmOptions(): TypeOrmModuleOptions {
     try {
-      if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;prod&#x27;) {
+      if (this.configService.get(&#x27;NODE_ENV&#x27;) &#x3D;&#x3D;&#x3D; &#x27;prod&#x27;) {
         logger.info(&#x27;NODE_ENV is prod&#x27;);
         return {
           type: &#x27;postgres&#x27;,
-          host: process.env.TYPEORM_HOST_PROD,
-          port: process.env.TYPEORM_PORT_PROD ? parseInt(process.env.TYPEORM_PORT_PROD) : 5432,
-          username: process.env.TYPEORM_USERNAME_PROD,
-          password: process.env.TYPEORM_PASSWORD_PROD,
-          database: process.env.TYPEORM_DATABASE_PROD,
-          ssl: true,
-          extra: {
-            ssl: {
-              rejectUnauthorized: false,
-            },
-          },
-          entities: [join(__dirname, &#x27;**/*.entity{.ts,.js}&#x27;)],
-          synchronize: process.env.TYPEORM_SYNCHRONIZE_PROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-          logging: process.env.TYPEORM_LOGGING_PROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
+          host: this.configService.get(&#x27;TYPEORM_HOST_PROD&#x27;),
+          port: this.configService.get(&#x27;TYPEORM_PORT_PROD&#x27;),
+          username: this.configService.get(&#x27;TYPEORM_USERNAME_PROD&#x27;),
+          password: this.configService.get(&#x27;TYPEORM_PASSWORD_PROD&#x27;),
+          database: this.configService.get(&#x27;TYPEORM_DATABASE_PROD&#x27;),
+          entities: [
+            CardEntity,
+            CompanyEntity,
+            CompanyEmployeeEntity,
+            ConnectedCardEntity,
+            ConversationEntity,
+            GroupEntity,
+            GroupMembershipEntity,
+            InvoicesEntity,
+            JoinedConversationEntity,
+            MediaEntity,
+            MessageEntity,
+            OccupationEntity,
+            ProductEntity,
+            ProfileEntity,
+            SocialNetworkEntity,
+            StripeEventEntity,
+            SubscriptionEntity,
+            UserEntity,
+            NotificationEntity,
+            ReferralCodeEntity,
+            AddressEntity,
+            CardViewEntity,
+            UserLoginEntity,
+            PriceEntity,
+            CardPresetEntity,
+          ],
+          synchronize: this.configService.get(&#x27;TYPEORM_SYNCHRONIZE_PROD&#x27;),
+          logging: this.configService.get(&#x27;TYPEORM_LOGGING_PROD&#x27;),
+          subscribers: [
+            ProfileSubscriber,
+            ConnectedCardSubscriber,
+            ProfileCardSubscriber,
+            GroupMembershipCardSubscriber,
+            GroupGroupMembershipSubscriber,
+            CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
+            CardMediaSubscriber,
+            CompanyMediaSubscriber,
+            ProfileMediaSubscriber,
+            ConversationConnectedCardSubscriber,
+            ConversationGroupSubscriber,
+            MessageConversationSubscriber,
+            NotificationGroupSubscriber,
+            NotificationGroupMembershipSubscriber,
+            NotificationMessageSubscriber,
+            NotificationProfileSubscriber,
+            NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
+          ],
         };
-      } else if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;pprod&#x27;) {
+      } else if (this.configService.get(&#x27;NODE_ENV&#x27;) &#x3D;&#x3D;&#x3D; &#x27;pprod&#x27;) {
         logger.info(&#x27;NODE_ENV is pprod&#x27;);
         return {
           type: &#x27;postgres&#x27;,
-          host: process.env.TYPEORM_HOST_PPROD,
-          port: process.env.TYPEORM_PORT_PPROD ? parseInt(process.env.TYPEORM_PORT_PPROD) : 5432,
-          username: process.env.TYPEORM_USERNAME_PPROD,
-          password: process.env.TYPEORM_PASSWORD_PPROD,
-          database: process.env.TYPEORM_DATABASE_PPROD,
+          host: this.configService.get(&#x27;TYPEORM_HOST_PPROD&#x27;),
+          port: this.configService.get(&#x27;TYPEORM_PORT_PPROD&#x27;),
+          username: this.configService.get(&#x27;TYPEORM_USERNAME_PPROD&#x27;),
+          password: this.configService.get(&#x27;TYPEORM_PASSWORD_PPROD&#x27;),
+          database: this.configService.get(&#x27;TYPEORM_DATABASE_PPROD&#x27;),
           ssl: true,
           extra: {
             ssl: {
               rejectUnauthorized: false,
             },
           },
-          entities: [join(__dirname, &#x27;**&#x27;, &#x27;*.entity.{ts,js}&#x27;)],
-          synchronize: process.env.TYPEORM_SYNCHRONIZE_PPROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-          logging: process.env.TYPEORM_LOGGING_PPROD &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
+          entities: [
+            CardEntity,
+            CompanyEntity,
+            CompanyEmployeeEntity,
+            ConnectedCardEntity,
+            ConversationEntity,
+            GroupEntity,
+            GroupMembershipEntity,
+            InvoicesEntity,
+            JoinedConversationEntity,
+            MediaEntity,
+            MessageEntity,
+            OccupationEntity,
+            ProductEntity,
+            ProfileEntity,
+            SocialNetworkEntity,
+            StripeEventEntity,
+            SubscriptionEntity,
+            UserEntity,
+            NotificationEntity,
+            ReferralCodeEntity,
+            AddressEntity,
+            CardViewEntity,
+            UserLoginEntity,
+            PriceEntity,
+            CardPresetEntity,
+          ],
+          synchronize: this.configService.get(&#x27;TYPEORM_SYNCHRONIZE_PPROD&#x27;),
+          logging: this.configService.get(&#x27;TYPEORM_LOGGING_PPROD&#x27;),
+          subscribers: [
+            ProfileSubscriber,
+            ConnectedCardSubscriber,
+            ProfileCardSubscriber,
+            GroupMembershipCardSubscriber,
+            GroupGroupMembershipSubscriber,
+            CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
+            CardMediaSubscriber,
+            CompanyMediaSubscriber,
+            ProfileMediaSubscriber,
+            ConversationConnectedCardSubscriber,
+            ConversationGroupSubscriber,
+            MessageConversationSubscriber,
+            NotificationGroupSubscriber,
+            NotificationGroupMembershipSubscriber,
+            NotificationMessageSubscriber,
+            NotificationProfileSubscriber,
+            NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
+          ],
         };
-      } else if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;test&#x27;) {
+      } else if (this.configService.get(&#x27;NODE_ENV&#x27;) &#x3D;&#x3D;&#x3D; &#x27;test&#x27;) {
         logger.info(&#x27;NODE_ENV is test&#x27;);
         return {
           type: &#x27;postgres&#x27;,
-          host: process.env.TYPEORM_HOST_TEST,
-          port: process.env.TYPEORM_PORT_TEST ? parseInt(process.env.TYPEORM_PORT_TEST) : 5432,
-          username: process.env.TYPEORM_USERNAME_TEST,
-          password: process.env.TYPEORM_PASSWORD_TEST,
-          database: process.env.TYPEORM_DATABASE_TEST,
+          host: this.configService.get(&#x27;TYPEORM_HOST_TEST&#x27;),
+          port: this.configService.get(&#x27;TYPEORM_PORT_TEST&#x27;),
+          username: this.configService.get(&#x27;TYPEORM_USERNAME_TEST&#x27;),
+          password: this.configService.get(&#x27;TYPEORM_PASSWORD_TEST&#x27;),
+          database: this.configService.get(&#x27;TYPEORM_DATABASE_TEST&#x27;),
           entities: [
             CardEntity,
             CompanyEntity,
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
-            PlanEntity,
+            ProductEntity,
             ProfileEntity,
             SocialNetworkEntity,
-            StripEventEntity,
+            StripeEventEntity,
             SubscriptionEntity,
             UserEntity,
             NotificationEntity,
             ReferralCodeEntity,
             AddressEntity,
+            CardViewEntity,
+            UserLoginEntity,
+            PriceEntity,
+            CardPresetEntity,
           ],
-          synchronize: process.env.TYPEORM_SYNCHRONIZE_TEST &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-          logging: process.env.TYPEORM_LOGGING_TEST &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
+          synchronize: this.configService.get(&#x27;TYPEORM_SYNCHRONIZE_TEST&#x27;),
+          logging: this.configService.get(&#x27;TYPEORM_LOGGING_TEST&#x27;),
+          subscribers: [
+            ProfileSubscriber,
+            ConnectedCardSubscriber,
+            ProfileCardSubscriber,
+            GroupMembershipCardSubscriber,
+            GroupGroupMembershipSubscriber,
+            CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
+            CardMediaSubscriber,
+            CompanyMediaSubscriber,
+            ProfileMediaSubscriber,
+            ConversationConnectedCardSubscriber,
+            ConversationGroupSubscriber,
+            MessageConversationSubscriber,
+            NotificationGroupSubscriber,
+            NotificationGroupMembershipSubscriber,
+            NotificationMessageSubscriber,
+            NotificationProfileSubscriber,
+            NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
+          ],
         };
-      } else if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;dev&#x27;) {
+      } else if (this.configService.get(&#x27;NODE_ENV&#x27;) &#x3D;&#x3D;&#x3D; &#x27;dev&#x27;) {
         logger.info(&#x27;NODE_ENV is dev&#x27;);
         return {
           type: &#x27;postgres&#x27;,
-          host: process.env.TYPEORM_HOST_DEV,
-          port: process.env.TYPEORM_PORT_DEV ? parseInt(process.env.TYPEORM_PORT_DEV) : 5432,
-          username: process.env.TYPEORM_USERNAME_DEV,
-          password: process.env.TYPEORM_PASSWORD_DEV,
-          database: process.env.TYPEORM_DATABASE_DEV,
-          logging: process.env.TYPEORM_LOGGING_DEV &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-          synchronize: process.env.TYPEORM_SYNCHRONIZE_DEV &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
+          host: this.configService.get(&#x27;TYPEORM_HOST_DEV&#x27;),
+          port: this.configService.get(&#x27;TYPEORM_PORT_DEV&#x27;),
+          username: this.configService.get(&#x27;TYPEORM_USERNAME_DEV&#x27;),
+          password: this.configService.get(&#x27;TYPEORM_PASSWORD_DEV&#x27;),
+          database: this.configService.get(&#x27;TYPEORM_DATABASE_DEV&#x27;),
+          logging: this.configService.get(&#x27;TYPEORM_LOGGING_DEV&#x27;),
+          synchronize: this.configService.get(&#x27;TYPEORM_SYNCHRONIZE_DEV&#x27;),
           entities: [
             CardEntity,
             CompanyEntity,
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
-            JoinedConversation,
+            JoinedConversationEntity,
             MediaEntity,
             MessageEntity,
             OccupationEntity,
-            PlanEntity,
+            ProductEntity,
             ProfileEntity,
             SocialNetworkEntity,
-            StripEventEntity,
+            StripeEventEntity,
             SubscriptionEntity,
             UserEntity,
             NotificationEntity,
             ReferralCodeEntity,
             AddressEntity,
+            CardViewEntity,
+            UserLoginEntity,
+            PriceEntity,
+            CardPresetEntity,
           ],
-          subscribers: [ProfileSubscriber, ConnectedCardSubscriber],
+          subscribers: [
+            ProfileSubscriber,
+            ConnectedCardSubscriber,
+            ProfileCardSubscriber,
+            GroupMembershipCardSubscriber,
+            GroupGroupMembershipSubscriber,
+            CardViewSubscriber,
+            CompanyAddressSubscriber,
+            UserAddressSubscriber,
+            CompanyCompanyEmployeeSubscriber,
+            ProfileCompanyEmployeeSubscriber,
+            CardMediaSubscriber,
+            CompanyMediaSubscriber,
+            ProfileMediaSubscriber,
+            ConversationConnectedCardSubscriber,
+            ConversationGroupSubscriber,
+            MessageConversationSubscriber,
+            NotificationGroupSubscriber,
+            NotificationGroupMembershipSubscriber,
+            NotificationMessageSubscriber,
+            NotificationProfileSubscriber,
+            NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
+          ],
         };
       } else {
         logger.error(&#x27;NODE_ENV is not set&#x27;);

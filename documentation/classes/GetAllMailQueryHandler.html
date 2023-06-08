@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >GetAllMailQueryHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >GetAllMailQueryHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/api-landing-page/cqrs/handler/query/get-all-mail.query-handler.ts</code>
+            <code>src/api/api-landing-page/application/cqrs/handler/query/get-all-mail.query-handler.ts</code>
         </p>
 
 
@@ -76,10 +82,26 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#apiWaitingListUrl" >apiWaitingListUrl</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -105,18 +127,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(client: ClientProxy)</code>
+<code>constructor(httpService: HttpService, configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/api-landing-page/cqrs/handler/query/get-all-mail.query-handler.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/api-landing-page/application/cqrs/handler/query/get-all-mail.query-handler.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -134,10 +156,22 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>client</td>
+                                                        <td>httpService</td>
                                                   
                                                         <td>
-                                                                    <code>ClientProxy</code>
+                                                                    <code>HttpService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
                                                         </td>
                                                   
                                                     <td>
@@ -154,8 +188,42 @@
         </table>
 </section>
 
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="apiWaitingListUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>apiWaitingListUrl</b></span>
+                        <a href="#apiWaitingListUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-            <section>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/api-landing-page/application/cqrs/handler/query/get-all-mail.query-handler.ts:11</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -175,15 +243,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>execute(query: <a href="../classes/GetAllMailQuery.html" target="_self">GetAllMailQuery</a>)</code>
+                    <code>execute()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/api/api-landing-page/cqrs/handler/query/get-all-mail.query-handler.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/api/api-landing-page/application/cqrs/handler/query/get-all-mail.query-handler.ts:17</a></div>
                 </td>
             </tr>
 
@@ -191,41 +259,9 @@
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>query</td>
-                                    <td>
-                                                <code><a href="../classes/GetAllMailQuery.html" target="_self" >GetAllMailQuery</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../classes/MailLandingPageDto.html" target="_self" >Promise&lt;MailLandingPageDto[]&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -240,27 +276,29 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IQueryHandler, QueryHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { GetAllMailQuery } from &#x27;../../query/get-all-mail.query&#x27;;
-import { HttpException, Inject } from &#x27;@nestjs/common&#x27;;
-import { ClientProxy } from &#x27;@nestjs/microservices&#x27;;
-import { catchError, firstValueFrom } from &#x27;rxjs&#x27;;
-import { MailLandingPageDto } from &#x27;../../../domain/dto/mail-landing-page.dto&#x27;;
+import { firstValueFrom } from &#x27;rxjs&#x27;;
+import { MailLandingPageDto } from &#x27;../../../../domain/dto/mail-landing-page.dto&#x27;;
+import { HttpService } from &#x27;@nestjs/axios&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import { AxiosResponse } from &#x27;axios&#x27;;
 
 @QueryHandler(GetAllMailQuery)
 export class GetAllMailQueryHandler implements IQueryHandler&lt;GetAllMailQuery&gt; {
-  constructor(@Inject(&#x27;API_WAITING_LIST&#x27;) private client: ClientProxy) {}
+  private readonly apiWaitingListUrl: string;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async execute(query: GetAllMailQuery): Promise&lt;MailLandingPageDto[]&gt; {
-    return await firstValueFrom(
-      this.client.send({ cmd: &#x27;get-all&#x27; }, &#x27;&#x27;).pipe(
-        catchError(() &#x3D;&gt; {
-          throw new HttpException(&#x27;unreachable&#x27;, 401);
-        }),
-      ),
-    ).then((mailsLandingPageList: MailLandingPageDto[]) &#x3D;&gt; mailsLandingPageList);
+  constructor(private httpService: HttpService, private readonly configService: ConfigService) {
+    this.apiWaitingListUrl &#x3D; this.configService.get(&#x27;API_WAITING_LIST_URL&#x27;) ?? &#x27;NO-URL&#x27;;
+  }
+
+  async execute(): Promise&lt;MailLandingPageDto[]&gt; {
+    return await firstValueFrom(this.httpService.get(this.apiWaitingListUrl + &#x27;/all&#x27;)).then(
+      async (response: AxiosResponse) &#x3D;&gt; {
+        return response.data;
+      },
+    );
   }
 }
 </code></pre>

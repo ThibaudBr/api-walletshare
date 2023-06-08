@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,26 +36,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >AuthController</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >AuthController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/auth/auth.controller.ts</code>
+            <code>src/api/auth/web/auth.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -70,7 +76,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -84,24 +90,37 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#authenticate" >authenticate</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#logOut" >logOut</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#refresh" >refresh</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#signIn" >signIn</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#signUp" >signUp</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#validateToken" >validateToken</a>
                             </li>
@@ -117,7 +136,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -128,6 +147,8 @@
                 <td class="col-md-4">
                     <a name="authenticate"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>authenticate</b></span>
                         <a href="#authenticate"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -135,7 +156,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>authenticate(request: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>authenticate(request: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>)</code>
                 </td>
             </tr>
 
@@ -149,8 +171,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/api/auth/web/auth.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -204,6 +226,9 @@
                 <td class="col-md-4">
                     <a name="logOut"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>logOut</b></span>
                         <a href="#logOut"><span class="icon ion-ios-link"></span></a>
@@ -227,8 +252,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/api/auth/web/auth.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -294,6 +319,8 @@
                 <td class="col-md-4">
                     <a name="refresh"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>refresh</b></span>
                         <a href="#refresh"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -301,7 +328,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>refresh(request: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>refresh(request: <a href="../interfaces/RequestUser.html" target="_self">RequestUser</a>)</code>
                 </td>
             </tr>
 
@@ -315,8 +343,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/api/auth/web/auth.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -370,6 +398,9 @@
                 <td class="col-md-4">
                     <a name="signIn"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>signIn</b></span>
                         <a href="#signIn"><span class="icon ion-ios-link"></span></a>
@@ -393,8 +424,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/api/auth/web/auth.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -460,6 +491,8 @@
                 <td class="col-md-4">
                     <a name="signUp"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>signUp</b></span>
                         <a href="#signUp"><span class="icon ion-ios-link"></span></a>
@@ -483,8 +516,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/api/auth/web/auth.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -538,6 +571,7 @@
                 <td class="col-md-4">
                     <a name="validateToken"></a>
                     <span class="name">
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>validateToken</b></span>
                         <a href="#validateToken"><span class="icon ion-ios-link"></span></a>
@@ -555,14 +589,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@MessagePattern({cmd: &#x27;validate-token&#x27;})<br /></code>
+                    <code>@Post(&#x27;/validate-token&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/api/auth/auth.controller.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/api/auth/web/auth.controller.ts:87</a></div>
                 </td>
             </tr>
 
@@ -613,22 +647,21 @@
 </section>    </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SignUpDto } from &#x27;./dto/sign-up.dto&#x27;;
-import { AuthService } from &#x27;./auth.service&#x27;;
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SignUpDto } from &#x27;../domain/dto/sign-up.dto&#x27;;
+import { AuthService } from &#x27;../application/auth.service&#x27;;
 import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Post, Req, Res, UseGuards } from &#x27;@nestjs/common&#x27;;
-import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
+import { UserEntity } from &#x27;../../user/domain/entities/user.entity&#x27;;
 import { LocalAuthenticationGuard } from &#x27;./guards/auth.guard&#x27;;
-import { RequestUser } from &#x27;./interface/request-user.interface&#x27;;
+import { RequestUser } from &#x27;../domain/interface/request-user.interface&#x27;;
 import { Response } from &#x27;express&#x27;;
 import JwtRefreshGuard from &#x27;./guards/jwt-refresh-token.guard&#x27;;
-import { UserService } from &#x27;../user/user.service&#x27;;
+import { UserService } from &#x27;../../user/application/user.service&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { RoleGuard } from &#x27;./guards/role.guard&#x27;;
-import { UserRoleEnum } from &#x27;../user/domain/enum/user-role.enum&#x27;;
-import { MessagePattern } from &#x27;@nestjs/microservices&#x27;;
-import { UserLoginResponse } from &#x27;../user/domain/response/user-login.response&#x27;;
-import { UserResponse } from &#x27;../user/domain/response/user.response&#x27;;
+import { UserRoleEnum } from &#x27;../../user/domain/enum/user-role.enum&#x27;;
+import { UserLoginResponse } from &#x27;../../user/web/response/user-login.response&#x27;;
+import { UserResponse } from &#x27;../../user/web/response/user.response&#x27;;
 
 @Controller(&#x27;/auth&#x27;)
 @ApiTags(&#x27;auth&#x27;)
@@ -700,9 +733,8 @@ export class AuthController {
   }
 
   // MessagePatern
-
-  @MessagePattern({ cmd: &#x27;validate-token&#x27; })
-  async validateToken(data: string): Promise&lt;UserLoginResponse&gt; {
+  @Post(&#x27;/validate-token&#x27;)
+  async validateToken(@Body(&#x27;data&#x27;) data: string): Promise&lt;UserLoginResponse&gt; {
     try {
       return await this.authService.getUserFromAuthToken(data);
     } catch (e) {

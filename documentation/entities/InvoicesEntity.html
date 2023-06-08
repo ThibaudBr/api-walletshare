@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -37,32 +37,38 @@
 
 
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >InvoicesEntity</li>
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >InvoicesEntity</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/entities-to-create/invoices.entity.ts</code>
+            <code>src/api/payment/invoices/domain/entities/invoices.entity.ts</code>
         </p>
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -75,61 +81,107 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#amount" >amount</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#clientAddress" >clientAddress</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#clientName" >clientName</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#clientVatNumber" >clientVatNumber</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#companyAddress" >companyAddress</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#companyName" >companyName</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#companyVatNumber" >companyVatNumber</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#createdAt" >createdAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#currency" >currency</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#deletedAt" >deletedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#description" >description</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#discountAmount" >discountAmount</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#invoiceNumber" >invoiceNumber</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#subscription" >subscription</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#taxRate" >taxRate</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#totalAmount" >totalAmount</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#totalTax" >totalTax</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#updatedAt" >updatedAt</a>
                             </li>
                         </ul>
@@ -145,7 +197,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -156,6 +208,9 @@
                 <td class="col-md-4">
                     <a name="amount"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>amount</b></span>
                         <a href="#amount"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -178,7 +233,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -191,6 +246,9 @@
                 <td class="col-md-4">
                     <a name="clientAddress"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>clientAddress</b></span>
                         <a href="#clientAddress"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -213,7 +271,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -226,6 +284,9 @@
                 <td class="col-md-4">
                     <a name="clientName"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>clientName</b></span>
                         <a href="#clientName"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -248,7 +309,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -261,6 +322,9 @@
                 <td class="col-md-4">
                     <a name="clientVatNumber"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>clientVatNumber</b></span>
                         <a href="#clientVatNumber"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -283,7 +347,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -296,6 +360,9 @@
                 <td class="col-md-4">
                     <a name="companyAddress"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>companyAddress</b></span>
                         <a href="#companyAddress"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -318,7 +385,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -331,6 +398,9 @@
                 <td class="col-md-4">
                     <a name="companyName"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>companyName</b></span>
                         <a href="#companyName"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -353,7 +423,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -366,6 +436,9 @@
                 <td class="col-md-4">
                     <a name="companyVatNumber"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>companyVatNumber</b></span>
                         <a href="#companyVatNumber"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -388,7 +461,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -401,6 +474,7 @@
                 <td class="col-md-4">
                     <a name="createdAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>createdAt</b></span>
                         <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -423,7 +497,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:110</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:109</a></div>
                         </td>
                     </tr>
 
@@ -436,6 +510,9 @@
                 <td class="col-md-4">
                     <a name="currency"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>currency</b></span>
                         <a href="#currency"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -458,7 +535,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -471,6 +548,7 @@
                 <td class="col-md-4">
                     <a name="deletedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>deletedAt</b></span>
                         <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -493,7 +571,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:116</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -506,6 +584,9 @@
                 <td class="col-md-4">
                     <a name="description"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>description</b></span>
                         <a href="#description"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -528,7 +609,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -541,6 +622,8 @@
                 <td class="col-md-4">
                     <a name="discountAmount"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>discountAmount</b></span>
                         <a href="#discountAmount"><span class="icon ion-ios-link"></span></a>
@@ -564,7 +647,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:95</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -577,6 +660,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -599,7 +683,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -612,6 +696,9 @@
                 <td class="col-md-4">
                     <a name="invoiceNumber"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>invoiceNumber</b></span>
                         <a href="#invoiceNumber"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -634,7 +721,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -647,6 +734,7 @@
                 <td class="col-md-4">
                     <a name="subscription"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>subscription</b></span>
                         <a href="#subscription"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -663,13 +751,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, subscriptionEntity &#x3D;&gt; subscriptionEntity.invoices)<br />@ValidateNested()<br />
+                            @ManyToOne(undefined, subscriptionEntity &#x3D;&gt; subscriptionEntity.invoices)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:103</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -682,6 +770,9 @@
                 <td class="col-md-4">
                     <a name="taxRate"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>taxRate</b></span>
                         <a href="#taxRate"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -704,7 +795,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -717,6 +808,9 @@
                 <td class="col-md-4">
                     <a name="totalAmount"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>totalAmount</b></span>
                         <a href="#totalAmount"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -739,7 +833,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:91</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -752,6 +846,9 @@
                 <td class="col-md-4">
                     <a name="totalTax"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>totalTax</b></span>
                         <a href="#totalTax"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -774,7 +871,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -787,6 +884,7 @@
                 <td class="col-md-4">
                     <a name="updatedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>updatedAt</b></span>
                         <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -809,7 +907,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/api/entities-to-create/invoices.entity.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/api/payment/invoices/domain/entities/invoices.entity.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -820,7 +918,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Column,
   CreateDateColumn,
@@ -830,8 +928,8 @@
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import { IsNotEmpty, IsNumber, IsString, ValidateNested } from &#x27;class-validator&#x27;;
-import { SubscriptionEntity } from &#x27;./subscription.entity&#x27;;
+import { IsNotEmpty, IsNumber, IsString } from &#x27;class-validator&#x27;;
+import { SubscriptionEntity } from &#x27;../../../subscription/domain/entities/subscription.entity&#x27;;
 
 @Entity(&#x27;invoices&#x27;)
 export class InvoicesEntity {
@@ -922,7 +1020,6 @@ export class InvoicesEntity {
   // ______________________________________________________
 
   @ManyToOne(() &#x3D;&gt; SubscriptionEntity, subscriptionEntity &#x3D;&gt; subscriptionEntity.invoices)
-  @ValidateNested()
   subscription: SubscriptionEntity;
 
   // ______________________________________________________
