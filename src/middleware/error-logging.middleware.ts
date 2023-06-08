@@ -14,7 +14,7 @@ export class ErrorLoggingMiddleware implements NestMiddleware {
 
   constructor(private readonly apiLoggerService: ApiLogService, private readonly configService: ConfigService) {
     this.VERBOSE = this.configService.get('VERBOSE') as VerboseLogEnum;
-    this.LOG_ERROR_BOOL = this.configService.get('process.env.LOG_ERROR') || false;
+    this.LOG_ERROR_BOOL = this.configService.get('process.env.LOG_ERROR') ?? false;
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type

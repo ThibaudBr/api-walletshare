@@ -9,11 +9,11 @@ export class GetListSavedCreditCardOfUserQueryHandler implements IQueryHandler<G
 
   constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
     if (this.configService.get('NODE_ENV') == 'prod') {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') || 'error', {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') ?? 'error', {
         apiVersion: '2022-11-15',
       });
     } else {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') || 'error', {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') ?? 'error', {
         apiVersion: '2022-11-15',
       });
     }

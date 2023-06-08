@@ -88,9 +88,9 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
 
   // Generate a unique referral code that does not already exist in the database
   async generateUniqueReferralCode(): Promise<string> {
-    let code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') || 6);
+    let code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') ?? 6);
     while (await this.getUserByReferralCode(code)) {
-      code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') || 6);
+      code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') ?? 6);
     }
     return code;
   }

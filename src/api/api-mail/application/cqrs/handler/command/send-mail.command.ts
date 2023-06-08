@@ -15,7 +15,7 @@ export class SendMailCommandHandler implements ICommandHandler<SendMailCommand> 
     private readonly configService: ConfigService,
     private readonly eventBus: EventBus,
   ) {
-    this.apiWaitingListUrl = this.configService.get('API_WAITING_LIST_URL') || 'NO-URL';
+    this.apiWaitingListUrl = this.configService.get('API_WAITING_LIST_URL') ?? 'NO-URL';
   }
 
   async execute(command: SendMailCommand): Promise<void> {

@@ -23,7 +23,7 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
     const newProfile: ProfileEntity = profileRepository.create({
       user: user,
       roleProfile: RoleProfileEnum.CLASSIC,
-      usernameProfile: user.username || 'UpdateYourUsername',
+      usernameProfile: user.username ?? 'UpdateYourUsername',
     });
     await profileRepository.save(newProfile);
   }

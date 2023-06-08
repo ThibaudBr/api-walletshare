@@ -32,11 +32,11 @@ export class GetTemporaryMediaUrlQueryHandler implements IQueryHandler<GetTempor
     });
 
     const options: GetObjectCommandInput = {
-      Bucket: this.configService.get('AWS_PRIVATE_BUCKET_NAME') || '',
+      Bucket: this.configService.get('AWS_PRIVATE_BUCKET_NAME') ?? '',
       Key: query.mediaKey,
     };
 
     const command = new GetObjectCommand(options);
-    return await getSignedUrl(s3, command, { expiresIn: this.configService.get('AWS_SIGNED_URL_EXPIRATION') || 60 });
+    return await getSignedUrl(s3, command, { expiresIn: this.configService.get('AWS_SIGNED_URL_EXPIRATION') ?? 60 });
   }
 }

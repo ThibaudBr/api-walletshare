@@ -55,8 +55,8 @@ import { CardPresetEntity } from '../company/domain/entities/card-preset.entity'
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService): Promise<CacheModuleOptions> => ({
-        max: configService.get('CACHE_MEDIA_NUMBER_POOL_MAX') || 1000,
-        ttl: configService.get('CACHE_MEDIA_MAX_DURATION') || 60 * 15,
+        max: configService.get('CACHE_MEDIA_NUMBER_POOL_MAX') ?? 1000,
+        ttl: configService.get('CACHE_MEDIA_MAX_DURATION') ?? 60 * 15,
       }),
     }),
     TypeOrmModule.forFeature([

@@ -6,8 +6,8 @@ import { ApiLogService } from '../../../../../api-log/application/api-log.servic
 export class UpdateUserEventHandler implements IEventHandler<UpdateUserEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
 
-  handle(event: UpdateUserEvent): void {
-    this.apiLogService.createLogForMethode({
+  async handle(event: UpdateUserEvent): Promise<void> {
+    await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
       body: 'User with id: ' + event.userId + ' updated',

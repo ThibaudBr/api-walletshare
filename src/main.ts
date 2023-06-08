@@ -12,13 +12,13 @@ async function bootstrap(): Promise<void> {
   const swaggerConfig = new DocumentBuilder()
     .setTitle('API Wallet Share Main')
     .setDescription('API developed for Application Wallet Share')
-    .setVersion(process.env.npm_package_version || '0.0.1')
+    .setVersion(process.env.npm_package_version ?? '0.0.1')
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
   app.enableCors({
-    origin: ['*', process.env.FRONTEND_URL || 'http://localhost:8080'],
+    origin: ['*', process.env.FRONTEND_URL ?? 'http://localhost:8080'],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     preflightContinue: false,
     optionsSuccessStatus: 200,
@@ -27,11 +27,14 @@ async function bootstrap(): Promise<void> {
       'Origin,X-Requested-With,Content-Type,Accept,Authorization,authorization,X-Forwarded-for,Set-Cookie,Access-Control-Allow-Origin',
   });
 
-  await app.listen(process.env.PORT || 3000);
-}
-
-bootstrap().then(() =>
+  await app.listen(process.env.PORT ?? 3000);
   console.log(
     '[LOG] Server started on port ' + process.env.PORT + ' and listening RCP on port ' + process.env.PORT_TCP,
-  ),
-);
+  );
+}
+
+bootstrap()
+  .then()
+  .catch(error => {
+    console.error(error);
+  });
