@@ -4,12 +4,13 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  ManyToOne, OneToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ProductEntity } from '../../../product/domain/entities/product.entity';
-import {SubscriptionEntity} from "../../../subscription/domain/entities/subscription.entity";
+import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
 
 @Entity('price')
 export class PriceEntity extends BaseEntity {

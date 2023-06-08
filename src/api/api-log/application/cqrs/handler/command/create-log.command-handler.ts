@@ -17,12 +17,12 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
   private readonly API_LOG_TOKEN: string;
 
   constructor(private httpService: HttpService, private readonly configService: ConfigService) {
-    this.verbose = (configService.get('VERBOSE_LOG') as VerboseLogEnum) || VerboseLogEnum.NONE;
-    this.API_NAME = configService.get('API_NAME') || 'NO-NAME';
-    this.npm_package_version = process.env.npm_package_version || 'NO-VERSION';
-    this.apiLogUrl = configService.get('HOST_API_LOG') || 'NO-URL';
+    this.verbose = (configService.get('VERBOSE_LOG') as VerboseLogEnum) ?? VerboseLogEnum.NONE;
+    this.API_NAME = configService.get('API_NAME') ?? 'NO-NAME';
+    this.npm_package_version = process.env.npm_package_version ?? 'NO-VERSION';
+    this.apiLogUrl = configService.get('HOST_API_LOG') ?? 'NO-URL';
     this.API_TYPE = ApiTypeEnum.WALLET_SHARE_API;
-    this.API_LOG_TOKEN = configService.get('API_LOG_TOKEN') || 'NO-TOKEN';
+    this.API_LOG_TOKEN = configService.get('API_LOG_TOKEN') ?? 'NO-TOKEN';
   }
 
   async execute(command: CreateLogCommand): Promise<void> {

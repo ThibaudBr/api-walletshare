@@ -14,8 +14,8 @@ export class RequestLoggingMiddleware implements NestMiddleware {
   private readonly LOG_REQUEST_BOOL: boolean;
 
   constructor(private readonly apiLoggerService: ApiLogService, private readonly configService: ConfigService) {
-    this.VERBOSE = (this.configService.get('VERBOSE') as VerboseLogEnum) || VerboseLogEnum.NONE;
-    this.LOG_REQUEST_BOOL = this.configService.get('LOG_REQUEST_BOOL') || false;
+    this.VERBOSE = (this.configService.get('VERBOSE') as VerboseLogEnum) ?? VerboseLogEnum.NONE;
+    this.LOG_REQUEST_BOOL = this.configService.get('LOG_REQUEST_BOOL') ?? false;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types

@@ -51,7 +51,7 @@ export class CardMediaSubscriber implements EntitySubscriberInterface<CardEntity
     }
     for (const media of medias) {
       await s3.deleteObject({
-        Bucket: this.configService.get('AWS_BUCKET_NAME') || '',
+        Bucket: this.configService.get('AWS_BUCKET_NAME') ?? '',
         Key: media.key,
       });
     }

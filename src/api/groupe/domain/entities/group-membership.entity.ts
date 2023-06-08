@@ -16,8 +16,9 @@ import { CardEntity } from '../../../card/domain/entities/card.entity';
 export class GroupMembershipEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-  @Column('text', { array: true, default: [RoleGroupMembershipEnum.MEMBER] })
+  @Column('text', { array: true, default: RoleGroupMembershipEnum.MEMBER })
   role: RoleGroupMembershipEnum;
+
   // ______________________________________________________
   // Properties
   // ______________________________________________________

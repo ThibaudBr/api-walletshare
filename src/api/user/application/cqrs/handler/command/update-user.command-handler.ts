@@ -42,8 +42,8 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
         throw new Error('User not found');
       }
 
-      await this.isDuplicateOfDeletedUsername(command.user.username || '');
-      await this.isDuplicateOfDeletedMail(command.user.mail || '');
+      await this.isDuplicateOfDeletedUsername(command.user.username ?? '');
+      await this.isDuplicateOfDeletedMail(command.user.mail ?? '');
 
       const err = await validate(command.user);
       if (err.length > 0) {
@@ -93,11 +93,13 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
       where: [{ mail: mail }],
       withDeleted: true,
     });
-    if (verifyDuplicateMailWithDeleted !== null && verifyDuplicateMailWithDeleted.deletedAt !== null) {
-      await this.userRepository.update(verifyDuplicateMailWithDeleted.id, {
-        mail: 'deleted' + verifyDuplicateMailWithDeleted.mail + ' ' + Math.random().toString().split('.')[1],
-      });
-      await this.eventBus.publish(new UpdateUserEvent(verifyDuplicateMailWithDeleted.id));
+    if (verifyDuplicateMailWithDeleted) {
+      if (verifyDuplicateMailWithDeleted?.deletedAt !== null) {
+        await this.userRepository.update(verifyDuplicateMailWithDeleted.id, {
+          mail: 'deleted' + verifyDuplicateMailWithDeleted.mail + ' ' + Math.random().toString().split('.')[1],
+        });
+        await this.eventBus.publish(new UpdateUserEvent(verifyDuplicateMailWithDeleted.id));
+      }
     }
   }
 

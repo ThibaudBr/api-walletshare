@@ -1,5 +1,5 @@
 import { RoleGuard } from '../../../auth/web/guards/role.guard';
-import {Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { StripeService } from '../application/stripe.service';
 import { UserRoleEnum } from '../../../user/domain/enum/user-role.enum';
 import Stripe from 'stripe';

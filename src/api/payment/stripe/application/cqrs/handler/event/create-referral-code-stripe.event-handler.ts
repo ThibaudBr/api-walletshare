@@ -1,6 +1,6 @@
-import {ApiLogService} from "../../../../../../api-log/application/api-log.service";
-import {EventsHandler, IEventHandler} from "@nestjs/cqrs";
-import {CreateReferralCodeStripeEvent} from "../../event/create-referral-code-stripe.event";
+import { ApiLogService } from '../../../../../../api-log/application/api-log.service';
+import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
+import { CreateReferralCodeStripeEvent } from '../../event/create-referral-code-stripe.event';
 
 @EventsHandler(CreateReferralCodeStripeEvent)
 export class CreateReferralCodeStripeEventHandler implements IEventHandler<CreateReferralCodeStripeEvent> {

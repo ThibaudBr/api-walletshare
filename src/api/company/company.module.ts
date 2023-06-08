@@ -39,8 +39,22 @@ import { RestoreCompanyEventHandler } from './application/cqrs/handler/event/res
 import { SoftRemoveCompanyEventHandler } from './application/cqrs/handler/event/soft-remove-company.event-handler';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { HttpModule } from '@nestjs/axios';
+import { CardPresetEntity } from './domain/entities/card-preset.entity';
+import { CreateCardPresetCommandHandler } from './application/cqrs/handler/command/create-card-preset.command-handler';
+import { RemoveCardPresetCommandHandler } from './application/cqrs/handler/command/remove-card-preset.command-handler';
+import { RestoreCardPresetCommandHandler } from './application/cqrs/handler/command/restore-card-preset.command-handler';
+import { SoftRemoveCardPresetCommandHandler } from './application/cqrs/handler/command/soft-remove-card-preset.command-handler';
+import { UpdateCardPresetCommandHandler } from './application/cqrs/handler/command/update-card-preset.command-handler';
+import { CreateCardPresetEventHandler } from './application/cqrs/handler/event/create-card-preset.event-handler';
+import { RemoveCardPresetEventHandler } from './application/cqrs/handler/event/remove-card-preset.event-handler';
+import { RestoreCardPresetEventHandler } from './application/cqrs/handler/event/restore-card-preset.event-handler';
+import { SoftRemoveCardPresetEventHandler } from './application/cqrs/handler/event/soft-remove-card-preset.event-handler';
+import { UpdateCardPresetEventHandler } from './application/cqrs/handler/event/update-card-preset.event-handler';
+import { GetAllCardPresetByCompanyIdQueryHandler } from './application/cqrs/handler/query/get-all-card-preset-by-company-id.query-handler';
+import { GetCardPresetByIdQueryHandler } from './application/cqrs/handler/query/get-card-preset-by-id.query-handler';
 
 @Module({
+  controllers: [CompanyController],
   imports: [
     TypeOrmModule.forFeature([
       UserEntity,
@@ -49,12 +63,12 @@ import { HttpModule } from '@nestjs/axios';
       AddressEntity,
       OccupationEntity,
       ProfileEntity,
+      CardPresetEntity,
     ]),
     CqrsModule,
     ApiLogModule,
     HttpModule,
   ],
-  controllers: [CompanyController],
   providers: [
     CompanyService,
     // log
@@ -62,16 +76,38 @@ import { HttpModule } from '@nestjs/axios';
     CreateLogCommandHandler,
     // Command handlers
     AddCompanyEmployeeCommandHandler,
+    CreateCardPresetCommandHandler,
     CreateCompanyCommandHandler,
     GiveRightToEmployeeCommandHandler,
+    RemoveCardPresetCommandHandler,
     RemoveCompanyCommandHandler,
     RemoveCompanyEmployeeCommandHandler,
+    RestoreCardPresetCommandHandler,
     RestoreCompanyCommandHandler,
+    SoftRemoveCardPresetCommandHandler,
     SoftRemoveCompanyCommandHandler,
+    UpdateCardPresetCommandHandler,
     UpdateCompanyCommandHandler,
     TransferOwnershipOfCompanyCommandHandler,
+    // Events handlers
+    AddCompanyEmployeeEventHandler,
+    CreateCardPresetEventHandler,
+    CreateCompanyEventHandler,
+    GiveRightToEmployeeEventHandler,
+    RemoveCardPresetEventHandler,
+    RemoveCompanyEmployeeEventHandler,
+    RemoveCompanyEventHandler,
+    RestoreCardPresetEventHandler,
+    RestoreCompanyEventHandler,
+    SoftRemoveCardPresetEventHandler,
+    SoftRemoveCompanyEventHandler,
+    UpdateCardPresetEventHandler,
+    UpdateCompanyEventHandler,
+    TransferOwnershipOfCompanyEventHandler,
     // Query handlers
+    GetAllCardPresetByCompanyIdQueryHandler,
     GetAllCompanyQueryHandler,
+    GetCardPresetByIdQueryHandler,
     GetCompanyByIdQueryHandler,
     GetCompanyDiscoveryQueryHandler,
     GetCompanyWithCriteriaQueryHandler,
@@ -79,16 +115,6 @@ import { HttpModule } from '@nestjs/axios';
     GetCompanyWithUserIdQueryHandler,
     GetEmployeeByCompanyIdQueryHandler,
     IsRoleInCompanyQueryHandler,
-    // Events handlers
-    AddCompanyEmployeeEventHandler,
-    CreateCompanyEventHandler,
-    GiveRightToEmployeeEventHandler,
-    RemoveCompanyEmployeeEventHandler,
-    RemoveCompanyEventHandler,
-    RestoreCompanyEventHandler,
-    SoftRemoveCompanyEventHandler,
-    TransferOwnershipOfCompanyEventHandler,
-    UpdateCompanyEventHandler,
   ],
 })
 export class CompanyModule {}

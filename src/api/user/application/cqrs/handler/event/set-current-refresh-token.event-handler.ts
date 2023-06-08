@@ -6,8 +6,8 @@ import { ApiLogService } from '../../../../../api-log/application/api-log.servic
 export class SetCurrentRefreshTokenEventHandler implements IEventHandler<SetCurrentRefreshTokenEvent> {
   constructor(private readonly apiLogService: ApiLogService) {}
 
-  handle(event: SetCurrentRefreshTokenEvent): void {
-    this.apiLogService.createLogForMethode({
+  async handle(event: SetCurrentRefreshTokenEvent): Promise<void> {
+    await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
       body: 'Refresh token with id: ' + event.userId + ' set',

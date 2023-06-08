@@ -23,7 +23,7 @@ export class GetUserIfRefreshTokenMatchesQueryHandler implements IQueryHandler<G
         },
       });
 
-      const isRefreshTokenMatching = await bcrypt.compare(query.refreshToken, user?.currentHashedRefreshToken || '');
+      const isRefreshTokenMatching = await bcrypt.compare(query.refreshToken, user?.currentHashedRefreshToken ?? '');
 
       if (isRefreshTokenMatching && user) {
         return user;

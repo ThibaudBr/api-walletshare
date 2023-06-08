@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
 import { PriceEntity } from '../../../price/domain/entities/price.entity';
-import {UserAccountStatusEnum} from "../../../../user/domain/enum/user-account-status.enum";
+import { UserAccountStatusEnum } from '../../../../user/domain/enum/user-account-status.enum';
 
 @Entity({ name: 'plan' })
 export class ProductEntity extends BaseEntity {

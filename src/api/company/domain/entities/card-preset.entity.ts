@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { MediaEntity } from '../../../media/domain/entities/media.entity';
-import {AlignmentCardEnum} from "../enum/alignment-card.enum";
+import { AlignmentCardEnum } from '../enum/alignment-card.enum';
 
 @Entity()
 export class CardPresetEntity extends BaseEntity {
@@ -44,7 +44,7 @@ export class CardPresetEntity extends BaseEntity {
   })
   cards?: CardEntity[];
 
-  @OneToOne(() => MediaEntity, { cascade: true, onDelete: 'SET NULL' })
+  @OneToOne(() => MediaEntity, mediaEntity => mediaEntity.cardPresetMedia, { cascade: true, onDelete: 'SET NULL' })
   @JoinColumn()
-  cardMedia?: MediaEntity;
+  media?: MediaEntity;
 }

@@ -28,7 +28,7 @@ export class SubscriptionService {
     private readonly priceService: PriceService,
     private readonly configService: ConfigService,
   ) {
-    this.monthlySubscriptionPriceId = this.configService.get('STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID') || 'error';
+    this.monthlySubscriptionPriceId = this.configService.get('STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID') ?? 'error';
   }
 
   async createMonthlySubscription(stripCustomerId: string): Promise<Stripe.Response<Stripe.Subscription>> {
