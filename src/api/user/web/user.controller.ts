@@ -291,4 +291,11 @@ export class UserController {
   async getUserLastLogin(@Param('id') id: string): Promise<SaveUserLoginResponse[]> {
     return await this.userService.getLoginHistory(id);
   }
+
+  @HttpCode(200)
+  @Get('/admin/get-all-user-count')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getAllUserCount(): Promise<number> {
+    return await this.userService.getAllUserCount();
+  }
 }

@@ -56,9 +56,15 @@ export class CompanyService {
     private readonly eventBus: EventBus,
   ) {}
 
-  public async getAllCompanies(): Promise<CompanyResponse[]> {
+  public async getAllCompanies(deleted: boolean, take: number, skip: number): Promise<CompanyResponse[]> {
     return this.queryBus
-      .execute(new GetAllCompanyQuery())
+      .execute(
+        new GetAllCompanyQuery({
+          deleted: deleted,
+          take: take,
+          skip: skip,
+        }),
+      )
       .then((companies: CompanyEntity[]) => {
         return companies.map((company: CompanyEntity) => {
           return new CompanyResponse({
@@ -71,9 +77,9 @@ export class CompanyService {
       });
   }
 
-  public async getCompanyById(id: string): Promise<CompanyResponse> {
+  public async getCompanyById(id: string, fullCompany?: boolean): Promise<CompanyResponse> {
     return this.queryBus
-      .execute(new GetCompanyByIdQuery({ companyId: id }))
+      .execute(new GetCompanyByIdQuery({ companyId: id, fullCompany: fullCompany }))
       .then((company: CompanyEntity) => {
         return new CompanyResponse({
           ...company,
@@ -621,6 +627,94 @@ export class CompanyService {
       if (error.message === 'Error while deleting card preset')
         throw new ConflictException('Error while deleting card preset');
       throw error;
+    });
+  }
+
+  async getAllCompanyCount(): Promise<number> {
+    return await this.getAllCompanies(false, -1, -1).then((companies: CompanyEntity[]) => {
+      return companies.length;
+    });
+  }
+
+  async getAllCardCompanyCount(userId: string, companyId: string): Promise<number> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+      return company.employees.reduce((totalCards, employee) => {
+        return totalCards + (employee.profile.personalCards?.length || 0);
+      }, 0);
+    });
+  }
+
+  async getEmployeeCount(userId: string, companyId: string): Promise<number> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+      return company.employees.length;
+    });
+  }
+
+  async getAllCardViewCount(userId: string, companyId: string): Promise<number> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+      return company.employees.reduce((totalViews, employee) => {
+        return (
+          totalViews + (employee.profile.personalCards?.reduce((total, card) => total + card.numberOfShares, 0) ?? 0)
+        );
+      }, 0);
+    });
+  }
+
+  async getAllCardForwardCount(userId: string, companyId: string): Promise<number> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+      return (
+        company.employees.reduce((totalForwards, employee) => {
+          return (
+            totalForwards +
+            (employee.profile.personalCards?.reduce((total, card) => total + card.connectedCardTwo.length, 0) ?? 0)
+          );
+        }, 0) +
+        company.employees.reduce((totalForwards, employee) => {
+          return (
+            totalForwards +
+            (employee.profile.personalCards?.reduce((total, card) => total + card.connectedCardOne.length, 0) ?? 0)
+          );
+        }, 0)
+      );
     });
   }
 }

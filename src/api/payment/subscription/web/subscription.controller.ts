@@ -48,4 +48,10 @@ export class SubscriptionController {
       cancelSubscriptionRequest.subscriptionId,
     );
   }
+
+  @Get('/admin/get-all-active-subscriptions-count')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getAllSubscriptionsCount(): Promise<number> {
+    return await this.subscriptionService.getAllActiveSubscriptionsCount();
+  }
 }
