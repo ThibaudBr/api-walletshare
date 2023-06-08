@@ -86,13 +86,11 @@ export class CompanyController {
   @ApiNotFoundResponse({ description: 'Company not found' })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCompanies(
-    @Param('deleted') deleted: boolean = false,
-    @Param('take') take: number = -1,
-    @Param('skip') skip: number = -1,
+    @Param('deleted') deleted = false,
+    @Param('take') take = -1,
+    @Param('skip') skip = -1,
   ): Promise<CompanyResponse[]> {
-    return await this.companyService.getAllCompanies(
-      deleted, take, skip,
-    );
+    return await this.companyService.getAllCompanies(deleted, take, skip);
   }
 
   @Post('/public/add-company-employee')
@@ -346,5 +344,46 @@ export class CompanyController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllCompanyCount(): Promise<number> {
     return await this.companyService.getAllCompanyCount();
+  }
+
+  @Get('/company/get-all-card-company-count-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get all card company count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getAllCardCompanyCount(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<number> {
+    return await this.companyService.getAllCardCompanyCount(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/get-employee-count-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get employee count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getEmployeeCount(@Param('companyId') companyId: string, @Req() requestUser: RequestUser): Promise<number> {
+    return await this.companyService.getEmployeeCount(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/get-all-card-view-count-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get all card view count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getAllCardViewCount(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<number> {
+    return await this.companyService.getAllCardViewCount(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/get-all-card-forward-count-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get all card forward count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getAllCardForwardCount(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<number> {
+    return await this.companyService.getAllCardForwardCount(requestUser.user.id, companyId);
   }
 }
