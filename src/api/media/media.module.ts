@@ -44,6 +44,9 @@ import { AddBannerGroupMediaEventHandler } from './application/cqrs/handler/even
 import { CacheModule } from '@nestjs/cache-manager';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
+import { AddCardPresetMediaCommandHandler } from './application/cqrs/handler/command/add-card-preset-media.command-handler';
+import { AddCardPresetMediaEventHandler } from './application/cqrs/handler/event/add-card-preset-media.event-handler';
+import { CardPresetEntity } from '../company/domain/entities/card-preset.entity';
 
 @Module({
   imports: [
@@ -52,11 +55,19 @@ import { HttpModule } from '@nestjs/axios';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService): Promise<CacheModuleOptions> => ({
-        max: configService.get('CACHE_MEDIA_NUMBER_POOL_MAX') || 1000,
-        ttl: configService.get('CACHE_MEDIA_MAX_DURATION') || 60 * 15,
+        max: configService.get('CACHE_MEDIA_NUMBER_POOL_MAX') ?? 1000,
+        ttl: configService.get('CACHE_MEDIA_MAX_DURATION') ?? 60 * 15,
       }),
     }),
-    TypeOrmModule.forFeature([UserEntity, MediaEntity, GroupEntity, ProfileEntity, CardEntity, CompanyEntity]),
+    TypeOrmModule.forFeature([
+      UserEntity,
+      MediaEntity,
+      GroupEntity,
+      ProfileEntity,
+      CardEntity,
+      CompanyEntity,
+      CardPresetEntity,
+    ]),
     CqrsModule,
     ApiLogModule,
     HttpModule,
@@ -75,6 +86,7 @@ import { HttpModule } from '@nestjs/axios';
     AddBannerGroupMediaCommandHandler,
     AddBannerProfileMediaCommandHandler,
     AddCardMediaCommandHandler,
+    AddCardPresetMediaCommandHandler,
     RemoveMediaCommandHandler,
     RestoreMediaCommandHandler,
     SoftRemoveMediaCommandHandler,
@@ -92,6 +104,7 @@ import { HttpModule } from '@nestjs/axios';
     AddBannerGroupMediaEventHandler,
     AddBannerProfileMediaEventHandler,
     AddCardMediaEventHandler,
+    AddCardPresetMediaEventHandler,
     RemoveMediaEventHandler,
     RestoreMediaEventHandler,
     SoftRemoveMediaEventHandler,

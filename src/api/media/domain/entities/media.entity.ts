@@ -12,6 +12,7 @@ import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
 import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { MessageEntity } from '../../../conversation/domain/entities/message.entity';
+import { CardPresetEntity } from '../../../company/domain/entities/card-preset.entity';
 
 @Entity({ name: 'media' })
 export class MediaEntity {
@@ -52,6 +53,9 @@ export class MediaEntity {
 
   @OneToOne(() => MessageEntity, messageEntity => messageEntity.media, { onDelete: 'CASCADE' })
   messageMedia: MessageEntity;
+
+  @OneToOne(() => CardPresetEntity, cardPresetEntity => cardPresetEntity.media, { onDelete: 'CASCADE' })
+  cardPresetMedia: CardPresetEntity;
 
   // ______________________________________________________
   // Timestamps

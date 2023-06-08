@@ -705,4 +705,8 @@ export class CardService {
       else throw error;
     }
   }
+
+  async getAllCardCount(): Promise<number> {
+    return await this.getAllCards().then(cards => cards.length);
+  }
 }

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -49,11 +49,11 @@
 
 
 <ol class="breadcrumb">
-  <li>Miscellaneous</li>
-  <li>Variables</li>
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
 </ol>
 
-<section>
+<section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -64,7 +64,7 @@
                             <a href="#logger" title="src/util/config/winston-logger.config.ts" ><b>logger</b>&nbsp;&nbsp;&nbsp;(src/.../winston-logger.config.ts)</a>
                         </li>
                         <li>
-                            <a href="#RoleGuard" title="src/api/auth/guards/role.guard.ts" ><b>RoleGuard</b>&nbsp;&nbsp;&nbsp;(src/.../role.guard.ts)</a>
+                            <a href="#RoleGuard" title="src/api/auth/web/guards/role.guard.ts" ><b>RoleGuard</b>&nbsp;&nbsp;&nbsp;(src/.../role.guard.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -74,7 +74,7 @@
 </section>
 
     <h3>src/util/config/winston-logger.config.ts</h3>
-    <section>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -111,8 +111,8 @@
         </tbody>
     </table>
 </section>
-    <h3>src/api/auth/guards/role.guard.ts</h3>
-    <section>
+    <h3>src/api/auth/web/guards/role.guard.ts</h3>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -132,6 +132,7 @@
     constructor(private readonly userService: UserService) {
       super();
     }
+
     async canActivate(context: ExecutionContext): Promise&lt;boolean&gt; {
       await super.canActivate(context);
 
@@ -140,6 +141,7 @@
       return roles.some(role &#x3D;&gt; user?.roles.includes(role));
     }
   }
+
   return mixin(RoleGuardMixin);
 }</code>
                     </td>

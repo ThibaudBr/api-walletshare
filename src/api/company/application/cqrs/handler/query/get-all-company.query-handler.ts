@@ -13,7 +13,7 @@ export class GetAllCompanyQueryHandler implements IQueryHandler<GetAllCompanyQue
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(): Promise<CompanyEntity[]> {
+  async execute(query: GetAllCompanyQuery): Promise<CompanyEntity[]> {
     try {
       return await this.companyRepository.find({
         relations: [
@@ -27,11 +27,14 @@ export class GetAllCompanyQueryHandler implements IQueryHandler<GetAllCompanyQue
           'employees.profile',
           'employees.profile.personalCards',
         ],
+        withDeleted: query.deleted,
+        take: query.take == -1 ? undefined : query.take,
+        skip: query.skip == -1 ? undefined : query.skip,
       });
     } catch (error) {
       this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'companyRespoirotory.find',
+          localisation: 'companyRepository.find',
           handler: 'GetAllCompanyQueryHandler',
           error: error.message,
         }),

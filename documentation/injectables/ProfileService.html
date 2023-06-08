@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,33 +39,39 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >ProfileService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ProfileService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/profile/profile.service.ts</code>
+            <code>src/api/profile/application/profile.service.ts</code>
         </p>
 
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -84,7 +90,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#createProfileAdmin" >createProfileAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#deleteProfile" >deleteProfile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllProfileCount" >getAllProfileCount</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -138,18 +152,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(commandBus: CommandBus, queryBus: QueryBus)</code>
+<code>constructor(commandBus: CommandBus, queryBus: QueryBus, eventBus: EventBus)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/api/profile/profile.service.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/profile/application/profile.service.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -190,6 +204,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>eventBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>EventBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -199,7 +225,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -219,15 +245,98 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createProfile(createProfileRequest: <a href="../classes/CreateProfileRequest.html" target="_self">CreateProfileRequest</a>)</code>
+                    <code>createProfile(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createProfileRequest: <a href="../classes/CreateProfileRequest.html" target="_self">CreateProfileRequest</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/api/profile/profile.service.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>createProfileRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateProfileRequest.html" target="_self" >CreateProfileRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ProfileResponse.html" target="_self" >Promise&lt;ProfileResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createProfileAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createProfileAdmin</b></span>
+                        <a href="#createProfileAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createProfileAdmin(createProfileRequest: <a href="../classes/CreateProfileRequest.html" target="_self">CreateProfileRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:85</a></div>
                 </td>
             </tr>
 
@@ -297,8 +406,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/api/profile/profile.service.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:105</a></div>
                 </td>
             </tr>
 
@@ -350,6 +459,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getAllProfileCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllProfileCount</b></span>
+                        <a href="#getAllProfileCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllProfileCount()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="306"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:306</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getMyProfile"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -368,8 +516,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="218"
-                            class="link-to-prism">src/api/profile/profile.service.ts:218</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:271</a></div>
                 </td>
             </tr>
 
@@ -451,8 +599,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="166"
-                            class="link-to-prism">src/api/profile/profile.service.ts:166</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:222</a></div>
                 </td>
             </tr>
 
@@ -522,8 +670,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="205"
-                            class="link-to-prism">src/api/profile/profile.service.ts:205</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="258"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:258</a></div>
                 </td>
             </tr>
 
@@ -593,8 +741,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="179"
-                            class="link-to-prism">src/api/profile/profile.service.ts:179</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="235"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:235</a></div>
                 </td>
             </tr>
 
@@ -632,8 +780,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">src/api/profile/profile.service.ts:187</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="239"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:239</a></div>
                 </td>
             </tr>
 
@@ -703,8 +851,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="239"
-                            class="link-to-prism">src/api/profile/profile.service.ts:239</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="292"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:292</a></div>
                 </td>
             </tr>
 
@@ -774,8 +922,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="150"
-                            class="link-to-prism">src/api/profile/profile.service.ts:150</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:206</a></div>
                 </td>
             </tr>
 
@@ -845,8 +993,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/api/profile/profile.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:118</a></div>
                 </td>
             </tr>
 
@@ -916,8 +1064,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/api/profile/profile.service.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:161</a></div>
                 </td>
             </tr>
 
@@ -999,8 +1147,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/api/profile/profile.service.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/api/profile/application/profile.service.ts:131</a></div>
                 </td>
             </tr>
 
@@ -1065,36 +1213,92 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
-import { ProfileResponse } from &#x27;./domain/response/profile.response&#x27;;
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ForbiddenException, Injectable, InternalServerErrorException } from &#x27;@nestjs/common&#x27;;
+import { CommandBus, EventBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
+import { ProfileResponse } from &#x27;../web/response/profile.response&#x27;;
 import { CreateProfileCommand } from &#x27;./cqrs/command/create-profile.command&#x27;;
-import { InvalidIdHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
-import { UserNotFoundHttpException } from &#x27;../../util/exception/custom-http-exception/user-not-found.http-exception&#x27;;
-import { InvalidParameterEntityHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { InvalidIdHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
+import { UserNotFoundHttpException } from &#x27;../../../util/exception/custom-http-exception/user-not-found.http-exception&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
 import { DeleteProfileCommand } from &#x27;./cqrs/command/delete-profile.command&#x27;;
 import { UpdateProfileCommand } from &#x27;./cqrs/command/update-profile.command&#x27;;
-import { CreateProfileRequest } from &#x27;./domain/request/create-profile.request&#x27;;
+import { CreateProfileRequest } from &#x27;../web/request/create-profile.request&#x27;;
 import { SoftDeleteProfileCommand } from &#x27;./cqrs/command/soft-delete-profile.command&#x27;;
-import { UpdateProfileRequest } from &#x27;./domain/request/update-profile.request&#x27;;
+import { UpdateProfileRequest } from &#x27;../web/request/update-profile.request&#x27;;
 import { UpdateOccupationsProfileCommand } from &#x27;./cqrs/command/update-occupations-profile.command&#x27;;
 import { ShiftProfileOwnerCommand } from &#x27;./cqrs/command/shift-profile-owner.command&#x27;;
-import { ShiftProfileOwnerRequest } from &#x27;./domain/request/shift-profile-owner.request&#x27;;
+import { ShiftProfileOwnerRequest } from &#x27;../web/request/shift-profile-owner.request&#x27;;
 import { GetProfileByIdQuery } from &#x27;./cqrs/query/get-profile-by-id.query&#x27;;
 import { GetAllProfileQuery } from &#x27;./cqrs/query/get-all-profile.query&#x27;;
 import { GetProfileWithCriteriaQuery } from &#x27;./cqrs/query/get-profile-with-criteria.query&#x27;;
-import { GetProfilesWithCriteriaRequest } from &#x27;./domain/request/get-profiles-with-criteria.request&#x27;;
+import { GetProfilesWithCriteriaRequest } from &#x27;../web/request/get-profiles-with-criteria.request&#x27;;
 import { GetProfilesByUserIdQuery } from &#x27;./cqrs/query/get-profiles-by-user-id.query&#x27;;
-import { NotTheOwnerHttpException } from &#x27;../../util/exception/custom-http-exception/not-the-owner.http-exception&#x27;;
+import { NotTheOwnerHttpException } from &#x27;../../../util/exception/custom-http-exception/not-the-owner.http-exception&#x27;;
 import { RestoreProfileCommand } from &#x27;./cqrs/command/restore-profile.command&#x27;;
-import { EntityIsNotSoftDeletedHttpException } from &#x27;../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
+import { EntityIsNotSoftDeletedHttpException } from &#x27;../../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
+import { RoleProfileEnum } from &#x27;../domain/enum/role-profile.enum&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../util/exception/error-handler/error-custom.event&#x27;;
+import { IsProfileWithGivenRoleAlreadyExistQuery } from &#x27;./cqrs/query/is-profile-with-given-role-already-exist.query&#x27;;
 
 @Injectable()
 export class ProfileService {
-  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+    private readonly eventBus: EventBus,
+  ) {}
 
-  async createProfile(createProfileRequest: CreateProfileRequest): Promise&lt;ProfileResponse&gt; {
+  async createProfile(userId: string, createProfileRequest: CreateProfileRequest): Promise&lt;ProfileResponse&gt; {
+    try {
+      if (createProfileRequest.roleProfile !&#x3D;&#x3D; RoleProfileEnum.CLASSIC) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: &#x27;ProfileService.createProfile&#x27;,
+            handler: &#x27;ProfileService&#x27;,
+            error: &#x27;User can only have one profile with role classic&#x27;,
+          }),
+        );
+        throw new ForbiddenException(&#x27;User can only have one profile with role classic&#x27;);
+      }
+      if (
+        await this.queryBus.execute(
+          new IsProfileWithGivenRoleAlreadyExistQuery({
+            roleProfile: createProfileRequest.roleProfile,
+            userId: userId,
+          }),
+        )
+      ) {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: &#x27;ProfileService.createProfile&#x27;,
+            handler: &#x27;ProfileService&#x27;,
+            error: &#x27;Profile with given role already exist&#x27;,
+          }),
+        );
+        throw new ForbiddenException(&#x27;Profile with given role already exist&#x27;);
+      }
+      return await this.commandBus.execute(
+        new CreateProfileCommand({
+          createProfileDto: {
+            usernameProfile: createProfileRequest.usernameProfile,
+            roleProfile: createProfileRequest.roleProfile,
+          },
+          userId: userId,
+          occupationsId: createProfileRequest.occupationsId,
+        }),
+      );
+    } catch (e) {
+      if (e.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundHttpException();
+      else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
+      else if (e.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new InvalidIdHttpException();
+      else if (e instanceof ForbiddenException) throw new ForbiddenException(e.message);
+      else if (e.message &#x3D;&#x3D;&#x3D; &#x27;Profile no saved&#x27;) throw new InternalServerErrorException(&#x27;Profile no saved&#x27;);
+      else throw e;
+    }
+  }
+
+  async createProfileAdmin(createProfileRequest: CreateProfileRequest): Promise&lt;ProfileResponse&gt; {
     try {
       return await this.commandBus.execute(
         new CreateProfileCommand({
@@ -1245,11 +1449,7 @@ export class ProfileService {
   }
 
   async getProfiles(): Promise&lt;ProfileResponse[]&gt; {
-    try {
-      return await this.queryBus.execute(new GetAllProfileQuery());
-    } catch (e) {
-      throw e;
-    }
+    return await this.queryBus.execute(new GetAllProfileQuery());
   }
 
   async getProfilesWithCriteria(
@@ -1266,6 +1466,7 @@ export class ProfileService {
         }),
       );
     } catch (e) {
+      if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
       throw e;
     }
   }
@@ -1316,6 +1517,12 @@ export class ProfileService {
       if (e.message &#x3D;&#x3D;&#x3D; &#x27;Profile is not soft deleted&#x27;) throw new EntityIsNotSoftDeletedHttpException(e.message);
       else throw e;
     }
+  }
+
+  async getAllProfileCount(): Promise&lt;number&gt; {
+    return await this.getProfiles().then(profiles &#x3D;&gt; {
+      return profiles.length;
+    });
   }
 }
 </code></pre>

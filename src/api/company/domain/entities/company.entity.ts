@@ -17,6 +17,7 @@ import { CompanyEmployeeEntity } from './company-employee.entity';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { MediaEntity } from '../../../media/domain/entities/media.entity';
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
+import { CardPresetEntity } from './card-preset.entity';
 
 @Entity({ name: 'company' })
 export class CompanyEntity {
@@ -73,6 +74,11 @@ export class CompanyEntity {
     cascade: true,
   })
   addresses: AddressEntity[];
+
+  @OneToMany(() => CardPresetEntity, cardPresetEntity => cardPresetEntity.company, {
+    cascade: true,
+  })
+  cardPresets: CardPresetEntity[];
 
   // ______________________________________________________
   // Timestamps

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -49,17 +49,20 @@
 
 
 <ol class="breadcrumb">
-  <li>Miscellaneous</li>
-  <li>Enumerations</li>
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Enumerations</li>
 </ol>
 
-<section>
+<section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
             <tr>
                 <td class="col-md-4">
                     <ul class="index-list">
+                        <li>
+                            <a href="#AlignmentCardEnum" title="src/api/company/domain/enum/alignment-card.enum.ts" ><b>AlignmentCardEnum</b>&nbsp;&nbsp;&nbsp;(src/.../alignment-card.enum.ts)</a>
+                        </li>
                         <li>
                             <a href="#ApiTypeEnum" title="src/api/api-log/domain/enum/api-type.enum.ts" ><b>ApiTypeEnum</b>&nbsp;&nbsp;&nbsp;(src/.../api-type.enum.ts)</a>
                         </li>
@@ -70,31 +73,34 @@
                             <a href="#GroupRequestStatusEnum" title="src/api/groupe/domain/enum/group-request-status.enum.ts" ><b>GroupRequestStatusEnum</b>&nbsp;&nbsp;&nbsp;(src/.../group-request-status.enum.ts)</a>
                         </li>
                         <li>
-                            <a href="#NotificationTypeEnum" title="src/api/entities-to-create/enum/notification-type.enum.ts" ><b>NotificationTypeEnum</b>&nbsp;&nbsp;&nbsp;(src/.../notification-type.enum.ts)</a>
+                            <a href="#NotificationTypeEnum" title="src/api/notification/domain/enum/notification-type.enum.ts" ><b>NotificationTypeEnum</b>&nbsp;&nbsp;&nbsp;(src/.../notification-type.enum.ts)</a>
                         </li>
                         <li>
-                            <a href="#PostgresErrorCode" title="src/api/auth/database/postgres-error-code.enum.ts" ><b>PostgresErrorCode</b>&nbsp;&nbsp;&nbsp;(src/.../postgres-error-code.enum.ts)</a>
+                            <a href="#PostgresErrorCode" title="src/api/auth/domain/database/postgres-error-code.enum.ts" ><b>PostgresErrorCode</b>&nbsp;&nbsp;&nbsp;(src/.../postgres-error-code.enum.ts)</a>
                         </li>
                         <li>
-                            <a href="#RoleCompanyEmployeeEnum" title="src/api/entities-to-create/enum/role-company-employee.enum.ts" ><b>RoleCompanyEmployeeEnum</b>&nbsp;&nbsp;&nbsp;(src/.../role-company-employee.enum.ts)</a>
+                            <a href="#RoleCompanyEmployeeEnum" title="src/api/company/domain/enum/role-company-employee.enum.ts" ><b>RoleCompanyEmployeeEnum</b>&nbsp;&nbsp;&nbsp;(src/.../role-company-employee.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RoleGroupMembershipEnum" title="src/api/groupe/domain/enum/role-group-membership.enum.ts" ><b>RoleGroupMembershipEnum</b>&nbsp;&nbsp;&nbsp;(src/.../role-group-membership.enum.ts)</a>
                         </li>
                         <li>
                             <a href="#RoleProfileEnum" title="src/api/profile/domain/enum/role-profile.enum.ts" ><b>RoleProfileEnum</b>&nbsp;&nbsp;&nbsp;(src/.../role-profile.enum.ts)</a>
                         </li>
                         <li>
-                            <a href="#StatusInvoiceEnum" title="src/api/entities-to-create/enum/status-invoice.enum.ts" ><b>StatusInvoiceEnum</b>&nbsp;&nbsp;&nbsp;(src/.../status-invoice.enum.ts)</a>
-                        </li>
-                        <li>
                             <a href="#StatusLogEnum" title="src/api/api-log/domain/enum/status-log.enum.ts" ><b>StatusLogEnum</b>&nbsp;&nbsp;&nbsp;(src/.../status-log.enum.ts)</a>
                         </li>
                         <li>
-                            <a href="#StatusSubscriptionEnum" title="src/api/entities-to-create/enum/status-subscription.enum.ts" ><b>StatusSubscriptionEnum</b>&nbsp;&nbsp;&nbsp;(src/.../status-subscription.enum.ts)</a>
+                            <a href="#StatusSubscriptionEnum" title="src/api/payment/subscription/domain/enum/status-subscription.enum.ts" ><b>StatusSubscriptionEnum</b>&nbsp;&nbsp;&nbsp;(src/.../status-subscription.enum.ts)</a>
                         </li>
                         <li>
                             <a href="#TransferableStatusCardEnum" title="src/api/card/domain/enum/transferable-status-card.enum.ts" ><b>TransferableStatusCardEnum</b>&nbsp;&nbsp;&nbsp;(src/.../transferable-status-card.enum.ts)</a>
                         </li>
                         <li>
                             <a href="#TypeOfCardEnum" title="src/api/card/domain/enum/type-of-card.enum.ts" ><b>TypeOfCardEnum</b>&nbsp;&nbsp;&nbsp;(src/.../type-of-card.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UserAccountStatusEnum" title="src/api/user/domain/enum/user-account-status.enum.ts" ><b>UserAccountStatusEnum</b>&nbsp;&nbsp;&nbsp;(src/.../user-account-status.enum.ts)</a>
                         </li>
                         <li>
                             <a href="#UserRoleEnum" title="src/api/user/domain/enum/user-role.enum.ts" ><b>UserRoleEnum</b>&nbsp;&nbsp;&nbsp;(src/.../user-role.enum.ts)</a>
@@ -118,8 +124,51 @@
     </table>
 </section>
 
+    <h3>src/api/company/domain/enum/alignment-card.enum.ts</h3>
+    <section data-compodoc="block-enums">
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="AlignmentCardEnum"></a>
+                        <span class="name "><b>AlignmentCardEnum</b><a href="#AlignmentCardEnum"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;LEFT
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>left</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CENTER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>center</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;RIGHT
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>right</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
     <h3>src/api/api-log/domain/enum/api-type.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -152,7 +201,7 @@
         </table>
 </section>
     <h3>src/util/exception/ErrorEnum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -235,7 +284,7 @@
         </table>
 </section>
     <h3>src/api/groupe/domain/enum/group-request-status.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -267,8 +316,8 @@
             </tbody>
         </table>
 </section>
-    <h3>src/api/entities-to-create/enum/notification-type.enum.ts</h3>
-    <section>
+    <h3>src/api/notification/domain/enum/notification-type.enum.ts</h3>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -347,11 +396,21 @@
                                 <i>Value : </i><code>NEW_CALL</code>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;LEAVE_GROUP
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>LEAVE_GROUP</code>
+                            </td>
+                        </tr>
             </tbody>
         </table>
 </section>
-    <h3>src/api/auth/database/postgres-error-code.enum.ts</h3>
-    <section>
+    <h3>src/api/auth/domain/database/postgres-error-code.enum.ts</h3>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -373,8 +432,8 @@
             </tbody>
         </table>
 </section>
-    <h3>src/api/entities-to-create/enum/role-company-employee.enum.ts</h3>
-    <section>
+    <h3>src/api/company/domain/enum/role-company-employee.enum.ts</h3>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -401,8 +460,51 @@
             </tbody>
         </table>
 </section>
+    <h3>src/api/groupe/domain/enum/role-group-membership.enum.ts</h3>
+    <section data-compodoc="block-enums">
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="RoleGroupMembershipEnum"></a>
+                        <span class="name "><b>RoleGroupMembershipEnum</b><a href="#RoleGroupMembershipEnum"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;MEMBER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>MEMBER</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;ADMIN
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>ADMIN</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;OWNER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>OWNER</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
     <h3>src/api/profile/domain/enum/role-profile.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -444,91 +546,8 @@
             </tbody>
         </table>
 </section>
-    <h3>src/api/entities-to-create/enum/status-invoice.enum.ts</h3>
-    <section>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="StatusInvoiceEnum"></a>
-                        <span class="name "><b>StatusInvoiceEnum</b><a href="#StatusInvoiceEnum"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;PENDING
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>PENDING</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;VALIDATED
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>VALIDATED</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;CANCELED
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>CANCELED</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;EXPIRED
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>EXPIRED</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;REFUNDED
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>REFUNDED</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;FAILED
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>FAILED</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;REJECTED
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>REJECTED</code>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
     <h3>src/api/api-log/domain/enum/status-log.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -560,8 +579,8 @@
             </tbody>
         </table>
 </section>
-    <h3>src/api/entities-to-create/enum/status-subscription.enum.ts</h3>
-    <section>
+    <h3>src/api/payment/subscription/domain/enum/status-subscription.enum.ts</h3>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -614,7 +633,7 @@
         </table>
 </section>
     <h3>src/api/card/domain/enum/transferable-status-card.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -647,7 +666,7 @@
         </table>
 </section>
     <h3>src/api/card/domain/enum/type-of-card.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -699,8 +718,61 @@
             </tbody>
         </table>
 </section>
+    <h3>src/api/user/domain/enum/user-account-status.enum.ts</h3>
+    <section data-compodoc="block-enums">
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="UserAccountStatusEnum"></a>
+                        <span class="name "><b>UserAccountStatusEnum</b><a href="#UserAccountStatusEnum"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;PREMIUM
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>PREMIUM</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;PREMIUM_PLUS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>PREMIUM_PLUS</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;FREE
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>FREE</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;COMPANY
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>COMPANY</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
     <h3>src/api/user/domain/enum/user-role.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -749,11 +821,21 @@
                                 <i>Value : </i><code>COMPANY_ACCOUNT</code>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;COMPANY_EMPLOYEE_ACCOUNT
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>COMPANY_EMPLOYEE_ACCOUNT</code>
+                            </td>
+                        </tr>
             </tbody>
         </table>
 </section>
     <h3>src/api/api-log/domain/enum/verbose-log.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -796,7 +878,7 @@
         </table>
 </section>
     <h3>src/api/card/domain/enum/who-can-communicate-with.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -839,7 +921,7 @@
         </table>
 </section>
     <h3>src/api/card/domain/enum/who-can-see-card-information.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -882,7 +964,7 @@
         </table>
 </section>
     <h3>src/api/card/domain/enum/who-can-share-card.enum.ts</h3>
-    <section>
+    <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>

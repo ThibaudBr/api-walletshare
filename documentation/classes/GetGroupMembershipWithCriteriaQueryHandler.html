@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >GetGroupMembershipWithCriteriaQueryHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >GetGroupMembershipWithCriteriaQueryHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/groupe/cqrs/handler/query/get-group-membership-with-criteria.query-handler.ts</code>
+            <code>src/api/groupe/application/cqrs/handler/query/get-group-membership-with-criteria.query-handler.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -105,7 +111,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -116,7 +122,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/groupe/cqrs/handler/query/get-group-membership-with-criteria.query-handler.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/groupe/application/cqrs/handler/query/get-group-membership-with-criteria.query-handler.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -167,7 +173,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -195,7 +201,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/api/groupe/cqrs/handler/query/get-group-membership-with-criteria.query-handler.ts:16</a></div>
+                            class="link-to-prism">src/api/groupe/application/cqrs/handler/query/get-group-membership-with-criteria.query-handler.ts:16</a></div>
                 </td>
             </tr>
 
@@ -252,13 +258,13 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventBus, IQueryHandler, QueryHandler } from &#x27;@nestjs/cqrs&#x27;;
-import { GroupMembershipEntity } from &#x27;../../../domain/entities/group-membership.entity&#x27;;
+import { GroupMembershipEntity } from &#x27;../../../../domain/entities/group-membership.entity&#x27;;
 import { MoreThan, Repository } from &#x27;typeorm&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { GetGroupMembershipWithCriteriaQuery } from &#x27;../../query/get-group-membership-with-criteria.query&#x27;;
-import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @QueryHandler(GetGroupMembershipWithCriteriaQuery)
 export class GetGroupMembershipWithCriteriaQueryHandler implements IQueryHandler&lt;GetGroupMembershipWithCriteriaQuery&gt; {
@@ -344,10 +350,10 @@ export class GetGroupMembershipWithCriteriaQueryHandler implements IQueryHandler
       });
     }
 
-    return groupMembershipQueryBuilder.getMany().catch(error &#x3D;&gt; {
-      this.eventBus.publish(
+    return groupMembershipQueryBuilder.getMany().catch(async error &#x3D;&gt; {
+      await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: &#x27;group&#x27;,
+          localisation: &#x27;groupRepository.findOneOrFail&#x27;,
           handler: &#x27;GetGroupMembershipWithCriteriaQueryHandler&#x27;,
           error: error.message,
         }),

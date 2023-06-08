@@ -17,18 +17,14 @@ export class SocialNetworkController {
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllSocialNetworks(): Promise<SocialNetworkResponse[]> {
-    return await this.socialNetworkService.getAllSocialNetwork().catch(error => {
-      throw error;
-    });
+    return await this.socialNetworkService.getAllSocialNetwork();
   }
 
   @Get('/public/:id')
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getSocialNetworkById(@Param('id') socialNetworkId: string): Promise<SocialNetworkResponse> {
-    return await this.socialNetworkService.getSocialNetworkById(socialNetworkId).catch(error => {
-      throw error;
-    });
+    return await this.socialNetworkService.getSocialNetworkById(socialNetworkId);
   }
 
   @Post('/admin/get-with-criteria')
@@ -48,9 +44,7 @@ export class SocialNetworkController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createSocialNetwork(@Body() createSocialNetworkRequest: CreateSocialNetworkRequest): Promise<void> {
-    return await this.socialNetworkService.createSocialNetwork(createSocialNetworkRequest).catch(error => {
-      throw error;
-    });
+    return await this.socialNetworkService.createSocialNetwork(createSocialNetworkRequest);
   }
 
   @Put('/admin/update/:id')
@@ -71,17 +65,13 @@ export class SocialNetworkController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteSocialNetwork(@Param('id') socialNetworkId: string): Promise<void> {
-    return await this.socialNetworkService.deleteSocialNetwork(socialNetworkId).catch(error => {
-      throw error;
-    });
+    return await this.socialNetworkService.deleteSocialNetwork(socialNetworkId);
   }
 
   @Put('/admin/restore/:id')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async restoreSocialNetwork(@Param('id') socialNetworkId: string): Promise<void> {
-    return await this.socialNetworkService.restoreSocialNetwork(socialNetworkId).catch(error => {
-      throw error;
-    });
+    return await this.socialNetworkService.restoreSocialNetwork(socialNetworkId);
   }
 }

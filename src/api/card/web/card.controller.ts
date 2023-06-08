@@ -243,4 +243,11 @@ export class CardController {
   ): Promise<void> {
     return await this.cardService.updateMyCard(userRequest.user.id, cardId, updateCardRequest);
   }
+
+  @Get('/admin/get-all-card-count')
+  @HttpCode(200)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async countAllCard(): Promise<number> {
+    return await this.cardService.getAllCardCount();
+  }
 }

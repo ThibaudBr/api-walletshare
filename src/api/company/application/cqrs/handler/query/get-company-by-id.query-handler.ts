@@ -14,6 +14,38 @@ export class GetCompanyByIdQueryHandler implements IQueryHandler<GetCompanyByIdQ
   ) {}
 
   async execute(query: GetCompanyByIdQuery): Promise<CompanyEntity> {
+    if (query.fullCompany) {
+      return await this.companyRepository
+        .findOneOrFail({
+          relations: [
+            'occupations',
+            'ownerProfile',
+            'ownerProfile.user',
+            'addresses',
+            'profilePicture',
+            'bannerPicture',
+            'employees',
+            'employees.profile',
+            'employees.profile.personalCards',
+            'employees.profile.personalCards.cardViews',
+            'employees.profile.personalCards.connectedCardTwo',
+            'employees.profile.personalCards.connectedCardOne',
+          ],
+          where: {
+            id: query.companyId,
+          },
+        })
+        .catch(async error => {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              error: error.message,
+              handler: 'GetCompanyByIdQueryHandler',
+              localisation: 'companyRepository.findOneOrFail',
+            }),
+          );
+          throw new Error('Company not found');
+        });
+    }
     return await this.companyRepository
       .findOneOrFail({
         relations: [

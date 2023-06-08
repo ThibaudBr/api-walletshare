@@ -28,6 +28,7 @@ import { GetAllConversationByProfilesAndCardQuery } from './cqrs/query/get-all-c
 import { GetMessageFromConversationQuery } from './cqrs/query/get-message-from-conversation.query';
 import { SoftRemoveMessageConversationCommand } from './cqrs/command/soft-remove-message-conversation.command';
 import { RemoveAllJoinedConversationWithSocketIdCommand } from './cqrs/command/remove-all-joined-conversation-with-socket-id.command';
+import { GetActiveConversationCountQuery } from './cqrs/query/get-active-conversation-count.query';
 
 @Injectable()
 export class ConversationService {
@@ -244,5 +245,12 @@ export class ConversationService {
         if (error.message === 'User not found') throw new InvalidIdHttpException('User not found');
         throw new Error(error);
       });
+  }
+
+  async getActiveConversation(): Promise<number> {
+    return await this.queryBus.execute(new GetActiveConversationCountQuery()).catch(async error => {
+      if (error.message === 'Conversation not found') throw new InvalidIdHttpException('Conversation not found');
+      throw new Error(error);
+    });
   }
 }

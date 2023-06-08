@@ -66,4 +66,10 @@ export class NotificationController {
   async createNotification(@Body() createNotificationAdminRequest: CreateNotificationAdminRequest): Promise<void> {
     return await this.notificationService.createNotificationAdmin(createNotificationAdminRequest);
   }
+
+  @Get('/admin/get-all-unread-notification-count')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getAllUnreadNotification(): Promise<number> {
+    return await this.notificationService.getAllUnreadNotificationCount();
+  }
 }

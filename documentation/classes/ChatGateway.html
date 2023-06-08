@@ -1,0 +1,1059 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api-walletshare documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">api-walletshare documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >ChatGateway</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/api/conversation/web/gateway/chat.gateway.ts</code>
+        </p>
+
+
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>OnGatewayConnection</code>
+            </p>
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isFirstTime" >isFirstTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#server" >server</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#disconnect" >disconnect</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleConnection" >handleConnection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleDisconnect" >handleDisconnect</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#listenForMessages" >listenForMessages</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onJoinConversation" >onJoinConversation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onLeaveConversation" >onLeaveConversation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#requestAllMessages" >requestAllMessages</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(conversationService: <a href="../injectables/ConversationService.html" target="_self">ConversationService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>conversationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConversationService.html" target="_self" >ConversationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFirstTime"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isFirstTime</b></span>
+                        <a href="#isFirstTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="server"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>server</b></span>
+                        <a href="#server"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Server</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @WebSocketServer()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disconnect"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>disconnect</b></span>
+                        <a href="#disconnect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>disconnect(socket: Socket)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:53</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socket</td>
+                                    <td>
+                                            <code>Socket</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleConnection"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>handleConnection</b></span>
+                        <a href="#handleConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleConnection(socket: Socket)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socket</td>
+                                    <td>
+                                            <code>Socket</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleDisconnect"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>handleDisconnect</b></span>
+                        <a href="#handleDisconnect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleDisconnect(socket: Socket)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socket</td>
+                                    <td>
+                                            <code>Socket</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listenForMessages"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier">Async</span>
+                        <span ><b>listenForMessages</b></span>
+                        <a href="#listenForMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listenForMessages(sentMessage: <a href="../classes/SentMessageRequest.html" target="_self">SentMessageRequest</a>, socket: Socket)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@SubscribeMessage(&#x27;send_message&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sentMessage</td>
+                                    <td>
+                                                <code><a href="../classes/SentMessageRequest.html" target="_self" >SentMessageRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>socket</td>
+                                    <td>
+                                            <code>Socket</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;ReceiveMessageResponse&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onJoinConversation"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier">Async</span>
+                        <span ><b>onJoinConversation</b></span>
+                        <a href="#onJoinConversation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onJoinConversation(socket: Socket, joinConversationRequest: <a href="../classes/JoinConversationRequest.html" target="_self">JoinConversationRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@SubscribeMessage(&#x27;join_conversation&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socket</td>
+                                    <td>
+                                            <code>Socket</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>joinConversationRequest</td>
+                                    <td>
+                                                <code><a href="../classes/JoinConversationRequest.html" target="_self" >JoinConversationRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLeaveConversation"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier">Async</span>
+                        <span ><b>onLeaveConversation</b></span>
+                        <a href="#onLeaveConversation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onLeaveConversation(socket: Socket)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@SubscribeMessage(&#x27;leave_conversation&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socket</td>
+                                    <td>
+                                            <code>Socket</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="requestAllMessages"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier">Async</span>
+                        <span ><b>requestAllMessages</b></span>
+                        <a href="#requestAllMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>requestAllMessages(socket: Socket, getMessageFromConversationRequest: <a href="../classes/GetMessageFromConversationRequest.html" target="_self">GetMessageFromConversationRequest</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@SubscribeMessage(&#x27;request_messages_from_conversation&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/api/conversation/web/gateway/chat.gateway.ts:110</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socket</td>
+                                    <td>
+                                            <code>Socket</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>getMessageFromConversationRequest</td>
+                                    <td>
+                                                <code><a href="../classes/GetMessageFromConversationRequest.html" target="_self" >GetMessageFromConversationRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ConnectedSocket,
+  MessageBody,
+  OnGatewayConnection,
+  SubscribeMessage,
+  WebSocketGateway,
+  WebSocketServer,
+} from &#x27;@nestjs/websockets&#x27;;
+import { Server, Socket } from &#x27;socket.io&#x27;;
+import { ConversationService } from &#x27;../../application/conversation.service&#x27;;
+import { ReceiveMessageResponse } from &#x27;../response/receive-message.response&#x27;;
+import { SentMessageRequest } from &#x27;../request/sent-message.request&#x27;;
+import { MessageEntity } from &#x27;../../domain/entities/message.entity&#x27;;
+import { CardEntity } from &#x27;../../../card/domain/entities/card.entity&#x27;;
+import { ConversationEntity } from &#x27;../../domain/entities/conversation.entity&#x27;;
+import { UserEntity } from &#x27;../../../user/domain/entities/user.entity&#x27;;
+import { JoinConversationRequest } from &#x27;../request/join-conversation.request&#x27;;
+import { CreateJoinConversationDto } from &#x27;../../domain/dto/create-join-conversation.dto&#x27;;
+import { GetMessageFromConversationRequest } from &#x27;../request/get-message-from-conversation.request&#x27;;
+
+@WebSocketGateway()
+export class ChatGateway implements OnGatewayConnection {
+  @WebSocketServer()
+  server: Server;
+  private isFirstTime: boolean;
+
+  constructor(private readonly conversationService: ConversationService) {
+    this.isFirstTime &#x3D; true;
+  }
+
+  async handleConnection(socket: Socket): Promise&lt;void&gt; {
+    if (this.isFirstTime) {
+      await this.conversationService.deletedAllJoinedConversation();
+    }
+    const user: UserEntity &#x3D; await this.conversationService.getUserAndProfilesFromSocket(socket);
+
+    if (!user) {
+      return await this.disconnect(socket);
+    }
+
+    const createJoinConversationDtos: CreateJoinConversationDto[] &#x3D;
+      await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
+    for (const createJoinConversationDto of createJoinConversationDtos) {
+      await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
+      this.server.emit(&#x27;conversations&#x27;, createJoinConversationDto.conversationEntity);
+    }
+  }
+
+  async handleDisconnect(socket: Socket): Promise&lt;void&gt; {
+    await this.disconnect(socket);
+  }
+
+  async disconnect(socket: Socket): Promise&lt;void&gt; {
+    await this.conversationService.deletedJoinedConversation(socket.id);
+    socket.disconnect();
+  }
+
+  @SubscribeMessage(&#x27;send_message&#x27;)
+  async listenForMessages(
+    @MessageBody() sentMessage: SentMessageRequest,
+    @ConnectedSocket() socket: Socket,
+  ): Promise&lt;ReceiveMessageResponse&gt; {
+    const user: UserEntity &#x3D; await this.conversationService.getUserAndProfilesFromSocket(socket);
+    const author: CardEntity &#x3D; await this.conversationService.getCardById(user, sentMessage.cardId);
+    const conversation: ConversationEntity &#x3D; await this.conversationService.getConversationById(
+      sentMessage.conversationId,
+    );
+    const message: MessageEntity &#x3D; await this.conversationService.saveMessage(
+      sentMessage.content,
+      author,
+      conversation,
+    );
+
+    const messageResponse: ReceiveMessageResponse &#x3D; new ReceiveMessageResponse({
+      content: message.content,
+      author: {
+        ...author,
+      },
+    });
+    this.server.sockets.emit(&#x27;receive_message&#x27;, messageResponse);
+
+    return messageResponse;
+  }
+
+  @SubscribeMessage(&#x27;join_conversation&#x27;)
+  async onJoinConversation(
+    @ConnectedSocket() socket: Socket,
+    @MessageBody() joinConversationRequest: JoinConversationRequest,
+  ): Promise&lt;void&gt; {
+    const user: UserEntity &#x3D; await this.conversationService.getUserAndProfilesFromSocket(socket);
+    const author: CardEntity &#x3D; await this.conversationService.getCardById(user, joinConversationRequest.cardId);
+    const conversation: ConversationEntity &#x3D; await this.conversationService.getConversationById(
+      joinConversationRequest.conversationId,
+    );
+
+    const createJoinConversationDto: CreateJoinConversationDto &#x3D; new CreateJoinConversationDto({
+      conversationEntity: conversation,
+      profileEntity: author.owner,
+      userId: user.id,
+    });
+    await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
+  }
+
+  @SubscribeMessage(&#x27;leave_conversation&#x27;)
+  async onLeaveConversation(@ConnectedSocket() socket: Socket): Promise&lt;void&gt; {
+    await this.conversationService.deleteJoinedConversationWithSocketId(socket.id);
+  }
+
+  @SubscribeMessage(&#x27;request_messages_from_conversation&#x27;)
+  async requestAllMessages(
+    @ConnectedSocket() socket: Socket,
+    @MessageBody() getMessageFromConversationRequest: GetMessageFromConversationRequest,
+  ): Promise&lt;void&gt; {
+    const conversation: ConversationEntity &#x3D; await this.conversationService.getConversationWhereUserConnected(
+      socket.id,
+      getMessageFromConversationRequest,
+    );
+
+    const messageResponses: ReceiveMessageResponse[] &#x3D; conversation.messages.map((message: MessageEntity) &#x3D;&gt; {
+      return new ReceiveMessageResponse({
+        content: message.content,
+        author: {
+          ...message.author,
+        },
+      });
+    });
+    socket.emit(&#x27;send_all_messages&#x27;, messageResponses);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'ChatGateway.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +39,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >AppTestE2eService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >AppTestE2eService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -65,7 +71,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -94,18 +100,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, cardRepository: <a href="../entitys/CardEntity.html" target="_self">Repository&lt;CardEntity&gt;</a>, companyRepository: <a href="../entitys/CompanyEntity.html" target="_self">Repository&lt;CompanyEntity&gt;</a>, companyEmployeeRepository: <a href="../entitys/CompanyEmployeeEntity.html" target="_self">Repository&lt;CompanyEmployeeEntity&gt;</a>, connectedCardRepository: Repository<ConnectedCardEntity>, conversationRepository: <a href="../entitys/ConversationEntity.html" target="_self">Repository&lt;ConversationEntity&gt;</a>, discountCodeRepository: <a href="../entitys/DiscountCodeEntity.html" target="_self">Repository&lt;DiscountCodeEntity&gt;</a>, groupRepository: <a href="../entitys/GroupEntity.html" target="_self">Repository&lt;GroupEntity&gt;</a>, groupMembershipRepository: <a href="../entitys/GroupMembershipEntity.html" target="_self">Repository&lt;GroupMembershipEntity&gt;</a>, invoicesRepository: <a href="../entitys/InvoicesEntity.html" target="_self">Repository&lt;InvoicesEntity&gt;</a>, joinedConversationRepository: <a href="../entitys/JoinedConversation.html" target="_self">Repository&lt;JoinedConversation&gt;</a>, mediaRepository: <a href="../entitys/MediaEntity.html" target="_self">Repository&lt;MediaEntity&gt;</a>, messageRepository: <a href="../entitys/MessageEntity.html" target="_self">Repository&lt;MessageEntity&gt;</a>, occupationRepository: <a href="../entitys/OccupationEntity.html" target="_self">Repository&lt;OccupationEntity&gt;</a>, planRepository: <a href="../entitys/PlanEntity.html" target="_self">Repository&lt;PlanEntity&gt;</a>, profileRepository: <a href="../entitys/ProfileEntity.html" target="_self">Repository&lt;ProfileEntity&gt;</a>, socialNetworkRepository: <a href="../entitys/SocialNetworkEntity.html" target="_self">Repository&lt;SocialNetworkEntity&gt;</a>, stripEventRepository: <a href="../entitys/StripEventEntity.html" target="_self">Repository&lt;StripEventEntity&gt;</a>, subscriptionRepository: <a href="../entitys/SubscriptionEntity.html" target="_self">Repository&lt;SubscriptionEntity&gt;</a>, notificationRepository: <a href="../entitys/NotificationEntity.html" target="_self">Repository&lt;NotificationEntity&gt;</a>, referralCodeRepository: <a href="../entitys/ReferralCodeEntity.html" target="_self">Repository&lt;ReferralCodeEntity&gt;</a>, addressRepository: <a href="../entitys/AddressEntity.html" target="_self">Repository&lt;AddressEntity&gt;</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, cardRepository: <a href="../entitys/CardEntity.html" target="_self">Repository&lt;CardEntity&gt;</a>, companyRepository: <a href="../entitys/CompanyEntity.html" target="_self">Repository&lt;CompanyEntity&gt;</a>, companyEmployeeRepository: <a href="../entitys/CompanyEmployeeEntity.html" target="_self">Repository&lt;CompanyEmployeeEntity&gt;</a>, connectedCardRepository: Repository<ConnectedCardEntity>, conversationRepository: <a href="../entitys/ConversationEntity.html" target="_self">Repository&lt;ConversationEntity&gt;</a>, groupRepository: <a href="../entitys/GroupEntity.html" target="_self">Repository&lt;GroupEntity&gt;</a>, groupMembershipRepository: <a href="../entitys/GroupMembershipEntity.html" target="_self">Repository&lt;GroupMembershipEntity&gt;</a>, invoicesRepository: <a href="../entitys/InvoicesEntity.html" target="_self">Repository&lt;InvoicesEntity&gt;</a>, joinedConversationRepository: Repository<JoinedConversationEntity>, mediaRepository: <a href="../entitys/MediaEntity.html" target="_self">Repository&lt;MediaEntity&gt;</a>, messageRepository: <a href="../entitys/MessageEntity.html" target="_self">Repository&lt;MessageEntity&gt;</a>, occupationRepository: <a href="../entitys/OccupationEntity.html" target="_self">Repository&lt;OccupationEntity&gt;</a>, planRepository: <a href="../entitys/ProductEntity.html" target="_self">Repository&lt;ProductEntity&gt;</a>, profileRepository: <a href="../entitys/ProfileEntity.html" target="_self">Repository&lt;ProfileEntity&gt;</a>, socialNetworkRepository: <a href="../entitys/SocialNetworkEntity.html" target="_self">Repository&lt;SocialNetworkEntity&gt;</a>, stripEventRepository: <a href="../entitys/StripeEventEntity.html" target="_self">Repository&lt;StripeEventEntity&gt;</a>, subscriptionRepository: <a href="../entitys/SubscriptionEntity.html" target="_self">Repository&lt;SubscriptionEntity&gt;</a>, notificationRepository: <a href="../entitys/NotificationEntity.html" target="_self">Repository&lt;NotificationEntity&gt;</a>, referralCodeRepository: <a href="../entitys/ReferralCodeEntity.html" target="_self">Repository&lt;ReferralCodeEntity&gt;</a>, addressRepository: <a href="../entitys/AddressEntity.html" target="_self">Repository&lt;AddressEntity&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">test/test-environment/service-test/app-test-e2e.service.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">test/test-environment/service-test/app-test-e2e.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -195,18 +201,6 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>discountCodeRepository</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../entitys/DiscountCodeEntity.html" target="_self" >Repository&lt;DiscountCodeEntity&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
                                                         <td>groupRepository</td>
                                                   
                                                         <td>
@@ -246,7 +240,7 @@
                                                         <td>joinedConversationRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/JoinedConversation.html" target="_self" >Repository&lt;JoinedConversation&gt;</a></code>
+                                                                    <code>Repository&lt;JoinedConversationEntity&gt;</code>
                                                         </td>
                                                   
                                                     <td>
@@ -294,7 +288,7 @@
                                                         <td>planRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/PlanEntity.html" target="_self" >Repository&lt;PlanEntity&gt;</a></code>
+                                                                        <code><a href="../entitys/ProductEntity.html" target="_self" >Repository&lt;ProductEntity&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -330,7 +324,7 @@
                                                         <td>stripEventRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/StripEventEntity.html" target="_self" >Repository&lt;StripEventEntity&gt;</a></code>
+                                                                        <code><a href="../entitys/StripeEventEntity.html" target="_self" >Repository&lt;StripeEventEntity&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -395,7 +389,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -422,8 +416,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">test/test-environment/service-test/app-test-e2e.service.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">test/test-environment/service-test/app-test-e2e.service.ts:73</a></div>
                 </td>
             </tr>
 
@@ -444,29 +438,28 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { AddressEntity } from &#x27;../../../src/api/entities-to-create/address.entity&#x27;;
-import StripEventEntity from &#x27;../../../src/api/entities-to-create/strip-event.entity&#x27;;
-import { ReferralCodeEntity } from &#x27;../../../src/api/entities-to-create/referal-code.entity&#x27;;
+import { AddressEntity } from &#x27;../../../src/api/address/domain/entities/address.entity&#x27;;
+import StripeEventEntity from &#x27;../../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity&#x27;;
+import { ReferralCodeEntity } from &#x27;../../../src/api/payment/subscription/domain/entities/referal-code.entity&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { JoinedConversation } from &#x27;../../../src/api/entities-to-create/joined-conversation.entity&#x27;;
+import { JoinedConversationEntity } from &#x27;../../../src/api/conversation/domain/entities/joined-conversation.entity&#x27;;
 import { SocialNetworkEntity } from &#x27;../../../src/api/social-network/domain/entities/social-network.entity&#x27;;
-import { SubscriptionEntity } from &#x27;../../../src/api/entities-to-create/subscription.entity&#x27;;
+import { SubscriptionEntity } from &#x27;../../../src/api/payment/subscription/domain/entities/subscription.entity&#x27;;
 import { GroupMembershipEntity } from &#x27;../../../src/api/groupe/domain/entities/group-membership.entity&#x27;;
 import { UserEntity } from &#x27;../../../src/api/user/domain/entities/user.entity&#x27;;
 import { ProfileEntity } from &#x27;../../../src/api/profile/domain/entities/profile.entity&#x27;;
-import { DiscountCodeEntity } from &#x27;../../../src/api/entities-to-create/discount-code.entity&#x27;;
-import { MessageEntity } from &#x27;../../../src/api/entities-to-create/message.entity&#x27;;
+import { MessageEntity } from &#x27;../../../src/api/conversation/domain/entities/message.entity&#x27;;
 import { GroupEntity } from &#x27;../../../src/api/groupe/domain/entities/group.entity&#x27;;
-import CompanyEntity from &#x27;../../../src/api/entities-to-create/company.entity&#x27;;
-import { CompanyEmployeeEntity } from &#x27;../../../src/api/entities-to-create/company-employee.entity&#x27;;
-import { PlanEntity } from &#x27;../../../src/api/entities-to-create/plan.entity&#x27;;
-import { ConversationEntity } from &#x27;../../../src/api/entities-to-create/conversation.entity&#x27;;
-import { InvoicesEntity } from &#x27;../../../src/api/entities-to-create/invoices.entity&#x27;;
-import { NotificationEntity } from &#x27;../../../src/api/entities-to-create/notification.entity&#x27;;
+import { CompanyEntity } from &#x27;../../../src/api/company/domain/entities/company.entity&#x27;;
+import { CompanyEmployeeEntity } from &#x27;../../../src/api/company/domain/entities/company-employee.entity&#x27;;
+import { ProductEntity } from &#x27;../../../src/api/payment/product/domain/entities/product.entity&#x27;;
+import { ConversationEntity } from &#x27;../../../src/api/conversation/domain/entities/conversation.entity&#x27;;
+import { InvoicesEntity } from &#x27;../../../src/api/payment/invoices/domain/entities/invoices.entity&#x27;;
+import { NotificationEntity } from &#x27;../../../src/api/notification/domain/entities/notification.entity&#x27;;
 import { ConnectedCardEntity } from &#x27;../../../src/api/card/domain/entities/connected-card.entity&#x27;;
-import { MediaEntity } from &#x27;../../../src/api/entities-to-create/media.entity&#x27;;
+import { MediaEntity } from &#x27;../../../src/api/media/domain/entities/media.entity&#x27;;
 import { OccupationEntity } from &#x27;../../../src/api/occupation/domain/entities/occupation.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { CardEntity } from &#x27;../../../src/api/card/domain/entities/card.entity&#x27;;
@@ -486,30 +479,28 @@ export class AppTestE2eService {
     private readonly connectedCardRepository: Repository&lt;ConnectedCardEntity&gt;,
     @InjectRepository(ConversationEntity)
     private readonly conversationRepository: Repository&lt;ConversationEntity&gt;,
-    @InjectRepository(DiscountCodeEntity)
-    private readonly discountCodeRepository: Repository&lt;DiscountCodeEntity&gt;,
     @InjectRepository(GroupEntity)
     private readonly groupRepository: Repository&lt;GroupEntity&gt;,
     @InjectRepository(GroupMembershipEntity)
     private readonly groupMembershipRepository: Repository&lt;GroupMembershipEntity&gt;,
     @InjectRepository(InvoicesEntity)
     private readonly invoicesRepository: Repository&lt;InvoicesEntity&gt;,
-    @InjectRepository(JoinedConversation)
-    private readonly joinedConversationRepository: Repository&lt;JoinedConversation&gt;,
+    @InjectRepository(JoinedConversationEntity)
+    private readonly joinedConversationRepository: Repository&lt;JoinedConversationEntity&gt;,
     @InjectRepository(MediaEntity)
     private readonly mediaRepository: Repository&lt;MediaEntity&gt;,
     @InjectRepository(MessageEntity)
     private readonly messageRepository: Repository&lt;MessageEntity&gt;,
     @InjectRepository(OccupationEntity)
     private readonly occupationRepository: Repository&lt;OccupationEntity&gt;,
-    @InjectRepository(PlanEntity)
-    private readonly planRepository: Repository&lt;PlanEntity&gt;,
+    @InjectRepository(ProductEntity)
+    private readonly planRepository: Repository&lt;ProductEntity&gt;,
     @InjectRepository(ProfileEntity)
     private readonly profileRepository: Repository&lt;ProfileEntity&gt;,
     @InjectRepository(SocialNetworkEntity)
     private readonly socialNetworkRepository: Repository&lt;SocialNetworkEntity&gt;,
-    @InjectRepository(StripEventEntity)
-    private readonly stripEventRepository: Repository&lt;StripEventEntity&gt;,
+    @InjectRepository(StripeEventEntity)
+    private readonly stripEventRepository: Repository&lt;StripeEventEntity&gt;,
     @InjectRepository(SubscriptionEntity)
     private readonly subscriptionRepository: Repository&lt;SubscriptionEntity&gt;,
     @InjectRepository(NotificationEntity)
@@ -522,6 +513,8 @@ export class AppTestE2eService {
 
   async clearDatabaseTest(): Promise&lt;void&gt; {
     try {
+      await this.userRepository.query(&#x27;DELETE FROM &quot;user-login&quot;;&#x27;);
+      await this.mediaRepository.query(&#x27;DELETE FROM &quot;media&quot;;&#x27;);
       await this.cardRepository.query(&#x27;DELETE FROM &quot;card_occupations_occupation&quot;;&#x27;);
       await this.cardRepository.query(&#x27;DELETE FROM &quot;connected_card&quot;;&#x27;);
       await this.cardRepository.query(&#x27;DELETE FROM &quot;saved-card&quot;;&#x27;);
@@ -531,13 +524,11 @@ export class AppTestE2eService {
       await this.companyRepository.query(&#x27;DELETE FROM &quot;company&quot;;&#x27;);
       await this.companyRepository.query(&#x27;DELETE FROM &quot;company_occupations_occupation&quot;;&#x27;);
       await this.companyEmployeeRepository.query(&#x27;DELETE FROM &quot;company_employee&quot;;&#x27;);
+      await this.joinedConversationRepository.query(&#x27;DELETE FROM &quot;joined_conversation&quot;;&#x27;);
       await this.conversationRepository.query(&#x27;DELETE FROM &quot;conversation&quot;;&#x27;);
-      await this.discountCodeRepository.query(&#x27;DELETE FROM &quot;discount_codes&quot;;&#x27;);
       await this.groupRepository.query(&#x27;DELETE FROM &quot;group&quot;;&#x27;);
       await this.groupMembershipRepository.query(&#x27;DELETE FROM &quot;group_membership&quot;;&#x27;);
       await this.invoicesRepository.query(&#x27;DELETE FROM &quot;invoices&quot;;&#x27;);
-      await this.joinedConversationRepository.query(&#x27;DELETE FROM &quot;joined_conversation&quot;;&#x27;);
-      await this.mediaRepository.query(&#x27;DELETE FROM &quot;media&quot;;&#x27;);
       await this.messageRepository.query(&#x27;DELETE FROM &quot;message&quot;;&#x27;);
       await this.occupationRepository.query(&#x27;DELETE FROM &quot;occupation&quot;;&#x27;);
       await this.planRepository.query(&#x27;DELETE FROM &quot;plan&quot;;&#x27;);

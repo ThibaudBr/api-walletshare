@@ -16,7 +16,7 @@ import { ReferralCodeEntity } from '../../../payment/subscription/domain/entitie
 import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
 import { UserLoginEntity } from './user-login.entity';
-import {UserAccountStatusEnum} from "../enum/user-account-status.enum";
+import { UserAccountStatusEnum } from '../enum/user-account-status.enum';
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {

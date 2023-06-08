@@ -10,7 +10,7 @@ export class UpdateProfileEventHandler implements IEventHandler<UpdateProfileEve
     await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: 'Profile with id: ' + event.updateProfileCommand.updateProfileDto + ' updated',
+      body: 'Profile with id: ' + event.updateProfileCommand.id + ' updated',
     });
   }
 }

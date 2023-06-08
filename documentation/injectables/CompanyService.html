@@ -1,0 +1,4091 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api-walletshare documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">api-walletshare documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >CompanyService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/api/company/application/company.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#addCompanyEmployee" >addCompanyEmployee</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#addCompanyEmployeeAdmin" >addCompanyEmployeeAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createCardPreset" >createCardPreset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createCompany" >createCompany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createCompanyAdmin" >createCompanyAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createUserAndProfileForCompany" >createUserAndProfileForCompany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCardCompanyCount" >getAllCardCompanyCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCardForwardCount" >getAllCardForwardCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCardPresetByCompanyId" >getAllCardPresetByCompanyId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCardViewCount" >getAllCardViewCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCompanies" >getAllCompanies</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCompanyCount" >getAllCompanyCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCardPresetById" >getCardPresetById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCompanyById" >getCompanyById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCompanyByProfileId" >getCompanyByProfileId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCompanyByUserId" >getCompanyByUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCompanyDiscovery" >getCompanyDiscovery</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCompanyWithCriteria" >getCompanyWithCriteria</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getEmployeeCount" >getEmployeeCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#giveRightToCompanyEmployee" >giveRightToCompanyEmployee</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#giveRightToCompanyEmployeeAdmin" >giveRightToCompanyEmployeeAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#isRoleInCompany" >isRoleInCompany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeCardPreset" >removeCardPreset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeCompanyAdmin" >removeCompanyAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeCompanyEmployee" >removeCompanyEmployee</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeCompanyEmployeeAdmin" >removeCompanyEmployeeAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#restoreCardPreset" >restoreCardPreset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#restoreCompanyAdmin" >restoreCompanyAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#softRemoveCardPreset" >softRemoveCardPreset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#softRemoveCardPresetAdmin" >softRemoveCardPresetAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#softRemoveCompany" >softRemoveCompany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#softRemoveCompanyAdmin" >softRemoveCompanyAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#transferOwnershipOfCompany" >transferOwnershipOfCompany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#transferOwnershipOfCompanyAdmin" >transferOwnershipOfCompanyAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateCardPreset" >updateCardPreset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateCompany" >updateCompany</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateCompanyAdmin" >updateCompanyAdmin</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(commandBus: CommandBus, queryBus: QueryBus, eventBus: EventBus)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/company/application/company.service.ts:52</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>commandBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>CommandBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>queryBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>QueryBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>EventBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addCompanyEmployee"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>addCompanyEmployee</b></span>
+                        <a href="#addCompanyEmployee"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addCompanyEmployee(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, addCompanyEmployeeRequest: <a href="../classes/AddCompanyEmployeeRequest.html" target="_self">AddCompanyEmployeeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/api/company/application/company.service.ts:195</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>addCompanyEmployeeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/AddCompanyEmployeeRequest.html" target="_self" >AddCompanyEmployeeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addCompanyEmployeeAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>addCompanyEmployeeAdmin</b></span>
+                        <a href="#addCompanyEmployeeAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addCompanyEmployeeAdmin(addCompanyEmployeeRequest: <a href="../classes/AddCompanyEmployeeRequest.html" target="_self">AddCompanyEmployeeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/api/company/application/company.service.ts:271</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>addCompanyEmployeeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/AddCompanyEmployeeRequest.html" target="_self" >AddCompanyEmployeeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCardPreset"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createCardPreset</b></span>
+                        <a href="#createCardPreset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCardPreset(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createCardPresetRequest: <a href="../classes/CreateCardPresetRequest.html" target="_self">CreateCardPresetRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="522"
+                            class="link-to-prism">src/api/company/application/company.service.ts:522</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>createCardPresetRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateCardPresetRequest.html" target="_self" >CreateCardPresetRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardPresetResponse.html" target="_self" >Promise&lt;CardPresetResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCompany"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>createCompany</b></span>
+                        <a href="#createCompany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCompany(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createCompanyRequest: <a href="../classes/CreateCompanyRequest.html" target="_self">CreateCompanyRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="320"
+                            class="link-to-prism">src/api/company/application/company.service.ts:320</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>createCompanyRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateCompanyRequest.html" target="_self" >CreateCompanyRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCompanyAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>createCompanyAdmin</b></span>
+                        <a href="#createCompanyAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCompanyAdmin(createCompanyRequest: <a href="../classes/CreateCompanyRequest.html" target="_self">CreateCompanyRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="377"
+                            class="link-to-prism">src/api/company/application/company.service.ts:377</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>createCompanyRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateCompanyRequest.html" target="_self" >CreateCompanyRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createUserAndProfileForCompany"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createUserAndProfileForCompany</b></span>
+                        <a href="#createUserAndProfileForCompany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createUserAndProfileForCompany(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createUserForCompany: <a href="../classes/CreateUserForCompanyRequest.html" target="_self">CreateUserForCompanyRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="446"
+                            class="link-to-prism">src/api/company/application/company.service.ts:446</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>createUserForCompany</td>
+                                    <td>
+                                                <code><a href="../classes/CreateUserForCompanyRequest.html" target="_self" >CreateUserForCompanyRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCardCompanyCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCardCompanyCount</b></span>
+                        <a href="#getAllCardCompanyCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCardCompanyCount(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="639"
+                            class="link-to-prism">src/api/company/application/company.service.ts:639</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCardForwardCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCardForwardCount</b></span>
+                        <a href="#getAllCardForwardCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCardForwardCount(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="692"
+                            class="link-to-prism">src/api/company/application/company.service.ts:692</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCardPresetByCompanyId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCardPresetByCompanyId</b></span>
+                        <a href="#getAllCardPresetByCompanyId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCardPresetByCompanyId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="500"
+                            class="link-to-prism">src/api/company/application/company.service.ts:500</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardPresetResponse.html" target="_self" >Promise&lt;CardPresetResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCardViewCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCardViewCount</b></span>
+                        <a href="#getAllCardViewCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCardViewCount(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="672"
+                            class="link-to-prism">src/api/company/application/company.service.ts:672</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCompanies"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCompanies</b></span>
+                        <a href="#getAllCompanies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCompanies(deleted: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, take: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, skip: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/api/company/application/company.service.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>deleted</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>take</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>skip</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CompanyResponse.html" target="_self" >Promise&lt;CompanyResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllCompanyCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCompanyCount</b></span>
+                        <a href="#getAllCompanyCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCompanyCount()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="633"
+                            class="link-to-prism">src/api/company/application/company.service.ts:633</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCardPresetById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getCardPresetById</b></span>
+                        <a href="#getCardPresetById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCardPresetById(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardPresetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="514"
+                            class="link-to-prism">src/api/company/application/company.service.ts:514</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardPresetId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardPresetResponse.html" target="_self" >Promise&lt;CardPresetResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCompanyById"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getCompanyById</b></span>
+                        <a href="#getCompanyById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCompanyById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fullCompany?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/api/company/application/company.service.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>fullCompany</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CompanyResponse.html" target="_self" >Promise&lt;CompanyResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCompanyByProfileId"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getCompanyByProfileId</b></span>
+                        <a href="#getCompanyByProfileId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCompanyByProfileId(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/api/company/application/company.service.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>profileId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CompanyResponse.html" target="_self" >Promise&lt;CompanyResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCompanyByUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getCompanyByUserId</b></span>
+                        <a href="#getCompanyByUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCompanyByUserId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">src/api/company/application/company.service.ts:159</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CompanyResponse.html" target="_self" >Promise&lt;CompanyResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCompanyDiscovery"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getCompanyDiscovery</b></span>
+                        <a href="#getCompanyDiscovery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCompanyDiscovery(getCompanyDiscoveryRequest: <a href="../classes/GetCompanyDiscoveryRequest.html" target="_self">GetCompanyDiscoveryRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/api/company/application/company.service.ts:94</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>getCompanyDiscoveryRequest</td>
+                                    <td>
+                                                <code><a href="../classes/GetCompanyDiscoveryRequest.html" target="_self" >GetCompanyDiscoveryRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CompanyResponse.html" target="_self" >Promise&lt;CompanyResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCompanyWithCriteria"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getCompanyWithCriteria</b></span>
+                        <a href="#getCompanyWithCriteria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCompanyWithCriteria(getCompanyWithCriteriaRequest: <a href="../classes/GetCompanyWithCriteriaRequest.html" target="_self">GetCompanyWithCriteriaRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/api/company/application/company.service.ts:117</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>getCompanyWithCriteriaRequest</td>
+                                    <td>
+                                                <code><a href="../classes/GetCompanyWithCriteriaRequest.html" target="_self" >GetCompanyWithCriteriaRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CompanyResponse.html" target="_self" >Promise&lt;CompanyResponse[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmployeeCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getEmployeeCount</b></span>
+                        <a href="#getEmployeeCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getEmployeeCount(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="656"
+                            class="link-to-prism">src/api/company/application/company.service.ts:656</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="giveRightToCompanyEmployee"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>giveRightToCompanyEmployee</b></span>
+                        <a href="#giveRightToCompanyEmployee"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>giveRightToCompanyEmployee(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, giveRightToCompanyEmployeeRequest: <a href="../classes/GiveRightToEmployeeRequest.html" target="_self">GiveRightToEmployeeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="244"
+                            class="link-to-prism">src/api/company/application/company.service.ts:244</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>giveRightToCompanyEmployeeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/GiveRightToEmployeeRequest.html" target="_self" >GiveRightToEmployeeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="giveRightToCompanyEmployeeAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>giveRightToCompanyEmployeeAdmin</b></span>
+                        <a href="#giveRightToCompanyEmployeeAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>giveRightToCompanyEmployeeAdmin(giveRightToCompanyEmployeeRequest: <a href="../classes/GiveRightToEmployeeRequest.html" target="_self">GiveRightToEmployeeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="302"
+                            class="link-to-prism">src/api/company/application/company.service.ts:302</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>giveRightToCompanyEmployeeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/GiveRightToEmployeeRequest.html" target="_self" >GiveRightToEmployeeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isRoleInCompany"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>isRoleInCompany</b></span>
+                        <a href="#isRoleInCompany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isRoleInCompany(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, roles: <a href="../undefineds/RoleCompanyEmployeeEnum.html" target="_self">RoleCompanyEmployeeEnum[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="179"
+                            class="link-to-prism">src/api/company/application/company.service.ts:179</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>roles</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#RoleCompanyEmployeeEnum" target="_self" >RoleCompanyEmployeeEnum[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCardPreset"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeCardPreset</b></span>
+                        <a href="#removeCardPreset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeCardPreset(cardPresetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="591"
+                            class="link-to-prism">src/api/company/application/company.service.ts:591</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardPresetId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCompanyAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>removeCompanyAdmin</b></span>
+                        <a href="#removeCompanyAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeCompanyAdmin(companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="432"
+                            class="link-to-prism">src/api/company/application/company.service.ts:432</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCompanyEmployee"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>removeCompanyEmployee</b></span>
+                        <a href="#removeCompanyEmployee"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeCompanyEmployee(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, removeCompanyEmployeeRequest: <a href="../classes/RemoveCompanyEmployeeRequest.html" target="_self">RemoveCompanyEmployeeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/api/company/application/company.service.ts:218</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>removeCompanyEmployeeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveCompanyEmployeeRequest.html" target="_self" >RemoveCompanyEmployeeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCompanyEmployeeAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>removeCompanyEmployeeAdmin</b></span>
+                        <a href="#removeCompanyEmployeeAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeCompanyEmployeeAdmin(removeCompanyEmployeeRequest: <a href="../classes/RemoveCompanyEmployeeRequest.html" target="_self">RemoveCompanyEmployeeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="287"
+                            class="link-to-prism">src/api/company/application/company.service.ts:287</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>removeCompanyEmployeeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveCompanyEmployeeRequest.html" target="_self" >RemoveCompanyEmployeeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="restoreCardPreset"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>restoreCardPreset</b></span>
+                        <a href="#restoreCardPreset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>restoreCardPreset(cardPresetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="600"
+                            class="link-to-prism">src/api/company/application/company.service.ts:600</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardPresetId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="restoreCompanyAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>restoreCompanyAdmin</b></span>
+                        <a href="#restoreCompanyAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>restoreCompanyAdmin(companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="439"
+                            class="link-to-prism">src/api/company/application/company.service.ts:439</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softRemoveCardPreset"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>softRemoveCardPreset</b></span>
+                        <a href="#softRemoveCardPreset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softRemoveCardPreset(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cardPresetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="609"
+                            class="link-to-prism">src/api/company/application/company.service.ts:609</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardPresetId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softRemoveCardPresetAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>softRemoveCardPresetAdmin</b></span>
+                        <a href="#softRemoveCardPresetAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softRemoveCardPresetAdmin(cardPresetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="624"
+                            class="link-to-prism">src/api/company/application/company.service.ts:624</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardPresetId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softRemoveCompany"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>softRemoveCompany</b></span>
+                        <a href="#softRemoveCompany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softRemoveCompany(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="360"
+                            class="link-to-prism">src/api/company/application/company.service.ts:360</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softRemoveCompanyAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>softRemoveCompanyAdmin</b></span>
+                        <a href="#softRemoveCompanyAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softRemoveCompanyAdmin(companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="408"
+                            class="link-to-prism">src/api/company/application/company.service.ts:408</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transferOwnershipOfCompany"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>transferOwnershipOfCompany</b></span>
+                        <a href="#transferOwnershipOfCompany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>transferOwnershipOfCompany(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, transferOwnershipOfCompanyRequest: <a href="../classes/TransferOwnershipOfCompanyRequest.html" target="_self">TransferOwnershipOfCompanyRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="365"
+                            class="link-to-prism">src/api/company/application/company.service.ts:365</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>transferOwnershipOfCompanyRequest</td>
+                                    <td>
+                                                <code><a href="../classes/TransferOwnershipOfCompanyRequest.html" target="_self" >TransferOwnershipOfCompanyRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transferOwnershipOfCompanyAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>transferOwnershipOfCompanyAdmin</b></span>
+                        <a href="#transferOwnershipOfCompanyAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>transferOwnershipOfCompanyAdmin(transferOwnershipOfCompanyRequest: <a href="../classes/TransferOwnershipOfCompanyRequest.html" target="_self">TransferOwnershipOfCompanyRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="415"
+                            class="link-to-prism">src/api/company/application/company.service.ts:415</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transferOwnershipOfCompanyRequest</td>
+                                    <td>
+                                                <code><a href="../classes/TransferOwnershipOfCompanyRequest.html" target="_self" >TransferOwnershipOfCompanyRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateCardPreset"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateCardPreset</b></span>
+                        <a href="#updateCardPreset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateCardPreset(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateCardPresetRequest: <a href="../classes/UpdateCardPresetRequest.html" target="_self">UpdateCardPresetRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="557"
+                            class="link-to-prism">src/api/company/application/company.service.ts:557</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateCardPresetRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateCardPresetRequest.html" target="_self" >UpdateCardPresetRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CardPresetResponse.html" target="_self" >Promise&lt;CardPresetResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateCompany"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>updateCompany</b></span>
+                        <a href="#updateCompany"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateCompany(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateCompanyRequest: <a href="../classes/UpdateCompanyRequest.html" target="_self">UpdateCompanyRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="335"
+                            class="link-to-prism">src/api/company/application/company.service.ts:335</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateCompanyRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateCompanyRequest.html" target="_self" >UpdateCompanyRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateCompanyAdmin"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>updateCompanyAdmin</b></span>
+                        <a href="#updateCompanyAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateCompanyAdmin(companyId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateCompanyRequest: <a href="../classes/UpdateCompanyRequest.html" target="_self">UpdateCompanyRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="392"
+                            class="link-to-prism">src/api/company/application/company.service.ts:392</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>companyId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateCompanyRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateCompanyRequest.html" target="_self" >UpdateCompanyRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConflictException, ForbiddenException, Injectable } from &#x27;@nestjs/common&#x27;;
+import { CommandBus, EventBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
+import { GetAllCompanyQuery } from &#x27;./cqrs/query/get-all-company.query&#x27;;
+import { CompanyResponse } from &#x27;../web/response/company.response&#x27;;
+import { CompanyEntity } from &#x27;../domain/entities/company.entity&#x27;;
+import { GetCompanyByIdQuery } from &#x27;./cqrs/query/get-company-by-id.query&#x27;;
+import { GetCompanyDiscoveryQuery } from &#x27;./cqrs/query/get-company-discovery.query&#x27;;
+import { InvalidIdHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
+import { GetCompanyDiscoveryRequest } from &#x27;../web/request/get-company-discovery.request&#x27;;
+import { GetCompanyWithCriteriaQuery } from &#x27;./cqrs/query/get-company-with-criteria.query&#x27;;
+import { GetCompanyWithCriteriaRequest } from &#x27;../web/request/get-company-with-criteria.request&#x27;;
+import { GetCompanyWithProfileIdQuery } from &#x27;./cqrs/query/get-company-with-profile-id.query&#x27;;
+import { GetCompanyWithUserIdQuery } from &#x27;./cqrs/query/get-company-with-user-id.query&#x27;;
+import { IsRoleInCompanyQuery } from &#x27;./cqrs/query/is-role-in-company.query&#x27;;
+import { RemoveCompanyCommand } from &#x27;./cqrs/command/remove-company.command&#x27;;
+import { RestoreCompanyCommand } from &#x27;./cqrs/command/restore-company.command&#x27;;
+import { AddCompanyEmployeeRequest } from &#x27;../web/request/add-company-employee.request&#x27;;
+import { RemoveCompanyEmployeeRequest } from &#x27;../web/request/remove-company-employee.request&#x27;;
+import { GiveRightToEmployeeRequest } from &#x27;../web/request/give-right-to-employee.request&#x27;;
+import { CreateCompanyRequest } from &#x27;../web/request/create-company.request&#x27;;
+import { UpdateCompanyRequest } from &#x27;../web/request/update-company.request&#x27;;
+import { TransferOwnershipOfCompanyRequest } from &#x27;../web/request/transfer-ownership-of-company.request&#x27;;
+import { AddCompanyEmployeeCommand } from &#x27;./cqrs/command/add-company-employee.command&#x27;;
+import { RoleCompanyEmployeeEnum } from &#x27;../domain/enum/role-company-employee.enum&#x27;;
+import { RemoveCompanyEmployeeCommand } from &#x27;./cqrs/command/remove-company-employee.command&#x27;;
+import { GiveRightToEmployeeCommand } from &#x27;./cqrs/command/give-right-to-employee.command&#x27;;
+import { TransferOwnershipOfCompanyCommand } from &#x27;./cqrs/command/transfer-ownership-of-company.command&#x27;;
+import { SoftRemoveCompanyCommand } from &#x27;./cqrs/command/soft-remove-company.command&#x27;;
+import { UpdateCompanyCommand } from &#x27;./cqrs/command/update-company.command&#x27;;
+import { CreateCompanyCommand } from &#x27;./cqrs/command/create-company.command&#x27;;
+import { CreateUserForCompanyRequest } from &#x27;../web/request/create-user-for-company.request&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../util/exception/error-handler/error-custom.event&#x27;;
+import { CreateUserCommand } from &#x27;../../user/application/cqrs/command/create-user.command&#x27;;
+import { UserRoleEnum } from &#x27;../../user/domain/enum/user-role.enum&#x27;;
+import { UserResponse } from &#x27;../../user/web/response/user.response&#x27;;
+import { CreateProfileCommand } from &#x27;../../profile/application/cqrs/command/create-profile.command&#x27;;
+import { UserNotFoundHttpException } from &#x27;../../../util/exception/custom-http-exception/user-not-found.http-exception&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { GetAllCardPresetByCompanyIdQuery } from &#x27;./cqrs/query/get-all-card-preset-by-company-id.query&#x27;;
+import { CardPresetResponse } from &#x27;../web/response/card-preset.response&#x27;;
+import { GetCardPresetByIdQuery } from &#x27;./cqrs/query/get-card-preset-by-id.query&#x27;;
+import { CreateCardPresetCommand } from &#x27;./cqrs/command/create-card-preset.command&#x27;;
+import { CreateCardPresetRequest } from &#x27;../web/request/create-card-preset.request&#x27;;
+import { CardPresetEntity } from &#x27;../domain/entities/card-preset.entity&#x27;;
+import { UpdateCardPresetCommand } from &#x27;./cqrs/command/update-card-preset.command&#x27;;
+import { UpdateCardPresetRequest } from &#x27;../web/request/update-card-preset.request&#x27;;
+import { RemoveCardPresetCommand } from &#x27;./cqrs/command/remove-card-preset.command&#x27;;
+import { SoftRemoveCardPresetCommand } from &#x27;./cqrs/command/soft-remove-card-preset.command&#x27;;
+import { RestoreCardPresetCommand } from &#x27;./cqrs/command/restore-card-preset.command&#x27;;
+
+@Injectable()
+export class CompanyService {
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+    private readonly eventBus: EventBus,
+  ) {}
+
+  public async getAllCompanies(deleted: boolean, take: number, skip: number): Promise&lt;CompanyResponse[]&gt; {
+    return this.queryBus
+      .execute(
+        new GetAllCompanyQuery({
+          deleted: deleted,
+          take: take,
+          skip: skip,
+        }),
+      )
+      .then((companies: CompanyEntity[]) &#x3D;&gt; {
+        return companies.map((company: CompanyEntity) &#x3D;&gt; {
+          return new CompanyResponse({
+            ...company,
+          });
+        });
+      })
+      .catch(async error &#x3D;&gt; {
+        throw error;
+      });
+  }
+
+  public async getCompanyById(id: string, fullCompany?: boolean): Promise&lt;CompanyResponse&gt; {
+    return this.queryBus
+      .execute(new GetCompanyByIdQuery({ companyId: id, fullCompany: fullCompany }))
+      .then((company: CompanyEntity) &#x3D;&gt; {
+        return new CompanyResponse({
+          ...company,
+        });
+      })
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async getCompanyDiscovery(getCompanyDiscoveryRequest: GetCompanyDiscoveryRequest): Promise&lt;CompanyResponse[]&gt; {
+    return this.queryBus
+      .execute(
+        new GetCompanyDiscoveryQuery({
+          userX: getCompanyDiscoveryRequest?.userX,
+          userY: getCompanyDiscoveryRequest?.userY,
+          occupationIdList: getCompanyDiscoveryRequest.occupationIdList,
+          distance: getCompanyDiscoveryRequest?.distance,
+        }),
+      )
+      .then((companiesDiscovery: CompanyEntity[]) &#x3D;&gt; {
+        return companiesDiscovery.map((companyDiscovery: CompanyEntity) &#x3D;&gt; {
+          return new CompanyResponse({
+            ...companyDiscovery,
+          });
+        });
+      })
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async getCompanyWithCriteria(
+    getCompanyWithCriteriaRequest: GetCompanyWithCriteriaRequest,
+  ): Promise&lt;CompanyResponse[]&gt; {
+    return this.queryBus
+      .execute(
+        new GetCompanyWithCriteriaQuery({
+          isDeleted: getCompanyWithCriteriaRequest?.isDeleted,
+        }),
+      )
+      .then((companiesDiscovery: CompanyEntity[]) &#x3D;&gt; {
+        return companiesDiscovery.map((companyDiscovery: CompanyEntity) &#x3D;&gt; {
+          return new CompanyResponse({
+            ...companyDiscovery,
+          });
+        });
+      })
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async getCompanyByProfileId(profileId: string): Promise&lt;CompanyResponse[]&gt; {
+    return this.queryBus
+      .execute(
+        new GetCompanyWithProfileIdQuery({
+          profileId: profileId,
+        }),
+      )
+      .then((companiesDiscovery: CompanyEntity[]) &#x3D;&gt; {
+        return companiesDiscovery.map((companyDiscovery: CompanyEntity) &#x3D;&gt; {
+          return new CompanyResponse({
+            ...companyDiscovery,
+          });
+        });
+      })
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async getCompanyByUserId(userId: string): Promise&lt;CompanyResponse[]&gt; {
+    return this.queryBus
+      .execute(
+        new GetCompanyWithUserIdQuery({
+          userId: userId,
+        }),
+      )
+      .then((companiesDiscovery: CompanyEntity[]) &#x3D;&gt; {
+        return companiesDiscovery.map((companyDiscovery: CompanyEntity) &#x3D;&gt; {
+          return new CompanyResponse({
+            ...companyDiscovery,
+          });
+        });
+      })
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async isRoleInCompany(userId: string, companyId: string, roles: RoleCompanyEmployeeEnum[]): Promise&lt;boolean&gt; {
+    return this.queryBus
+      .execute(
+        new IsRoleInCompanyQuery({
+          userId: userId,
+          companyId: companyId,
+          roles: roles,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new InvalidIdHttpException(&#x27;User not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async addCompanyEmployee(userId: string, addCompanyEmployeeRequest: AddCompanyEmployeeRequest): Promise&lt;void&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, addCompanyEmployeeRequest.companyId, [
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.OWNER,
+      ]))
+    )
+      throw new ForbiddenException(&#x27;You are not allowed to add an employee to this company&#x27;);
+    await this.commandBus
+      .execute(
+        new AddCompanyEmployeeCommand({
+          companyId: addCompanyEmployeeRequest.companyId,
+          profileId: addCompanyEmployeeRequest.profileId,
+          roles: addCompanyEmployeeRequest.roles,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdHttpException(&#x27;Profile not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async removeCompanyEmployee(
+    userId: string,
+    removeCompanyEmployeeRequest: RemoveCompanyEmployeeRequest,
+  ): Promise&lt;void&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, removeCompanyEmployeeRequest.companyId, [
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.OWNER,
+      ]))
+    )
+      throw new ForbiddenException(&#x27;You are not allowed to remove an employee to this company&#x27;);
+
+    await this.commandBus
+      .execute(
+        new RemoveCompanyEmployeeCommand({
+          companyId: removeCompanyEmployeeRequest.companyId,
+          profileId: removeCompanyEmployeeRequest.profileId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdHttpException(&#x27;Profile not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async giveRightToCompanyEmployee(
+    userId: string,
+    giveRightToCompanyEmployeeRequest: GiveRightToEmployeeRequest,
+  ): Promise&lt;void&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, giveRightToCompanyEmployeeRequest.companyId, [
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.OWNER,
+      ]))
+    )
+      throw new ForbiddenException(&#x27;You are not allowed to give roles to an employee in this company&#x27;);
+
+    await this.commandBus
+      .execute(
+        new GiveRightToEmployeeCommand({
+          companyId: giveRightToCompanyEmployeeRequest.companyId,
+          profileId: giveRightToCompanyEmployeeRequest.profileId,
+          roles: giveRightToCompanyEmployeeRequest.roles,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdHttpException(&#x27;Profile not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async addCompanyEmployeeAdmin(addCompanyEmployeeRequest: AddCompanyEmployeeRequest): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new AddCompanyEmployeeCommand({
+          companyId: addCompanyEmployeeRequest.companyId,
+          profileId: addCompanyEmployeeRequest.profileId,
+          roles: addCompanyEmployeeRequest.roles,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdHttpException(&#x27;Profile not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async removeCompanyEmployeeAdmin(removeCompanyEmployeeRequest: RemoveCompanyEmployeeRequest): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new RemoveCompanyEmployeeCommand({
+          companyId: removeCompanyEmployeeRequest.companyId,
+          profileId: removeCompanyEmployeeRequest.profileId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdHttpException(&#x27;Profile not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async giveRightToCompanyEmployeeAdmin(
+    giveRightToCompanyEmployeeRequest: GiveRightToEmployeeRequest,
+  ): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new GiveRightToEmployeeCommand({
+          companyId: giveRightToCompanyEmployeeRequest.companyId,
+          profileId: giveRightToCompanyEmployeeRequest.profileId,
+          roles: giveRightToCompanyEmployeeRequest.roles,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdHttpException(&#x27;Profile not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async createCompany(userId: string, createCompanyRequest: CreateCompanyRequest): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new CreateCompanyCommand({
+          createCompanyDto: createCompanyRequest.createCompanyDto,
+          occupationIdList: createCompanyRequest?.occupationListId,
+          profileId: createCompanyRequest.profileId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company already exists&#x27;) throw new ConflictException(&#x27;Company already exists&#x27;);
+        throw error;
+      });
+  }
+
+  public async updateCompany(
+    userId: string,
+    companyId: string,
+    updateCompanyRequest: UpdateCompanyRequest,
+  ): Promise&lt;void&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.ADMIN, RoleCompanyEmployeeEnum.OWNER]))
+    )
+      throw new ForbiddenException(&#x27;You are not allowed to update this company&#x27;);
+
+    await this.commandBus
+      .execute(
+        new UpdateCompanyCommand({
+          companyId: companyId,
+          updateCompanyDto: updateCompanyRequest.updateCompanyDto,
+          updateOccupationIdList: updateCompanyRequest?.occupationListId,
+          newProfileOwnerId: updateCompanyRequest?.profileId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async softRemoveCompany(userId: string, companyId: string): Promise&lt;void&gt; {
+    if (!(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER])))
+      throw new ForbiddenException(&#x27;You are not allowed to delete this company&#x27;);
+  }
+
+  public async transferOwnershipOfCompany(
+    userId: string,
+    transferOwnershipOfCompanyRequest: TransferOwnershipOfCompanyRequest,
+  ): Promise&lt;void&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, transferOwnershipOfCompanyRequest.companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+      ]))
+    )
+      throw new ForbiddenException(&#x27;You are not allowed to transfer ownership of this company&#x27;);
+  }
+
+  public async createCompanyAdmin(createCompanyRequest: CreateCompanyRequest): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new CreateCompanyCommand({
+          profileId: createCompanyRequest.profileId,
+          createCompanyDto: createCompanyRequest.createCompanyDto,
+          occupationIdList: createCompanyRequest.occupationListId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new InvalidIdHttpException(&#x27;Occupation not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async updateCompanyAdmin(companyId: string, updateCompanyRequest: UpdateCompanyRequest): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new UpdateCompanyCommand({
+          companyId: companyId,
+          updateCompanyDto: updateCompanyRequest.updateCompanyDto,
+          updateOccupationIdList: updateCompanyRequest.occupationListId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new InvalidIdHttpException(&#x27;Occupation not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async softRemoveCompanyAdmin(companyId: string): Promise&lt;void&gt; {
+    await this.commandBus.execute(new SoftRemoveCompanyCommand({ companyId: companyId })).catch(async error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+      throw error;
+    });
+  }
+
+  public async transferOwnershipOfCompanyAdmin(
+    transferOwnershipOfCompanyRequest: TransferOwnershipOfCompanyRequest,
+  ): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new TransferOwnershipOfCompanyCommand({
+          companyId: transferOwnershipOfCompanyRequest.companyId,
+          profileId: transferOwnershipOfCompanyRequest.profileId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdHttpException(&#x27;Profile not found&#x27;);
+        throw error;
+      });
+  }
+
+  public async removeCompanyAdmin(companyId: string): Promise&lt;void&gt; {
+    await this.commandBus.execute(new RemoveCompanyCommand({ companyId: companyId })).catch(async error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+      throw error;
+    });
+  }
+
+  public async restoreCompanyAdmin(companyId: string): Promise&lt;void&gt; {
+    await this.commandBus.execute(new RestoreCompanyCommand({ companyId: companyId })).catch(async error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+      throw error;
+    });
+  }
+
+  async createUserAndProfileForCompany(id: string, createUserForCompany: CreateUserForCompanyRequest): Promise&lt;void&gt; {
+    if (
+      !(await this.queryBus.execute(
+        new IsRoleInCompanyQuery({
+          userId: id,
+          companyId: createUserForCompany.companyId,
+          roles: [RoleCompanyEmployeeEnum.ADMIN, RoleCompanyEmployeeEnum.OWNER],
+        }),
+      ))
+    ) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;CreateUserAndProfileForCompany&#x27;,
+          localisation: &#x27;Company&#x27;,
+          error: &#x27;User is not allowed to create user and profile for this company&#x27;,
+        }),
+      );
+      throw new ForbiddenException(&#x27;You are not allowed to create user and profile for this company&#x27;);
+    }
+
+    const userResponse: UserResponse &#x3D; await this.commandBus
+      .execute(
+        new CreateUserCommand({
+          ...createUserForCompany.createUserDto,
+          roles: [UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT, UserRoleEnum.PUBLIC],
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User already exists&#x27;) throw new ConflictException(&#x27;User already exists&#x27;);
+        throw error;
+      });
+
+    const profileId: string &#x3D; await this.commandBus
+      .execute(
+        new CreateProfileCommand({
+          userId: userResponse.id,
+          createProfileDto: createUserForCompany.createProfileDto,
+        }),
+      )
+      .catch(async e &#x3D;&gt; {
+        if (e.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundHttpException();
+        else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
+        else if (e.message &#x3D;&#x3D;&#x3D; &#x27;Occupation not found&#x27;) throw new InvalidIdHttpException();
+        else if (e.message &#x3D;&#x3D;&#x3D; &#x27;Profile with given role already exist&#x27;) throw new ForbiddenException(e.message);
+        else throw e;
+      });
+
+    await this.addCompanyEmployeeAdmin({
+      profileId: profileId,
+      companyId: createUserForCompany.companyId,
+      roles: createUserForCompany.companyEmployeeRoles,
+    });
+  }
+
+  async getAllCardPresetByCompanyId(userId: string, companyId: string): Promise&lt;CardPresetResponse[]&gt; {
+    if (
+      await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ])
+    ) {
+      return this.queryBus.execute(new GetAllCardPresetByCompanyIdQuery({ companyId: companyId }));
+    }
+
+    throw new ForbiddenException(&#x27;You are not allowed to get card preset for this company&#x27;);
+  }
+
+  async getCardPresetById(userId: string, companyId: string, cardPresetId: string): Promise&lt;CardPresetResponse&gt; {
+    if (await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER, RoleCompanyEmployeeEnum.ADMIN])) {
+      return this.queryBus.execute(new GetCardPresetByIdQuery({ id: cardPresetId }));
+    }
+
+    throw new ForbiddenException(&#x27;You are not allowed to get card preset for this company&#x27;);
+  }
+
+  async createCardPreset(
+    userId: string,
+    createCardPresetRequest: CreateCardPresetRequest,
+  ): Promise&lt;CardPresetResponse&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, createCardPresetRequest.companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+      ]))
+    ) {
+      throw new ForbiddenException(&#x27;You are not allowed to create card preset for this company&#x27;);
+    }
+
+    return await this.commandBus
+      .execute(
+        new CreateCardPresetCommand({
+          companyId: createCardPresetRequest.companyId,
+          alignment: createCardPresetRequest.alignment,
+          backgroundColor: createCardPresetRequest.backgroundColor,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card preset is not valid&#x27;) throw new ConflictException(&#x27;Card preset already exists&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while saving card preset&#x27;)
+          throw new ConflictException(&#x27;Error while saving card preset&#x27;);
+        throw error;
+      })
+      .then((cardPresetEntity: CardPresetEntity) &#x3D;&gt; {
+        return new CardPresetResponse({
+          ...cardPresetEntity,
+        });
+      });
+  }
+
+  async updateCardPreset(
+    userId: string,
+    companyId: string,
+    updateCardPresetRequest: UpdateCardPresetRequest,
+  ): Promise&lt;CardPresetResponse&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER, RoleCompanyEmployeeEnum.ADMIN]))
+    ) {
+      throw new ForbiddenException(&#x27;You are not allowed to update card preset for this company&#x27;);
+    }
+
+    return await this.commandBus
+      .execute(
+        new UpdateCardPresetCommand({
+          id: updateCardPresetRequest.id,
+          alignment: updateCardPresetRequest.alignment,
+          backgroundColor: updateCardPresetRequest.backgroundColor,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card preset not found&#x27;) throw new InvalidIdHttpException(&#x27;Card preset not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card preset is not valid&#x27;) throw new ConflictException(&#x27;Card preset already exists&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Company not found&#x27;) throw new InvalidIdHttpException(&#x27;Company not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while updating card preset&#x27;)
+          throw new ConflictException(&#x27;Error while updating card preset&#x27;);
+        throw error;
+      })
+      .then((cardPresetEntity: CardPresetEntity) &#x3D;&gt; {
+        return new CardPresetResponse({
+          ...cardPresetEntity,
+        });
+      });
+  }
+
+  async removeCardPreset(cardPresetId: string): Promise&lt;void&gt; {
+    await this.commandBus.execute(new RemoveCardPresetCommand({ id: cardPresetId })).catch(async error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card preset not found&#x27;) throw new InvalidIdHttpException(&#x27;Card preset not found&#x27;);
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while removing card preset&#x27;)
+        throw new ConflictException(&#x27;Error while deleting card preset&#x27;);
+      throw error;
+    });
+  }
+
+  async restoreCardPreset(cardPresetId: string): Promise&lt;void&gt; {
+    await this.commandBus.execute(new RestoreCardPresetCommand({ id: cardPresetId })).catch(async error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card preset not found&#x27;) throw new InvalidIdHttpException(&#x27;Card preset not found&#x27;);
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while restoring card preset&#x27;)
+        throw new ConflictException(&#x27;Error while restoring card preset&#x27;);
+      throw error;
+    });
+  }
+
+  async softRemoveCardPreset(userId: string, companyId: string, cardPresetId: string): Promise&lt;void&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER, RoleCompanyEmployeeEnum.ADMIN]))
+    ) {
+      throw new ForbiddenException(&#x27;You are not allowed to delete card preset for this company&#x27;);
+    }
+
+    await this.commandBus.execute(new SoftRemoveCardPresetCommand({ id: cardPresetId })).catch(async error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card preset not found&#x27;) throw new InvalidIdHttpException(&#x27;Card preset not found&#x27;);
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while deleting card preset&#x27;)
+        throw new ConflictException(&#x27;Error while deleting card preset&#x27;);
+      throw error;
+    });
+  }
+
+  async softRemoveCardPresetAdmin(cardPresetId: string): Promise&lt;void&gt; {
+    await this.commandBus.execute(new SoftRemoveCardPresetCommand({ id: cardPresetId })).catch(async error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card preset not found&#x27;) throw new InvalidIdHttpException(&#x27;Card preset not found&#x27;);
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while deleting card preset&#x27;)
+        throw new ConflictException(&#x27;Error while deleting card preset&#x27;);
+      throw error;
+    });
+  }
+
+  async getAllCompanyCount(): Promise&lt;number&gt; {
+    return await this.getAllCompanies(false, -1, -1).then((companies: CompanyEntity[]) &#x3D;&gt; {
+      return companies.length;
+    });
+  }
+
+  async getAllCardCompanyCount(userId: string, companyId: string): Promise&lt;number&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException(&#x27;You are not allowed to get card preset for this company&#x27;);
+    }
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) &#x3D;&gt; {
+      return company.employees.reduce((totalCards, employee) &#x3D;&gt; {
+        return totalCards + (employee.profile.personalCards?.length || 0);
+      }, 0);
+    });
+  }
+
+  async getEmployeeCount(userId: string, companyId: string): Promise&lt;number&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException(&#x27;You are not allowed to get card preset for this company&#x27;);
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) &#x3D;&gt; {
+      return company.employees.length;
+    });
+  }
+
+  async getAllCardViewCount(userId: string, companyId: string): Promise&lt;number&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException(&#x27;You are not allowed to get card preset for this company&#x27;);
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) &#x3D;&gt; {
+      return company.employees.reduce((totalViews, employee) &#x3D;&gt; {
+        return (
+          totalViews + (employee.profile.personalCards?.reduce((total, card) &#x3D;&gt; total + card.numberOfShares, 0) ?? 0)
+        );
+      }, 0);
+    });
+  }
+
+  async getAllCardForwardCount(userId: string, companyId: string): Promise&lt;number&gt; {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException(&#x27;You are not allowed to get card preset for this company&#x27;);
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) &#x3D;&gt; {
+      return (
+        company.employees.reduce((totalForwards, employee) &#x3D;&gt; {
+          return (
+            totalForwards +
+            (employee.profile.personalCards?.reduce((total, card) &#x3D;&gt; total + card.connectedCardTwo.length, 0) ?? 0)
+          );
+        }, 0) +
+        company.employees.reduce((totalForwards, employee) &#x3D;&gt; {
+          return (
+            totalForwards +
+            (employee.profile.personalCards?.reduce((total, card) &#x3D;&gt; total + card.connectedCardOne.length, 0) ?? 0)
+          );
+        }, 0)
+      );
+    });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'CompanyService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

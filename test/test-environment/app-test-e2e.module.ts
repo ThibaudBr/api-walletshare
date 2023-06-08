@@ -7,7 +7,6 @@ import { CompanyEntity } from '../../src/api/company/domain/entities/company.ent
 import { CompanyEmployeeEntity } from '../../src/api/company/domain/entities/company-employee.entity';
 import { ConnectedCardEntity } from '../../src/api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../src/api/conversation/domain/entities/conversation.entity';
-import { DiscountCodeEntity } from '../../src/api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../src/api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../src/api/groupe/domain/entities/group-membership.entity';
 import { InvoicesEntity } from '../../src/api/payment/invoices/domain/entities/invoices.entity';
@@ -52,7 +51,6 @@ import { PriceEntity } from '../../src/api/payment/price/domain/entities/price.e
       CompanyEmployeeEntity,
       ConnectedCardEntity,
       ConversationEntity,
-      DiscountCodeEntity,
       GroupEntity,
       GroupMembershipEntity,
       InvoicesEntity,

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >RegisterHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >RegisterHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/auth/cqrs/handler/command/register.handler.ts</code>
+            <code>src/api/auth/application/cqrs/handler/command/register.handler.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -154,18 +160,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, eventBus: EventBus)</code>
+<code>constructor(userRepository: <a href="../entitys/UserEntity.html" target="_self">Repository&lt;UserEntity&gt;</a>, eventBus: EventBus, configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -206,6 +212,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -215,7 +233,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -234,7 +252,7 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +261,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -270,8 +288,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:31</a></div>
                 </td>
             </tr>
 
@@ -341,8 +359,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:113</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:129</a></div>
                 </td>
             </tr>
 
@@ -412,8 +430,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:123</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:90</a></div>
                 </td>
             </tr>
 
@@ -451,8 +469,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:131</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:98</a></div>
                 </td>
             </tr>
 
@@ -523,8 +541,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:109</a></div>
                 </td>
             </tr>
 
@@ -595,8 +613,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:103</a></div>
                 </td>
             </tr>
 
@@ -666,8 +684,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:123</a></div>
                 </td>
             </tr>
 
@@ -737,8 +755,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:115</a></div>
                 </td>
             </tr>
 
@@ -808,8 +826,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/api/auth/cqrs/handler/command/register.handler.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/api/auth/application/cqrs/handler/command/register.handler.ts:119</a></div>
                 </td>
             </tr>
 
@@ -866,22 +884,23 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RegisterCommand } from &#x27;../../command/register.command&#x27;;
 import { CommandHandler, EventBus, ICommandHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { UserEntity } from &#x27;../../../../user/domain/entities/user.entity&#x27;;
+import { UserEntity } from &#x27;../../../../../user/domain/entities/user.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
 import { RegisterEvent } from &#x27;../../event/register.event&#x27;;
-import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
-import { InvalidParameterEntityHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
-import { InvalidPasswordHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-password.http-exception&#x27;;
-import { DuplicateMailHttpException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
-import { DuplicateUsernameHttpException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { InvalidPasswordHttpException } from &#x27;../../../../../../util/exception/custom-http-exception/invalid-password.http-exception&#x27;;
+import { DuplicateMailHttpException } from &#x27;../../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
+import { DuplicateUsernameHttpException } from &#x27;../../../../../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
 import * as bcrypt from &#x27;bcrypt&#x27;;
-import { InvalidMailHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-mail.http-exception&#x27;;
-import { InvalidUsernameHttpException } from &#x27;../../../../../util/exception/custom-http-exception/invalid-username.http-exception&#x27;;
+import { InvalidMailHttpException } from &#x27;../../../../../../util/exception/custom-http-exception/invalid-mail.http-exception&#x27;;
+import { InvalidUsernameHttpException } from &#x27;../../../../../../util/exception/custom-http-exception/invalid-username.http-exception&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
 
 @CommandHandler(RegisterCommand)
 export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
@@ -891,6 +910,7 @@ export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
     @InjectRepository(UserEntity)
     private userRepository: Repository&lt;UserEntity&gt;,
     private eventBus: EventBus,
+    private readonly configService: ConfigService,
   ) {
     this.regexValidatePassword &#x3D; new RegExp(&#x27;^(?&#x3D;.*[A-Za-z])(?&#x3D;.*\\d)(?&#x3D;.*[@$!%*#?&amp;])[A-Za-z\\d@$!%*#?&amp;]{6,}$&#x27;);
   }
@@ -953,6 +973,20 @@ export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
     return insertedUser;
   }
 
+  // Generate a unique referral code that does not already exist in the database
+  async generateUniqueReferralCode(): Promise&lt;string&gt; {
+    let code &#x3D; this.generateCode(this.configService.get(&#x27;LENGTH_REFERRAL_CODE&#x27;) ?? 6);
+    while (await this.getUserByReferralCode(code)) {
+      code &#x3D; this.generateCode(this.configService.get(&#x27;LENGTH_REFERRAL_CODE&#x27;) ?? 6);
+    }
+    return code;
+  }
+
+  async getUserByReferralCode(referralCode: string): Promise&lt;boolean&gt; {
+    const user &#x3D; await this.userRepository.findOne({ where: { referralCode: referralCode } });
+    return !!user;
+  }
+
   private async isDuplicatedUsername(username: string): Promise&lt;boolean&gt; {
     return await this.userRepository.find().then(users &#x3D;&gt; {
       return users.some(user &#x3D;&gt; user.username &#x3D;&#x3D;&#x3D; username);
@@ -986,20 +1020,6 @@ export class RegisterHandler implements ICommandHandler&lt;RegisterCommand&gt; {
       code +&#x3D; charset.charAt(Math.floor(Math.random() * charset.length));
     }
     return code;
-  }
-
-  // Generate a unique referral code that does not already exist in the database
-  async generateUniqueReferralCode(): Promise&lt;string&gt; {
-    let code &#x3D; this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
-    while (await this.getUserByReferralCode(code)) {
-      code &#x3D; this.generateCode(Number(process.env.LENGTH_REFERRAL_CODE) || 6);
-    }
-    return code;
-  }
-
-  async getUserByReferralCode(referralCode: string): Promise&lt;boolean&gt; {
-    const user &#x3D; await this.userRepository.findOne({ where: { referralCode: referralCode } });
-    return !!user;
   }
 }
 </code></pre>

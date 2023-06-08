@@ -1,4 +1,4 @@
-import {UserAccountStatusEnum} from "../../../../../user/domain/enum/user-account-status.enum";
+import { UserAccountStatusEnum } from '../../../../../user/domain/enum/user-account-status.enum';
 
 export class UpdateAccountStatusCommand {
   constructor(partial: Partial<UpdateAccountStatusCommand>) {

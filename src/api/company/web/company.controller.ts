@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CompanyService } from '../application/company.service';
 import { CompanyResponse } from './response/company.response';
@@ -12,6 +12,9 @@ import { CreateCompanyRequest } from './request/create-company.request';
 import { UpdateCompanyRequest } from './request/update-company.request';
 import { TransferOwnershipOfCompanyRequest } from './request/transfer-ownership-of-company.request';
 import { CreateUserForCompanyRequest } from './request/create-user-for-company.request';
+import { CardPresetResponse } from './response/card-preset.response';
+import { UpdateCardPresetRequest } from './request/update-card-preset.request';
+import { CreateCardPresetRequest } from './request/create-card-preset.request';
 
 @Controller('company')
 @ApiTags('Company')
@@ -77,13 +80,17 @@ export class CompanyController {
     return await this.companyService.createUserAndProfileForCompany(requestUser.user.id, createUserForCompany);
   }
 
-  @Get('/admin/get-all-companies')
+  @Get('/admin/get-all-companies/:deleted/:take/:skip')
   @ApiOperation({ summary: 'Get all companies' })
   @ApiOkResponse({ type: CompanyResponse })
   @ApiNotFoundResponse({ description: 'Company not found' })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async getAllCompanies(): Promise<CompanyResponse[]> {
-    return await this.companyService.getAllCompanies();
+  async getAllCompanies(
+    @Param('deleted') deleted = false,
+    @Param('take') take = -1,
+    @Param('skip') skip = -1,
+  ): Promise<CompanyResponse[]> {
+    return await this.companyService.getAllCompanies(deleted, take, skip);
   }
 
   @Post('/public/add-company-employee')
@@ -241,5 +248,139 @@ export class CompanyController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async adminRestoreCompany(@Param('companyId') companyId: string): Promise<void> {
     return await this.companyService.restoreCompanyAdmin(companyId);
+  }
+
+  @Get('/public/get-card-preset/:companyId/:cardPresetId')
+  @ApiOperation({ summary: 'Get card preset' })
+  @ApiOkResponse({ type: CardPresetResponse })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getCardPreset(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+    @Param('cardPresetId') cardPresetId: string,
+  ): Promise<CardPresetResponse> {
+    return await this.companyService.getCardPresetById(requestUser.user.id, companyId, cardPresetId);
+  }
+
+  @Get('/public/get-all-card-preset-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get card preset by company id' })
+  @ApiOkResponse({ type: [CardPresetResponse] })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getCardPresetByCompanyId(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<CardPresetResponse[]> {
+    return await this.companyService.getAllCardPresetByCompanyId(requestUser.user.id, companyId);
+  }
+
+  @Post('/public/create-card-preset')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Create card preset' })
+  @ApiOkResponse({ type: 'Ok' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async createCardPreset(
+    @Req() requestUser: RequestUser,
+    @Body() createCardPresetRequest: CreateCardPresetRequest,
+  ): Promise<CardPresetResponse> {
+    return await this.companyService.createCardPreset(requestUser.user.id, createCardPresetRequest);
+  }
+
+  @Put('/public/update-card-preset/:companyId')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Update card preset' })
+  @ApiOkResponse({ type: 'Ok' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async updateCardPreset(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+    @Body() updateCardPresetRequest: UpdateCardPresetRequest,
+  ): Promise<CardPresetResponse> {
+    return await this.companyService.updateCardPreset(requestUser.user.id, companyId, updateCardPresetRequest);
+  }
+
+  @Delete('/public/delete-card-preset/:companyId/:cardPresetId')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Delete card preset' })
+  @ApiOkResponse({ type: 'Ok' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async deleteCardPreset(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+    @Param('cardPresetId') cardPresetId: string,
+  ): Promise<void> {
+    return await this.companyService.softRemoveCardPreset(requestUser.user.id, companyId, cardPresetId);
+  }
+
+  @Delete('/admin/delete-card-preset/:cardPresetId')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Delete card preset' })
+  @ApiOkResponse({ type: 'Ok' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async adminDeleteCardPreset(@Param('cardPresetId') cardPresetId: string): Promise<void> {
+    return await this.companyService.softRemoveCardPresetAdmin(cardPresetId);
+  }
+
+  @Put('/admin/restore-card-preset/:cardPresetId')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Restore card preset' })
+  @ApiOkResponse({ type: 'Ok' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async adminRestoreCardPreset(@Param('cardPresetId') cardPresetId: string): Promise<void> {
+    return await this.companyService.restoreCardPreset(cardPresetId);
+  }
+
+  @Delete('/admin/soft-remove-card-preset/:cardPresetId')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Soft remove card preset' })
+  @ApiOkResponse({ type: 'Ok' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async adminSoftRemoveCardPreset(@Param('cardPresetId') cardPresetId: string): Promise<void> {
+    return await this.companyService.softRemoveCardPresetAdmin(cardPresetId);
+  }
+
+  @Get('/admin/get-all-company-count')
+  @ApiOperation({ summary: 'Get all company count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getAllCompanyCount(): Promise<number> {
+    return await this.companyService.getAllCompanyCount();
+  }
+
+  @Get('/company/get-all-card-company-count-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get all card company count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getAllCardCompanyCount(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<number> {
+    return await this.companyService.getAllCardCompanyCount(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/get-employee-count-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get employee count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getEmployeeCount(@Param('companyId') companyId: string, @Req() requestUser: RequestUser): Promise<number> {
+    return await this.companyService.getEmployeeCount(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/get-all-card-view-count-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get all card view count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getAllCardViewCount(@Req() requestUser: RequestUser, @Param('companyId') companyId: string): Promise<number> {
+    return await this.companyService.getAllCardViewCount(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/get-all-card-forward-count-by-company-id/:companyId')
+  @ApiOperation({ summary: 'Get all card forward count' })
+  @ApiOkResponse({ type: Number })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getAllCardForwardCount(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<number> {
+    return await this.companyService.getAllCardForwardCount(requestUser.user.id, companyId);
   }
 }

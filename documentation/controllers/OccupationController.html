@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,21 +36,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >OccupationController</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >OccupationController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -70,7 +76,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -84,34 +90,58 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#createOccupation" >createOccupation</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteOccupation" >deleteOccupation</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllOccupations" >getAllOccupations</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getOccupationById" >getOccupationById</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getOccupationsWithCriteria" >getOccupationsWithCriteria</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#restoreOccupation" >restoreOccupation</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#softDeleteOccupation" >softDeleteOccupation</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#updateOccupation" >updateOccupation</a>
                             </li>
@@ -127,7 +157,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -138,6 +168,9 @@
                 <td class="col-md-4">
                     <a name="createOccupation"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>createOccupation</b></span>
                         <a href="#createOccupation"><span class="icon ion-ios-link"></span></a>
@@ -161,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -216,6 +249,9 @@
                 <td class="col-md-4">
                     <a name="deleteOccupation"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>deleteOccupation</b></span>
                         <a href="#deleteOccupation"><span class="icon ion-ios-link"></span></a>
@@ -239,8 +275,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:58</a></div>
                 </td>
             </tr>
 
@@ -294,6 +330,9 @@
                 <td class="col-md-4">
                     <a name="getAllOccupations"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllOccupations</b></span>
                         <a href="#getAllOccupations"><span class="icon ion-ios-link"></span></a>
@@ -340,6 +379,9 @@
                 <td class="col-md-4">
                     <a name="getOccupationById"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getOccupationById</b></span>
                         <a href="#getOccupationById"><span class="icon ion-ios-link"></span></a>
@@ -363,8 +405,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:25</a></div>
                 </td>
             </tr>
 
@@ -418,6 +460,9 @@
                 <td class="col-md-4">
                     <a name="getOccupationsWithCriteria"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getOccupationsWithCriteria</b></span>
                         <a href="#getOccupationsWithCriteria"><span class="icon ion-ios-link"></span></a>
@@ -441,8 +486,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:32</a></div>
                 </td>
             </tr>
 
@@ -496,6 +541,9 @@
                 <td class="col-md-4">
                     <a name="restoreOccupation"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>restoreOccupation</b></span>
                         <a href="#restoreOccupation"><span class="icon ion-ios-link"></span></a>
@@ -519,8 +567,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:84</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:72</a></div>
                 </td>
             </tr>
 
@@ -574,6 +622,9 @@
                 <td class="col-md-4">
                     <a name="softDeleteOccupation"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>softDeleteOccupation</b></span>
                         <a href="#softDeleteOccupation"><span class="icon ion-ios-link"></span></a>
@@ -597,8 +648,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:65</a></div>
                 </td>
             </tr>
 
@@ -652,6 +703,9 @@
                 <td class="col-md-4">
                     <a name="updateOccupation"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>updateOccupation</b></span>
                         <a href="#updateOccupation"><span class="icon ion-ios-link"></span></a>
@@ -675,8 +729,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/api/occupation/web/occupation.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -739,11 +793,11 @@
 </section>    </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { OccupationService } from &#x27;../occupation.service&#x27;;
-import { RoleGuard } from &#x27;../../auth/guards/role.guard&#x27;;
+import { OccupationService } from &#x27;../application/occupation.service&#x27;;
+import { RoleGuard } from &#x27;../../auth/web/guards/role.guard&#x27;;
 import { OccupationResponse } from &#x27;./response/occupation-response&#x27;;
 import { UserRoleEnum } from &#x27;../../user/domain/enum/user-role.enum&#x27;;
 import { GetOccupationWithCriteriaRequest } from &#x27;./request/get-occupation-with-criteria.request&#x27;;
@@ -758,18 +812,14 @@ export class OccupationController {
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllOccupations(): Promise&lt;OccupationResponse[]&gt; {
-    return await this.occupationService.getAllOccupation().catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.occupationService.getAllOccupation();
   }
 
   @Get(&#x27;/public/:id&#x27;)
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getOccupationById(@Param(&#x27;id&#x27;) occupationId: string): Promise&lt;OccupationResponse&gt; {
-    return await this.occupationService.getOccupationById(occupationId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.occupationService.getOccupationById(occupationId);
   }
 
   @Post(&#x27;/admin/get-with-criteria&#x27;)
@@ -778,18 +828,14 @@ export class OccupationController {
   async getOccupationsWithCriteria(
     @Body() getOccupationsWithCriteriaRequest: GetOccupationWithCriteriaRequest,
   ): Promise&lt;OccupationResponse[]&gt; {
-    return await this.occupationService.getOccupationWithCriteria(getOccupationsWithCriteriaRequest).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.occupationService.getOccupationWithCriteria(getOccupationsWithCriteriaRequest);
   }
 
   @Post(&#x27;/admin/create&#x27;)
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createOccupation(@Body() createOccupationRequest: CreateOccupationRequest): Promise&lt;void&gt; {
-    return await this.occupationService.createOccupation(createOccupationRequest).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.occupationService.createOccupation(createOccupationRequest);
   }
 
   @Put(&#x27;/admin/update/:id&#x27;)
@@ -799,18 +845,14 @@ export class OccupationController {
     @Param(&#x27;id&#x27;) occupationId: string,
     @Body() createOccupationRequest: CreateOccupationRequest,
   ): Promise&lt;void&gt; {
-    return await this.occupationService.updateOccupation(occupationId, createOccupationRequest).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.occupationService.updateOccupation(occupationId, createOccupationRequest);
   }
 
   @Delete(&#x27;/admin/delete/:id&#x27;)
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteOccupation(@Param(&#x27;id&#x27;) occupationId: string): Promise&lt;void&gt; {
-    return await this.occupationService.deleteOccupation(occupationId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.occupationService.deleteOccupation(occupationId);
   }
 
   @Delete(&#x27;/admin/soft-delete/:id&#x27;)
@@ -824,9 +866,7 @@ export class OccupationController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async restoreOccupation(@Param(&#x27;id&#x27;) occupationId: string): Promise&lt;void&gt; {
-    return await this.occupationService.restoreOccupation(occupationId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.occupationService.restoreOccupation(occupationId);
   }
 }
 </code></pre>

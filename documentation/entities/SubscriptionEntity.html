@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -37,32 +37,38 @@
 
 
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >SubscriptionEntity</li>
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >SubscriptionEntity</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/entities-to-create/subscription.entity.ts</code>
+            <code>src/api/payment/subscription/domain/entities/subscription.entity.ts</code>
         </p>
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -75,51 +81,56 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#createdAt" >createdAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#deletedAt" >deletedAt</a>
                             </li>
                             <li>
-                                <a href="#discountCodes" >discountCodes</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#endDate" >endDate</a>
-                            </li>
-                            <li>
+                                    <span class="modifier"></span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#invoices" >invoices</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#plan" >plan</a>
+                                    <span class="modifier"></span>
+                                <a href="#price" >price</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#startDate" >startDate</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
-                                    <span class="modifier">Optional</span>
-                                <a href="#stripCustomerId" >stripCustomerId</a>
+                                <a href="#status" >status</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#trialEndDate" >trialEndDate</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#trialStartDate" >trialStartDate</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#updatedAt" >updatedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#user" >user</a>
                             </li>
                         </ul>
@@ -135,7 +146,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -146,6 +157,7 @@
                 <td class="col-md-4">
                     <a name="createdAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>createdAt</b></span>
                         <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -168,7 +180,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -181,6 +193,7 @@
                 <td class="col-md-4">
                     <a name="deletedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>deletedAt</b></span>
                         <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -203,78 +216,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:80</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="discountCodes"></a>
-                    <span class="name">
-                        <span ><b>discountCodes</b></span>
-                        <a href="#discountCodes"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/DiscountCodeEntity.html" target="_self" >DiscountCodeEntity[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ManyToMany(undefined, discountCodeEntity &#x3D;&gt; discountCodeEntity.subscriptions)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:67</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="endDate"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>endDate</b></span>
-                        <a href="#endDate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Column({name: &#x27;end_date&#x27;, type: &#x27;date&#x27;})<br />@IsDate()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -287,6 +229,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -309,7 +252,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -322,6 +265,7 @@
                 <td class="col-md-4">
                     <a name="invoices"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>invoices</b></span>
                         <a href="#invoices"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -344,7 +288,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -355,17 +299,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="plan"></a>
+                    <a name="price"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>plan</b></span>
-                        <a href="#plan"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                        <span ><b>price</b></span>
+                        <a href="#price"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/PlanEntity.html" target="_self" >PlanEntity</a></code>
+                        <i>Type : </i>        <code><a href="../entitys/PriceEntity.html" target="_self" >PriceEntity</a></code>
 
                     </td>
                 </tr>
@@ -374,13 +318,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, planEntity &#x3D;&gt; planEntity.subscriptions)<br />
+                            @ManyToOne(undefined, priceEntity &#x3D;&gt; priceEntity.subscriptions)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -393,6 +337,8 @@
                 <td class="col-md-4">
                     <a name="startDate"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>startDate</b></span>
                         <a href="#startDate"><span class="icon ion-ios-link"></span></a>
@@ -416,7 +362,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -427,18 +373,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="stripCustomerId"></a>
+                    <a name="status"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
-                            <span class="modifier">Optional</span>
-                        <span ><b>stripCustomerId</b></span>
-                        <a href="#stripCustomerId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>status</b></span>
+                        <a href="#status"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#StatusSubscriptionEnum" target="_self" >StatusSubscriptionEnum</a></code>
 
                     </td>
                 </tr>
@@ -447,22 +393,16 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({unique: true, nullable: true})<br />
+                            @Column({type: &#x27;enum&#x27;, enum: StatusSubscriptionEnum, default: undefined})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:33</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>This is a flag to indicate if the user has a stripe customer id.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -472,6 +412,8 @@
                 <td class="col-md-4">
                     <a name="trialEndDate"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Optional</span>
                         <span ><b>trialEndDate</b></span>
@@ -496,7 +438,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -509,6 +451,8 @@
                 <td class="col-md-4">
                     <a name="trialStartDate"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Optional</span>
                         <span ><b>trialStartDate</b></span>
@@ -533,7 +477,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -546,6 +490,7 @@
                 <td class="col-md-4">
                     <a name="updatedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>updatedAt</b></span>
                         <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -568,7 +513,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -581,6 +526,7 @@
                 <td class="col-md-4">
                     <a name="user"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>user</b></span>
                         <a href="#user"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -603,7 +549,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/api/entities-to-create/subscription.entity.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/api/payment/subscription/domain/entities/subscription.entity.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -614,8 +560,9 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -627,13 +574,13 @@
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
 import { IsDate } from &#x27;class-validator&#x27;;
-import { PlanEntity } from &#x27;./plan.entity&#x27;;
-import { UserEntity } from &#x27;../user/domain/entities/user.entity&#x27;;
-import { InvoicesEntity } from &#x27;./invoices.entity&#x27;;
-import { DiscountCodeEntity } from &#x27;./discount-code.entity&#x27;;
+import { UserEntity } from &#x27;../../../../user/domain/entities/user.entity&#x27;;
+import { InvoicesEntity } from &#x27;../../../invoices/domain/entities/invoices.entity&#x27;;
+import { StatusSubscriptionEnum } from &#x27;../enum/status-subscription.enum&#x27;;
+import { PriceEntity } from &#x27;../../../price/domain/entities/price.entity&#x27;;
 
 @Entity({ name: &#x27;subscription&#x27; })
-export class SubscriptionEntity {
+export class SubscriptionEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -645,19 +592,8 @@ export class SubscriptionEntity {
   @IsDate()
   public startDate: Date;
 
-  @Column({ name: &#x27;end_date&#x27;, type: &#x27;date&#x27; })
-  @IsDate()
-  public endDate: Date;
-
-  // @Column({ type: &#x27;enum&#x27;, enum: StatusSubscriptionEnum, default: StatusSubscriptionEnum.ACTIVE })
-  // public status: StatusSubscriptionEnum;
-
-  /**
-   * @description
-   * This is a flag to indicate if the user has a stripe customer id.
-   */
-  @Column({ unique: true, nullable: true })
-  public stripCustomerId?: string;
+  @Column({ type: &#x27;enum&#x27;, enum: StatusSubscriptionEnum, default: StatusSubscriptionEnum.ACTIVE })
+  public status: StatusSubscriptionEnum;
 
   @Column({ name: &#x27;trial_start_date&#x27;, type: &#x27;date&#x27;, nullable: true })
   @IsDate()
@@ -671,17 +607,14 @@ export class SubscriptionEntity {
   // Relations
   // ______________________________________________________
 
-  @ManyToOne(() &#x3D;&gt; PlanEntity, planEntity &#x3D;&gt; planEntity.subscriptions)
-  public plan: PlanEntity;
+  @ManyToOne(() &#x3D;&gt; PriceEntity, priceEntity &#x3D;&gt; priceEntity.subscriptions)
+  price: PriceEntity;
 
   @ManyToOne(() &#x3D;&gt; UserEntity, userEntity &#x3D;&gt; userEntity.subscriptions)
   user: UserEntity;
 
   @OneToMany(() &#x3D;&gt; InvoicesEntity, invoicesEntity &#x3D;&gt; invoicesEntity.subscription)
   invoices: InvoicesEntity[];
-
-  @ManyToMany(() &#x3D;&gt; DiscountCodeEntity, discountCodeEntity &#x3D;&gt; discountCodeEntity.subscriptions)
-  discountCodes: DiscountCodeEntity[];
 
   // ______________________________________________________
   // Timestamps
@@ -695,6 +628,11 @@ export class SubscriptionEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial&lt;SubscriptionEntity&gt;) {
+    super();
+    Object.assign(this, partial);
+  }
 }
 </code></pre>
     </div>

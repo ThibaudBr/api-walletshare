@@ -15,6 +15,7 @@ import { CreateUsedReferralCodeCommand } from './cqrs/command/create-used-referr
 import { CancelSubscriptionCommand } from './cqrs/command/cancel-subscription.command';
 import { UpdateAccountStatusCommand } from './cqrs/command/update-account-status.command';
 import { UserAccountStatusEnum } from '../../../user/domain/enum/user-account-status.enum';
+import { GetAllActiveSubscriptionQuery } from './cqrs/query/get-all-active-subscription.query';
 
 @Injectable()
 export class SubscriptionService {
@@ -28,7 +29,7 @@ export class SubscriptionService {
     private readonly priceService: PriceService,
     private readonly configService: ConfigService,
   ) {
-    this.monthlySubscriptionPriceId = this.configService.get('STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID') || 'error';
+    this.monthlySubscriptionPriceId = this.configService.get('STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID') ?? 'error';
   }
 
   async createMonthlySubscription(stripCustomerId: string): Promise<Stripe.Response<Stripe.Subscription>> {
@@ -229,5 +230,9 @@ export class SubscriptionService {
           throw new InternalServerErrorException(error.message);
         throw error;
       });
+  }
+
+  async getAllActiveSubscriptionsCount() {
+    return await this.queryBus.execute(new GetAllActiveSubscriptionQuery());
   }
 }

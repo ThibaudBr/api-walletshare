@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,33 +39,39 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >CardService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >CardService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/card/card.service.ts</code>
+            <code>src/api/card/application/card.service.ts</code>
         </p>
 
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -105,6 +111,10 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteCard" >deleteCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllCardCount" >getAllCardCount</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -194,7 +204,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -205,7 +215,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/api/card/card.service.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/api/card/application/card.service.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -255,7 +265,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -282,8 +292,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="411"
-                            class="link-to-prism">src/api/card/card.service.ts:411</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="412"
+                            class="link-to-prism">src/api/card/application/card.service.ts:412</a></div>
                 </td>
             </tr>
 
@@ -365,8 +375,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="386"
-                            class="link-to-prism">src/api/card/card.service.ts:386</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="387"
+                            class="link-to-prism">src/api/card/application/card.service.ts:387</a></div>
                 </td>
             </tr>
 
@@ -460,8 +470,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="430"
-                            class="link-to-prism">src/api/card/card.service.ts:430</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="431"
+                            class="link-to-prism">src/api/card/application/card.service.ts:431</a></div>
                 </td>
             </tr>
 
@@ -555,8 +565,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="453"
-                            class="link-to-prism">src/api/card/card.service.ts:453</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="454"
+                            class="link-to-prism">src/api/card/application/card.service.ts:454</a></div>
                 </td>
             </tr>
 
@@ -626,8 +636,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="488"
-                            class="link-to-prism">src/api/card/card.service.ts:488</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="489"
+                            class="link-to-prism">src/api/card/application/card.service.ts:489</a></div>
                 </td>
             </tr>
 
@@ -709,8 +719,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="468"
-                            class="link-to-prism">src/api/card/card.service.ts:468</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="469"
+                            class="link-to-prism">src/api/card/application/card.service.ts:469</a></div>
                 </td>
             </tr>
 
@@ -804,8 +814,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="507"
-                            class="link-to-prism">src/api/card/card.service.ts:507</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="508"
+                            class="link-to-prism">src/api/card/application/card.service.ts:508</a></div>
                 </td>
             </tr>
 
@@ -857,6 +867,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getAllCardCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllCardCount</b></span>
+                        <a href="#getAllCardCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCardCount()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="709"
+                            class="link-to-prism">src/api/card/application/card.service.ts:709</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getAllCards"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -876,7 +925,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/api/card/card.service.ts:45</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -915,7 +964,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="199"
-                            class="link-to-prism">src/api/card/card.service.ts:199</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:199</a></div>
                 </td>
             </tr>
 
@@ -986,7 +1035,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/api/card/card.service.ts:117</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:117</a></div>
                 </td>
             </tr>
 
@@ -1057,7 +1106,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">src/api/card/card.service.ts:155</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:155</a></div>
                 </td>
             </tr>
 
@@ -1140,7 +1189,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/api/card/card.service.ts:81</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:81</a></div>
                 </td>
             </tr>
 
@@ -1211,7 +1260,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="239"
-                            class="link-to-prism">src/api/card/card.service.ts:239</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:239</a></div>
                 </td>
             </tr>
 
@@ -1282,7 +1331,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="308"
-                            class="link-to-prism">src/api/card/card.service.ts:308</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:308</a></div>
                 </td>
             </tr>
 
@@ -1365,7 +1414,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="351"
-                            class="link-to-prism">src/api/card/card.service.ts:351</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:351</a></div>
                 </td>
             </tr>
 
@@ -1436,7 +1485,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="270"
-                            class="link-to-prism">src/api/card/card.service.ts:270</a></div>
+                            class="link-to-prism">src/api/card/application/card.service.ts:270</a></div>
                 </td>
             </tr>
 
@@ -1506,8 +1555,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="563"
-                            class="link-to-prism">src/api/card/card.service.ts:563</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="564"
+                            class="link-to-prism">src/api/card/application/card.service.ts:564</a></div>
                 </td>
             </tr>
 
@@ -1589,8 +1638,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="576"
-                            class="link-to-prism">src/api/card/card.service.ts:576</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="577"
+                            class="link-to-prism">src/api/card/application/card.service.ts:577</a></div>
                 </td>
             </tr>
 
@@ -1672,8 +1721,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="545"
-                            class="link-to-prism">src/api/card/card.service.ts:545</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="546"
+                            class="link-to-prism">src/api/card/application/card.service.ts:546</a></div>
                 </td>
             </tr>
 
@@ -1755,8 +1804,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="522"
-                            class="link-to-prism">src/api/card/card.service.ts:522</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="523"
+                            class="link-to-prism">src/api/card/application/card.service.ts:523</a></div>
                 </td>
             </tr>
 
@@ -1850,8 +1899,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="685"
-                            class="link-to-prism">src/api/card/card.service.ts:685</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="686"
+                            class="link-to-prism">src/api/card/application/card.service.ts:686</a></div>
                 </td>
             </tr>
 
@@ -1945,8 +1994,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="589"
-                            class="link-to-prism">src/api/card/card.service.ts:589</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="590"
+                            class="link-to-prism">src/api/card/application/card.service.ts:590</a></div>
                 </td>
             </tr>
 
@@ -2016,8 +2065,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="624"
-                            class="link-to-prism">src/api/card/card.service.ts:624</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="625"
+                            class="link-to-prism">src/api/card/application/card.service.ts:625</a></div>
                 </td>
             </tr>
 
@@ -2087,8 +2136,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="605"
-                            class="link-to-prism">src/api/card/card.service.ts:605</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="606"
+                            class="link-to-prism">src/api/card/application/card.service.ts:606</a></div>
                 </td>
             </tr>
 
@@ -2170,8 +2219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="664"
-                            class="link-to-prism">src/api/card/card.service.ts:664</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="665"
+                            class="link-to-prism">src/api/card/application/card.service.ts:665</a></div>
                 </td>
             </tr>
 
@@ -2253,8 +2302,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="639"
-                            class="link-to-prism">src/api/card/card.service.ts:639</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="640"
+                            class="link-to-prism">src/api/card/application/card.service.ts:640</a></div>
                 </td>
             </tr>
 
@@ -2331,7 +2380,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   BadRequestException,
   ForbiddenException,
@@ -2340,10 +2389,10 @@
   UnauthorizedException,
 } from &#x27;@nestjs/common&#x27;;
 import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
-import { InvalidIdHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
+import { InvalidIdHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
 import { IsCardOwnerWithUserIdQuery } from &#x27;./cqrs/query/is-card-owner-with-user-id.query&#x27;;
 import { AddConnectedCardCommand } from &#x27;./cqrs/command/add-connected-card.command&#x27;;
-import { UnauthorizedRequestHttpException } from &#x27;../../util/exception/custom-http-exception/unauthorized-request.http-exception&#x27;;
+import { UnauthorizedRequestHttpException } from &#x27;../../../util/exception/custom-http-exception/unauthorized-request.http-exception&#x27;;
 import { AddSavedCardCommand } from &#x27;./cqrs/command/add-saved-card.command&#x27;;
 import { IsProfileOwnerWithUserIsQuery } from &#x27;./cqrs/query/is-profile-owner-with-user-is.query&#x27;;
 import { AddViewCountCardCommand } from &#x27;./cqrs/command/add-view-count-card.command&#x27;;
@@ -2353,24 +2402,24 @@ import { RemoveConnectedCardCommand } from &#x27;./cqrs/command/remove-connected
 import { RestoreCardCommand } from &#x27;./cqrs/command/restore-card.command&#x27;;
 import { SoftDeleteCardCommand } from &#x27;./cqrs/command/soft-delete-card.command&#x27;;
 import { UpdateCardCommand } from &#x27;./cqrs/command/update-card.command&#x27;;
-import { CardResponse } from &#x27;./web/response/card.response&#x27;;
+import { CardResponse } from &#x27;../web/response/card.response&#x27;;
 import { GetAllCardQuery } from &#x27;./cqrs/query/get-all-card.query&#x27;;
 import { GetCardByIdQuery } from &#x27;./cqrs/query/get-card-by-id.query&#x27;;
-import { CardEntity } from &#x27;./domain/entities/card.entity&#x27;;
-import { ProfileResponse } from &#x27;../profile/domain/response/profile.response&#x27;;
-import { SocialNetworkResponse } from &#x27;../social-network/web/response/social-network.response&#x27;;
+import { CardEntity } from &#x27;../domain/entities/card.entity&#x27;;
+import { ProfileResponse } from &#x27;../../profile/web/response/profile.response&#x27;;
+import { SocialNetworkResponse } from &#x27;../../social-network/web/response/social-network.response&#x27;;
 import { GetAllCardWithProfileIdQuery } from &#x27;./cqrs/query/get-all-card-with-profile-id.query&#x27;;
-import { GetCardWithCriteriaRequest } from &#x27;./web/request/get-card-with-criteria.request&#x27;;
+import { GetCardWithCriteriaRequest } from &#x27;../web/request/get-card-with-criteria.request&#x27;;
 import { GetCardWithCriteriaQuery } from &#x27;./cqrs/query/get-card-with-criteria.query&#x27;;
 import { GetSavedCardWithUserIdQuery } from &#x27;./cqrs/query/get-saved-card-with-user-id.query&#x27;;
 import { GetSavedCardWithProfileIdQuery } from &#x27;./cqrs/query/get-saved-card-with-profile-id.query&#x27;;
 import { GetAllCardWithUserIdQuery } from &#x27;./cqrs/query/get-all-card-with-user-id.query&#x27;;
 import { RemoveSavedCardCommand } from &#x27;./cqrs/command/remove-saved-card.command&#x27;;
-import { CreateCardRequest } from &#x27;./web/request/create-card.request&#x27;;
-import { UpdateCardRequest } from &#x27;./web/request/update-card.request&#x27;;
-import { GroupMembershipResponse } from &#x27;../groupe/web/response/group-membership.response&#x27;;
-import { EntityIsNotSoftDeletedHttpException } from &#x27;../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
-import { InvalidParameterEntityHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { CreateCardRequest } from &#x27;../web/request/create-card.request&#x27;;
+import { UpdateCardRequest } from &#x27;../web/request/update-card.request&#x27;;
+import { GroupMembershipResponse } from &#x27;../../groupe/web/response/group-membership.response&#x27;;
+import { EntityIsNotSoftDeletedHttpException } from &#x27;../../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
 
 @Injectable()
 export class CardService {
@@ -2477,7 +2526,7 @@ export class CardService {
           });
         })
         .catch(error &#x3D;&gt; {
-          if (error.parameters[0] &#x3D;&#x3D;&#x3D; &#x27;invalidId&#x27;) throw new Error(&#x27;Invalid Id&#x27;);
+          if (error.message &#x3D;&#x3D;&#x3D; &#x27;invalidId&#x27;) throw new Error(&#x27;Invalid Id&#x27;);
           throw new InternalServerErrorException(error);
         });
     } catch (error) {
@@ -2717,6 +2766,7 @@ export class CardService {
       else throw new InternalServerErrorException(error);
     }
   }
+
   async addConnectedCardToMyCard(userId: string, cardId: string, connectedCardId: string): Promise&lt;void&gt; {
     try {
       if (await this.isCardOwnerWithUserId(userId, cardId)) {
@@ -3037,6 +3087,10 @@ export class CardService {
       else if (error.message &#x3D;&#x3D;&#x3D; &#x27;Unauthorized&#x27;) throw new UnauthorizedRequestHttpException();
       else throw error;
     }
+  }
+
+  async getAllCardCount(): Promise&lt;number&gt; {
+    return await this.getAllCards().then(cards &#x3D;&gt; cards.length);
   }
 }
 </code></pre>

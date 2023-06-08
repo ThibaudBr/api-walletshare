@@ -10,11 +10,11 @@ export class ChargeStripeCommandHandler implements ICommandHandler<ChargeStripeC
 
   constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
     if (this.configService.get('NODE_ENV') == 'prod') {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') || 'error', {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') ?? 'error', {
         apiVersion: '2022-11-15',
       });
     } else {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') || 'error', {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') ?? 'error', {
         apiVersion: '2022-11-15',
       });
     }
@@ -26,7 +26,7 @@ export class ChargeStripeCommandHandler implements ICommandHandler<ChargeStripeC
         amount: command.amount,
         customer: command.stripeCustomerId,
         payment_method: command.paymentMethodId,
-        currency: this.configService.get('STRIPE_CURRENCY') || 'eur',
+        currency: this.configService.get('STRIPE_CURRENCY') ?? 'eur',
         off_session: true,
         confirm: true,
       })

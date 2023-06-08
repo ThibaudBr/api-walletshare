@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >ProfileSubscriber</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >ProfileSubscriber</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/profile/subscriber/profile.subscriber.ts</code>
+            <code>src/api/profile/application/subscriber/profile.subscriber.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -89,6 +95,10 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#afterInsert" >afterInsert</a>
+                            </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#beforeRemove" >beforeRemove</a>
@@ -114,11 +124,82 @@
 
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="afterInsert"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>afterInsert</b></span>
+                        <a href="#afterInsert"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>afterInsert(event: <a href="../entitys/UserEntity.html" target="_self">InsertEvent&lt;UserEntity&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/api/profile/application/subscriber/profile.subscriber.ts:20</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="../entitys/UserEntity.html" target="_self" >InsertEvent&lt;UserEntity&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -141,8 +222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/api/profile/subscriber/profile.subscriber.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/api/profile/application/subscriber/profile.subscriber.ts:46</a></div>
                 </td>
             </tr>
 
@@ -212,8 +293,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/api/profile/subscriber/profile.subscriber.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/api/profile/application/subscriber/profile.subscriber.ts:31</a></div>
                 </td>
             </tr>
 
@@ -281,8 +362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="8"
-                            class="link-to-prism">src/api/profile/subscriber/profile.subscriber.ts:8</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/api/profile/application/subscriber/profile.subscriber.ts:16</a></div>
                 </td>
             </tr>
 
@@ -307,10 +388,18 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, SoftRemoveEvent } from &#x27;typeorm&#x27;;
-import { UserEntity } from &#x27;../../user/domain/entities/user.entity&#x27;;
-import { ProfileEntity } from &#x27;../domain/entities/profile.entity&#x27;;
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  EntitySubscriberInterface,
+  EventSubscriber,
+  InsertEvent,
+  RemoveEvent,
+  Repository,
+  SoftRemoveEvent,
+} from &#x27;typeorm&#x27;;
+import { UserEntity } from &#x27;../../../user/domain/entities/user.entity&#x27;;
+import { ProfileEntity } from &#x27;../../domain/entities/profile.entity&#x27;;
+import { RoleProfileEnum } from &#x27;../../domain/enum/role-profile.enum&#x27;;
 
 @EventSubscriber()
 export class ProfileSubscriber implements EntitySubscriberInterface&lt;UserEntity&gt; {
@@ -319,35 +408,46 @@ export class ProfileSubscriber implements EntitySubscriberInterface&lt;UserEntit
     return UserEntity;
   }
 
-  async beforeSoftRemove(event: SoftRemoveEvent&lt;UserEntity&gt;): Promise&lt;void&gt; {
-    try {
-      const softRemovedUser &#x3D; event.entity;
-      const profileRepository &#x3D; event.manager.getRepository(ProfileEntity);
-      await profileRepository.update(
-        {
-          user: {
-            id: softRemovedUser?.id,
-          },
-        },
-        { deletedAt: new Date() },
-      );
-    } catch (e) {
-      throw e;
-    }
+  async afterInsert(event: InsertEvent&lt;UserEntity&gt;): Promise&lt;void&gt; {
+    const user: UserEntity &#x3D; event.entity;
+    const profileRepository: Repository&lt;ProfileEntity&gt; &#x3D; event.manager.getRepository(ProfileEntity);
+    const newProfile: ProfileEntity &#x3D; profileRepository.create({
+      user: user,
+      roleProfile: RoleProfileEnum.CLASSIC,
+      usernameProfile: user.username ?? &#x27;UpdateYourUsername&#x27;,
+    });
+    await profileRepository.save(newProfile);
   }
 
-  async beforeRemove(event: RemoveEvent&lt;UserEntity&gt;): Promise&lt;void&gt; {
-    try {
-      const softRemovedUser &#x3D; event.entity;
-      const profileRepository &#x3D; event.manager.getRepository(ProfileEntity);
-      await profileRepository.delete({
+  async beforeSoftRemove(event: SoftRemoveEvent&lt;UserEntity&gt;): Promise&lt;void&gt; {
+    const softRemovedUser: UserEntity | undefined &#x3D; event.entity;
+    const profileRepository: Repository&lt;ProfileEntity&gt; &#x3D; event.manager.getRepository(ProfileEntity);
+    const profiles: ProfileEntity[] &#x3D; await profileRepository.find({
+      relations: [&#x27;user&#x27;],
+      where: {
         user: {
           id: softRemovedUser?.id,
         },
-      });
-    } catch (e) {
-      throw e;
-    }
+      },
+    });
+    if (profiles.length &#x3D;&#x3D; 0) return;
+    await profileRepository.softRemove(profiles);
+  }
+
+  async beforeRemove(event: RemoveEvent&lt;UserEntity&gt;): Promise&lt;void&gt; {
+    const softRemovedUser: UserEntity | undefined &#x3D; event.entity;
+    const profileRepository: Repository&lt;ProfileEntity&gt; &#x3D; event.manager.getRepository(ProfileEntity);
+    const profiles: ProfileEntity[] &#x3D; await profileRepository.find({
+      relations: [&#x27;user&#x27;],
+      withDeleted: true,
+      where: {
+        user: {
+          id: softRemovedUser?.id,
+        },
+      },
+    });
+    if (profiles.length &#x3D;&#x3D; 0) return;
+    await profileRepository.remove(profiles);
   }
 }
 </code></pre>

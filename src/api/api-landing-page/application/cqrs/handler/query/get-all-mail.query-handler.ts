@@ -11,7 +11,7 @@ export class GetAllMailQueryHandler implements IQueryHandler<GetAllMailQuery> {
   private readonly apiWaitingListUrl: string;
 
   constructor(private httpService: HttpService, private readonly configService: ConfigService) {
-    this.apiWaitingListUrl = this.configService.get('API_WAITING_LIST_URL') || 'NO-URL';
+    this.apiWaitingListUrl = this.configService.get('API_WAITING_LIST_URL') ?? 'NO-URL';
   }
 
   async execute(): Promise<MailLandingPageDto[]> {

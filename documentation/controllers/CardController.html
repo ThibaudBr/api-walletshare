@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,26 +36,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >CardController</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >CardController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/card/card.controller.ts</code>
+            <code>src/api/card/web/card.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -70,7 +76,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -84,106 +90,190 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#addConnectedCard" >addConnectedCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#addConnectedCardToCard" >addConnectedCardToCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#addSavedCardToMyCard" >addSavedCardToMyCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#addViewCount" >addViewCount</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#countAllCard" >countAllCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#createCard" >createCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#createCardForMe" >createCardForMe</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteCard" >deleteCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteMyCard" >deleteMyCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllCard" >getAllCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllCardsByUserId" >getAllCardsByUserId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllCardsWithCriteria" >getAllCardsWithCriteria</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllCardsWithProfileId" >getAllCardsWithProfileId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllMyCards" >getAllMyCards</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllMyCardsWithProfileId" >getAllMyCardsWithProfileId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getCardById" >getCardById</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getMySavedCardsWithProfileId" >getMySavedCardsWithProfileId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getMySavedCardsWithUserId" >getMySavedCardsWithUserId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getSavedCardsWithProfileId" >getSavedCardsWithProfileId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getSavedCardsWithUserId" >getSavedCardsWithUserId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#removeConnectedCard" >removeConnectedCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#removeConnectedCardFromCard" >removeConnectedCardFromCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#removeSavedCardFromMyCard" >removeSavedCardFromMyCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#restoreCard" >restoreCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#softDeleteCard" >softDeleteCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#updateCard" >updateCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#updateMyCard" >updateMyCard</a>
                             </li>
@@ -199,7 +289,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -210,6 +300,9 @@
                 <td class="col-md-4">
                     <a name="addConnectedCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>addConnectedCard</b></span>
                         <a href="#addConnectedCard"><span class="icon ion-ios-link"></span></a>
@@ -234,7 +327,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/api/card/card.controller.ts:107</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:107</a></div>
                 </td>
             </tr>
 
@@ -300,6 +393,9 @@
                 <td class="col-md-4">
                     <a name="addConnectedCardToCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>addConnectedCardToCard</b></span>
                         <a href="#addConnectedCardToCard"><span class="icon ion-ios-link"></span></a>
@@ -324,7 +420,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="135"
-                            class="link-to-prism">src/api/card/card.controller.ts:135</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:135</a></div>
                 </td>
             </tr>
 
@@ -378,6 +474,9 @@
                 <td class="col-md-4">
                     <a name="addSavedCardToMyCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>addSavedCardToMyCard</b></span>
                         <a href="#addSavedCardToMyCard"><span class="icon ion-ios-link"></span></a>
@@ -402,7 +501,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="158"
-                            class="link-to-prism">src/api/card/card.controller.ts:158</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:158</a></div>
                 </td>
             </tr>
 
@@ -468,6 +567,8 @@
                 <td class="col-md-4">
                     <a name="addViewCount"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>addViewCount</b></span>
                         <a href="#addViewCount"><span class="icon ion-ios-link"></span></a>
@@ -492,7 +593,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="151"
-                            class="link-to-prism">src/api/card/card.controller.ts:151</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:151</a></div>
                 </td>
             </tr>
 
@@ -544,8 +645,60 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="countAllCard"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier">Async</span>
+                        <span ><b>countAllCard</b></span>
+                        <a href="#countAllCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>countAllCard()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/admin/get-all-card-count&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/api/card/web/card.controller.ts:250</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="createCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>createCard</b></span>
                         <a href="#createCard"><span class="icon ion-ios-link"></span></a>
@@ -570,7 +723,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="186"
-                            class="link-to-prism">src/api/card/card.controller.ts:186</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:186</a></div>
                 </td>
             </tr>
 
@@ -636,6 +789,9 @@
                 <td class="col-md-4">
                     <a name="createCardForMe"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>createCardForMe</b></span>
                         <a href="#createCardForMe"><span class="icon ion-ios-link"></span></a>
@@ -660,7 +816,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="193"
-                            class="link-to-prism">src/api/card/card.controller.ts:193</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:193</a></div>
                 </td>
             </tr>
 
@@ -738,6 +894,9 @@
                 <td class="col-md-4">
                     <a name="deleteCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>deleteCard</b></span>
                         <a href="#deleteCard"><span class="icon ion-ios-link"></span></a>
@@ -762,7 +921,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="204"
-                            class="link-to-prism">src/api/card/card.controller.ts:204</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:204</a></div>
                 </td>
             </tr>
 
@@ -816,6 +975,9 @@
                 <td class="col-md-4">
                     <a name="deleteMyCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>deleteMyCard</b></span>
                         <a href="#deleteMyCard"><span class="icon ion-ios-link"></span></a>
@@ -840,7 +1002,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="211"
-                            class="link-to-prism">src/api/card/card.controller.ts:211</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:211</a></div>
                 </td>
             </tr>
 
@@ -906,6 +1068,9 @@
                 <td class="col-md-4">
                     <a name="getAllCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllCard</b></span>
                         <a href="#getAllCard"><span class="icon ion-ios-link"></span></a>
@@ -930,7 +1095,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/api/card/card.controller.ts:24</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:24</a></div>
                 </td>
             </tr>
 
@@ -952,6 +1117,9 @@
                 <td class="col-md-4">
                     <a name="getAllCardsByUserId"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllCardsByUserId</b></span>
                         <a href="#getAllCardsByUserId"><span class="icon ion-ios-link"></span></a>
@@ -976,7 +1144,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/api/card/card.controller.ts:38</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:38</a></div>
                 </td>
             </tr>
 
@@ -1030,6 +1198,9 @@
                 <td class="col-md-4">
                     <a name="getAllCardsWithCriteria"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllCardsWithCriteria</b></span>
                         <a href="#getAllCardsWithCriteria"><span class="icon ion-ios-link"></span></a>
@@ -1054,7 +1225,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/api/card/card.controller.ts:69</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -1108,6 +1279,9 @@
                 <td class="col-md-4">
                     <a name="getAllCardsWithProfileId"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllCardsWithProfileId</b></span>
                         <a href="#getAllCardsWithProfileId"><span class="icon ion-ios-link"></span></a>
@@ -1132,7 +1306,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/api/card/card.controller.ts:62</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -1186,6 +1360,9 @@
                 <td class="col-md-4">
                     <a name="getAllMyCards"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllMyCards</b></span>
                         <a href="#getAllMyCards"><span class="icon ion-ios-link"></span></a>
@@ -1210,7 +1387,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/api/card/card.controller.ts:45</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:45</a></div>
                 </td>
             </tr>
 
@@ -1264,6 +1441,9 @@
                 <td class="col-md-4">
                     <a name="getAllMyCardsWithProfileId"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllMyCardsWithProfileId</b></span>
                         <a href="#getAllMyCardsWithProfileId"><span class="icon ion-ios-link"></span></a>
@@ -1288,7 +1468,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/api/card/card.controller.ts:52</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:52</a></div>
                 </td>
             </tr>
 
@@ -1354,6 +1534,9 @@
                 <td class="col-md-4">
                     <a name="getCardById"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getCardById</b></span>
                         <a href="#getCardById"><span class="icon ion-ios-link"></span></a>
@@ -1378,7 +1561,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/api/card/card.controller.ts:31</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -1432,6 +1615,9 @@
                 <td class="col-md-4">
                     <a name="getMySavedCardsWithProfileId"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getMySavedCardsWithProfileId</b></span>
                         <a href="#getMySavedCardsWithProfileId"><span class="icon ion-ios-link"></span></a>
@@ -1456,7 +1642,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/api/card/card.controller.ts:97</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:97</a></div>
                 </td>
             </tr>
 
@@ -1522,6 +1708,9 @@
                 <td class="col-md-4">
                     <a name="getMySavedCardsWithUserId"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getMySavedCardsWithUserId</b></span>
                         <a href="#getMySavedCardsWithUserId"><span class="icon ion-ios-link"></span></a>
@@ -1546,7 +1735,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/api/card/card.controller.ts:83</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -1600,6 +1789,9 @@
                 <td class="col-md-4">
                     <a name="getSavedCardsWithProfileId"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getSavedCardsWithProfileId</b></span>
                         <a href="#getSavedCardsWithProfileId"><span class="icon ion-ios-link"></span></a>
@@ -1624,7 +1816,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/api/card/card.controller.ts:90</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:90</a></div>
                 </td>
             </tr>
 
@@ -1678,6 +1870,9 @@
                 <td class="col-md-4">
                     <a name="getSavedCardsWithUserId"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getSavedCardsWithUserId</b></span>
                         <a href="#getSavedCardsWithUserId"><span class="icon ion-ios-link"></span></a>
@@ -1702,7 +1897,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/api/card/card.controller.ts:76</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -1756,6 +1951,9 @@
                 <td class="col-md-4">
                     <a name="removeConnectedCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>removeConnectedCard</b></span>
                         <a href="#removeConnectedCard"><span class="icon ion-ios-link"></span></a>
@@ -1780,7 +1978,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">src/api/card/card.controller.ts:121</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:121</a></div>
                 </td>
             </tr>
 
@@ -1846,6 +2044,9 @@
                 <td class="col-md-4">
                     <a name="removeConnectedCardFromCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>removeConnectedCardFromCard</b></span>
                         <a href="#removeConnectedCardFromCard"><span class="icon ion-ios-link"></span></a>
@@ -1870,7 +2071,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">src/api/card/card.controller.ts:145</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:145</a></div>
                 </td>
             </tr>
 
@@ -1924,6 +2125,9 @@
                 <td class="col-md-4">
                     <a name="removeSavedCardFromMyCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>removeSavedCardFromMyCard</b></span>
                         <a href="#removeSavedCardFromMyCard"><span class="icon ion-ios-link"></span></a>
@@ -1948,7 +2152,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="172"
-                            class="link-to-prism">src/api/card/card.controller.ts:172</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:172</a></div>
                 </td>
             </tr>
 
@@ -2014,6 +2218,9 @@
                 <td class="col-md-4">
                     <a name="restoreCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>restoreCard</b></span>
                         <a href="#restoreCard"><span class="icon ion-ios-link"></span></a>
@@ -2038,7 +2245,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="225"
-                            class="link-to-prism">src/api/card/card.controller.ts:225</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:225</a></div>
                 </td>
             </tr>
 
@@ -2092,6 +2299,9 @@
                 <td class="col-md-4">
                     <a name="softDeleteCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>softDeleteCard</b></span>
                         <a href="#softDeleteCard"><span class="icon ion-ios-link"></span></a>
@@ -2116,7 +2326,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="218"
-                            class="link-to-prism">src/api/card/card.controller.ts:218</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:218</a></div>
                 </td>
             </tr>
 
@@ -2170,6 +2380,9 @@
                 <td class="col-md-4">
                     <a name="updateCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>updateCard</b></span>
                         <a href="#updateCard"><span class="icon ion-ios-link"></span></a>
@@ -2194,7 +2407,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="232"
-                            class="link-to-prism">src/api/card/card.controller.ts:232</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:232</a></div>
                 </td>
             </tr>
 
@@ -2260,6 +2473,9 @@
                 <td class="col-md-4">
                     <a name="updateMyCard"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>updateMyCard</b></span>
                         <a href="#updateMyCard"><span class="icon ion-ios-link"></span></a>
@@ -2284,7 +2500,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="239"
-                            class="link-to-prism">src/api/card/card.controller.ts:239</a></div>
+                            class="link-to-prism">src/api/card/web/card.controller.ts:239</a></div>
                 </td>
             </tr>
 
@@ -2359,21 +2575,21 @@
 </section>    </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Req, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { CardService } from &#x27;./card.service&#x27;;
-import { RoleGuard } from &#x27;../auth/guards/role.guard&#x27;;
-import { UserRoleEnum } from &#x27;../user/domain/enum/user-role.enum&#x27;;
-import { CardResponse } from &#x27;./web/response/card.response&#x27;;
-import { RequestUser } from &#x27;../auth/interface/request-user.interface&#x27;;
-import { GetCardWithCriteriaRequest } from &#x27;./web/request/get-card-with-criteria.request&#x27;;
-import { AddConnectedCardRequest } from &#x27;./web/request/add-connected-card.request&#x27;;
-import { RemoveConnectedCardRequest } from &#x27;./web/request/remove-connected-card.request&#x27;;
-import { AddSavedCardRequest } from &#x27;./web/request/add-saved-card.request&#x27;;
-import { RemoveSavedCardRequest } from &#x27;./web/request/remove-saved-card.request&#x27;;
-import { CreateCardRequest } from &#x27;./web/request/create-card.request&#x27;;
-import { UpdateCardRequest } from &#x27;./web/request/update-card.request&#x27;;
+import { CardService } from &#x27;../application/card.service&#x27;;
+import { RoleGuard } from &#x27;../../auth/web/guards/role.guard&#x27;;
+import { UserRoleEnum } from &#x27;../../user/domain/enum/user-role.enum&#x27;;
+import { CardResponse } from &#x27;./response/card.response&#x27;;
+import { RequestUser } from &#x27;../../auth/domain/interface/request-user.interface&#x27;;
+import { GetCardWithCriteriaRequest } from &#x27;./request/get-card-with-criteria.request&#x27;;
+import { AddConnectedCardRequest } from &#x27;./request/add-connected-card.request&#x27;;
+import { RemoveConnectedCardRequest } from &#x27;./request/remove-connected-card.request&#x27;;
+import { AddSavedCardRequest } from &#x27;./request/add-saved-card.request&#x27;;
+import { RemoveSavedCardRequest } from &#x27;./request/remove-saved-card.request&#x27;;
+import { CreateCardRequest } from &#x27;./request/create-card.request&#x27;;
+import { UpdateCardRequest } from &#x27;./request/update-card.request&#x27;;
 
 @Controller(&#x27;card&#x27;)
 @ApiTags(&#x27;card&#x27;)
@@ -2604,6 +2820,13 @@ export class CardController {
     @Req() userRequest: RequestUser,
   ): Promise&lt;void&gt; {
     return await this.cardService.updateMyCard(userRequest.user.id, cardId, updateCardRequest);
+  }
+
+  @Get(&#x27;/admin/get-all-card-count&#x27;)
+  @HttpCode(200)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async countAllCard(): Promise&lt;number&gt; {
+    return await this.cardService.getAllCardCount();
   }
 }
 </code></pre>

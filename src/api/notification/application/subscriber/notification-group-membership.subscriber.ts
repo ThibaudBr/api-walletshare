@@ -35,13 +35,7 @@ export class NotificationGroupMembershipSubscriber implements EntitySubscriberIn
         user: groupMembership.card.owner.user,
         group: groupMembership.group,
         title: 'New membership in group',
-        description:
-          'Card ' +
-          groupMembership.card.firstname +
-          ' ' +
-          groupMembership.card.lastname +
-          ' has been added to group as ' +
-          groupMembership.role,
+        description: `Card ${groupMembership.card.firstname} ${groupMembership.card.lastname} has been added to group as ${groupMembership.role}`,
         type: NotificationTypeEnum.JOIN_NEW_GROUP,
       });
       await notificationRepository.save(notification);

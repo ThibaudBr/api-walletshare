@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,21 +39,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >ResponseLoggingMiddleware</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ResponseLoggingMiddleware</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -65,7 +71,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -77,6 +83,11 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#LOG_RESPONSE_BOOL" >LOG_RESPONSE_BOOL</a>
+                            </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
@@ -110,18 +121,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(apiLoggerService: <a href="../injectables/ApiLogService.html" target="_self">ApiLogService</a>)</code>
+<code>constructor(apiLoggerService: <a href="../injectables/ApiLogService.html" target="_self">ApiLogService</a>, configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/middleware/response-logging.middleware.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/middleware/response-logging.middleware.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -150,6 +161,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -159,7 +182,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -186,8 +209,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/middleware/response-logging.middleware.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/middleware/response-logging.middleware.ts:20</a></div>
                 </td>
             </tr>
 
@@ -249,7 +272,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -260,11 +283,39 @@
         </tbody>
     </table>
 </section>
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LOG_RESPONSE_BOOL"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>LOG_RESPONSE_BOOL</b></span>
+                        <a href="#LOG_RESPONSE_BOOL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/middleware/response-logging.middleware.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -286,7 +337,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/middleware/response-logging.middleware.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/middleware/response-logging.middleware.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -298,46 +349,51 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NestMiddleware } from &#x27;@nestjs/common&#x27;;
 import * as useragent from &#x27;useragent&#x27;;
 import { Request, Response } from &#x27;express&#x27;;
 import { CreateLogDto } from &#x27;../api/api-log/domain/dto/create-log.dto&#x27;;
-import { ApiLogService } from &#x27;../api/api-log/api-log.service&#x27;;
+import { ApiLogService } from &#x27;../api/api-log/application/api-log.service&#x27;;
 import { VerboseLogEnum } from &#x27;../api/api-log/domain/enum/verbose-log.enum&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
 
 @Injectable()
 export class ResponseLoggingMiddleware implements NestMiddleware {
   private readonly VERBOSE: VerboseLogEnum;
+  private readonly LOG_RESPONSE_BOOL: boolean;
 
-  constructor(private readonly apiLoggerService: ApiLogService) {
-    this.VERBOSE &#x3D; (process.env.VERBOSE as VerboseLogEnum) || VerboseLogEnum.NONE;
+  constructor(private readonly apiLoggerService: ApiLogService, private readonly configService: ConfigService) {
+    this.VERBOSE &#x3D; this.configService.get(&#x27;VERBOSE&#x27;) as VerboseLogEnum;
+    this.LOG_RESPONSE_BOOL &#x3D; this.configService.get(&#x27;LOG_RESPONSE_BOOL&#x27;) ?? false;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
-  async use(req: Request, res: Response, next: Function) {
+  async use(req: Request, res: Response, next: Function): Promise&lt;void&gt; {
     await next();
-    const ua &#x3D; useragent.parse(req.headers[&#x27;user-agent&#x27;]);
+    if (this.LOG_RESPONSE_BOOL) {
+      const ua &#x3D; useragent.parse(req.headers[&#x27;user-agent&#x27;]);
 
-    const os &#x3D; ua.os.toString();
-    const device &#x3D; ua.device.toString();
-    const screenSize &#x3D; req.headers[&#x27;screen-size&#x27;] &#x3D;&#x3D;&#x3D; undefined ? undefined : req.headers[&#x27;screen-size&#x27;].toString();
+      const os &#x3D; ua.os.toString();
+      const device &#x3D; ua.device.toString();
+      const screenSize &#x3D; req.headers[&#x27;screen-size&#x27;] &#x3D;&#x3D;&#x3D; undefined ? undefined : req.headers[&#x27;screen-size&#x27;].toString();
 
-    const createLogDto &#x3D; new CreateLogDto({});
-    createLogDto.method &#x3D; req.method;
-    createLogDto.route &#x3D; req.baseUrl;
-    createLogDto.headers &#x3D; req.headers || undefined;
-    createLogDto.body &#x3D; undefined;
-    createLogDto.status &#x3D; res.statusCode;
-    createLogDto.responseHeaders &#x3D; res.getHeaders();
-    createLogDto.responseBody &#x3D; res.locals.responseBody;
-    createLogDto.error &#x3D; undefined;
-    createLogDto.os &#x3D; os;
-    createLogDto.ip &#x3D; req.ip;
-    createLogDto.platform &#x3D; device;
-    createLogDto.screenSize &#x3D; screenSize;
+      const createLogDto &#x3D; new CreateLogDto({});
+      createLogDto.method &#x3D; req.method;
+      createLogDto.route &#x3D; req.baseUrl;
+      createLogDto.headers &#x3D; req.headers || undefined;
+      createLogDto.body &#x3D; undefined;
+      createLogDto.status &#x3D; res.statusCode;
+      createLogDto.responseHeaders &#x3D; res.getHeaders();
+      createLogDto.responseBody &#x3D; res.locals.responseBody;
+      createLogDto.error &#x3D; undefined;
+      createLogDto.os &#x3D; os;
+      createLogDto.ip &#x3D; req.ip;
+      createLogDto.platform &#x3D; device;
+      createLogDto.screenSize &#x3D; screenSize;
 
-    this.apiLoggerService.createLog(createLogDto);
+      await this.apiLoggerService.createLog(createLogDto);
+    }
   }
 }
 </code></pre>

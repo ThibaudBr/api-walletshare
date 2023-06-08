@@ -36,6 +36,17 @@ import { UserResponse } from '../../user/web/response/user.response';
 import { CreateProfileCommand } from '../../profile/application/cqrs/command/create-profile.command';
 import { UserNotFoundHttpException } from '../../../util/exception/custom-http-exception/user-not-found.http-exception';
 import { InvalidParameterEntityHttpException } from '../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
+import { GetAllCardPresetByCompanyIdQuery } from './cqrs/query/get-all-card-preset-by-company-id.query';
+import { CardPresetResponse } from '../web/response/card-preset.response';
+import { GetCardPresetByIdQuery } from './cqrs/query/get-card-preset-by-id.query';
+import { CreateCardPresetCommand } from './cqrs/command/create-card-preset.command';
+import { CreateCardPresetRequest } from '../web/request/create-card-preset.request';
+import { CardPresetEntity } from '../domain/entities/card-preset.entity';
+import { UpdateCardPresetCommand } from './cqrs/command/update-card-preset.command';
+import { UpdateCardPresetRequest } from '../web/request/update-card-preset.request';
+import { RemoveCardPresetCommand } from './cqrs/command/remove-card-preset.command';
+import { SoftRemoveCardPresetCommand } from './cqrs/command/soft-remove-card-preset.command';
+import { RestoreCardPresetCommand } from './cqrs/command/restore-card-preset.command';
 
 @Injectable()
 export class CompanyService {
@@ -45,9 +56,15 @@ export class CompanyService {
     private readonly eventBus: EventBus,
   ) {}
 
-  public async getAllCompanies(): Promise<CompanyResponse[]> {
+  public async getAllCompanies(deleted: boolean, take: number, skip: number): Promise<CompanyResponse[]> {
     return this.queryBus
-      .execute(new GetAllCompanyQuery())
+      .execute(
+        new GetAllCompanyQuery({
+          deleted: deleted,
+          take: take,
+          skip: skip,
+        }),
+      )
       .then((companies: CompanyEntity[]) => {
         return companies.map((company: CompanyEntity) => {
           return new CompanyResponse({
@@ -60,9 +77,9 @@ export class CompanyService {
       });
   }
 
-  public async getCompanyById(id: string): Promise<CompanyResponse> {
+  public async getCompanyById(id: string, fullCompany?: boolean): Promise<CompanyResponse> {
     return this.queryBus
-      .execute(new GetCompanyByIdQuery({ companyId: id }))
+      .execute(new GetCompanyByIdQuery({ companyId: id, fullCompany: fullCompany }))
       .then((company: CompanyEntity) => {
         return new CompanyResponse({
           ...company,
@@ -477,6 +494,227 @@ export class CompanyService {
       profileId: profileId,
       companyId: createUserForCompany.companyId,
       roles: createUserForCompany.companyEmployeeRoles,
+    });
+  }
+
+  async getAllCardPresetByCompanyId(userId: string, companyId: string): Promise<CardPresetResponse[]> {
+    if (
+      await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ])
+    ) {
+      return this.queryBus.execute(new GetAllCardPresetByCompanyIdQuery({ companyId: companyId }));
+    }
+
+    throw new ForbiddenException('You are not allowed to get card preset for this company');
+  }
+
+  async getCardPresetById(userId: string, companyId: string, cardPresetId: string): Promise<CardPresetResponse> {
+    if (await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER, RoleCompanyEmployeeEnum.ADMIN])) {
+      return this.queryBus.execute(new GetCardPresetByIdQuery({ id: cardPresetId }));
+    }
+
+    throw new ForbiddenException('You are not allowed to get card preset for this company');
+  }
+
+  async createCardPreset(
+    userId: string,
+    createCardPresetRequest: CreateCardPresetRequest,
+  ): Promise<CardPresetResponse> {
+    if (
+      !(await this.isRoleInCompany(userId, createCardPresetRequest.companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to create card preset for this company');
+    }
+
+    return await this.commandBus
+      .execute(
+        new CreateCardPresetCommand({
+          companyId: createCardPresetRequest.companyId,
+          alignment: createCardPresetRequest.alignment,
+          backgroundColor: createCardPresetRequest.backgroundColor,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
+        if (error.message === 'Card preset is not valid') throw new ConflictException('Card preset already exists');
+        if (error.message === 'Error while saving card preset')
+          throw new ConflictException('Error while saving card preset');
+        throw error;
+      })
+      .then((cardPresetEntity: CardPresetEntity) => {
+        return new CardPresetResponse({
+          ...cardPresetEntity,
+        });
+      });
+  }
+
+  async updateCardPreset(
+    userId: string,
+    companyId: string,
+    updateCardPresetRequest: UpdateCardPresetRequest,
+  ): Promise<CardPresetResponse> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER, RoleCompanyEmployeeEnum.ADMIN]))
+    ) {
+      throw new ForbiddenException('You are not allowed to update card preset for this company');
+    }
+
+    return await this.commandBus
+      .execute(
+        new UpdateCardPresetCommand({
+          id: updateCardPresetRequest.id,
+          alignment: updateCardPresetRequest.alignment,
+          backgroundColor: updateCardPresetRequest.backgroundColor,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
+        if (error.message === 'Card preset is not valid') throw new ConflictException('Card preset already exists');
+        if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
+        if (error.message === 'Error while updating card preset')
+          throw new ConflictException('Error while updating card preset');
+        throw error;
+      })
+      .then((cardPresetEntity: CardPresetEntity) => {
+        return new CardPresetResponse({
+          ...cardPresetEntity,
+        });
+      });
+  }
+
+  async removeCardPreset(cardPresetId: string): Promise<void> {
+    await this.commandBus.execute(new RemoveCardPresetCommand({ id: cardPresetId })).catch(async error => {
+      if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
+      if (error.message === 'Error while removing card preset')
+        throw new ConflictException('Error while deleting card preset');
+      throw error;
+    });
+  }
+
+  async restoreCardPreset(cardPresetId: string): Promise<void> {
+    await this.commandBus.execute(new RestoreCardPresetCommand({ id: cardPresetId })).catch(async error => {
+      if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
+      if (error.message === 'Error while restoring card preset')
+        throw new ConflictException('Error while restoring card preset');
+      throw error;
+    });
+  }
+
+  async softRemoveCardPreset(userId: string, companyId: string, cardPresetId: string): Promise<void> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER, RoleCompanyEmployeeEnum.ADMIN]))
+    ) {
+      throw new ForbiddenException('You are not allowed to delete card preset for this company');
+    }
+
+    await this.commandBus.execute(new SoftRemoveCardPresetCommand({ id: cardPresetId })).catch(async error => {
+      if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
+      if (error.message === 'Error while deleting card preset')
+        throw new ConflictException('Error while deleting card preset');
+      throw error;
+    });
+  }
+
+  async softRemoveCardPresetAdmin(cardPresetId: string): Promise<void> {
+    await this.commandBus.execute(new SoftRemoveCardPresetCommand({ id: cardPresetId })).catch(async error => {
+      if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
+      if (error.message === 'Error while deleting card preset')
+        throw new ConflictException('Error while deleting card preset');
+      throw error;
+    });
+  }
+
+  async getAllCompanyCount(): Promise<number> {
+    return await this.getAllCompanies(false, -1, -1).then((companies: CompanyEntity[]) => {
+      return companies.length;
+    });
+  }
+
+  async getAllCardCompanyCount(userId: string, companyId: string): Promise<number> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+      return company.employees.reduce((totalCards, employee) => {
+        return totalCards + (employee.profile.personalCards?.length || 0);
+      }, 0);
+    });
+  }
+
+  async getEmployeeCount(userId: string, companyId: string): Promise<number> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+      return company.employees.length;
+    });
+  }
+
+  async getAllCardViewCount(userId: string, companyId: string): Promise<number> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+      return company.employees.reduce((totalViews, employee) => {
+        return (
+          totalViews + (employee.profile.personalCards?.reduce((total, card) => total + card.numberOfShares, 0) ?? 0)
+        );
+      }, 0);
+    });
+  }
+
+  async getAllCardForwardCount(userId: string, companyId: string): Promise<number> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+      return (
+        company.employees.reduce((totalForwards, employee) => {
+          return (
+            totalForwards +
+            (employee.profile.personalCards?.reduce((total, card) => total + card.connectedCardTwo.length, 0) ?? 0)
+          );
+        }, 0) +
+        company.employees.reduce((totalForwards, employee) => {
+          return (
+            totalForwards +
+            (employee.profile.personalCards?.reduce((total, card) => total + card.connectedCardOne.length, 0) ?? 0)
+          );
+        }, 0)
+      );
     });
   }
 }

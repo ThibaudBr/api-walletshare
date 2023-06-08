@@ -5,7 +5,6 @@ import { DatabaseConfiguration } from './util/config/database.configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import HealthCheckModule from './api/health-check/health-check.module';
-import { EntitiesToMoveModule } from './api/entities-to-create/entities-to-move.module';
 import { UserModule } from './api/user/user.module';
 import { ApiLogModule } from './api/api-log/api-log.module';
 import { RequestLoggingMiddleware } from './middleware/request-logging.middleware';
@@ -110,8 +109,6 @@ import { HttpModule } from '@nestjs/axios';
     StripeModule,
     ProductModule,
     PriceModule,
-    // ________ Module to remove ________
-    EntitiesToMoveModule,
   ],
   providers: [AppService, ApiLogService, UserService],
 })
