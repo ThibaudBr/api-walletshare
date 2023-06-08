@@ -1,0 +1,1671 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api-walletshare documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">api-walletshare documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ConversationService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/api/conversation/application/conversation.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addMessageWithMedia" >addMessageWithMedia</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deletedAllJoinedConversation" >deletedAllJoinedConversation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deletedJoinedConversation" >deletedJoinedConversation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteJoinedConversationWithSocketId" >deleteJoinedConversationWithSocketId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getActiveConversation" >getActiveConversation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllConversationByProfilesAndCard" >getAllConversationByProfilesAndCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCardById" >getCardById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getConversationById" >getConversationById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getConversationWhereUserConnected" >getConversationWhereUserConnected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserAndProfilesFromSocket" >getUserAndProfilesFromSocket</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#isUserIdOwnerOfMessage" >isUserIdOwnerOfMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeMessageFromConversation" >removeMessageFromConversation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#saveJoinedConversation" >saveJoinedConversation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#saveMessage" >saveMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#softRemoveMessageFromConversation" >softRemoveMessageFromConversation</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(commandBus: CommandBus, queryBus: QueryBus)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/api/conversation/application/conversation.service.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>commandBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>CommandBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>queryBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>QueryBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addMessageWithMedia"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addMessageWithMedia</b></span>
+                        <a href="#addMessageWithMedia"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addMessageWithMedia(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, messageRequest: <a href="../classes/SentMessageRequest.html" target="_self">SentMessageRequest</a>, newMediaDto: <a href="../classes/NewMediaDto.html" target="_self">NewMediaDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:201</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>messageRequest</td>
+                                    <td>
+                                                <code><a href="../classes/SentMessageRequest.html" target="_self" >SentMessageRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>newMediaDto</td>
+                                    <td>
+                                                <code><a href="../classes/NewMediaDto.html" target="_self" >NewMediaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/MessageResponse.html" target="_self" >Promise&lt;MessageResponse&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deletedAllJoinedConversation"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deletedAllJoinedConversation</b></span>
+                        <a href="#deletedAllJoinedConversation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deletedAllJoinedConversation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deletedJoinedConversation"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deletedJoinedConversation</b></span>
+                        <a href="#deletedJoinedConversation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deletedJoinedConversation(socketId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socketId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteJoinedConversationWithSocketId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteJoinedConversationWithSocketId</b></span>
+                        <a href="#deleteJoinedConversationWithSocketId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteJoinedConversationWithSocketId(socketId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socketId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getActiveConversation"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getActiveConversation</b></span>
+                        <a href="#getActiveConversation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getActiveConversation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:250</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllConversationByProfilesAndCard"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllConversationByProfilesAndCard</b></span>
+                        <a href="#getAllConversationByProfilesAndCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllConversationByProfilesAndCard(profiles: <a href="../entitys/ProfileEntity.html" target="_self">ProfileEntity[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="188"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:188</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>profiles</td>
+                                    <td>
+                                                <code><a href="../entitys/ProfileEntity.html" target="_self" >ProfileEntity[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CreateJoinConversationDto.html" target="_self" >Promise&lt;CreateJoinConversationDto[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCardById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getCardById</b></span>
+                        <a href="#getCardById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCardById(user: <a href="../entitys/UserEntity.html" target="_self">UserEntity</a>, cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/UserEntity.html" target="_self" >UserEntity</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cardId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/CardEntity.html" target="_self" >Promise&lt;CardEntity&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getConversationById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getConversationById</b></span>
+                        <a href="#getConversationById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getConversationById(conversationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:149</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>conversationId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/ConversationEntity.html" target="_self" >Promise&lt;ConversationEntity&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getConversationWhereUserConnected"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getConversationWhereUserConnected</b></span>
+                        <a href="#getConversationWhereUserConnected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getConversationWhereUserConnected(socketId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, getMessageFromConversationRequest: <a href="../classes/GetMessageFromConversationRequest.html" target="_self">GetMessageFromConversationRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:131</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socketId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>getMessageFromConversationRequest</td>
+                                    <td>
+                                                <code><a href="../classes/GetMessageFromConversationRequest.html" target="_self" >GetMessageFromConversationRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/ConversationEntity.html" target="_self" >Promise&lt;ConversationEntity&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserAndProfilesFromSocket"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserAndProfilesFromSocket</b></span>
+                        <a href="#getUserAndProfilesFromSocket"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserAndProfilesFromSocket(socket: Socket)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:175</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socket</td>
+                                    <td>
+                                            <code>Socket</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/UserEntity.html" target="_self" >Promise&lt;UserEntity&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isUserIdOwnerOfMessage"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>isUserIdOwnerOfMessage</b></span>
+                        <a href="#isUserIdOwnerOfMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isUserIdOwnerOfMessage(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, messageId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="240"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:240</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>messageId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeMessageFromConversation"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeMessageFromConversation</b></span>
+                        <a href="#removeMessageFromConversation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeMessageFromConversation(messageId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>messageId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveJoinedConversation"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>saveJoinedConversation</b></span>
+                        <a href="#saveJoinedConversation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveJoinedConversation(socketId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createJoinConversationDto: <a href="../classes/CreateJoinConversationDto.html" target="_self">CreateJoinConversationDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:53</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>socketId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>createJoinConversationDto</td>
+                                    <td>
+                                                <code><a href="../classes/CreateJoinConversationDto.html" target="_self" >CreateJoinConversationDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveMessage"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>saveMessage</b></span>
+                        <a href="#saveMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveMessage(content: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, author: <a href="../entitys/CardEntity.html" target="_self">CardEntity</a>, conversation: <a href="../entitys/ConversationEntity.html" target="_self">ConversationEntity</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>content</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>author</td>
+                                    <td>
+                                                <code><a href="../entitys/CardEntity.html" target="_self" >CardEntity</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>conversation</td>
+                                    <td>
+                                                <code><a href="../entitys/ConversationEntity.html" target="_self" >ConversationEntity</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/MessageEntity.html" target="_self" >Promise&lt;MessageEntity&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softRemoveMessageFromConversation"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>softRemoveMessageFromConversation</b></span>
+                        <a href="#softRemoveMessageFromConversation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softRemoveMessageFromConversation(messageId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/api/conversation/application/conversation.service.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>messageId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &#x27;@nestjs/common&#x27;;
+import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
+import { Socket } from &#x27;socket.io&#x27;;
+import { MessageEntity } from &#x27;../domain/entities/message.entity&#x27;;
+import { CardEntity } from &#x27;../../card/domain/entities/card.entity&#x27;;
+import { ConversationEntity } from &#x27;../domain/entities/conversation.entity&#x27;;
+import { GetMessageFromConversationRequest } from &#x27;../web/request/get-message-from-conversation.request&#x27;;
+import { CreateJoinConversationDto } from &#x27;../domain/dto/create-join-conversation.dto&#x27;;
+import { UserEntity } from &#x27;../../user/domain/entities/user.entity&#x27;;
+import { ProfileEntity } from &#x27;../../profile/domain/entities/profile.entity&#x27;;
+import { SentMessageRequest } from &#x27;../web/request/sent-message.request&#x27;;
+import { NewMediaDto } from &#x27;../../media/domain/dto/new-media.dto&#x27;;
+import { UploadMediaCommand } from &#x27;../../media/application/cqrs/command/upload-media.command&#x27;;
+import { RemoveMediaCommand } from &#x27;../../media/application/cqrs/command/remove-media.command&#x27;;
+import { InvalidIdHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
+import { AddMessageWithMediaCommand } from &#x27;./cqrs/command/add-message-with-media.command&#x27;;
+import { MessageResponse } from &#x27;../web/response/message.response&#x27;;
+import { CreateConversationMessageCommand } from &#x27;./cqrs/command/create-conversation-message.command&#x27;;
+import { CreateJoinedConversationCommand } from &#x27;./cqrs/command/create-joined-conversation.command&#x27;;
+import { DeleteJoinedConversationWithSocketIdCommand } from &#x27;./cqrs/command/delete-joined-conversation-with-socket-id.command&#x27;;
+import { DeleteAllJoinedConversationCommand } from &#x27;./cqrs/command/delete-all-joined-conversation.command&#x27;;
+import { RemoveMessageConversationCommand } from &#x27;./cqrs/command/remove-message-conversation.command&#x27;;
+import { IsUserIdOwnerOfMessageQuery } from &#x27;./cqrs/query/is-user-id-owner-of-message.query&#x27;;
+import { GetConversationByIdQuery } from &#x27;./cqrs/query/get-conversation-by-id.query&#x27;;
+import { GetCardByIdForConversationQuery } from &#x27;./cqrs/query/get-card-by-id-for-conversation.query&#x27;;
+import { GetUserAndProfileFromSocketQuery } from &#x27;./cqrs/query/get-user-and-profile-from-socket.query&#x27;;
+import { GetAllConversationByProfilesAndCardQuery } from &#x27;./cqrs/query/get-all-conversation-by-profiles-and-card.query&#x27;;
+import { GetMessageFromConversationQuery } from &#x27;./cqrs/query/get-message-from-conversation.query&#x27;;
+import { SoftRemoveMessageConversationCommand } from &#x27;./cqrs/command/soft-remove-message-conversation.command&#x27;;
+import { RemoveAllJoinedConversationWithSocketIdCommand } from &#x27;./cqrs/command/remove-all-joined-conversation-with-socket-id.command&#x27;;
+import { GetActiveConversationCountQuery } from &#x27;./cqrs/query/get-active-conversation-count.query&#x27;;
+
+@Injectable()
+export class ConversationService {
+  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
+
+  async saveMessage(content: string, author: CardEntity, conversation: ConversationEntity): Promise&lt;MessageEntity&gt; {
+    return await this.commandBus
+      .execute(
+        new CreateConversationMessageCommand({
+          cardId: author.id,
+          conversationId: conversation.id,
+          content: content,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdHttpException(&#x27;Card not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Conversation not found&#x27;) throw new InvalidIdHttpException(&#x27;Conversation not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async saveJoinedConversation(socketId: string, createJoinConversationDto: CreateJoinConversationDto): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new CreateJoinedConversationCommand({
+          socketId: socketId,
+          conversationEntity: createJoinConversationDto.conversationEntity,
+          userId: createJoinConversationDto.userId,
+          profileEntity: createJoinConversationDto.profileEntity,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdHttpException(&#x27;Card not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Conversation not found&#x27;) throw new InvalidIdHttpException(&#x27;Conversation not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Profile not found&#x27;) throw new InvalidIdHttpException(&#x27;Profile not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async deleteJoinedConversationWithSocketId(socketId: string): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new DeleteJoinedConversationWithSocketIdCommand({
+          socketId: socketId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Joined conversation not found&#x27;)
+          throw new InvalidIdHttpException(&#x27;Joined conversation not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async deletedJoinedConversation(socketId: string): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new RemoveAllJoinedConversationWithSocketIdCommand({
+          socketId: socketId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Joined conversation not found&#x27;)
+          throw new InvalidIdHttpException(&#x27;Joined conversation not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async deletedAllJoinedConversation(): Promise&lt;void&gt; {
+    await this.commandBus.execute(new DeleteAllJoinedConversationCommand()).catch(async error &#x3D;&gt; {
+      throw new Error(error);
+    });
+  }
+
+  async removeMessageFromConversation(messageId: string): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new RemoveMessageConversationCommand({
+          messageId: messageId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Message not found&#x27;) throw new InvalidIdHttpException(&#x27;Message not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async softRemoveMessageFromConversation(messageId: string, userId: string): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new SoftRemoveMessageConversationCommand({
+          messageId: messageId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Message not found&#x27;) throw new InvalidIdHttpException(&#x27;Message not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async getConversationWhereUserConnected(
+    socketId: string,
+    getMessageFromConversationRequest: GetMessageFromConversationRequest,
+  ): Promise&lt;ConversationEntity&gt; {
+    return await this.queryBus
+      .execute(
+        new GetMessageFromConversationQuery({
+          conversationId: getMessageFromConversationRequest.conversationId,
+          nbMessage: getMessageFromConversationRequest.nbMessage,
+          skip: getMessageFromConversationRequest.skip,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Conversation not found&#x27;) throw new InvalidIdHttpException(&#x27;Conversation not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async getConversationById(conversationId: string): Promise&lt;ConversationEntity&gt; {
+    return await this.queryBus
+      .execute(
+        new GetConversationByIdQuery({
+          conversationId: conversationId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Conversation not found&#x27;) throw new InvalidIdHttpException(&#x27;Conversation not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async getCardById(user: UserEntity, cardId: string): Promise&lt;CardEntity&gt; {
+    return await this.queryBus
+      .execute(
+        new GetCardByIdForConversationQuery({
+          cardId: cardId,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdHttpException(&#x27;Card not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async getUserAndProfilesFromSocket(socket: Socket): Promise&lt;UserEntity&gt; {
+    return await this.queryBus
+      .execute(
+        new GetUserAndProfileFromSocketQuery({
+          socketId: socket.id,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new InvalidIdHttpException(&#x27;User not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async getAllConversationByProfilesAndCard(profiles: ProfileEntity[]): Promise&lt;CreateJoinConversationDto[]&gt; {
+    return await this.queryBus
+      .execute(
+        new GetAllConversationByProfilesAndCardQuery({
+          profilesId: profiles.map(profile &#x3D;&gt; profile.id),
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Conversation not found&#x27;) throw new InvalidIdHttpException(&#x27;Conversation not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async addMessageWithMedia(
+    userId: string,
+    messageRequest: SentMessageRequest,
+    newMediaDto: NewMediaDto,
+  ): Promise&lt;MessageResponse&gt; {
+    const newMedia &#x3D; await this.commandBus
+      .execute(
+        new UploadMediaCommand({
+          dataBuffer: newMediaDto.imageBuffer,
+          filename: newMediaDto.fileName,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;File is too big&#x27;) throw new BadRequestException(&#x27;File is too big&#x27;);
+        throw error;
+      });
+
+    return await this.commandBus
+      .execute(
+        new AddMessageWithMediaCommand({
+          cardId: messageRequest.cardId,
+          conversationId: messageRequest.conversationId,
+          content: messageRequest.content,
+          media: newMedia,
+        }),
+      )
+      .catch(async error &#x3D;&gt; {
+        await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Card not found&#x27;) throw new InvalidIdHttpException(&#x27;Card not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Conversation not found&#x27;) throw new InvalidIdHttpException(&#x27;Conversation not found&#x27;);
+        throw error;
+      })
+      .then(async message &#x3D;&gt; {
+        return new MessageResponse({
+          ...message,
+        });
+      });
+  }
+
+  async isUserIdOwnerOfMessage(userId: string, messageId: string): Promise&lt;boolean&gt; {
+    return await this.queryBus
+      .execute(new IsUserIdOwnerOfMessageQuery({ userId: userId, messageId: messageId }))
+      .catch(async error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Message not found&#x27;) throw new InvalidIdHttpException(&#x27;Message not found&#x27;);
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new InvalidIdHttpException(&#x27;User not found&#x27;);
+        throw new Error(error);
+      });
+  }
+
+  async getActiveConversation(): Promise&lt;number&gt; {
+    return await this.queryBus.execute(new GetActiveConversationCountQuery()).catch(async error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Conversation not found&#x27;) throw new InvalidIdHttpException(&#x27;Conversation not found&#x27;);
+      throw new Error(error);
+    });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConversationService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

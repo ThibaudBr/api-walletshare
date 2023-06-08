@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,33 +39,39 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >UserService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >UserService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/user/user.service.ts</code>
+            <code>src/api/user/application/user.service.ts</code>
         </p>
 
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -116,6 +122,14 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getAllUserCount" >getAllUserCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getLoginHistory" >getLoginHistory</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getMe" >getMe</a>
                             </li>
                             <li>
@@ -133,6 +147,10 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#restoreUser" >restoreUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#saveUserLogin" >saveUserLogin</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -162,18 +180,18 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(commandBus: CommandBus, queryBus: QueryBus)</code>
+<code>constructor(commandBus: CommandBus, queryBus: QueryBus, configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/api/user/user.service.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/api/user/application/user.service.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -214,6 +232,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -223,7 +253,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -250,8 +280,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/api/user/user.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/api/user/application/user.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -321,8 +351,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="158"
-                            class="link-to-prism">src/api/user/user.service.ts:158</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/api/user/application/user.service.ts:196</a></div>
                 </td>
             </tr>
 
@@ -392,8 +422,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/api/user/user.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/api/user/application/user.service.ts:82</a></div>
                 </td>
             </tr>
 
@@ -431,8 +461,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="163"
-                            class="link-to-prism">src/api/user/user.service.ts:163</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/api/user/application/user.service.ts:201</a></div>
                 </td>
             </tr>
 
@@ -502,8 +532,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/api/user/user.service.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/api/user/application/user.service.ts:86</a></div>
                 </td>
             </tr>
 
@@ -573,8 +603,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/api/user/user.service.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">src/api/user/application/user.service.ts:166</a></div>
                 </td>
             </tr>
 
@@ -644,8 +674,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="172"
-                            class="link-to-prism">src/api/user/user.service.ts:172</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">src/api/user/application/user.service.ts:206</a></div>
                 </td>
             </tr>
 
@@ -715,8 +745,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="168"
-                            class="link-to-prism">src/api/user/user.service.ts:168</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="231"
+                            class="link-to-prism">src/api/user/application/user.service.ts:231</a></div>
                 </td>
             </tr>
 
@@ -754,8 +784,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/api/user/user.service.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/api/user/application/user.service.ts:116</a></div>
                 </td>
             </tr>
 
@@ -807,6 +837,116 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getAllUserCount"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllUserCount</b></span>
+                        <a href="#getAllUserCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllUserCount()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="235"
+                            class="link-to-prism">src/api/user/application/user.service.ts:235</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLoginHistory"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getLoginHistory</b></span>
+                        <a href="#getLoginHistory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getLoginHistory(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/api/user/application/user.service.ts:223</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;SaveUserLoginResponse[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getMe"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -825,8 +965,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/api/user/user.service.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/api/user/application/user.service.ts:170</a></div>
                 </td>
             </tr>
 
@@ -896,8 +1036,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/api/user/user.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/api/user/application/user.service.ts:70</a></div>
                 </td>
             </tr>
 
@@ -979,8 +1119,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/api/user/user.service.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/api/user/application/user.service.ts:107</a></div>
                 </td>
             </tr>
 
@@ -1050,8 +1190,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/api/user/user.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/api/user/application/user.service.ts:74</a></div>
                 </td>
             </tr>
 
@@ -1121,8 +1261,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="119"
-                            class="link-to-prism">src/api/user/user.service.ts:119</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/api/user/application/user.service.ts:157</a></div>
                 </td>
             </tr>
 
@@ -1174,6 +1314,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="saveUserLogin"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>saveUserLogin</b></span>
+                        <a href="#saveUserLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveUserLogin(saveUserLogin: <a href="../classes/SaveUserLoginDto.html" target="_self">SaveUserLoginDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/api/user/application/user.service.ts:210</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>saveUserLogin</td>
+                                    <td>
+                                                <code><a href="../classes/SaveUserLoginDto.html" target="_self" >SaveUserLoginDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="setCurrentRefreshToken"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -1192,8 +1403,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/api/user/user.service.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/api/user/application/user.service.ts:78</a></div>
                 </td>
             </tr>
 
@@ -1275,8 +1486,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/api/user/user.service.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/api/user/application/user.service.ts:94</a></div>
                 </td>
             </tr>
 
@@ -1358,8 +1569,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="144"
-                            class="link-to-prism">src/api/user/user.service.ts:144</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/api/user/application/user.service.ts:182</a></div>
                 </td>
             </tr>
 
@@ -1441,8 +1652,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/api/user/user.service.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/api/user/application/user.service.ts:174</a></div>
                 </td>
             </tr>
 
@@ -1507,45 +1718,74 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
 import { CreateUserCommand } from &#x27;./cqrs/command/create-user.command&#x27;;
-import { CreateUserDto } from &#x27;./domain/dto/create-user.dto&#x27;;
-import { CreateUserResponse } from &#x27;./domain/response/create-user.response&#x27;;
+import { CreateUserDto } from &#x27;../domain/dto/create-user.dto&#x27;;
+import { CreateUserResponse } from &#x27;../web/response/create-user.response&#x27;;
 import { RemoveRefreshTokenCommand } from &#x27;./cqrs/command/remove-refresh-token.command&#x27;;
 import { SetCurrentRefreshTokenCommand } from &#x27;./cqrs/command/set-current-refresh-token.command&#x27;;
 import { GetUserIfRefreshTokenMatchesQuery } from &#x27;./cqrs/query/get-user-if-refresh-token-matches.query&#x27;;
-import { UpdateUserDto } from &#x27;./domain/dto/update-user.dto&#x27;;
+import { UpdateUserDto } from &#x27;../domain/dto/update-user.dto&#x27;;
 import { GetUserQuery } from &#x27;./cqrs/query/get-user.query&#x27;;
 import { UpdateUserCommand } from &#x27;./cqrs/command/update-user.command&#x27;;
-import { UserResponse } from &#x27;./domain/response/user.response&#x27;;
+import { UserResponse } from &#x27;../web/response/user.response&#x27;;
 import { SoftDeleteUserCommand } from &#x27;./cqrs/command/soft-delete-user.command&#x27;;
 import { GetUserWithCriteriaQuery } from &#x27;./cqrs/query/get-user-with-criteria.query&#x27;;
-import { GetUserWithCriteriaDto } from &#x27;./domain/dto/get-user-with-criteria.dto&#x27;;
+import { GetUserWithCriteriaDto } from &#x27;../domain/dto/get-user-with-criteria.dto&#x27;;
 import { RestoreUserCommand } from &#x27;./cqrs/command/restore-user.command&#x27;;
-import { UserRoleEnum } from &#x27;./domain/enum/user-role.enum&#x27;;
+import { UserRoleEnum } from &#x27;../domain/enum/user-role.enum&#x27;;
 import { UpdateUserRoleCommand } from &#x27;./cqrs/command/update-user-role.command&#x27;;
 import { UpdateUserCredentialCommand } from &#x27;./cqrs/command/update-user-credential.command&#x27;;
-import { UpdateUserCredentialDto } from &#x27;./domain/dto/update-user-credential.dto&#x27;;
-import { GenerateUserDto } from &#x27;./domain/dto/generate-user.dto&#x27;;
-import { DeleteMailCommand } from &#x27;../api-landing-page/cqrs/command/delete-mail.command&#x27;;
-import { DuplicateMailHttpException } from &#x27;../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
-import { MailRequiredHttpException } from &#x27;../../util/exception/custom-http-exception/mail-required.http-exception&#x27;;
-import { UserNotFoundHttpException } from &#x27;../../util/exception/custom-http-exception/user-not-found.http-exception&#x27;;
-import { DuplicateUsernameHttpException } from &#x27;../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
-import { SamePasswordHttpException } from &#x27;../../util/exception/custom-http-exception/same-password.http-exception&#x27;;
-import { InvalidPasswordHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-password.http-exception&#x27;;
-import { RequestUser } from &#x27;../auth/interface/request-user.interface&#x27;;
+import { UpdateUserCredentialDto } from &#x27;../domain/dto/update-user-credential.dto&#x27;;
+import { GenerateUserDto } from &#x27;../domain/dto/generate-user.dto&#x27;;
+import { DeleteMailCommand } from &#x27;../../api-landing-page/application/cqrs/command/delete-mail.command&#x27;;
+import { DuplicateMailHttpException } from &#x27;../../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
+import { MailRequiredHttpException } from &#x27;../../../util/exception/custom-http-exception/mail-required.http-exception&#x27;;
+import { UserNotFoundHttpException } from &#x27;../../../util/exception/custom-http-exception/user-not-found.http-exception&#x27;;
+import { DuplicateUsernameHttpException } from &#x27;../../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
+import { SamePasswordHttpException } from &#x27;../../../util/exception/custom-http-exception/same-password.http-exception&#x27;;
+import { InvalidPasswordHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-password.http-exception&#x27;;
+import { RequestUser } from &#x27;../../auth/domain/interface/request-user.interface&#x27;;
 import { DeleteUserCommand } from &#x27;./cqrs/command/delete-user.command&#x27;;
-import { SendMailCommand } from &#x27;../api-mail/cqrs/command/send-mail.command&#x27;;
+import { SendMailCommand } from &#x27;../../api-mail/application/cqrs/command/send-mail.command&#x27;;
+import { SaveUserLoginDto } from &#x27;../domain/dto/save-user-login.dto&#x27;;
+import { CreateSaveLoginCommand } from &#x27;./cqrs/command/create-save-login.command&#x27;;
+import { SaveUserLoginResponse } from &#x27;../web/response/save-user-login.response&#x27;;
+import { GetSavedCardWithUserIdQuery } from &#x27;../../card/application/cqrs/query/get-saved-card-with-user-id.query&#x27;;
+import { CreateStripeCustomerCommand } from &#x27;../../payment/stripe/application/cqrs/command/create-stripe-customer.command&#x27;;
+import { CreateReferralCodeStripeCommand } from &#x27;../../payment/stripe/application/cqrs/command/create-referral-code-stripe.command&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
 
 @Injectable()
 export class UserService {
-  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+    private readonly configService: ConfigService,
+  ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise&lt;CreateUserResponse&gt; {
-    return await this.commandBus.execute(new CreateUserCommand(createUserDto));
+    const createdUser: CreateUserResponse &#x3D; await this.commandBus.execute(new CreateUserCommand(createUserDto));
+
+    createdUser.stripCustomerId &#x3D; await this.commandBus.execute(
+      new CreateStripeCustomerCommand({
+        userId: createdUser.id,
+        email: createdUser.mail,
+        username: createdUser.username,
+      }),
+    );
+
+    createdUser.referralCode &#x3D; await this.commandBus.execute(
+      new CreateReferralCodeStripeCommand({
+        userId: createdUser.id,
+        couponStripeId: this.configService.get(&#x27;STRIPE_COUPON_REFERRAL_ID&#x27;),
+        customerStripeId: createdUser.stripCustomerId,
+      }),
+    );
+
+    return createdUser;
   }
 
   async getUserIfRefreshTokenMatches(refreshToken: string, userId: string): Promise&lt;RequestUser&gt; {
@@ -1608,6 +1848,15 @@ export class UserService {
           }),
         ),
       );
+
+      await this.commandBus.execute(
+        new CreateStripeCustomerCommand({
+          userId: user.id,
+          email: user.mail,
+          username: user.username,
+        }),
+      );
+
       try {
         await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
         await this.commandBus.execute(
@@ -1675,12 +1924,37 @@ export class UserService {
     return await this.queryBus.execute(new GetUserQuery(userId));
   }
 
+  async fullDelete(id: string): Promise&lt;void&gt; {
+    return await this.commandBus.execute(new DeleteUserCommand({ userId: id }));
+  }
+
+  async saveUserLogin(saveUserLogin: SaveUserLoginDto): Promise&lt;void&gt; {
+    return await this.commandBus
+      .execute(
+        new CreateSaveLoginCommand({
+          ...saveUserLogin,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new UserNotFoundHttpException();
+        else throw error;
+      });
+  }
+
+  async getLoginHistory(userId: string): Promise&lt;SaveUserLoginResponse[]&gt; {
+    return await this.queryBus.execute(
+      new GetSavedCardWithUserIdQuery({
+        userId: userId,
+      }),
+    );
+  }
+
   private generatePassword(): string {
     return &#x27;Pt&#x27; + Math.random().toString(10).split(&#x27;.&#x27;)[1] + &#x27;!&#x27;;
   }
 
-  async fullDelete(id: string): Promise&lt;void&gt; {
-    return await this.commandBus.execute(new DeleteUserCommand({ userId: id }));
+  async getAllUserCount(): Promise&lt;number&gt; {
+    return await this.findAll().then(users &#x3D;&gt; users.length);
   }
 }
 </code></pre>

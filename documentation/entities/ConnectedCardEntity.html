@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -37,21 +37,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >ConnectedCardEntity</li>
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >ConnectedCardEntity</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -62,7 +68,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -75,24 +81,32 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#cardEntityOne" >cardEntityOne</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#cardEntityTwo" >cardEntityTwo</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#conversation" >conversation</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#createdAt" >createdAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#deletedAt" >deletedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#updatedAt" >updatedAt</a>
                             </li>
                         </ul>
@@ -108,7 +122,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -119,6 +133,7 @@
                 <td class="col-md-4">
                     <a name="cardEntityOne"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>cardEntityOne</b></span>
                         <a href="#cardEntityOne"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -141,7 +156,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -154,6 +169,7 @@
                 <td class="col-md-4">
                     <a name="cardEntityTwo"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>cardEntityTwo</b></span>
                         <a href="#cardEntityTwo"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -176,7 +192,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -189,6 +205,8 @@
                 <td class="col-md-4">
                     <a name="conversation"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>conversation</b></span>
                         <a href="#conversation"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -205,13 +223,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToOne(undefined, conversation &#x3D;&gt; conversation, {cascade: true})<br />@JoinColumn()<br />
+                            @OneToOne(undefined, conversation &#x3D;&gt; conversation.connectedCard, {cascade: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -224,6 +242,7 @@
                 <td class="col-md-4">
                     <a name="createdAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>createdAt</b></span>
                         <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -246,7 +265,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -259,6 +278,7 @@
                 <td class="col-md-4">
                     <a name="deletedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>deletedAt</b></span>
                         <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -281,7 +301,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -294,6 +314,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -316,7 +337,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -329,6 +350,7 @@
                 <td class="col-md-4">
                     <a name="updatedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>updatedAt</b></span>
                         <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -351,7 +373,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/api/card/domain/entities/connected-card.entity.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -362,7 +384,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   BaseEntity,
   CreateDateColumn,
@@ -374,31 +396,24 @@
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import { ConversationEntity } from &#x27;../../../entities-to-create/conversation.entity&#x27;;
+import { ConversationEntity } from &#x27;../../../conversation/domain/entities/conversation.entity&#x27;;
 import { CardEntity } from &#x27;./card.entity&#x27;;
 
 @Entity({ name: &#x27;connected_card&#x27; })
 export class ConnectedCardEntity extends BaseEntity {
-  constructor(partial?: Partial&lt;ConnectedCardEntity&gt;) {
-    super();
-    if (partial) {
-      Object.assign(this, partial);
-    }
-  }
+  @PrimaryGeneratedColumn(&#x27;uuid&#x27;)
+  id: string;
 
   // ______________________________________________________
   // Properties
   // ______________________________________________________
 
-  @PrimaryGeneratedColumn(&#x27;uuid&#x27;)
-  id: string;
-
   // ______________________________________________________
   // Relations
   // ______________________________________________________
-
-  @OneToOne(() &#x3D;&gt; ConversationEntity, conversation &#x3D;&gt; conversation, {
+  @OneToOne(() &#x3D;&gt; ConversationEntity, conversation &#x3D;&gt; conversation.connectedCard, {
     cascade: true,
+    onDelete: &#x27;CASCADE&#x27;,
   })
   @JoinColumn()
   conversation: ConversationEntity;
@@ -408,24 +423,27 @@ export class ConnectedCardEntity extends BaseEntity {
     cascade: [&#x27;insert&#x27;, &#x27;update&#x27;],
   })
   cardEntityOne: CardEntity;
-
   @ManyToOne(() &#x3D;&gt; CardEntity, cardEntity &#x3D;&gt; cardEntity.connectedCardTwo, {
     onDelete: &#x27;CASCADE&#x27;,
     cascade: [&#x27;insert&#x27;, &#x27;update&#x27;],
   })
   cardEntityTwo: CardEntity;
-
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
   @CreateDateColumn()
   createdAt: Date;
-
   @UpdateDateColumn()
   updatedAt: Date;
-
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial&lt;ConnectedCardEntity&gt;) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }
 </code></pre>
     </div>

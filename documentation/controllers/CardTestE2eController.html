@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,21 +36,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >CardTestE2eController</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >CardTestE2eController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -64,7 +70,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -78,36 +84,58 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#addCardCountTest" >addCardCountTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#addConnectedCardTest" >addConnectedCardTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#addSavedCardTest" >addSavedCardTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#createCardTest" >createCardTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#getAllCardsTest" >getAllCardsTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#getCardTest" >getCardTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#getConnectedCardsTest" >getConnectedCardsTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#getSavedCardsTest" >getSavedCardsTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#removeCardTest" >removeCardTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#removeConnectedCardTest" >removeConnectedCardTest</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#removeSavedCardTest" >removeSavedCardTest</a>
                             </li>
                         </ul>
@@ -122,7 +150,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -133,6 +161,8 @@
                 <td class="col-md-4">
                     <a name="addCardCountTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>addCardCountTest</b></span>
                         <a href="#addCardCountTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -140,7 +170,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addCardCountTest(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addCardCountTest(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -209,6 +240,8 @@
                 <td class="col-md-4">
                     <a name="addConnectedCardTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>addConnectedCardTest</b></span>
                         <a href="#addConnectedCardTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -216,7 +249,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addConnectedCardTest(undefined: literal type)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addConnectedCardTest(undefined: literal type)</code>
                 </td>
             </tr>
 
@@ -284,6 +318,8 @@
                 <td class="col-md-4">
                     <a name="addSavedCardTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>addSavedCardTest</b></span>
                         <a href="#addSavedCardTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -291,7 +327,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addSavedCardTest(undefined: literal type)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addSavedCardTest(undefined: literal type)</code>
                 </td>
             </tr>
 
@@ -359,6 +396,8 @@
                 <td class="col-md-4">
                     <a name="createCardTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>createCardTest</b></span>
                         <a href="#createCardTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -366,7 +405,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createCardTest(createCardRequest: <a href="../classes/CreateCardRequest.html" target="_self">CreateCardRequest</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCardTest(createCardRequest: <a href="../classes/CreateCardRequest.html" target="_self">CreateCardRequest</a>)</code>
                 </td>
             </tr>
 
@@ -435,6 +475,8 @@
                 <td class="col-md-4">
                     <a name="getAllCardsTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>getAllCardsTest</b></span>
                         <a href="#getAllCardsTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -442,7 +484,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getAllCardsTest()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllCardsTest()</code>
                 </td>
             </tr>
 
@@ -479,6 +522,8 @@
                 <td class="col-md-4">
                     <a name="getCardTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>getCardTest</b></span>
                         <a href="#getCardTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -486,7 +531,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getCardTest(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCardTest(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -555,6 +601,8 @@
                 <td class="col-md-4">
                     <a name="getConnectedCardsTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>getConnectedCardsTest</b></span>
                         <a href="#getConnectedCardsTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -562,7 +610,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getConnectedCardsTest(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getConnectedCardsTest(cardId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -631,6 +680,8 @@
                 <td class="col-md-4">
                     <a name="getSavedCardsTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>getSavedCardsTest</b></span>
                         <a href="#getSavedCardsTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -638,7 +689,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getSavedCardsTest(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSavedCardsTest(profileId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -707,6 +759,8 @@
                 <td class="col-md-4">
                     <a name="removeCardTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>removeCardTest</b></span>
                         <a href="#removeCardTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -714,7 +768,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>removeCardTest(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeCardTest(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -783,6 +838,8 @@
                 <td class="col-md-4">
                     <a name="removeConnectedCardTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>removeConnectedCardTest</b></span>
                         <a href="#removeConnectedCardTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -790,7 +847,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>removeConnectedCardTest(undefined: literal type)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeConnectedCardTest(undefined: literal type)</code>
                 </td>
             </tr>
 
@@ -858,6 +916,8 @@
                 <td class="col-md-4">
                     <a name="removeSavedCardTest"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span ><b>removeSavedCardTest</b></span>
                         <a href="#removeSavedCardTest"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -865,7 +925,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>removeSavedCardTest(undefined: literal type)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeSavedCardTest(undefined: literal type)</code>
                 </td>
             </tr>
 
@@ -930,7 +991,7 @@
 </section>    </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes } from &#x27;@nestjs/common&#x27;;
 import { CardTestE2eService } from &#x27;../service-test/card-test-e2e.service&#x27;;
 import { CreateCardRequest } from &#x27;../../../src/api/card/web/request/create-card.request&#x27;;

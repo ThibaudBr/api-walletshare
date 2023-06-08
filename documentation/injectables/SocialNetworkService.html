@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,33 +39,39 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >SocialNetworkService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >SocialNetworkService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/social-network/social-network.service.ts</code>
+            <code>src/api/social-network/application/social-network.service.ts</code>
         </p>
 
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -118,7 +124,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -129,7 +135,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/api/social-network/social-network.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/api/social-network/application/social-network.service.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -179,7 +185,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -207,7 +213,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/api/social-network/social-network.service.ts:73</a></div>
+                            class="link-to-prism">src/api/social-network/application/social-network.service.ts:73</a></div>
                 </td>
             </tr>
 
@@ -278,7 +284,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/api/social-network/social-network.service.ts:112</a></div>
+                            class="link-to-prism">src/api/social-network/application/social-network.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -349,7 +355,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/api/social-network/social-network.service.ts:27</a></div>
+                            class="link-to-prism">src/api/social-network/application/social-network.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -388,7 +394,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/api/social-network/social-network.service.ts:41</a></div>
+                            class="link-to-prism">src/api/social-network/application/social-network.service.ts:41</a></div>
                 </td>
             </tr>
 
@@ -459,7 +465,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/api/social-network/social-network.service.ts:54</a></div>
+                            class="link-to-prism">src/api/social-network/application/social-network.service.ts:54</a></div>
                 </td>
             </tr>
 
@@ -530,7 +536,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/api/social-network/social-network.service.ts:125</a></div>
+                            class="link-to-prism">src/api/social-network/application/social-network.service.ts:125</a></div>
                 </td>
             </tr>
 
@@ -601,7 +607,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/api/social-network/social-network.service.ts:91</a></div>
+                            class="link-to-prism">src/api/social-network/application/social-network.service.ts:91</a></div>
                 </td>
             </tr>
 
@@ -666,28 +672,28 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
-import { CreateSocialNetworkRequest } from &#x27;./web/request/create-social-network.request&#x27;;
+import { CreateSocialNetworkRequest } from &#x27;../web/request/create-social-network.request&#x27;;
 import { CreateSocialNetworkCommand } from &#x27;./cqrs/command/create-social-network.command&#x27;;
-import { UpdateSocialNetworkRequest } from &#x27;./web/request/update-social-network.request&#x27;;
+import { UpdateSocialNetworkRequest } from &#x27;../web/request/update-social-network.request&#x27;;
 import { GetSocialNetworkWithCriteriaQuery } from &#x27;./cqrs/query/get-social-network-with-criteria.query&#x27;;
 import { DeleteSocialNetworkCommand } from &#x27;./cqrs/command/delete-social-network.command&#x27;;
 import { GetAllSocialNetworkQuery } from &#x27;./cqrs/query/get-all-social-network.query&#x27;;
-import { GetSocialNetworkWithCriteriaRequest } from &#x27;./web/request/get-social-network-with-criteria.request&#x27;;
-import { QueryErrorHttpException } from &#x27;../../util/exception/custom-http-exception/query-error.http-exception&#x27;;
+import { GetSocialNetworkWithCriteriaRequest } from &#x27;../web/request/get-social-network-with-criteria.request&#x27;;
+import { QueryErrorHttpException } from &#x27;../../../util/exception/custom-http-exception/query-error.http-exception&#x27;;
 import { RestoreSocialNetworkCommand } from &#x27;./cqrs/command/restore-social-network.command&#x27;;
-import { SocialNetworkDto } from &#x27;./domain/dto/social-network.dto&#x27;;
-import { SocialNetworkResponse } from &#x27;./web/response/social-network.response&#x27;;
+import { SocialNetworkDto } from &#x27;../domain/dto/social-network.dto&#x27;;
+import { SocialNetworkResponse } from &#x27;../web/response/social-network.response&#x27;;
 import { UpdateSocialNetworkCommand } from &#x27;./cqrs/command/update-social-network.command&#x27;;
 import { GetSocialNetworkByIdQuery } from &#x27;./cqrs/query/get-social-network-by-id.query&#x27;;
-import { EntityCreationHttpException } from &#x27;../../util/exception/custom-http-exception/entity-creation.http-exception&#x27;;
-import { DuplicateNameHttpException } from &#x27;../../util/exception/custom-http-exception/duplicate-name.http-exception&#x27;;
-import { CommandErrorHttpException } from &#x27;../../util/exception/custom-http-exception/command-error.http-exception&#x27;;
-import { InvalidIdHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
-import { InvalidParameterEntityHttpException } from &#x27;../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
-import { EntityIsNotSoftDeletedHttpException } from &#x27;../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
+import { EntityCreationHttpException } from &#x27;../../../util/exception/custom-http-exception/entity-creation.http-exception&#x27;;
+import { DuplicateNameHttpException } from &#x27;../../../util/exception/custom-http-exception/duplicate-name.http-exception&#x27;;
+import { CommandErrorHttpException } from &#x27;../../../util/exception/custom-http-exception/command-error.http-exception&#x27;;
+import { InvalidIdHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
+import { InvalidParameterEntityHttpException } from &#x27;../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception&#x27;;
+import { EntityIsNotSoftDeletedHttpException } from &#x27;../../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception&#x27;;
 
 @Injectable()
 export class SocialNetworkService {

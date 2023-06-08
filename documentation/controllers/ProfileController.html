@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,26 +36,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >ProfileController</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >ProfileController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/profile/profile.controller.ts</code>
+            <code>src/api/profile/web/profile.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -70,7 +76,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -84,50 +90,94 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#createProfile" >createProfile</a>
+                                <a href="#createProfileAdmin" >createProfileAdmin</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteMyProfile" >deleteMyProfile</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteProfile" >deleteProfile</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllProfileCount" >getAllProfileCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllProfiles" >getAllProfiles</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getMyProfiles" >getMyProfiles</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getProfile" >getProfile</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getProfileById" >getProfileById</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getProfileByUserId" >getProfileByUserId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#getProfilesWithCriteria" >getProfilesWithCriteria</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#restoreProfile" >restoreProfile</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#updateMyProfile" >updateMyProfile</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#updateProfile" >updateProfile</a>
                             </li>
@@ -143,7 +193,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -152,18 +202,21 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createProfile"></a>
+                    <a name="createProfileAdmin"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
-                        <span ><b>createProfile</b></span>
-                        <a href="#createProfile"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>createProfileAdmin</b></span>
+                        <a href="#createProfileAdmin"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createProfile(profile: <a href="../classes/CreateProfileRequest.html" target="_self">CreateProfileRequest</a>)</code>
+                    <code>createProfileAdmin(profile: <a href="../classes/CreateProfileRequest.html" target="_self">CreateProfileRequest</a>)</code>
                 </td>
             </tr>
 
@@ -177,8 +230,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:101</a></div>
                 </td>
             </tr>
 
@@ -232,6 +285,9 @@
                 <td class="col-md-4">
                     <a name="deleteMyProfile"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>deleteMyProfile</b></span>
                         <a href="#deleteMyProfile"><span class="icon ion-ios-link"></span></a>
@@ -255,8 +311,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="135"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:135</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:115</a></div>
                 </td>
             </tr>
 
@@ -310,6 +366,9 @@
                 <td class="col-md-4">
                     <a name="deleteProfile"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>deleteProfile</b></span>
                         <a href="#deleteProfile"><span class="icon ion-ios-link"></span></a>
@@ -333,8 +392,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:108</a></div>
                 </td>
             </tr>
 
@@ -386,8 +445,61 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getAllProfileCount"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllProfileCount</b></span>
+                        <a href="#getAllProfileCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllProfileCount()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/admin/get-all-profile-count&#x27;)<br />@HttpCode(200)<br />@UseGuards(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getAllProfiles"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getAllProfiles</b></span>
                         <a href="#getAllProfiles"><span class="icon ion-ios-link"></span></a>
@@ -412,7 +524,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:40</a></div>
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -434,6 +546,9 @@
                 <td class="col-md-4">
                     <a name="getMyProfiles"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getMyProfiles</b></span>
                         <a href="#getMyProfiles"><span class="icon ion-ios-link"></span></a>
@@ -457,8 +572,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -512,6 +627,9 @@
                 <td class="col-md-4">
                     <a name="getProfile"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getProfile</b></span>
                         <a href="#getProfile"><span class="icon ion-ios-link"></span></a>
@@ -535,8 +653,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -590,6 +708,9 @@
                 <td class="col-md-4">
                     <a name="getProfileById"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getProfileById</b></span>
                         <a href="#getProfileById"><span class="icon ion-ios-link"></span></a>
@@ -613,8 +734,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:47</a></div>
                 </td>
             </tr>
 
@@ -680,6 +801,9 @@
                 <td class="col-md-4">
                     <a name="getProfileByUserId"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getProfileByUserId</b></span>
                         <a href="#getProfileByUserId"><span class="icon ion-ios-link"></span></a>
@@ -703,8 +827,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -758,6 +882,9 @@
                 <td class="col-md-4">
                     <a name="getProfilesWithCriteria"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>getProfilesWithCriteria</b></span>
                         <a href="#getProfilesWithCriteria"><span class="icon ion-ios-link"></span></a>
@@ -781,8 +908,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -836,6 +963,9 @@
                 <td class="col-md-4">
                     <a name="restoreProfile"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>restoreProfile</b></span>
                         <a href="#restoreProfile"><span class="icon ion-ios-link"></span></a>
@@ -859,8 +989,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:122</a></div>
                 </td>
             </tr>
 
@@ -914,6 +1044,9 @@
                 <td class="col-md-4">
                     <a name="updateMyProfile"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>updateMyProfile</b></span>
                         <a href="#updateMyProfile"><span class="icon ion-ios-link"></span></a>
@@ -937,8 +1070,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:93</a></div>
                 </td>
             </tr>
 
@@ -1004,6 +1137,9 @@
                 <td class="col-md-4">
                     <a name="updateProfile"></a>
                     <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
+                        <span class="modifier"></span>
                         <span class="modifier">Async</span>
                         <span ><b>updateProfile</b></span>
                         <a href="#updateProfile"><span class="icon ion-ios-link"></span></a>
@@ -1027,8 +1163,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/api/profile/profile.controller.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/api/profile/web/profile.controller.ts:86</a></div>
                 </td>
             </tr>
 
@@ -1091,17 +1227,17 @@
 </section>    </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Req, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { ProfileService } from &#x27;./profile.service&#x27;;
-import { ProfileResponse } from &#x27;./domain/response/profile.response&#x27;;
-import { UserRoleEnum } from &#x27;../user/domain/enum/user-role.enum&#x27;;
-import { RoleGuard } from &#x27;../auth/guards/role.guard&#x27;;
-import { RequestUser } from &#x27;../auth/interface/request-user.interface&#x27;;
-import { GetProfilesWithCriteriaRequest } from &#x27;./domain/request/get-profiles-with-criteria.request&#x27;;
-import { UpdateProfileRequest } from &#x27;./domain/request/update-profile.request&#x27;;
-import { CreateProfileRequest } from &#x27;./domain/request/create-profile.request&#x27;;
+import { ProfileService } from &#x27;../application/profile.service&#x27;;
+import { ProfileResponse } from &#x27;./response/profile.response&#x27;;
+import { UserRoleEnum } from &#x27;../../user/domain/enum/user-role.enum&#x27;;
+import { RoleGuard } from &#x27;../../auth/web/guards/role.guard&#x27;;
+import { RequestUser } from &#x27;../../auth/domain/interface/request-user.interface&#x27;;
+import { GetProfilesWithCriteriaRequest } from &#x27;./request/get-profiles-with-criteria.request&#x27;;
+import { UpdateProfileRequest } from &#x27;./request/update-profile.request&#x27;;
+import { CreateProfileRequest } from &#x27;./request/create-profile.request&#x27;;
 
 @Controller(&#x27;profile&#x27;)
 @ApiTags(&#x27;profile&#x27;)
@@ -1132,9 +1268,7 @@ export class ProfileController {
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllProfiles(): Promise&lt;ProfileResponse[]&gt; {
-    return await this.profileService.getProfiles().catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.getProfiles();
   }
 
   @Get(&#x27;/public/get-my-profile/:id&#x27;)
@@ -1142,27 +1276,21 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getProfileById(@Req() requestUser: RequestUser, @Param(&#x27;id&#x27;) profileId: string): Promise&lt;ProfileResponse&gt; {
     const { id } &#x3D; requestUser.user;
-    return await this.profileService.getMyProfile(id, profileId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.getMyProfile(id, profileId);
   }
 
   @Get(&#x27;/public/get-profile/:id&#x27;)
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getProfile(@Param(&#x27;id&#x27;) profileId: string): Promise&lt;ProfileResponse&gt; {
-    return await this.profileService.getProfile(profileId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.getProfile(profileId);
   }
 
   @Get(&#x27;/admin/with-user-id/:id&#x27;)
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getProfileByUserId(@Param(&#x27;id&#x27;) userId: string): Promise&lt;ProfileResponse[]&gt; {
-    return await this.profileService.getProfileByUserId(userId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.getProfileByUserId(userId);
   }
 
   @Get(&#x27;/public/get-my-profiles&#x27;)
@@ -1170,9 +1298,7 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getMyProfiles(@Req() requestUser: RequestUser): Promise&lt;ProfileResponse[]&gt; {
     const { id } &#x3D; requestUser.user;
-    return await this.profileService.getProfileByUserId(id).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.getProfileByUserId(id);
   }
 
   @Post(&#x27;/admin/get-with-criteria&#x27;)
@@ -1181,18 +1307,14 @@ export class ProfileController {
   async getProfilesWithCriteria(
     @Body() getProfilesWithCriteriaRequest: GetProfilesWithCriteriaRequest,
   ): Promise&lt;ProfileResponse[]&gt; {
-    return await this.profileService.getProfilesWithCriteria(getProfilesWithCriteriaRequest).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.getProfilesWithCriteria(getProfilesWithCriteriaRequest);
   }
 
   @Put(&#x27;/admin/update-profile/:id&#x27;)
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async updateProfile(@Param(&#x27;id&#x27;) profileId: string, @Body() profile: UpdateProfileRequest): Promise&lt;void&gt; {
-    return await this.profileService.updateProfile(profileId, profile).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.updateProfile(profileId, profile);
   }
 
   @Put(&#x27;/public/update-my-profile&#x27;)
@@ -1200,27 +1322,21 @@ export class ProfileController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async updateMyProfile(@Req() requestUser: RequestUser, @Body() profile: UpdateProfileRequest): Promise&lt;void&gt; {
     const { id } &#x3D; requestUser.user;
-    return await this.profileService.updateMyProfile(id, profile).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.updateMyProfile(id, profile);
   }
 
   @Post(&#x27;/admin/create-profile&#x27;)
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async createProfile(@Body() profile: CreateProfileRequest): Promise&lt;ProfileResponse&gt; {
-    return await this.profileService.createProfile(profile).catch(error &#x3D;&gt; {
-      throw error;
-    });
+  async createProfileAdmin(@Body() profile: CreateProfileRequest): Promise&lt;ProfileResponse&gt; {
+    return await this.profileService.createProfileAdmin(profile);
   }
 
   @Delete(&#x27;/admin/delete-profile/:id&#x27;)
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteProfile(@Param(&#x27;id&#x27;) profileId: string): Promise&lt;void&gt; {
-    return await this.profileService.deleteProfile(profileId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.deleteProfile(profileId);
   }
 
   @Delete(&#x27;/admin/soft-delete-profile/:id&#x27;)
@@ -1234,9 +1350,14 @@ export class ProfileController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async restoreProfile(@Param(&#x27;id&#x27;) profileId: string): Promise&lt;void&gt; {
-    return await this.profileService.restoreProfile(profileId).catch(error &#x3D;&gt; {
-      throw error;
-    });
+    return await this.profileService.restoreProfile(profileId);
+  }
+
+  @Get(&#x27;/admin/get-all-profile-count&#x27;)
+  @HttpCode(200)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getAllProfileCount(): Promise&lt;number&gt; {
+    return await this.profileService.getAllProfileCount();
   }
 }
 </code></pre>

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >GetUserLoginQueryHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >GetUserLoginQueryHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/user/cqrs/handler/query/get-user-login.query-handler.ts</code>
+            <code>src/api/user/application/cqrs/handler/query/get-user-login.query-handler.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -110,7 +116,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -121,7 +127,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/user/cqrs/handler/query/get-user-login.query-handler.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/user/application/cqrs/handler/query/get-user-login.query-handler.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -172,7 +178,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -199,8 +205,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/api/user/cqrs/handler/query/get-user-login.query-handler.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/api/user/application/cqrs/handler/query/get-user-login.query-handler.ts:21</a></div>
                 </td>
             </tr>
 
@@ -271,8 +277,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/api/user/cqrs/handler/query/get-user-login.query-handler.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/api/user/application/cqrs/handler/query/get-user-login.query-handler.ts:55</a></div>
                 </td>
             </tr>
 
@@ -341,11 +347,11 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventBus, IQueryHandler, QueryHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { GetUserLoginQuery } from &#x27;../../query/get-user-login.query&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { UserEntity } from &#x27;../../../domain/entities/user.entity&#x27;;
+import { UserEntity } from &#x27;../../../../domain/entities/user.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { config } from &#x27;dotenv&#x27;;
 import { HttpException, HttpStatus } from &#x27;@nestjs/common&#x27;;
@@ -353,6 +359,7 @@ import * as bcrypt from &#x27;bcrypt&#x27;;
 import { LoginOfUserEvent } from &#x27;../../event/login-of-user.event&#x27;;
 
 config();
+
 @QueryHandler(GetUserLoginQuery)
 export class GetUserLoginQueryHandler implements IQueryHandler&lt;GetUserLoginQuery&gt; {
   constructor(
@@ -372,7 +379,7 @@ export class GetUserLoginQueryHandler implements IQueryHandler&lt;GetUserLoginQu
         if (!(await this.verifyPassword(query.plainTextPassword, userUsername.password))) {
           throw new HttpException(&#x27;Wrong credentials provided&#x27;, HttpStatus.BAD_REQUEST);
         }
-        this.eventBus.publish(new LoginOfUserEvent(userUsername.id));
+        await this.eventBus.publish(new LoginOfUserEvent(userUsername.id));
 
         return userUsername;
       } else {
@@ -387,11 +394,11 @@ export class GetUserLoginQueryHandler implements IQueryHandler&lt;GetUserLoginQu
           this.eventBus.publish(new LoginOfUserEvent(userUsername.id));
           return userUsername;
         } else {
-          throw &#x27;Error: no match found&#x27;;
+          throw new Error(&#x27;no match found&#x27;);
         }
       }
     } catch (error) {
-      throw &#x27;Error: no match found&#x27;;
+      throw new Error(&#x27;no match found&#x27;);
     }
   }
 

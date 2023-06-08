@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >CreateProfileCommandHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >CreateProfileCommandHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/profile/cqrs/handler/command/create-profile.command-handler.ts</code>
+            <code>src/api/profile/application/cqrs/handler/command/create-profile.command-handler.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -105,7 +111,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -116,7 +122,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/profile/application/cqrs/handler/command/create-profile.command-handler.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -191,7 +197,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -219,7 +225,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/api/profile/cqrs/handler/command/create-profile.command-handler.ts:25</a></div>
+                            class="link-to-prism">src/api/profile/application/cqrs/handler/command/create-profile.command-handler.ts:25</a></div>
                 </td>
             </tr>
 
@@ -257,7 +263,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                        <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -276,18 +282,18 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommandHandler, EventBus, ICommandHandler } from &#x27;@nestjs/cqrs&#x27;;
-import { ProfileResponse } from &#x27;../../../domain/response/profile.response&#x27;;
+import { ProfileResponse } from &#x27;../../../../web/response/profile.response&#x27;;
 import { CreateProfileCommand } from &#x27;../../command/create-profile.command&#x27;;
-import { ProfileEntity } from &#x27;../../../domain/entities/profile.entity&#x27;;
+import { ProfileEntity } from &#x27;../../../../domain/entities/profile.entity&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { UserEntity } from &#x27;../../../../user/domain/entities/user.entity&#x27;;
+import { UserEntity } from &#x27;../../../../../user/domain/entities/user.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
 import { CreateProfileEvent } from &#x27;../../event/create-profile.event&#x27;;
-import { OccupationEntity } from &#x27;../../../../occupation/domain/entities/occupation.entity&#x27;;
-import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import { OccupationEntity } from &#x27;../../../../../occupation/domain/entities/occupation.entity&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../../util/exception/error-handler/error-custom.event&#x27;;
 
 @CommandHandler(CreateProfileCommand)
 export class CreateProfileCommandHandler implements ICommandHandler&lt;CreateProfileCommand&gt; {
@@ -301,66 +307,98 @@ export class CreateProfileCommandHandler implements ICommandHandler&lt;CreatePro
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(command: CreateProfileCommand): Promise&lt;void&gt; {
-    try {
-      if (!command.userId) throw new Error(&#x27;User not found&#x27;);
-      const user &#x3D; await this.userRepository
-        .findOneOrFail({
-          where: { id: command.userId },
-        })
-        .catch(() &#x3D;&gt; {
-          throw new Error(&#x27;User not found&#x27;);
-        });
-
-      const newProfile &#x3D; new ProfileEntity({
-        user: user,
-        ...command.createProfileDto,
+  async execute(command: CreateProfileCommand): Promise&lt;string&gt; {
+    if (!command.userId) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;CreateProfileCommandHandler&#x27;,
+          error: &#x27;UserId not found&#x27;,
+          localisation: &#x27;command.userId&#x27;,
+        }),
+      );
+      throw new Error(&#x27;User not found&#x27;);
+    }
+    const user &#x3D; await this.userRepository
+      .findOneOrFail({
+        where: { id: command.userId },
+      })
+      .catch(async error &#x3D;&gt; {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: &#x27;CreateProfileCommandHandler&#x27;,
+            error: error.message,
+            localisation: &#x27;userRepository.findOneOrFail&#x27;,
+          }),
+        );
+        throw new Error(&#x27;User not found&#x27;);
       });
 
-      if (command.occupationsId) {
-        if (command.occupationsId.length &gt; 0) {
-          const occupationPromises: Promise&lt;OccupationEntity&gt;[] &#x3D; command.occupationsId.map(async occupationId &#x3D;&gt; {
-            return await this.occupationRepository
-              .findOneOrFail({
-                where: [{ id: occupationId }],
-              })
-              .catch(() &#x3D;&gt; {
-                throw new Error(&#x27;Occupation not found&#x27;);
-              });
-          });
-          const occupations: OccupationEntity[] &#x3D; await Promise.all(occupationPromises);
+    const newProfile &#x3D; new ProfileEntity({
+      user: user,
+      ...command.createProfileDto,
+    });
 
-          if (occupations.length &gt; 0) {
-            newProfile.occupations &#x3D; occupations;
-          }
+    if (command.occupationsId) {
+      if (command.occupationsId.length &gt; 0) {
+        const occupationPromises: Promise&lt;OccupationEntity&gt;[] &#x3D; command.occupationsId.map(async occupationId &#x3D;&gt; {
+          return await this.occupationRepository
+            .findOneOrFail({
+              where: [{ id: occupationId }],
+            })
+            .catch(async error &#x3D;&gt; {
+              await this.eventBus.publish(
+                new ErrorCustomEvent({
+                  handler: &#x27;CreateProfileCommandHandler&#x27;,
+                  error: error.message,
+                  localisation: &#x27;occupationRepository.findOneOrFail&#x27;,
+                }),
+              );
+              throw new Error(&#x27;Occupation not found&#x27;);
+            });
+        });
+        const occupations: OccupationEntity[] &#x3D; await Promise.all(occupationPromises);
+
+        if (occupations.length &gt; 0) {
+          newProfile.occupations &#x3D; occupations;
         }
       }
+    }
 
-      const err &#x3D; await validate(newProfile);
-      if (err.length &gt; 0) {
-        throw err;
-      }
+    const err &#x3D; await validate(newProfile);
+    if (err.length &gt; 0) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          handler: &#x27;CreateProfileCommandHandler&#x27;,
+          error: err.map(e &#x3D;&gt; e.constraints).toString(),
+          localisation: &#x27;validate&#x27;,
+        }),
+      );
+      throw err;
+    }
 
-      const savedProfile &#x3D; await this.profileRepository.save(newProfile).then(profile &#x3D;&gt; {
+    const savedProfile &#x3D; await this.profileRepository
+      .save(newProfile)
+      .then(profile &#x3D;&gt; {
         return new ProfileResponse({
           ...profile,
         });
+      })
+      .catch(async error &#x3D;&gt; {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: &#x27;CreateProfileCommandHandler&#x27;,
+            error: error.message,
+            localisation: &#x27;profileRepository.save&#x27;,
+          }),
+        );
+        throw new Error(&#x27;Profile not saved&#x27;);
       });
-      this.eventBus.publish(
-        new CreateProfileEvent({
-          profileResponse: new ProfileResponse(savedProfile),
-        }),
-      );
-    } catch (error) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({
-          handler: &#x27;CreateProfileCommandHandler&#x27;,
-          localisation: &#x27;Profile&#x27;,
-          error: error.message,
-        }),
-      );
-      throw error;
-    }
+    await this.eventBus.publish(
+      new CreateProfileEvent({
+        profileResponse: new ProfileResponse(savedProfile),
+      }),
+    );
+    return savedProfile.id;
   }
 }
 </code></pre>

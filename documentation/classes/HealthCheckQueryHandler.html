@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,21 +43,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >HealthCheckQueryHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >HealthCheckQueryHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -105,7 +111,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -203,7 +209,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -230,8 +236,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/api/health-check/cqrs/handler/query/health-check.query-handler.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/api/health-check/cqrs/handler/query/health-check.query-handler.ts:22</a></div>
                 </td>
             </tr>
 
@@ -256,7 +262,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventBus, IQueryHandler, QueryHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { HealthCheckQuery } from &#x27;../../query/health-check.query&#x27;;
 import { HealthCheckResponse } from &#x27;../../../domain/response/health-check.response&#x27;;
@@ -277,17 +283,18 @@ export class HealthCheckQueryHandler implements IQueryHandler&lt;HealthCheckQuer
     private diskHealthIndicator: DiskHealthIndicator,
     private eventBus: EventBus,
   ) {}
+
   async execute(): Promise&lt;HealthCheckResponse&gt; {
     return new HealthCheckResponse(
       await this.healthCheckService.check([
         (): Promise&lt;HealthIndicatorResult&gt; &#x3D;&gt; this.typeOrmHealthIndicator.pingCheck(&#x27;database&#x27;),
         // the process should not use more than 300MB memory
-        (): Promise&lt;HealthIndicatorResult&gt; &#x3D;&gt; this.memoryHealthIndicator.checkHeap(&#x27;memory heap&#x27;, 30000 * 1024 * 1024),
+        (): Promise&lt;HealthIndicatorResult&gt; &#x3D;&gt; this.memoryHealthIndicator.checkHeap(&#x27;memoryHeap&#x27;, 30000 * 1024 * 1024),
         // The process should not have more than 300MB RSS memory allocated
-        (): Promise&lt;HealthIndicatorResult&gt; &#x3D;&gt; this.memoryHealthIndicator.checkRSS(&#x27;memory RSS&#x27;, 300 * 1024 * 1024),
+        (): Promise&lt;HealthIndicatorResult&gt; &#x3D;&gt; this.memoryHealthIndicator.checkRSS(&#x27;memoryRSS&#x27;, 300 * 1024 * 1024),
         // the used disk storage should not exceed the 50% of the available space
         (): Promise&lt;HealthIndicatorResult&gt; &#x3D;&gt;
-          this.diskHealthIndicator.checkStorage(&#x27;disk health&#x27;, {
+          this.diskHealthIndicator.checkStorage(&#x27;diskHealth&#x27;, {
             thresholdPercent: 0.5,
             path: &#x27;/&#x27;,
           }),

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >RemoveAdminRightGroupCommandHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >RemoveAdminRightGroupCommandHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/groupe/cqrs/handler/command/remove-admin-right-group.command-handler.ts</code>
+            <code>src/api/groupe/application/cqrs/handler/command/remove-admin-right-group.command-handler.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -105,7 +111,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -116,7 +122,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/groupe/cqrs/handler/command/remove-admin-right-group.command-handler.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/api/groupe/application/cqrs/handler/command/remove-admin-right-group.command-handler.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -179,7 +185,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -207,7 +213,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/api/groupe/cqrs/handler/command/remove-admin-right-group.command-handler.ts:21</a></div>
+                            class="link-to-prism">src/api/groupe/application/cqrs/handler/command/remove-admin-right-group.command-handler.ts:21</a></div>
                 </td>
             </tr>
 
@@ -264,15 +270,15 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommandHandler, EventBus, ICommandHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { RemoveAdminRightGroupCommand } from &#x27;../../command/remove-admin-right-group.command&#x27;;
-import { GroupEntity } from &#x27;../../../domain/entities/group.entity&#x27;;
+import { GroupEntity } from &#x27;../../../../domain/entities/group.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { GroupMembershipEntity } from &#x27;../../../domain/entities/group-membership.entity&#x27;;
-import { RoleGroupMembershipEnum } from &#x27;../../../domain/enum/role-group-membership.enum&#x27;;
-import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import { GroupMembershipEntity } from &#x27;../../../../domain/entities/group-membership.entity&#x27;;
+import { RoleGroupMembershipEnum } from &#x27;../../../../domain/enum/role-group-membership.enum&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../../util/exception/error-handler/error-custom.event&#x27;;
 import { RemoveAdminRightGroupEvent } from &#x27;../../event/remove-admin-right-group.event&#x27;;
 
 @CommandHandler(RemoveAdminRightGroupCommand)
@@ -295,10 +301,10 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler&lt;R
           },
         ],
       })
-      .catch(error &#x3D;&gt; {
-        this.eventBus.publish(
+      .catch(async error &#x3D;&gt; {
+        await this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: &#x27;group&#x27;,
+            localisation: &#x27;groupRepository.findOneOrFail&#x27;,
             handler: &#x27;RemoveAdminRightGroupCommandHandler&#x27;,
             error: error.message,
           }),
@@ -307,6 +313,13 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler&lt;R
       });
 
     if (group.members.filter(member &#x3D;&gt; member.id &#x3D;&#x3D;&#x3D; command.cardId).length &#x3D;&#x3D;&#x3D; 0) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: &#x27;group.filter&#x27;,
+          handler: &#x27;RemoveAdminRightGroupCommandHandler&#x27;,
+          error: &#x27;Card is not in this group&#x27;,
+        }),
+      );
       throw new Error(&#x27;Card is not in this group&#x27;);
     }
 
@@ -327,7 +340,7 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler&lt;R
       .catch(error &#x3D;&gt; {
         this.eventBus.publish(
           new ErrorCustomEvent({
-            localisation: &#x27;group&#x27;,
+            localisation: &#x27;groupRepository.findOneOrFail&#x27;,
             handler: &#x27;RemoveAdminRightGroupCommandHandler&#x27;,
             error: error.message,
           }),
@@ -337,7 +350,16 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler&lt;R
 
     if (groupMembership.role &#x3D;&#x3D;&#x3D; RoleGroupMembershipEnum.ADMIN) {
       groupMembership.role &#x3D; RoleGroupMembershipEnum.MEMBER;
-      await this.groupMembershipRepository.save(groupMembership);
+      await this.groupMembershipRepository.save(groupMembership).catch(async error &#x3D;&gt; {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: &#x27;groupMembershipRepository.save&#x27;,
+            handler: &#x27;RemoveAdminRightGroupCommandHandler&#x27;,
+            error: error.message,
+          }),
+        );
+        throw new Error(&#x27;Invalid id&#x27;);
+      });
       await this.eventBus.publish(new RemoveAdminRightGroupEvent({ cardId: command.cardId, groupId: command.groupId }));
     }
   }

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >UpdateUserCommandHandler</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >UpdateUserCommandHandler</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/user/cqrs/handler/command/update-user.command-handler.ts</code>
+            <code>src/api/user/application/cqrs/handler/command/update-user.command-handler.ts</code>
         </p>
 
 
@@ -76,7 +82,7 @@
             </p>
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -148,7 +154,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -159,7 +165,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -209,7 +215,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -234,7 +240,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +249,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -271,7 +277,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:22</a></div>
+                            class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:22</a></div>
                 </td>
             </tr>
 
@@ -343,7 +349,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:76</a></div>
+                            class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:76</a></div>
                 </td>
             </tr>
 
@@ -415,7 +421,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:70</a></div>
+                            class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:70</a></div>
                 </td>
             </tr>
 
@@ -487,7 +493,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:91</a></div>
+                            class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:91</a></div>
                 </td>
             </tr>
 
@@ -558,8 +564,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:106</a></div>
                 </td>
             </tr>
 
@@ -630,7 +636,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:86</a></div>
+                            class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:86</a></div>
                 </td>
             </tr>
 
@@ -701,7 +707,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/api/user/cqrs/handler/command/update-user.command-handler.ts:82</a></div>
+                            class="link-to-prism">src/api/user/application/cqrs/handler/command/update-user.command-handler.ts:82</a></div>
                 </td>
             </tr>
 
@@ -758,19 +764,19 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommandHandler, EventBus, ICommandHandler } from &#x27;@nestjs/cqrs&#x27;;
 import { UpdateUserCommand } from &#x27;../../command/update-user.command&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
-import { UserEntity } from &#x27;../../../domain/entities/user.entity&#x27;;
+import { UserEntity } from &#x27;../../../../domain/entities/user.entity&#x27;;
 import { validate } from &#x27;class-validator&#x27;;
 import { InvalidClassException } from &#x27;@nestjs/core/errors/exceptions/invalid-class.exception&#x27;;
 import { UpdateUserEvent } from &#x27;../../event/update-user.event&#x27;;
-import { ErrorCustomEvent } from &#x27;../../../../../util/exception/error-handler/error-custom.event&#x27;;
-import { UserResponse } from &#x27;../../../domain/response/user.response&#x27;;
-import { DuplicateUsernameHttpException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
-import { DuplicateMailHttpException } from &#x27;../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
+import { ErrorCustomEvent } from &#x27;../../../../../../util/exception/error-handler/error-custom.event&#x27;;
+import { UserResponse } from &#x27;../../../../web/response/user.response&#x27;;
+import { DuplicateUsernameHttpException } from &#x27;../../../../../../util/exception/custom-http-exception/duplicate-username.http-exception&#x27;;
+import { DuplicateMailHttpException } from &#x27;../../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception&#x27;;
 
 @CommandHandler(UpdateUserCommand)
 export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCommand&gt; {
@@ -784,7 +790,7 @@ export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCo
     try {
       if (command.user.username) {
         if (await this.isDuplicatedUsername(command.user.username)) {
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Username already exists&#x27; }),
           );
           throw new DuplicateUsernameHttpException();
@@ -793,7 +799,7 @@ export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCo
 
       if (command.user.mail) {
         if (await this.isDuplicatedEmail(command.user.mail)) {
-          this.eventBus.publish(
+          await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: &#x27;auth&#x27;, handler: &#x27;Register&#x27;, error: &#x27;Email already exists&#x27; }),
           );
           throw new DuplicateMailHttpException();
@@ -803,8 +809,8 @@ export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCo
         throw new Error(&#x27;User not found&#x27;);
       }
 
-      await this.isDuplicateOfDeletedUsername(command.user.username || &#x27;&#x27;);
-      await this.isDuplicateOfDeletedMail(command.user.mail || &#x27;&#x27;);
+      await this.isDuplicateOfDeletedUsername(command.user.username ?? &#x27;&#x27;);
+      await this.isDuplicateOfDeletedMail(command.user.mail ?? &#x27;&#x27;);
 
       const err &#x3D; await validate(command.user);
       if (err.length &gt; 0) {
@@ -814,14 +820,14 @@ export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCo
       const user: UserEntity &#x3D; await this.userRepository.findOneOrFail({
         where: [{ id: command.userId }],
       });
-      this.eventBus.publish(new UpdateUserEvent(command.userId));
+      await this.eventBus.publish(new UpdateUserEvent(command.userId));
       return new UserResponse({ ...user });
     } catch (error) {
-      this.eventBus.publish(
+      await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: &#x27;user&#x27;,
           handler: &#x27;UpdateUserCommandHandler&#x27;,
-          error: error,
+          error: error.message,
         }),
       );
       throw error;
@@ -854,11 +860,13 @@ export class UpdateUserCommandHandler implements ICommandHandler&lt;UpdateUserCo
       where: [{ mail: mail }],
       withDeleted: true,
     });
-    if (verifyDuplicateMailWithDeleted !&#x3D;&#x3D; null &amp;&amp; verifyDuplicateMailWithDeleted.deletedAt !&#x3D;&#x3D; null) {
-      await this.userRepository.update(verifyDuplicateMailWithDeleted.id, {
-        mail: &#x27;deleted&#x27; + verifyDuplicateMailWithDeleted.mail + &#x27; &#x27; + Math.random().toString().split(&#x27;.&#x27;)[1],
-      });
-      await this.eventBus.publish(new UpdateUserEvent(verifyDuplicateMailWithDeleted.id));
+    if (verifyDuplicateMailWithDeleted) {
+      if (verifyDuplicateMailWithDeleted?.deletedAt !&#x3D;&#x3D; null) {
+        await this.userRepository.update(verifyDuplicateMailWithDeleted.id, {
+          mail: &#x27;deleted&#x27; + verifyDuplicateMailWithDeleted.mail + &#x27; &#x27; + Math.random().toString().split(&#x27;.&#x27;)[1],
+        });
+        await this.eventBus.publish(new UpdateUserEvent(verifyDuplicateMailWithDeleted.id));
+      }
     }
   }
 

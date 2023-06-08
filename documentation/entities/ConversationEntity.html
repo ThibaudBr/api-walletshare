@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -37,32 +37,38 @@
 
 
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >ConversationEntity</li>
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >ConversationEntity</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/entities-to-create/conversation.entity.ts</code>
+            <code>src/api/conversation/domain/entities/conversation.entity.ts</code>
         </p>
 
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -75,33 +81,39 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#connectedCard" >connectedCard</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#content" >content</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#createdAt" >createdAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#deletedAt" >deletedAt</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#group" >group</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#joinedProfiles" >joinedProfiles</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#messages" >messages</a>
                             </li>
                             <li>
-                                <a href="#notifications" >notifications</a>
-                            </li>
-                            <li>
+                                    <span class="modifier"></span>
                                 <a href="#updatedAt" >updatedAt</a>
                             </li>
                         </ul>
@@ -117,7 +129,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -128,6 +140,7 @@
                 <td class="col-md-4">
                     <a name="connectedCard"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>connectedCard</b></span>
                         <a href="#connectedCard"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -150,7 +163,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -163,6 +176,7 @@
                 <td class="col-md-4">
                     <a name="content"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>content</b></span>
                         <a href="#content"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -179,13 +193,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column()<br />
+                            @Column({type: &#x27;varchar&#x27;, length: 255, nullable: true, name: &#x27;title&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -198,6 +212,7 @@
                 <td class="col-md-4">
                     <a name="createdAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>createdAt</b></span>
                         <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -220,7 +235,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -233,6 +248,7 @@
                 <td class="col-md-4">
                     <a name="deletedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>deletedAt</b></span>
                         <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -255,7 +271,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -268,6 +284,7 @@
                 <td class="col-md-4">
                     <a name="group"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>group</b></span>
                         <a href="#group"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -275,7 +292,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/GroupEntity.html" target="_self" >GroupEntity[]</a></code>
+                        <i>Type : </i>        <code><a href="../entitys/GroupEntity.html" target="_self" >GroupEntity</a></code>
 
                     </td>
                 </tr>
@@ -284,13 +301,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, groupEntity &#x3D;&gt; groupEntity.conversations)<br />
+                            @OneToOne(undefined, groupEntity &#x3D;&gt; groupEntity.conversation)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -303,6 +320,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -325,7 +343,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -338,6 +356,7 @@
                 <td class="col-md-4">
                     <a name="joinedProfiles"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>joinedProfiles</b></span>
                         <a href="#joinedProfiles"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -345,7 +364,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/JoinedConversation.html" target="_self" >JoinedConversation[]</a></code>
+                        <i>Type : </i>    <code>JoinedConversationEntity[]</code>
 
                     </td>
                 </tr>
@@ -360,7 +379,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -373,6 +392,7 @@
                 <td class="col-md-4">
                     <a name="messages"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>messages</b></span>
                         <a href="#messages"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -395,42 +415,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:39</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="notifications"></a>
-                    <span class="name">
-                        <span ><b>notifications</b></span>
-                        <a href="#notifications"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/NotificationEntity.html" target="_self" >NotificationEntity[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @OneToMany(undefined, notification &#x3D;&gt; notification.conversation, {nullable: true})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -443,6 +428,7 @@
                 <td class="col-md-4">
                     <a name="updatedAt"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>updatedAt</b></span>
                         <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -465,7 +451,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/api/entities-to-create/conversation.entity.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/api/conversation/domain/entities/conversation.entity.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -476,8 +462,9 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -487,14 +474,13 @@
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from &#x27;typeorm&#x27;;
-import { ConnectedCardEntity } from &#x27;../card/domain/entities/connected-card.entity&#x27;;
-import { GroupEntity } from &#x27;../groupe/domain/entities/group.entity&#x27;;
-import { JoinedConversation } from &#x27;./joined-conversation.entity&#x27;;
+import { ConnectedCardEntity } from &#x27;../../../card/domain/entities/connected-card.entity&#x27;;
+import { GroupEntity } from &#x27;../../../groupe/domain/entities/group.entity&#x27;;
+import { JoinedConversationEntity } from &#x27;./joined-conversation.entity&#x27;;
 import { MessageEntity } from &#x27;./message.entity&#x27;;
-import { NotificationEntity } from &#x27;./notification.entity&#x27;;
 
 @Entity({ name: &#x27;conversation&#x27; })
-export class ConversationEntity {
+export class ConversationEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -502,7 +488,7 @@ export class ConversationEntity {
   @PrimaryGeneratedColumn(&#x27;uuid&#x27;)
   id: string;
 
-  @Column()
+  @Column({ type: &#x27;varchar&#x27;, length: 255, nullable: true, name: &#x27;title&#x27; })
   content: string;
 
   // ______________________________________________________
@@ -511,17 +497,14 @@ export class ConversationEntity {
   @OneToOne(() &#x3D;&gt; ConnectedCardEntity, connectedCardEntity &#x3D;&gt; connectedCardEntity.conversation)
   connectedCard: ConnectedCardEntity;
 
-  @OneToMany(() &#x3D;&gt; GroupEntity, groupEntity &#x3D;&gt; groupEntity.conversations)
-  group: GroupEntity[];
+  @OneToOne(() &#x3D;&gt; GroupEntity, groupEntity &#x3D;&gt; groupEntity.conversation)
+  group: GroupEntity;
 
   @OneToMany(() &#x3D;&gt; MessageEntity, message &#x3D;&gt; message.conversation, {})
   messages: MessageEntity[];
 
-  @OneToMany(() &#x3D;&gt; JoinedConversation, joinedConversation &#x3D;&gt; joinedConversation.conversation)
-  joinedProfiles: JoinedConversation[];
-
-  @OneToMany(() &#x3D;&gt; NotificationEntity, notification &#x3D;&gt; notification.conversation, { nullable: true })
-  notifications: NotificationEntity[];
+  @OneToMany(() &#x3D;&gt; JoinedConversationEntity, joinedConversation &#x3D;&gt; joinedConversation.conversation)
+  joinedProfiles: JoinedConversationEntity[];
 
   // ______________________________________________________
   // Timestamps
@@ -535,6 +518,13 @@ export class ConversationEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial&lt;ConversationEntity&gt;) {
+    super();
+    if (partial) {
+      Object.assign(this, partial);
+    }
+  }
 }
 </code></pre>
     </div>

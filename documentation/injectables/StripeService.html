@@ -1,0 +1,3364 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api-walletshare documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">api-walletshare documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >StripeService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/api/payment/stripe/application/stripe.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#attachPaymentMethodToCustomer" >attachPaymentMethodToCustomer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#cancelSubscription" >cancelSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#chargeCustomer" >chargeCustomer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#constructEventFromStripeWebhook" >constructEventFromStripeWebhook</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createCouponStripe" >createCouponStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createCustomer" >createCustomer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createPriceStripe" >createPriceStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createProductStripe" >createProductStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createReferralCodeStripe" >createReferralCodeStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createSubscription" >createSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteCouponStripe" >deleteCouponStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllInvoiceByCustomerId" >getAllInvoiceByCustomerId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllPrices" >getAllPrices</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllProducts" >getAllProducts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllProductStripe" >getAllProductStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllSubscriptionsFromCustomerId" >getAllSubscriptionsFromCustomerId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getListSavedCreditCardOfUser" >getListSavedCreditCardOfUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getListSubscription" >getListSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPriceById" >getPriceById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getProductById" >getProductById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getProductStripeById" >getProductStripeById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getSubscription" >getSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#isUserIdOwnerOfStripeCustomerId" >isUserIdOwnerOfStripeCustomerId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#processCharge" >processCharge</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#processInvoice" >processInvoice</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#processPayment" >processPayment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#removePriceStripe" >removePriceStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeProductStripe" >removeProductStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#setDefaultCreditCard" >setDefaultCreditCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateCouponStripe" >updateCouponStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updatePriceStripe" >updatePriceStripe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateProductStripe" >updateProductStripe</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(commandBus: CommandBus, queryBus: QueryBus)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:43</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>commandBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>CommandBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>queryBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>QueryBus</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attachPaymentMethodToCustomer"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>attachPaymentMethodToCustomer</b></span>
+                        <a href="#attachPaymentMethodToCustomer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>attachPaymentMethodToCustomer(stripeCustomerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attachCreditCardRequest: <a href="../classes/AttachCreditCardRequest.html" target="_self">AttachCreditCardRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stripeCustomerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>attachCreditCardRequest</td>
+                                    <td>
+                                                <code><a href="../classes/AttachCreditCardRequest.html" target="_self" >AttachCreditCardRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.SetupIntent&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelSubscription"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>cancelSubscription</b></span>
+                        <a href="#cancelSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cancelSubscription(stripeCustomerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, subscriptionId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stripeCustomerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>subscriptionId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.Subscription&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chargeCustomer"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>chargeCustomer</b></span>
+                        <a href="#chargeCustomer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>chargeCustomer(stripCustomerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, chargeStripeRequest: <a href="../classes/ChargeStripeRequest.html" target="_self">ChargeStripeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:61</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stripCustomerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>chargeStripeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/ChargeStripeRequest.html" target="_self" >ChargeStripeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.PaymentIntent&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="constructEventFromStripeWebhook"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>constructEventFromStripeWebhook</b></span>
+                        <a href="#constructEventFromStripeWebhook"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>constructEventFromStripeWebhook(stripeSignature: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, payload: Buffer)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stripeSignature</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>payload</td>
+                                    <td>
+                                            <code>Buffer</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Event&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCouponStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createCouponStripe</b></span>
+                        <a href="#createCouponStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCouponStripe(createCouponStripeRequest: <a href="../classes/CreateCouponStripeRequest.html" target="_self">CreateCouponStripeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="434"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:434</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>createCouponStripeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateCouponStripeRequest.html" target="_self" >CreateCouponStripeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.Coupon&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCustomer"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>createCustomer</b></span>
+                        <a href="#createCustomer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createCustomer(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:46</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>email</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createPriceStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>createPriceStripe</b></span>
+                        <a href="#createPriceStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createPriceStripe(createPriceStripeRequest: <a href="../classes/CreatePriceStripeRequest.html" target="_self">CreatePriceStripeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:316</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>createPriceStripeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreatePriceStripeRequest.html" target="_self" >CreatePriceStripeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Price&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createProductStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>createProductStripe</b></span>
+                        <a href="#createProductStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createProductStripe(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, description: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:212</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>description</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Product&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createReferralCodeStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createReferralCodeStripe</b></span>
+                        <a href="#createReferralCodeStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createReferralCodeStripe(createReferralCodeStripeRequest: <a href="../classes/CreateReferralCodeStripeRequest.html" target="_self">CreateReferralCodeStripeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="451"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:451</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>createReferralCodeStripeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/CreateReferralCodeStripeRequest.html" target="_self" >CreateReferralCodeStripeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Coupon&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createSubscription"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>createSubscription</b></span>
+                        <a href="#createSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createSubscription(stripeCustomerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, price: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, referralCode?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:124</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stripeCustomerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>price</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>referralCode</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.Subscription&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteCouponStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteCouponStripe</b></span>
+                        <a href="#deleteCouponStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteCouponStripe(couponStripeId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="470"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:470</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>couponStripeId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.DeletedCoupon&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllInvoiceByCustomerId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllInvoiceByCustomerId</b></span>
+                        <a href="#getAllInvoiceByCustomerId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllInvoiceByCustomerId(customerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="420"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:420</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>customerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.ApiList&lt;Stripe.Invoice&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllPrices"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllPrices</b></span>
+                        <a href="#getAllPrices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllPrices(limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="288"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:288</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>limit</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.ApiList&lt;Stripe.Price&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllProducts"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllProducts</b></span>
+                        <a href="#getAllProducts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllProducts(limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="189"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:189</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>limit</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>offset</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.ApiList&lt;Stripe.Product&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllProductStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllProductStripe</b></span>
+                        <a href="#getAllProductStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllProductStripe()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="258"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:258</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Product[]&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllSubscriptionsFromCustomerId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllSubscriptionsFromCustomerId</b></span>
+                        <a href="#getAllSubscriptionsFromCustomerId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllSubscriptionsFromCustomerId(customerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="406"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:406</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>customerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.ApiList&lt;Stripe.Subscription&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getListSavedCreditCardOfUser"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getListSavedCreditCardOfUser</b></span>
+                        <a href="#getListSavedCreditCardOfUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getListSavedCreditCardOfUser(stripeCustomerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:98</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stripeCustomerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.ApiList&lt;Stripe.PaymentMethod&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getListSubscription"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getListSubscription</b></span>
+                        <a href="#getListSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getListSubscription(stripeCustomerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, priceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stripeCustomerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>priceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.ApiList&lt;Stripe.Subscription&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPriceById"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getPriceById</b></span>
+                        <a href="#getPriceById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPriceById(priceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="302"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:302</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>priceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Price&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getProductById"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getProductById</b></span>
+                        <a href="#getProductById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getProductById(productId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="204"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:204</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>productId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Product&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getProductStripeById"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>getProductStripeById</b></span>
+                        <a href="#getProductStripeById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getProductStripeById(productStripeId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="273"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:273</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>productStripeId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Product&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSubscription"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getSubscription</b></span>
+                        <a href="#getSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSubscription(subscriptionId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="392"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:392</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>subscriptionId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.Subscription&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isUserIdOwnerOfStripeCustomerId"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>isUserIdOwnerOfStripeCustomerId</b></span>
+                        <a href="#isUserIdOwnerOfStripeCustomerId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isUserIdOwnerOfStripeCustomerId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, stripeCustomerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="368"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:368</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>stripeCustomerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processCharge"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>processCharge</b></span>
+                        <a href="#processCharge"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>processCharge(event: Stripe.Event, jsonObject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="387"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:387</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>Stripe.Event</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>jsonObject</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processInvoice"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>processInvoice</b></span>
+                        <a href="#processInvoice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>processInvoice(event: Stripe.Event, jsonObject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="382"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:382</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>Stripe.Event</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>jsonObject</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processPayment"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>processPayment</b></span>
+                        <a href="#processPayment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>processPayment(event: Stripe.Event, jsonObject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="377"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:377</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>Stripe.Event</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>jsonObject</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removePriceStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>removePriceStripe</b></span>
+                        <a href="#removePriceStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removePriceStripe(priceStripeId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="354"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:354</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>priceStripeId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.DeletedPrice&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeProductStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>removeProductStripe</b></span>
+                        <a href="#removeProductStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeProductStripe(productStripeId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="244"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:244</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>productStripeId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.DeletedProduct&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDefaultCreditCard"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>setDefaultCreditCard</b></span>
+                        <a href="#setDefaultCreditCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setDefaultCreditCard(stripeCustomerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, setDefaultCreditCard: <a href="../classes/SetDefaultCreditCardStripRequest.html" target="_self">SetDefaultCreditCardStripRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:106</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stripeCustomerId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>setDefaultCreditCard</td>
+                                    <td>
+                                                <code><a href="../classes/SetDefaultCreditCardStripRequest.html" target="_self" >SetDefaultCreditCardStripRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.Customer&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateCouponStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateCouponStripe</b></span>
+                        <a href="#updateCouponStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateCouponStripe(couponId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateCouponStripeRequest: <a href="../classes/UpdateCouponStripeRequest.html" target="_self">UpdateCouponStripeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="484"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:484</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>couponId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateCouponStripeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateCouponStripeRequest.html" target="_self" >UpdateCouponStripeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Response&lt;Stripe.Coupon&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatePriceStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>updatePriceStripe</b></span>
+                        <a href="#updatePriceStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updatePriceStripe(updatePriceStripeRequest: <a href="../classes/UpdatePriceStripeRequest.html" target="_self">UpdatePriceStripeRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="337"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:337</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>updatePriceStripeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdatePriceStripeRequest.html" target="_self" >UpdatePriceStripeRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Price&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateProductStripe"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>updateProductStripe</b></span>
+                        <a href="#updateProductStripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateProductStripe(updateProductStripeRequest: <a href="../classes/UpdateProductStripRequest.html" target="_self">UpdateProductStripRequest</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="227"
+                            class="link-to-prism">src/api/payment/stripe/application/stripe.service.ts:227</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>updateProductStripeRequest</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateProductStripRequest.html" target="_self" >UpdateProductStripRequest</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;Stripe.Product&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import Stripe from &#x27;stripe&#x27;;
+import { CreateStripeCustomerCommand } from &#x27;./cqrs/command/create-stripe-customer.command&#x27;;
+import { InvalidIdHttpException } from &#x27;../../../../util/exception/custom-http-exception/invalid-id.http-exception&#x27;;
+import { CommandBus, QueryBus } from &#x27;@nestjs/cqrs&#x27;;
+import { ChargeStripeCommand } from &#x27;./cqrs/command/charge-stripe.command&#x27;;
+import { ChargeStripeRequest } from &#x27;../web/request/charge-stripe.request&#x27;;
+import { IsUserIdOwnerOfStripeCustomerIdQuery } from &#x27;./cqrs/query/is-user-id-owner-of-stripe-customer-id.query&#x27;;
+import { AttachCreditCardCommand } from &#x27;./cqrs/command/attach-credit-card.command&#x27;;
+import { AttachCreditCardRequest } from &#x27;../web/request/attach-credit-card.request&#x27;;
+import { GetListSavedCreditCardOfUserQuery } from &#x27;./cqrs/query/get-list-saved-credit-card-of-user.query&#x27;;
+import { SetDefaultCreditCardStripeCommand } from &#x27;./cqrs/command/set-default-credit-card-stripe.command&#x27;;
+import { SetDefaultCreditCardStripRequest } from &#x27;../web/request/set-default-credit-card-strip.request&#x27;;
+import { CreateSubscriptionStripeCommand } from &#x27;./cqrs/command/create-subscription-stripe.command&#x27;;
+import { GetListSubscriptionStripeQuery } from &#x27;./cqrs/query/get-list-subscription-stripe.query&#x27;;
+import { ConstructEventFromPayloadStripeCommand } from &#x27;./cqrs/command/construct-event-from-payload-stripe.command&#x27;;
+import { CancelSubscriptionStripeCommand } from &#x27;./cqrs/command/cancel-subscription-stripe.command&#x27;;
+import { CreateProductStripeCommand } from &#x27;./cqrs/command/create-product-stripe.command&#x27;;
+import { GetProductStripeByIdQuery } from &#x27;./cqrs/query/get-product-stripe-by-id.query&#x27;;
+import { GetAllProductStripeQuery } from &#x27;./cqrs/query/get-all-product-stripe.query&#x27;;
+import { UpdateProductStripeCommand } from &#x27;./cqrs/command/update-product-stripe.command&#x27;;
+import { RemoveProductStripeCommand } from &#x27;./cqrs/command/remove-product-stripe.command&#x27;;
+import { UpdateProductStripRequest } from &#x27;../web/request/update-product-strip.request&#x27;;
+import { GetAllPriceStripeQuery } from &#x27;./cqrs/query/get-all-price-stripe.query&#x27;;
+import { GetPriceByIdStripeQuery } from &#x27;./cqrs/query/get-price-by-id-stripe.query&#x27;;
+import { CreatePriceStripeCommand } from &#x27;./cqrs/command/create-price-stripe.command&#x27;;
+import { CreatePriceStripeRequest } from &#x27;../web/request/create-price-stripe.request&#x27;;
+import { UpdatePriceStripeCommand } from &#x27;./cqrs/command/update-price-stripe.command&#x27;;
+import { UpdatePriceStripeRequest } from &#x27;../web/request/update-price-stripe.request&#x27;;
+import { RemovePriceStripeCommand } from &#x27;./cqrs/command/remove-price-stripe.command&#x27;;
+import { GetSubscriptionStripeQuery } from &#x27;./cqrs/query/get-subscription-stripe.query&#x27;;
+import { GetAllSubscriptionFromCustomerIdStripeQuery } from &#x27;./cqrs/query/get-all-subscription-from-customer-id-stripe.query&#x27;;
+import { GetAllInvoiceByCustomerIdStripeQuery } from &#x27;./cqrs/query/get-all-invoice-by-customer-id-stripe.query&#x27;;
+import { CreateCouponStripeCommand } from &#x27;./cqrs/command/create-coupon-stripe.command&#x27;;
+import { CreateReferralCodeStripeCommand } from &#x27;./cqrs/command/create-referral-code-stripe.command&#x27;;
+import { UpdateCouponStripeCommand } from &#x27;./cqrs/command/update-coupon-stripe.command&#x27;;
+import { DeleteCouponStripeCommand } from &#x27;./cqrs/command/delete-coupon-stripe.command&#x27;;
+import { UpdateCouponStripeRequest } from &#x27;../web/request/update-coupon-stripe.request&#x27;;
+import { CreateReferralCodeStripeRequest } from &#x27;../web/request/create-referral-code-stripe.request&#x27;;
+import { CreateCouponStripeRequest } from &#x27;../web/request/create-coupon-stripe.request&#x27;;
+
+@Injectable()
+export class StripeService {
+  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
+
+  public async createCustomer(userId: string, name: string, email: string): Promise&lt;void&gt; {
+    await this.commandBus
+      .execute(
+        new CreateStripeCustomerCommand({
+          username: name,
+          email: email,
+          userId: userId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;User not found&#x27;) throw new InvalidIdHttpException(&#x27;User not found&#x27;);
+        throw new Error(&#x27;Error during the creation of the customer&#x27;);
+      });
+  }
+
+  public async chargeCustomer(
+    stripCustomerId: string,
+    chargeStripeRequest: ChargeStripeRequest,
+  ): Promise&lt;Stripe.Response&lt;Stripe.PaymentIntent&gt;&gt; {
+    return await this.commandBus
+      .execute(
+        new ChargeStripeCommand({
+          amount: chargeStripeRequest.amount,
+          stripeCustomerId: stripCustomerId,
+          paymentMethodId: chargeStripeRequest.paymentMethodId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the charge of the customer&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the charge of the customer&#x27;);
+        throw new Error(&#x27;Error during the charge of the customer&#x27;);
+      });
+  }
+
+  public async attachPaymentMethodToCustomer(
+    stripeCustomerId: string,
+    attachCreditCardRequest: AttachCreditCardRequest,
+  ): Promise&lt;Stripe.Response&lt;Stripe.SetupIntent&gt;&gt; {
+    return await this.commandBus
+      .execute(
+        new AttachCreditCardCommand({
+          stripeCustomerId: stripeCustomerId,
+          paymentMethodId: attachCreditCardRequest.paymentMethodId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the attachment of the payment method&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the attachment of the payment method&#x27;);
+        throw new Error(&#x27;Error during the attachment of the payment method&#x27;);
+      });
+  }
+
+  public async getListSavedCreditCardOfUser(stripeCustomerId: string): Promise&lt;Stripe.ApiList&lt;Stripe.PaymentMethod&gt;&gt; {
+    return await this.queryBus.execute(
+      new GetListSavedCreditCardOfUserQuery({
+        stripeCustomerId: stripeCustomerId,
+      }),
+    );
+  }
+
+  public async setDefaultCreditCard(
+    stripeCustomerId: string,
+    setDefaultCreditCard: SetDefaultCreditCardStripRequest,
+  ): Promise&lt;Stripe.Response&lt;Stripe.Customer&gt;&gt; {
+    return await this.commandBus
+      .execute(
+        new SetDefaultCreditCardStripeCommand({
+          stripeCustomerId: stripeCustomerId,
+          paymentMethodId: setDefaultCreditCard.paymentMethodId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the set default credit card&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the set default credit card&#x27;);
+        throw new Error(&#x27;Error during the set default credit card&#x27;);
+      });
+  }
+
+  public async createSubscription(
+    stripeCustomerId: string,
+    price: string,
+    referralCode?: string,
+  ): Promise&lt;Stripe.Response&lt;Stripe.Subscription&gt;&gt; {
+    return await this.commandBus
+      .execute(
+        new CreateSubscriptionStripeCommand({
+          stripeCustomerId: stripeCustomerId,
+          priceId: price,
+          promotionCode: referralCode,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the subscription creation&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the subscription creation&#x27;);
+        throw new Error(&#x27;Error during the subscription creation&#x27;);
+      });
+  }
+
+  public async getListSubscription(
+    stripeCustomerId: string,
+    priceId: string,
+  ): Promise&lt;Stripe.ApiList&lt;Stripe.Subscription&gt;&gt; {
+    return await this.queryBus
+      .execute(
+        new GetListSubscriptionStripeQuery({
+          stripeCustomerId: stripeCustomerId,
+          priceId: priceId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching list of subscription&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching list of subscription&#x27;);
+        throw new Error(&#x27;Error while fetching list of subscription&#x27;);
+      });
+  }
+
+  public async constructEventFromStripeWebhook(stripeSignature: string, payload: Buffer): Promise&lt;Stripe.Event&gt; {
+    return await this.commandBus.execute(
+      new ConstructEventFromPayloadStripeCommand({
+        payload: payload,
+        signature: stripeSignature,
+      }),
+    );
+  }
+
+  public async cancelSubscription(
+    stripeCustomerId: string,
+    subscriptionId: string,
+  ): Promise&lt;Stripe.Response&lt;Stripe.Subscription&gt;&gt; {
+    return await this.commandBus
+      .execute(
+        new CancelSubscriptionStripeCommand({
+          stripeCustomerId: stripeCustomerId,
+          subscriptionId: subscriptionId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the subscription cancellation&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the subscription cancellation&#x27;);
+        throw new Error(&#x27;Error during the subscription cancellation&#x27;);
+      });
+  }
+
+  public async getAllProducts(limit: number, offset: string): Promise&lt;Stripe.ApiList&lt;Stripe.Product&gt;&gt; {
+    return await this.queryBus
+      .execute(
+        new GetAllProductStripeQuery({
+          limit: limit,
+          offset: offset,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching list of products&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching list of products&#x27;);
+        throw new Error(&#x27;Error while fetching list of products&#x27;);
+      });
+  }
+
+  public async getProductById(productId: string): Promise&lt;Stripe.Product&gt; {
+    return await this.queryBus.execute(new GetProductStripeByIdQuery({ id: productId })).catch(error &#x3D;&gt; {
+      if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching product&#x27;)
+        throw new InvalidIdHttpException(&#x27;Error while fetching product&#x27;);
+      throw new Error(&#x27;Error while fetching product&#x27;);
+    });
+  }
+
+  public async createProductStripe(name: string, description: string): Promise&lt;Stripe.Product&gt; {
+    return await this.commandBus
+      .execute(
+        new CreateProductStripeCommand({
+          name: name,
+          description: description,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the creation of the product&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the creation of the product&#x27;);
+        throw new Error(&#x27;Error during the creation of the product&#x27;);
+      });
+  }
+
+  public async updateProductStripe(updateProductStripeRequest: UpdateProductStripRequest): Promise&lt;Stripe.Product&gt; {
+    return await this.commandBus
+      .execute(
+        new UpdateProductStripeCommand({
+          productStripeId: updateProductStripeRequest.productStripeId,
+          name: updateProductStripeRequest.name,
+          description: updateProductStripeRequest.description,
+          defaultPriceId: updateProductStripeRequest.defaultPriceId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the update of the product&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the update of the product&#x27;);
+        throw new Error(&#x27;Error during the update of the product&#x27;);
+      });
+  }
+
+  public async removeProductStripe(productStripeId: string): Promise&lt;Stripe.DeletedProduct&gt; {
+    return await this.commandBus
+      .execute(
+        new RemoveProductStripeCommand({
+          id: productStripeId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the remove of the product&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the remove of the product&#x27;);
+        throw new Error(&#x27;Error during the remove of the product&#x27;);
+      });
+  }
+
+  public async getAllProductStripe(): Promise&lt;Stripe.Product[]&gt; {
+    return await this.queryBus
+      .execute(
+        new GetAllProductStripeQuery({
+          limit: 10,
+          offset: &#x27;0&#x27;,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching list of products&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching list of products&#x27;);
+        throw new Error(&#x27;Error while fetching list of products&#x27;);
+      });
+  }
+
+  public async getProductStripeById(productStripeId: string): Promise&lt;Stripe.Product&gt; {
+    return await this.queryBus
+      .execute(
+        new GetProductStripeByIdQuery({
+          id: productStripeId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching product&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching product&#x27;);
+        throw new Error(&#x27;Error while fetching product&#x27;);
+      });
+  }
+
+  // Prices
+  public async getAllPrices(limit: number): Promise&lt;Stripe.ApiList&lt;Stripe.Price&gt;&gt; {
+    return await this.queryBus
+      .execute(
+        new GetAllPriceStripeQuery({
+          limit: limit,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching list of prices&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching list of prices&#x27;);
+        throw new Error(&#x27;Error while fetching list of prices&#x27;);
+      });
+  }
+
+  public async getPriceById(priceId: string): Promise&lt;Stripe.Price&gt; {
+    return await this.queryBus
+      .execute(
+        new GetPriceByIdStripeQuery({
+          priceStripeId: priceId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching price&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching price&#x27;);
+        throw new Error(&#x27;Error while fetching price&#x27;);
+      });
+  }
+
+  public async createPriceStripe(createPriceStripeRequest: CreatePriceStripeRequest): Promise&lt;Stripe.Price&gt; {
+    return await this.commandBus
+      .execute(
+        new CreatePriceStripeCommand({
+          productId: createPriceStripeRequest.productId,
+          unitAmount: createPriceStripeRequest.unitAmount,
+          interval: createPriceStripeRequest.interval,
+          usageType: createPriceStripeRequest.usageType,
+          productStripeId: createPriceStripeRequest.productStripeId,
+          active: createPriceStripeRequest.active,
+          trialPeriodDays: createPriceStripeRequest.trialPeriodDays,
+          intervalCount: createPriceStripeRequest.intervalCount,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the creation of the price&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the creation of the price&#x27;);
+        throw new Error(&#x27;Error during the creation of the price&#x27;);
+      });
+  }
+
+  public async updatePriceStripe(updatePriceStripeRequest: UpdatePriceStripeRequest): Promise&lt;Stripe.Price&gt; {
+    return await this.commandBus
+      .execute(
+        new UpdatePriceStripeCommand({
+          priceStripeId: updatePriceStripeRequest.priceStripeId,
+          active: updatePriceStripeRequest.active,
+          priceId: updatePriceStripeRequest.priceId,
+          productId: updatePriceStripeRequest.productId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the update of the price&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the update of the price&#x27;);
+        throw new Error(&#x27;Error during the update of the price&#x27;);
+      });
+  }
+
+  public async removePriceStripe(priceStripeId: string): Promise&lt;Stripe.DeletedPrice&gt; {
+    return await this.commandBus
+      .execute(
+        new RemovePriceStripeCommand({
+          priceStripeId: priceStripeId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the remove of the price&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the remove of the price&#x27;);
+        throw new Error(&#x27;Error during the remove of the price&#x27;);
+      });
+  }
+
+  private async isUserIdOwnerOfStripeCustomerId(userId: string, stripeCustomerId: string): Promise&lt;boolean&gt; {
+    return await this.queryBus.execute(
+      new IsUserIdOwnerOfStripeCustomerIdQuery({
+        userId: userId,
+        stripeCustomerId: stripeCustomerId,
+      }),
+    );
+  }
+
+  async processPayment(event: Stripe.Event, jsonObject: object): Promise&lt;void&gt; {
+    // TODO: not implemented
+    throw new Error(&#x27;Method not implemented.&#x27;);
+  }
+
+  async processInvoice(event: Stripe.Event, jsonObject: object): Promise&lt;void&gt; {
+    // TODO: not implemented
+    throw new Error(&#x27;Method not implemented.&#x27;);
+  }
+
+  async processCharge(event: Stripe.Event, jsonObject: object): Promise&lt;void&gt; {
+    // TODO: not implemented
+    throw new Error(&#x27;Method not implemented.&#x27;);
+  }
+
+  async getSubscription(subscriptionId: string): Promise&lt;Stripe.Response&lt;Stripe.Subscription&gt;&gt; {
+    return await this.queryBus
+      .execute(
+        new GetSubscriptionStripeQuery({
+          subscriptionId: subscriptionId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching subscription&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching subscription&#x27;);
+        throw new Error(&#x27;Error while fetching subscription&#x27;);
+      });
+  }
+
+  async getAllSubscriptionsFromCustomerId(customerId: string): Promise&lt;Stripe.ApiList&lt;Stripe.Subscription&gt;&gt; {
+    return await this.queryBus
+      .execute(
+        new GetAllSubscriptionFromCustomerIdStripeQuery({
+          customerId: customerId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching subscriptions&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching subscriptions&#x27;);
+        throw new Error(&#x27;Error while fetching subscriptions&#x27;);
+      });
+  }
+
+  async getAllInvoiceByCustomerId(customerId: string): Promise&lt;Stripe.ApiList&lt;Stripe.Invoice&gt;&gt; {
+    return await this.queryBus
+      .execute(
+        new GetAllInvoiceByCustomerIdStripeQuery({
+          customerId: customerId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error while fetching invoices&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error while fetching invoices&#x27;);
+        throw new Error(&#x27;Error while fetching invoices&#x27;);
+      });
+  }
+
+  async createCouponStripe(
+    createCouponStripeRequest: CreateCouponStripeRequest,
+  ): Promise&lt;Stripe.Response&lt;Stripe.Coupon&gt;&gt; {
+    return await this.commandBus
+      .execute(
+        new CreateCouponStripeCommand({
+          percentOff: createCouponStripeRequest.percentOff,
+          duration: createCouponStripeRequest.duration,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the creation of the coupon&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the creation of the coupon&#x27;);
+        throw new Error(&#x27;Error during the creation of the coupon&#x27;);
+      });
+  }
+
+  async createReferralCodeStripe(
+    createReferralCodeStripeRequest: CreateReferralCodeStripeRequest,
+  ): Promise&lt;Stripe.Coupon&gt; {
+    return await this.commandBus
+      .execute(
+        new CreateReferralCodeStripeCommand({
+          customerStripeId: createReferralCodeStripeRequest.customerStripeId,
+          couponStripeId: createReferralCodeStripeRequest.couponStripeId,
+          code: createReferralCodeStripeRequest.code,
+          userId: createReferralCodeStripeRequest.userId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the creation of the coupon&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the creation of the coupon&#x27;);
+        throw new Error(&#x27;Error during the creation of the coupon&#x27;);
+      });
+  }
+
+  async deleteCouponStripe(couponStripeId: string): Promise&lt;Stripe.Response&lt;Stripe.DeletedCoupon&gt;&gt; {
+    return await this.commandBus
+      .execute(
+        new DeleteCouponStripeCommand({
+          couponId: couponStripeId,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the remove of the coupon&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the remove of the coupon&#x27;);
+        throw new Error(&#x27;Error during the remove of the coupon&#x27;);
+      });
+  }
+
+  async updateCouponStripe(
+    couponId: string,
+    updateCouponStripeRequest: UpdateCouponStripeRequest,
+  ): Promise&lt;Stripe.Response&lt;Stripe.Coupon&gt;&gt; {
+    return await this.commandBus
+      .execute(
+        new UpdateCouponStripeCommand({
+          couponId: couponId,
+          percentOff: updateCouponStripeRequest.percentOff,
+          duration: updateCouponStripeRequest.duration,
+        }),
+      )
+      .catch(error &#x3D;&gt; {
+        if (error.message &#x3D;&#x3D;&#x3D; &#x27;Error during the update of the coupon&#x27;)
+          throw new InvalidIdHttpException(&#x27;Error during the update of the coupon&#x27;);
+        throw new Error(&#x27;Error during the update of the coupon&#x27;);
+      });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'StripeService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

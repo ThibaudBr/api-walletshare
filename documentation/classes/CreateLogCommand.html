@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">api-walletshare documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -43,26 +43,32 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >CreateLogCommand</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >CreateLogCommand</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/api/api-log/cqrs/command/create-log.command.ts</code>
+            <code>src/api/api-log/application/cqrs/command/create-log.command.ts</code>
         </p>
 
 
@@ -70,7 +76,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -83,60 +89,76 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#apiName" >apiName</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#apiType" >apiType</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#apiVersion" >apiVersion</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#body" >body</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#error" >error</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#headers" >headers</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#ip" >ip</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#loggingType" >loggingType</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#method" >method</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#os" >os</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#platform" >platform</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#responseBody" >responseBody</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#responseHeaders" >responseHeaders</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#route" >route</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#screenSize" >screenSize</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#status" >status</a>
                             </li>
@@ -153,7 +175,7 @@
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -164,7 +186,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -202,7 +224,7 @@
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -213,6 +235,7 @@
                 <td class="col-md-4">
                     <a name="apiName"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>apiName</b></span>
                         <a href="#apiName"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -235,7 +258,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:7</a></div>
                         </td>
                     </tr>
 
@@ -248,6 +271,7 @@
                 <td class="col-md-4">
                     <a name="apiType"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>apiType</b></span>
                         <a href="#apiType"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -270,7 +294,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -283,6 +307,7 @@
                 <td class="col-md-4">
                     <a name="apiVersion"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>apiVersion</b></span>
                         <a href="#apiVersion"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -305,7 +330,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -318,6 +343,7 @@
                 <td class="col-md-4">
                     <a name="body"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>body</b></span>
                         <a href="#body"><span class="icon ion-ios-link"></span></a>
@@ -341,7 +367,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -354,6 +380,7 @@
                 <td class="col-md-4">
                     <a name="error"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>error</b></span>
                         <a href="#error"><span class="icon ion-ios-link"></span></a>
@@ -377,7 +404,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -390,6 +417,7 @@
                 <td class="col-md-4">
                     <a name="headers"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>headers</b></span>
                         <a href="#headers"><span class="icon ion-ios-link"></span></a>
@@ -413,7 +441,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -426,6 +454,7 @@
                 <td class="col-md-4">
                     <a name="ip"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>ip</b></span>
                         <a href="#ip"><span class="icon ion-ios-link"></span></a>
@@ -449,7 +478,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -462,6 +491,7 @@
                 <td class="col-md-4">
                     <a name="loggingType"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>loggingType</b></span>
                         <a href="#loggingType"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -484,7 +514,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -497,6 +527,7 @@
                 <td class="col-md-4">
                     <a name="method"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>method</b></span>
                         <a href="#method"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -519,7 +550,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -532,6 +563,7 @@
                 <td class="col-md-4">
                     <a name="os"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>os</b></span>
                         <a href="#os"><span class="icon ion-ios-link"></span></a>
@@ -555,7 +587,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -568,6 +600,7 @@
                 <td class="col-md-4">
                     <a name="platform"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>platform</b></span>
                         <a href="#platform"><span class="icon ion-ios-link"></span></a>
@@ -591,7 +624,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -604,6 +637,7 @@
                 <td class="col-md-4">
                     <a name="responseBody"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>responseBody</b></span>
                         <a href="#responseBody"><span class="icon ion-ios-link"></span></a>
@@ -627,7 +661,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -640,6 +674,7 @@
                 <td class="col-md-4">
                     <a name="responseHeaders"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>responseHeaders</b></span>
                         <a href="#responseHeaders"><span class="icon ion-ios-link"></span></a>
@@ -663,7 +698,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -676,6 +711,7 @@
                 <td class="col-md-4">
                     <a name="route"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>route</b></span>
                         <a href="#route"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -698,7 +734,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -711,6 +747,7 @@
                 <td class="col-md-4">
                     <a name="screenSize"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>screenSize</b></span>
                         <a href="#screenSize"><span class="icon ion-ios-link"></span></a>
@@ -734,7 +771,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -747,6 +784,7 @@
                 <td class="col-md-4">
                     <a name="status"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>status</b></span>
                         <a href="#status"><span class="icon ion-ios-link"></span></a>
@@ -770,7 +808,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/api/api-log/cqrs/command/create-log.command.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/api/api-log/application/cqrs/command/create-log.command.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -788,63 +826,48 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
-import { LoggingTypeEnum } from &#x27;../../domain/enum/logging-type.enum&#x27;;
-import { ApiTypeEnum } from &#x27;../../domain/enum/api-type.enum&#x27;;
+import { LoggingTypeEnum } from &#x27;../../../domain/enum/logging-type.enum&#x27;;
+import { ApiTypeEnum } from &#x27;../../../domain/enum/api-type.enum&#x27;;
 
 export class CreateLogCommand {
+  @ApiProperty()
+  apiName: string;
+  @ApiProperty()
+  loggingType: LoggingTypeEnum;
+  @ApiProperty()
+  apiVersion: string;
+  @ApiProperty({ enum: ApiTypeEnum })
+  apiType: ApiTypeEnum;
+  @ApiProperty()
+  method: string;
+  @ApiProperty()
+  route: string;
+  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
+  headers?: object;
+  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
+  body?: object;
+  @ApiProperty({ nullable: true })
+  status?: number;
+  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
+  responseHeaders?: object;
+  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
+  responseBody?: object;
+  @ApiProperty({ type: &#x27;text&#x27;, nullable: true })
+  error?: string;
+  @ApiProperty({ nullable: true })
+  os?: string;
+  @ApiProperty({ nullable: true })
+  platform?: string;
+  @ApiProperty({ nullable: true })
+  screenSize?: string;
+  @ApiProperty({ nullable: true })
+  ip?: string;
+
   constructor(partial: Partial&lt;CreateLogCommand&gt;) {
     Object.assign(this, partial);
   }
-
-  @ApiProperty()
-  apiName: string;
-
-  @ApiProperty()
-  loggingType: LoggingTypeEnum;
-
-  @ApiProperty()
-  apiVersion: string;
-
-  @ApiProperty({ enum: ApiTypeEnum })
-  apiType: ApiTypeEnum;
-
-  @ApiProperty()
-  method: string;
-
-  @ApiProperty()
-  route: string;
-
-  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
-  headers?: object;
-
-  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
-  body?: object;
-
-  @ApiProperty({ nullable: true })
-  status?: number;
-
-  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
-  responseHeaders?: object;
-
-  @ApiProperty({ type: &#x27;json&#x27;, nullable: true })
-  responseBody?: object;
-
-  @ApiProperty({ type: &#x27;text&#x27;, nullable: true })
-  error?: string;
-
-  @ApiProperty({ nullable: true })
-  os?: string;
-
-  @ApiProperty({ nullable: true })
-  platform?: string;
-
-  @ApiProperty({ nullable: true })
-  screenSize?: string;
-
-  @ApiProperty({ nullable: true })
-  ip?: string;
 }
 </code></pre>
     </div>
