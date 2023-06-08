@@ -8,19 +8,17 @@ import { ConfigService } from '@nestjs/config';
 @CommandHandler(CreateSubscriptionStripeCommand)
 export class CreateSubscriptionStripeCommandHandler implements ICommandHandler<CreateSubscriptionStripeCommand> {
   private readonly stripe: Stripe;
-  private readonly trialPeriod: number;
 
   constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
     if (this.configService.get('NODE_ENV') == 'prod') {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') || 'error', {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') ?? 'error', {
         apiVersion: '2022-11-15',
       });
     } else {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') || 'error', {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') ?? 'error', {
         apiVersion: '2022-11-15',
       });
     }
-    this.trialPeriod = this.configService.get('STRIP_MONTHLY_TRIAL_PERIOD_DAYS') || 30;
   }
 
   async execute(command: CreateSubscriptionStripeCommand): Promise<Stripe.Response<Stripe.Subscription>> {
@@ -30,7 +28,8 @@ export class CreateSubscriptionStripeCommandHandler implements ICommandHandler<C
           customer: command.stripeCustomerId,
           items: [{ price: command.priceId }],
           expand: ['latest_invoice.payment_intent'],
-          trial_period_days: this.trialPeriod,
+          trial_period_days: command.trialPeriod,
+          promotion_code: command.promotionCode,
         })
         .catch(async error => {
           await this.eventBus.publish(
@@ -56,6 +55,7 @@ export class CreateSubscriptionStripeCommandHandler implements ICommandHandler<C
       .create({
         customer: command.stripeCustomerId,
         items: [{ price: command.priceId }],
+        promotion_code: command.promotionCode,
         expand: ['latest_invoice.payment_intent'],
       })
       .catch(async error => {

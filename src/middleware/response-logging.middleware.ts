@@ -13,7 +13,7 @@ export class ResponseLoggingMiddleware implements NestMiddleware {
 
   constructor(private readonly apiLoggerService: ApiLogService, private readonly configService: ConfigService) {
     this.VERBOSE = this.configService.get('VERBOSE') as VerboseLogEnum;
-    this.LOG_RESPONSE_BOOL = this.configService.get('LOG_RESPONSE_BOOL') || false;
+    this.LOG_RESPONSE_BOOL = this.configService.get('LOG_RESPONSE_BOOL') ?? false;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type

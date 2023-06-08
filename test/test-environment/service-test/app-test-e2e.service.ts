@@ -1,22 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { AddressEntity } from '../../../src/api/address/domain/entities/address.entity';
 import StripeEventEntity from '../../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity';
-import { ReferralCodeEntity } from '../../../src/api/entities-to-create/referal-code.entity';
+import { ReferralCodeEntity } from '../../../src/api/payment/subscription/domain/entities/referal-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JoinedConversationEntity } from '../../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { SocialNetworkEntity } from '../../../src/api/social-network/domain/entities/social-network.entity';
-import { SubscriptionEntity } from '../../../src/api/entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../../src/api/payment/subscription/domain/entities/subscription.entity';
 import { GroupMembershipEntity } from '../../../src/api/groupe/domain/entities/group-membership.entity';
 import { UserEntity } from '../../../src/api/user/domain/entities/user.entity';
 import { ProfileEntity } from '../../../src/api/profile/domain/entities/profile.entity';
-import { DiscountCodeEntity } from '../../../src/api/entities-to-create/discount-code.entity';
 import { MessageEntity } from '../../../src/api/conversation/domain/entities/message.entity';
 import { GroupEntity } from '../../../src/api/groupe/domain/entities/group.entity';
 import { CompanyEntity } from '../../../src/api/company/domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../../../src/api/company/domain/entities/company-employee.entity';
 import { ProductEntity } from '../../../src/api/payment/product/domain/entities/product.entity';
 import { ConversationEntity } from '../../../src/api/conversation/domain/entities/conversation.entity';
-import { InvoicesEntity } from '../../../src/api/entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../../src/api/payment/invoices/domain/entities/invoices.entity';
 import { NotificationEntity } from '../../../src/api/notification/domain/entities/notification.entity';
 import { ConnectedCardEntity } from '../../../src/api/card/domain/entities/connected-card.entity';
 import { MediaEntity } from '../../../src/api/media/domain/entities/media.entity';
@@ -39,8 +38,6 @@ export class AppTestE2eService {
     private readonly connectedCardRepository: Repository<ConnectedCardEntity>,
     @InjectRepository(ConversationEntity)
     private readonly conversationRepository: Repository<ConversationEntity>,
-    @InjectRepository(DiscountCodeEntity)
-    private readonly discountCodeRepository: Repository<DiscountCodeEntity>,
     @InjectRepository(GroupEntity)
     private readonly groupRepository: Repository<GroupEntity>,
     @InjectRepository(GroupMembershipEntity)
@@ -88,7 +85,6 @@ export class AppTestE2eService {
       await this.companyEmployeeRepository.query('DELETE FROM "company_employee";');
       await this.joinedConversationRepository.query('DELETE FROM "joined_conversation";');
       await this.conversationRepository.query('DELETE FROM "conversation";');
-      await this.discountCodeRepository.query('DELETE FROM "discount_codes";');
       await this.groupRepository.query('DELETE FROM "group";');
       await this.groupMembershipRepository.query('DELETE FROM "group_membership";');
       await this.invoicesRepository.query('DELETE FROM "invoices";');

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDateString, IsOptional, IsString, Length } from 'class-validator';
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -10,10 +11,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { SubscriptionEntity } from './subscription.entity';
-import { UserEntity } from '../user/domain/entities/user.entity';
+import { UserEntity } from '../../../../user/domain/entities/user.entity';
 
 @Entity('referral_code')
-export class ReferralCodeEntity {
+export class ReferralCodeEntity extends BaseEntity {
   @ApiProperty({ example: 'eb823d92-bf55-4210-8e24-89f4011bb96d' })
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -36,12 +37,6 @@ export class ReferralCodeEntity {
   @ManyToOne(() => SubscriptionEntity, { nullable: true })
   subscription: SubscriptionEntity;
 
-  @ApiProperty({ type: () => Date, required: false })
-  @Column({ type: 'timestamp', nullable: true })
-  @IsOptional()
-  @IsDateString()
-  expiresAt: Date;
-
   @ApiProperty({ type: () => Date })
   @CreateDateColumn()
   createdAt: Date;
@@ -49,4 +44,9 @@ export class ReferralCodeEntity {
   @ApiProperty({ type: () => Date })
   @UpdateDateColumn()
   updatedAt: Date;
+
+  constructor(partial: Partial<ReferralCodeEntity>) {
+    super();
+    Object.assign(this, partial);
+  }
 }

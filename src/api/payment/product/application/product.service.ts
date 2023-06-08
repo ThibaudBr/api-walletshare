@@ -39,6 +39,7 @@ export class ProductService {
           description: createProductRequest.description,
           stripeProductId: stripProduct.id,
           jsonStripeMetadata: stripProduct,
+          userAccountStatus: createProductRequest.userAccountStatus,
         }),
       )
       .catch(async error => {

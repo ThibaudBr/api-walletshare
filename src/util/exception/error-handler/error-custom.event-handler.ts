@@ -13,8 +13,8 @@ export class ErrorCustomEventHandler implements IEventHandler<ErrorCustomEvent> 
   private readonly API_TYPE: ApiTypeEnum = ApiTypeEnum.WALLET_SHARE_API;
 
   constructor(private readonly apiLoggerService: ApiLogService, private readonly configService: ConfigService) {
-    this.API_NAME = this.configService.get('API_NAME') || 'NO-NAME';
-    this.npm_package_version = process.env.npm_package_version || 'NO-VERSION';
+    this.API_NAME = this.configService.get('API_NAME') ?? 'NO-NAME';
+    this.npm_package_version = process.env.npm_package_version ?? 'NO-VERSION';
   }
 
   async handle(event: ErrorCustomEvent): Promise<void> {

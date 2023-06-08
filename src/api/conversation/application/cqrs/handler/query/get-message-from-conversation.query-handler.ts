@@ -41,7 +41,7 @@ export class GetMessageFromConversationQueryHandler implements IQueryHandler<Get
           createdAt: 'DESC',
         },
         take: query.nbMessage,
-        skip: query.skip || 0,
+        skip: query.skip ?? 0,
         where: {
           conversation: {
             id: conversation.id,

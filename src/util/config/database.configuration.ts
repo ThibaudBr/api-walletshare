@@ -5,10 +5,9 @@ import { CompanyEntity } from '../../api/company/domain/entities/company.entity'
 import { CompanyEmployeeEntity } from '../../api/company/domain/entities/company-employee.entity';
 import { ConnectedCardEntity } from '../../api/card/domain/entities/connected-card.entity';
 import { ConversationEntity } from '../../api/conversation/domain/entities/conversation.entity';
-import { DiscountCodeEntity } from '../../api/entities-to-create/discount-code.entity';
 import { GroupEntity } from '../../api/groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../api/groupe/domain/entities/group-membership.entity';
-import { InvoicesEntity } from '../../api/entities-to-create/invoices.entity';
+import { InvoicesEntity } from '../../api/payment/invoices/domain/entities/invoices.entity';
 import { JoinedConversationEntity } from '../../api/conversation/domain/entities/joined-conversation.entity';
 import { MediaEntity } from '../../api/media/domain/entities/media.entity';
 import { MessageEntity } from '../../api/conversation/domain/entities/message.entity';
@@ -17,9 +16,9 @@ import { ProductEntity } from '../../api/payment/product/domain/entities/product
 import { ProfileEntity } from '../../api/profile/domain/entities/profile.entity';
 import { SocialNetworkEntity } from '../../api/social-network/domain/entities/social-network.entity';
 import StripeEventEntity from '../../api/payment/stripe-webhook/domain/entities/stripe-event.entity';
-import { SubscriptionEntity } from '../../api/entities-to-create/subscription.entity';
+import { SubscriptionEntity } from '../../api/payment/subscription/domain/entities/subscription.entity';
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
-import { ReferralCodeEntity } from '../../api/entities-to-create/referal-code.entity';
+import { ReferralCodeEntity } from '../../api/payment/subscription/domain/entities/referal-code.entity';
 import { NotificationEntity } from '../../api/notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../api/address/domain/entities/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
@@ -48,6 +47,8 @@ import { NotificationProfileSubscriber } from '../../api/notification/applicatio
 import { NotificationUserSubscriber } from '../../api/notification/application/subscriber/notification-user.subscriber';
 import { ConfigService } from '@nestjs/config';
 import { PriceEntity } from '../../api/payment/price/domain/entities/price.entity';
+import { CardPresetEntity } from '../../api/company/domain/entities/card-preset.entity';
+import { CompanyCardPresetSubscriber } from '../../api/company/application/subscriber/company-card-preset.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -70,7 +71,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
@@ -90,6 +90,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
             PriceEntity,
+            CardPresetEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PROD'),
@@ -115,6 +116,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationMessageSubscriber,
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'pprod') {
@@ -138,7 +140,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
@@ -158,6 +159,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
             PriceEntity,
+            CardPresetEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PPROD'),
@@ -183,6 +185,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationMessageSubscriber,
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'test') {
@@ -200,7 +203,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
@@ -220,6 +222,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
             PriceEntity,
+            CardPresetEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_TEST'),
           logging: this.configService.get('TYPEORM_LOGGING_TEST'),
@@ -245,6 +248,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationMessageSubscriber,
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'dev') {
@@ -264,7 +268,6 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CompanyEmployeeEntity,
             ConnectedCardEntity,
             ConversationEntity,
-            DiscountCodeEntity,
             GroupEntity,
             GroupMembershipEntity,
             InvoicesEntity,
@@ -284,6 +287,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             CardViewEntity,
             UserLoginEntity,
             PriceEntity,
+            CardPresetEntity,
           ],
           subscribers: [
             ProfileSubscriber,
@@ -307,6 +311,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationMessageSubscriber,
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
+            CompanyCardPresetSubscriber,
           ],
         };
       } else {

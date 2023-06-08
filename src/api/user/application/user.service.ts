@@ -34,31 +34,36 @@ import { CreateSaveLoginCommand } from './cqrs/command/create-save-login.command
 import { SaveUserLoginResponse } from '../web/response/save-user-login.response';
 import { GetSavedCardWithUserIdQuery } from '../../card/application/cqrs/query/get-saved-card-with-user-id.query';
 import { CreateStripeCustomerCommand } from '../../payment/stripe/application/cqrs/command/create-stripe-customer.command';
+import { CreateReferralCodeStripeCommand } from '../../payment/stripe/application/cqrs/command/create-referral-code-stripe.command';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UserService {
-  private readonly shouldCreateStripeCustomer: boolean;
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
     private readonly configService: ConfigService,
-  ) {
-    this.shouldCreateStripeCustomer = this.configService.get('STRIP_CREATE_CUSTOMER') == 'true' || true;
-  }
+  ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<CreateUserResponse> {
     const createdUser: CreateUserResponse = await this.commandBus.execute(new CreateUserCommand(createUserDto));
 
-    if (this.shouldCreateStripeCustomer) {
-      await this.commandBus.execute(
-        new CreateStripeCustomerCommand({
-          userId: createdUser.id,
-          email: createdUser.mail,
-          username: createdUser.username,
-        }),
-      );
-    }
+    createdUser.stripCustomerId = await this.commandBus.execute(
+      new CreateStripeCustomerCommand({
+        userId: createdUser.id,
+        email: createdUser.mail,
+        username: createdUser.username,
+      }),
+    );
+
+    createdUser.referralCode = await this.commandBus.execute(
+      new CreateReferralCodeStripeCommand({
+        userId: createdUser.id,
+        couponStripeId: this.configService.get('STRIPE_COUPON_REFERRAL_ID'),
+        customerStripeId: createdUser.stripCustomerId,
+      }),
+    );
+
     return createdUser;
   }
 

@@ -11,11 +11,11 @@ export class CreatePriceStripeCommandHandler implements ICommandHandler<CreatePr
 
   constructor(private readonly eventBus: EventBus, private readonly configService: ConfigService) {
     if (this.configService.get('NODE_ENV') == 'prod') {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') || 'error', {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') ?? 'error', {
         apiVersion: '2022-11-15',
       });
     } else {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') || 'error', {
+      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') ?? 'error', {
         apiVersion: '2022-11-15',
       });
     }
@@ -25,7 +25,7 @@ export class CreatePriceStripeCommandHandler implements ICommandHandler<CreatePr
     return await this.stripe.prices
       .create({
         unit_amount: command.unitAmount,
-        currency: this.configService.get('STRIPE_CURRENCY') || 'eur',
+        currency: this.configService.get('STRIPE_CURRENCY') ?? 'eur',
         product: command.productId,
         recurring: {
           interval: command.interval === 'month' ? 'month' : 'year',

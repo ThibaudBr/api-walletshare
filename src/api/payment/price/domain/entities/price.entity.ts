@@ -5,10 +5,12 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ProductEntity } from '../../../product/domain/entities/product.entity';
+import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
 
 @Entity('price')
 export class PriceEntity extends BaseEntity {
@@ -36,18 +38,22 @@ export class PriceEntity extends BaseEntity {
   active: boolean;
   @Column({ name: 'json_metadata', type: 'json', nullable: true })
   jsonStripeMetadata: object;
-  @ManyToOne(() => ProductEntity, planEntity => planEntity.prices)
-  product: ProductEntity;
+  @Column({ name: 'trial_period_days', type: 'int', nullable: true })
+  trialPeriodDays: number;
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
-  @CreateDateColumn()
-  createdAt: Date;
+  @ManyToOne(() => ProductEntity, planEntity => planEntity.prices)
+  product: ProductEntity;
+  @OneToMany(() => SubscriptionEntity, subscriptionEntity => subscriptionEntity.price)
+  subscriptions: SubscriptionEntity[];
 
   // ______________________________________________________
   // Timestamps
   // ______________________________________________________
+  @CreateDateColumn()
+  createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
   @DeleteDateColumn()

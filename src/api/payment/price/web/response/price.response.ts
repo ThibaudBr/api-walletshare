@@ -9,6 +9,7 @@ export class PriceResponse {
   public readonly unitAmount: number;
   public readonly unitAmountDecimal: number;
   public readonly jsonStripeMetadata?: object;
+  public readonly trialPeriodDays?: number;
   public readonly createdAt: Date;
   public readonly updatedAt: Date;
   public readonly deletedAt?: Date;

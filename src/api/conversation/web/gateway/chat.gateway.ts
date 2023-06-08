@@ -22,12 +22,16 @@ import { GetMessageFromConversationRequest } from '../request/get-message-from-c
 export class ChatGateway implements OnGatewayConnection {
   @WebSocketServer()
   server: Server;
+  private isFirstTime: boolean;
 
   constructor(private readonly conversationService: ConversationService) {
-    this.conversationService.deletedAllJoinedConversation().then();
+    this.isFirstTime = true;
   }
 
   async handleConnection(socket: Socket): Promise<void> {
+    if (this.isFirstTime) {
+      await this.conversationService.deletedAllJoinedConversation();
+    }
     const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket);
 
     if (!user) {
@@ -43,7 +47,7 @@ export class ChatGateway implements OnGatewayConnection {
   }
 
   async handleDisconnect(socket: Socket): Promise<void> {
-    this.disconnect(socket);
+    await this.disconnect(socket);
   }
 
   async disconnect(socket: Socket): Promise<void> {
