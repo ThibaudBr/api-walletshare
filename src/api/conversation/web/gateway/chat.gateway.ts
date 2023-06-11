@@ -2,6 +2,7 @@ import {
   ConnectedSocket,
   MessageBody,
   OnGatewayConnection,
+  OnGatewayDisconnect,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
@@ -17,27 +18,44 @@ import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { JoinConversationRequest } from '../request/join-conversation.request';
 import { CreateJoinConversationDto } from '../../domain/dto/create-join-conversation.dto';
 import { GetMessageFromConversationRequest } from '../request/get-message-from-conversation.request';
+import { AuthService } from '../../../auth/application/auth.service';
 
 @WebSocketGateway()
-export class ChatGateway implements OnGatewayConnection {
+export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
   private isFirstTime: boolean;
 
-  constructor(private readonly conversationService: ConversationService) {
+  constructor(private readonly conversationService: ConversationService, private readonly authService: AuthService) {
     this.isFirstTime = true;
   }
 
   async handleConnection(socket: Socket): Promise<void> {
     if (this.isFirstTime) {
       await this.conversationService.deletedAllJoinedConversation();
+      await this.conversationService.deletedAllConnectedUser();
       this.isFirstTime = false;
     }
-    const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket);
 
+    let token: string;
+    if (socket.handshake.headers.authorization) {
+      token = socket.handshake.headers.authorization;
+    } else {
+      token = socket.handshake.auth.token;
+    }
+
+    const user: UserEntity = await this.authService.getUserEntityFromAuthToken(token);
+    socket.data.user = user;
     if (!user) {
       return await this.disconnect(socket);
     }
+    if (user.connection) {
+      await this.conversationService.removeConnectedUser(user.connection.socketId);
+    }
+    await this.conversationService.createConnectedUser({
+      socketId: socket.id,
+      user: user,
+    });
 
     const createJoinConversationDtos: CreateJoinConversationDto[] =
       await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
@@ -52,6 +70,7 @@ export class ChatGateway implements OnGatewayConnection {
   }
 
   async disconnect(socket: Socket): Promise<void> {
+    await this.conversationService.removeConnectedUser(socket.id);
     await this.conversationService.deletedJoinedConversation(socket.id);
     socket.disconnect();
   }
