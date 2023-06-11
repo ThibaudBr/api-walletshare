@@ -1,4 +1,4 @@
-import {Injectable, InternalServerErrorException} from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, EventBus } from '@nestjs/cqrs';
 import { SubscriptionService } from '../../subscription/application/subscription.service';
 import { CreateStripeEventCommand } from './cqrs/command/create-stripe-event.command';
@@ -23,7 +23,7 @@ export class StripeWebhookService {
     private readonly profileService: ProfileService,
   ) {}
 
-  async processSubscriptionUpdate(event: Stripe.Event): Promise<void> {
+  async processSubscriptionUpdate(event: Stripe.Event, subscription: Stripe.Subscription): Promise<void> {
     await this.commandBus
       .execute(
         new CreateStripeEventCommand({

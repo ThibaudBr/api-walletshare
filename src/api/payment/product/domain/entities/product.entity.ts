@@ -11,8 +11,8 @@ import {
 import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
 import { PriceEntity } from '../../../price/domain/entities/price.entity';
 import { UserAccountStatusEnum } from '../../../../user/domain/enum/user-account-status.enum';
-import {UserRoleEnum} from "../../../../user/domain/enum/user-role.enum";
-import {RoleProfileEnum} from "../../../../profile/domain/enum/role-profile.enum";
+import { UserRoleEnum } from '../../../../user/domain/enum/user-role.enum';
+import { RoleProfileEnum } from '../../../../profile/domain/enum/role-profile.enum';
 
 @Entity({ name: 'plan' })
 export class ProductEntity extends BaseEntity {

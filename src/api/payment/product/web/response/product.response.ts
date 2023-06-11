@@ -1,7 +1,7 @@
 import { PriceResponse } from '../../../price/web/response/price.response';
-import {UserRoleEnum} from "../../../../user/domain/enum/user-role.enum";
-import {UserAccountStatusEnum} from "../../../../user/domain/enum/user-account-status.enum";
-import {RoleProfileEnum} from "../../../../profile/domain/enum/role-profile.enum";
+import { UserRoleEnum } from '../../../../user/domain/enum/user-role.enum';
+import { UserAccountStatusEnum } from '../../../../user/domain/enum/user-account-status.enum';
+import { RoleProfileEnum } from '../../../../profile/domain/enum/role-profile.enum';
 
 export class ProductResponse {
   public readonly id: string;

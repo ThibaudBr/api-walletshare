@@ -1,9 +1,9 @@
-import {EventBus, IQueryHandler, QueryHandler} from '@nestjs/cqrs';
-import {ErrorCustomEvent} from '../../../../../../../util/exception/error-handler/error-custom.event';
-import {Repository} from 'typeorm';
-import {GetUserByStripeCustomerIdQuery} from '../../query/get-user-by-stripe-customer-id.query';
-import {InjectRepository} from '@nestjs/typeorm';
-import {UserEntity} from '../../../../../../user/domain/entities/user.entity';
+import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
+import { Repository } from 'typeorm';
+import { GetUserByStripeCustomerIdQuery } from '../../query/get-user-by-stripe-customer-id.query';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from '../../../../../../user/domain/entities/user.entity';
 
 @QueryHandler(GetUserByStripeCustomerIdQuery)
 export class GetUserByStripeCustomerIdQueryHandler implements IQueryHandler<GetUserByStripeCustomerIdQuery> {

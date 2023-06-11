@@ -1,6 +1,6 @@
 import { UserAccountStatusEnum } from '../../../../user/domain/enum/user-account-status.enum';
-import {UserRoleEnum} from "../../../../user/domain/enum/user-role.enum";
-import {RoleProfileEnum} from "../../../../profile/domain/enum/role-profile.enum";
+import { UserRoleEnum } from '../../../../user/domain/enum/user-role.enum';
+import { RoleProfileEnum } from '../../../../profile/domain/enum/role-profile.enum';
 
 export class CreateProductRequest {
   public readonly name: string;
