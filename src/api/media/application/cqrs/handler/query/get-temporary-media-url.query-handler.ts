@@ -1,6 +1,6 @@
 import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetTemporaryMediaUrlQuery } from '../../query/get-temporary-media-url.query';
-import { GetObjectCommand, GetObjectCommandInput, S3 } from '@aws-sdk/client-s3';
+import { GetObjectCommand, GetObjectCommandInput, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { ConfigService } from '@nestjs/config';
@@ -27,7 +27,7 @@ export class GetTemporaryMediaUrlQueryHandler implements IQueryHandler<GetTempor
       );
       throw new Error('AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY is not defined');
     }
-    const s3: S3 = new S3({
+    const client: S3Client = new S3Client({
       region: this.configService.get('AWS_REGION'),
     });
 
@@ -37,6 +37,8 @@ export class GetTemporaryMediaUrlQueryHandler implements IQueryHandler<GetTempor
     };
 
     const command = new GetObjectCommand(options);
-    return await getSignedUrl(s3, command, { expiresIn: this.configService.get('AWS_SIGNED_URL_EXPIRATION') ?? 60 });
+    return await getSignedUrl(client, command, {
+      expiresIn: this.configService.get('AWS_SIGNED_URL_EXPIRATION') ?? 60,
+    });
   }
 }

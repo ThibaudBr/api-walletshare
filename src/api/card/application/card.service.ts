@@ -37,6 +37,7 @@ import { UpdateCardRequest } from '../web/request/update-card.request';
 import { GroupMembershipResponse } from '../../groupe/web/response/group-membership.response';
 import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception';
 import { InvalidParameterEntityHttpException } from '../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
+import { GetAllConnectedCardByProfileIdQuery } from './cqrs/query/get-all-connected-card-by-profile-id.query';
 
 @Injectable()
 export class CardService {
@@ -708,5 +709,17 @@ export class CardService {
 
   async getAllCardCount(): Promise<number> {
     return await this.getAllCards().then(cards => cards.length);
+  }
+
+  async getMyConnectedCardWithProfileId(userId: string, profileId: string) {
+    if (await this.isProfileOwner(userId, profileId)) {
+      return await this.queryBus.execute(
+        new GetAllConnectedCardByProfileIdQuery({
+          profileId: profileId,
+        }),
+      );
+    } else {
+      throw new UnauthorizedRequestHttpException();
+    }
   }
 }

@@ -101,6 +101,16 @@ export class CardController {
     return await this.cardService.getMySavedCardWithProfileId(userRequest.user.id, profileId);
   }
 
+  @Get('/public/get-my-connected-cards-with-profile-id/:profileId')
+  @HttpCode(200)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getMyConnectedCardsWithProfileId(
+    @Param('profileId') profileId: string,
+    @Req() userRequest: RequestUser,
+  ): Promise<CardResponse[]> {
+    return await this.cardService.getMyConnectedCardWithProfileId(userRequest.user.id, profileId);
+  }
+
   @Put('/public/add-connected-card')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
