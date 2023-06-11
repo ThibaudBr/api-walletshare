@@ -29,11 +29,11 @@ export class GetUserAndProfileFromSocketQueryHandler implements IQueryHandler<Ge
           'profiles.personalCards.connectedCardTwo.cardEntityTwo',
           'profiles.personalCards.connectedCardTwo.cardEntityTwo.owner',
           'profiles.personalCards.connectedCardTwo.conversation.joinedProfiles',
-          'profiles.personalCards.group',
-          'profiles.personalCards.group.members',
-          'profiles.personalCards.group.members.card',
-          'profiles.personalCards.group.members.card.owner',
-          'profiles.personalCards.group.conversation.joinedProfiles',
+          'profiles.personalCards.groupMemberships.group',
+          'profiles.personalCards.groupMemberships.group.members',
+          'profiles.personalCards.groupMemberships.group.members.card',
+          'profiles.personalCards.groupMemberships.group.members.card.owner',
+          'profiles.personalCards.groupMemberships.group.conversation.joinedProfiles',
         ],
         where: [
           {
@@ -55,7 +55,7 @@ export class GetUserAndProfileFromSocketQueryHandler implements IQueryHandler<Ge
                 connectedCardTwo: {
                   conversation: {
                     joinedProfiles: {
-                      id: query.socketId,
+                      socketId: query.socketId,
                     },
                   },
                 },

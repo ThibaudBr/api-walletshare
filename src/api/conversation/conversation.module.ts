@@ -51,9 +51,24 @@ import { RemoveConnectedUserBySocketIdEventHandler } from './application/cqrs/ha
 import { ConnectedUserEntity } from './domain/entities/connected-user.entity';
 import { AuthModule } from '../auth/auth.module';
 import { ChatGateway } from './web/gateway/chat.gateway';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
+import { RemoveAllJoinedConversationWithSocketIdCommandHandler } from './application/cqrs/handler/command/remove-all-joined-conversation-with-socket-id.command-handler';
+import { RemoveAllJoinedConversationWithSocketIdEventHandler } from './application/cqrs/handler/event/remove-all-joined-conversation-with-socket-id.event-handler';
 
 @Module({
   imports: [
+    ConfigModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => ({
+        secret: config.get('JWT_SECRET'),
+        signOptions: {
+          expiresIn: config.get('JWT_EXPIRATION_TIME'),
+        },
+      }),
+    }),
     TypeOrmModule.forFeature([
       UserEntity,
       ProfileEntity,
@@ -71,6 +86,7 @@ import { ChatGateway } from './web/gateway/chat.gateway';
   ],
   controllers: [ConversationController],
   providers: [
+    AuthService,
     ChatGateway,
     ConversationService,
     // log
@@ -87,6 +103,7 @@ import { ChatGateway } from './web/gateway/chat.gateway';
     CreateConnectedUserCommandHandler,
     RemoveAllConnectedUserCommandHandler,
     RemoveConnectedUserBySocketIdCommandHandler,
+    RemoveAllJoinedConversationWithSocketIdCommandHandler,
     // Query handlers
     GetAllConversationQueryHandler,
     GetAllConversationByProfilesAndCardQueryHandler,
@@ -108,6 +125,7 @@ import { ChatGateway } from './web/gateway/chat.gateway';
     CreateConnectedUserEventHandler,
     RemoveAllConnectedUserEventHandler,
     RemoveConnectedUserBySocketIdEventHandler,
+    RemoveAllJoinedConversationWithSocketIdEventHandler,
     // imported from other modules
     UploadMediaCommandHandler,
     UploadMediaEventHandler,

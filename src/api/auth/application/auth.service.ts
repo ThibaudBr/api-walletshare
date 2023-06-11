@@ -1,5 +1,11 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TokenPayload } from '../domain/interface/token-payload.interface';
 import { SignUpDto } from '../domain/dto/sign-up.dto';
@@ -15,6 +21,7 @@ import Stripe from 'stripe';
 import { CreateReferralCodeStripeCommand } from '../../payment/stripe/application/cqrs/command/create-referral-code-stripe.command';
 import { SetReferralCodeCommand } from '../../user/application/cqrs/command/set-referral-code.command';
 import { GetUserEntityQuery } from '../../user/application/cqrs/query/get-user-entity.query';
+import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
 
 @Injectable()
 export class AuthService {
@@ -118,16 +125,23 @@ export class AuthService {
   }
 
   async getUserEntityFromAuthToken(authenticationToken: string): Promise<UserEntity> {
-    const payload: TokenPayload = this.jwtService.verify(authenticationToken, {
-      secret: this.configService.get('JWT_REFRESH_TOKEN_SECRET'),
-    });
-    if (payload.userId) {
-      return await this.queryBus.execute(
-        new GetUserEntityQuery({
-          userId: payload.userId,
-        }),
-      );
+    try {
+      if (!authenticationToken) throw new InvalidIdHttpException('Invalid token');
+      if (this.configService.get('JWT_REFRESH_TOKEN_SECRET') === undefined)
+        throw new InternalServerErrorException('Invalid token');
+      const payload: TokenPayload = this.jwtService.verify(authenticationToken, {
+        secret: this.configService.get('JWT_REFRESH_TOKEN_SECRET'),
+      });
+      if (payload.userId) {
+        return await this.queryBus.execute(
+          new GetUserEntityQuery({
+            userId: payload.userId,
+          }),
+        );
+      }
+      throw new Error('Invalid token');
+    } catch (error) {
+      throw new ForbiddenException('Invalid token');
     }
-    throw new Error('Invalid token');
   }
 }
