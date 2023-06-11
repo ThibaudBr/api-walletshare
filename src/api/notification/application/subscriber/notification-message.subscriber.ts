@@ -25,7 +25,14 @@ export class NotificationMessageSubscriber implements EntitySubscriberInterface<
     if (messageEntity?.conversation.connectedCard) {
       const connectedCardRepository: Repository<ConnectedCardEntity> = event.manager.getRepository(ConnectedCardEntity);
       const connectedCard: ConnectedCardEntity | null = await connectedCardRepository.findOne({
-        relations: ['card', 'card.owner', 'card.owner.user'],
+        relations: [
+          'cardEntityOne',
+          'cardEntityOne.owner',
+          'cardEntityOne.owner.user',
+          'cardEntityTwo',
+          'cardEntityTwo.owner',
+          'cardEntityTwo.owner.user',
+        ],
         where: {
           id: messageEntity?.conversation.connectedCard.id,
         },
@@ -36,17 +43,18 @@ export class NotificationMessageSubscriber implements EntitySubscriberInterface<
           connectedCard.cardEntityOne.id === messageEntity?.author.id
             ? connectedCard.cardEntityTwo.owner.user
             : connectedCard.cardEntityOne.owner.user,
-        title: 'New Message from ' + messageEntity?.author.firstname + ' ' + messageEntity?.author.lastname,
+        title:
+          'New Message from received by ' + connectedCard.cardEntityOne.id === messageEntity?.author.id
+            ? connectedCard.cardEntityTwo.owner.usernameProfile
+            : connectedCard.cardEntityOne.owner.usernameProfile,
         profile:
           connectedCard.cardEntityOne.id === messageEntity?.author.id
             ? connectedCard.cardEntityTwo.owner
             : connectedCard.cardEntityOne.owner,
         description:
-          'Card ' +
-          messageEntity?.author.firstname +
-          ' ' +
-          messageEntity?.author.lastname +
-          ' has sent a message you a new message ',
+          'New Message from received by ' + connectedCard.cardEntityOne.id === messageEntity?.author.id
+            ? connectedCard.cardEntityTwo.owner.usernameProfile
+            : connectedCard.cardEntityOne.owner.usernameProfile,
         type: NotificationTypeEnum.NEW_MESSAGE,
       });
       await notificationRepository.save(notification);
@@ -76,9 +84,7 @@ export class NotificationMessageSubscriber implements EntitySubscriberInterface<
         title: 'New Message in group ' + groupMembership.group.name,
         description:
           'Card ' +
-          groupMembership.card.firstname +
-          ' ' +
-          groupMembership.card.lastname +
+          groupMembership.card.owner.usernameProfile +
           ' has sent a message in group ' +
           groupMembership.group.name,
         type: NotificationTypeEnum.NEW_MESSAGE,
