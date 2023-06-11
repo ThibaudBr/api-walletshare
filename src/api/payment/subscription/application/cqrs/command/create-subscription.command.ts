@@ -6,4 +6,5 @@ export class CreateSubscriptionCommand {
   public readonly userId: string;
   public readonly priceId: string;
   public readonly trialPeriodDays?: number;
+  public readonly subscriptionStripeId: string;
 }
