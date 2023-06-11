@@ -1,5 +1,11 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TokenPayload } from '../domain/interface/token-payload.interface';
 import { SignUpDto } from '../domain/dto/sign-up.dto';
@@ -11,6 +17,11 @@ import { GetUserLoginQuery } from '../../user/application/cqrs/query/get-user-lo
 import { UserResponse } from '../../user/web/response/user.response';
 import { CreateStripeCustomerCommand } from '../../payment/stripe/application/cqrs/command/create-stripe-customer.command';
 import { ConfigService } from '@nestjs/config';
+import Stripe from 'stripe';
+import { CreateReferralCodeStripeCommand } from '../../payment/stripe/application/cqrs/command/create-referral-code-stripe.command';
+import { SetReferralCodeCommand } from '../../user/application/cqrs/command/set-referral-code.command';
+import { GetUserEntityQuery } from '../../user/application/cqrs/query/get-user-entity.query';
+import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
 
 @Injectable()
 export class AuthService {
@@ -22,20 +33,43 @@ export class AuthService {
   ) {}
 
   async signup(signUpDto: SignUpDto): Promise<UserResponse> {
-    const user: UserEntity = await this.commandBus.execute(
+    const createdUser: UserEntity = await this.commandBus.execute(
       new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password),
     );
 
-    await this.commandBus.execute(
+    createdUser.stripeCustomerId = await this.commandBus.execute(
       new CreateStripeCustomerCommand({
-        userId: user.id,
-        username: user.username,
-        email: user.mail,
+        userId: createdUser.id,
+        username: createdUser.username,
+        email: createdUser.mail,
       }),
     );
 
+    if (this.configService.get('STRIPE_COUPON_REFERRAL_ID')) {
+      const createdReferralCode: Stripe.PromotionCode = await this.commandBus.execute(
+        new CreateReferralCodeStripeCommand({
+          userId: createdUser.id,
+          couponStripeId: this.configService.get('STRIPE_COUPON_REFERRAL_ID'),
+          customerStripeId: createdUser.stripeCustomerId,
+        }),
+      );
+      createdUser.referralCode = await this.commandBus
+        .execute(
+          new SetReferralCodeCommand({
+            userId: createdUser.id,
+            referralCode: createdReferralCode,
+          }),
+        )
+        .catch(error => {
+          if (error.message === 'Error while seting referral code') {
+            throw new Error('Error while seting referral code');
+          }
+          throw new InternalServerErrorException('Error while seting referral code');
+        });
+    }
+
     return new UserResponse({
-      ...user,
+      ...createdUser,
     });
   }
 
@@ -88,5 +122,26 @@ export class AuthService {
       return await this.queryBus.execute(new GetUserQuery(payload.userId));
     }
     throw new Error('Invalid token');
+  }
+
+  async getUserEntityFromAuthToken(authenticationToken: string): Promise<UserEntity> {
+    try {
+      if (!authenticationToken) throw new InvalidIdHttpException('Invalid token');
+      if (this.configService.get('JWT_REFRESH_TOKEN_SECRET') === undefined)
+        throw new InternalServerErrorException('Invalid token');
+      const payload: TokenPayload = this.jwtService.verify(authenticationToken, {
+        secret: this.configService.get('JWT_REFRESH_TOKEN_SECRET'),
+      });
+      if (payload.userId) {
+        return await this.queryBus.execute(
+          new GetUserEntityQuery({
+            userId: payload.userId,
+          }),
+        );
+      }
+      throw new Error('Invalid token');
+    } catch (error) {
+      throw new ForbiddenException('Invalid token');
+    }
   }
 }

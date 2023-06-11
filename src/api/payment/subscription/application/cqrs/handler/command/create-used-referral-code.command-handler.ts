@@ -5,7 +5,7 @@ import { UserEntity } from '../../../../../../user/domain/entities/user.entity';
 import { Repository } from 'typeorm';
 import { SubscriptionEntity } from '../../../../domain/entities/subscription.entity';
 import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
-import { ReferralCodeEntity } from '../../../../domain/entities/referal-code.entity';
+import { ReferralCodeEntity } from '../../../../../../user/domain/entities/referral-code.entity';
 import { CreateUsedReferralCodeEvent } from '../../event/create-used-referral-code.event';
 
 @CommandHandler(CreateUsedReferralCodeCommand)
@@ -21,7 +21,7 @@ export class CreateUsedReferralCodeCommandHandler implements ICommandHandler<Cre
   ) {}
 
   async execute(command: CreateUsedReferralCodeCommand): Promise<ReferralCodeEntity> {
-    const user = await this.userRepository
+    const user: UserEntity = await this.userRepository
       .findOneOrFail({
         where: {
           id: command.userId,
@@ -40,8 +40,11 @@ export class CreateUsedReferralCodeCommandHandler implements ICommandHandler<Cre
 
     const ownerOfReferralCode = await this.userRepository
       .findOneOrFail({
+        relations: ['referralCode', 'referralCode.usedBy', 'referralCode.subscriptions'],
         where: {
-          referralCode: command.referralCode,
+          referralCode: {
+            referralCodeString: command.referralCode,
+          },
         },
       })
       .catch(async error => {
@@ -73,10 +76,9 @@ export class CreateUsedReferralCodeCommandHandler implements ICommandHandler<Cre
       });
 
     const newUsedReferralCode = new ReferralCodeEntity({
-      usedBy: user,
-      code: command.referralCode,
-      owner: ownerOfReferralCode,
-      subscription: subscription,
+      ...ownerOfReferralCode.referralCode,
+      usedBy: ownerOfReferralCode.referralCode.usedBy.concat(user),
+      subscriptions: ownerOfReferralCode.referralCode.subscriptions.concat(subscription),
     });
 
     const referralCode: ReferralCodeEntity = await this.referralCodeRepository.save(newUsedReferralCode);

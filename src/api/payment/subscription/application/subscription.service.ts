@@ -138,7 +138,7 @@ export class SubscriptionService {
         }),
       );
 
-      if (user.referralCode === createSubscriptionRequest.referralCode) {
+      if (user.referralCode.referralCodeString === createSubscriptionRequest.referralCode) {
         await this.eventBus.publish(
           new ErrorCustomEvent({
             handler: 'SubscriptionService',

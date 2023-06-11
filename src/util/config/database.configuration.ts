@@ -18,7 +18,7 @@ import { SocialNetworkEntity } from '../../api/social-network/domain/entities/so
 import StripeEventEntity from '../../api/payment/stripe-webhook/domain/entities/stripe-event.entity';
 import { SubscriptionEntity } from '../../api/payment/subscription/domain/entities/subscription.entity';
 import { UserEntity } from '../../api/user/domain/entities/user.entity';
-import { ReferralCodeEntity } from '../../api/payment/subscription/domain/entities/referal-code.entity';
+import { ReferralCodeEntity } from '../../api/user/domain/entities/referral-code.entity';
 import { NotificationEntity } from '../../api/notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../api/address/domain/entities/address.entity';
 import { CardEntity } from '../../api/card/domain/entities/card.entity';
@@ -49,6 +49,8 @@ import { ConfigService } from '@nestjs/config';
 import { PriceEntity } from '../../api/payment/price/domain/entities/price.entity';
 import { CardPresetEntity } from '../../api/company/domain/entities/card-preset.entity';
 import { CompanyCardPresetSubscriber } from '../../api/company/application/subscriber/company-card-preset.subscriber';
+import { UserReferralCodeSubscriber } from '../../api/user/application/subscriber/user-referral-code.subscriber';
+import { ConnectedUserEntity } from '../../api/conversation/domain/entities/connected-user.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -91,6 +93,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserLoginEntity,
             PriceEntity,
             CardPresetEntity,
+            ConnectedUserEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PROD'),
@@ -117,6 +120,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
             CompanyCardPresetSubscriber,
+            UserReferralCodeSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'pprod') {
@@ -160,6 +164,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserLoginEntity,
             PriceEntity,
             CardPresetEntity,
+            ConnectedUserEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PPROD'),
@@ -186,6 +191,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
             CompanyCardPresetSubscriber,
+            UserReferralCodeSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'test') {
@@ -223,6 +229,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserLoginEntity,
             PriceEntity,
             CardPresetEntity,
+            ConnectedUserEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_TEST'),
           logging: this.configService.get('TYPEORM_LOGGING_TEST'),
@@ -249,6 +256,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
             CompanyCardPresetSubscriber,
+            UserReferralCodeSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'dev') {
@@ -288,6 +296,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserLoginEntity,
             PriceEntity,
             CardPresetEntity,
+            ConnectedUserEntity,
           ],
           subscribers: [
             ProfileSubscriber,
@@ -312,6 +321,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
             CompanyCardPresetSubscriber,
+            UserReferralCodeSubscriber,
           ],
         };
       } else {

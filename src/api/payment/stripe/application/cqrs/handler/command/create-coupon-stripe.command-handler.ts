@@ -24,6 +24,9 @@ export class CreateCouponStripeCommandHandler implements ICommandHandler<CreateC
   async execute(command: CreateCouponStripeCommand): Promise<Stripe.Response<Stripe.Coupon>> {
     return await this.stripe.coupons
       .create({
+        applies_to: {
+          products: command.productStripeIdList,
+        },
         percent_off: command.percentOff,
         duration: 'once',
       })

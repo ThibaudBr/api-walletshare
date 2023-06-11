@@ -433,6 +433,7 @@ export class StripeService {
     return await this.commandBus
       .execute(
         new CreateCouponStripeCommand({
+          productStripeIdList: createCouponStripeRequest.productStripeIdList,
           percentOff: createCouponStripeRequest.percentOff,
           duration: createCouponStripeRequest.duration,
         }),

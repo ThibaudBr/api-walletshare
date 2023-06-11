@@ -1,4 +1,4 @@
-import { CommandHandler, EventBus, IEventHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { CreateCompanyCommand } from '../../command/create-company.command';
 import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { validate } from 'class-validator';
@@ -13,7 +13,7 @@ import { OccupationEntity } from '../../../../../occupation/domain/entities/occu
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 
 @CommandHandler(CreateCompanyCommand)
-export class CreateCompanyCommandHandler implements IEventHandler<CreateCompanyCommand> {
+export class CreateCompanyCommandHandler implements ICommandHandler<CreateCompanyCommand> {
   constructor(
     @InjectRepository(CompanyEntity)
     private readonly companyRepository: Repository<CompanyEntity>,
@@ -26,7 +26,7 @@ export class CreateCompanyCommandHandler implements IEventHandler<CreateCompanyC
     private readonly eventBus: EventBus,
   ) {}
 
-  async handle(command: CreateCompanyCommand): Promise<string> {
+  async execute(command: CreateCompanyCommand): Promise<string> {
     const profile: ProfileEntity = await this.profileRepository
       .findOneOrFail({
         where: {

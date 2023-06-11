@@ -15,6 +15,7 @@ import { UserEntity } from '../../../../user/domain/entities/user.entity';
 import { InvoicesEntity } from '../../../invoices/domain/entities/invoices.entity';
 import { StatusSubscriptionEnum } from '../enum/status-subscription.enum';
 import { PriceEntity } from '../../../price/domain/entities/price.entity';
+import { ReferralCodeEntity } from '../../../../user/domain/entities/referral-code.entity';
 
 @Entity({ name: 'subscription' })
 export class SubscriptionEntity extends BaseEntity {
@@ -55,6 +56,9 @@ export class SubscriptionEntity extends BaseEntity {
 
   @OneToMany(() => InvoicesEntity, invoicesEntity => invoicesEntity.subscription)
   invoices: InvoicesEntity[];
+
+  @ManyToOne(() => ReferralCodeEntity, referralCodeEntity => referralCodeEntity.subscriptions)
+  referralCode: ReferralCodeEntity;
 
   // ______________________________________________________
   // Timestamps

@@ -2,6 +2,7 @@ import {
   ConnectedSocket,
   MessageBody,
   OnGatewayConnection,
+  OnGatewayDisconnect,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
@@ -17,32 +18,82 @@ import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { JoinConversationRequest } from '../request/join-conversation.request';
 import { CreateJoinConversationDto } from '../../domain/dto/create-join-conversation.dto';
 import { GetMessageFromConversationRequest } from '../request/get-message-from-conversation.request';
+import { AuthService } from '../../../auth/application/auth.service';
+import { HttpException, HttpStatus } from '@nestjs/common';
+import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 
 @WebSocketGateway()
-export class ChatGateway implements OnGatewayConnection {
+export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
   private isFirstTime: boolean;
 
-  constructor(private readonly conversationService: ConversationService) {
+  constructor(private readonly conversationService: ConversationService, private readonly authService: AuthService) {
     this.isFirstTime = true;
   }
 
+  // listen for send_message events
+  @SubscribeMessage('send_message_test')
+  listenForMessagesTest(@MessageBody() message: string): void {
+    this.server.sockets.emit('receive_message', message);
+  }
+
   async handleConnection(socket: Socket): Promise<void> {
-    if (this.isFirstTime) {
-      await this.conversationService.deletedAllJoinedConversation();
-    }
-    const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket);
+    try {
+      if (this.isFirstTime) {
+        await this.conversationService.deletedAllJoinedConversation();
+        await this.conversationService.deletedAllConnectedUser();
+        this.isFirstTime = false;
+      }
 
-    if (!user) {
-      return await this.disconnect(socket);
-    }
+      let token: string;
+      if (socket.handshake.headers.authorization) {
+        token = socket.handshake.headers.authorization;
+      } else {
+        token = socket.handshake.auth.token;
+      }
 
-    const createJoinConversationDtos: CreateJoinConversationDto[] =
-      await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
-    for (const createJoinConversationDto of createJoinConversationDtos) {
-      await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
-      this.server.emit('conversations', createJoinConversationDto.conversationEntity);
+      const user: UserEntity = await this.authService.getUserEntityFromAuthToken(token.split(' ')[1]).catch(e => {
+        throw new HttpException('No credentials set', HttpStatus.UNAUTHORIZED);
+      });
+      socket.data.user = user;
+      if (!user) {
+        return await this.disconnect(socket);
+      }
+      if (user.connection) {
+        await this.conversationService.removeConnectedUser(user.connection.socketId);
+      }
+      await this.conversationService.createConnectedUser({
+        socketId: socket.id,
+        user: user,
+      });
+
+      const conversationEntities: ConversationEntity[] =
+        await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
+
+      for (const conversationEntity of conversationEntities) {
+        for (const profileEntity of user.profiles) {
+          const cardOneOwnerId = conversationEntity.connectedCard?.cardEntityOne.owner.id;
+          const cardTwoOwnerId = conversationEntity.connectedCard?.cardEntityTwo.owner.id;
+          const groupMembersIds = conversationEntity.group?.members.map(member => member.card.owner.id);
+
+          if (
+            cardOneOwnerId === profileEntity.id ||
+            cardTwoOwnerId === profileEntity.id ||
+            groupMembersIds.includes(profileEntity.id)
+          ) {
+            const createJoinConversationDto: CreateJoinConversationDto = new CreateJoinConversationDto({
+              conversationEntity: conversationEntity,
+              profileEntity: profileEntity,
+              userId: user.id,
+            });
+            await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
+            this.server.emit('conversations', createJoinConversationDto.conversationEntity);
+          }
+        }
+      }
+    } catch (e) {
+      await this.disconnect(socket);
     }
   }
 
@@ -51,6 +102,7 @@ export class ChatGateway implements OnGatewayConnection {
   }
 
   async disconnect(socket: Socket): Promise<void> {
+    await this.conversationService.removeConnectedUser(socket.id);
     await this.conversationService.deletedJoinedConversation(socket.id);
     socket.disconnect();
   }

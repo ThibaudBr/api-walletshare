@@ -700,7 +700,7 @@ export class CompanyService {
       throw new ForbiddenException('You are not allowed to get card preset for this company');
     }
 
-    return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
+    return await this.getCompanyById(companyId, true).then((company: CompanyEntity) => {
       return (
         company.employees.reduce((totalForwards, employee) => {
           return (

@@ -14,7 +14,7 @@ import { UserAccountStatusEnum } from '../../../../user/domain/enum/user-account
 import { UserRoleEnum } from '../../../../user/domain/enum/user-role.enum';
 import { RoleProfileEnum } from '../../../../profile/domain/enum/role-profile.enum';
 
-@Entity({ name: 'plan' })
+@Entity({ name: 'product' })
 export class ProductEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -28,8 +28,8 @@ export class ProductEntity extends BaseEntity {
   description: string;
   @Column({ name: 'stripe_price_id', type: 'varchar', length: 255 })
   stripeProductId: string;
-  @Column({ name: 'default_stripe_price_id', type: 'varchar', length: 255 })
-  defaultStripePriceId: string;
+  @Column({ name: 'default_stripe_price_id', type: 'varchar', length: 255, nullable: true })
+  defaultStripePriceId?: string;
   @Column({ name: 'json_metadata', type: 'json', nullable: true })
   jsonStripeMetadata: object;
   @Column({ name: 'active', type: 'boolean', default: true })

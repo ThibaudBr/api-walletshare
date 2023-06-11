@@ -30,6 +30,8 @@ export class PriceService {
         new CreatePriceCommand({
           ...createPriceRequest,
           priceStripeId: stripePrice.id,
+          type: stripePrice.type,
+          unitAmountDecimal: stripePrice.unit_amount_decimal ?? undefined,
         }),
       )
       .catch(async error => {
@@ -188,6 +190,7 @@ export class PriceService {
         throw error;
       })
       .then((prices: PriceEntity[]) => {
+        if (prices.length === 0) return [];
         return prices.map((price: PriceEntity) => {
           return new PriceResponse({
             ...price,
@@ -209,6 +212,7 @@ export class PriceService {
         throw error;
       })
       .then((prices: PriceEntity[]) => {
+        if (prices.length === 0) return [];
         return prices.map((price: PriceEntity) => {
           return new PriceResponse({
             ...price,

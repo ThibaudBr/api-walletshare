@@ -36,11 +36,15 @@ import { CreateStripeCustomerCommandHandler } from '../payment/stripe/applicatio
 import { CreateStripeCustomerEventHandler } from '../payment/stripe/application/cqrs/handler/event/create-stripe-customer.event-handler';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
+import { SetReferralCodeCommandHandler } from './application/cqrs/handler/command/set-referral-code.command-handler';
+import { SetReferralCodeEventHandler } from './application/cqrs/handler/event/set-referral-code.event-handler';
+import { ReferralCodeEntity } from './domain/entities/referral-code.entity';
+import { GetUserEntityQueryHandler } from './application/cqrs/handler/query/get-user-entity.query-handler';
 
 @Module({
   imports: [
     ConfigModule,
-    TypeOrmModule.forFeature([UserEntity, UserLoginEntity]),
+    TypeOrmModule.forFeature([UserEntity, UserLoginEntity, ReferralCodeEntity]),
     CqrsModule,
     ApiLogModule,
     HttpModule,
@@ -63,6 +67,7 @@ import { HttpModule } from '@nestjs/axios';
     DeleteUserCommandHandler,
     CreateSaveLoginCommandHandler,
     CreateStripeCustomerCommandHandler,
+    SetReferralCodeCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,
@@ -80,6 +85,8 @@ import { HttpModule } from '@nestjs/axios';
     UpdateUserEventHandler,
     CreateSaveLoginUserEventHandler,
     CreateStripeCustomerEventHandler,
+    SetReferralCodeEventHandler,
+    GetUserEntityQueryHandler,
   ],
 })
 export class UserModule {}

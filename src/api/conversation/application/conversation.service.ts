@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Socket } from 'socket.io';
 import { MessageEntity } from '../domain/entities/message.entity';
@@ -29,6 +29,9 @@ import { GetMessageFromConversationQuery } from './cqrs/query/get-message-from-c
 import { SoftRemoveMessageConversationCommand } from './cqrs/command/soft-remove-message-conversation.command';
 import { RemoveAllJoinedConversationWithSocketIdCommand } from './cqrs/command/remove-all-joined-conversation-with-socket-id.command';
 import { GetActiveConversationCountQuery } from './cqrs/query/get-active-conversation-count.query';
+import { RemoveAllConnectedUserCommand } from './cqrs/command/remove-all-connected-user.command';
+import { CreateConnectedUserCommand } from './cqrs/command/create-connected-user.command';
+import { RemoveConnectedUserBySocketIdCommand } from './cqrs/command/remove-connected-user-by-socket-id.command';
 
 @Injectable()
 export class ConversationService {
@@ -185,7 +188,7 @@ export class ConversationService {
       });
   }
 
-  async getAllConversationByProfilesAndCard(profiles: ProfileEntity[]): Promise<CreateJoinConversationDto[]> {
+  async getAllConversationByProfilesAndCard(profiles: ProfileEntity[]): Promise<ConversationEntity[]> {
     return await this.queryBus
       .execute(
         new GetAllConversationByProfilesAndCardQuery({
@@ -251,6 +254,42 @@ export class ConversationService {
     return await this.queryBus.execute(new GetActiveConversationCountQuery()).catch(async error => {
       if (error.message === 'Conversation not found') throw new InvalidIdHttpException('Conversation not found');
       throw new Error(error);
+    });
+  }
+
+  async createConnectedUser(param: { socketId: string; user: UserEntity }): Promise<void> {
+    return await this.commandBus
+      .execute(
+        new CreateConnectedUserCommand({
+          socketId: param.socketId,
+          user: param.user,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Error while creating connected user')
+          throw new InternalServerErrorException('Error while creating connected user');
+        throw new Error(error);
+      });
+  }
+
+  async removeConnectedUser(socketId: string): Promise<void> {
+    return await this.commandBus
+      .execute(
+        new RemoveConnectedUserBySocketIdCommand({
+          socketId: socketId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Error while removing connected user')
+          throw new InternalServerErrorException('Error while removing connected user');
+        throw new Error(error);
+      });
+  }
+
+  async deletedAllConnectedUser(): Promise<void> {
+    return await this.commandBus.execute(new RemoveAllConnectedUserCommand()).catch(async error => {
+      if (error.message === 'Error while removing all connected user')
+        throw new InternalServerErrorException('Error while removing all connected user');
     });
   }
 }
