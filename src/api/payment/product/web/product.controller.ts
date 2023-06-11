@@ -12,19 +12,16 @@ import { UpdateProductRequest } from './request/update-product.request';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Get('/public/list-product?:offset&:limit')
+  @Get('/public/list-product')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  async getListProduct(@Param('offset') offset: number, @Param('limit') limit: number): Promise<ProductResponse[]> {
-    return await this.productService.getProducts(limit, offset);
+  async getListProduct(): Promise<ProductResponse[]> {
+    return await this.productService.getProducts();
   }
 
-  @Get('/admin/list-product-admin?:offset&:limit')
+  @Get('/admin/list-product-admin')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async getListProductAdmin(
-    @Param('offset') offset: number,
-    @Param('limit') limit: number,
-  ): Promise<ProductResponse[]> {
-    return await this.productService.getProductsAdmin(limit, offset);
+  async getListProductAdmin(): Promise<ProductResponse[]> {
+    return await this.productService.getProductsAdmin();
   }
 
   @Get('/public/get-product/:id')
