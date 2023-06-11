@@ -23,6 +23,7 @@ export class CreateConversationMessageCommandHandler implements ICommandHandler<
   async execute(command: CreateConversationMessageCommand): Promise<MessageEntity> {
     const conversation: ConversationEntity = await this.conversationRepository
       .findOneOrFail({
+        relations: ['connectedCard', 'connectedCard.cardEntityOne', 'connectedCard.cardEntityTwo'],
         where: {
           id: command.conversationId,
         },

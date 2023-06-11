@@ -188,7 +188,7 @@ export class ConversationService {
       });
   }
 
-  async getAllConversationByProfilesAndCard(profiles: ProfileEntity[]): Promise<CreateJoinConversationDto[]> {
+  async getAllConversationByProfilesAndCard(profiles: ProfileEntity[]): Promise<ConversationEntity[]> {
     return await this.queryBus
       .execute(
         new GetAllConversationByProfilesAndCardQuery({
