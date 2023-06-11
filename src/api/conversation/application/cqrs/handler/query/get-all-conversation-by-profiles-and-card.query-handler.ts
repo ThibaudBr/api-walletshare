@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ConversationEntity } from '../../../../domain/entities/conversation.entity';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import { MessageEntity } from '../../../../domain/entities/message.entity';
 
 @QueryHandler(GetAllConversationByProfilesAndCardQuery)
 export class GetAllConversationByProfilesAndCardQueryHandler
@@ -12,6 +13,8 @@ export class GetAllConversationByProfilesAndCardQueryHandler
   constructor(
     @InjectRepository(ConversationEntity)
     private readonly conversationRepository: Repository<ConversationEntity>,
+    @InjectRepository(MessageEntity)
+    private readonly messageRepository: Repository<MessageEntity>,
     private readonly eventBus: EventBus,
   ) {}
 
@@ -46,6 +49,18 @@ export class GetAllConversationByProfilesAndCardQueryHandler
             }),
           );
           throw new Error('An error occurred while getting all conversation by profiles and card');
+        })
+        .then(async conversations => {
+          for (const conversation of conversations) {
+            conversation.messages = await this.messageRepository.find({
+              where: { conversation: { id: conversation.id } },
+              relations: ['author', 'author.owner'],
+              order: { createdAt: 'DESC' },
+              take: 10,
+              skip: 0,
+            });
+          }
+          return conversation;
         });
       conversationToReturn.push(...conversation);
     }
