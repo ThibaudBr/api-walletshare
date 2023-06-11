@@ -11,6 +11,8 @@ import {
 import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
 import { PriceEntity } from '../../../price/domain/entities/price.entity';
 import { UserAccountStatusEnum } from '../../../../user/domain/enum/user-account-status.enum';
+import { UserRoleEnum } from '../../../../user/domain/enum/user-role.enum';
+import { RoleProfileEnum } from '../../../../profile/domain/enum/role-profile.enum';
 
 @Entity({ name: 'product' })
 export class ProductEntity extends BaseEntity {
@@ -34,7 +36,10 @@ export class ProductEntity extends BaseEntity {
   active: boolean;
   @Column({ type: 'enum', enum: UserAccountStatusEnum, default: UserAccountStatusEnum.FREE })
   public accountStatus: UserAccountStatusEnum;
-
+  @Column({ type: 'enum', enum: UserRoleEnum, default: UserRoleEnum.PUBLIC })
+  public userRoleToGive: UserRoleEnum;
+  @Column({ type: 'enum', enum: RoleProfileEnum, default: RoleProfileEnum.PREMIUM })
+  public profileRoleToGive: RoleProfileEnum;
   // ______________________________________________________
   // Relations
   // ______________________________________________________

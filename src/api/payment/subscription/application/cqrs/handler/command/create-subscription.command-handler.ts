@@ -59,6 +59,7 @@ export class CreateSubscriptionCommandHandler implements ICommandHandler<CreateS
     const subscription = new SubscriptionEntity({
       user: user,
       price: price,
+      subscriptionStripeId: command.subscriptionStripeId,
       status: StatusSubscriptionEnum.PENDING,
     });
 

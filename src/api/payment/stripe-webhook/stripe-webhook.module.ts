@@ -19,6 +19,10 @@ import { StripeService } from '../stripe/application/stripe.service';
 import { HttpModule } from '@nestjs/axios';
 import { PriceModule } from '../price/price.module';
 import { PriceService } from '../price/application/price.service';
+import { ProductModule } from '../product/product.module';
+import { ProductService } from '../product/application/product.service';
+import { ProfileService } from '../../profile/application/profile.service';
+import { ProfileModule } from '../../profile/profile.module';
 
 @Module({
   imports: [
@@ -28,6 +32,8 @@ import { PriceService } from '../price/application/price.service';
     ApiLogModule,
     SubscriptionModule,
     PriceModule,
+    ProductModule,
+    ProfileModule,
     HttpModule,
   ],
   controllers: [StripeWebhookController],
@@ -37,6 +43,8 @@ import { PriceService } from '../price/application/price.service';
     // log
     ApiLogService,
     PriceService,
+    ProductService,
+    ProfileService,
     CreateLogCommandHandler,
     // Stripe Webhook module
     StripeWebhookService,

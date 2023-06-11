@@ -38,6 +38,7 @@ import { DeleteCouponStripeCommand } from './cqrs/command/delete-coupon-stripe.c
 import { UpdateCouponStripeRequest } from '../web/request/update-coupon-stripe.request';
 import { CreateReferralCodeStripeRequest } from '../web/request/create-referral-code-stripe.request';
 import { CreateCouponStripeRequest } from '../web/request/create-coupon-stripe.request';
+import { UpdateUserRoleCommand } from '../../../user/application/cqrs/command/update-user-role.command';
 
 @Injectable()
 export class StripeService {
@@ -365,18 +366,13 @@ export class StripeService {
       });
   }
 
-  private async isUserIdOwnerOfStripeCustomerId(userId: string, stripeCustomerId: string): Promise<boolean> {
+  async isUserIdOwnerOfStripeCustomerId(userId: string, stripeCustomerId: string): Promise<boolean> {
     return await this.queryBus.execute(
       new IsUserIdOwnerOfStripeCustomerIdQuery({
         userId: userId,
         stripeCustomerId: stripeCustomerId,
       }),
     );
-  }
-
-  async processPayment(event: Stripe.Event, jsonObject: object): Promise<void> {
-    // TODO: not implemented
-    throw new Error('Method not implemented.');
   }
 
   async processInvoice(event: Stripe.Event, jsonObject: object): Promise<void> {

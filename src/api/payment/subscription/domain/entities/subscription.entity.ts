@@ -41,6 +41,9 @@ export class SubscriptionEntity extends BaseEntity {
   @IsDate()
   public trialEndDate?: Date;
 
+  @Column({ name: 'subscription_stripe_id', type: 'varchar', nullable: true })
+  public subscriptionStripeId?: string;
+
   // ______________________________________________________
   // Relations
   // ______________________________________________________
