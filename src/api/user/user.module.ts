@@ -39,6 +39,7 @@ import { HttpModule } from '@nestjs/axios';
 import { SetReferralCodeCommandHandler } from './application/cqrs/handler/command/set-referral-code.command-handler';
 import { SetReferralCodeEventHandler } from './application/cqrs/handler/event/set-referral-code.event-handler';
 import { ReferralCodeEntity } from './domain/entities/referral-code.entity';
+import { GetUserEntityQueryHandler } from './application/cqrs/handler/query/get-user-entity.query-handler';
 
 @Module({
   imports: [
@@ -85,6 +86,7 @@ import { ReferralCodeEntity } from './domain/entities/referral-code.entity';
     CreateSaveLoginUserEventHandler,
     CreateStripeCustomerEventHandler,
     SetReferralCodeEventHandler,
+    GetUserEntityQueryHandler,
   ],
 })
 export class UserModule {}

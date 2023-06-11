@@ -14,6 +14,7 @@ import { ConfigService } from '@nestjs/config';
 import Stripe from 'stripe';
 import { CreateReferralCodeStripeCommand } from '../../payment/stripe/application/cqrs/command/create-referral-code-stripe.command';
 import { SetReferralCodeCommand } from '../../user/application/cqrs/command/set-referral-code.command';
+import { GetUserEntityQuery } from '../../user/application/cqrs/query/get-user-entity.query';
 
 @Injectable()
 export class AuthService {
@@ -112,6 +113,20 @@ export class AuthService {
     });
     if (payload.userId) {
       return await this.queryBus.execute(new GetUserQuery(payload.userId));
+    }
+    throw new Error('Invalid token');
+  }
+
+  async getUserEntityFromAuthToken(authenticationToken: string): Promise<UserEntity> {
+    const payload: TokenPayload = this.jwtService.verify(authenticationToken, {
+      secret: this.configService.get('JWT_REFRESH_TOKEN_SECRET'),
+    });
+    if (payload.userId) {
+      return await this.queryBus.execute(
+        new GetUserEntityQuery({
+          userId: payload.userId,
+        }),
+      );
     }
     throw new Error('Invalid token');
   }

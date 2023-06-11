@@ -50,6 +50,7 @@ import { PriceEntity } from '../../api/payment/price/domain/entities/price.entit
 import { CardPresetEntity } from '../../api/company/domain/entities/card-preset.entity';
 import { CompanyCardPresetSubscriber } from '../../api/company/application/subscriber/company-card-preset.subscriber';
 import { UserReferralCodeSubscriber } from '../../api/user/application/subscriber/user-referral-code.subscriber';
+import { ConnectedUserEntity } from '../../api/conversation/domain/entities/connected-user.entity';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -92,6 +93,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserLoginEntity,
             PriceEntity,
             CardPresetEntity,
+            ConnectedUserEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PROD'),
@@ -162,6 +164,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserLoginEntity,
             PriceEntity,
             CardPresetEntity,
+            ConnectedUserEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
           logging: this.configService.get('TYPEORM_LOGGING_PPROD'),
@@ -226,6 +229,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserLoginEntity,
             PriceEntity,
             CardPresetEntity,
+            ConnectedUserEntity,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_TEST'),
           logging: this.configService.get('TYPEORM_LOGGING_TEST'),
@@ -292,6 +296,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserLoginEntity,
             PriceEntity,
             CardPresetEntity,
+            ConnectedUserEntity,
           ],
           subscribers: [
             ProfileSubscriber,
