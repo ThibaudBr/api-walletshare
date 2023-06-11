@@ -190,6 +190,7 @@ export class PriceService {
         throw error;
       })
       .then((prices: PriceEntity[]) => {
+        if (prices.length === 0) return [];
         return prices.map((price: PriceEntity) => {
           return new PriceResponse({
             ...price,
@@ -211,6 +212,7 @@ export class PriceService {
         throw error;
       })
       .then((prices: PriceEntity[]) => {
+        if (prices.length === 0) return [];
         return prices.map((price: PriceEntity) => {
           return new PriceResponse({
             ...price,

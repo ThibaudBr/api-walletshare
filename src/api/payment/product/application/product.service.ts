@@ -258,13 +258,15 @@ export class ProductService {
           productEntity =>
             new ProductResponse({
               ...productEntity,
-              prices: productEntity.prices.map(
-                priceEntity =>
-                  new PriceResponse({
-                    ...priceEntity,
-                    unitAmountDecimal: Number(priceEntity.unitAmountDecimal),
-                  }),
-              ),
+              prices: productEntity.prices
+                ? productEntity.prices.map(
+                    priceEntity =>
+                      new PriceResponse({
+                        ...priceEntity,
+                        unitAmountDecimal: Number(priceEntity.unitAmountDecimal),
+                      }),
+                  )
+                : undefined,
             }),
         );
       });
