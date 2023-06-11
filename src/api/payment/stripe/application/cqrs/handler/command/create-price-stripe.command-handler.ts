@@ -26,7 +26,7 @@ export class CreatePriceStripeCommandHandler implements ICommandHandler<CreatePr
       .create({
         unit_amount: command.unitAmount,
         currency: this.configService.get('STRIPE_CURRENCY') ?? 'eur',
-        product: command.productId,
+        product: command.productStripeId,
         recurring: {
           interval: command.interval === 'month' ? 'month' : 'year',
           usage_type: command.usageType == 'licensed' ? 'licensed' : 'metered',

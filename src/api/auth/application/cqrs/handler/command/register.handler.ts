@@ -71,7 +71,6 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
       mail: command.mail,
       password: bcrypt.hashSync(command.password, 10),
       username: command.username,
-      referralCode: await this.generateUniqueReferralCode(),
     });
     const err = await validate(newUser);
     if (err.length > 0) {
@@ -84,20 +83,6 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
     const insertedUser = await this.userRepository.save(newUser);
     this.eventBus.publish(new RegisterEvent(insertedUser.id));
     return insertedUser;
-  }
-
-  // Generate a unique referral code that does not already exist in the database
-  async generateUniqueReferralCode(): Promise<string> {
-    let code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') ?? 6);
-    while (await this.getUserByReferralCode(code)) {
-      code = this.generateCode(this.configService.get('LENGTH_REFERRAL_CODE') ?? 6);
-    }
-    return code;
-  }
-
-  async getUserByReferralCode(referralCode: string): Promise<boolean> {
-    const user = await this.userRepository.findOne({ where: { referralCode: referralCode } });
-    return !!user;
   }
 
   private async isDuplicatedUsername(username: string): Promise<boolean> {

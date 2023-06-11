@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateUserCommand } from './cqrs/command/create-user.command';
 import { CreateUserDto } from '../domain/dto/create-user.dto';
@@ -36,6 +36,10 @@ import { GetSavedCardWithUserIdQuery } from '../../card/application/cqrs/query/g
 import { CreateStripeCustomerCommand } from '../../payment/stripe/application/cqrs/command/create-stripe-customer.command';
 import { CreateReferralCodeStripeCommand } from '../../payment/stripe/application/cqrs/command/create-referral-code-stripe.command';
 import { ConfigService } from '@nestjs/config';
+import Stripe from 'stripe';
+import { SetReferralCodeCommand } from './cqrs/command/set-referral-code.command';
+import { ReferralCodeEntity } from '../domain/entities/referral-code.entity';
+import { ReferralCodeResponse } from '../web/response/referral-code.response';
 
 @Injectable()
 export class UserService {
@@ -56,13 +60,33 @@ export class UserService {
       }),
     );
 
-    createdUser.referralCode = await this.commandBus.execute(
-      new CreateReferralCodeStripeCommand({
-        userId: createdUser.id,
-        couponStripeId: this.configService.get('STRIPE_COUPON_REFERRAL_ID'),
-        customerStripeId: createdUser.stripCustomerId,
-      }),
-    );
+    if (this.configService.get('STRIPE_COUPON_REFERRAL_ID')) {
+      const createdReferralCode: Stripe.PromotionCode = await this.commandBus.execute(
+        new CreateReferralCodeStripeCommand({
+          userId: createdUser.id,
+          couponStripeId: this.configService.get('STRIPE_COUPON_REFERRAL_ID'),
+          customerStripeId: createdUser.stripCustomerId,
+        }),
+      );
+      createdUser.referralCode = await this.commandBus
+        .execute(
+          new SetReferralCodeCommand({
+            userId: createdUser.id,
+            referralCode: createdReferralCode,
+          }),
+        )
+        .catch(error => {
+          if (error.message === 'Error while seting referral code') {
+            throw new Error('Error while seting referral code');
+          }
+          throw new InternalServerErrorException('Error while seting referral code');
+        })
+        .then(ReferralCodeEntity => {
+          return new ReferralCodeResponse({
+            ...ReferralCodeEntity,
+          });
+        });
+    }
 
     return createdUser;
   }

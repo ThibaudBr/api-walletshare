@@ -48,6 +48,7 @@ export class CreatePriceCommandHandler implements ICommandHandler<CreatePriceCom
       jsonStripeMetadata: command.jsonStripeMetadata,
       unitAmount: command.unitAmount,
       unitAmountDecimal: command.unitAmountDecimal,
+      type: command.type,
     });
 
     const savedPrice: PriceEntity = await this.priceRepository.save(newPriceEntity).catch(async error => {

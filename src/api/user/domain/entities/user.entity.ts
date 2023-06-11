@@ -4,7 +4,10 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,7 +15,7 @@ import { Exclude } from 'class-transformer';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { UserRoleEnum } from '../enum/user-role.enum';
 import { SubscriptionEntity } from '../../../payment/subscription/domain/entities/subscription.entity';
-import { ReferralCodeEntity } from '../../../payment/subscription/domain/entities/referal-code.entity';
+import { ReferralCodeEntity } from './referral-code.entity';
 import { NotificationEntity } from '../../../notification/domain/entities/notification.entity';
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
 import { UserLoginEntity } from './user-login.entity';
@@ -53,8 +56,7 @@ export class UserEntity extends BaseEntity {
   public currentHashedRefreshToken?: string;
   @Exclude()
   public jwtToken?: string;
-  @Column({ unique: true, nullable: true })
-  public referralCode?: string;
+
   /**
    * @description
    * This is a flag to indicate if the user has registered with google.
@@ -88,13 +90,11 @@ export class UserEntity extends BaseEntity {
   })
   subscriptions: SubscriptionEntity[];
 
-  @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.owner, {
-    cascade: ['insert', 'update', 'remove', 'soft-remove'],
-    onDelete: 'CASCADE',
-  })
-  referralCodes: ReferralCodeEntity[];
+  @OneToOne(() => ReferralCodeEntity, referralCode => referralCode.owner, {})
+  @JoinColumn()
+  referralCode: ReferralCodeEntity;
 
-  @OneToMany(() => ReferralCodeEntity, referralCode => referralCode.usedBy)
+  @ManyToOne(() => ReferralCodeEntity, referralCode => referralCode.usedBy)
   usedReferralCodes: ReferralCodeEntity;
 
   @OneToMany(() => NotificationEntity, notification => notification.user, {

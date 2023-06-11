@@ -93,27 +93,11 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
         username: savedUser.username,
         mail: savedUser.mail,
         roles: savedUser.roles || [UserRoleEnum.PUBLIC],
-        referralCode: savedUser.referralCode,
       });
     } catch (error) {
       this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'CreateUser', error: error }));
       throw error;
     }
-  }
-
-  async getUserByReferralCode(referralCode: string): Promise<boolean> {
-    const user = await this.userRepository.findOne({ where: { referralCode: referralCode } });
-    return !!user;
-  }
-
-  // Generate a random alphanumeric code of a given length
-  private generateCode(length: number): string {
-    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let code = '';
-    for (let i = 0; i < length; i++) {
-      code += charset.charAt(Math.floor(Math.random() * charset.length));
-    }
-    return code;
   }
 
   private async isDuplicatedUsername(username: string): Promise<boolean> {

@@ -31,6 +31,7 @@ export class ChatGateway implements OnGatewayConnection {
   async handleConnection(socket: Socket): Promise<void> {
     if (this.isFirstTime) {
       await this.conversationService.deletedAllJoinedConversation();
+      this.isFirstTime = false;
     }
     const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket);
 

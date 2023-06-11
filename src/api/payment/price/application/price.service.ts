@@ -30,6 +30,8 @@ export class PriceService {
         new CreatePriceCommand({
           ...createPriceRequest,
           priceStripeId: stripePrice.id,
+          type: stripePrice.type,
+          unitAmountDecimal: stripePrice.unit_amount_decimal ?? undefined,
         }),
       )
       .catch(async error => {
