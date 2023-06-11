@@ -40,6 +40,8 @@ export class ProductService {
           stripeProductId: stripProduct.id,
           jsonStripeMetadata: stripProduct,
           userAccountStatus: createProductRequest.userAccountStatus,
+          userRoleToGive: createProductRequest.userRoleToGive,
+          profileRoleToGive: createProductRequest.profileRoleToGive,
         }),
       )
       .catch(async error => {

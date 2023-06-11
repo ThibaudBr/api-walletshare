@@ -172,6 +172,7 @@ export class SubscriptionService {
         new CreateSubscriptionCommand({
           userId: userId,
           priceId: price.id,
+          subscriptionStripeId: stripeSubscription.id,
         }),
       )
       .catch(async error => {
