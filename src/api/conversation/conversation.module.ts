@@ -41,6 +41,16 @@ import { UserEntity } from '../user/domain/entities/user.entity';
 import { ProfileEntity } from '../profile/domain/entities/profile.entity';
 import { HttpModule } from '@nestjs/axios';
 import { GetActiveConversationCountQueryHandler } from './application/cqrs/handler/query/get-active-conversation-count.query-handler';
+import { AuthService } from '../auth/application/auth.service';
+import { CreateConnectedUserCommandHandler } from './application/cqrs/handler/command/create-connected-user.command-handler';
+import { RemoveAllConnectedUserCommandHandler } from './application/cqrs/handler/command/remove-all-connected-user.command-handler';
+import { RemoveConnectedUserBySocketIdCommandHandler } from './application/cqrs/handler/command/remove-connected-user-by-socket-id.command-handler';
+import { CreateConnectedUserEventHandler } from './application/cqrs/handler/event/create-connected-user.event-handler';
+import { RemoveAllConnectedUserEventHandler } from './application/cqrs/handler/event/remove-all-connected-user.event-handler';
+import { RemoveConnectedUserBySocketIdEventHandler } from './application/cqrs/handler/event/remove-connected-user-by-socket-id.event-handler';
+import { ConnectedUserEntity } from './domain/entities/connected-user.entity';
+import { AuthModule } from '../auth/auth.module';
+import { ChatGateway } from './web/gateway/chat.gateway';
 
 @Module({
   imports: [
@@ -52,13 +62,16 @@ import { GetActiveConversationCountQueryHandler } from './application/cqrs/handl
       MessageEntity,
       CardEntity,
       MediaEntity,
+      ConnectedUserEntity,
     ]),
     CqrsModule,
     ApiLogModule,
     HttpModule,
+    AuthModule,
   ],
   controllers: [ConversationController],
   providers: [
+    ChatGateway,
     ConversationService,
     // log
     ApiLogService,
@@ -71,6 +84,9 @@ import { GetActiveConversationCountQueryHandler } from './application/cqrs/handl
     DeleteJoinedConversationCommandHandler,
     RemoveMessageConversationCommandHandler,
     SoftRemoveMessageConversationCommandHandler,
+    CreateConnectedUserCommandHandler,
+    RemoveAllConnectedUserCommandHandler,
+    RemoveConnectedUserBySocketIdCommandHandler,
     // Query handlers
     GetAllConversationQueryHandler,
     GetAllConversationByProfilesAndCardQueryHandler,
@@ -89,6 +105,9 @@ import { GetActiveConversationCountQueryHandler } from './application/cqrs/handl
     RemoveMessageConversationEventHandler,
     SoftRemoveMessageConversationEventHandler,
     GetActiveConversationCountQueryHandler,
+    CreateConnectedUserEventHandler,
+    RemoveAllConnectedUserEventHandler,
+    RemoveConnectedUserBySocketIdEventHandler,
     // imported from other modules
     UploadMediaCommandHandler,
     UploadMediaEventHandler,

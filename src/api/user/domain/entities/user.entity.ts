@@ -20,6 +20,7 @@ import { NotificationEntity } from '../../../notification/domain/entities/notifi
 import { AddressEntity } from '../../../address/domain/entities/address.entity';
 import { UserLoginEntity } from './user-login.entity';
 import { UserAccountStatusEnum } from '../enum/user-account-status.enum';
+import { ConnectedUserEntity } from '../../../conversation/domain/entities/connected-user.entity';
 
 @Entity({ name: 'user' })
 export class UserEntity extends BaseEntity {
@@ -110,6 +111,12 @@ export class UserEntity extends BaseEntity {
     cascade: ['insert', 'update'],
   })
   userLogins: UserLoginEntity[];
+
+  @OneToOne(() => ConnectedUserEntity, connectedUser => connectedUser.user, {
+    eager: true,
+  })
+  @JoinColumn()
+  connection: ConnectedUserEntity;
 
   // ______________________________________________________
   // Timestamps

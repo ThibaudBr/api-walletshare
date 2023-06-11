@@ -33,6 +33,7 @@ export class RemoveAllJoinedConversationWithSocketIdCommandHandler
         throw new Error('JoinedConversation not found');
       });
 
+    if (!joinedConversationEntities) return;
     await this.joinedConversationRepository.remove(joinedConversationEntities).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
