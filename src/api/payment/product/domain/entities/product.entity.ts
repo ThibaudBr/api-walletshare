@@ -12,7 +12,7 @@ import { SubscriptionEntity } from '../../../subscription/domain/entities/subscr
 import { PriceEntity } from '../../../price/domain/entities/price.entity';
 import { UserAccountStatusEnum } from '../../../../user/domain/enum/user-account-status.enum';
 
-@Entity({ name: 'plan' })
+@Entity({ name: 'product' })
 export class ProductEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -26,8 +26,8 @@ export class ProductEntity extends BaseEntity {
   description: string;
   @Column({ name: 'stripe_price_id', type: 'varchar', length: 255 })
   stripeProductId: string;
-  @Column({ name: 'default_stripe_price_id', type: 'varchar', length: 255 })
-  defaultStripePriceId: string;
+  @Column({ name: 'default_stripe_price_id', type: 'varchar', length: 255, nullable: true })
+  defaultStripePriceId?: string;
   @Column({ name: 'json_metadata', type: 'json', nullable: true })
   jsonStripeMetadata: object;
   @Column({ name: 'active', type: 'boolean', default: true })

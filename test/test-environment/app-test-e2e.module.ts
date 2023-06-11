@@ -21,7 +21,7 @@ import StripeEventEntity from '../../src/api/payment/stripe-webhook/domain/entit
 import { SubscriptionEntity } from '../../src/api/payment/subscription/domain/entities/subscription.entity';
 import { UserEntity } from '../../src/api/user/domain/entities/user.entity';
 import { NotificationEntity } from '../../src/api/notification/domain/entities/notification.entity';
-import { ReferralCodeEntity } from '../../src/api/payment/subscription/domain/entities/referal-code.entity';
+import { ReferralCodeEntity } from '../../src/api/user/domain/entities/referral-code.entity';
 import { AddressEntity } from '../../src/api/address/domain/entities/address.entity';
 import { CardEntity } from '../../src/api/card/domain/entities/card.entity';
 import { UserTestE2eController } from './controller-test/user-test-e2e.controller';

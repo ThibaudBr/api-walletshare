@@ -1,4 +1,5 @@
 import { UserRoleEnum } from '../../domain/enum/user-role.enum';
+import { ReferralCodeResponse } from './referral-code.response';
 
 export class CreateUserResponse {
   public readonly id: string;
@@ -6,7 +7,7 @@ export class CreateUserResponse {
   public readonly mail: string;
   public readonly createdAt: Date;
   public readonly roles: UserRoleEnum[];
-  public referralCode?: string;
+  public referralCode?: ReferralCodeResponse;
   public stripCustomerId?: string;
 
   constructor(partial?: Partial<CreateUserResponse>) {

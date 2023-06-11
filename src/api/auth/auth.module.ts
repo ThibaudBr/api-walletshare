@@ -22,6 +22,9 @@ import { CreateStripeCustomerCommandHandler } from '../payment/stripe/applicatio
 import { CreateStripeCustomerEventHandler } from '../payment/stripe/application/cqrs/handler/event/create-stripe-customer.event-handler';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
+import { ReferralCodeEntity } from '../user/domain/entities/referral-code.entity';
+import { SetReferralCodeCommandHandler } from '../user/application/cqrs/handler/command/set-referral-code.command-handler';
+import { SetReferralCodeEventHandler } from '../user/application/cqrs/handler/event/set-referral-code.event-handler';
 
 config();
 
@@ -40,7 +43,7 @@ config();
     }),
     HttpModule,
     PassportModule,
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, ReferralCodeEntity]),
     CqrsModule,
     ApiLogModule,
   ],
@@ -58,8 +61,10 @@ config();
     CreateLogCommandHandler,
     // Command Handlers
     CreateStripeCustomerCommandHandler,
+    SetReferralCodeCommandHandler,
     // Event Handlers
     CreateStripeCustomerEventHandler,
+    SetReferralCodeEventHandler,
   ],
   controllers: [AuthController],
   exports: [AuthService],

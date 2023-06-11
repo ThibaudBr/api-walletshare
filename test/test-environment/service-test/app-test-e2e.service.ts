@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AddressEntity } from '../../../src/api/address/domain/entities/address.entity';
 import StripeEventEntity from '../../../src/api/payment/stripe-webhook/domain/entities/stripe-event.entity';
-import { ReferralCodeEntity } from '../../../src/api/payment/subscription/domain/entities/referal-code.entity';
+import { ReferralCodeEntity } from '../../../src/api/user/domain/entities/referral-code.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { JoinedConversationEntity } from '../../../src/api/conversation/domain/entities/joined-conversation.entity';
 import { SocialNetworkEntity } from '../../../src/api/social-network/domain/entities/social-network.entity';
