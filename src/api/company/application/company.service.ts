@@ -648,7 +648,7 @@ export class CompanyService {
     }
     return await this.getCompanyById(companyId).then((company: CompanyEntity) => {
       return company.employees.reduce((totalCards, employee) => {
-        return totalCards + (employee.profile.personalCards?.length || 0);
+        return totalCards + (employee.profile.personalCards?.length ?? 0);
       }, 0);
     });
   }
