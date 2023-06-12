@@ -39,6 +39,7 @@ import { UpdateCouponStripeRequest } from '../web/request/update-coupon-stripe.r
 import { CreateReferralCodeStripeRequest } from '../web/request/create-referral-code-stripe.request';
 import { CreateCouponStripeRequest } from '../web/request/create-coupon-stripe.request';
 import { UpdateUserRoleCommand } from '../../../user/application/cqrs/command/update-user-role.command';
+import { StripeWebhookSignatureEnum } from '../../stripe-webhook/domain/enum/stripe-webhook-signature.enum';
 
 @Injectable()
 export class StripeService {
@@ -160,11 +161,16 @@ export class StripeService {
       });
   }
 
-  public async constructEventFromStripeWebhook(stripeSignature: string, payload: Buffer): Promise<Stripe.Event> {
+  public async constructEventFromStripeWebhook(
+    stripeSignature: string,
+    payload: Buffer,
+    stripeWebhookSignatureEnum: StripeWebhookSignatureEnum,
+  ): Promise<Stripe.Event> {
     return await this.commandBus.execute(
       new ConstructEventFromPayloadStripeCommand({
         payload: payload,
         signature: stripeSignature,
+        stripeWebhookSignatureEnum: stripeWebhookSignatureEnum,
       }),
     );
   }
