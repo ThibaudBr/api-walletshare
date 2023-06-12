@@ -99,6 +99,11 @@ export class GetAllConnectedCardByProfileIdQueryHandler implements IQueryHandler
           }),
         );
         throw new Error('Cards not found');
+      })
+      .then((cardEntities: CardEntity[]) => {
+        return cardEntities
+          .map((cardEntity: CardEntity) => cardEntity)
+          .filter((cardEntity: CardEntity) => cardEntity.owner.id !== query.profileId);
       });
   }
 }

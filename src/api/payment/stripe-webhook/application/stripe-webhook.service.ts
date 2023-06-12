@@ -19,19 +19,13 @@ export class StripeWebhookService {
   ) {}
 
   async processSubscription(event: Stripe.Event): Promise<void> {
-    console.log(event);
-    console.log(event.type);
-    console.log(event.data.object);
     switch (event.type) {
       case StripeEventTypeEnum.SUBSCRIPTION_CREATED:
-        console.log(event.data.object);
-        break;
+        throw new BadRequestException('Not implemented');
       case StripeEventTypeEnum.SUBSCRIPTION_UPDATED:
-        console.log(event.data.object);
-        break;
+        throw new BadRequestException('Not implemented');
       case StripeEventTypeEnum.SUBSCRIPTION_DELETED:
-        console.log(event.data.object);
-        break;
+        throw new BadRequestException('Not implemented');
       default:
         console.log(event);
         throw new BadRequestException('Invalid Stripe event type');
