@@ -25,6 +25,7 @@ export class ConstructEventFromPayloadStripeCommandHandler
   }
 
   async execute(command: ConstructEventFromPayloadStripeCommand): Promise<Stripe.Event> {
+    console.log(command.payload);
     const event: Stripe.Event = this.stripe.webhooks.constructEvent(
       command.payload,
       command.signature,
