@@ -24,13 +24,12 @@ export class StripeWebhookController {
     if (!req.rawBody) {
       throw new BadRequestException('Invalid payload');
     }
-    const raw = req.rawBody.toString('utf8');
-    const json = JSON.parse(raw);
+
     const event = await this.stripService.constructEventFromStripeWebhook(
       signature,
       req.rawBody,
       StripeWebhookSignatureEnum.SUBSCRIPTION,
     );
-    await this.stripeWebhookService.processSubscriptionUpdate(event, json.data.object as Stripe.Subscription);
+    await this.stripeWebhookService.processSubscription(event);
   }
 }
