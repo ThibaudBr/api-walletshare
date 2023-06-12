@@ -47,6 +47,7 @@ export class CreateCompanyCommandHandler implements ICommandHandler<CreateCompan
     const newCompany = new CompanyEntity({
       ...command.createCompanyDto,
       ownerProfile: profile,
+      occupations: [],
     });
 
     if (command.occupationIdList) {
