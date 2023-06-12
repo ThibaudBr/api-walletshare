@@ -107,6 +107,56 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     socket.disconnect();
   }
 
+  @SubscribeMessage('get_my_conversations')
+  async getMyConversation(@ConnectedSocket() socket: Socket): Promise<void> {
+    let token: string;
+    if (socket.handshake.headers.authorization) {
+      token = socket.handshake.headers.authorization;
+    } else {
+      token = socket.handshake.auth.token;
+    }
+
+    const user: UserEntity = await this.authService.getUserEntityFromAuthToken(token.split(' ')[1]).catch(e => {
+      throw new HttpException('No credentials set', HttpStatus.UNAUTHORIZED);
+    });
+    socket.data.user = user;
+    if (!user) {
+      return await this.disconnect(socket);
+    }
+    if (user.connection) {
+      await this.conversationService.removeConnectedUser(user.connection.socketId);
+    }
+    await this.conversationService.createConnectedUser({
+      socketId: socket.id,
+      user: user,
+    });
+
+    const conversationEntities: ConversationEntity[] =
+      await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
+
+    for (const conversationEntity of conversationEntities) {
+      for (const profileEntity of user.profiles) {
+        const cardOneOwnerId = conversationEntity.connectedCard?.cardEntityOne.owner.id;
+        const cardTwoOwnerId = conversationEntity.connectedCard?.cardEntityTwo.owner.id;
+        const groupMembersIds = conversationEntity.group?.members.map(member => member.card.owner.id);
+
+        if (
+          cardOneOwnerId === profileEntity.id ||
+          cardTwoOwnerId === profileEntity.id ||
+          groupMembersIds.includes(profileEntity.id)
+        ) {
+          const createJoinConversationDto: CreateJoinConversationDto = new CreateJoinConversationDto({
+            conversationEntity: conversationEntity,
+            profileEntity: profileEntity,
+            userId: user.id,
+          });
+          await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
+          this.server.emit('conversations', createJoinConversationDto.conversationEntity);
+        }
+      }
+    }
+  }
+
   @SubscribeMessage('send_message')
   async listenForMessages(
     @MessageBody() sentMessage: SentMessageRequest,

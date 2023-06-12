@@ -12,6 +12,21 @@ export class StripeWebhookController {
     private readonly stripeWebhookService: StripeWebhookService,
   ) {}
 
+  @Post('subscription/created')
+  public async subscriptionCreated(
+    @Headers('stripe-signature') signature: string,
+    @Req() req: RawBodyRequest<Request>,
+  ): Promise<void> {
+    if (!signature) {
+      throw new BadRequestException('Missing stripe-signature header');
+    }
+    if (!req.rawBody) {
+      throw new BadRequestException('Invalid payload');
+    }
+    const event = await this.stripService.constructEventFromStripeWebhook(signature, req.rawBody);
+    return await this.stripeWebhookService.processSubscriptionCreated(event);
+  }
+
   @Post('payment')
   public async payment(
     @Headers('stripe-signature') signature: string,

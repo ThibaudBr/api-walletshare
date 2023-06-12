@@ -91,4 +91,10 @@ export class StripeWebhookService {
       throw new InternalServerErrorException('Failed to process payment event');
     }
   }
+
+  async processSubscriptionCreated(event: Stripe.Event): Promise<void> {
+    console.log(event);
+    const stripeSubscriptionEvent: Stripe.Subscription = event.data.object as Stripe.Subscription;
+    console.log(stripeSubscriptionEvent);
+  }
 }
