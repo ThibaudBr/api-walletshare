@@ -21,7 +21,7 @@ export class GetAllConversationByProfilesAndCardQueryHandler
   async execute(query: GetAllConversationByProfilesAndCardQuery): Promise<ConversationEntity[]> {
     const conversationToReturn: ConversationEntity[] = [];
     for (const profileId of query.profilesId) {
-      const conversation: ConversationEntity[] = await this.conversationRepository
+      const conversations: ConversationEntity[] = await this.conversationRepository
         .find({
           relations: [
             'connectedCard',
@@ -60,9 +60,9 @@ export class GetAllConversationByProfilesAndCardQueryHandler
               skip: 0,
             });
           }
-          return conversation;
+          return conversations;
         });
-      conversationToReturn.push(...conversation);
+      conversationToReturn.push(...conversations);
     }
     return conversationToReturn;
   }
