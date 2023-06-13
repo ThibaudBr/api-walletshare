@@ -17,6 +17,7 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
     return await this.conversationRepository
       .findOneOrFail({
         relations: [
+          'joinedProfiles',
           'connectedCard',
           'connectedCard.cardEntityOne',
           'connectedCard.cardEntityOne.owner',
