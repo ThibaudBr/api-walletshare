@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable, InternalServerErrorException} from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateSocialNetworkRequest } from '../web/request/create-social-network.request';
 import { CreateSocialNetworkCommand } from './cqrs/command/create-social-network.command';
@@ -134,7 +134,7 @@ export class SocialNetworkService {
       if (error.message === 'Social network is not soft deleted')
         throw new EntityIsNotSoftDeletedHttpException(error.message);
       if (error.message === 'SocialNetwork not restored') throw new CommandErrorHttpException();
-      throw error;
+      throw new InternalServerErrorException(error.message);
     }
   }
 }

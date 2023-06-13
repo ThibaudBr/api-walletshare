@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { StripeService } from '../../stripe/application/stripe.service';
 import { CreatePriceStripeRequest } from '../../stripe/web/request/create-price-stripe.request';
@@ -13,6 +13,7 @@ import { UpdatePriceStripeRequest } from '../../stripe/web/request/update-price-
 import { UpdatePriceCommand } from './cqrs/command/update-price.command';
 import { GetAllPriceQuery } from './cqrs/query/get-all-price.query';
 import { GetAllPriceByProductIdQuery } from './cqrs/query/get-all-price-by-product-id.query';
+import { GetPriceByStripePriceIdQuery } from './cqrs/query/get-price-by-stripe-price-id.query';
 
 @Injectable()
 export class PriceService {
@@ -39,7 +40,7 @@ export class PriceService {
         if (error.message === 'Error during find product entity') throw new BadRequestException(error.message);
         if (error.message === 'Error during save price entity') throw new BadRequestException(error.message);
         if (error.message === 'Error during find product entity') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -52,7 +53,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.stripeService.removePriceStripe(priceEntity.priceStripeId);
@@ -65,7 +66,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Error during remove price entity') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -78,7 +79,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.stripeService.updatePriceStripe({
@@ -99,7 +100,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.stripeService.updatePriceStripe({
@@ -117,7 +118,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Error during restore price entity') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -130,7 +131,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -144,7 +145,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -157,7 +158,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     const stripePrice: Stripe.Price = await this.stripeService.updatePriceStripe({
@@ -178,7 +179,7 @@ export class PriceService {
         if (error.message === 'Error during update price entity') throw new BadRequestException(error.message);
         if (error.message === 'Error during find price entity') throw new BadRequestException(error.message);
         if (error.message === 'Error during update price entity') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -187,7 +188,7 @@ export class PriceService {
       .execute(new GetAllPriceQuery())
       .catch(error => {
         if (error.message === 'Error while fetching prices') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       })
       .then((prices: PriceEntity[]) => {
         if (prices.length === 0) return [];
@@ -209,7 +210,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Error while fetching prices') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       })
       .then((prices: PriceEntity[]) => {
         if (prices.length === 0) return [];
@@ -219,6 +220,19 @@ export class PriceService {
             unitAmountDecimal: Number(price.unitAmountDecimal),
           });
         });
+      });
+  }
+
+  async getPriceByStripePriceId(stripePriceId: string): Promise<PriceEntity> {
+    return await this.queryBus
+      .execute(
+        new GetPriceByStripePriceIdQuery({
+          stripePriceId: stripePriceId,
+        }),
+      )
+      .catch((error: Error) => {
+        if (error.message === 'Price not found') throw new BadRequestException(error.message);
+        throw new InternalServerErrorException(error.message);
       });
   }
 }

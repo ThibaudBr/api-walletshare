@@ -29,6 +29,8 @@ import { RestoreProfileCommandHandler } from './application/cqrs/handler/command
 import { RestoreProfileEventHandler } from './application/cqrs/handler/event/restore-profile.event-handler';
 import { IsProfileWithGivenRoleAlreadyExistQueryHandler } from './application/cqrs/handler/query/is-profile-with-given-role-already-exist.query-handler';
 import { HttpModule } from '@nestjs/axios';
+import { UpdateRoleProfileCommandHandler } from './application/cqrs/handler/command/update-role-profile.command-handler';
+import { UpdateRoleProfileEventHandler } from './application/cqrs/handler/event/update-role-profile.event-handler';
 
 @Module({
   imports: [
@@ -51,6 +53,7 @@ import { HttpModule } from '@nestjs/axios';
     UpdateProfileCommandHandler,
     UpdateOccupationsProfileCommandHandler,
     RestoreProfileCommandHandler,
+    UpdateRoleProfileCommandHandler,
     // Query handlers
     GetProfileByIdQueryHandler,
     GetProfilesByUserIdQueryHandler,
@@ -65,6 +68,7 @@ import { HttpModule } from '@nestjs/axios';
     UpdateProfileEventHandler,
     UpdateOccupationsProfileEventHandler,
     RestoreProfileEventHandler,
+    UpdateRoleProfileEventHandler,
   ],
 })
 export class ProfileModule {}

@@ -1,4 +1,4 @@
-import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { NewMediaDto } from '../domain/dto/new-media.dto';
 import { UploadMediaCommand } from './cqrs/command/upload-media.command';
@@ -40,7 +40,7 @@ export class MediaService {
       .execute(new GetMediaWithIdQuery({ mediaId: mediaId }))
       .catch(async error => {
         if (error.message === 'Media not found') throw new InvalidIdHttpException('Media not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       })
       .then(async (media: MediaResponse) => {
         media.url = await this.queryBus.execute(new GetTemporaryMediaUrlQuery({ mediaKey: media.key }));
@@ -51,7 +51,7 @@ export class MediaService {
   async getAllMedia(): Promise<MediaResponse[]> {
     return await this.queryBus.execute(new GetAllMediaWithDeletedQuery()).catch(async error => {
       if (error.message === 'Media not found') throw new InvalidIdHttpException('Media not found');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
@@ -84,7 +84,7 @@ export class MediaService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File is too big');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.commandBus
@@ -97,7 +97,7 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -130,7 +130,7 @@ export class MediaService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File is too big');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.commandBus
@@ -143,7 +143,7 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Group not found') throw new InvalidIdHttpException('Group not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -174,7 +174,7 @@ export class MediaService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File is too big');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.commandBus
@@ -187,7 +187,7 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -220,7 +220,7 @@ export class MediaService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.commandBus
@@ -233,7 +233,7 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -266,7 +266,7 @@ export class MediaService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File is too big');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.commandBus
@@ -279,7 +279,7 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Group not found') throw new InvalidIdHttpException('Group not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -311,7 +311,7 @@ export class MediaService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File is too big');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.commandBus
@@ -324,7 +324,7 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -362,7 +362,7 @@ export class MediaService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.commandBus
@@ -375,7 +375,7 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -407,7 +407,7 @@ export class MediaService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File is too big');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.commandBus
@@ -420,7 +420,7 @@ export class MediaService {
       .catch(async error => {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -437,28 +437,28 @@ export class MediaService {
 
     await this.commandBus.execute(new RemoveMediaCommand({ mediaId: mediaId })).catch(async error => {
       if (error.message === 'Media not found') throw new Error('Media not found');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
   async removeMediaAdmin(mediaId: string): Promise<void> {
     await this.commandBus.execute(new RemoveMediaCommand({ mediaId: mediaId })).catch(async error => {
       if (error.message === 'Media not found') throw new Error('Media not found');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
   async restoreMediaAdmin(mediaId: string): Promise<void> {
     await this.commandBus.execute(new RestoreMediaCommand({ mediaId: mediaId })).catch(async error => {
       if (error.message === 'Media not found') throw new Error('Media not found');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
   async softRemoveMediaAdmin(mediaId: string): Promise<void> {
     await this.commandBus.execute(new SoftRemoveMediaCommand({ mediaId: mediaId })).catch(async error => {
       if (error.message === 'Media not found') throw new Error('Media not found');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 }

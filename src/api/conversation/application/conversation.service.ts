@@ -215,7 +215,7 @@ export class ConversationService {
       )
       .catch(async error => {
         if (error.message === 'File is too big') throw new BadRequestException('File is too big');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     return await this.commandBus
@@ -231,7 +231,7 @@ export class ConversationService {
         await this.commandBus.execute(new RemoveMediaCommand({ mediaId: newMedia.id }));
         if (error.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
         if (error.message === 'Conversation not found') throw new InvalidIdHttpException('Conversation not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       })
       .then(async message => {
         return new MessageResponse({

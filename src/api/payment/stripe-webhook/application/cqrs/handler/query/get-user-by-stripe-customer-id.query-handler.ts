@@ -16,16 +16,18 @@ export class GetUserByStripeCustomerIdQueryHandler implements IQueryHandler<GetU
   async execute(query: GetUserByStripeCustomerIdQuery): Promise<UserEntity> {
     return await this.userRepository
       .findOneOrFail({
+        withDeleted: true,
+        relations: ['profiles'],
         where: {
           stripeCustomerId: query.stripeCustomerId,
         },
       })
-      .catch(async (error: any) => {
+      .catch(async (error: Error) => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'userRepository.findOne',
             handler: 'GetUserByStripeCustomerIdQueryHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('User not found');

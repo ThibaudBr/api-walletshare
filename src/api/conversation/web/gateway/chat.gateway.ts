@@ -20,7 +20,6 @@ import { CreateJoinConversationDto } from '../../domain/dto/create-join-conversa
 import { GetMessageFromConversationRequest } from '../request/get-message-from-conversation.request';
 import { AuthService } from '../../../auth/application/auth.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {

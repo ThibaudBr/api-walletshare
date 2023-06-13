@@ -28,7 +28,7 @@ import { UserService } from './api/user/application/user.service';
 import { ConversationModule } from './api/conversation/conversation.module';
 import { NotificationModule } from './api/notification/notification.module';
 import * as Joi from 'joi';
-import { SubscriptionModule } from './api/payment/subscription/subscriptionModule';
+import { SubscriptionModule } from './api/payment/subscription/subscription.module';
 import { StripeWebhookModule } from './api/payment/stripe-webhook/stripe-webhook.module';
 import { StripeModule } from './api/payment/stripe/stripe.module';
 import { ProductModule } from './api/payment/product/product.module';
@@ -68,8 +68,6 @@ import { HttpModule } from '@nestjs/axios';
         AWS_MAX_FILE_SIZE_KILO: Joi.number().required(),
         PASSWORD_SUPER_ADMIN: Joi.string().required(),
         FRONTEND_URL: Joi.string().required(),
-        STRIPE_MONTHLY_SUBSCRIPTION_PRICE_ID: Joi.string().required(),
-        STRIP_MONTHLY_TRIAL_PERIOD_DAYS: Joi.number().required(),
         STRIPE_WEBHOOK_SECRET: Joi.string().required(),
         STRIPE_CURRENCY: Joi.string().required(),
         STRIPE_SECRET_KEY_TEST: Joi.string().required(),

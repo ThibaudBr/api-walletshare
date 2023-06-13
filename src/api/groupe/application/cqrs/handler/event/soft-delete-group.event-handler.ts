@@ -1,10 +1,5 @@
-import { EventBus, EventsHandler, IEventHandler } from '@nestjs/cqrs';
+import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { SoftDeleteGroupEvent } from '../../event/soft-delete-group.event';
-import { Repository } from 'typeorm';
-import { GroupEntity } from '../../../../domain/entities/group.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { ErrorSoftDeleteRuntimeException } from '../../../../../../util/exception/runtime-exception/error-soft-delete.runtime-exception';
-import { ErrorInvalidIdRuntimeException } from '../../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
 import { ApiLogService } from '../../../../../api-log/application/api-log.service';
 
 @EventsHandler(SoftDeleteGroupEvent)

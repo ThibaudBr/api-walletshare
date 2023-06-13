@@ -26,6 +26,7 @@ import { GetAllPriceQueryHandler } from './application/cqrs/handler/query/get-al
 import { GetAllPriceByProductIdQueryHandler } from './application/cqrs/handler/query/get-all-price-by-product-id.query-handler';
 import { GetPriceByIdQueryHandler } from './application/cqrs/handler/query/get-price-by-id.query-handler';
 import { HttpModule } from '@nestjs/axios';
+import { GetPriceByStripePriceIdQueryHandler } from './application/cqrs/handler/query/get-price-by-stripe-price-id.query-handler';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { HttpModule } from '@nestjs/axios';
     GetAllPriceQueryHandler,
     GetAllPriceByProductIdQueryHandler,
     GetPriceByIdQueryHandler,
+    GetPriceByStripePriceIdQueryHandler,
   ],
 })
 export class PriceModule {}
