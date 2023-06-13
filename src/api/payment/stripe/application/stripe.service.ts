@@ -38,7 +38,6 @@ import { DeleteCouponStripeCommand } from './cqrs/command/delete-coupon-stripe.c
 import { UpdateCouponStripeRequest } from '../web/request/update-coupon-stripe.request';
 import { CreateReferralCodeStripeRequest } from '../web/request/create-referral-code-stripe.request';
 import { CreateCouponStripeRequest } from '../web/request/create-coupon-stripe.request';
-import { UpdateUserRoleCommand } from '../../../user/application/cqrs/command/update-user-role.command';
 import { StripeWebhookSignatureEnum } from '../../stripe-webhook/domain/enum/stripe-webhook-signature.enum';
 import { GetInvoiceByStripeIdQuery } from './cqrs/query/get-invoice-by-stripe-id.query';
 

@@ -12,7 +12,7 @@ import { StripeWebhookService } from './application/stripe-webhook.service';
 import { CreateStripeEventCommandHandler } from './application/cqrs/handler/command/create-stripe-event.command-handler';
 import { CreateStripeEventEventHandler } from './application/cqrs/handler/event/create-stripe-event.event-handler';
 import { SubscriptionService } from '../subscription/application/subscription.service';
-import { SubscriptionModule } from '../subscription/subscriptionModule';
+import { SubscriptionModule } from '../subscription/subscription.module';
 import { StripeService } from '../stripe/application/stripe.service';
 import { HttpModule } from '@nestjs/axios';
 import { PriceModule } from '../price/price.module';
@@ -22,6 +22,10 @@ import { ProductService } from '../product/application/product.service';
 import { ProfileService } from '../../profile/application/profile.service';
 import { ProfileModule } from '../../profile/profile.module';
 import { GetUserByStripeCustomerIdQueryHandler } from './application/cqrs/handler/query/get-user-by-stripe-customer-id.query-handler';
+import { InvoiceModule } from '../invoices/invoice.module';
+import { InvoiceService } from '../invoices/application/invoice.service';
+import { UserService } from '../../user/application/user.service';
+import { UserModule } from '../../user/user.module';
 
 @Module({
   imports: [
@@ -33,16 +37,20 @@ import { GetUserByStripeCustomerIdQueryHandler } from './application/cqrs/handle
     PriceModule,
     ProductModule,
     ProfileModule,
+    InvoiceModule,
+    UserModule,
     HttpModule,
   ],
   providers: [
+    UserService,
     StripeService,
+    InvoiceService,
     SubscriptionService,
-    // log
-    ApiLogService,
     PriceService,
     ProductService,
     ProfileService,
+    // log
+    ApiLogService,
     CreateLogCommandHandler,
     // Stripe Webhook module
     StripeWebhookService,

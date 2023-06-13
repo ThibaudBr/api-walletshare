@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 @EventSubscriber()
 export class GroupMediaSubscriber implements EntitySubscriberInterface<GroupEntity> {
   constructor(private readonly configService: ConfigService) {}
+
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
   listenTo() {
     return GroupEntity;

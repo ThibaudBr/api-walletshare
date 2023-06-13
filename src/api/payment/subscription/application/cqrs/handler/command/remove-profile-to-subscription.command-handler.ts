@@ -51,7 +51,7 @@ export class RemoveProfileToSubscriptionCommandHandler implements ICommandHandle
         throw new Error('Profile not found');
       });
 
-    subscription.profileEmployeeId = subscription.profileEmployeeId.filter((curr: string) => curr !== profile.id);
+    subscription.profileEmployeeIds = subscription.profileEmployeeIds.filter((curr: string) => curr !== profile.id);
 
     await this.subscriptionRepository.save(subscription).catch(async (error: Error) => {
       await this.eventBus.publish(

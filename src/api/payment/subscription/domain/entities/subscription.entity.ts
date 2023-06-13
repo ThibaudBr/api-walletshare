@@ -4,7 +4,6 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -54,8 +53,8 @@ export class SubscriptionEntity extends BaseEntity {
   @Column({ name: 'profile_owner_id', type: 'varchar', nullable: true })
   public profileOwnerId?: string;
 
-  @Column({ name: 'profile_employee_id', type: 'array' })
-  public profileEmployeeId: string[] = [];
+  @Column({ name: 'profile_employee_id', array: true, type: 'text', default: [] })
+  public profileEmployeeIds: string[] = [];
 
   @Column({ name: 'canceled_at', type: 'date', nullable: true })
   @IsDate()
@@ -95,7 +94,7 @@ export class SubscriptionEntity extends BaseEntity {
 
   constructor(partial?: Partial<SubscriptionEntity>) {
     super();
-    this.profileEmployeeId = [];
+    this.profileEmployeeIds = [];
     Object.assign(this, partial);
   }
 }

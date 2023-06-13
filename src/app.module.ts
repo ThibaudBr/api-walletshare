@@ -28,7 +28,7 @@ import { UserService } from './api/user/application/user.service';
 import { ConversationModule } from './api/conversation/conversation.module';
 import { NotificationModule } from './api/notification/notification.module';
 import * as Joi from 'joi';
-import { SubscriptionModule } from './api/payment/subscription/subscriptionModule';
+import { SubscriptionModule } from './api/payment/subscription/subscription.module';
 import { StripeWebhookModule } from './api/payment/stripe-webhook/stripe-webhook.module';
 import { StripeModule } from './api/payment/stripe/stripe.module';
 import { ProductModule } from './api/payment/product/product.module';

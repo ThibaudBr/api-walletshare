@@ -17,6 +17,7 @@ import { UserService } from '../../../user/application/user.service';
 import { ProfileResponse } from '../../../profile/web/response/profile.response';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { RoleProfileEnum } from '../../../profile/domain/enum/role-profile.enum';
+import { UserRoleEnum } from '../../../user/domain/enum/user-role.enum';
 
 @Injectable()
 export class StripeWebhookService {
@@ -42,7 +43,7 @@ export class StripeWebhookService {
         await this.processSubscriptionUpdated(event);
         break;
       case StripeEventTypeEnum.SUBSCRIPTION_DELETED:
-        console.log(event.data.object);
+        await this.processSubscriptionDeleted(event);
         break;
       default:
         throw new BadRequestException('Invalid Stripe event type');
@@ -136,6 +137,37 @@ export class StripeWebhookService {
     );
     if (subscriptionEntity.stripeLatestInvoiceId !== latestInvoiceId) {
       await this.invoiceService.createInvoiceFromStripeInvoiceId(latestInvoiceId, subscriptionEntity, userEntity);
+    }
+  }
+
+  private async processSubscriptionDeleted(event: Stripe.Event): Promise<void> {
+    // parse Stripe.event
+    const stripeSubscription: Stripe.Subscription = event.data.object as Stripe.Subscription;
+    const stripeCustomerId: string = stripeSubscription.customer as string;
+    const priceStripeId: string = stripeSubscription.items.data[0].price.id;
+
+    // get full object
+    const userEntity: UserEntity = await this.getUserByStripeCustomerId(stripeCustomerId);
+    const priceEntity: PriceEntity = await this.getPriceByStripePriceId(priceStripeId);
+    const productEntity: ProductEntity = priceEntity.product;
+
+    const subscriptionEntity: SubscriptionEntity = await this.subscriptionService.getSubscriptionByStripeSubscriptionId(
+      stripeSubscription.id,
+    );
+
+    // update owner subscription Roles
+    userEntity.roles = userEntity.roles.filter((role: UserRoleEnum) => role !== productEntity.userRoleToGive);
+    await this.userService.updateRoles(userEntity.id, userEntity.roles);
+
+    if (subscriptionEntity.price.product.userRoleToGive === UserRoleEnum.COMPANY_ACCOUNT) {
+      // soft remove owner subscription Profile
+      if (!subscriptionEntity.profileOwnerId) throw new BadRequestException('Subscription has no profile owner');
+      await this.profileService.softRemoveProfile(subscriptionEntity.profileOwnerId);
+    } else if (subscriptionEntity.price.product.userRoleToGive === UserRoleEnum.PREMIUM_ACCOUNT) {
+      // update owner subscription Profile
+      if (!subscriptionEntity.profileOwnerId) throw new BadRequestException('Subscription has no profile owner');
+
+      await this.profileService.updateRoleProfile(subscriptionEntity.profileOwnerId, RoleProfileEnum.CLASSIC);
     }
   }
 }

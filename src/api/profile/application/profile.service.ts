@@ -116,7 +116,7 @@ export class ProfileService {
     }
   }
 
-  async softDeleteProfile(id: string): Promise<void> {
+  async softRemoveProfile(id: string): Promise<void> {
     try {
       return await this.commandBus.execute(
         new SoftDeleteProfileCommand({

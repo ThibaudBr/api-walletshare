@@ -55,7 +55,7 @@ export class AssignProfileToSubscriptionCommandHandler implements ICommandHandle
     if (command.isSubscriptionOwner) {
       subscription.profileOwnerId = profile.id;
     } else {
-      subscription.profileEmployeeId.push(profile.id);
+      subscription.profileEmployeeIds.push(profile.id);
     }
     await this.subscriptionRepository.save(subscription).catch(async (error: Error) => {
       await this.eventBus.publish(

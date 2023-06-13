@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateConnectedUserEvent } from '../../event/create-connected-user.event';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
-import { error } from 'winston';
 
 @CommandHandler(CreateConnectedUserCommand)
 export class CreateConnectedUserCommandHandler implements ICommandHandler<CreateConnectedUserCommand> {

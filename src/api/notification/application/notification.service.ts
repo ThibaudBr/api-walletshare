@@ -172,6 +172,14 @@ export class NotificationService {
       });
   }
 
+  async getAllUnreadNotificationCount(): Promise<number> {
+    return await this.getAllNotifications().then((notifications: NotificationResponse[]) => {
+      return notifications.filter((notification: NotificationResponse) => {
+        return !notification.isRead;
+      }).length;
+    });
+  }
+
   private async isNotificationOwnedByUserId(userId: string, notificationId: string): Promise<boolean> {
     return await this.queryBus
       .execute(
@@ -188,13 +196,5 @@ export class NotificationService {
           return notificationEntity.id === notificationId;
         });
       });
-  }
-
-  async getAllUnreadNotificationCount(): Promise<number> {
-    return await this.getAllNotifications().then((notifications: NotificationResponse[]) => {
-      return notifications.filter((notification: NotificationResponse) => {
-        return !notification.isRead;
-      }).length;
-    });
   }
 }

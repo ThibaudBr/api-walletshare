@@ -3,23 +3,18 @@ import { StripeService } from '../../stripe/application/stripe.service';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import Stripe from 'stripe';
 import { ErrorCustomEvent } from '../../../../util/exception/error-handler/error-custom.event';
-import { ConfigService } from '@nestjs/config';
-import { CreateSubscriptionRequest } from '../web/request/create-subscription.request';
 import { PriceService } from '../../price/application/price.service';
-import { PriceResponse } from '../../price/web/response/price.response';
 import { UserEntity } from '../../../user/domain/entities/user.entity';
-import { GetUserWithReferralCodeByUserIdQuery } from './cqrs/query/get-user-with-referral-code-by-user-id.query';
 import { CreateSubscriptionCommand } from './cqrs/command/create-subscription.command';
-import { CreateUsedReferralCodeCommand } from './cqrs/command/create-used-referral-code.command';
 import { CancelSubscriptionCommand } from './cqrs/command/cancel-subscription.command';
 import { UpdateAccountStatusCommand } from './cqrs/command/update-account-status.command';
 import { UserAccountStatusEnum } from '../../../user/domain/enum/user-account-status.enum';
 import { GetAllActiveSubscriptionQuery } from './cqrs/query/get-all-active-subscription.query';
 import { SubscriptionEntity } from '../domain/entities/subscription.entity';
 import { PriceEntity } from '../../price/domain/entities/price.entity';
-import { ProductEntity } from '../../product/domain/entities/product.entity';
 import { AssignProfileToSubscriptionCommand } from './cqrs/command/assign-profile-to-subscription.command';
 import { UpdateSubscriptionCommand } from './cqrs/command/update-subscription.command';
+import { GetSubscriptionByStripeSubscriptionIdQuery } from './cqrs/query/get-subscription-by-stripe-subscription-id.query';
 
 @Injectable()
 export class SubscriptionService {
@@ -29,7 +24,6 @@ export class SubscriptionService {
     private readonly eventBus: EventBus,
     private readonly stripeService: StripeService,
     private readonly priceService: PriceService,
-    private readonly configService: ConfigService,
   ) {}
 
   async getListSubscription(
@@ -115,32 +109,6 @@ export class SubscriptionService {
       });
   }
 
-  private async isUserAlreadySubscribed(stripeCustomerId: string, priceId: string): Promise<boolean> {
-    const subscription: Stripe.ApiList<Stripe.Subscription> = await this.stripeService.getListSubscription(
-      stripeCustomerId,
-      priceId,
-    );
-
-    if (subscription.data.length > 0) {
-      const latestSubscription: Stripe.Subscription | undefined = subscription.data.find(subscription => {
-        if (subscription.latest_invoice === subscription.id) {
-          return subscription;
-        }
-      });
-      if (latestSubscription?.status === 'active' || latestSubscription?.status === 'trialing') {
-        await this.eventBus.publish(
-          new ErrorCustomEvent({
-            handler: 'SubscriptionService',
-            error: 'User already have a subscription',
-            localisation: 'stripe.subscriptions.list',
-          }),
-        );
-        throw new BadRequestException('User already have an active subscription');
-      }
-    }
-    return false;
-  }
-
   async assignProfileToSubscription(
     subscriptionId: string,
     profileId: string,
@@ -181,5 +149,44 @@ export class SubscriptionService {
           throw new InternalServerErrorException(error.message);
         throw new InternalServerErrorException(error.message);
       });
+  }
+
+  async getSubscriptionByStripeSubscriptionId(stripeSubscriptionId: string): Promise<SubscriptionEntity> {
+    return await this.queryBus
+      .execute(
+        new GetSubscriptionByStripeSubscriptionIdQuery({
+          stripeSubscriptionId: stripeSubscriptionId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Subscription not found') throw new BadRequestException(error.message);
+        throw new InternalServerErrorException(error.message);
+      });
+  }
+
+  private async isUserAlreadySubscribed(stripeCustomerId: string, priceId: string): Promise<boolean> {
+    const subscription: Stripe.ApiList<Stripe.Subscription> = await this.stripeService.getListSubscription(
+      stripeCustomerId,
+      priceId,
+    );
+
+    if (subscription.data.length > 0) {
+      const latestSubscription: Stripe.Subscription | undefined = subscription.data.find(subscription => {
+        if (subscription.latest_invoice === subscription.id) {
+          return subscription;
+        }
+      });
+      if (latestSubscription?.status === 'active' || latestSubscription?.status === 'trialing') {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'SubscriptionService',
+            error: 'User already have a subscription',
+            localisation: 'stripe.subscriptions.list',
+          }),
+        );
+        throw new BadRequestException('User already have an active subscription');
+      }
+    }
+    return false;
   }
 }

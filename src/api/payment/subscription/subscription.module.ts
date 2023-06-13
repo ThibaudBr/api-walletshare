@@ -31,12 +31,15 @@ import { UpdateSubscriptionCommandHandler } from './application/cqrs/handler/com
 import { UpdateSubscriptionEventHandler } from './application/cqrs/handler/event/update-subscription.event-handler';
 import { UpdateAccountStatusEventHandler } from './application/cqrs/handler/event/update-account-status.event-handler';
 import { CreateUsedReferralCodeEventHandler } from './application/cqrs/handler/event/create-used-referral-code.event-handler';
+import { GetSubscriptionByStripeSubscriptionIdQueryHandler } from './application/cqrs/handler/query/get-subcription-by-stripe-subscription-id.query-handler';
+import { PriceEntity } from '../price/domain/entities/price.entity';
+import { ReferralCodeEntity } from '../../user/domain/entities/referral-code.entity';
 
 @Module({
   controllers: [SubscriptionController],
   imports: [
     ConfigModule,
-    TypeOrmModule.forFeature([UserEntity, SubscriptionEntity, ProfileEntity]),
+    TypeOrmModule.forFeature([UserEntity, SubscriptionEntity, ProfileEntity, PriceEntity, ReferralCodeEntity]),
     CqrsModule,
     ApiLogModule,
     StripeModule,
@@ -51,7 +54,6 @@ import { CreateUsedReferralCodeEventHandler } from './application/cqrs/handler/e
     PriceService,
     CreateLogCommandHandler,
     // Subscription module
-    SubscriptionService,
     SubscriptionService,
     // Command Handlers
     AssignProfileToSubscriptionCommandHandler,
@@ -72,6 +74,7 @@ import { CreateUsedReferralCodeEventHandler } from './application/cqrs/handler/e
     // Query Handlers
     GetAllActiveSubscriptionQueryHandler,
     GetUserWithReferralCodeByUserIdQueryHandler,
+    GetSubscriptionByStripeSubscriptionIdQueryHandler,
   ],
 })
 export class SubscriptionModule {}

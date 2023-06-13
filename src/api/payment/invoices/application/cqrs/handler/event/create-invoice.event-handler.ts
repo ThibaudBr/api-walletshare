@@ -1,4 +1,4 @@
-import { EventBus, EventsHandler, IEventHandler } from '@nestjs/cqrs';
+import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { CreateInvoiceEvent } from '../../event/create-invoice.event';
 import { ApiLogService } from '../../../../../../api-log/application/api-log.service';
 

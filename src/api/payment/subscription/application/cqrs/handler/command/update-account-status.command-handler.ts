@@ -1,4 +1,4 @@
-import { CommandHandler, EventBus, ICommand, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { UpdateAccountStatusCommand } from '../../command/update-account-status.command';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../../../../../../user/domain/entities/user.entity';
