@@ -36,7 +36,7 @@ export class ProfileService {
 
   async createProfile(userId: string, createProfileRequest: CreateProfileRequest): Promise<ProfileResponse> {
     try {
-      if (createProfileRequest.roleProfile !== RoleProfileEnum.CLASSIC) {
+      if (createProfileRequest.roleProfile === RoleProfileEnum.CLASSIC) {
         await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'ProfileService.createProfile',
