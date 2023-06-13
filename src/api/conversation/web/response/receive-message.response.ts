@@ -1,6 +1,7 @@
 import { CardResponse } from '../../../card/web/response/card.response';
 
 export class ReceiveMessageResponse {
+  public readonly conversationId: string;
   public readonly content: string;
   public readonly author: CardResponse;
 

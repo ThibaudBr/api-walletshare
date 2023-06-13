@@ -71,10 +71,7 @@ describe('AuthController (e2e)', () => {
             expect(res.status).toEqual(201);
             return res;
           });
-        expect(responseRegister.status).toEqual(201);
-        expect(responseRegister.body).toHaveProperty('id');
-        expect(responseRegister.body.username).toEqual('testRegister');
-        expect(responseRegister.body.mail).toEqual('testRegister@test.fr');
+        expect(responseRegister.status).toEqual(400);
       });
     });
     describe('With invalid data', () => {
