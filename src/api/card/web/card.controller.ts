@@ -190,7 +190,7 @@ export class CardController {
     );
   }
 
-  @Post('/admin/create-card/:profileId')
+  @Post('/admin/create-card-admin/:profileId')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async createCard(@Param('profileId') profileId: string, @Body() createCardRequest: CreateCardRequest): Promise<void> {

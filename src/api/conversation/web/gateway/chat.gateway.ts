@@ -19,7 +19,7 @@ import { JoinConversationRequest } from '../request/join-conversation.request';
 import { CreateJoinConversationDto } from '../../domain/dto/create-join-conversation.dto';
 import { GetMessageFromConversationRequest } from '../request/get-message-from-conversation.request';
 import { AuthService } from '../../../auth/application/auth.service';
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus } from '@nestjs/common';
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -155,30 +155,35 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @MessageBody() sentMessage: SentMessageRequest,
     @ConnectedSocket() socket: Socket,
   ): Promise<ReceiveMessageResponse> {
-    const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket);
-    const author: CardEntity = await this.conversationService.getCardById(user, sentMessage.cardId);
-    const conversation: ConversationEntity = await this.conversationService.getConversationById(
-      sentMessage.conversationId,
-    );
-    const message: MessageEntity = await this.conversationService.saveMessage(
-      sentMessage.content,
-      author,
-      conversation,
-    );
+    try {
+      const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket);
+      const author: CardEntity = await this.conversationService.getCardById(user, sentMessage.cardId);
+      const conversation: ConversationEntity = await this.conversationService.getConversationById(
+        sentMessage.conversationId,
+      );
+      const message: MessageEntity = await this.conversationService.saveMessage(
+        sentMessage.content,
+        author,
+        conversation,
+      );
 
-    const messageResponse: ReceiveMessageResponse = new ReceiveMessageResponse({
-      conversationId: conversation.id,
-      content: message.content,
-      author: {
-        ...author,
-      },
-    });
+      const messageResponse: ReceiveMessageResponse = new ReceiveMessageResponse({
+        conversationId: conversation.id,
+        content: message.content,
+        author: {
+          ...author,
+        },
+      });
 
-    for (const joinedProfile of conversation.joinedProfiles) {
-      this.server.to(joinedProfile.socketId).emit('receive_message', messageResponse);
+      for (const joinedProfile of conversation.joinedProfiles) {
+        this.server.to(joinedProfile.socketId).emit('receive_message', messageResponse);
+      }
+
+      return messageResponse;
+    } catch (e) {
+      await this.disconnect(socket);
+      throw new BadRequestException();
     }
-
-    return messageResponse;
   }
 
   @SubscribeMessage('join_conversation')
