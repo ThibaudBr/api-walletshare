@@ -31,12 +31,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.isFirstTime = true;
   }
 
-  // listen for send_message events
-  @SubscribeMessage('send_message_test')
-  listenForMessagesTest(@MessageBody() message: string): void {
-    this.server.sockets.emit('receive_message', message);
-  }
-
   async handleConnection(socket: Socket): Promise<void> {
     try {
       if (this.isFirstTime) {
@@ -87,7 +81,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
               userId: user.id,
             });
             await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
-            this.server.emit('conversations', createJoinConversationDto.conversationEntity);
+            this.server.to(socket.id).emit('conversations', createJoinConversationDto.conversationEntity);
           }
         }
       }
@@ -150,7 +144,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
             userId: user.id,
           });
           await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
-          this.server.emit('conversations', createJoinConversationDto.conversationEntity);
+          this.server.to(socket.id).emit('conversations', createJoinConversationDto.conversationEntity);
         }
       }
     }
@@ -173,12 +167,16 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     );
 
     const messageResponse: ReceiveMessageResponse = new ReceiveMessageResponse({
+      conversationId: conversation.id,
       content: message.content,
       author: {
         ...author,
       },
     });
-    this.server.sockets.emit('receive_message', messageResponse);
+
+    for (const joinedProfile of conversation.joinedProfiles) {
+      this.server.to(joinedProfile.socketId).emit('receive_message', messageResponse);
+    }
 
     return messageResponse;
   }
@@ -219,12 +217,13 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     const messageResponses: ReceiveMessageResponse[] = conversation.messages.map((message: MessageEntity) => {
       return new ReceiveMessageResponse({
+        conversationId: conversation.id,
         content: message.content,
         author: {
           ...message.author,
         },
       });
     });
-    socket.emit('send_all_messages', messageResponses);
+    this.server.to(socket.id).emit('send_all_messages', messageResponses);
   }
 }
