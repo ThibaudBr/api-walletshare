@@ -22,53 +22,36 @@ export class CreateSubscriptionCommandHandler implements ICommandHandler<CreateS
   ) {}
 
   async execute(command: CreateSubscriptionCommand): Promise<SubscriptionEntity> {
-    const user = await this.userRepository
-      .findOneOrFail({
-        where: {
-          id: command.userId,
-        },
-      })
-      .catch(error => {
-        this.eventBus.publish(
-          new ErrorCustomEvent({
-            handler: 'CreateSubscriptionEventHandler',
-            error: error.message,
-            localisation: 'user.find-one',
-          }),
-        );
-        throw new Error('User not found');
-      });
-
-    const price = await this.priceRepository
-      .findOneOrFail({
-        where: {
-          id: command.priceId,
-        },
-      })
-      .catch(error => {
-        this.eventBus.publish(
-          new ErrorCustomEvent({
-            handler: 'CreateSubscriptionEventHandler',
-            error: error.message,
-            localisation: 'price.find-one',
-          }),
-        );
-        throw new Error('Price not found');
-      });
-
     const subscription = new SubscriptionEntity({
-      user: user,
-      price: price,
-      subscriptionStripeId: command.subscriptionStripeId,
-      status: StatusSubscriptionEnum.PENDING,
+      user: command.userEntity,
+      price: command.priceEntity,
+      subscriptionStripeId: command.stripeSubscription.id,
+      stripeLatestInvoiceId: command.latestInvoiceId,
+      trialEndDate: command.stripeSubscription.trial_end ? new Date(command.stripeSubscription.trial_end) : undefined,
+      trialStartDate: command.stripeSubscription.trial_start
+        ? new Date(command.stripeSubscription.trial_start)
+        : undefined,
+      status: StatusSubscriptionEnum.ACTIVE,
+      currentPeriodStart: new Date(command.stripeSubscription.current_period_start),
+      currentPeriodEnd: new Date(command.stripeSubscription.current_period_end),
     });
-
-    const createdSubscription: SubscriptionEntity = await this.subscriptionRepository.save(subscription);
+    const createdSubscription: SubscriptionEntity = await this.subscriptionRepository
+      .save(subscription)
+      .catch(async (error: Error) => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'CreateSubscriptionCommandHandler',
+            error: error.message,
+            localisation: 'subscription.repository.save',
+          }),
+        );
+        throw new Error('Error while saving subscription');
+      });
 
     this.eventBus.publish(
       new CreateSubscriptionEvent({
         subscriptionId: subscription.id,
-        userId: user.id,
+        userId: command.userEntity.id,
       }),
     );
 

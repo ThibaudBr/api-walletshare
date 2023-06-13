@@ -161,7 +161,6 @@ export class UserService {
       );
 
       try {
-        await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
         await this.commandBus.execute(
           new SendMailCommand({
             email: generateUserDto.mail,
@@ -169,6 +168,7 @@ export class UserService {
             title: 'Création de compte Wallet Share',
           }),
         );
+        await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
       } catch (error) {}
       return user;
     } catch (error) {

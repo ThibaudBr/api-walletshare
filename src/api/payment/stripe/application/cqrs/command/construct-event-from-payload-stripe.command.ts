@@ -1,4 +1,4 @@
-import {StripeWebhookSignatureEnum} from "../../../../stripe-webhook/domain/enum/stripe-webhook-signature.enum";
+import { StripeWebhookSignatureEnum } from '../../../../stripe-webhook/domain/enum/stripe-webhook-signature.enum';
 
 export class ConstructEventFromPayloadStripeCommand {
   public readonly payload: Buffer;

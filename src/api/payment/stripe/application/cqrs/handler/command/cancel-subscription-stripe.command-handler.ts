@@ -23,7 +23,9 @@ export class CancelSubscriptionStripeCommandHandler implements ICommandHandler<C
 
   async execute(command: CancelSubscriptionStripeCommand): Promise<Stripe.Response<Stripe.Subscription>> {
     const subscription: Stripe.Response<Stripe.Subscription> = await this.stripe.subscriptions
-      .cancel(command.subscriptionId)
+      .update(command.subscriptionId, {
+        cancel_at_period_end: true,
+      })
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({

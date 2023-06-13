@@ -26,9 +26,13 @@ export class SubscriptionEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'start_date', type: 'date' })
+  @Column({ name: 'current_period_start', type: 'date' })
   @IsDate()
-  public startDate: Date;
+  public currentPeriodStart: Date;
+
+  @Column({ name: 'current_period_end', type: 'date' })
+  @IsDate()
+  public currentPeriodEnd: Date;
 
   @Column({ type: 'enum', enum: StatusSubscriptionEnum, default: StatusSubscriptionEnum.ACTIVE })
   public status: StatusSubscriptionEnum;
@@ -43,6 +47,22 @@ export class SubscriptionEntity extends BaseEntity {
 
   @Column({ name: 'subscription_stripe_id', type: 'varchar', nullable: true })
   public subscriptionStripeId?: string;
+
+  @Column({ name: 'stripe_latest_invoice_id', type: 'varchar', nullable: true })
+  stripeLatestInvoiceId?: string;
+
+  @Column({ name: 'profile_owner_id', type: 'varchar', nullable: true })
+  public profileOwnerId?: string;
+
+  @Column({ name: 'profile_employee_id', type: 'array' })
+  public profileEmployeeId: string[] = [];
+
+  @Column({ name: 'canceled_at', type: 'date', nullable: true })
+  @IsDate()
+  public canceledAt?: Date;
+
+  @Column({ name: 'cancel_at_period_end', type: 'boolean', default: false })
+  public cancelAtPeriodEnd: boolean;
 
   // ______________________________________________________
   // Relations
@@ -75,6 +95,7 @@ export class SubscriptionEntity extends BaseEntity {
 
   constructor(partial?: Partial<SubscriptionEntity>) {
     super();
+    this.profileEmployeeId = [];
     Object.assign(this, partial);
   }
 }

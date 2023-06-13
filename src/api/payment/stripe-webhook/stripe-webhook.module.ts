@@ -12,8 +12,6 @@ import { StripeWebhookService } from './application/stripe-webhook.service';
 import { CreateStripeEventCommandHandler } from './application/cqrs/handler/command/create-stripe-event.command-handler';
 import { CreateStripeEventEventHandler } from './application/cqrs/handler/event/create-stripe-event.event-handler';
 import { SubscriptionService } from '../subscription/application/subscription.service';
-import { UpdateMonthlySubscriptionStatusCommandHandler } from '../subscription/application/cqrs/handler/command/update-monthly-subscription-status.command-handler';
-import { UpdateMonthlySubscriptionStatusEventHandler } from '../subscription/application/cqrs/handler/event/update-monthly-subscription-status.event-handler';
 import { SubscriptionModule } from '../subscription/subscriptionModule';
 import { StripeService } from '../stripe/application/stripe.service';
 import { HttpModule } from '@nestjs/axios';
@@ -23,6 +21,7 @@ import { ProductModule } from '../product/product.module';
 import { ProductService } from '../product/application/product.service';
 import { ProfileService } from '../../profile/application/profile.service';
 import { ProfileModule } from '../../profile/profile.module';
+import { GetUserByStripeCustomerIdQueryHandler } from './application/cqrs/handler/query/get-user-by-stripe-customer-id.query-handler';
 
 @Module({
   imports: [
@@ -36,7 +35,6 @@ import { ProfileModule } from '../../profile/profile.module';
     ProfileModule,
     HttpModule,
   ],
-  controllers: [StripeWebhookController],
   providers: [
     StripeService,
     SubscriptionService,
@@ -52,13 +50,11 @@ import { ProfileModule } from '../../profile/profile.module';
     CreateStripeEventCommandHandler,
     // Event Handlers
     CreateStripeEventEventHandler,
+    // Query Handlers
+    GetUserByStripeCustomerIdQueryHandler,
     // Subscription module
     SubscriptionService,
-    // Command Handlers
-    UpdateMonthlySubscriptionStatusCommandHandler,
-    // Event Handlers
-    UpdateMonthlySubscriptionStatusEventHandler,
-    // Query Handlers
   ],
+  controllers: [StripeWebhookController],
 })
 export class StripeWebhookModule {}

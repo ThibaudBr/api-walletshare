@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import Stripe from 'stripe';
 import { CreateStripeCustomerCommand } from './cqrs/command/create-stripe-customer.command';
 import { InvalidIdHttpException } from '../../../../util/exception/custom-http-exception/invalid-id.http-exception';
@@ -40,6 +40,7 @@ import { CreateReferralCodeStripeRequest } from '../web/request/create-referral-
 import { CreateCouponStripeRequest } from '../web/request/create-coupon-stripe.request';
 import { UpdateUserRoleCommand } from '../../../user/application/cqrs/command/update-user-role.command';
 import { StripeWebhookSignatureEnum } from '../../stripe-webhook/domain/enum/stripe-webhook-signature.enum';
+import { GetInvoiceByStripeIdQuery } from './cqrs/query/get-invoice-by-stripe-id.query';
 
 @Injectable()
 export class StripeService {
@@ -381,16 +382,6 @@ export class StripeService {
     );
   }
 
-  async processInvoice(event: Stripe.Event, jsonObject: object): Promise<void> {
-    // TODO: not implemented
-    throw new Error('Method not implemented.');
-  }
-
-  async processCharge(event: Stripe.Event, jsonObject: object): Promise<void> {
-    // TODO: not implemented
-    throw new Error('Method not implemented.');
-  }
-
   async getSubscription(subscriptionId: string): Promise<Stripe.Response<Stripe.Subscription>> {
     return await this.queryBus
       .execute(
@@ -401,7 +392,7 @@ export class StripeService {
       .catch(error => {
         if (error.message === 'Error while fetching subscription')
           throw new InvalidIdHttpException('Error while fetching subscription');
-        throw new Error('Error while fetching subscription');
+        throw new InternalServerErrorException('Error while fetching subscription');
       });
   }
 
@@ -415,7 +406,7 @@ export class StripeService {
       .catch(error => {
         if (error.message === 'Error while fetching subscriptions')
           throw new InvalidIdHttpException('Error while fetching subscriptions');
-        throw new Error('Error while fetching subscriptions');
+        throw new InternalServerErrorException('Error while fetching subscriptions');
       });
   }
 
@@ -429,7 +420,7 @@ export class StripeService {
       .catch(error => {
         if (error.message === 'Error while fetching invoices')
           throw new InvalidIdHttpException('Error while fetching invoices');
-        throw new Error('Error while fetching invoices');
+        throw new InternalServerErrorException('Error while fetching invoices');
       });
   }
 
@@ -447,7 +438,7 @@ export class StripeService {
       .catch(error => {
         if (error.message === 'Error during the creation of the coupon')
           throw new InvalidIdHttpException('Error during the creation of the coupon');
-        throw new Error('Error during the creation of the coupon');
+        throw new InternalServerErrorException('Error during the creation of the coupon');
       });
   }
 
@@ -466,7 +457,7 @@ export class StripeService {
       .catch(error => {
         if (error.message === 'Error during the creation of the coupon')
           throw new InvalidIdHttpException('Error during the creation of the coupon');
-        throw new Error('Error during the creation of the coupon');
+        throw new InternalServerErrorException('Error during the creation of the coupon');
       });
   }
 
@@ -480,7 +471,7 @@ export class StripeService {
       .catch(error => {
         if (error.message === 'Error during the remove of the coupon')
           throw new InvalidIdHttpException('Error during the remove of the coupon');
-        throw new Error('Error during the remove of the coupon');
+        throw new InternalServerErrorException('Error during the remove of the coupon');
       });
   }
 
@@ -499,7 +490,21 @@ export class StripeService {
       .catch(error => {
         if (error.message === 'Error during the update of the coupon')
           throw new InvalidIdHttpException('Error during the update of the coupon');
-        throw new Error('Error during the update of the coupon');
+        throw new InternalServerErrorException('Error during the update of the coupon');
+      });
+  }
+
+  async getInvoiceByStripeId(stripeInvoiceId: string): Promise<Stripe.Invoice> {
+    return await this.queryBus
+      .execute(
+        new GetInvoiceByStripeIdQuery({
+          stripeInvoiceId: stripeInvoiceId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while fetching invoice')
+          throw new InvalidIdHttpException('Error while fetching invoice');
+        throw new InternalServerErrorException('Error while fetching invoice from stripe');
       });
   }
 }
