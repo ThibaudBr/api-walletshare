@@ -52,6 +52,10 @@ import { SoftRemoveCardPresetEventHandler } from './application/cqrs/handler/eve
 import { UpdateCardPresetEventHandler } from './application/cqrs/handler/event/update-card-preset.event-handler';
 import { GetAllCardPresetByCompanyIdQueryHandler } from './application/cqrs/handler/query/get-all-card-preset-by-company-id.query-handler';
 import { GetCardPresetByIdQueryHandler } from './application/cqrs/handler/query/get-card-preset-by-id.query-handler';
+import { UpdateUserRoleCommandHandler } from '../user/application/cqrs/handler/command/update-user-role.command-handler';
+import { UpdateUserRoleEventHandler } from '../user/application/cqrs/handler/event/update-user-role.event-handler';
+import { SubscriptionEntity } from '../payment/subscription/domain/entities/subscription.entity';
+import { GetUserByIdQueryHandler } from './application/cqrs/handler/query/get-user-by-id.query-handler';
 
 @Module({
   controllers: [CompanyController],
@@ -64,6 +68,7 @@ import { GetCardPresetByIdQueryHandler } from './application/cqrs/handler/query/
       OccupationEntity,
       ProfileEntity,
       CardPresetEntity,
+      SubscriptionEntity,
     ]),
     CqrsModule,
     ApiLogModule,
@@ -114,7 +119,11 @@ import { GetCardPresetByIdQueryHandler } from './application/cqrs/handler/query/
     GetCompanyWithProfileIdQueryHandler,
     GetCompanyWithUserIdQueryHandler,
     GetEmployeeByCompanyIdQueryHandler,
+    GetUserByIdQueryHandler,
     IsRoleInCompanyQueryHandler,
+    // Import handlers
+    UpdateUserRoleCommandHandler,
+    UpdateUserRoleEventHandler,
   ],
 })
 export class CompanyModule {}
