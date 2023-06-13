@@ -5,6 +5,7 @@ import { RoleGuard } from '../../../auth/web/guards/role.guard';
 import { UserRoleEnum } from '../../../user/domain/enum/user-role.enum';
 import { RequestUser } from '../../../auth/domain/interface/request-user.interface';
 import { CancelSubscriptionRequest } from './request/cancel-subscription.request';
+import { SubscriptionEntity } from '../domain/entities/subscription.entity';
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -49,5 +50,11 @@ export class SubscriptionController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllSubscriptionsCount(): Promise<number> {
     return await this.subscriptionService.getAllActiveSubscriptionsCount();
+  }
+
+  @Get('/admin/get-all-subscriptions')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getAllSubscriptions(): Promise<SubscriptionEntity[]> {
+    return await this.subscriptionService.getAllSubscriptions();
   }
 }
