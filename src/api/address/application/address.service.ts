@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateAddressCommand } from './cqrs/command/create-address.command';
 import { CreateAddressRequest } from '../web/request/create-address.request';
@@ -41,7 +41,7 @@ export class AddressService {
       if (error.message instanceof Array) throw new InvalidParameterEntityHttpException(error);
       if (error.message === 'User or Company must be provided')
         throw new InvalidIdHttpException('must provide id for user or company');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
@@ -54,7 +54,7 @@ export class AddressService {
       )
       .catch(error => {
         if (error.message === 'Address not found') throw new InvalidIdHttpException('for address');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -67,7 +67,7 @@ export class AddressService {
       )
       .catch(error => {
         if (error.message === 'Address not found') throw new InvalidIdHttpException('for address');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -80,7 +80,7 @@ export class AddressService {
       )
       .catch(error => {
         if (error.message === 'Address not found') throw new InvalidIdHttpException('for address');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -94,7 +94,7 @@ export class AddressService {
       )
       .catch(error => {
         if (error.message === 'Address not found') throw new InvalidIdHttpException('for address');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -113,7 +113,7 @@ export class AddressService {
         if (error.message instanceof Array) throw new InvalidParameterEntityHttpException(error);
         if (error.message === 'User or Company must be provided')
           throw new InvalidIdHttpException('must provide id for user or company');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -137,7 +137,7 @@ export class AddressService {
         if (error.message instanceof Array) throw new InvalidParameterEntityHttpException(error);
         if (error.message === 'User or Company must be provided')
           throw new InvalidIdHttpException('must provide id for user or company');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -155,7 +155,7 @@ export class AddressService {
       )
       .catch(error => {
         if (error.message === 'Address not found') throw new InvalidIdHttpException('for address');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -168,7 +168,7 @@ export class AddressService {
       )
       .catch(error => {
         if (error.message === 'Address not found') throw new InvalidIdHttpException('for address');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -182,7 +182,7 @@ export class AddressService {
       )
       .catch(error => {
         if (error.message === 'Address not found') throw new InvalidIdHttpException('for address');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 }

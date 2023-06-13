@@ -59,7 +59,7 @@ export class SubscriptionService {
       .catch(async error => {
         if (error.message === 'Error while canceling subscription')
           throw new InternalServerErrorException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -80,7 +80,7 @@ export class SubscriptionService {
       .catch(async error => {
         if (error.message === 'Error while updating subscription')
           throw new InternalServerErrorException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -105,7 +105,7 @@ export class SubscriptionService {
       )
       .catch(async error => {
         if (error.message === 'Error while saving subscription') throw new InternalServerErrorException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
