@@ -2,12 +2,14 @@ import { CompanyEntity } from './company.entity';
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { MediaEntity } from '../../../media/domain/entities/media.entity';
@@ -47,4 +49,10 @@ export class CardPresetEntity extends BaseEntity {
   @OneToOne(() => MediaEntity, mediaEntity => mediaEntity.cardPresetMedia, { cascade: true, onDelete: 'SET NULL' })
   @JoinColumn()
   media?: MediaEntity;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
