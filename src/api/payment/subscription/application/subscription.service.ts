@@ -15,6 +15,7 @@ import { PriceEntity } from '../../price/domain/entities/price.entity';
 import { AssignProfileToSubscriptionCommand } from './cqrs/command/assign-profile-to-subscription.command';
 import { UpdateSubscriptionCommand } from './cqrs/command/update-subscription.command';
 import { GetSubscriptionByStripeSubscriptionIdQuery } from './cqrs/query/get-subscription-by-stripe-subscription-id.query';
+import { GetAllSubscriptionQuery } from './cqrs/query/get-all-subscription.query';
 
 @Injectable()
 export class SubscriptionService {
@@ -188,5 +189,9 @@ export class SubscriptionService {
       }
     }
     return false;
+  }
+
+  async getAllSubscriptions(): Promise<SubscriptionEntity[]> {
+    return await this.queryBus.execute(new GetAllSubscriptionQuery());
   }
 }

@@ -34,6 +34,7 @@ import { CreateUsedReferralCodeEventHandler } from './application/cqrs/handler/e
 import { GetSubscriptionByStripeSubscriptionIdQueryHandler } from './application/cqrs/handler/query/get-subcription-by-stripe-subscription-id.query-handler';
 import { PriceEntity } from '../price/domain/entities/price.entity';
 import { ReferralCodeEntity } from '../../user/domain/entities/referral-code.entity';
+import { GetAllSubscriptionQueryHandler } from './application/cqrs/handler/query/get-all-subscription.query-handler';
 
 @Module({
   controllers: [SubscriptionController],
@@ -73,6 +74,7 @@ import { ReferralCodeEntity } from '../../user/domain/entities/referral-code.ent
     UpdateSubscriptionEventHandler,
     // Query Handlers
     GetAllActiveSubscriptionQueryHandler,
+    GetAllSubscriptionQueryHandler,
     GetUserWithReferralCodeByUserIdQueryHandler,
     GetSubscriptionByStripeSubscriptionIdQueryHandler,
   ],

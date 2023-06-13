@@ -92,30 +92,21 @@ export class StripeWebhookService {
     await this.userService.updateRoles(userEntity.id, userEntity.roles);
 
     if (priceEntity.product.profileRoleToGive === RoleProfileEnum.COMPANY) {
-      const matchingProfile: ProfileEntity | undefined = userEntity.profiles.find(
-        (profileEntity: ProfileEntity) => profileEntity.roleProfile === productEntity.profileRoleToGive,
-      );
-      if (matchingProfile) {
-        await this.profileService.restoreProfile(matchingProfile.id);
-        await this.subscriptionService.assignProfileToSubscription(subscriptionEntity.id, matchingProfile.id, true);
-      } else {
-        const profileResponse: ProfileResponse = await this.profileService.createProfile(userEntity.id, {
-          userId: userEntity.id,
-          usernameProfile: userEntity.username ?? 'undefined',
-          roleProfile: productEntity.profileRoleToGive,
-          occupationsId: [],
-        });
-        await this.subscriptionService.assignProfileToSubscription(subscriptionEntity.id, profileResponse.id, true);
-      }
+      const profileResponse: ProfileResponse = await this.profileService.createProfile(userEntity.id, {
+        userId: userEntity.id,
+        usernameProfile: userEntity.username ?? 'undefined',
+        roleProfile: productEntity.profileRoleToGive,
+        occupationsId: [],
+      });
+      await this.subscriptionService.assignProfileToSubscription(subscriptionEntity.id, profileResponse.id, true);
     } else if (priceEntity.product.profileRoleToGive === RoleProfileEnum.PREMIUM) {
       const matchingProfile: ProfileEntity | undefined = userEntity.profiles.find(
-        (profileEntity: ProfileEntity) => profileEntity.roleProfile === productEntity.profileRoleToGive,
+        profile => profile.roleProfile === RoleProfileEnum.CLASSIC,
       );
-      if (matchingProfile) {
-        matchingProfile.roleProfile = RoleProfileEnum.PREMIUM;
-        await this.subscriptionService.assignProfileToSubscription(subscriptionEntity.id, matchingProfile.id, true);
-        await this.profileService.updateRoleProfile(matchingProfile.id, RoleProfileEnum.PREMIUM);
-      }
+      if (!matchingProfile) throw new BadRequestException('No matching profile found');
+      matchingProfile.roleProfile = RoleProfileEnum.PREMIUM;
+      await this.subscriptionService.assignProfileToSubscription(subscriptionEntity.id, matchingProfile.id, true);
+      await this.profileService.updateRoleProfile(matchingProfile.id, RoleProfileEnum.PREMIUM);
     }
   }
 
