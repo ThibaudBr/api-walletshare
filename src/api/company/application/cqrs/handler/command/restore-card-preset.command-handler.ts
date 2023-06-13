@@ -1,4 +1,4 @@
-import { CommandHandler, EventBus, ICommand, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { RestoreCardPresetCommand } from '../../command/restore-card-preset.command';
 import { RestoreCardPresetEvent } from '../../event/restore-card-preset.event';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';

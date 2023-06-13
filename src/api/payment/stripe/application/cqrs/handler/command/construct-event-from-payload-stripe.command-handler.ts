@@ -4,7 +4,7 @@ import Stripe from 'stripe';
 import { ConstructEventFromPayloadStripeEvent } from '../../event/construct-event-from-payload-stripe.event';
 import { ConfigService } from '@nestjs/config';
 import { ErrorCustomEvent } from '../../../../../../../util/exception/error-handler/error-custom.event';
-import { BadRequestException, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common';
 
 @CommandHandler(ConstructEventFromPayloadStripeCommand)
 export class ConstructEventFromPayloadStripeCommandHandler

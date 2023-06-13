@@ -54,6 +54,7 @@ import { DeleteCouponStripeEventHandler } from './application/cqrs/handler/event
 import { UpdateCouponStripeEventHandler } from './application/cqrs/handler/event/update-coupon-stripe.event-handler';
 import { GetCouponByIdStripeQueryHandler } from './application/cqrs/handler/query/get-coupon-by-id-stripe.query-handler';
 import { HttpModule } from '@nestjs/axios';
+import { GetInvoiceByStripeIdQueryHandler } from './application/cqrs/handler/query/get-invoice-by-stripe-id.query-handler';
 
 @Module({
   imports: [ConfigModule, TypeOrmModule.forFeature([UserEntity]), CqrsModule, ApiLogModule, HttpModule],
@@ -105,14 +106,16 @@ import { HttpModule } from '@nestjs/axios';
     GetAllPriceStripeQueryHandler,
     GetAllProductStripeQueryHandler,
     GetAllSubscriptionFromCustomerIdStripeQueryHandler,
-    GetCouponByIdStripeQueryHandler,
     GetAllSubscriptionFromCustomerIdStripeQueryHandler,
+    GetCouponByIdStripeQueryHandler,
+    GetInvoiceByStripeIdQueryHandler,
     GetListSavedCreditCardOfUserQueryHandler,
     GetListSubscriptionStripeQueryHandler,
     GetPriceByIdStripeQueryHandler,
     GetProductStripeByIdQueryHandler,
     GetSubscriptionStripeQueryHandler,
     IsUserIdOwnerOfStripeCustomerIdQueryQueryHandler,
+    GetInvoiceByStripeIdQueryHandler,
   ],
 })
 export class StripeModule {}

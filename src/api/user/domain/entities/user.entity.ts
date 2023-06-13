@@ -75,8 +75,6 @@ export class UserEntity extends BaseEntity {
 
   @Column({ nullable: true })
   public stripeCustomerId: string;
-  @Column({ nullable: true })
-  public monthlySubscriptionStatus?: string;
 
   // _________________________________________________________
   // Relations

@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
 import { PriceEntity } from '../../../price/domain/entities/price.entity';
 import { UserAccountStatusEnum } from '../../../../user/domain/enum/user-account-status.enum';
 import { UserRoleEnum } from '../../../../user/domain/enum/user-role.enum';

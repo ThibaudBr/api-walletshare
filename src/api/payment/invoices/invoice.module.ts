@@ -9,9 +9,12 @@ import { ApiLogService } from '../../api-log/application/api-log.service';
 import { CreateLogCommandHandler } from '../../api-log/application/cqrs/handler/command/create-log.command-handler';
 import { StripeService } from '../stripe/application/stripe.service';
 import { InvoiceService } from './application/invoice.service';
+import { CreateInvoiceCommandHandler } from './application/cqrs/handler/command/create-invoice.command-handler';
+import { CreateInvoiceEventHandler } from './application/cqrs/handler/event/create-invoice.event-handler';
+import { InvoicesEntity } from './domain/entities/invoices.entity';
 
 @Module({
-  imports: [ConfigModule, TypeOrmModule.forFeature([UserEntity]), CqrsModule, ApiLogModule, HttpModule],
+  imports: [ConfigModule, TypeOrmModule.forFeature([UserEntity, InvoicesEntity]), CqrsModule, ApiLogModule, HttpModule],
   controllers: [],
   providers: [
     // log
@@ -22,7 +25,9 @@ import { InvoiceService } from './application/invoice.service';
     // Invoice module
     InvoiceService,
     // Command
+    CreateInvoiceCommandHandler,
     // Event
+    CreateInvoiceEventHandler,
     // Query
   ],
 })

@@ -24,6 +24,7 @@ import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/cus
 import { RoleProfileEnum } from '../domain/enum/role-profile.enum';
 import { ErrorCustomEvent } from '../../../util/exception/error-handler/error-custom.event';
 import { IsProfileWithGivenRoleAlreadyExistQuery } from './cqrs/query/is-profile-with-given-role-already-exist.query';
+import { UpdateRoleProfileCommand } from './cqrs/command/update-role-profile.command';
 
 @Injectable()
 export class ProfileService {
@@ -115,7 +116,7 @@ export class ProfileService {
     }
   }
 
-  async softDeleteProfile(id: string): Promise<void> {
+  async softRemoveProfile(id: string): Promise<void> {
     try {
       return await this.commandBus.execute(
         new SoftDeleteProfileCommand({
@@ -307,5 +308,19 @@ export class ProfileService {
     return await this.getProfiles().then(profiles => {
       return profiles.length;
     });
+  }
+
+  async updateRoleProfile(profileId: string, roleProfileEnum: RoleProfileEnum): Promise<void> {
+    return await this.commandBus
+      .execute(
+        new UpdateRoleProfileCommand({
+          profileId: profileId,
+          roleProfileEnum: roleProfileEnum,
+        }),
+      )
+      .catch((error: Error) => {
+        if (error.message === 'Profile not found') throw new InvalidIdHttpException(error.message);
+        throw new InternalServerErrorException(error.message);
+      });
   }
 }

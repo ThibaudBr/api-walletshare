@@ -113,7 +113,7 @@ export class ProfileController {
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async deleteMyProfile(@Param('id') profileId: string): Promise<void> {
-    return await this.profileService.softDeleteProfile(profileId);
+    return await this.profileService.softRemoveProfile(profileId);
   }
 
   @Put('/admin/restore-profile/:id')

@@ -1,4 +1,4 @@
-import { EntitySubscriberInterface, EventSubscriber, Repository, SoftRemoveEvent } from 'typeorm';
+import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, SoftRemoveEvent } from 'typeorm';
 import { ProfileEntity } from '../../../profile/domain/entities/profile.entity';
 import { CompanyEmployeeEntity } from '../../domain/entities/company-employee.entity';
 
@@ -24,6 +24,25 @@ export class ProfileCompanyEmployeeSubscriber implements EntitySubscriberInterfa
     if (companyEmployees.length == 0) return;
     for (const companyEmployee of companyEmployees) {
       await companyEmployeeRepository.softRemove(companyEmployee);
+    }
+  }
+
+  async beforeRemove(event: RemoveEvent<ProfileEntity>): Promise<void> {
+    const removedProfile: ProfileEntity | undefined = event.entity;
+    const companyEmployeeRepository: Repository<CompanyEmployeeEntity> =
+      event.manager.getRepository(CompanyEmployeeEntity);
+    const companyEmployees: CompanyEmployeeEntity[] = await companyEmployeeRepository.find({
+      relations: ['profile'],
+      withDeleted: true,
+      where: {
+        profile: {
+          id: removedProfile?.id,
+        },
+      },
+    });
+    if (companyEmployees.length == 0) return;
+    for (const companyEmployee of companyEmployees) {
+      await companyEmployeeRepository.remove(companyEmployee);
     }
   }
 }

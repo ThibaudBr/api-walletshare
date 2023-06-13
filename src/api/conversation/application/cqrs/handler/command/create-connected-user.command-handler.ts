@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateConnectedUserEvent } from '../../event/create-connected-user.event';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
-import { error } from 'winston';
 
 @CommandHandler(CreateConnectedUserCommand)
 export class CreateConnectedUserCommandHandler implements ICommandHandler<CreateConnectedUserCommand> {
@@ -16,7 +15,7 @@ export class CreateConnectedUserCommandHandler implements ICommandHandler<Create
   ) {}
 
   async execute(command: CreateConnectedUserCommand): Promise<ConnectedUserEntity> {
-    const newConnectedUser: ConnectedUserEntity = await this.connectedUserRepository.create({
+    const newConnectedUser: ConnectedUserEntity = this.connectedUserRepository.create({
       user: command.user,
       socketId: command.socketId,
     });

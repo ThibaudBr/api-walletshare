@@ -9,8 +9,8 @@ export class UpdateAccountStatusEventHandler implements IEventHandler<UpdateAcco
   async handle(event: UpdateAccountStatusEvent): Promise<void> {
     await this.apiLogService.createLogForMethode({
       method: event.method,
-      body: 'Account status updated for user ' + event.userId + ' to ' + event.status,
       module: event.module,
+      body: 'Update user account with id: ' + event.userId + ' to status: ' + event.status,
     });
   }
 }

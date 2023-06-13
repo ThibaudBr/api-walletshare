@@ -38,7 +38,6 @@ import { CreateReferralCodeStripeCommand } from '../../payment/stripe/applicatio
 import { ConfigService } from '@nestjs/config';
 import Stripe from 'stripe';
 import { SetReferralCodeCommand } from './cqrs/command/set-referral-code.command';
-import { ReferralCodeEntity } from '../domain/entities/referral-code.entity';
 import { ReferralCodeResponse } from '../web/response/referral-code.response';
 
 @Injectable()
@@ -161,7 +160,6 @@ export class UserService {
       );
 
       try {
-        await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
         await this.commandBus.execute(
           new SendMailCommand({
             email: generateUserDto.mail,
@@ -169,6 +167,7 @@ export class UserService {
             title: 'Création de compte Wallet Share',
           }),
         );
+        await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
       } catch (error) {}
       return user;
     } catch (error) {
@@ -252,11 +251,11 @@ export class UserService {
     );
   }
 
-  private generatePassword(): string {
-    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
-  }
-
   async getAllUserCount(): Promise<number> {
     return await this.findAll().then(users => users.length);
+  }
+
+  private generatePassword(): string {
+    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
   }
 }

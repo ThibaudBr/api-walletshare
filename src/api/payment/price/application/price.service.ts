@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { StripeService } from '../../stripe/application/stripe.service';
 import { CreatePriceStripeRequest } from '../../stripe/web/request/create-price-stripe.request';
@@ -13,6 +13,7 @@ import { UpdatePriceStripeRequest } from '../../stripe/web/request/update-price-
 import { UpdatePriceCommand } from './cqrs/command/update-price.command';
 import { GetAllPriceQuery } from './cqrs/query/get-all-price.query';
 import { GetAllPriceByProductIdQuery } from './cqrs/query/get-all-price-by-product-id.query';
+import { GetPriceByStripePriceIdQuery } from './cqrs/query/get-price-by-stripe-price-id.query';
 
 @Injectable()
 export class PriceService {
@@ -219,6 +220,19 @@ export class PriceService {
             unitAmountDecimal: Number(price.unitAmountDecimal),
           });
         });
+      });
+  }
+
+  async getPriceByStripePriceId(stripePriceId: string): Promise<PriceEntity> {
+    return await this.queryBus
+      .execute(
+        new GetPriceByStripePriceIdQuery({
+          stripePriceId: stripePriceId,
+        }),
+      )
+      .catch((error: Error) => {
+        if (error.message === 'Price not found') throw new BadRequestException(error.message);
+        throw new InternalServerErrorException(error.message);
       });
   }
 }

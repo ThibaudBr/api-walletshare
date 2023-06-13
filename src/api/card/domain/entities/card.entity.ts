@@ -125,7 +125,7 @@ export class CardEntity extends BaseEntity {
     cascade: ['insert', 'update'],
     eager: true,
   })
-  preset: CardPresetEntity;
+  preset?: CardPresetEntity;
 
   // ______________________________________________________
   // Enum

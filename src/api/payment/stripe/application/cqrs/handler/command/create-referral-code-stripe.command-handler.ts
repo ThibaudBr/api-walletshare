@@ -25,7 +25,6 @@ export class CreateReferralCodeStripeCommandHandler implements ICommandHandler<C
       .create({
         coupon: command.couponStripeId,
         code: command.code,
-        customer: command.customerStripeId,
         metadata: {
           userId: command.userId,
         },

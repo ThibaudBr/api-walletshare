@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -9,9 +10,10 @@ import {
 } from 'typeorm';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { SubscriptionEntity } from '../../../subscription/domain/entities/subscription.entity';
+import { InvoiceStatusEnum } from '../../../price/domain/invoice-status.enum';
 
 @Entity('invoices')
-export class InvoicesEntity {
+export class InvoicesEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
@@ -29,31 +31,11 @@ export class InvoicesEntity {
   @IsString()
   currency: string;
 
-  // @Column({ type: 'enum', enum: StatusInvoiceEnum, default: StatusInvoiceEnum.PENDING })
-  // @IsEnum(StatusInvoiceEnum)
-  // status: StatusInvoiceEnum;
+  @Column({ type: 'enum', enum: InvoiceStatusEnum, nullable: true, default: InvoiceStatusEnum.PAID })
+  status?: InvoiceStatusEnum;
 
-  // Informations supplémentaires pour la France
-
-  @Column({ name: 'invoice_number', type: 'varchar', length: 255 })
-  @IsNotEmpty()
-  @IsString()
-  invoiceNumber: string;
-
-  @Column({ name: 'company_name', type: 'varchar', length: 255 })
-  @IsNotEmpty()
-  @IsString()
-  companyName: string;
-
-  @Column({ name: 'company_address', type: 'varchar', length: 255 })
-  @IsNotEmpty()
-  @IsString()
-  companyAddress: string;
-
-  @Column({ name: 'company_vat_number', type: 'varchar', length: 255 })
-  @IsNotEmpty()
-  @IsString()
-  companyVatNumber: string;
+  @Column({ name: 'invoice_number', type: 'varchar', length: 255, nullable: true })
+  invoiceNumber?: string;
 
   @Column({ name: 'client_name', type: 'varchar', length: 255 })
   @IsNotEmpty()
@@ -65,34 +47,28 @@ export class InvoicesEntity {
   @IsString()
   clientAddress: string;
 
-  @Column({ name: 'client_vat_number', type: 'varchar', length: 255 })
-  @IsNotEmpty()
-  @IsString()
-  clientVatNumber: string;
-
   @Column({ name: 'description', type: 'varchar', length: 255 })
   @IsNotEmpty()
   @IsString()
   description: string;
 
-  @Column({ name: 'tax_rate', type: 'decimal' })
-  @IsNotEmpty()
-  @IsNumber()
-  taxRate: number;
-
-  @Column({ name: 'total_tax', type: 'decimal' })
-  @IsNotEmpty()
-  @IsNumber()
-  totalTax: number;
+  @Column({ name: 'tax_rate', type: 'decimal', nullable: true })
+  taxRate?: number;
 
   @Column({ name: 'total_amount', type: 'decimal' })
   @IsNotEmpty()
   @IsNumber()
   totalAmount: number;
 
-  @Column({ name: 'discount_amount', type: 'decimal', nullable: true })
-  @IsNumber()
-  discountAmount?: number;
+  @Column({ name: 'stripe_customer_id', type: 'varchar', length: 255 })
+  @IsNotEmpty()
+  @IsString()
+  stripeCustomerId: string;
+
+  @Column({ name: 'stripe_invoice_id', type: 'varchar', length: 255 })
+  @IsNotEmpty()
+  @IsString()
+  stripeInvoiceId: string;
 
   // ______________________________________________________
   // Relations
@@ -113,4 +89,9 @@ export class InvoicesEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  constructor(partial?: Partial<InvoicesEntity>) {
+    super();
+    if (partial) Object.assign(this, partial);
+  }
 }
