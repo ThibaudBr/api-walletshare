@@ -1,4 +1,10 @@
-import { ConflictException, ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { GetAllCompanyQuery } from './cqrs/query/get-all-company.query';
 import { CompanyResponse } from '../web/response/company.response';
@@ -14,7 +20,7 @@ import { GetCompanyWithUserIdQuery } from './cqrs/query/get-company-with-user-id
 import { IsRoleInCompanyQuery } from './cqrs/query/is-role-in-company.query';
 import { RemoveCompanyCommand } from './cqrs/command/remove-company.command';
 import { RestoreCompanyCommand } from './cqrs/command/restore-company.command';
-import { AddCompanyEmployeeRequest } from '../web/request/add-company-employee.request';
+import { AddCompanyEmployeeWithProfileIdRequest } from '../web/request/add-company-employee-with-profile-id.request';
 import { RemoveCompanyEmployeeRequest } from '../web/request/remove-company-employee.request';
 import { GiveRightToEmployeeRequest } from '../web/request/give-right-to-employee.request';
 import { CreateCompanyRequest } from '../web/request/create-company.request';
@@ -47,6 +53,12 @@ import { UpdateCardPresetRequest } from '../web/request/update-card-preset.reque
 import { RemoveCardPresetCommand } from './cqrs/command/remove-card-preset.command';
 import { SoftRemoveCardPresetCommand } from './cqrs/command/soft-remove-card-preset.command';
 import { RestoreCardPresetCommand } from './cqrs/command/restore-card-preset.command';
+import { RoleProfileEnum } from '../../profile/domain/enum/role-profile.enum';
+import { UserEntity } from '../../user/domain/entities/user.entity';
+import { AddCompanyEmployeeRequest } from '../web/request/add-company-employee.request';
+import { GetUserByIdQuery } from './cqrs/query/get-user-by-id.query';
+import { ProfileEntity } from '../../profile/domain/entities/profile.entity';
+import { UpdateUserRoleCommand } from '../../user/application/cqrs/command/update-user-role.command';
 
 @Injectable()
 export class CompanyService {
@@ -73,7 +85,7 @@ export class CompanyService {
         });
       })
       .catch(async error => {
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -87,7 +99,7 @@ export class CompanyService {
       })
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -110,7 +122,7 @@ export class CompanyService {
       })
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -132,7 +144,7 @@ export class CompanyService {
       })
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -152,7 +164,7 @@ export class CompanyService {
       })
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -172,7 +184,7 @@ export class CompanyService {
       })
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -188,7 +200,7 @@ export class CompanyService {
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'User not found') throw new InvalidIdHttpException('User not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -200,18 +212,59 @@ export class CompanyService {
       ]))
     )
       throw new ForbiddenException('You are not allowed to add an employee to this company');
+
+    const userEntity: UserEntity = await this.queryBus
+      .execute(
+        new GetUserByIdQuery({
+          userId: addCompanyEmployeeRequest.userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'User not found') throw new InvalidIdHttpException('User not found');
+        throw new InternalServerErrorException(error.message);
+      });
+
+    if (userEntity.profiles.some((profile: ProfileEntity) => profile.roleProfile === RoleProfileEnum.COMPANY)) {
+      throw new BadRequestException('This user is already in a company');
+    }
+
+    const profileId: string = await this.commandBus
+      .execute(
+        new CreateProfileCommand({
+          userId: addCompanyEmployeeRequest.userId,
+          createProfileDto: {
+            usernameProfile: userEntity.username ?? 'undefined',
+            roleProfile: RoleProfileEnum.COMPANY,
+          },
+        }),
+      )
+      .catch(async e => {
+        if (e.message === 'User not found') throw new UserNotFoundHttpException();
+        else if (e instanceof Array) throw new InvalidParameterEntityHttpException(e);
+        else if (e.message === 'Occupation not found') throw new InvalidIdHttpException();
+        else if (e.message === 'Profile with given role already exist') throw new ForbiddenException(e.message);
+        else throw e;
+      });
+
+    userEntity.roles = userEntity.roles.concat(UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT);
+    await this.commandBus.execute(
+      new UpdateUserRoleCommand({
+        userId: addCompanyEmployeeRequest.userId,
+        roles: userEntity.roles,
+      }),
+    );
     await this.commandBus
       .execute(
         new AddCompanyEmployeeCommand({
           companyId: addCompanyEmployeeRequest.companyId,
-          profileId: addCompanyEmployeeRequest.profileId,
-          roles: addCompanyEmployeeRequest.roles,
+          profileId: profileId,
+          roles: [RoleCompanyEmployeeEnum.EMPLOYEE],
         }),
       )
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -237,7 +290,7 @@ export class CompanyService {
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -264,11 +317,13 @@ export class CompanyService {
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
-  public async addCompanyEmployeeAdmin(addCompanyEmployeeRequest: AddCompanyEmployeeRequest): Promise<void> {
+  public async addCompanyEmployeeAdmin(
+    addCompanyEmployeeRequest: AddCompanyEmployeeWithProfileIdRequest,
+  ): Promise<void> {
     await this.commandBus
       .execute(
         new AddCompanyEmployeeCommand({
@@ -280,7 +335,7 @@ export class CompanyService {
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -295,7 +350,7 @@ export class CompanyService {
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -313,7 +368,7 @@ export class CompanyService {
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -328,7 +383,7 @@ export class CompanyService {
       )
       .catch(async error => {
         if (error.message === 'Company already exists') throw new ConflictException('Company already exists');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -353,7 +408,7 @@ export class CompanyService {
       )
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -385,7 +440,7 @@ export class CompanyService {
       )
       .catch(async error => {
         if (error.message === 'Occupation not found') throw new InvalidIdHttpException('Occupation not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -401,14 +456,14 @@ export class CompanyService {
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Occupation not found') throw new InvalidIdHttpException('Occupation not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
   public async softRemoveCompanyAdmin(companyId: string): Promise<void> {
     await this.commandBus.execute(new SoftRemoveCompanyCommand({ companyId: companyId })).catch(async error => {
       if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
@@ -425,21 +480,21 @@ export class CompanyService {
       .catch(async error => {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
   public async removeCompanyAdmin(companyId: string): Promise<void> {
     await this.commandBus.execute(new RemoveCompanyCommand({ companyId: companyId })).catch(async error => {
       if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
   public async restoreCompanyAdmin(companyId: string): Promise<void> {
     await this.commandBus.execute(new RestoreCompanyCommand({ companyId: companyId })).catch(async error => {
       if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
@@ -472,14 +527,17 @@ export class CompanyService {
       )
       .catch(async error => {
         if (error.message === 'User already exists') throw new ConflictException('User already exists');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     const profileId: string = await this.commandBus
       .execute(
         new CreateProfileCommand({
           userId: userResponse.id,
-          createProfileDto: createUserForCompany.createProfileDto,
+          createProfileDto: {
+            usernameProfile: createUserForCompany.createProfileDto.usernameProfile,
+            roleProfile: RoleProfileEnum.COMPANY,
+          },
         }),
       )
       .catch(async e => {
@@ -545,7 +603,7 @@ export class CompanyService {
         if (error.message === 'Card preset is not valid') throw new ConflictException('Card preset already exists');
         if (error.message === 'Error while saving card preset')
           throw new ConflictException('Error while saving card preset');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       })
       .then((cardPresetEntity: CardPresetEntity) => {
         return new CardPresetResponse({
@@ -579,7 +637,7 @@ export class CompanyService {
         if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
         if (error.message === 'Error while updating card preset')
           throw new ConflictException('Error while updating card preset');
-        throw error;
+        throw new InternalServerErrorException(error.message);
       })
       .then((cardPresetEntity: CardPresetEntity) => {
         return new CardPresetResponse({
@@ -593,7 +651,7 @@ export class CompanyService {
       if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
       if (error.message === 'Error while removing card preset')
         throw new ConflictException('Error while deleting card preset');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
@@ -602,7 +660,7 @@ export class CompanyService {
       if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
       if (error.message === 'Error while restoring card preset')
         throw new ConflictException('Error while restoring card preset');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
@@ -617,7 +675,7 @@ export class CompanyService {
       if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
       if (error.message === 'Error while deleting card preset')
         throw new ConflictException('Error while deleting card preset');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 
@@ -626,7 +684,7 @@ export class CompanyService {
       if (error.message === 'Card preset not found') throw new InvalidIdHttpException('Card preset not found');
       if (error.message === 'Error while deleting card preset')
         throw new ConflictException('Error while deleting card preset');
-      throw error;
+      throw new InternalServerErrorException(error.message);
     });
   }
 

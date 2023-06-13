@@ -139,7 +139,7 @@ export class CardTestE2eService {
       await this.connectedCardRepository.softRemove(connectedCardEntity);
     } catch (error) {
       console.log(error);
-      throw error;
+      throw new InternalServerErrorException(error.message);
     }
   }
 

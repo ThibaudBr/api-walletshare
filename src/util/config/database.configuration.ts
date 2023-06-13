@@ -32,7 +32,7 @@ import { CardViewEntity } from '../../api/card/domain/entities/card-view.entity'
 import { CompanyAddressSubscriber } from '../../api/address/application/subscriber/company-address.subscriber';
 import { UserAddressSubscriber } from '../../api/address/application/subscriber/user-address.subscriber';
 import { CompanyCompanyEmployeeSubscriber } from '../../api/company/application/subscriber/company-company-employee.subscriber';
-import { ProfileCompanyEmployeeSubscriber } from '../../api/company/application/subscriber/profile-company-employee.subscriber';
+import { CompanyEmployeeProfile } from '../../api/company/application/subscriber/company-employee-profile';
 import { CardMediaSubscriber } from '../../api/media/application/subscriber/card-media.subscriber';
 import { CompanyMediaSubscriber } from '../../api/media/application/subscriber/company-media.subscriber';
 import { ProfileMediaSubscriber } from '../../api/media/application/subscriber/profile-media.subscriber';
@@ -119,7 +119,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
             ProfileCardSubscriber,
-            ProfileCompanyEmployeeSubscriber,
+            CompanyEmployeeProfile,
             ProfileMediaSubscriber,
             ProfileSubscriber,
             UserAddressSubscriber,
@@ -193,7 +193,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
             ProfileCardSubscriber,
-            ProfileCompanyEmployeeSubscriber,
+            CompanyEmployeeProfile,
             ProfileMediaSubscriber,
             ProfileSubscriber,
             UserAddressSubscriber,
@@ -265,7 +265,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
             ProfileCardSubscriber,
-            ProfileCompanyEmployeeSubscriber,
+            CompanyEmployeeProfile,
             ProfileMediaSubscriber,
             ProfileSubscriber,
             UserAddressSubscriber,
@@ -333,7 +333,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             NotificationProfileSubscriber,
             NotificationUserSubscriber,
             ProfileCardSubscriber,
-            ProfileCompanyEmployeeSubscriber,
+            CompanyEmployeeProfile,
             ProfileMediaSubscriber,
             ProfileSubscriber,
             UserAddressSubscriber,

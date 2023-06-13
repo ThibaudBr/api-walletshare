@@ -5,7 +5,7 @@ import { CompanyResponse } from './response/company.response';
 import { RoleGuard } from '../../auth/web/guards/role.guard';
 import { GetCompanyDiscoveryRequest } from './request/get-company-discovery.request';
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
-import { AddCompanyEmployeeRequest } from './request/add-company-employee.request';
+import { AddCompanyEmployeeWithProfileIdRequest } from './request/add-company-employee-with-profile-id.request';
 import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
 import { GetCompanyWithCriteriaQuery } from '../application/cqrs/query/get-company-with-criteria.query';
 import { CreateCompanyRequest } from './request/create-company.request';
@@ -15,6 +15,8 @@ import { CreateUserForCompanyRequest } from './request/create-user-for-company.r
 import { CardPresetResponse } from './response/card-preset.response';
 import { UpdateCardPresetRequest } from './request/update-card-preset.request';
 import { CreateCardPresetRequest } from './request/create-card-preset.request';
+import { RemoveCompanyEmployeeRequest } from './request/remove-company-employee.request';
+import { AddCompanyEmployeeRequest } from './request/add-company-employee.request';
 
 @Controller('company')
 @ApiTags('Company')
@@ -110,7 +112,7 @@ export class CompanyController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async removeCompanyEmployee(
     @Req() requestUser: RequestUser,
-    @Body() removeCompanyEmployeeRequest: AddCompanyEmployeeRequest,
+    @Body() removeCompanyEmployeeRequest: RemoveCompanyEmployeeRequest,
   ): Promise<void> {
     return await this.companyService.removeCompanyEmployee(requestUser.user.id, removeCompanyEmployeeRequest);
   }
@@ -121,7 +123,7 @@ export class CompanyController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async giveRightsToCompanyEmployee(
     @Req() requestUser: RequestUser,
-    @Body() giveRightsToCompanyEmployeeRequest: AddCompanyEmployeeRequest,
+    @Body() giveRightsToCompanyEmployeeRequest: AddCompanyEmployeeWithProfileIdRequest,
   ): Promise<void> {
     return await this.companyService.giveRightToCompanyEmployee(
       requestUser.user.id,
@@ -133,7 +135,9 @@ export class CompanyController {
   @ApiOperation({ summary: 'Add company employee' })
   @ApiOkResponse({ type: 'Ok' })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async adminAddCompanyEmployee(@Body() addCompanyEmployeeRequest: AddCompanyEmployeeRequest): Promise<void> {
+  async adminAddCompanyEmployee(
+    @Body() addCompanyEmployeeRequest: AddCompanyEmployeeWithProfileIdRequest,
+  ): Promise<void> {
     return await this.companyService.addCompanyEmployeeAdmin(addCompanyEmployeeRequest);
   }
 
@@ -141,7 +145,9 @@ export class CompanyController {
   @ApiOperation({ summary: 'Remove company employee' })
   @ApiOkResponse({ type: 'Ok' })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async adminRemoveCompanyEmployee(@Body() removeCompanyEmployeeRequest: AddCompanyEmployeeRequest): Promise<void> {
+  async adminRemoveCompanyEmployee(
+    @Body() removeCompanyEmployeeRequest: AddCompanyEmployeeWithProfileIdRequest,
+  ): Promise<void> {
     return await this.companyService.removeCompanyEmployeeAdmin(removeCompanyEmployeeRequest);
   }
 
@@ -150,7 +156,7 @@ export class CompanyController {
   @ApiOkResponse({ type: 'Ok' })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async adminGiveRightsToCompanyEmployee(
-    @Body() giveRightsToCompanyEmployeeRequest: AddCompanyEmployeeRequest,
+    @Body() giveRightsToCompanyEmployeeRequest: AddCompanyEmployeeWithProfileIdRequest,
   ): Promise<void> {
     return await this.companyService.giveRightToCompanyEmployeeAdmin(giveRightsToCompanyEmployeeRequest);
   }
@@ -169,7 +175,7 @@ export class CompanyController {
   @Put('/public/update-company/:companyId')
   @ApiOperation({ summary: 'Update company' })
   @ApiOkResponse({ type: 'Ok' })
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC, UserRoleEnum.COMPANY_ACCOUNT]))
   async updateCompany(
     @Req() requestUser: RequestUser,
     @Param('companyId') companyId: string,

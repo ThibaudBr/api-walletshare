@@ -169,5 +169,7 @@ export class StripeWebhookService {
 
       await this.profileService.updateRoleProfile(subscriptionEntity.profileOwnerId, RoleProfileEnum.CLASSIC);
     }
+
+    await this.subscriptionService.cancelSubscription(subscriptionEntity.id);
   }
 }

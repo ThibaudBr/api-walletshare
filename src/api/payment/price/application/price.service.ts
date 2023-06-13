@@ -40,7 +40,7 @@ export class PriceService {
         if (error.message === 'Error during find product entity') throw new BadRequestException(error.message);
         if (error.message === 'Error during save price entity') throw new BadRequestException(error.message);
         if (error.message === 'Error during find product entity') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -53,7 +53,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.stripeService.removePriceStripe(priceEntity.priceStripeId);
@@ -66,7 +66,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Error during remove price entity') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -79,7 +79,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.stripeService.updatePriceStripe({
@@ -100,7 +100,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     await this.stripeService.updatePriceStripe({
@@ -118,7 +118,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Error during restore price entity') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -131,7 +131,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -145,7 +145,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -158,7 +158,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Price not found') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
 
     const stripePrice: Stripe.Price = await this.stripeService.updatePriceStripe({
@@ -179,7 +179,7 @@ export class PriceService {
         if (error.message === 'Error during update price entity') throw new BadRequestException(error.message);
         if (error.message === 'Error during find price entity') throw new BadRequestException(error.message);
         if (error.message === 'Error during update price entity') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       });
   }
 
@@ -188,7 +188,7 @@ export class PriceService {
       .execute(new GetAllPriceQuery())
       .catch(error => {
         if (error.message === 'Error while fetching prices') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       })
       .then((prices: PriceEntity[]) => {
         if (prices.length === 0) return [];
@@ -210,7 +210,7 @@ export class PriceService {
       )
       .catch(error => {
         if (error.message === 'Error while fetching prices') throw new BadRequestException(error.message);
-        throw error;
+        throw new InternalServerErrorException(error.message);
       })
       .then((prices: PriceEntity[]) => {
         if (prices.length === 0) return [];
