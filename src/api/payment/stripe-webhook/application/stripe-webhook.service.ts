@@ -152,13 +152,18 @@ export class StripeWebhookService {
 
     if (subscriptionEntity.price.product.userRoleToGive === UserRoleEnum.COMPANY_ACCOUNT) {
       // soft remove owner subscription Profile
-      if (!subscriptionEntity.profileOwnerId) throw new BadRequestException('Subscription has no profile owner');
-      await this.profileService.softRemoveProfile(subscriptionEntity.profileOwnerId);
+      const profileEntity: ProfileEntity | undefined = userEntity.profiles.find(
+        profile => profile.roleProfile === RoleProfileEnum.COMPANY,
+      );
+      if (!profileEntity) throw new BadRequestException('No matching profile found');
+      await this.profileService.softRemoveProfile(profileEntity.id);
     } else if (subscriptionEntity.price.product.userRoleToGive === UserRoleEnum.PREMIUM_ACCOUNT) {
-      // update owner subscription Profile
-      if (!subscriptionEntity.profileOwnerId) throw new BadRequestException('Subscription has no profile owner');
+      const profileEntity: ProfileEntity | undefined = userEntity.profiles.find(
+        profile => profile.roleProfile === RoleProfileEnum.PREMIUM,
+      );
+      if (!profileEntity) throw new BadRequestException('No matching profile found');
 
-      await this.profileService.updateRoleProfile(subscriptionEntity.profileOwnerId, RoleProfileEnum.CLASSIC);
+      await this.profileService.updateRoleProfile(profileEntity.id, RoleProfileEnum.CLASSIC);
     }
 
     await this.subscriptionService.cancelSubscription(subscriptionEntity.id);
