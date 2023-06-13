@@ -47,10 +47,10 @@ export class InvoicesEntity extends BaseEntity {
   @IsString()
   clientAddress: string;
 
-  @Column({ name: 'description', type: 'varchar', length: 255 })
+  @Column({ name: 'description', type: 'varchar', length: 255, nullable: true })
   @IsNotEmpty()
   @IsString()
-  description: string;
+  description?: string;
 
   @Column({ name: 'tax_rate', type: 'decimal', nullable: true })
   taxRate?: number;
