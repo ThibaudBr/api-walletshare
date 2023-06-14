@@ -156,7 +156,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() socket: Socket,
   ): Promise<ReceiveMessageResponse> {
     try {
-      const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket);
+      const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket.id);
       const author: CardEntity = await this.conversationService.getCardById(user, sentMessage.cardId);
       const conversation: ConversationEntity = await this.conversationService.getConversationById(
         sentMessage.conversationId,
@@ -191,7 +191,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() socket: Socket,
     @MessageBody() joinConversationRequest: JoinConversationRequest,
   ): Promise<void> {
-    const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket);
+    const user: UserEntity = await this.conversationService.getUserAndProfilesFromSocket(socket.id);
     const author: CardEntity = await this.conversationService.getCardById(user, joinConversationRequest.cardId);
     const conversation: ConversationEntity = await this.conversationService.getConversationById(
       joinConversationRequest.conversationId,
@@ -230,5 +230,78 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       });
     });
     this.server.to(socket.id).emit('send_all_messages', messageResponses);
+  }
+
+  @SubscribeMessage('sdp-offer')
+  async handleSdpOffer(
+    socket: Socket,
+    payload: { conversationId: string; offer: RTCSessionDescriptionInit },
+  ): Promise<void> {
+    try {
+      const conversation = await this.conversationService.getConversationById(payload.conversationId);
+      if (!conversation) {
+        throw new BadRequestException('Conversation not found');
+      }
+      if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
+        throw new BadRequestException('User is not part of the conversation');
+      }
+      const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
+      for (const participant of otherParticipants) {
+        this.server.to(participant.socketId).emit('sdp-offer', { offer: payload.offer, senderSocketId: socket.id });
+      }
+    } catch (e) {
+      await this.disconnect(socket);
+      throw e;
+    }
+  }
+
+  @SubscribeMessage('sdp-answer')
+  async handleSdpAnswer(
+    socket: Socket,
+    payload: { senderSocketId: string; answer: RTCSessionDescriptionInit },
+  ): Promise<void> {
+    try {
+      this.server.to(payload.senderSocketId).emit('sdp-answer', { answer: payload.answer });
+    } catch (e) {
+      await this.disconnect(socket);
+      throw e;
+    }
+  }
+
+  @SubscribeMessage('ice-candidate')
+  async handleIceCandidate(
+    socket: Socket,
+    payload: { conversationId: string; candidate: RTCIceCandidateInit },
+  ): Promise<void> {
+    try {
+      const conversation = await this.conversationService.getConversationById(payload.conversationId);
+      if (!conversation) {
+        throw new BadRequestException('Conversation not found');
+      }
+      if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
+        throw new BadRequestException('User is not part of the conversation');
+      }
+      const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
+      for (const participant of otherParticipants) {
+        this.server.to(participant.socketId).emit('ice-candidate', { candidate: payload.candidate });
+      }
+    } catch (e) {
+      await this.disconnect(socket);
+      throw e;
+    }
+  }
+
+  @SubscribeMessage('call-rejected')
+  async handleCallRejected(socket: Socket, payload: { senderSocketId: string }): Promise<void> {
+    try {
+      const sender = await this.conversationService.getUserAndProfilesFromSocket(payload.senderSocketId);
+      if (!sender) {
+        throw new BadRequestException('User not found');
+      }
+      this.server.to(payload.senderSocketId).emit('call-rejected', { rejectedBySocketId: socket.id });
+    } catch (e) {
+      await this.disconnect(socket);
+      throw e;
+    }
   }
 }

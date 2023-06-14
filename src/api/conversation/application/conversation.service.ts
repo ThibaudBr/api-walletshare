@@ -175,11 +175,11 @@ export class ConversationService {
       });
   }
 
-  async getUserAndProfilesFromSocket(socket: Socket): Promise<UserEntity> {
+  async getUserAndProfilesFromSocket(socketId: string): Promise<UserEntity> {
     return await this.queryBus
       .execute(
         new GetUserAndProfileFromSocketQuery({
-          socketId: socket.id,
+          socketId: socketId,
         }),
       )
       .catch(async error => {
