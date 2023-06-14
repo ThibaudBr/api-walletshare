@@ -57,4 +57,11 @@ export class ConversationController {
   async getActiveConversation(): Promise<number> {
     return await this.conversationService.getActiveConversation();
   }
+
+
+@Get('/admin/get-all-conversation')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async getActiveConversation(): Promise<number> {
+    return await this.conversationService.getAllConversarionAdmin();
+  }
 }
