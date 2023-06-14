@@ -257,6 +257,13 @@ export class ConversationService {
     });
   }
 
+
+async getAllConversationAdmin(): Promise<ConversationEntity[]> {
+    return await this.queryBus.execute(new GetAllConversationQuery()).catch(async error => {
+      if (error.message === 'Conversation not found') throw new InvalidIdHttpException('Conversation not found');
+      throw new Error(error);
+    });
+  }
   async createConnectedUser(param: { socketId: string; user: UserEntity }): Promise<void> {
     return await this.commandBus
       .execute(
