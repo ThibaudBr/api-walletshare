@@ -119,7 +119,7 @@ export class UserController {
     }
   }
 
-  @Get('/admin/:id')
+  @Get('/admin/get-user-by-id/:id')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async findOne(@Param('id') id: string): Promise<UserResponse> {
     try {
