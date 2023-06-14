@@ -13,21 +13,21 @@ export class OccupationController {
   constructor(private readonly occupationService: OccupationService) {}
 
   @Get('/public/')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllOccupations(): Promise<OccupationResponse[]> {
     return await this.occupationService.getAllOccupation();
   }
 
   @Get('/public/:id')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getOccupationById(@Param('id') occupationId: string): Promise<OccupationResponse> {
     return await this.occupationService.getOccupationById(occupationId);
   }
 
   @Post('/admin/get-with-criteria')
-  @HttpCode(201)
+  @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getOccupationsWithCriteria(
     @Body() getOccupationsWithCriteriaRequest: GetOccupationWithCriteriaRequest,

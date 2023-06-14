@@ -45,6 +45,12 @@ export class AddressController {
     return await this.addressService.createAddress(userId, createAddressRequest);
   }
 
+  @Post('/admin/create-address')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async createAddressAdmin(@Body() createAddressRequest: CreateAddressRequest): Promise<void> {
+    return await this.addressService.createAddressAdmin(createAddressRequest);
+  }
+
   @Delete('/admin/remove-address/:addressId')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async removeAddress(@Param('addressId') addressId: string): Promise<void> {
