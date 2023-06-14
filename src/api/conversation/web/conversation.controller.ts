@@ -17,6 +17,7 @@ import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { SentMessageRequest } from './request/sent-message.request';
+import {ConversationEntity} from "../domain/entities/conversation.entity";
 
 @Controller('conversation')
 @ApiTags('Conversation')
@@ -58,10 +59,9 @@ export class ConversationController {
     return await this.conversationService.getActiveConversation();
   }
 
-
-@Get('/admin/get-all-conversation')
+  @Get('/admin/get-all-conversation')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async getActiveConversation(): Promise<number> {
-    return await this.conversationService.getAllConversarionAdmin();
+  async getAllConversation(): Promise<ConversationEntity[]> {
+    return await this.conversationService.getAllConversationAdmin();
   }
 }
