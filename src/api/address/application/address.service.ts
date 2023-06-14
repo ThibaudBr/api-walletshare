@@ -185,4 +185,15 @@ export class AddressService {
         throw new InternalServerErrorException(error.message);
       });
   }
+
+  async createAddressAdmin(createAddressRequest: CreateAddressRequest): Promise<void> {
+    return await this.commandBus.execute(new CreateAddressCommand(createAddressRequest)).catch(error => {
+      if (error.message === 'User not found') throw new InvalidIdHttpException('for user');
+      if (error.message === 'Company not found') throw new InvalidIdHttpException('for company');
+      if (error.message instanceof Array) throw new InvalidParameterEntityHttpException(error);
+      if (error.message === 'User or Company must be provided')
+        throw new InvalidIdHttpException('must provide id for user or company');
+      throw new InternalServerErrorException(error.message);
+    });
+  }
 }
