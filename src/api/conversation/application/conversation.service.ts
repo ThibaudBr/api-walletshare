@@ -32,6 +32,7 @@ import { GetActiveConversationCountQuery } from './cqrs/query/get-active-convers
 import { RemoveAllConnectedUserCommand } from './cqrs/command/remove-all-connected-user.command';
 import { CreateConnectedUserCommand } from './cqrs/command/create-connected-user.command';
 import { RemoveConnectedUserBySocketIdCommand } from './cqrs/command/remove-connected-user-by-socket-id.command';
+import {GetAllConversationQuery} from "./cqrs/query/get-all-conversation.query";
 
 @Injectable()
 export class ConversationService {
@@ -257,6 +258,12 @@ export class ConversationService {
     });
   }
 
+  async getAllConversationAdmin(): Promise<ConversationEntity[]> {
+    return await this.queryBus.execute(new GetAllConversationQuery()).catch(async error => {
+      if (error.message === 'Conversation not found') throw new InvalidIdHttpException('Conversation not found');
+      throw new Error(error);
+    });
+  }
   async createConnectedUser(param: { socketId: string; user: UserEntity }): Promise<void> {
     return await this.commandBus
       .execute(

@@ -14,7 +14,7 @@ export class GetAllConversationQueryHandler implements IQueryHandler<GetAllConve
   ) {}
 
   async execute(query: GetAllConversationQuery): Promise<ConversationEntity[]> {
-    return await this.conversationRepository.find().catch(async err => {
+    return await this.conversationRepository.find({ relations: ['joinedprofiles'] }).catch(async err => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'GetAllConversationQueryHandler',
