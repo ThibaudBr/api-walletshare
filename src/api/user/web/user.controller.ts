@@ -104,7 +104,7 @@ export class UserController {
     }
   }
 
-  @Get('/admin/')
+  @Get('/admin/get-all-user')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async findAll(): Promise<UserResponse[]> {
     try {
