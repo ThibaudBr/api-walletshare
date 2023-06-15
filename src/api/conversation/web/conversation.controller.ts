@@ -17,7 +17,7 @@ import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { SentMessageRequest } from './request/sent-message.request';
-import {ConversationEntity} from "../domain/entities/conversation.entity";
+import { ConversationEntity } from '../domain/entities/conversation.entity';
 
 @Controller('conversation')
 @ApiTags('Conversation')
