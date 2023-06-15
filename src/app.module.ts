@@ -43,7 +43,6 @@ import { HttpModule } from '@nestjs/axios';
       validationSchema: Joi.object({
         NODE_ENV: Joi.string().required(),
         API_NAME: Joi.string().required(),
-        VERBOSE: Joi.string().required(),
         VERBOSE_LOG: Joi.string().required(),
         LOG_REQUEST_BOOL: Joi.bool().required(),
         LOG_RESPONSE_BOOL: Joi.bool().required(),
