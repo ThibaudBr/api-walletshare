@@ -7,6 +7,7 @@ export class CreateUserForCompanyRequest {
   public readonly createUserDto: CreateUserDto;
   public readonly createProfileDto: CreateProfileDto;
   public readonly companyEmployeeRoles: RoleCompanyEmployeeEnum[];
+  public readonly language?: string = 'fr';
 
   constructor(partial: Partial<CreateUserForCompanyRequest>) {
     Object.assign(this, partial);

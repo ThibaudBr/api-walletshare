@@ -2,17 +2,19 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class MailDto {
-  path: string;
+  public readonly path: string;
+  public readonly language?: string = 'fr';
+
   @IsEmail()
   @IsNotEmpty()
   @ApiProperty()
-  email: string;
+  public readonly email: string;
   @ApiProperty()
-  title?: string;
-  @ApiProperty()
-  message?: string;
+  public readonly title?: string;
 
-  password?: string;
+  @ApiProperty()
+  public readonly message?: string;
+  public readonly password?: string;
 
   constructor(partial: Partial<MailDto>) {
     Object.assign(this, partial);
