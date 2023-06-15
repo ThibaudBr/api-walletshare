@@ -8,18 +8,26 @@ import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler
 
 @CommandHandler(SendMailCommand)
 export class SendMailCommandHandler implements ICommandHandler<SendMailCommand> {
-  private readonly apiWaitingListUrl: string;
+  private readonly apiMailUrl: string;
+  private readonly apiMailToken: string;
 
   constructor(
     private httpService: HttpService,
     private readonly configService: ConfigService,
     private readonly eventBus: EventBus,
   ) {
-    this.apiWaitingListUrl = this.configService.get('API_WAITING_LIST_URL') ?? 'NO-URL';
+    this.apiMailUrl = this.configService.get('HOST_API_MAIL') ?? 'NO-URL';
+    this.apiMailToken = this.configService.get('API_MAIL_TOKEN') ?? 'no_token';
   }
 
   async execute(command: SendMailCommand): Promise<void> {
-    await firstValueFrom(this.httpService.post(this.apiWaitingListUrl + '/send', command)).catch(async err => {
+    await firstValueFrom(
+      this.httpService.post(this.apiMailUrl + '/send', command, {
+        headers: {
+          Authorization: `Bearer ${this.apiMailToken}`,
+        },
+      }),
+    ).catch(async err => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'SendMailCommandHandler',

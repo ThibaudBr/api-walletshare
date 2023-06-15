@@ -10,6 +10,7 @@ import { ConfigService } from '@nestjs/config';
 @CommandHandler(DeleteMailCommand)
 export class DeleteMailCommandHandler implements ICommandHandler<DeleteMailCommand> {
   private readonly apiWaitingListUrl: string;
+  private readonly apiWaitingListToken: string;
 
   constructor(
     private httpService: HttpService,
@@ -17,10 +18,17 @@ export class DeleteMailCommandHandler implements ICommandHandler<DeleteMailComma
     private readonly eventBus: EventBus,
   ) {
     this.apiWaitingListUrl = this.configService.get('API_WAITING_LIST_URL') ?? 'NO-URL';
+    this.apiWaitingListToken = this.configService.get('API_WAITING_LIST_TOKEN') ?? 'NO-TOKEN';
   }
 
   async execute(command: DeleteMailCommand): Promise<void> {
-    return await firstValueFrom(this.httpService.post(this.apiWaitingListUrl + '/delete', command))
+    return await firstValueFrom(
+      this.httpService.post(this.apiWaitingListUrl + '/delete', command, {
+        headers: {
+          Authorization: this.apiWaitingListToken,
+        },
+      }),
+    )
       .then(async () => {
         await this.eventBus.publish(new DeleteMailEvent(command));
       })
