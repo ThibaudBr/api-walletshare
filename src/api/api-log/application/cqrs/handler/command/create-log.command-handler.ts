@@ -37,8 +37,8 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
           Authorization: `Bearer ${this.API_LOG_TOKEN}`,
         },
       }),
-    ).catch(() => {
-      return;
+    ).catch((error: Error) => {
+      console.log(error);
     });
   }
 }
