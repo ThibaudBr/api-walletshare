@@ -34,6 +34,8 @@ import { StripeModule } from './api/payment/stripe/stripe.module';
 import { ProductModule } from './api/payment/product/product.module';
 import { PriceModule } from './api/payment/price/price.module';
 import { HttpModule } from '@nestjs/axios';
+import { ApiLandingPageService } from './api/api-landing-page/application/api-landing-page.service';
+import { ApiMailService } from './api/api-mail/application/api-mail.service';
 
 @Module({
   controllers: [AppController],
@@ -110,7 +112,7 @@ import { HttpModule } from '@nestjs/axios';
     ProductModule,
     PriceModule,
   ],
-  providers: [AppService, ApiLogService, UserService],
+  providers: [AppService, ApiLogService, UserService, ApiLandingPageService, ApiMailService],
 })
 export class AppModule implements NestModule {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type

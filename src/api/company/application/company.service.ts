@@ -59,6 +59,7 @@ import { AddCompanyEmployeeRequest } from '../web/request/add-company-employee.r
 import { GetUserByIdQuery } from './cqrs/query/get-user-by-id.query';
 import { ProfileEntity } from '../../profile/domain/entities/profile.entity';
 import { UpdateUserRoleCommand } from '../../user/application/cqrs/command/update-user-role.command';
+import { ApiMailService } from '../../api-mail/application/api-mail.service';
 
 @Injectable()
 export class CompanyService {
@@ -66,6 +67,7 @@ export class CompanyService {
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
     private readonly eventBus: EventBus,
+    private readonly apiMailService: ApiMailService,
   ) {}
 
   public async getAllCompanies(deleted: boolean, take: number, skip: number): Promise<CompanyResponse[]> {
@@ -518,10 +520,12 @@ export class CompanyService {
       throw new ForbiddenException('You are not allowed to create user and profile for this company');
     }
 
+    const generatePassword: string = this.generatePassword();
     const userResponse: UserResponse = await this.commandBus
       .execute(
         new CreateUserCommand({
           ...createUserForCompany.createUserDto,
+          password: generatePassword,
           roles: [UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT, UserRoleEnum.PUBLIC],
         }),
       )
@@ -553,6 +557,16 @@ export class CompanyService {
       companyId: createUserForCompany.companyId,
       roles: createUserForCompany.companyEmployeeRoles,
     });
+
+    if (createUserForCompany.createUserDto.mail) {
+      await this.apiMailService.sendMail({
+        path: 'created-user-for-company',
+        email: createUserForCompany.createUserDto.mail,
+        title: 'You have been add to a company',
+        message: 'je sais pas',
+        password: generatePassword,
+      });
+    }
   }
 
   async getAllCardPresetByCompanyId(userId: string, companyId: string): Promise<CardPresetResponse[]> {
@@ -774,5 +788,9 @@ export class CompanyService {
         }, 0)
       );
     });
+  }
+
+  private generatePassword(): string {
+    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
   }
 }

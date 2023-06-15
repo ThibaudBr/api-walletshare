@@ -9,7 +9,7 @@ export class CreateUserDto {
 
   @ApiProperty()
   @Length(5, 20)
-  username?: string;
+  username?: string = 'undefined';
 
   @ApiProperty()
   @IsNotEmpty()

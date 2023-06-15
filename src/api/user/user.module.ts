@@ -40,6 +40,10 @@ import { SetReferralCodeCommandHandler } from './application/cqrs/handler/comman
 import { SetReferralCodeEventHandler } from './application/cqrs/handler/event/set-referral-code.event-handler';
 import { ReferralCodeEntity } from './domain/entities/referral-code.entity';
 import { GetUserEntityQueryHandler } from './application/cqrs/handler/query/get-user-entity.query-handler';
+import { ApiMailModule } from '../api-mail/api-mail.module';
+import { ApiMailService } from '../api-mail/application/api-mail.service';
+import { ApiLandingPageModule } from '../api-landing-page/api-landing-page.module';
+import { ApiLandingPageService } from '../api-landing-page/application/api-landing-page.service';
 
 @Module({
   imports: [
@@ -48,9 +52,13 @@ import { GetUserEntityQueryHandler } from './application/cqrs/handler/query/get-
     CqrsModule,
     ApiLogModule,
     HttpModule,
+    ApiMailModule,
+    ApiLandingPageModule,
   ],
   controllers: [UserController],
   providers: [
+    ApiLandingPageService,
+    ApiMailService,
     UserService,
     // log
     ApiLogService,

@@ -25,6 +25,8 @@ import { HttpModule } from '@nestjs/axios';
 import { ReferralCodeEntity } from '../user/domain/entities/referral-code.entity';
 import { SetReferralCodeCommandHandler } from '../user/application/cqrs/handler/command/set-referral-code.command-handler';
 import { SetReferralCodeEventHandler } from '../user/application/cqrs/handler/event/set-referral-code.event-handler';
+import { ApiMailModule } from '../api-mail/api-mail.module';
+import { ApiMailService } from '../api-mail/application/api-mail.service';
 
 config();
 
@@ -46,8 +48,10 @@ config();
     TypeOrmModule.forFeature([UserEntity, ReferralCodeEntity]),
     CqrsModule,
     ApiLogModule,
+    ApiMailModule,
   ],
   providers: [
+    ApiMailService,
     AuthService,
     UserService,
     ApiLogService,

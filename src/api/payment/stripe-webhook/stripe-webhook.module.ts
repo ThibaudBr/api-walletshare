@@ -26,6 +26,8 @@ import { InvoiceModule } from '../invoices/invoice.module';
 import { InvoiceService } from '../invoices/application/invoice.service';
 import { UserService } from '../../user/application/user.service';
 import { UserModule } from '../../user/user.module';
+import { ApiMailModule } from '../../api-mail/api-mail.module';
+import { ApiMailService } from '../../api-mail/application/api-mail.service';
 
 @Module({
   imports: [
@@ -40,8 +42,10 @@ import { UserModule } from '../../user/user.module';
     InvoiceModule,
     UserModule,
     HttpModule,
+    ApiMailModule,
   ],
   providers: [
+    ApiMailService,
     UserService,
     StripeService,
     InvoiceService,

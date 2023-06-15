@@ -28,7 +28,6 @@ import { SamePasswordHttpException } from '../../../util/exception/custom-http-e
 import { InvalidPasswordHttpException } from '../../../util/exception/custom-http-exception/invalid-password.http-exception';
 import { RequestUser } from '../../auth/domain/interface/request-user.interface';
 import { DeleteUserCommand } from './cqrs/command/delete-user.command';
-import { SendMailCommand } from '../../api-mail/application/cqrs/command/send-mail.command';
 import { SaveUserLoginDto } from '../domain/dto/save-user-login.dto';
 import { CreateSaveLoginCommand } from './cqrs/command/create-save-login.command';
 import { SaveUserLoginResponse } from '../web/response/save-user-login.response';
@@ -39,6 +38,7 @@ import { ConfigService } from '@nestjs/config';
 import Stripe from 'stripe';
 import { SetReferralCodeCommand } from './cqrs/command/set-referral-code.command';
 import { ReferralCodeResponse } from '../web/response/referral-code.response';
+import { ApiMailService } from '../../api-mail/application/api-mail.service';
 
 @Injectable()
 export class UserService {
@@ -46,6 +46,7 @@ export class UserService {
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
     private readonly configService: ConfigService,
+    private readonly apiMailService: ApiMailService,
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<CreateUserResponse> {
@@ -141,11 +142,13 @@ export class UserService {
       if (!generateUserDto) throw new Error('Mail is required');
       if ((await this.queryBus.execute(new GetUserWithCriteriaQuery({ mail: generateUserDto.mail }))).length > 0)
         throw new Error('Mail already exists');
-      const user = await this.commandBus.execute(
+
+      const generatedPassword: string = this.generatePassword();
+      const user: CreateUserResponse = await this.commandBus.execute(
         new CreateUserCommand(
           new CreateUserDto({
             mail: generateUserDto.mail,
-            password: this.generatePassword(),
+            password: generatedPassword,
             roles: generateUserDto.roles ? generateUserDto.roles : [UserRoleEnum.PUBLIC],
           }),
         ),
@@ -160,13 +163,13 @@ export class UserService {
       );
 
       try {
-        await this.commandBus.execute(
-          new SendMailCommand({
-            email: generateUserDto.mail,
-            message: `Bonjour, votre compte a été créé avec succès. Votre mot de passe est : ${user.password}`,
-            title: 'Création de compte Wallet Share',
-          }),
-        );
+        await this.apiMailService.sendMail({
+          path: 'created-user',
+          email: generateUserDto.mail,
+          message: `Bonjour, votre compte a été créé avec succès.`,
+          title: 'Création de compte Wallet Share',
+          password: generatedPassword,
+        });
         await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
       } catch (error) {}
       return user;
