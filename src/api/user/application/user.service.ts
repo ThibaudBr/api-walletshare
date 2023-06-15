@@ -169,6 +169,7 @@ export class UserService {
           message: `Bonjour, votre compte a été créé avec succès.`,
           title: 'Création de compte Wallet Share',
           password: generatedPassword,
+          language: generateUserDto.language,
         });
         await this.commandBus.execute(new DeleteMailCommand({ mail: generateUserDto.mail }));
       } catch (error) {}

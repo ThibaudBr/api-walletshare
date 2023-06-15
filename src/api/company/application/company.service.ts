@@ -565,6 +565,7 @@ export class CompanyService {
         title: 'You have been add to a company',
         message: 'je sais pas',
         password: generatePassword,
+        language: createUserForCompany.language,
       });
     }
   }
