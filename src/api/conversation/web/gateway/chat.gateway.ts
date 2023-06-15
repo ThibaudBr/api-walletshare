@@ -64,7 +64,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const conversationEntities: ConversationEntity[] =
         await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
 
-      for (const conversationEntity of conversationEntities) {
+      const uniqueConversationEntities = new Set<ConversationEntity>(conversationEntities);
+
+      for (const conversationEntity of uniqueConversationEntities) {
         for (const profileEntity of user.profiles) {
           const cardOneOwnerId = conversationEntity.connectedCard?.cardEntityOne.owner.id;
           const cardTwoOwnerId = conversationEntity.connectedCard?.cardEntityTwo.owner.id;
