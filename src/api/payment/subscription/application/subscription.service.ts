@@ -165,6 +165,10 @@ export class SubscriptionService {
       });
   }
 
+  async getAllSubscriptions(): Promise<SubscriptionEntity[]> {
+    return await this.queryBus.execute(new GetAllSubscriptionQuery());
+  }
+
   private async isUserAlreadySubscribed(stripeCustomerId: string, priceId: string): Promise<boolean> {
     const subscription: Stripe.ApiList<Stripe.Subscription> = await this.stripeService.getListSubscription(
       stripeCustomerId,
@@ -189,9 +193,5 @@ export class SubscriptionService {
       }
     }
     return false;
-  }
-
-  async getAllSubscriptions(): Promise<SubscriptionEntity[]> {
-    return await this.queryBus.execute(new GetAllSubscriptionQuery());
   }
 }

@@ -34,11 +34,9 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
     await firstValueFrom(
       this.httpService.post(this.apiLogUrl + '/create-log', command, {
         headers: {
-          Authorization: `Bearer ${this.API_LOG_TOKEN}`,
+          Authorization: this.API_LOG_TOKEN,
         },
       }),
-    ).catch((error: Error) => {
-      console.log(error);
-    });
+    ).catch();
   }
 }
