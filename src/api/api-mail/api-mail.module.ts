@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiLogModule } from '../api-log/api-log.module';
-import { SendMailCommandHandler } from './application/cqrs/handler/command/send-mail.command';
+import { SendMailCommandHandler } from './application/cqrs/handler/command/send-mail.command-handler';
 import { SendMailEventHandler } from './application/cqrs/handler/event/send-mail.event-handler';
 import { ApiLogService } from '../api-log/application/api-log.service';
 import { ErrorCustomEventHandler } from '../../util/exception/error-handler/error-custom.event-handler';

@@ -482,6 +482,9 @@ export class CardService {
     } catch (error) {
       if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');
       else if (error.message === 'Profile not found') throw new InvalidIdHttpException(' for profile');
+      else if (error.message === 'Social Network not found') throw new InvalidIdHttpException(' for social network');
+      else if (error.message === 'Occupation not found') throw new InvalidIdHttpException(' for occupation');
+      else if (error.message === 'Error saving card') throw new InternalServerErrorException('Error saving card');
       else if (error.message === 'Unauthorized') throw new UnauthorizedRequestHttpException();
       else throw error;
     }

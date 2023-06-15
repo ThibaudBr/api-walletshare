@@ -9,16 +9,22 @@ import { AxiosResponse } from 'axios';
 @QueryHandler(GetAllMailQuery)
 export class GetAllMailQueryHandler implements IQueryHandler<GetAllMailQuery> {
   private readonly apiWaitingListUrl: string;
+  private readonly apiWaitingListToken: string;
 
   constructor(private httpService: HttpService, private readonly configService: ConfigService) {
     this.apiWaitingListUrl = this.configService.get('API_WAITING_LIST_URL') ?? 'NO-URL';
+    this.apiWaitingListToken = this.configService.get('API_WAITING_LIST_TOKEN') ?? 'NO-TOKEN';
   }
 
   async execute(): Promise<MailLandingPageDto[]> {
-    return await firstValueFrom(this.httpService.get(this.apiWaitingListUrl + '/all')).then(
-      async (response: AxiosResponse) => {
-        return response.data;
-      },
-    );
+    return await firstValueFrom(
+      this.httpService.get(this.apiWaitingListUrl + '/all', {
+        headers: {
+          Authorization: this.apiWaitingListToken,
+        },
+      }),
+    ).then(async (response: AxiosResponse) => {
+      return response.data;
+    });
   }
 }

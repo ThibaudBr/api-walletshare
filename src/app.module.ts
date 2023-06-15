@@ -73,6 +73,8 @@ import { HttpModule } from '@nestjs/axios';
         STRIPE_SECRET_KEY_TEST: Joi.string().required(),
         STRIPE_SECRET_KEY_PROD: Joi.string().required(),
         API_LOG_TOKEN: Joi.string().required(),
+        API_MAIL_TOKEN: Joi.string().required(),
+        API_WAITING_LIST_TOKEN: Joi.string().required(),
         STRIP_CREATE_CUSTOMER: Joi.string().required(),
         STRIPE_WEBHOOK_SUBSCRIPTION: Joi.string().required(),
       }),
