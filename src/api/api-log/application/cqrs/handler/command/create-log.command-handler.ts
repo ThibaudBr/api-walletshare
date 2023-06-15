@@ -27,7 +27,7 @@ export class CreateLogCommandHandler implements ICommandHandler<CreateLogCommand
 
   async execute(command: CreateLogCommand): Promise<void> {
     if (this.verbose === VerboseLogEnum.NONE) return;
-    if (this.verbose === VerboseLogEnum.DEBUG) console.log('CreateLogCommandHandler: ', command);
+    if (this.verbose === VerboseLogEnum.DEBUG && command.error) console.log('CreateLogCommandHandler: ', command);
     command.apiName = this.API_NAME;
     command.apiVersion = this.npm_package_version;
     command.apiType = this.API_TYPE;
