@@ -10,17 +10,14 @@ import { ApiMailController } from './web/api-mail.controller';
 import { ApiMailService } from './application/api-mail.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../user/domain/entities/user.entity';
-import { UserModule } from '../user/user.module';
-import { UserService } from '../user/application/user.service';
 import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity]), HttpModule, CqrsModule, ApiLogModule, UserModule],
+  imports: [TypeOrmModule.forFeature([UserEntity]), HttpModule, CqrsModule, ApiLogModule],
   controllers: [ApiMailController],
   providers: [
     ApiLogService,
     ApiMailService,
-    UserService,
     ErrorCustomEventHandler,
     SendMailCommandHandler,
     SendMailEventHandler,

@@ -9,17 +9,14 @@ import { GetAllMailQueryHandler } from './application/cqrs/handler/query/get-all
 import { CreateLogCommandHandler } from '../api-log/application/cqrs/handler/command/create-log.command-handler';
 import { ApiLandingPageService } from './application/api-landing-page.service';
 import { ApiLogService } from '../api-log/application/api-log.service';
-import { UserModule } from '../user/user.module';
-import { UserService } from '../user/application/user.service';
 import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [HttpModule, CqrsModule, ApiLogModule, UserModule],
+  imports: [HttpModule, CqrsModule, ApiLogModule],
   controllers: [ApiLandingPageController],
   providers: [
     ApiLandingPageService,
     ApiLogService,
-    UserService,
     ErrorCustomEventHandler,
     CreateLogCommandHandler,
     DeleteMailCommandHandler,

@@ -56,6 +56,8 @@ import { UpdateUserRoleCommandHandler } from '../user/application/cqrs/handler/c
 import { UpdateUserRoleEventHandler } from '../user/application/cqrs/handler/event/update-user-role.event-handler';
 import { SubscriptionEntity } from '../payment/subscription/domain/entities/subscription.entity';
 import { GetUserByIdQueryHandler } from './application/cqrs/handler/query/get-user-by-id.query-handler';
+import { ApiMailModule } from '../api-mail/api-mail.module';
+import { ApiMailService } from '../api-mail/application/api-mail.service';
 
 @Module({
   controllers: [CompanyController],
@@ -73,8 +75,10 @@ import { GetUserByIdQueryHandler } from './application/cqrs/handler/query/get-us
     CqrsModule,
     ApiLogModule,
     HttpModule,
+    ApiMailModule,
   ],
   providers: [
+    ApiMailService,
     CompanyService,
     // log
     ApiLogService,
