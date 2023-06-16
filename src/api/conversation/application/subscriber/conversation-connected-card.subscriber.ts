@@ -33,7 +33,7 @@ export class ConversationConnectedCardSubscriber implements EntitySubscriberInte
     await conversationRepository.softRemove(conversations);
   }
 
-  async afterRemove(event: RemoveEvent<ConnectedCardEntity>): Promise<void> {
+  async beforeRemove(event: RemoveEvent<ConnectedCardEntity>): Promise<void> {
     const softRemovedConnectedCard: ConnectedCardEntity | undefined = event.entity;
     const conversationRepository = event.manager.getRepository(ConversationEntity);
     const conversations: ConversationEntity[] = await conversationRepository.find({
