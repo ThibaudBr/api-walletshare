@@ -78,7 +78,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         for (const profileEntity of user.profiles) {
           const cardOneOwnerId = conversationEntity.connectedCard?.cardEntityOne.owner.id;
           const cardTwoOwnerId = conversationEntity.connectedCard?.cardEntityTwo.owner.id;
-          const groupMembersIds = conversationEntity.group?.members.map(member => member.card.owner.id);
+          const groupMembersIds = conversationEntity.group?.members.map(member => member.card.owner.id) ?? [];
 
           if (
             cardOneOwnerId === profileEntity.id ||
