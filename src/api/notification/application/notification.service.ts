@@ -16,15 +16,10 @@ import { RemoveNotificationCommand } from './cqrs/command/remove-notification.co
 import { RestoreNotificationCommand } from './cqrs/command/restore-notification.command';
 import { CreateNotificationAdminRequest } from '../web/request/create-notification-admin.request';
 import { CreateNotificationAdminCommand } from './cqrs/command/create-notification-admin.command';
-import { FirebaseAdmin, InjectFirebaseAdmin } from 'nestjs-firebase';
 
 @Injectable()
 export class NotificationService {
-  constructor(
-    private readonly commandBus: CommandBus,
-    private readonly queryBus: QueryBus,
-    @InjectFirebaseAdmin() private readonly firebase: FirebaseAdmin,
-  ) {}
+  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
   async getAllNotifications(): Promise<NotificationResponse[]> {
     return await this.queryBus.execute(new GetAllNotificationQuery());

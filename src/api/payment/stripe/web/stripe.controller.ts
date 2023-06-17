@@ -9,6 +9,7 @@ import { AttachCreditCardRequest } from './request/attach-credit-card.request';
 import { SetDefaultCreditCardStripRequest } from './request/set-default-credit-card-strip.request';
 import { CreateCouponStripeRequest } from './request/create-coupon-stripe.request';
 import { UpdateCouponStripeRequest } from './request/update-coupon-stripe.request';
+import { InvalidIdHttpException } from '../../../../util/exception/custom-http-exception/invalid-id.http-exception';
 
 @Controller('stripe')
 export class StripeController {
@@ -20,6 +21,9 @@ export class StripeController {
     @Req() requestUser: RequestUser,
     @Body() chargeStripe: ChargeStripeRequest,
   ): Promise<Stripe.Response<Stripe.PaymentIntent>> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
     return await this.stripeService.chargeCustomer(requestUser.user.stripeCustomerId, chargeStripe);
   }
 
@@ -29,12 +33,18 @@ export class StripeController {
     @Req() requestUser: RequestUser,
     @Body() attachCreditCard: AttachCreditCardRequest,
   ): Promise<Stripe.Response<Stripe.SetupIntent>> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
     return await this.stripeService.attachPaymentMethodToCustomer(requestUser.user.stripeCustomerId, attachCreditCard);
   }
 
   @Get('/public/list-saved-credit-card')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getListSavedCreditCard(@Req() requestUser: RequestUser): Promise<Stripe.ApiList<Stripe.PaymentMethod>> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
     return await this.stripeService.getListSavedCreditCardOfUser(requestUser.user.stripeCustomerId);
   }
 
@@ -44,6 +54,9 @@ export class StripeController {
     @Req() requestUser: RequestUser,
     @Body() setDefaultCreditCard: SetDefaultCreditCardStripRequest,
   ): Promise<Stripe.Response<Stripe.Customer>> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
     return await this.stripeService.setDefaultCreditCard(requestUser.user.stripeCustomerId, setDefaultCreditCard);
   }
 
@@ -71,12 +84,18 @@ export class StripeController {
   @Get('/public/get-all-my-invoices')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllMyInvoices(@Req() requestUser: RequestUser): Promise<Stripe.ApiList<Stripe.Invoice>> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
     return await this.stripeService.getAllInvoiceByCustomerId(requestUser.user.stripeCustomerId);
   }
 
   @Get('/public/get-all-my-subscriptions')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getAllMySubscriptions(@Req() requestUser: RequestUser): Promise<Stripe.ApiList<Stripe.Subscription>> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
     return await this.stripeService.getAllSubscriptionsFromCustomerId(requestUser.user.stripeCustomerId);
   }
 
