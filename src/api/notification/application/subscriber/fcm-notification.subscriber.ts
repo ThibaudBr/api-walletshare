@@ -30,6 +30,7 @@ export class FcmNotificationSubscriber implements EntitySubscriberInterface<Noti
         data: {
           type: notification?.type,
           notificationId: notification?.id,
+          conversationId: notification?.conversationId ?? 'not-conversation',
         },
         token: userEntity.fcmToken,
       };

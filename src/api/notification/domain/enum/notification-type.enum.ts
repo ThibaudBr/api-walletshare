@@ -7,4 +7,5 @@ export enum NotificationTypeEnum {
   NEW_GROUP_MESSAGE = 'NEW_GROUP_MESSAGE',
   NEW_CALL = 'NEW_CALL',
   LEAVE_GROUP = 'LEAVE_GROUP',
+  MISSED_CALL = 'MISSED_CALL',
 }

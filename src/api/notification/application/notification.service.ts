@@ -16,6 +16,8 @@ import { RemoveNotificationCommand } from './cqrs/command/remove-notification.co
 import { RestoreNotificationCommand } from './cqrs/command/restore-notification.command';
 import { CreateNotificationAdminRequest } from '../web/request/create-notification-admin.request';
 import { CreateNotificationAdminCommand } from './cqrs/command/create-notification-admin.command';
+import {CreateNotificationCommand} from "./cqrs/command/create-notification.command";
+import {NotificationTypeEnum} from "../domain/enum/notification-type.enum";
 
 @Injectable()
 export class NotificationService {
@@ -198,6 +200,38 @@ export class NotificationService {
       });
   }
 
-  // TODO: add send fcm notification when user is called
-  // TODO: add create notification when user does not respond to call
+  public async createNotificationWhenCalled(userId: string, conversationId: string): Promise<void> {
+    return await this.commandBus
+      .execute(
+        new CreateNotificationCommand({
+          userId: userId,
+          conversationId: conversationId,
+          notificationType: NotificationTypeEnum.NEW_CALL,
+          notificationTitle: 'New call',
+          notificationMessage: 'You have a new call',
+        }),
+      )
+      .catch(err => {
+        if (err.message === 'User not found') throw new InvalidIdHttpException('User not found');
+        if (err.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
+        throw err;
+      });
+  }
+  public async createNotificationWhenMissedCall(userId: string, conversationId: string): Promise<void> {
+    return await this.commandBus
+      .execute(
+        new CreateNotificationCommand({
+          userId: userId,
+          conversationId: conversationId,
+          notificationType: NotificationTypeEnum.MISSED_CALL,
+          notificationTitle: 'Missed call',
+          notificationMessage: 'You have a missed call',
+        }),
+      )
+      .catch(err => {
+        if (err.message === 'User not found') throw new InvalidIdHttpException('User not found');
+        if (err.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
+        throw err;
+      });
+  }
 }
