@@ -13,28 +13,33 @@ export class FcmNotificationSubscriber implements EntitySubscriberInterface<Noti
   }
 
   async afterInsert(event: InsertEvent<NotificationEntity>): Promise<void> {
-    const notification: NotificationEntity | undefined = event.entity;
-    const userRepository: Repository<UserEntity> = event.manager.getRepository(UserEntity);
-    const userEntity: UserEntity | null = await userRepository.findOne({
-      where: {
-        id: notification?.user.id,
-      },
-    });
-    if (!userEntity) return;
-    if (userEntity?.fcmToken) {
-      const message: TokenMessage = {
-        notification: {
-          title: notification?.title,
-          body: notification?.description,
+    try {
+      const notification: NotificationEntity | undefined = event.entity;
+      const userRepository: Repository<UserEntity> = event.manager.getRepository(UserEntity);
+      const userEntity: UserEntity | null = await userRepository.findOne({
+        where: {
+          id: notification?.user.id,
         },
-        data: {
-          type: notification?.type,
-          notificationId: notification?.id,
-          conversationId: notification?.conversationId ?? 'not-conversation',
-        },
-        token: userEntity.fcmToken,
-      };
-      await admin.messaging().send(message);
+      });
+      if (!userEntity) return;
+      if (userEntity?.fcmToken) {
+        const message: TokenMessage = {
+          notification: {
+            title: notification?.title,
+            body: notification?.description,
+          },
+          data: {
+            type: notification?.type,
+            notificationId: notification?.id,
+            conversationId: notification?.conversationId ?? 'not-conversation',
+          },
+          token: userEntity.fcmToken,
+        };
+        await admin.messaging().send(message);
+      }
+    } catch (e) {
+      console.log(e);
+      return;
     }
   }
 }
