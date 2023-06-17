@@ -21,6 +21,8 @@ import { GetMessageFromConversationRequest } from '../request/get-message-from-c
 import { AuthService } from '../../../auth/application/auth.service';
 import { BadRequestException, HttpException, HttpStatus } from '@nestjs/common';
 import { NotificationService } from '../../../notification/application/notification.service';
+import { EventBus } from '@nestjs/cqrs';
+import { ErrorCustomEvent } from '../../../../util/exception/error-handler/error-custom.event';
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -32,6 +34,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     private readonly conversationService: ConversationService,
     private readonly authService: AuthService,
     private readonly notificationService: NotificationService,
+    private readonly eventBus: EventBus,
   ) {
     this.isFirstTime = true;
   }
@@ -93,6 +96,13 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         }
       }
     } catch (e) {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'ChatGateway.handleConnection',
+          handler: 'ChatGateway',
+          error: e.message,
+        }),
+      );
       await this.disconnect(socket);
     }
   }

@@ -25,8 +25,8 @@ import { RemoveNotificationEventHandler } from './application/cqrs/handler/event
 import { SoftRemoveNotificationEventHandler } from './application/cqrs/handler/event/soft-remove-notification.event-handler';
 import { RestoreNotificationEventHandler } from './application/cqrs/handler/event/restore-notification.event-handler';
 import { HttpModule } from '@nestjs/axios';
-import {CreateNotificationCommandHandler} from "./application/cqrs/handler/command/create-notification.command-handler";
-import {CreateNotificationEventHandler} from "./application/cqrs/handler/event/create-notification.event-handler";
+import { CreateNotificationCommandHandler } from './application/cqrs/handler/command/create-notification.command-handler';
+import { CreateNotificationEventHandler } from './application/cqrs/handler/event/create-notification.event-handler';
 
 @Module({
   imports: [
