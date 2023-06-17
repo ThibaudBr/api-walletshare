@@ -55,6 +55,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { RemoveAllJoinedConversationWithSocketIdCommandHandler } from './application/cqrs/handler/command/remove-all-joined-conversation-with-socket-id.command-handler';
 import { RemoveAllJoinedConversationWithSocketIdEventHandler } from './application/cqrs/handler/event/remove-all-joined-conversation-with-socket-id.event-handler';
+import { NotificationEntity } from '../notification/domain/entities/notification.entity';
+import { NotificationService } from '../notification/application/notification.service';
+import { NotificationModule } from '../notification/notification.module';
 
 @Module({
   imports: [
@@ -78,15 +81,18 @@ import { RemoveAllJoinedConversationWithSocketIdEventHandler } from './applicati
       CardEntity,
       MediaEntity,
       ConnectedUserEntity,
+      NotificationEntity,
     ]),
     CqrsModule,
     ApiLogModule,
     HttpModule,
     AuthModule,
+    NotificationModule,
   ],
   controllers: [ConversationController],
   providers: [
     AuthService,
+    NotificationService,
     ChatGateway,
     ConversationService,
     // log
