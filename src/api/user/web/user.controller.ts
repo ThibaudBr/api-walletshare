@@ -27,6 +27,7 @@ import { ListRolesDto } from '../domain/dto/list-roles.dto';
 import { UserIdDto } from '../domain/dto/user-id.dto';
 import { SaveUserLoginResponse } from './response/save-user-login.response';
 import { ConfigService } from '@nestjs/config';
+import { UpdateFcmTokenRequest } from './response/update-fcm-token.request';
 
 @Controller('user')
 @ApiTags('user')
@@ -297,5 +298,14 @@ export class UserController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllUserCount(): Promise<number> {
     return await this.userService.getAllUserCount();
+  }
+
+  @Put('/public/update-my-fcm-token')
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async updateMyFcmToken(
+    @Req() req: RequestUser,
+    @Body() updateFcmToken: UpdateFcmTokenRequest,
+  ): Promise<UserResponse> {
+    return await this.userService.updateFcmToken(req.user.id, updateFcmToken);
   }
 }

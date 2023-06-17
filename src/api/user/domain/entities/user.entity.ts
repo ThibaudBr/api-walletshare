@@ -74,8 +74,10 @@ export class UserEntity extends BaseEntity {
   // _________________________________________________________
 
   @Column({ nullable: true })
-  public stripeCustomerId: string;
+  public stripeCustomerId?: string;
 
+  @Column({ nullable: true })
+  public fcmToken?: string;
   // _________________________________________________________
   // Relations
   // _________________________________________________________
