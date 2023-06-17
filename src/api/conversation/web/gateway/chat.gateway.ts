@@ -20,6 +20,7 @@ import { CreateJoinConversationDto } from '../../domain/dto/create-join-conversa
 import { GetMessageFromConversationRequest } from '../request/get-message-from-conversation.request';
 import { AuthService } from '../../../auth/application/auth.service';
 import { BadRequestException, HttpException, HttpStatus } from '@nestjs/common';
+import { NotificationService } from '../../../notification/application/notification.service';
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -27,7 +28,11 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   server: Server;
   private isFirstTime: boolean;
 
-  constructor(private readonly conversationService: ConversationService, private readonly authService: AuthService) {
+  constructor(
+    private readonly conversationService: ConversationService,
+    private readonly authService: AuthService,
+    private readonly notificationService: NotificationService,
+  ) {
     this.isFirstTime = true;
   }
 
@@ -250,6 +255,11 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
       for (const participant of otherParticipants) {
         this.server.to(participant.socketId).emit('sdp-offer', { offer: payload.offer, senderSocketId: socket.id });
+        try {
+          await this.notificationService.createNotificationWhenCalled(participant.id, conversation.id);
+        } catch (e) {
+          return;
+        }
       }
     } catch (e) {
       await this.disconnect(socket);

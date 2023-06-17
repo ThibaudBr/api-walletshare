@@ -42,6 +42,9 @@ export class NotificationEntity extends BaseEntity {
   @Column({ name: 'link', type: 'varchar', length: 255, nullable: true })
   link: string;
 
+  @Column({ name: 'conversation_id', type: 'varchar', length: 255, nullable: true })
+  conversationId?: string;
+
   // ______________________________________________________
   // Relations
   // ______________________________________________________
