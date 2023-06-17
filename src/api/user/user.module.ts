@@ -44,6 +44,8 @@ import { ApiMailModule } from '../api-mail/api-mail.module';
 import { ApiMailService } from '../api-mail/application/api-mail.service';
 import { ApiLandingPageModule } from '../api-landing-page/api-landing-page.module';
 import { ApiLandingPageService } from '../api-landing-page/application/api-landing-page.service';
+import { UpdateFcmTokenCommandHandler } from './application/cqrs/handler/command/update-fcm-token.command-handler';
+import { UpdateFcmTokenEventHandler } from './application/cqrs/handler/event/update-fcm-token.event-handler';
 
 @Module({
   imports: [
@@ -76,6 +78,7 @@ import { ApiLandingPageService } from '../api-landing-page/application/api-landi
     CreateSaveLoginCommandHandler,
     CreateStripeCustomerCommandHandler,
     SetReferralCodeCommandHandler,
+    UpdateFcmTokenCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,
@@ -95,6 +98,7 @@ import { ApiLandingPageService } from '../api-landing-page/application/api-landi
     CreateStripeCustomerEventHandler,
     SetReferralCodeEventHandler,
     GetUserEntityQueryHandler,
+    UpdateFcmTokenEventHandler,
   ],
 })
 export class UserModule {}

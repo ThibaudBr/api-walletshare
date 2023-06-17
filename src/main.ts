@@ -2,6 +2,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as process from 'process';
+import { ConfigService } from '@nestjs/config';
+import * as admin from 'firebase-admin';
+import { ServiceAccount } from 'firebase-admin';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, {
@@ -16,6 +19,19 @@ async function bootstrap(): Promise<void> {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
+
+  const configService: ConfigService = app.get(ConfigService);
+  // Set the config options
+  const adminConfig: ServiceAccount = {
+    projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
+    privateKey: configService.get<string>('FIREBASE_PRIVATE_KEY')?.replace(/\\n/g, '\n'),
+    clientEmail: configService.get<string>('FIREBASE_CLIENT_EMAIL'),
+  };
+  // Initialize the firebase admin app
+  admin.initializeApp({
+    credential: admin.credential.cert(adminConfig),
+    databaseURL: 'https://xxxxx.firebaseio.com',
+  });
 
   app.enableCors({
     origin: ['*', process.env.FRONTEND_URL ?? 'http://localhost:8080'],
