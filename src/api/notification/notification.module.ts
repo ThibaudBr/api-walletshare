@@ -25,24 +25,10 @@ import { RemoveNotificationEventHandler } from './application/cqrs/handler/event
 import { SoftRemoveNotificationEventHandler } from './application/cqrs/handler/event/soft-remove-notification.event-handler';
 import { RestoreNotificationEventHandler } from './application/cqrs/handler/event/restore-notification.event-handler';
 import { HttpModule } from '@nestjs/axios';
-import { FirebaseModule } from 'nestjs-firebase';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity, ProfileEntity, GroupEntity, GroupMembershipEntity, NotificationEntity]),
-    FirebaseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (config: ConfigService) => ({
-        projectId: config.get<string>('FIREBASE_PROJECT_ID'),
-        googleApplicationCredential: {
-          privateKey: config.get<string>('FIREBASE_PRIVATE_KEY'),
-          projectId: config.get<string>('FIREBASE_PROJECT_ID'),
-          clientEmail: config.get<string>('FIREBASE_CLIENT_EMAIL'),
-        },
-      }),
-    }),
     CqrsModule,
     ApiLogModule,
     HttpModule,

@@ -6,6 +6,7 @@ import { UserRoleEnum } from '../../../user/domain/enum/user-role.enum';
 import { RequestUser } from '../../../auth/domain/interface/request-user.interface';
 import { CancelSubscriptionRequest } from './request/cancel-subscription.request';
 import { SubscriptionEntity } from '../domain/entities/subscription.entity';
+import { InvalidIdHttpException } from '../../../../util/exception/custom-http-exception/invalid-id.http-exception';
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -17,6 +18,9 @@ export class SubscriptionController {
     @Req() requestUser: RequestUser,
     @Param('stripePriceId') stripePriceId: string,
   ): Promise<Stripe.ApiList<Stripe.Subscription>> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
     return await this.subscriptionService.getListSubscription(requestUser.user.stripeCustomerId, stripePriceId);
   }
 
@@ -39,6 +43,9 @@ export class SubscriptionController {
     @Req() requestUser: RequestUser,
     @Body() cancelSubscriptionRequest: CancelSubscriptionRequest,
   ): Promise<void> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
     return await this.subscriptionService.handlerUserCancelSubscription(
       requestUser.user.id,
       requestUser.user.stripeCustomerId,
