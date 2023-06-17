@@ -39,6 +39,9 @@ import Stripe from 'stripe';
 import { SetReferralCodeCommand } from './cqrs/command/set-referral-code.command';
 import { ReferralCodeResponse } from '../web/response/referral-code.response';
 import { ApiMailService } from '../../api-mail/application/api-mail.service';
+import { UpdateFcmTokenRequest } from '../web/response/update-fcm-token.request';
+import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
+import { UpdateFcmTokenCommand } from './cqrs/command/update-fcm-token.command';
 
 @Injectable()
 export class UserService {
@@ -257,6 +260,20 @@ export class UserService {
 
   async getAllUserCount(): Promise<number> {
     return await this.findAll().then(users => users.length);
+  }
+
+  async updateFcmToken(userId: string, updateFcmToken: UpdateFcmTokenRequest): Promise<UserResponse> {
+    return await this.commandBus
+      .execute(
+        new UpdateFcmTokenCommand({
+          userId: userId,
+          fcmToken: updateFcmToken.fcmToken,
+        }),
+      )
+      .catch(err => {
+        if (err.message === 'User not found') throw new InvalidIdHttpException('User not found');
+        throw new InternalServerErrorException(err.message);
+      });
   }
 
   private generatePassword(): string {
