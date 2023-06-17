@@ -74,100 +74,89 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
         throw new ErrorInvalidIdRuntimeException('Card of receiver not found');
       });
 
-    if (!cardWhoRequest.connectedCardOne.map(card => card.id).includes(cardToDisconnect.id)) {
-      await this.connectedCardRepository
-        .findOneOrFail({
-          relations: ['cardEntityOne', 'cardEntityTwo'],
-          where: [
-            {
-              cardEntityOne: {
-                id: cardWhoRequest.id,
-              },
-              cardEntityTwo: {
-                id: cardToDisconnect.id,
-              },
+    await this.connectedCardRepository
+      .findOneOrFail({
+        relations: ['cardEntityOne', 'cardEntityTwo'],
+        where: [
+          {
+            cardEntityOne: {
+              id: cardWhoRequest.id,
             },
-          ],
-        })
-        .then(async cardConnected => {
-          await this.connectedCardRepository
-            .remove(cardConnected)
-            .then(() => {
-              this.eventBus.publish(
-                new RemoveConnectedCardEvent({
-                  cardId: cardWhoRequest.id,
-                  connectedCardId: cardToDisconnect.id,
-                }),
-              );
-            })
-            .catch(async error => {
-              await this.eventBus.publish(
-                new ErrorCustomEvent({
-                  error: error.message,
-                  handler: 'RemoveConnectedCardCommandHandler',
-                  localisation: 'connectedCardRepository.delete',
-                }),
-              );
-              throw new ErrorDeleteRuntimeException('Error while deleting relation');
-            });
-        })
-        .catch(async error => {
-          await this.eventBus.publish(
-            new ErrorCustomEvent({
-              error: error.message,
-              handler: 'RemoveConnectedCardCommandHandler',
-              localisation: 'connectedCardRepository.findOneOrFail',
-            }),
-          );
-          throw new ErrorInvalidIdRuntimeException('Error while fetching relation');
-        });
-    } else {
-      await this.connectedCardRepository
-        .findOneOrFail({
-          relations: ['cardEntityOne', 'cardEntityTwo'],
-          where: [
-            {
-              cardEntityOne: {
-                id: cardToDisconnect.id,
-              },
-              cardEntityTwo: {
-                id: cardWhoRequest.id,
-              },
+            cardEntityTwo: {
+              id: cardToDisconnect.id,
             },
-          ],
-        })
-        .then(cardConnected => {
-          this.connectedCardRepository
-            .delete(cardConnected.id)
-            .then(() => {
-              this.eventBus.publish(
-                new RemoveConnectedCardEvent({
-                  cardId: cardToDisconnect.id,
-                  connectedCardId: cardWhoRequest.id,
-                }),
-              );
-            })
-            .catch(async error => {
-              await this.eventBus.publish(
-                new ErrorCustomEvent({
-                  error: error.message,
-                  handler: 'RemoveConnectedCardCommandHandler',
-                  localisation: 'connectedCardRepository.delete',
-                }),
-              );
-              throw new ErrorDeleteRuntimeException('Error while deleting relation');
-            });
-        })
-        .catch(async error => {
-          await this.eventBus.publish(
-            new ErrorCustomEvent({
-              error: error.message,
-              handler: 'RemoveConnectedCardCommandHandler',
-              localisation: 'connectedCardRepository.findOneOrFail',
-            }),
-          );
-          throw new ErrorInvalidIdRuntimeException('Error while fetching relation');
-        });
-    }
+          },
+        ],
+      })
+      .then(async cardConnected => {
+        await this.connectedCardRepository
+          .remove(cardConnected)
+          .then(() => {
+            this.eventBus.publish(
+              new RemoveConnectedCardEvent({
+                cardId: cardWhoRequest.id,
+                connectedCardId: cardToDisconnect.id,
+              }),
+            );
+          })
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: 'RemoveConnectedCardCommandHandler',
+                localisation: 'connectedCardRepository.delete',
+              }),
+            );
+            throw new ErrorDeleteRuntimeException('Error while deleting relation');
+          });
+      })
+      .catch(async () => {
+        await this.connectedCardRepository
+          .findOneOrFail({
+            relations: ['cardEntityOne', 'cardEntityTwo'],
+            where: [
+              {
+                cardEntityOne: {
+                  id: cardToDisconnect.id,
+                },
+                cardEntityTwo: {
+                  id: cardWhoRequest.id,
+                },
+              },
+            ],
+          })
+          .then(cardConnected => {
+            this.connectedCardRepository
+              .delete(cardConnected.id)
+              .then(() => {
+                this.eventBus.publish(
+                  new RemoveConnectedCardEvent({
+                    cardId: cardToDisconnect.id,
+                    connectedCardId: cardWhoRequest.id,
+                  }),
+                );
+              })
+              .catch(async error => {
+                await this.eventBus.publish(
+                  new ErrorCustomEvent({
+                    error: error.message,
+                    handler: 'RemoveConnectedCardCommandHandler',
+                    localisation: 'connectedCardRepository.delete',
+                  }),
+                );
+                throw new ErrorDeleteRuntimeException('Error while deleting relation');
+              });
+          })
+          .catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                error: error.message,
+                handler: 'RemoveConnectedCardCommandHandler',
+                localisation: 'connectedCardRepository.findOneOrFail',
+              }),
+            );
+            throw new ErrorInvalidIdRuntimeException('Error while fetching relation');
+          });
+      });
   }
 }
