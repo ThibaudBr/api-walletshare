@@ -7,6 +7,7 @@ import { RequestUser } from '../../../auth/domain/interface/request-user.interfa
 import { CancelSubscriptionRequest } from './request/cancel-subscription.request';
 import { SubscriptionEntity } from '../domain/entities/subscription.entity';
 import { InvalidIdHttpException } from '../../../../util/exception/custom-http-exception/invalid-id.http-exception';
+import { CreateSubscriptionRequest } from './request/create-subscription.request';
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -24,18 +25,20 @@ export class SubscriptionController {
     return await this.subscriptionService.getListSubscription(requestUser.user.stripeCustomerId, stripePriceId);
   }
 
-  // @Post('/public/create-subscription')
-  // @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
-  // async createSubscription(
-  //   @Req() requestUser: RequestUser,
-  //   @Body() createSubscriptionRequest: CreateSubscriptionRequest,
-  // ): Promise<Stripe.Response<Stripe.Subscription>> {
-  //   return await this.subscriptionService.createSubscription(
-  //     requestUser.user.id,
-  //     requestUser.user.stripeCustomerId,
-  //     createSubscriptionRequest,
-  //   );
-  // }
+  @Post('/public/create-subscription')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async createSubscription(
+    @Req() requestUser: RequestUser,
+    @Body() createSubscriptionRequest: CreateSubscriptionRequest,
+  ): Promise<Stripe.Response<Stripe.Subscription>> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
+    if (requestUser.user.stripeCustomerId !== createSubscriptionRequest.customerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
+    return await this.subscriptionService.createSubscription(createSubscriptionRequest);
+  }
 
   @Post('/public/cancel-subscription')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
