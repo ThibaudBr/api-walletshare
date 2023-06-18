@@ -22,35 +22,18 @@ export class CreateSubscriptionStripeCommandHandler implements ICommandHandler<C
   }
 
   async execute(command: CreateSubscriptionStripeCommand): Promise<Stripe.Response<Stripe.Subscription>> {
-    if (command.trialPeriod) {
-      const subscription: Stripe.Response<Stripe.Subscription> = await this.stripe.subscriptions
-        .create({
-          customer: command.stripeCustomerId,
-          items: [{ price: command.priceId }],
-          expand: ['latest_invoice.payment_intent'],
-          trial_period_days: command.trialPeriod,
-          promotion_code: command.promotionCode,
-        })
-        .catch(async error => {
-          await this.eventBus.publish(
-            new ErrorCustomEvent({
-              handler: 'CreateSubscriptionStripCommandHandler',
-              localisation: 'stripe.subscriptions.create',
-              error: error,
-            }),
-          );
-          throw new Error('Error during the subscription creation');
-        });
+    // Attacher la méthode de paiement au client
+    await this.stripe.paymentMethods.attach(command.paymentMethod, {
+      customer: command.stripeCustomerId,
+    });
 
-      await this.eventBus.publish(
-        new CreateSubscriptionStripeEvent({
-          stripeCustomerId: command.stripeCustomerId,
-          priceId: command.priceId,
-        }),
-      );
+    // Mettre à jour les paramètres de facturation par défaut du client
+    await this.stripe.customers.update(command.stripeCustomerId, {
+      invoice_settings: {
+        default_payment_method: command.paymentMethod,
+      },
+    });
 
-      return subscription;
-    }
     const subscription: Stripe.Response<Stripe.Subscription> = await this.stripe.subscriptions
       .create({
         customer: command.stripeCustomerId,

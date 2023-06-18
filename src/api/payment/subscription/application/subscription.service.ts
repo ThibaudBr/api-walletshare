@@ -16,6 +16,7 @@ import { AssignProfileToSubscriptionCommand } from './cqrs/command/assign-profil
 import { UpdateSubscriptionCommand } from './cqrs/command/update-subscription.command';
 import { GetSubscriptionByStripeSubscriptionIdQuery } from './cqrs/query/get-subscription-by-stripe-subscription-id.query';
 import { GetAllSubscriptionQuery } from './cqrs/query/get-all-subscription.query';
+import { CreateSubscriptionRequest } from '../web/request/create-subscription.request';
 
 @Injectable()
 export class SubscriptionService {
@@ -193,5 +194,11 @@ export class SubscriptionService {
       }
     }
     return false;
+  }
+
+  async createSubscription(
+    createSubscriptionRequest: CreateSubscriptionRequest,
+  ): Promise<Stripe.Response<Stripe.Subscription>> {
+    return await this.stripeService.createSubscription(createSubscriptionRequest);
   }
 }

@@ -40,6 +40,7 @@ import { CreateReferralCodeStripeRequest } from '../web/request/create-referral-
 import { CreateCouponStripeRequest } from '../web/request/create-coupon-stripe.request';
 import { StripeWebhookSignatureEnum } from '../../stripe-webhook/domain/enum/stripe-webhook-signature.enum';
 import { GetInvoiceByStripeIdQuery } from './cqrs/query/get-invoice-by-stripe-id.query';
+import {CreateSubscriptionRequest} from "../../subscription/web/request/create-subscription.request";
 
 @Injectable()
 export class StripeService {
@@ -124,16 +125,15 @@ export class StripeService {
   }
 
   public async createSubscription(
-    stripeCustomerId: string,
-    price: string,
-    referralCode?: string,
+    createSubscriptionRequest: CreateSubscriptionRequest,
   ): Promise<Stripe.Response<Stripe.Subscription>> {
     return await this.commandBus
       .execute(
         new CreateSubscriptionStripeCommand({
-          stripeCustomerId: stripeCustomerId,
-          priceId: price,
-          promotionCode: referralCode,
+          stripeCustomerId: createSubscriptionRequest.customerId,
+          priceId: createSubscriptionRequest.priceId,
+          promotionCode: createSubscriptionRequest.referralCode,
+          paymentMethod: createSubscriptionRequest.paymentMethod,
         }),
       )
       .catch(error => {
