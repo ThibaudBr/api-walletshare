@@ -55,6 +55,9 @@ import { CardPresetCardSubscriber } from '../../api/card/application/subscriber/
 import { CardPresetMediaSubscriber } from '../../api/media/application/subscriber/card-preset-media.subscriber';
 import { GroupMediaSubscriber } from '../../api/media/application/subscriber/group-media.subscriber';
 import { FcmNotificationSubscriber } from '../../api/notification/application/subscriber/fcm-notification.subscriber';
+import {
+  SubscriptionInvoiceSubscriber
+} from "../../api/payment/invoices/application/subscriber/subscription-invoice.subscriber";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -126,6 +129,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserAddressSubscriber,
             UserReferralCodeSubscriber,
             FcmNotificationSubscriber,
+            SubscriptionInvoiceSubscriber,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           type: 'postgres',
@@ -201,6 +205,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserAddressSubscriber,
             UserReferralCodeSubscriber,
             FcmNotificationSubscriber,
+            SubscriptionInvoiceSubscriber,
           ],
 
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
@@ -274,6 +279,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserAddressSubscriber,
             UserReferralCodeSubscriber,
             FcmNotificationSubscriber,
+            SubscriptionInvoiceSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'dev') {
@@ -343,6 +349,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserAddressSubscriber,
             UserReferralCodeSubscriber,
             FcmNotificationSubscriber,
+            SubscriptionInvoiceSubscriber,
           ],
         };
       } else {
