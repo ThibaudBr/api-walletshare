@@ -27,13 +27,15 @@ export class CreateSubscriptionCommandHandler implements ICommandHandler<CreateS
       price: command.priceEntity,
       subscriptionStripeId: command.stripeSubscription.id,
       stripeLatestInvoiceId: command.latestInvoiceId,
-      trialEndDate: command.stripeSubscription.trial_end ? new Date(command.stripeSubscription.trial_end) : undefined,
+      trialEndDate: command.stripeSubscription.trial_end
+        ? new Date(command.stripeSubscription.trial_end * 1000)
+        : undefined,
       trialStartDate: command.stripeSubscription.trial_start
-        ? new Date(command.stripeSubscription.trial_start)
+        ? new Date(command.stripeSubscription.trial_start * 1000)
         : undefined,
       status: StatusSubscriptionEnum.ACTIVE,
-      currentPeriodStart: new Date(command.stripeSubscription.current_period_start),
-      currentPeriodEnd: new Date(command.stripeSubscription.current_period_end),
+      currentPeriodStart: new Date(command.stripeSubscription.current_period_start * 1000),
+      currentPeriodEnd: new Date(command.stripeSubscription.current_period_end * 1000),
     });
     const createdSubscription: SubscriptionEntity = await this.subscriptionRepository
       .save(subscription)
