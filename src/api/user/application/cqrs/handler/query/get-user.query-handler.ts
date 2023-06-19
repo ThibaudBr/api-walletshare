@@ -19,6 +19,7 @@ export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
         ...(await this.userRepository.findOneOrFail({
           relations: ['profiles'],
           where: { id: query.userId },
+          withDeleted: query.withDeleted,
         })),
       };
     }
@@ -26,6 +27,7 @@ export class GetUserQueryHandler implements IQueryHandler<GetUserQuery> {
     await this.userRepository
       .find({
         relations: ['profiles'],
+        withDeleted: query.withDeleted,
       })
       .then(userList => {
         userList.forEach(user => {

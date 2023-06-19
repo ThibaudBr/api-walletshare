@@ -107,7 +107,7 @@ export class UserService {
   }
 
   async findAll(): Promise<UserResponse[]> {
-    return await this.queryBus.execute(new GetUserQuery());
+    return await this.queryBus.execute(new GetUserQuery(undefined, true));
   }
 
   async findOne(id: string): Promise<UserResponse> {
