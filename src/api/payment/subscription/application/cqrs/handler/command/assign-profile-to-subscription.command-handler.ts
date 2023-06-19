@@ -52,9 +52,7 @@ export class AssignProfileToSubscriptionCommandHandler implements ICommandHandle
         throw new Error('Profile not found');
       });
 
-    if (command.isSubscriptionOwner) {
-      subscription.profileOwnerId = profile.id;
-    } else {
+    if (!command.isSubscriptionOwner) {
       subscription.profileEmployeeIds.push(profile.id);
     }
     await this.subscriptionRepository.save(subscription).catch(async (error: Error) => {

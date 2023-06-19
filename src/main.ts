@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as process from 'process';
 import { ConfigService } from '@nestjs/config';
 import * as admin from 'firebase-admin';
-import {ForbiddenException} from "@nestjs/common";
+import { ForbiddenException } from '@nestjs/common';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, {
@@ -18,7 +18,7 @@ async function bootstrap(): Promise<void> {
     .setVersion(process.env.npm_package_version ?? '0.0.1')
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api', app, document, );
+  SwaggerModule.setup('api', app, document);
 
   const configService: ConfigService = app.get(ConfigService);
   // Set the config options

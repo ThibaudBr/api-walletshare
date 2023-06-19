@@ -77,6 +77,6 @@ export class SubscriptionController {
   @Put('/admin/cancel-subscription/:subscriptionId')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async cancelSubscriptionAdmin(@Param('subscriptionId') id: string): Promise<void> {
-    return await this.subscriptionService.cancelSubscriptionAdmin(id);
+    return await this.subscriptionService.cancelSubscription(id);
   }
 }

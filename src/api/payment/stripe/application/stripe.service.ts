@@ -40,7 +40,7 @@ import { CreateReferralCodeStripeRequest } from '../web/request/create-referral-
 import { CreateCouponStripeRequest } from '../web/request/create-coupon-stripe.request';
 import { StripeWebhookSignatureEnum } from '../../stripe-webhook/domain/enum/stripe-webhook-signature.enum';
 import { GetInvoiceByStripeIdQuery } from './cqrs/query/get-invoice-by-stripe-id.query';
-import {CreateSubscriptionRequest} from "../../subscription/web/request/create-subscription.request";
+import { CreateSubscriptionRequest } from '../../subscription/web/request/create-subscription.request';
 
 @Injectable()
 export class StripeService {

@@ -55,9 +55,11 @@ import { CardPresetCardSubscriber } from '../../api/card/application/subscriber/
 import { CardPresetMediaSubscriber } from '../../api/media/application/subscriber/card-preset-media.subscriber';
 import { GroupMediaSubscriber } from '../../api/media/application/subscriber/group-media.subscriber';
 import { FcmNotificationSubscriber } from '../../api/notification/application/subscriber/fcm-notification.subscriber';
-import {
-  SubscriptionInvoiceSubscriber
-} from "../../api/payment/invoices/application/subscriber/subscription-invoice.subscriber";
+import { SubscriptionInvoiceSubscriber } from '../../api/payment/invoices/application/subscriber/subscription-invoice.subscriber';
+import { UserSubscriptionSubscriber } from '../../api/payment/subscription/application/subscriber/user-subscription.subscriber';
+import { StripeSubscriptionSubscriber } from '../../api/payment/subscription/application/subscriber/stripe-subscription.subscriber';
+import { PriceSubscriptionSubscriber } from '../../api/payment/subscription/application/subscriber/price-subscription.subscriber';
+import { ProductPriceSubscriber } from '../../api/payment/price/application/subscriber/product-price.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -130,6 +132,10 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserReferralCodeSubscriber,
             FcmNotificationSubscriber,
             SubscriptionInvoiceSubscriber,
+            UserSubscriptionSubscriber,
+            StripeSubscriptionSubscriber,
+            PriceSubscriptionSubscriber,
+            ProductPriceSubscriber,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           type: 'postgres',
@@ -206,6 +212,10 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserReferralCodeSubscriber,
             FcmNotificationSubscriber,
             SubscriptionInvoiceSubscriber,
+            UserSubscriptionSubscriber,
+            StripeSubscriptionSubscriber,
+            PriceSubscriptionSubscriber,
+            ProductPriceSubscriber,
           ],
 
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
@@ -280,6 +290,10 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserReferralCodeSubscriber,
             FcmNotificationSubscriber,
             SubscriptionInvoiceSubscriber,
+            UserSubscriptionSubscriber,
+            StripeSubscriptionSubscriber,
+            PriceSubscriptionSubscriber,
+            ProductPriceSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'dev') {
@@ -350,6 +364,10 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             UserReferralCodeSubscriber,
             FcmNotificationSubscriber,
             SubscriptionInvoiceSubscriber,
+            UserSubscriptionSubscriber,
+            StripeSubscriptionSubscriber,
+            PriceSubscriptionSubscriber,
+            ProductPriceSubscriber,
           ],
         };
       } else {
