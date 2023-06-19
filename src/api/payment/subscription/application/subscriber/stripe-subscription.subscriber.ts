@@ -1,19 +1,19 @@
 import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, SoftRemoveEvent } from 'typeorm';
 import { SubscriptionEntity } from '../../domain/entities/subscription.entity';
 import Stripe from 'stripe';
-import { ConfigService } from '@nestjs/config';
+import * as process from 'process';
 
 @EventSubscriber()
 export class StripeSubscriptionSubscriber implements EntitySubscriberInterface<SubscriptionEntity> {
   private stripe: Stripe;
 
-  constructor(private readonly configService: ConfigService) {
-    if (this.configService.get('NODE_ENV') == 'prod') {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') ?? 'error', {
+  constructor() {
+    if (process.env.NODE_ENV == 'prod') {
+      this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY_PROD ?? 'error', {
         apiVersion: '2022-11-15',
       });
     } else {
-      this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') ?? 'error', {
+      this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY_TEST ?? 'error', {
         apiVersion: '2022-11-15',
       });
     }
