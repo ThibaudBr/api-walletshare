@@ -13,7 +13,7 @@ export class GetUserEntityQueryHandler implements IQueryHandler<GetUserEntityQue
 
   async execute(query: GetUserEntityQuery): Promise<UserEntity | null> {
     return await this.userRepository.findOne({
-      relations: ['profiles'],
+      relations: ['profiles', 'connection'],
       where: { id: query.userId },
     });
   }
