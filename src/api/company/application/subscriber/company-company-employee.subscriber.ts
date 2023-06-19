@@ -1,13 +1,12 @@
 import { EntitySubscriberInterface, EventSubscriber, RemoveEvent, Repository, SoftRemoveEvent } from 'typeorm';
 import { CompanyEntity } from '../../domain/entities/company.entity';
-import { CardEntity } from '../../../card/domain/entities/card.entity';
 import { CompanyEmployeeEntity } from '../../domain/entities/company-employee.entity';
 
 @EventSubscriber()
 export class CompanyCompanyEmployeeSubscriber implements EntitySubscriberInterface<CompanyEntity> {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
   listenTo() {
-    return CardEntity;
+    return CompanyEntity;
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<CompanyEntity>): Promise<void> {
