@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as process from 'process';
 import { ConfigService } from '@nestjs/config';
 import * as admin from 'firebase-admin';
+import {ForbiddenException} from "@nestjs/common";
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, {
@@ -48,7 +49,7 @@ async function bootstrap(): Promise<void> {
       if (whitelist.indexOf(origin) !== -1 || !origin) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        callback(new ForbiddenException('Not allowed by CORS'));
       }
     },
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
