@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { SubscriptionService } from '../application/subscription.service';
 import Stripe from 'stripe';
 import { RoleGuard } from '../../../auth/web/guards/role.guard';
@@ -66,5 +66,11 @@ export class SubscriptionController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async getAllSubscriptions(): Promise<SubscriptionEntity[]> {
     return await this.subscriptionService.getAllSubscriptions();
+  }
+
+  @Delete('/admin/remove-subscription/:subscriptionId')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async removeSubscription(@Param('subscriptionId') id: string): Promise<void> {
+    return await this.subscriptionService.removeSubscription(id);
   }
 }

@@ -17,6 +17,7 @@ import { UpdateSubscriptionCommand } from './cqrs/command/update-subscription.co
 import { GetSubscriptionByStripeSubscriptionIdQuery } from './cqrs/query/get-subscription-by-stripe-subscription-id.query';
 import { GetAllSubscriptionQuery } from './cqrs/query/get-all-subscription.query';
 import { CreateSubscriptionRequest } from '../web/request/create-subscription.request';
+import { RemoveSubscriptionCommand } from './cqrs/command/remove-subscription.command';
 
 @Injectable()
 export class SubscriptionService {
@@ -170,6 +171,26 @@ export class SubscriptionService {
     return await this.queryBus.execute(new GetAllSubscriptionQuery());
   }
 
+  async createSubscription(
+    createSubscriptionRequest: CreateSubscriptionRequest,
+  ): Promise<Stripe.Response<Stripe.Subscription>> {
+    return await this.stripeService.createSubscription(createSubscriptionRequest);
+  }
+
+  async removeSubscription(subscriptionId: string): Promise<void> {
+    await this.commandBus
+      .execute(
+        new RemoveSubscriptionCommand({
+          subscriptionId: subscriptionId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Subscription not removed') throw new InternalServerErrorException(error.message);
+        if (error.message === 'Subscription not found') throw new BadRequestException(error.message);
+        throw new InternalServerErrorException(error.message);
+      });
+  }
+
   private async isUserAlreadySubscribed(stripeCustomerId: string, priceId: string): Promise<boolean> {
     const subscription: Stripe.ApiList<Stripe.Subscription> = await this.stripeService.getListSubscription(
       stripeCustomerId,
@@ -194,11 +215,5 @@ export class SubscriptionService {
       }
     }
     return false;
-  }
-
-  async createSubscription(
-    createSubscriptionRequest: CreateSubscriptionRequest,
-  ): Promise<Stripe.Response<Stripe.Subscription>> {
-    return await this.stripeService.createSubscription(createSubscriptionRequest);
   }
 }

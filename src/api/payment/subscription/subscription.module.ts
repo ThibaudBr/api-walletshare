@@ -35,6 +35,8 @@ import { GetSubscriptionByStripeSubscriptionIdQueryHandler } from './application
 import { PriceEntity } from '../price/domain/entities/price.entity';
 import { ReferralCodeEntity } from '../../user/domain/entities/referral-code.entity';
 import { GetAllSubscriptionQueryHandler } from './application/cqrs/handler/query/get-all-subscription.query-handler';
+import { RemoveSubscriptionCommandHandler } from './application/cqrs/handler/command/remove-subscription.command-handler';
+import { RemoveSubscriptionEventHandler } from './application/cqrs/handler/event/remove-subscription.event-handler';
 
 @Module({
   controllers: [SubscriptionController],
@@ -64,6 +66,7 @@ import { GetAllSubscriptionQueryHandler } from './application/cqrs/handler/query
     RemoveProfileToSubscriptionCommandHandler,
     UpdateAccountStatusCommandHandler,
     UpdateSubscriptionCommandHandler,
+    RemoveSubscriptionCommandHandler,
     // Event Handlers
     AssignProfileToSubscriptionEventHandler,
     CancelSubscriptionEventHandler,
@@ -72,6 +75,7 @@ import { GetAllSubscriptionQueryHandler } from './application/cqrs/handler/query
     RemoveProfileToSubscriptionEventHandler,
     UpdateAccountStatusEventHandler,
     UpdateSubscriptionEventHandler,
+    RemoveSubscriptionEventHandler,
     // Query Handlers
     GetAllActiveSubscriptionQueryHandler,
     GetAllSubscriptionQueryHandler,
