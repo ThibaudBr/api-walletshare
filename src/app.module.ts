@@ -53,6 +53,8 @@ import { ApiMailService } from './api/api-mail/application/api-mail.service';
         HOST_API_LOG: Joi.string().required(),
         HOST_API_MAIL: Joi.string().required(),
         HOST_API_WAITING_LIST: Joi.string().required(),
+        HOST_DASHBOARD_ADMIN: Joi.string().required(),
+        HOST_DASHBOARD_CLIENT: Joi.string().required(),
         JWT_SECRET: Joi.string().required(),
         JWT_REFRESH_TOKEN_SECRET: Joi.string().required(),
         JWT_REFRESH_TOKEN_EXPIRATION_TIME: Joi.string().required(),

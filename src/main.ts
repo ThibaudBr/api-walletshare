@@ -35,7 +35,14 @@ async function bootstrap(): Promise<void> {
   admin.initializeApp(firebaseConfig);
 
   app.enableCors({
-    origin: ['*', process.env.FRONTEND_URL ?? 'http://localhost:8080'],
+    origin: [
+      '*',
+      configService.get<string>('HOST_DASHBOARD_ADMIN') ?? 'http://localhost:8080',
+      configService.get<string>('HOST_DASHBOARD_CLIENT') ?? 'http://localhost:8081',
+      configService.get<string>('HOST_API_WAITING_LIST') ?? 'http://localhost:3003',
+      configService.get<string>('HOST_API_MAIL') ?? 'http://localhost:3002',
+      configService.get<string>('HOST_API_LOG') ?? 'http://localhost:3001',
+    ],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     preflightContinue: false,
     optionsSuccessStatus: 200,
@@ -44,10 +51,8 @@ async function bootstrap(): Promise<void> {
       'Origin,X-Requested-With,Content-Type,Accept,Authorization,authorization,X-Forwarded-for,Set-Cookie,Access-Control-Allow-Origin',
   });
 
-  await app.listen(process.env.PORT ?? 3000);
-  console.log(
-    '[LOG] Server started on port ' + process.env.PORT + ' and listening RCP on port ' + process.env.PORT_TCP,
-  );
+  await app.listen(configService.get<string>('PORT') ?? 3000);
+  console.log('[LOG] Server started on port ' + configService.get<string>('PORT'));
 }
 
 bootstrap()
