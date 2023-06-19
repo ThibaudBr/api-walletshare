@@ -17,9 +17,14 @@ export class GetAllActiveSubscriptionQueryHandler implements IQueryHandler<GetAl
   async execute(query: GetAllActiveSubscriptionQuery): Promise<number> {
     const subscriptions: SubscriptionEntity[] = await this.subscriptionRepository
       .find({
-        where: {
-          status: StatusSubscriptionEnum.ACTIVE,
-        },
+        where: [
+          {
+            status: StatusSubscriptionEnum.ACTIVE,
+          },
+          {
+            status: StatusSubscriptionEnum.TRIALING,
+          },
+        ],
       })
       .catch(async (error: Error) => {
         await this.eventBus.publish(
