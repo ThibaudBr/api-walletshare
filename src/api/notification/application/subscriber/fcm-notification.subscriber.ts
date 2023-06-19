@@ -35,7 +35,15 @@ export class FcmNotificationSubscriber implements EntitySubscriberInterface<Noti
           },
           token: userEntity.fcmToken,
         };
-        await admin.messaging().send(message);
+        await admin
+          .messaging()
+          .send(message)
+          .catch(error => {
+            console.log(error);
+          })
+          .then(response => {
+            console.log('Successfully sent message:', response);
+          });
       }
     } catch (e) {
       console.log(e);
