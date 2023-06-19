@@ -16,8 +16,8 @@ import { RemoveNotificationCommand } from './cqrs/command/remove-notification.co
 import { RestoreNotificationCommand } from './cqrs/command/restore-notification.command';
 import { CreateNotificationAdminRequest } from '../web/request/create-notification-admin.request';
 import { CreateNotificationAdminCommand } from './cqrs/command/create-notification-admin.command';
-import {CreateNotificationCommand} from "./cqrs/command/create-notification.command";
-import {NotificationTypeEnum} from "../domain/enum/notification-type.enum";
+import { CreateNotificationCommand } from './cqrs/command/create-notification.command';
+import { NotificationTypeEnum } from '../domain/enum/notification-type.enum';
 
 @Injectable()
 export class NotificationService {
@@ -182,24 +182,6 @@ export class NotificationService {
     });
   }
 
-  private async isNotificationOwnedByUserId(userId: string, notificationId: string): Promise<boolean> {
-    return await this.queryBus
-      .execute(
-        new GetAllNotificationWithUserIdQuery({
-          userId: userId,
-        }),
-      )
-      .catch(err => {
-        if (err.message === 'User not found') throw new InvalidIdHttpException('User not found');
-        throw err;
-      })
-      .then((notificationEntities: NotificationEntity[]) => {
-        return notificationEntities.some((notificationEntity: NotificationEntity) => {
-          return notificationEntity.id === notificationId;
-        });
-      });
-  }
-
   public async createNotificationWhenCalled(userId: string, conversationId: string): Promise<void> {
     return await this.commandBus
       .execute(
@@ -217,6 +199,7 @@ export class NotificationService {
         throw err;
       });
   }
+
   public async createNotificationWhenMissedCall(userId: string, conversationId: string): Promise<void> {
     return await this.commandBus
       .execute(
@@ -232,6 +215,24 @@ export class NotificationService {
         if (err.message === 'User not found') throw new InvalidIdHttpException('User not found');
         if (err.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
         throw err;
+      });
+  }
+
+  private async isNotificationOwnedByUserId(userId: string, notificationId: string): Promise<boolean> {
+    return await this.queryBus
+      .execute(
+        new GetAllNotificationWithUserIdQuery({
+          userId: userId,
+        }),
+      )
+      .catch(err => {
+        if (err.message === 'User not found') throw new InvalidIdHttpException('User not found');
+        throw err;
+      })
+      .then((notificationEntities: NotificationEntity[]) => {
+        return notificationEntities.some((notificationEntity: NotificationEntity) => {
+          return notificationEntity.id === notificationId;
+        });
       });
   }
 }

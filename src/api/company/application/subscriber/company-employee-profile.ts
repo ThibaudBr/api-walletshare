@@ -33,8 +33,11 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
     });
 
     const subscription: SubscriptionEntity = await subscriptionRepository.findOneOrFail({
+      relations: ['user'],
       where: {
-        profileOwnerId: companyEmployee.company.ownerProfile.id,
+        user: {
+          id: companyEmployee.company.ownerProfile.user.id,
+        },
       },
     });
 
@@ -58,8 +61,11 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
     });
 
     const subscription: SubscriptionEntity = await subscriptionRepository.findOneOrFail({
+      relations: ['user'],
       where: {
-        profileOwnerId: companyEmployee.company.ownerProfile.id,
+        user: {
+          id: companyEmployee.company.ownerProfile.user.id,
+        },
       },
     });
     subscription.profileEmployeeIds = subscription.profileEmployeeIds.filter(id => id !== companyEmployee.profile.id);
@@ -89,8 +95,11 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
     });
 
     const subscription: SubscriptionEntity = await subscriptionRepository.findOneOrFail({
+      relations: ['user'],
       where: {
-        profileOwnerId: companyEmployee.company.ownerProfile.id,
+        user: {
+          id: companyEmployee.company.ownerProfile.user.id,
+        },
       },
       withDeleted: true,
     });

@@ -72,19 +72,6 @@ export class SubscriptionService {
     await this.stripeService.cancelSubscription(stipeUserId, stripSubscription.id);
   }
 
-  async cancelSubscriptionAdmin(subscriptionId: string): Promise<void> {
-    await this.commandBus
-      .execute(
-        new CancelSubscriptionCommand({
-          subscriptionId: subscriptionId,
-        }),
-      )
-      .catch(async error => {
-        if (error.message === 'Error while canceling subscription')
-          throw new InternalServerErrorException(error.message);
-        throw new InternalServerErrorException(error.message);
-      });
-  }
   async updateUserSubscriptionEnum(userId: string, subscriptionStatus: UserAccountStatusEnum): Promise<void> {
     return await this.commandBus
       .execute(
