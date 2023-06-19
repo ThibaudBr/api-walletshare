@@ -1,7 +1,7 @@
 export enum StatusSubscriptionEnum {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
-  CANCELED = 'canceled',
-  PENDING = 'pending',
-  TRIALING = 'trialing',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  CANCELED = 'CANCELED',
+  PENDING = 'PENDING',
+  TRIALING = 'TRIALING',
 }
