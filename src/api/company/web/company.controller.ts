@@ -17,7 +17,9 @@ import { UpdateCardPresetRequest } from './request/update-card-preset.request';
 import { CreateCardPresetRequest } from './request/create-card-preset.request';
 import { RemoveCompanyEmployeeRequest } from './request/remove-company-employee.request';
 import { AddCompanyEmployeeRequest } from './request/add-company-employee.request';
-import {CompanyEntity} from "../domain/entities/company.entity";
+import { CompanyEntity } from '../domain/entities/company.entity';
+import { CompanyEmployeeEntity } from '../domain/entities/company-employee.entity';
+import { CardPresetEntity } from '../domain/entities/card-preset.entity';
 
 @Controller('company')
 @ApiTags('Company')
@@ -37,9 +39,30 @@ export class CompanyController {
   @ApiOperation({ summary: 'Get company by id' })
   @ApiOkResponse({ type: CompanyResponse })
   @ApiNotFoundResponse({ description: 'Company not found' })
-  @UseGuards(RoleGuard([UserRoleEnum.COMPANY_ACCOUNT]))
+  @UseGuards(RoleGuard([UserRoleEnum.COMPANY_ACCOUNT, UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT, UserRoleEnum.ADMIN]))
   async getMyCompanyByOwnerUserId(@Req() requestUser: RequestUser): Promise<CompanyEntity> {
     return await this.companyService.getMyCompanyByOwnerUserId(requestUser.user.id);
+  }
+
+  @Get('/company/get-my-company-employee-by-owner-user-id')
+  @UseGuards(RoleGuard([UserRoleEnum.COMPANY_ACCOUNT, UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT, UserRoleEnum.ADMIN]))
+  async getCompanyEmployeeByUserId(@Req() requestUser: RequestUser): Promise<CompanyEmployeeEntity[]> {
+    return await this.companyService.getCompanyEmployeeByOwnerUserId(requestUser.user.id);
+  }
+
+  @Get('/company/get-my-company-by-owner-user-id')
+  @UseGuards(RoleGuard([UserRoleEnum.COMPANY_ACCOUNT, UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT, UserRoleEnum.ADMIN]))
+  async get(@Req() requestUser: RequestUser): Promise<CardPresetEntity[]> {
+    return await this.companyService.getCardPresetByOwnerUserId(requestUser.user.id);
+  }
+
+  @Get('/public/get-preset-of-my-company/:companyId')
+  @UseGuards(RoleGuard([UserRoleEnum.COMPANY_ACCOUNT, UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT, UserRoleEnum.ADMIN]))
+  async getCardPresetByCompanyIdEntity(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<CardPresetEntity[]> {
+    return await this.companyService.getCardPresetByCompanyId(requestUser.user.id, companyId);
   }
 
   @Get('/public/get-company-by-user-id/:userId')
