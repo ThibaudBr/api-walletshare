@@ -16,7 +16,7 @@ export class GetGroupWithCriteriaQueryHandler implements IQueryHandler<GetGroupW
 
   async execute(query: GetGroupWithCriteriaQuery): Promise<GroupEntity[]> {
     const groupQueryBuilder = this.groupRepository.createQueryBuilder('group');
-    groupQueryBuilder.setFindOptions({ relations: ['members', 'members.card', 'groupRequests'] });
+    groupQueryBuilder.setFindOptions({ relations: ['members', 'members.card'] });
 
     if (query.name) {
       groupQueryBuilder.andWhere('group.name = :name', { name: query.name });
