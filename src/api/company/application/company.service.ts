@@ -4,6 +4,7 @@ import {
   ForbiddenException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
 import { CommandBus, EventBus, QueryBus } from '@nestjs/cqrs';
 import { GetAllCompanyQuery } from './cqrs/query/get-all-company.query';
@@ -60,6 +61,7 @@ import { GetUserByIdQuery } from './cqrs/query/get-user-by-id.query';
 import { ProfileEntity } from '../../profile/domain/entities/profile.entity';
 import { UpdateUserRoleCommand } from '../../user/application/cqrs/command/update-user-role.command';
 import { ApiMailService } from '../../api-mail/application/api-mail.service';
+import {GetCompanyByOwnerUserIdQuery} from "./cqrs/query/get-company-by-owner-user-id.query";
 
 @Injectable()
 export class CompanyService {
@@ -794,5 +796,18 @@ export class CompanyService {
 
   private generatePassword(): string {
     return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
+  }
+
+  async getMyCompanyByOwnerUserId(userId: string): Promise<CompanyEntity> {
+    return await this.queryBus
+      .execute(
+        new GetCompanyByOwnerUserIdQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company not found') throw new NotFoundException('Company not found');
+        throw new InternalServerErrorException(error.message);
+      });
   }
 }
