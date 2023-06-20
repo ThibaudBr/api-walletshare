@@ -37,6 +37,8 @@ export class CreateNotificationCommandHandler implements ICommandHandler<CreateN
 
     const notification = new NotificationEntity({
       ...command,
+      title: command.notificationTitle,
+      description: command.notificationMessage,
       user: user,
     });
 
