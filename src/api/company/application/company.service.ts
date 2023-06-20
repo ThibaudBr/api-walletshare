@@ -64,8 +64,8 @@ import { ApiMailService } from '../../api-mail/application/api-mail.service';
 import { GetCompanyByOwnerUserIdQuery } from './cqrs/query/get-company-by-owner-user-id.query';
 import { CompanyEmployeeEntity } from '../domain/entities/company-employee.entity';
 import { GetCompanyEmployeeByOwnerUserIdQuery } from './cqrs/query/get-company-employee-by-owner-user-id.query';
-import { GetCardPresetByOwnerUserIdQuery } from './cqrs/query/get-card-preset-by-owner-user-id.query';
 import { GetCardPresetByCompanyIdQuery } from './cqrs/query/get-card-preset-by-company-id.query';
+import {GetCompanyPresetByOwnerUserIdQuery} from "./cqrs/query/get-company-preset-by-owner-user-id.query";
 
 @Injectable()
 export class CompanyService {
@@ -827,7 +827,7 @@ export class CompanyService {
   async getCardPresetByOwnerUserId(userId: string): Promise<CardPresetEntity[]> {
     return await this.queryBus
       .execute(
-        new GetCardPresetByOwnerUserIdQuery({
+        new GetCompanyPresetByOwnerUserIdQuery({
           userId: userId,
         }),
       )
