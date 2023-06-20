@@ -237,8 +237,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('sdp-offer')
   async handleSdpOffer(
-    socket: Socket,
-    payload: { conversationId: string; offer: RTCSessionDescriptionInit },
+    @ConnectedSocket() socket: Socket,
+    @MessageBody() payload: { conversationId: string; offer: RTCSessionDescriptionInit },
   ): Promise<void> {
     try {
       const conversation = await this.conversationService.getConversationById(payload.conversationId);
@@ -266,8 +266,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('sdp-answer')
   async handleSdpAnswer(
-    socket: Socket,
-    payload: { senderSocketId: string; answer: RTCSessionDescriptionInit },
+    @ConnectedSocket() socket: Socket,
+    @MessageBody() payload: { senderSocketId: string; answer: RTCSessionDescriptionInit },
   ): Promise<void> {
     try {
       this.server.to(payload.senderSocketId).emit('sdp-answer', { answer: payload.answer });
@@ -279,8 +279,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('ice-candidate')
   async handleIceCandidate(
-    socket: Socket,
-    payload: { conversationId: string; candidate: RTCIceCandidateInit },
+    @ConnectedSocket() socket: Socket,
+    @MessageBody() payload: { conversationId: string; candidate: RTCIceCandidateInit },
   ): Promise<void> {
     try {
       const conversation = await this.conversationService.getConversationById(payload.conversationId);
