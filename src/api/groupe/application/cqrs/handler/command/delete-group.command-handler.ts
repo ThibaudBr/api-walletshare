@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { GroupEntity } from '../../../../domain/entities/group.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import { DeleteGroupEvent } from '../../event/delete-group.event';
 
 @CommandHandler(DeleteGroupCommand)
 export class DeleteGroupCommandHandler implements ICommandHandler<DeleteGroupCommand> {
@@ -14,7 +15,7 @@ export class DeleteGroupCommandHandler implements ICommandHandler<DeleteGroupCom
   ) {}
 
   async execute(command: DeleteGroupCommand): Promise<void> {
-    await this.groupRepository
+    const group = await this.groupRepository
       .findOneOrFail({
         where: [
           {
@@ -33,9 +34,9 @@ export class DeleteGroupCommandHandler implements ICommandHandler<DeleteGroupCom
         throw new Error('Invalid id');
       });
     await this.groupRepository
-      .delete(command.groupId)
+      .remove(group)
       .then(() => {
-        this.eventBus.publish(new DeleteGroupCommand({ groupId: command.groupId }));
+        this.eventBus.publish(new DeleteGroupEvent({ groupId: command.groupId }));
       })
       .catch(error => {
         this.eventBus.publish(

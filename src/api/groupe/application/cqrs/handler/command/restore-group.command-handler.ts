@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { ErrorRestoreRuntimeException } from '../../../../../../util/exception/runtime-exception/error-restore.runtime-exception';
 import { ErrorInvalidIdRuntimeException } from '../../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
+import {RestoreGroupEvent} from "../../event/restore-group.event";
 
 @CommandHandler(RestoreGroupCommand)
 export class RestoreGroupCommandHandler implements ICommandHandler<RestoreGroupCommand> {
@@ -38,7 +39,7 @@ export class RestoreGroupCommandHandler implements ICommandHandler<RestoreGroupC
     await this.groupRepository
       .restore(command.groupId)
       .then(async () => {
-        await this.eventBus.publish(new RestoreGroupCommand({ groupId: command.groupId }));
+        await this.eventBus.publish(new RestoreGroupEvent({ groupId: command.groupId }));
       })
       .catch(async error => {
         await this.eventBus.publish(
