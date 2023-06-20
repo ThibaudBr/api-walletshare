@@ -10,6 +10,7 @@ import { CardEntity } from '../../../../../card/domain/entities/card.entity';
 import { ErrorInvalidGroupNameRuntimeException } from '../../../../../../util/exception/runtime-exception/error-invalid-group-name.runtime-exception';
 import { ErrorInvalidIdRuntimeException } from '../../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
 import { ErrorSaveRuntimeException } from '../../../../../../util/exception/runtime-exception/error-save.runtime-exception';
+import { CreateGroupEvent } from '../../event/create-group.event';
 
 @CommandHandler(CreateGroupCommand)
 export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCommand> {
@@ -68,6 +69,12 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
     const newGroup = await this.groupRepository
       .save({
         name: command.name,
+        members: [
+          new GroupMembershipEntity({
+            role: RoleGroupMembershipEnum.OWNER,
+            card: card,
+          }),
+        ],
       })
       .catch(async error => {
         await this.eventBus.publish(
@@ -80,23 +87,6 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
         throw new ErrorSaveRuntimeException('Error while saving group');
       });
 
-    const newGroupMembership = new GroupMembershipEntity({
-      role: RoleGroupMembershipEnum.OWNER,
-      group: newGroup,
-      card: card,
-    });
-
-    await this.groupMembershipRepository.save(newGroupMembership).catch(async error => {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          localisation: 'groupRepository.save',
-          handler: 'CreateGroupCommandHandler',
-          error: error.message,
-        }),
-      );
-      throw new ErrorSaveRuntimeException('Error while saving owner of new group');
-    });
-
-    await this.eventBus.publish(new CreateGroupCommand({ name: command.name, cardId: command.cardId }));
+    await this.eventBus.publish(new CreateGroupEvent({ cardId: command.cardId, groupId: newGroup.id }));
   }
 }
