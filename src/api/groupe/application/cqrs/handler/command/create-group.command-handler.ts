@@ -66,36 +66,23 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
         throw new ErrorInvalidIdRuntimeException('Invalid id for card');
       });
 
-    const newGroup = await this.groupRepository
-      .save({
-        name: command.name,
-      })
-      .catch(async error => {
-        await this.eventBus.publish(
-          new ErrorCustomEvent({
-            localisation: 'groupRepository.save',
-            handler: 'CreateGroupCommandHandler',
-            error: error.message,
-          }),
-        );
-        throw new ErrorSaveRuntimeException('Error while saving group');
-      });
-
     const newGroupMembership = this.groupMembershipRepository.create({
       role: RoleGroupMembershipEnum.OWNER,
       card: card,
-      group: newGroup,
     });
-
-    await this.groupMembershipRepository.save(newGroupMembership).catch(async error => {
+    const group = await this.groupRepository.create({
+      name: command.name,
+      members: [newGroupMembership],
+    });
+    const newGroup = await this.groupRepository.save(group).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'groupMembershipRepository.save',
+          localisation: 'groupRepository.save',
           handler: 'CreateGroupCommandHandler',
           error: error.message,
         }),
       );
-      throw new ErrorSaveRuntimeException('Error while add owner to group');
+      throw new ErrorSaveRuntimeException('Error while saving group');
     });
 
     await this.eventBus.publish(new CreateGroupEvent({ cardId: command.cardId, groupId: newGroup.id }));

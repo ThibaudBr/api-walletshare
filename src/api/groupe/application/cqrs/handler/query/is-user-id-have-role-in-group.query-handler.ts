@@ -19,7 +19,7 @@ export class IsUserIdHaveRoleInGroupQueryHandler implements IQueryHandler<IsUser
   async execute(query: IsUserIdHaveRoleInGroupQuery): Promise<boolean> {
     return await this.groupMembershipRepository
       .find({
-        relations: ['group', 'card', 'card.owner', 'owner.user'],
+        relations: ['group', 'card', 'card.owner', 'card.owner.user'],
         where: [
           {
             group: {
@@ -40,12 +40,12 @@ export class IsUserIdHaveRoleInGroupQueryHandler implements IQueryHandler<IsUser
           return query.roles.includes(groupMembership.role);
         });
       })
-      .catch(async () => {
+      .catch(async (error: Error) => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
             localisation: 'groupRepository.findOneOrFail',
             handler: 'IsUserIdHaveRoleInGroupQueryHandler',
-            error: 'User is not in group',
+            error: error.message,
           }),
         );
         throw new Error('User is not in group');
