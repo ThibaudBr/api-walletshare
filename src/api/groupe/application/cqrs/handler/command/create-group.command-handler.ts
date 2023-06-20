@@ -47,7 +47,7 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
 
     const card = await this.cardRepository
       .findOneOrFail({
-        relations: ['groupMembership'],
+        relations: ['groupMemberships'],
         where: [
           {
             id: command.cardId,
