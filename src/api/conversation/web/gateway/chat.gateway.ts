@@ -245,12 +245,10 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!conversation) {
         throw new BadRequestException('Conversation not found');
       }
-      console.log('sdp-offer of ' + socket.id + ' in conversation ' + conversation.id);
-      console.log(conversation.joinedProfiles);
-      console.log(socket.id);
-      // if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
-      //   throw new BadRequestException('User is not part of the conversation');
-      // }
+
+      if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
+        throw new BadRequestException('User is not part of the conversation');
+      }
       const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
       for (const participant of otherParticipants) {
         this.server.to(participant.socketId).emit('sdp-offer', { offer: payload.offer, senderSocketId: socket.id });
@@ -289,12 +287,10 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!conversation) {
         throw new BadRequestException('Conversation not found');
       }
-      console.log('ice-candidate of ' + socket.id + ' in conversation ' + conversation.id);
-      console.log(conversation.joinedProfiles);
-      console.log(socket.id);
-      // if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
-      //   throw new BadRequestException('User is not part of the conversation');
-      // }
+
+      if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
+        throw new BadRequestException('User is not part of the conversation');
+      }
       const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
       for (const participant of otherParticipants) {
         this.server.to(participant.socketId).emit('ice-candidate', { candidate: payload.candidate });
