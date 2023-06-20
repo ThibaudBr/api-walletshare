@@ -17,6 +17,7 @@ import { UpdateCardPresetRequest } from './request/update-card-preset.request';
 import { CreateCardPresetRequest } from './request/create-card-preset.request';
 import { RemoveCompanyEmployeeRequest } from './request/remove-company-employee.request';
 import { AddCompanyEmployeeRequest } from './request/add-company-employee.request';
+import {CompanyEntity} from "../domain/entities/company.entity";
 
 @Controller('company')
 @ApiTags('Company')
@@ -30,6 +31,15 @@ export class CompanyController {
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async getCompanyById(@Param('id') id: string): Promise<CompanyResponse> {
     return await this.companyService.getCompanyById(id);
+  }
+
+  @Get('/company/get-my-company-by-owner-user-id')
+  @ApiOperation({ summary: 'Get company by id' })
+  @ApiOkResponse({ type: CompanyResponse })
+  @ApiNotFoundResponse({ description: 'Company not found' })
+  @UseGuards(RoleGuard([UserRoleEnum.COMPANY_ACCOUNT]))
+  async getMyCompanyByOwnerUserId(@Req() requestUser: RequestUser): Promise<CompanyEntity> {
+    return await this.companyService.getMyCompanyByOwnerUserId(requestUser.user.id);
   }
 
   @Get('/public/get-company-by-user-id/:userId')
