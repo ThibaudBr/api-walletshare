@@ -16,7 +16,7 @@ export class GetAllGroupQueryHandler implements IQueryHandler<GetAllGroupQuery> 
   async execute(): Promise<GroupEntity[]> {
     return await this.groupRepository
       .find({
-        relations: ['group', 'members', 'members.card', 'members.card.owner', 'members.card.owner.user'],
+        relations: ['members', 'members.card', 'members.card.owner', 'members.card.owner.user'],
       })
       .catch(async error => {
         await this.eventBus.publish(
