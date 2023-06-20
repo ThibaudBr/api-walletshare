@@ -49,7 +49,7 @@ export class GroupController {
     }
   }
 
-  @Get('/admin/:groupId')
+  @Get('/admin/get-group-by-id/:groupId')
   @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
   async findOne(@Param('groupId') groupId: string): Promise<GroupResponse> {
