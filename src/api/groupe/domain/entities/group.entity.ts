@@ -32,8 +32,8 @@ export class GroupEntity extends BaseEntity {
   // Relations
   // ______________________________________________________
 
-  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
-  members: GroupMembershipEntity[] = [];
+  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true, })
+  members: GroupMembershipEntity[];
 
   @OneToOne(() => ConversationEntity, conversation => conversation.group, {
     nullable: true,
@@ -74,7 +74,5 @@ export class GroupEntity extends BaseEntity {
   constructor(partial: Partial<GroupEntity>) {
     super();
     Object.assign(this, partial);
-    this.members = [];
-    this.notifications = [];
   }
 }

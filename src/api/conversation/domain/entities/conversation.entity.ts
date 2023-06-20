@@ -29,17 +29,17 @@ export class ConversationEntity extends BaseEntity {
   // ______________________________________________________
   // Relations
   // ______________________________________________________
-  @OneToOne(() => ConnectedCardEntity, connectedCardEntity => connectedCardEntity.conversation, {nullable: true})
+  @OneToOne(() => ConnectedCardEntity, connectedCardEntity => connectedCardEntity.conversation, { nullable: true })
   connectedCard?: ConnectedCardEntity;
 
   @OneToOne(() => GroupEntity, groupEntity => groupEntity.conversation, { nullable: true })
   group?: GroupEntity;
 
-  @OneToMany(() => MessageEntity, message => message.conversation, {})
-  messages: MessageEntity[] = [];
+  @OneToMany(() => MessageEntity, message => message.conversation, { nullable: true })
+  messages: MessageEntity[];
 
   @OneToMany(() => JoinedConversationEntity, joinedConversation => joinedConversation.conversation)
-  joinedProfiles: JoinedConversationEntity[] = [];
+  joinedProfiles: JoinedConversationEntity[];
 
   // ______________________________________________________
   // Timestamps
@@ -59,7 +59,5 @@ export class ConversationEntity extends BaseEntity {
     if (partial) {
       Object.assign(this, partial);
     }
-    this.joinedProfiles = [];
-    this.messages = [];
   }
 }

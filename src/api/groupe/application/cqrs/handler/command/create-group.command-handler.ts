@@ -81,16 +81,16 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
         throw new ErrorSaveRuntimeException('Error while saving group');
       });
 
-    const newGroupMembership = new GroupMembershipEntity({
+    const newGroupMembership = this.groupMembershipRepository.create({
       role: RoleGroupMembershipEnum.OWNER,
       card: card,
+      group: newGroup,
     });
 
-    newGroup.members.push(newGroupMembership);
-    await this.groupRepository.save(newGroup).catch(async error => {
+    await this.groupMembershipRepository.save(newGroupMembership).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          localisation: 'groupRepository.save',
+          localisation: 'groupMembershipRepository.save',
           handler: 'CreateGroupCommandHandler',
           error: error.message,
         }),
