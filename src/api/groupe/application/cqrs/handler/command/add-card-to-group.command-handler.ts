@@ -78,6 +78,7 @@ export class AddCardToGroupCommandHandler implements ICommandHandler<AddCardToGr
           error: error.message,
         }),
       );
+      throw new Error('Error during save of group');
     });
     await this.eventBus.publish(
       new AddCardToGroupEvent({

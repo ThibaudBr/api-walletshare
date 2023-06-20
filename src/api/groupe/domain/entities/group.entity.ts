@@ -37,7 +37,7 @@ export class GroupEntity extends BaseEntity {
 
   @OneToOne(() => ConversationEntity, conversation => conversation.group, {
     nullable: true,
-    cascade: true,
+    onDelete: 'SET NULL',
   })
   @JoinColumn()
   conversation?: ConversationEntity;

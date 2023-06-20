@@ -540,7 +540,7 @@ export class GroupService {
       throw new ErrorUserHaveNoRightOverGroupRuntimeException(userId, groupId);
     }
 
-    if (cardIdList.length) {
+    if (!cardIdList.length) {
       throw new ErrorListOfCardIdIsEmptyRuntimeException();
     }
 
@@ -555,7 +555,7 @@ export class GroupService {
   }
 
   async addCardToGroupAdmin(groupId: string, cardIdList: string[]): Promise<void> {
-    if (cardIdList.length) {
+    if (!cardIdList.length) {
       throw new ErrorListOfCardIdIsEmptyRuntimeException();
     }
 
