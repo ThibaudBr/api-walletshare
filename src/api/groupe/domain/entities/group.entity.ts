@@ -33,14 +33,14 @@ export class GroupEntity extends BaseEntity {
   // ______________________________________________________
 
   @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
-  members: GroupMembershipEntity[];
+  members: GroupMembershipEntity[] = [];
 
   @OneToOne(() => ConversationEntity, conversation => conversation.group, {
     nullable: true,
     cascade: true,
   })
   @JoinColumn()
-  conversation: ConversationEntity;
+  conversation?: ConversationEntity;
 
   @OneToOne(() => MediaEntity, media => media.avatarGroupMedia, {
     cascade: true,
@@ -74,5 +74,7 @@ export class GroupEntity extends BaseEntity {
   constructor(partial: Partial<GroupEntity>) {
     super();
     Object.assign(this, partial);
+    this.members = [];
+    this.notifications = [];
   }
 }
