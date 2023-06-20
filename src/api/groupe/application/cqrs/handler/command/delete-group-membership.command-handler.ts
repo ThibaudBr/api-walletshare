@@ -33,7 +33,7 @@ export class DeleteGroupMembershipCommandHandler implements ICommandHandler<Dele
         throw error;
       });
 
-    await this.groupMembershipRepository.delete(groupMembership.id).catch(async error => {
+    await this.groupMembershipRepository.remove(groupMembership).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           localisation: 'groupRepository.delete',
