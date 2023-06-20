@@ -10,7 +10,7 @@ export class DeleteGroupMembershipEventHandler implements IEventHandler<DeleteGr
     await this.apiLogService.createLogForMethode({
       module: event.module,
       method: event.method,
-      body: 'GroupMembership with id ' + event.groupId + ' deleted',
+      body: 'GroupMembership with id ' + event.groupMembershipId + ' deleted',
     });
   }
 }
