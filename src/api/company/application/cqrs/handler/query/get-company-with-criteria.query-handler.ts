@@ -22,16 +22,24 @@ export class GetCompanyWithCriteriaQueryHandler implements IQueryHandler<GetComp
         'ownerProfile',
         'ownerProfile.user',
         'addresses',
-        'profilePicture',
-        'bannerPicture',
         'employees',
         'employees.profile',
+        'employees.profile.user',
         'employees.profile.personalCards',
+        'avatarMedia',
+        'bannerMedia',
+        'cardPresets',
+        'cardPresets.media',
+        'cardPresets.cards',
       ],
     });
 
     if (query.isDeleted) {
       queryBuilder.withDeleted();
+    }
+
+    if (query.id) {
+      queryBuilder.andWhere('company.id = :id', { id: query.id });
     }
 
     return await queryBuilder.getMany().catch(async error => {

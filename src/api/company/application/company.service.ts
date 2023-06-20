@@ -134,6 +134,7 @@ export class CompanyService {
     return this.queryBus
       .execute(
         new GetCompanyWithCriteriaQuery({
+          id: getCompanyWithCriteriaRequest.companyId,
           isDeleted: getCompanyWithCriteriaRequest?.isDeleted,
         }),
       )
