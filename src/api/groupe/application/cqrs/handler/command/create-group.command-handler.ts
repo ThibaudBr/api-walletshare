@@ -69,12 +69,6 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
     const newGroup = await this.groupRepository
       .save({
         name: command.name,
-        members: [
-          new GroupMembershipEntity({
-            role: RoleGroupMembershipEnum.OWNER,
-            card: card,
-          }),
-        ],
       })
       .catch(async error => {
         await this.eventBus.publish(
@@ -86,6 +80,23 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
         );
         throw new ErrorSaveRuntimeException('Error while saving group');
       });
+
+    const newGroupMembership = new GroupMembershipEntity({
+      role: RoleGroupMembershipEnum.OWNER,
+      card: card,
+    });
+
+    newGroup.members.push(newGroupMembership);
+    await this.groupRepository.save(newGroup).catch(async error => {
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          localisation: 'groupRepository.save',
+          handler: 'CreateGroupCommandHandler',
+          error: error.message,
+        }),
+      );
+      throw new ErrorSaveRuntimeException('Error while add owner to group');
+    });
 
     await this.eventBus.publish(new CreateGroupEvent({ cardId: command.cardId, groupId: newGroup.id }));
   }

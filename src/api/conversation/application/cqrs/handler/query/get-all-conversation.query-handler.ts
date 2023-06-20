@@ -13,16 +13,30 @@ export class GetAllConversationQueryHandler implements IQueryHandler<GetAllConve
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(query: GetAllConversationQuery): Promise<ConversationEntity[]> {
-    return await this.conversationRepository.find({ relations: ['joinedprofiles'] }).catch(async err => {
-      await this.eventBus.publish(
-        new ErrorCustomEvent({
-          handler: 'GetAllConversationQueryHandler',
-          localisation: 'conversation',
-          error: err,
-        }),
-      );
-      throw new Error('An error occurred while getting all conversation');
-    });
+  async execute(): Promise<ConversationEntity[]> {
+    return await this.conversationRepository
+      .find({
+        relations: [
+          'joinedProfiles',
+          'connectedCard',
+          'connectedCard.owner',
+          'connectedCard.owner.user',
+          'group',
+          'group.members',
+          'group.members.card',
+          'group.members.card.owner',
+          'group.members.card.owner.user',
+        ],
+      })
+      .catch(async err => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'GetAllConversationQueryHandler',
+            localisation: 'conversation',
+            error: err,
+          }),
+        );
+        throw new Error('An error occurred while getting all conversation');
+      });
   }
 }

@@ -60,6 +60,9 @@ import { UserSubscriptionSubscriber } from '../../api/payment/subscription/appli
 import { StripeSubscriptionSubscriber } from '../../api/payment/subscription/application/subscriber/stripe-subscription.subscriber';
 import { PriceSubscriptionSubscriber } from '../../api/payment/subscription/application/subscriber/price-subscription.subscriber';
 import { ProductPriceSubscriber } from '../../api/payment/price/application/subscriber/product-price.subscriber';
+import {
+  JoinedConversationGroupSubscriber
+} from "../../api/conversation/application/subscriber/joined-conversation-group.subscriber";
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -136,6 +139,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             StripeSubscriptionSubscriber,
             PriceSubscriptionSubscriber,
             ProductPriceSubscriber,
+            JoinedConversationGroupSubscriber,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           type: 'postgres',
@@ -216,6 +220,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             StripeSubscriptionSubscriber,
             PriceSubscriptionSubscriber,
             ProductPriceSubscriber,
+            JoinedConversationGroupSubscriber,
           ],
 
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
@@ -294,6 +299,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             StripeSubscriptionSubscriber,
             PriceSubscriptionSubscriber,
             ProductPriceSubscriber,
+            JoinedConversationGroupSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'dev') {
@@ -368,6 +374,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             StripeSubscriptionSubscriber,
             PriceSubscriptionSubscriber,
             ProductPriceSubscriber,
+            JoinedConversationGroupSubscriber,
           ],
         };
       } else {
