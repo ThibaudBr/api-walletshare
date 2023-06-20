@@ -58,7 +58,7 @@ import { SubscriptionEntity } from '../payment/subscription/domain/entities/subs
 import { GetUserByIdQueryHandler } from './application/cqrs/handler/query/get-user-by-id.query-handler';
 import { ApiMailModule } from '../api-mail/api-mail.module';
 import { ApiMailService } from '../api-mail/application/api-mail.service';
-import {GetCompanyByOwnerUserIdQuery} from "./application/cqrs/query/get-company-by-owner-user-id.query";
+import { GetCompanyByOwnerUserIdQueryHandler } from './application/cqrs/handler/query/get-company-by-owner-user-id.query-handler';
 
 @Module({
   controllers: [CompanyController],
@@ -126,7 +126,7 @@ import {GetCompanyByOwnerUserIdQuery} from "./application/cqrs/query/get-company
     GetEmployeeByCompanyIdQueryHandler,
     GetUserByIdQueryHandler,
     IsRoleInCompanyQueryHandler,
-    GetCompanyByOwnerUserIdQuery,
+    GetCompanyByOwnerUserIdQueryHandler,
     // Import handlers
     UpdateUserRoleCommandHandler,
     UpdateUserRoleEventHandler,
