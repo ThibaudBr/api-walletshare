@@ -18,6 +18,8 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
       .findOneOrFail({
         relations: [
           'joinedProfiles',
+          'joinedProfiles.profile',
+          'joinedProfiles.profile.user',
           'connectedCard',
           'connectedCard.cardEntityOne',
           'connectedCard.cardEntityOne.owner',
