@@ -15,6 +15,39 @@ export class CreateConnectedUserCommandHandler implements ICommandHandler<Create
   ) {}
 
   async execute(command: CreateConnectedUserCommand): Promise<ConnectedUserEntity> {
+    await this.connectedUserRepository
+      .findOne({
+        relations: ['user'],
+        where: {
+          user: {
+            id: command.user.id,
+          },
+        },
+      })
+      .then(async (connectedUser: ConnectedUserEntity | null) => {
+        if (connectedUser) {
+          await this.connectedUserRepository.remove(connectedUser).catch(async (error: Error) => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                handler: 'CreateConnectedUserCommandHandler',
+                localisation: 'connectedUserRepository.remove',
+                error: error.message,
+              }),
+            );
+            throw new Error('Error while removing connected user');
+          });
+        }
+      })
+      .catch(async (error: Error) => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            handler: 'CreateConnectedUserCommandHandler',
+            localisation: 'connectedUserRepository.findOne',
+            error: error.message,
+          }),
+        );
+        throw new Error('Connected user not found');
+      });
     const newConnectedUser: ConnectedUserEntity = this.connectedUserRepository.create({
       user: command.user,
       socketId: command.socketId,

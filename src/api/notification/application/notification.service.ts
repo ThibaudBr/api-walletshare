@@ -183,21 +183,25 @@ export class NotificationService {
   }
 
   public async createNotificationWhenCalled(userId: string, conversationId: string): Promise<void> {
-    return await this.commandBus
-      .execute(
-        new CreateNotificationCommand({
-          userId: userId,
-          conversationId: conversationId,
-          notificationType: NotificationTypeEnum.NEW_CALL,
-          notificationTitle: 'New call',
-          notificationMessage: 'You have a new call',
-        }),
-      )
-      .catch(err => {
-        if (err.message === 'User not found') throw new InvalidIdHttpException('User not found');
-        if (err.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
-        throw err;
-      });
+    try {
+      return await this.commandBus
+        .execute(
+          new CreateNotificationCommand({
+            userId: userId,
+            conversationId: conversationId,
+            notificationType: NotificationTypeEnum.NEW_CALL,
+            notificationTitle: 'New call',
+            notificationMessage: 'You have a new call',
+          }),
+        )
+        .catch(err => {
+          if (err.message === 'User not found') throw new InvalidIdHttpException('User not found');
+          if (err.message === 'Card not found') throw new InvalidIdHttpException('Card not found');
+          throw err;
+        });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   public async createNotificationWhenMissedCall(userId: string, conversationId: string): Promise<void> {

@@ -266,7 +266,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       for (const participant of otherParticipants) {
         this.server.to(participant.socketId).emit('sdp-offer', { offer: payload.offer, senderSocketId: socket.id });
         try {
-          await this.notificationService.createNotificationWhenCalled(participant.id, conversation.id);
+          await this.notificationService.createNotificationWhenCalled(participant.profile.user.id, conversation.id);
         } catch (e) {
           return;
         }
