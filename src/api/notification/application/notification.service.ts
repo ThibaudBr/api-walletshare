@@ -44,7 +44,7 @@ export class NotificationService {
             ...notificationEntity,
             conversation: new ConversationResponse({
               ...notificationEntity.group.conversation,
-              messages: notificationEntity.group.conversation.messages.map(message => {
+              messages: notificationEntity.group.conversation?.messages.map(message => {
                 return {
                   ...message,
                   media: undefined,
@@ -82,7 +82,7 @@ export class NotificationService {
             ...notificationEntity,
             conversation: new ConversationResponse({
               ...notificationEntity.group.conversation,
-              messages: notificationEntity.group.conversation.messages.map(message => {
+              messages: notificationEntity.group.conversation?.messages.map(message => {
                 return {
                   ...message,
                   media: undefined,

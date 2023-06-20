@@ -139,7 +139,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         if (
           cardOneOwnerId === profileEntity.id ||
           cardTwoOwnerId === profileEntity.id ||
-          groupMembersIds.includes(profileEntity.id)
+          groupMembersIds?.includes(profileEntity.id)
         ) {
           const createJoinConversationDto: CreateJoinConversationDto = new CreateJoinConversationDto({
             conversationEntity: conversationEntity,
