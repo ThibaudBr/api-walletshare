@@ -58,6 +58,8 @@ import { RemoveAllJoinedConversationWithSocketIdEventHandler } from './applicati
 import { NotificationEntity } from '../notification/domain/entities/notification.entity';
 import { NotificationService } from '../notification/application/notification.service';
 import { NotificationModule } from '../notification/notification.module';
+import { RemoveAllJoinedProfileByConversationIdCommandHandler } from './application/cqrs/handler/command/remove-all-joined-profile-by-conversation-id.command-handler';
+import { RemoveAllJoinedProfileByConversationIdEventHandler } from './application/cqrs/handler/event/remove-all-joined-profile-by-conversation-id.event-handler';
 
 @Module({
   imports: [
@@ -110,6 +112,7 @@ import { NotificationModule } from '../notification/notification.module';
     RemoveAllConnectedUserCommandHandler,
     RemoveConnectedUserBySocketIdCommandHandler,
     RemoveAllJoinedConversationWithSocketIdCommandHandler,
+    RemoveAllJoinedProfileByConversationIdCommandHandler,
     // Query handlers
     GetAllConversationQueryHandler,
     GetAllConversationByProfilesAndCardQueryHandler,
@@ -120,6 +123,7 @@ import { NotificationModule } from '../notification/notification.module';
     GetMessageFromConversationQueryHandler,
     IsUserIdOwnerOfMessageQueryHandler,
     // Events handlers
+    RemoveAllJoinedProfileByConversationIdEventHandler,
     AddMessageWithMediaEventHandler,
     CreateConversationMessageEventHandler,
     CreateJoinedConversationEventHandler,

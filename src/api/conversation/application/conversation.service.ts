@@ -32,6 +32,9 @@ import { RemoveAllConnectedUserCommand } from './cqrs/command/remove-all-connect
 import { CreateConnectedUserCommand } from './cqrs/command/create-connected-user.command';
 import { RemoveConnectedUserBySocketIdCommand } from './cqrs/command/remove-connected-user-by-socket-id.command';
 import { GetAllConversationQuery } from './cqrs/query/get-all-conversation.query';
+import {
+  RemoveAllJoinedProfileByConversationIdCommand
+} from "./cqrs/command/remove-all-joined-profile-by-conversation-id.command";
 
 @Injectable()
 export class ConversationService {
@@ -299,4 +302,19 @@ export class ConversationService {
         throw new InternalServerErrorException('Error while removing all connected user');
     });
   }
+
+  async removeAllJoinedProfileByConversationId(conversationId: string): Promise<void> {
+    return await this.commandBus
+      .execute(
+        new RemoveAllJoinedProfileByConversationIdCommand({
+          conversationId: conversationId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Error while removing all joined conversation')
+          throw new InternalServerErrorException('Error while removing all joined conversation');
+        throw new InternalServerErrorException(error);
+      });
+  }
+
 }

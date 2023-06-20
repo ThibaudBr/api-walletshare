@@ -64,4 +64,10 @@ export class ConversationController {
   async getAllConversation(): Promise<ConversationEntity[]> {
     return await this.conversationService.getAllConversationAdmin();
   }
+
+  @Delete('/admin/remove-all-joined-profile-by-conversation-id/:conversationId')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  async removeAllJoinedProfileByConversationId(@Param('conversationId') conversationId: string): Promise<void> {
+    return await this.conversationService.removeAllJoinedProfileByConversationId(conversationId);
+  }
 }

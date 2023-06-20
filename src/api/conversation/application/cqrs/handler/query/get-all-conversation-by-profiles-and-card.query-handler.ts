@@ -33,6 +33,9 @@ export class GetAllConversationByProfilesAndCardQueryHandler
             'group.members',
             'group.members.card',
             'group.members.card.owner',
+            'joinedProfiles',
+            'joinedProfiles.profile',
+            'joinedProfiles.profile.user',
           ],
           where: [
             { connectedCard: { cardEntityOne: { owner: { id: profileId } } } },
