@@ -259,9 +259,11 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!conversation) {
         throw new BadRequestException('Conversation not found');
       }
-      if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
-        throw new BadRequestException('User is not part of the conversation');
-      }
+      console.log(conversation.joinedProfiles);
+      console.log(socket.id);
+      // if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
+      //   throw new BadRequestException('User is not part of the conversation');
+      // }
       const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
       for (const participant of otherParticipants) {
         this.server.to(participant.socketId).emit('sdp-offer', { offer: payload.offer, senderSocketId: socket.id });
