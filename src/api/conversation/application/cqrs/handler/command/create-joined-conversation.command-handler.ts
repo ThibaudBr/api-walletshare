@@ -61,6 +61,32 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
         throw new Error('Conversation not found');
       });
 
+    await this.joinedConversationRepository
+      .findOne({
+        relations: ['conversation', 'profile'],
+        where: {
+          conversation: {
+            id: conversation.id,
+          },
+          profile: {
+            id: profile.id,
+          },
+        },
+      })
+      .then(async joinedConversation => {
+        if (joinedConversation) {
+          await this.joinedConversationRepository.remove(joinedConversation).catch(async error => {
+            await this.eventBus.publish(
+              new ErrorCustomEvent({
+                handler: 'CreateJoinedConversationCommandHandler',
+                localisation: 'JoinedConversationEntity.remove',
+                error: error,
+              }),
+            );
+            throw new Error('JoinedConversation not removed');
+          });
+        }
+      });
     const joinedConversation: JoinedConversationEntity = new JoinedConversationEntity({
       socketId: command.socketId,
       profile: profile,
