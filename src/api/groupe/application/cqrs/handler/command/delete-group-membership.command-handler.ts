@@ -4,6 +4,7 @@ import { GroupMembershipEntity } from '../../../../domain/entities/group-members
 import { Repository } from 'typeorm';
 import { DeleteGroupMembershipCommand } from '../../command/delete-group-membership.command';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import { DeleteGroupMembershipEvent } from '../../event/delete-group-membership.event';
 
 @CommandHandler(DeleteGroupMembershipCommand)
 export class DeleteGroupMembershipCommandHandler implements ICommandHandler<DeleteGroupMembershipCommand> {
@@ -42,5 +43,7 @@ export class DeleteGroupMembershipCommandHandler implements ICommandHandler<Dele
       );
       throw error;
     });
+
+    await this.eventBus.publish(new DeleteGroupMembershipEvent({ groupMembershipId: groupMembership.id }));
   }
 }
