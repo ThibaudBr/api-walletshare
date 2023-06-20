@@ -61,13 +61,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!user) {
         return await this.disconnect(socket);
       }
-      // if (user.connection) {
-      //   await this.conversationService.removeConnectedUser(user.connection.socketId);
-      // }
-      // await this.conversationService.createConnectedUser({
-      //   socketId: socket.id,
-      //   user: user,
-      // });
 
       const conversationEntities: ConversationEntity[] =
         await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
@@ -133,13 +126,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     if (!user) {
       return await this.disconnect(socket);
     }
-    // if (user.connection) {
-    //   await this.conversationService.removeConnectedUser(user.connection.socketId);
-    // }
-    // await this.conversationService.createConnectedUser({
-    //   socketId: socket.id,
-    //   user: user,
-    // });
 
     const conversationEntities: ConversationEntity[] =
       await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
