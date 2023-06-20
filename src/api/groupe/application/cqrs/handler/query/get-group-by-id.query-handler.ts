@@ -16,6 +16,7 @@ export class GetGroupByIdQueryHandler implements IQueryHandler<GetGroupByIdQuery
   async execute(query: GetGroupByIdQuery): Promise<GroupEntity> {
     return await this.groupRepository
       .findOneOrFail({
+        relations: ['members', 'members.card', 'members.card.owner', 'members.card.owner.user'],
         where: [
           {
             id: query.groupId,
