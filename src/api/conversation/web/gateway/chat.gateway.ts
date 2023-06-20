@@ -259,6 +259,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!conversation) {
         throw new BadRequestException('Conversation not found');
       }
+      console.log('sdp-offer of ' + socket.id + ' in conversation ' + conversation.id);
       console.log(conversation.joinedProfiles);
       console.log(socket.id);
       // if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
@@ -302,6 +303,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!conversation) {
         throw new BadRequestException('Conversation not found');
       }
+      console.log('ice-candidate of ' + socket.id + ' in conversation ' + conversation.id);
       console.log(conversation.joinedProfiles);
       console.log(socket.id);
       // if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
