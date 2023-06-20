@@ -61,7 +61,11 @@ import { GetUserByIdQuery } from './cqrs/query/get-user-by-id.query';
 import { ProfileEntity } from '../../profile/domain/entities/profile.entity';
 import { UpdateUserRoleCommand } from '../../user/application/cqrs/command/update-user-role.command';
 import { ApiMailService } from '../../api-mail/application/api-mail.service';
-import {GetCompanyByOwnerUserIdQuery} from "./cqrs/query/get-company-by-owner-user-id.query";
+import { GetCompanyByOwnerUserIdQuery } from './cqrs/query/get-company-by-owner-user-id.query';
+import { CompanyEmployeeEntity } from '../domain/entities/company-employee.entity';
+import { GetCompanyEmployeeByOwnerUserIdQuery } from './cqrs/query/get-company-employee-by-owner-user-id.query';
+import { GetCardPresetByOwnerUserIdQuery } from './cqrs/query/get-card-preset-by-owner-user-id.query';
+import { GetCardPresetByCompanyIdQuery } from './cqrs/query/get-card-preset-by-company-id.query';
 
 @Injectable()
 export class CompanyService {
@@ -794,10 +798,6 @@ export class CompanyService {
     });
   }
 
-  private generatePassword(): string {
-    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
-  }
-
   async getMyCompanyByOwnerUserId(userId: string): Promise<CompanyEntity> {
     return await this.queryBus
       .execute(
@@ -809,5 +809,58 @@ export class CompanyService {
         if (error.message === 'Company not found') throw new NotFoundException('Company not found');
         throw new InternalServerErrorException(error.message);
       });
+  }
+
+  async getCompanyEmployeeByOwnerUserId(userId: string): Promise<CompanyEmployeeEntity[]> {
+    return await this.queryBus
+      .execute(
+        new GetCompanyEmployeeByOwnerUserIdQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company employee not found') throw new NotFoundException('Company employee not found');
+        throw new InternalServerErrorException(error.message);
+      });
+  }
+
+  async getCardPresetByOwnerUserId(userId: string): Promise<CardPresetEntity[]> {
+    return await this.queryBus
+      .execute(
+        new GetCardPresetByOwnerUserIdQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Card preset not found') throw new NotFoundException('Card preset not found');
+        throw new InternalServerErrorException(error.message);
+      });
+  }
+
+  async getCardPresetByCompanyId(userId: string, companyId: string): Promise<CardPresetEntity[]> {
+    if (
+      !(await this.isRoleInCompany(userId, companyId, [
+        RoleCompanyEmployeeEnum.OWNER,
+        RoleCompanyEmployeeEnum.ADMIN,
+        RoleCompanyEmployeeEnum.EMPLOYEE,
+      ]))
+    ) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    return await this.queryBus
+      .execute(
+        new GetCardPresetByCompanyIdQuery({
+          companyId: companyId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Card preset not found') throw new NotFoundException('Card preset not found');
+        throw new InternalServerErrorException(error.message);
+      });
+  }
+
+  private generatePassword(): string {
+    return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
   }
 }

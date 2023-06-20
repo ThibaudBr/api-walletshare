@@ -59,6 +59,9 @@ import { GetUserByIdQueryHandler } from './application/cqrs/handler/query/get-us
 import { ApiMailModule } from '../api-mail/api-mail.module';
 import { ApiMailService } from '../api-mail/application/api-mail.service';
 import { GetCompanyByOwnerUserIdQueryHandler } from './application/cqrs/handler/query/get-company-by-owner-user-id.query-handler';
+import { GetCardPresetByCompanyIdQueryHandler } from './application/cqrs/handler/query/get-card-preset-by-company-id.query-handler';
+import { GetCompanyEmployeeByOwnerUserIdQueryHandler } from './application/cqrs/handler/query/get-company-employee-by-owner-user-id.query-handler';
+import { GetCompanyPresetByOwnerUserIdQueryHandler } from './application/cqrs/handler/query/get-company-preset-by-owner-user-id.query-handler';
 
 @Module({
   controllers: [CompanyController],
@@ -127,6 +130,9 @@ import { GetCompanyByOwnerUserIdQueryHandler } from './application/cqrs/handler/
     GetUserByIdQueryHandler,
     IsRoleInCompanyQueryHandler,
     GetCompanyByOwnerUserIdQueryHandler,
+    GetCardPresetByCompanyIdQueryHandler,
+    GetCompanyEmployeeByOwnerUserIdQueryHandler,
+    GetCompanyPresetByOwnerUserIdQueryHandler,
     // Import handlers
     UpdateUserRoleCommandHandler,
     UpdateUserRoleEventHandler,
