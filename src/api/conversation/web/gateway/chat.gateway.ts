@@ -255,7 +255,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       }
       const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
       for (const participant of otherParticipants) {
-        this.server.to(participant.socketId).emit('sdp-offer', { offer: payload.offer, senderSocketId: socket.id });
+        this.server
+          .to(participant.socketId)
+          .emit('sdp-offer', { type: 'sdp-offer', offer: payload.offer, senderSocketId: socket.id });
         try {
           await this.notificationService.createNotificationWhenCalled(participant.profile.user.id, conversation.id);
         } catch (e) {
@@ -274,7 +276,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @MessageBody() payload: { senderSocketId: string; answer: RTCSessionDescriptionInit },
   ): Promise<void> {
     try {
-      this.server.to(payload.senderSocketId).emit('sdp-answer', { answer: payload.answer });
+      this.server.to(payload.senderSocketId).emit('sdp-answer', { type: 'sdp-answer', answer: payload.answer });
     } catch (e) {
       await this.disconnect(socket);
       throw e;
@@ -297,7 +299,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       }
       const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
       for (const participant of otherParticipants) {
-        this.server.to(participant.socketId).emit('ice-candidate', { candidate: payload.candidate });
+        this.server
+          .to(participant.socketId)
+          .emit('ice-candidate', { type: 'ice-candidate', candidate: payload.candidate });
       }
     } catch (e) {
       await this.disconnect(socket);
@@ -312,7 +316,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!sender) {
         throw new BadRequestException('User not found');
       }
-      this.server.to(payload.senderSocketId).emit('call-rejected', { rejectedBySocketId: socket.id });
+      this.server.to(payload.senderSocketId).emit('call-rejected', { type:'call-rejected', rerejectedBySocketId: socket.id });
     } catch (e) {
       await this.disconnect(socket);
       throw e;
