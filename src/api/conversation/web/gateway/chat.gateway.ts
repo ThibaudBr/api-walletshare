@@ -257,7 +257,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       for (const participant of otherParticipants) {
         this.server
           .to(participant.socketId)
-          .emit('sdp-offer', { type: 'sdp-offer', offer: payload.offer, senderSocketId: socket.id });
+          .emit('sdp-offer', { type: 'sdp-offer', payload: payload.offer, senderSocketId: socket.id });
         try {
           await this.notificationService.createNotificationWhenCalled(participant.profile.user.id, conversation.id);
         } catch (e) {
@@ -276,7 +276,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @MessageBody() payload: { senderSocketId: string; answer: RTCSessionDescriptionInit },
   ): Promise<void> {
     try {
-      this.server.to(payload.senderSocketId).emit('sdp-answer', { type: 'sdp-answer', answer: payload.answer });
+      this.server.to(payload.senderSocketId).emit('sdp-answer', { type: 'sdp-answer', payload: payload.answer });
     } catch (e) {
       await this.disconnect(socket);
       throw e;
@@ -301,7 +301,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       for (const participant of otherParticipants) {
         this.server
           .to(participant.socketId)
-          .emit('ice-candidate', { type: 'ice-candidate', candidate: payload.candidate });
+          .emit('ice-candidate', { type: 'ice-candidate', payload: payload.candidate });
       }
     } catch (e) {
       await this.disconnect(socket);
@@ -316,7 +316,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!sender) {
         throw new BadRequestException('User not found');
       }
-      this.server.to(payload.senderSocketId).emit('call-rejected', { type:'call-rejected', rerejectedBySocketId: socket.id });
+      this.server.to(payload.senderSocketId).emit('call-rejected', { type:'call-rejected', rejectedBySocketId: socket.id });
     } catch (e) {
       await this.disconnect(socket);
       throw e;
