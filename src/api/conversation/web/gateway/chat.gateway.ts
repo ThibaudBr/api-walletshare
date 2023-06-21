@@ -178,6 +178,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         author: {
           ...author,
         },
+        createdAt: message.createdAt,
+        id: message.id,
       });
 
       for (const joinedProfile of conversation.joinedProfiles) {
