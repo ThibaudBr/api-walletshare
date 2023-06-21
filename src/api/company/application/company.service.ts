@@ -777,7 +777,7 @@ export class CompanyService {
         RoleCompanyEmployeeEnum.EMPLOYEE,
       ]))
     ) {
-      throw new ForbiddenException('You are not allowed to get card preset for this company');
+      throw new ForbiddenException('You are not allowed to get card forward for this company');
     }
 
     return await this.getCompanyById(companyId, true).then((company: CompanyEntity) => {

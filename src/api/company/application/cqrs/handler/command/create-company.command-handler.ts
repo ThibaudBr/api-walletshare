@@ -44,7 +44,7 @@ export class CreateCompanyCommandHandler implements ICommandHandler<CreateCompan
         throw new Error('Profile not found');
       });
 
-    const newCompany = new CompanyEntity({
+    const newCompany = this.companyRepository.create({
       ...command.createCompanyDto,
       ownerProfile: profile,
       occupations: [],
@@ -84,12 +84,13 @@ export class CreateCompanyCommandHandler implements ICommandHandler<CreateCompan
           profileId: profile.id,
         }),
       );
+      const newCompanyEmployee = this.companyEmployeeEntityRepository.create({
+        company: company,
+        profile: profile,
+        roles: [RoleCompanyEmployeeEnum.OWNER],
+      });
       await this.companyEmployeeEntityRepository
-        .save({
-          company: company,
-          profile: profile,
-          roles: [RoleCompanyEmployeeEnum.OWNER],
-        })
+        .save(newCompanyEmployee)
         .then(async companyEmployee => {
           this.eventBus.publish(
             new AddCompanyEmployeeEvent({

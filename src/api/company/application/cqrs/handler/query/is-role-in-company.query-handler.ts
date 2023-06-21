@@ -58,11 +58,12 @@ export class IsRoleInCompanyQueryHandler implements IQueryHandler<IsRoleInCompan
     );
 
     if (!companyEmployee) {
+      console.log('companyEmployee not found');
       return false;
     }
 
     let shouldReturn = false;
-    companyEmployee?.roles.forEach(role => {
+    companyEmployee.roles.forEach(role => {
       if (query.roles.includes(role)) {
         shouldReturn = true;
       }
