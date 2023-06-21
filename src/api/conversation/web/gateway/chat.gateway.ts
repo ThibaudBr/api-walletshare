@@ -64,19 +64,18 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
       const conversationEntities: ConversationEntity[] =
         await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
-
-      const uniqueConversationEntities = new Set<ConversationEntity>(conversationEntities);
-
-      for (const conversationEntity of uniqueConversationEntities) {
-        for (const profileEntity of user.profiles) {
+      const sentConversations = new Set(); // pour suivre les conversations déjà envoyées
+      for (const profileEntity of user.profiles) {
+        for (const conversationEntity of conversationEntities) {
           const cardOneOwnerId = conversationEntity.connectedCard?.cardEntityOne.owner.id;
           const cardTwoOwnerId = conversationEntity.connectedCard?.cardEntityTwo.owner.id;
-          const groupMembersIds = conversationEntity.group?.members.map(member => member.card.owner.id) ?? [];
+          const groupMembersIds = conversationEntity.group?.members.map(member => member.card.owner.id);
 
           if (
-            cardOneOwnerId === profileEntity.id ||
-            cardTwoOwnerId === profileEntity.id ||
-            groupMembersIds.includes(profileEntity.id)
+            (cardOneOwnerId === profileEntity.id ||
+              cardTwoOwnerId === profileEntity.id ||
+              groupMembersIds?.includes(profileEntity.id)) &&
+            !sentConversations.has(conversationEntity.id) // seulement si la conversation n'a pas déjà été envoyée
           ) {
             const createJoinConversationDto: CreateJoinConversationDto = new CreateJoinConversationDto({
               conversationEntity: conversationEntity,
@@ -85,6 +84,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
             });
             await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
             this.server.to(socket.id).emit('conversations', createJoinConversationDto.conversationEntity);
+            sentConversations.add(conversationEntity.id); // ajoute la conversation à l'ensemble des conversations déjà envoyées
           }
         }
       }
@@ -129,17 +129,18 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     const conversationEntities: ConversationEntity[] =
       await this.conversationService.getAllConversationByProfilesAndCard(user.profiles);
-
-    for (const conversationEntity of conversationEntities) {
-      for (const profileEntity of user.profiles) {
+    const sentConversations = new Set(); // pour suivre les conversations déjà envoyées
+    for (const profileEntity of user.profiles) {
+      for (const conversationEntity of conversationEntities) {
         const cardOneOwnerId = conversationEntity.connectedCard?.cardEntityOne.owner.id;
         const cardTwoOwnerId = conversationEntity.connectedCard?.cardEntityTwo.owner.id;
         const groupMembersIds = conversationEntity.group?.members.map(member => member.card.owner.id);
 
         if (
-          cardOneOwnerId === profileEntity.id ||
-          cardTwoOwnerId === profileEntity.id ||
-          groupMembersIds?.includes(profileEntity.id)
+          (cardOneOwnerId === profileEntity.id ||
+            cardTwoOwnerId === profileEntity.id ||
+            groupMembersIds?.includes(profileEntity.id)) &&
+          !sentConversations.has(conversationEntity.id) // seulement si la conversation n'a pas déjà été envoyée
         ) {
           const createJoinConversationDto: CreateJoinConversationDto = new CreateJoinConversationDto({
             conversationEntity: conversationEntity,
@@ -148,6 +149,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
           });
           await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
           this.server.to(socket.id).emit('conversations', createJoinConversationDto.conversationEntity);
+          sentConversations.add(conversationEntity.id); // ajoute la conversation à l'ensemble des conversations déjà envoyées
         }
       }
     }
