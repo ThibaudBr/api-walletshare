@@ -141,6 +141,7 @@ export class ConversationService {
     return await this.queryBus
       .execute(
         new GetMessageFromConversationQuery({
+          socketId: socketId,
           conversationId: getMessageFromConversationRequest.conversationId,
           nbMessage: getMessageFromConversationRequest.nbMessage,
           skip: getMessageFromConversationRequest.skip,

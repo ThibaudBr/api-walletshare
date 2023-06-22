@@ -212,10 +212,10 @@ export class GroupController {
   @Post('/public/create-group')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
-  async createGroupPublic(@Req() requestUser: RequestUser, @Body() groupRequest: CreateGroupRequest): Promise<void> {
+  async createGroupPublic(@Req() requestUser: RequestUser, @Body() groupRequest: CreateGroupRequest): Promise<string> {
     try {
       const userId = requestUser.user.id;
-      await this.groupService.createMyGroup(userId, groupRequest);
+      return await this.groupService.createMyGroup(userId, groupRequest);
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
