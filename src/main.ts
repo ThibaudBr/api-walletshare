@@ -38,7 +38,9 @@ async function bootstrap(): Promise<void> {
   app.enableCors({
     origin: function (origin, callback) {
       const whitelist = [
+        '*',
         'http://localhost:3000',
+        'http://192.168.1.22:3000',
         configService.get<string>('HOST_DASHBOARD_ADMIN') ?? 'http://localhost:8080',
         configService.get<string>('HOST_DASHBOARD_CLIENT') ?? 'http://localhost:8081',
         configService.get<string>('HOST_API_WAITING_LIST') ?? 'http://localhost:3003',
