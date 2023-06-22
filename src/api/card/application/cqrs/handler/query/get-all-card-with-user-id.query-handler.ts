@@ -17,7 +17,6 @@ export class GetAllCardWithUserIdQueryHandler implements IQueryHandler<GetAllCar
     return await this.cardRepository
       .find({
         relations: ['occupations', 'owner', 'owner.user', 'socialNetwork'],
-        loadRelationIds: true,
         loadEagerRelations: true,
         where: [
           {
