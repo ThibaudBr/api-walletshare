@@ -344,7 +344,7 @@ export class GroupService {
       });
   }
 
-  async createMyGroup(userId: string, request: CreateGroupRequest): Promise<void> {
+  async createMyGroup(userId: string, request: CreateGroupRequest): Promise<string> {
     if (!(await this.isCardOwnerWithUserId(userId, request.cardId))) {
       throw new ErrorUserIsNotOwnerOfCardRuntimeException(userId, request.cardId);
     }

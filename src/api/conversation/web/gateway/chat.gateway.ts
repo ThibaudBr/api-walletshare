@@ -24,7 +24,7 @@ import { NotificationService } from '../../../notification/application/notificat
 import { EventBus } from '@nestjs/cqrs';
 import { ErrorCustomEvent } from '../../../../util/exception/error-handler/error-custom.event';
 
-@WebSocketGateway({ cors: true })
+@WebSocketGateway({ cors: true, credentials: false })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
@@ -166,6 +166,11 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const conversation: ConversationEntity = await this.conversationService.getConversationById(
         sentMessage.conversationId,
       );
+
+      if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
+        throw new BadRequestException('User is not part of the conversation');
+      }
+
       const message: MessageEntity = await this.conversationService.saveMessage(
         sentMessage.content,
         author,
@@ -203,7 +208,13 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const conversation: ConversationEntity = await this.conversationService.getConversationById(
       joinConversationRequest.conversationId,
     );
-
+    if (
+      conversation.connectedCard?.cardEntityOne.owner.user.id !== author.id ||
+      conversation.connectedCard?.cardEntityTwo.owner.user.id !== author.id ||
+      !conversation.group?.members.find(member => member.card.owner.user.id === author.id)
+    ) {
+      throw new BadRequestException('User is not part of the conversation');
+    }
     const createJoinConversationDto: CreateJoinConversationDto = new CreateJoinConversationDto({
       conversationEntity: conversation,
       profileEntity: author.owner,
@@ -316,7 +327,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       if (!sender) {
         throw new BadRequestException('User not found');
       }
-      this.server.to(payload.senderSocketId).emit('call-rejected', { type:'call-rejected', rejectedBySocketId: socket.id });
+      this.server
+        .to(payload.senderSocketId)
+        .emit('call-rejected', { type: 'call-rejected', rejectedBySocketId: socket.id });
     } catch (e) {
       await this.disconnect(socket);
       throw e;

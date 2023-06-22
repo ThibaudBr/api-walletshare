@@ -20,6 +20,9 @@ export class GetMessageFromConversationQueryHandler implements IQueryHandler<Get
     const conversation: ConversationEntity = await this.conversationRepository
       .findOneOrFail({
         where: {
+          joinedProfiles: {
+            socketId: query.socketId,
+          },
           id: query.conversationId,
         },
       })
@@ -36,7 +39,7 @@ export class GetMessageFromConversationQueryHandler implements IQueryHandler<Get
 
     conversation.messages = await this.messageRepository
       .find({
-        relations: ['author', 'author.owner', 'author.owner.user'],
+        relations: ['conversation', 'author', 'author.owner', 'author.owner.user'],
         order: {
           createdAt: 'DESC',
         },

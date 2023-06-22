@@ -24,7 +24,7 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
     private readonly eventBus: EventBus,
   ) {}
 
-  async execute(command: CreateGroupCommand): Promise<void> {
+  async execute(command: CreateGroupCommand): Promise<string> {
     if (command.name === undefined || command.name === null) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
@@ -70,7 +70,7 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
       role: RoleGroupMembershipEnum.OWNER,
       card: card,
     });
-    const group = await this.groupRepository.create({
+    const group = this.groupRepository.create({
       name: command.name,
       members: [newGroupMembership],
     });
@@ -86,5 +86,6 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
     });
 
     await this.eventBus.publish(new CreateGroupEvent({ cardId: command.cardId, groupId: newGroup.id }));
+    return newGroup.id;
   }
 }

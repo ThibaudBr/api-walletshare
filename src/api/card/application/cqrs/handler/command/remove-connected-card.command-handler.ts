@@ -104,7 +104,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
               new ErrorCustomEvent({
                 error: error.message,
                 handler: 'RemoveConnectedCardCommandHandler',
-                localisation: 'connectedCardRepository.delete',
+                localisation: 'connectedCardRepository.remove',
               }),
             );
             throw new ErrorDeleteRuntimeException('Error while deleting relation');
@@ -127,7 +127,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
           })
           .then(cardConnected => {
             this.connectedCardRepository
-              .delete(cardConnected.id)
+              .remove(cardConnected)
               .then(() => {
                 this.eventBus.publish(
                   new RemoveConnectedCardEvent({
@@ -141,7 +141,7 @@ export class RemoveConnectedCardCommandHandler implements ICommandHandler<Remove
                   new ErrorCustomEvent({
                     error: error.message,
                     handler: 'RemoveConnectedCardCommandHandler',
-                    localisation: 'connectedCardRepository.delete',
+                    localisation: 'connectedCardRepository.remove',
                   }),
                 );
                 throw new ErrorDeleteRuntimeException('Error while deleting relation');
