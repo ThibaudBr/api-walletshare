@@ -44,6 +44,9 @@ import { RemoveSavedCardEventHandler } from './application/cqrs/handler/event/re
 import { CardViewEntity } from './domain/entities/card-view.entity';
 import { HttpModule } from '@nestjs/axios';
 import { GetAllConnectedCardByProfileIdQueryHandler } from './application/cqrs/handler/query/get-all-connected-card-by-profile-id.query-handler';
+import {
+  GetAllConnectedCardByUserIdQueryHandler
+} from "./application/cqrs/handler/query/get-all-connected-card-by-user-id.query-handler";
 
 @Module({
   imports: [
@@ -88,6 +91,7 @@ import { GetAllConnectedCardByProfileIdQueryHandler } from './application/cqrs/h
     IsCardOwnerWithUserIdQueryHandler,
     IsProfileOwnerWithUserIsQueryHandler,
     GetAllConnectedCardByProfileIdQueryHandler,
+    GetAllConnectedCardByUserIdQueryHandler,
     // event handlers
     AddConnectedCardEventHandler,
     AddSavedCardEventHandler,

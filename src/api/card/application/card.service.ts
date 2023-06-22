@@ -38,6 +38,7 @@ import { GroupMembershipResponse } from '../../groupe/web/response/group-members
 import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception';
 import { InvalidParameterEntityHttpException } from '../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 import { GetAllConnectedCardByProfileIdQuery } from './cqrs/query/get-all-connected-card-by-profile-id.query';
+import {GetAllConnectedCardByUserIdQuery} from "./cqrs/query/get-all-connected-card-by-user-id.query";
 
 @Injectable()
 export class CardService {
@@ -724,5 +725,43 @@ export class CardService {
     } else {
       throw new UnauthorizedRequestHttpException();
     }
+  }
+
+  async getAllMyConnectedCard(userId: string): Promise<CardResponse[]> {
+    return await this.queryBus
+      .execute(
+        new GetAllConnectedCardByUserIdQuery({
+          userId: userId,
+        }),
+      )
+      .catch(error => {
+        if (error.message === 'Error while getting all connected card by user id')
+          throw new InternalServerErrorException('Error while getting all connected card by user id');
+        else throw error;
+      })
+      .then((cards: CardEntity[]) => {
+        return cards.map((card: CardEntity) => {
+          return new CardResponse({
+            ...card,
+            ownerResponse: card.owner ? new ProfileResponse({ ...card.owner }) : undefined,
+            socialNetworkResponse: card.socialNetwork
+              ? new SocialNetworkResponse({ ...card.socialNetwork })
+              : undefined,
+            groupMembershipsResponse: card.groupMemberships
+              ? card.groupMemberships.map(
+                  groupMembership =>
+                    new GroupMembershipResponse({
+                      groupId: groupMembership.group.id,
+                      cardId: card.id,
+                      createdAt: groupMembership.createdAt,
+                      updatedAt: groupMembership.updatedAt,
+                      deletedAt: groupMembership.deletedAt,
+                      role: groupMembership.role,
+                    }),
+                )
+              : undefined,
+          });
+        });
+      });
   }
 }

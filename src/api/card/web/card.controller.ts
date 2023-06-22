@@ -46,6 +46,13 @@ export class CardController {
     return await this.cardService.getAllCardWithUserId(userRequest.user.id);
   }
 
+  @Get('/public/get-all-my-connected-cards/')
+  @HttpCode(200)
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getAllMyConnectedCard(@Req() userRequest: RequestUser): Promise<CardResponse[]> {
+    return await this.cardService.getAllMyConnectedCard(userRequest.user.id);
+  }
+
   @Get('/public/get-all-my-cards-by-profile-id/:profileId')
   @HttpCode(200)
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
