@@ -24,7 +24,7 @@ import { NotificationService } from '../../../notification/application/notificat
 import { EventBus } from '@nestjs/cqrs';
 import { ErrorCustomEvent } from '../../../../util/exception/error-handler/error-custom.event';
 
-@WebSocketGateway()
+@WebSocketGateway({ cors: true })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
