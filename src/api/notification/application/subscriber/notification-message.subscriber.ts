@@ -89,7 +89,10 @@ export class NotificationMessageSubscriber implements EntitySubscriberInterface<
           groupMembership.group.name,
         type: NotificationTypeEnum.NEW_MESSAGE,
       });
-      await notificationRepository.save(notification);
+      await notificationRepository.save(notification)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 }

@@ -42,7 +42,10 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
     });
 
     subscription.profileEmployeeIds.push(companyEmployee.profile.id);
-    await subscriptionRepository.save(subscription);
+    await subscriptionRepository.save(subscription)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<CompanyEmployeeEntity>): Promise<void> {
@@ -75,7 +78,10 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
       roles: companyEmployee.profile.user.roles.filter(role => role !== UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT),
     });
 
-    await profileRepository.softRemove(companyEmployee.profile);
+    await profileRepository.softRemove(companyEmployee.profile)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeRemove(event: RemoveEvent<CompanyEmployeeEntity>): Promise<void> {
@@ -110,6 +116,9 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
       roles: companyEmployee.profile.user.roles.filter(role => role !== UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT),
     });
 
-    await profileRepository.softRemove(companyEmployee.profile);
+    await profileRepository.softRemove(companyEmployee.profile)
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

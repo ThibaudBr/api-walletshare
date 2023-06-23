@@ -45,7 +45,9 @@ export class GroupMediaSubscriber implements EntitySubscriberInterface<GroupEnti
         Key: media.key,
       });
     }
-    await mediaRepository.remove(medias);
+    await mediaRepository.remove(medias).catch(error => {
+      console.log(error);
+    });
   }
 
   async beforeSoftRemove(event: RemoveEvent<GroupEntity>): Promise<void> {
@@ -56,17 +58,19 @@ export class GroupMediaSubscriber implements EntitySubscriberInterface<GroupEnti
       where: [
         {
           avatarGroupMedia: {
-            id: removedGroup?.avatarMedia?.id,
+            id: removedGroup?.id,
           },
         },
         {
           bannerGroupMedia: {
-            id: removedGroup?.bannerMedia?.id,
+            id: removedGroup?.id,
           },
         },
       ],
     });
     if (medias.length == 0) return;
-    await mediaRepository.softRemove(medias);
+    await mediaRepository.softRemove(medias).catch(error => {
+      console.log(error);
+    });
   }
 }

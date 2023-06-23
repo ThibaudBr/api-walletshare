@@ -30,10 +30,10 @@ export class UserEntity extends BaseEntity {
   // ______________________________________________________
   // Properties
   // ______________________________________________________
-  @Column({ unique: true, nullable: true })
+  @Column({ unique: false, nullable: true })
   mail?: string;
 
-  @Column({ unique: true, nullable: true })
+  @Column({ unique: false, nullable: true })
   username?: string;
   /**
    * @description

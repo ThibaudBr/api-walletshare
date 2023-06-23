@@ -26,7 +26,10 @@ export class CardMediaSubscriber implements EntitySubscriberInterface<CardEntity
       },
     });
     if (medias.length == 0) return;
-    await mediaRepository.softRemove(medias);
+    await mediaRepository.softRemove(medias)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeRemove(event: RemoveEvent<CardEntity>): Promise<void> {
@@ -55,6 +58,9 @@ export class CardMediaSubscriber implements EntitySubscriberInterface<CardEntity
         Key: media.key,
       });
     }
-    await mediaRepository.remove(medias);
+    await mediaRepository.remove(medias)
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

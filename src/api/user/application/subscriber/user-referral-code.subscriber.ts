@@ -21,7 +21,10 @@ export class UserReferralCodeSubscriber implements EntitySubscriberInterface<Use
       },
     });
     if (referralCodes.length == 0) return;
-    await referralCodeRepository.softRemove(referralCodes);
+    await referralCodeRepository.softRemove(referralCodes)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeRemove(event: RemoveEvent<UserEntity>): Promise<void> {
@@ -38,6 +41,9 @@ export class UserReferralCodeSubscriber implements EntitySubscriberInterface<Use
     });
 
     if (referralCodes.length == 0) return;
-    await referralCodeRepository.remove(referralCodes);
+    await referralCodeRepository.remove(referralCodes)
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

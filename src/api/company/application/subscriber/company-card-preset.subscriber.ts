@@ -23,7 +23,10 @@ export class CompanyCardPresetSubscriber implements EntitySubscriberInterface<Co
     });
     if (cardPresets.length == 0) return;
     for (const cardPreset of cardPresets) {
-      await cardPresetRepository.remove(cardPreset);
+      await cardPresetRepository.remove(cardPreset)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 
@@ -40,7 +43,10 @@ export class CompanyCardPresetSubscriber implements EntitySubscriberInterface<Co
     });
     if (cardPresets.length == 0) return;
     for (const cardPreset of cardPresets) {
-      await cardPresetRepository.softRemove(cardPreset);
+      await cardPresetRepository.softRemove(cardPreset)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 }

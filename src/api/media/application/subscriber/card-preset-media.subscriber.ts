@@ -40,6 +40,9 @@ export class CardPresetMediaSubscriber implements EntitySubscriberInterface<Card
         Key: media.key,
       });
     }
-    await mediaRepository.remove(medias);
+    await mediaRepository.remove(medias)
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

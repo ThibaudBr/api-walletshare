@@ -21,7 +21,9 @@ export class JoinedConversationGroupSubscriber implements EntitySubscriberInterf
       },
     });
     if (conversationGroup == null) return;
-    await joinedConversationRepository.remove(conversationGroup.joinedProfiles);
+    await joinedConversationRepository.remove(conversationGroup.joinedProfiles).catch(error => {
+      console.log(error);
+    });
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<ConversationEntity>): Promise<void> {
@@ -36,6 +38,8 @@ export class JoinedConversationGroupSubscriber implements EntitySubscriberInterf
       },
     });
     if (conversationGroup == null) return;
-    await joinedConversationRepository.remove(conversationGroup.joinedProfiles);
+    await joinedConversationRepository.remove(conversationGroup.joinedProfiles).catch(error => {
+      console.log(error);
+    });
   }
 }

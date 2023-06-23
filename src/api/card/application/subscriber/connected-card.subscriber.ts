@@ -28,7 +28,10 @@ export class ConnectedCardSubscriber implements EntitySubscriberInterface<CardEn
       ],
     });
     if (connectedCards.length == 0) return;
-    await connectedCardRepository.softRemove(connectedCards);
+    await connectedCardRepository.softRemove(connectedCards)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeRemove(event: RemoveEvent<CardEntity>): Promise<void> {
@@ -51,6 +54,9 @@ export class ConnectedCardSubscriber implements EntitySubscriberInterface<CardEn
       ],
     });
     if (connectedCards.length == 0) return;
-    await connectedCardRepository.remove(connectedCards);
+    await connectedCardRepository.remove(connectedCards)
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

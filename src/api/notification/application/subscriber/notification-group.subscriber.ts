@@ -21,7 +21,9 @@ export class NotificationGroupSubscriber implements EntitySubscriberInterface<Gr
       },
     });
     if (notifications.length == 0) return;
-    await notificationRepository.softRemove(notifications);
+    await notificationRepository.softRemove(notifications).catch(error => {
+      console.log(error);
+    });
   }
 
   async beforeRemove(event: SoftRemoveEvent<GroupEntity>): Promise<void> {
@@ -37,6 +39,8 @@ export class NotificationGroupSubscriber implements EntitySubscriberInterface<Gr
       },
     });
     if (notifications.length == 0) return;
-    await notificationRepository.remove(notifications);
+    await notificationRepository.remove(notifications).catch(error => {
+      console.log(error);
+    });
   }
 }

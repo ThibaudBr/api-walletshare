@@ -21,7 +21,10 @@ export class ProfileCardSubscriber implements EntitySubscriberInterface<ProfileE
       },
     });
     if (cards.length == 0) return;
-    await cardRepository.softRemove(cards);
+    await cardRepository.softRemove(cards)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeRemove(event: RemoveEvent<ProfileEntity>): Promise<void> {
@@ -37,6 +40,9 @@ export class ProfileCardSubscriber implements EntitySubscriberInterface<ProfileE
       },
     });
     if (cards.length == 0) return;
-    await cardRepository.remove(cards);
+    await cardRepository.remove(cards)
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

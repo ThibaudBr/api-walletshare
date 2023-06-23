@@ -29,7 +29,10 @@ export class GroupMembershipCardSubscriber implements EntitySubscriberInterface<
       if (groupMembership.group.members.length == 2 || groupMembership.role == RoleGroupMembershipEnum.OWNER) {
         await groupRepository.softRemove(groupMembership.group);
       } else {
-        await groupMembershipRepository.softRemove(groupMembership);
+        await groupMembershipRepository.softRemove(groupMembership)
+          .catch(error => {
+            console.log(error);
+          });
       }
     }
   }
@@ -53,7 +56,10 @@ export class GroupMembershipCardSubscriber implements EntitySubscriberInterface<
       if (groupMembership.group.members.length == 2 || groupMembership.role == RoleGroupMembershipEnum.OWNER) {
         await groupRepository.remove(groupMembership.group);
       } else {
-        await groupMembershipRepository.remove(groupMembership);
+        await groupMembershipRepository.remove(groupMembership)
+          .catch(error => {
+            console.log(error);
+          });
       }
     }
   }

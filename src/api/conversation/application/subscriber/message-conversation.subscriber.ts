@@ -21,7 +21,9 @@ export class MessageConversationSubscriber implements EntitySubscriberInterface<
       },
     });
     if (messages.length == 0) return;
-    await messageRepository.softRemove(messages);
+    await messageRepository.softRemove(messages).catch(error => {
+      console.log(error);
+    });
   }
 
   async beforeRemove(event: RemoveEvent<ConversationEntity>): Promise<void> {
@@ -37,6 +39,8 @@ export class MessageConversationSubscriber implements EntitySubscriberInterface<
       },
     });
     if (messages.length == 0) return;
-    await messageRepository.remove(messages);
+    await messageRepository.remove(messages).catch(error => {
+      console.log(error);
+    });
   }
 }
