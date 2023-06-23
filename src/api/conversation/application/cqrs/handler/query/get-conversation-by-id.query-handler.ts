@@ -28,7 +28,7 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
           'group',
           'group.members',
           'group.members.card',
-          'group.members.card.owner',
+          'group.members.card.owner.user',
         ],
         where: {
           id: query.conversationId,
