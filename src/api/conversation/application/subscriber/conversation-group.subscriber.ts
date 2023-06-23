@@ -37,7 +37,9 @@ export class ConversationGroupSubscriber implements EntitySubscriberInterface<Gr
       },
     });
     if (conversations.length == 0) return;
-    await conversationRepository.softRemove(conversations);
+    await conversationRepository.softRemove(conversations).catch(error => {
+      console.log(error);
+    });
   }
 
   async beforeRemove(event: RemoveEvent<GroupEntity>): Promise<void> {
@@ -53,6 +55,8 @@ export class ConversationGroupSubscriber implements EntitySubscriberInterface<Gr
       },
     });
     if (conversations.length == 0) return;
-    await conversationRepository.remove(conversations);
+    await conversationRepository.remove(conversations).catch(error => {
+      console.log(error);
+    });
   }
 }

@@ -25,7 +25,10 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
       roleProfile: RoleProfileEnum.CLASSIC,
       usernameProfile: user.username ?? 'UpdateYourUsername',
     });
-    await profileRepository.save(newProfile);
+    await profileRepository.save(newProfile)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<UserEntity>): Promise<void> {
@@ -40,7 +43,10 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
       },
     });
     if (profiles.length == 0) return;
-    await profileRepository.softRemove(profiles);
+    await profileRepository.softRemove(profiles)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeRemove(event: RemoveEvent<UserEntity>): Promise<void> {
@@ -56,6 +62,9 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
       },
     });
     if (profiles.length == 0) return;
-    await profileRepository.remove(profiles);
+    await profileRepository.remove(profiles)
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

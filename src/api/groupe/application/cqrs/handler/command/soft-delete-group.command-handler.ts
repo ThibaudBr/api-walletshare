@@ -46,6 +46,7 @@ export class SoftDeleteGroupCommandHandler implements ICommandHandler<SoftDelete
             error: error.message,
           }),
         );
+        console.log(error);
         throw new Error('Invalid id');
       });
   }

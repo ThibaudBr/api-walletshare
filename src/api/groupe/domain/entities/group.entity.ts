@@ -25,14 +25,14 @@ export class GroupEntity extends BaseEntity {
   // Properties
   // ______________________________________________________
   @Length(5, 30)
-  @Column({ nullable: false, unique: true })
+  @Column({ nullable: false, unique: false })
   name: string;
 
   // ______________________________________________________
   // Relations
   // ______________________________________________________
 
-  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true, })
+  @OneToMany(() => GroupMembershipEntity, groupMembership => groupMembership.group, { cascade: true })
   members: GroupMembershipEntity[];
 
   @OneToOne(() => ConversationEntity, conversation => conversation.group, {

@@ -26,7 +26,10 @@ export class ProfileMediaSubscriber implements EntitySubscriberInterface<Profile
       .getMany();
 
     if (medias.length == 0) return;
-    await mediaRepository.softRemove(medias);
+    await mediaRepository.softRemove(medias)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeRemove(event: RemoveEvent<ProfileEntity>): Promise<void> {
@@ -53,6 +56,9 @@ export class ProfileMediaSubscriber implements EntitySubscriberInterface<Profile
         Key: media.key,
       });
     }
-    await mediaRepository.remove(medias);
+    await mediaRepository.remove(medias)
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

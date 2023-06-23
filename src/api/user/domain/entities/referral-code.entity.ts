@@ -19,7 +19,7 @@ export class ReferralCodeEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true, nullable: true })
+  @Column({ unique: false, nullable: true })
   public referralCodeString?: string;
 
   @Column({ nullable: true })

@@ -38,7 +38,10 @@ export class NotificationGroupMembershipSubscriber implements EntitySubscriberIn
         description: `Card ${groupMembership.card.firstname} ${groupMembership.card.lastname} has been added to group as ${groupMembership.role}`,
         type: NotificationTypeEnum.JOIN_NEW_GROUP,
       });
-      await notificationRepository.save(notification);
+      await notificationRepository.save(notification)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 
@@ -75,7 +78,10 @@ export class NotificationGroupMembershipSubscriber implements EntitySubscriberIn
           ' has been removed from group',
         type: NotificationTypeEnum.LEAVE_GROUP,
       });
-      await notificationRepository.save(notification);
+      await notificationRepository.save(notification)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 }

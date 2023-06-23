@@ -15,7 +15,10 @@ export class ConversationConnectedCardSubscriber implements EntitySubscriberInte
     const conversation: ConversationEntity = new ConversationEntity({
       connectedCard: connectedCard,
     });
-    await conversationRepository.save(conversation);
+    await conversationRepository.save(conversation)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeSoftRemove(event: SoftRemoveEvent<ConnectedCardEntity>): Promise<void> {
@@ -30,7 +33,10 @@ export class ConversationConnectedCardSubscriber implements EntitySubscriberInte
       },
     });
     if (conversations.length == 0) return;
-    await conversationRepository.softRemove(conversations);
+    await conversationRepository.softRemove(conversations)
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   async beforeRemove(event: RemoveEvent<ConnectedCardEntity>): Promise<void> {

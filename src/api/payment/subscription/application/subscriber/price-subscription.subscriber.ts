@@ -23,7 +23,10 @@ export class PriceSubscriptionSubscriber implements EntitySubscriberInterface<Pr
     });
     if (subscriptions.length == 0) return;
     for (const subscription of subscriptions) {
-      await subscriptionRepository.remove(subscription);
+      await subscriptionRepository.remove(subscription)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 
@@ -40,7 +43,10 @@ export class PriceSubscriptionSubscriber implements EntitySubscriberInterface<Pr
     });
     if (subscriptions.length == 0) return;
     for (const subscription of subscriptions) {
-      await subscriptionRepository.softRemove(subscription);
+      await subscriptionRepository.softRemove(subscription)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 }

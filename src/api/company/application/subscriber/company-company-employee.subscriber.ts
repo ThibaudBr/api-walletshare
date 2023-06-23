@@ -23,7 +23,10 @@ export class CompanyCompanyEmployeeSubscriber implements EntitySubscriberInterfa
     });
     if (companyEmployees.length == 0) return;
     for (const companyEmployee of companyEmployees) {
-      await companyEmployeeRepository.softRemove(companyEmployee);
+      await companyEmployeeRepository.softRemove(companyEmployee)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 
@@ -42,7 +45,10 @@ export class CompanyCompanyEmployeeSubscriber implements EntitySubscriberInterfa
     });
     if (companyEmployees.length == 0) return;
     for (const companyEmployee of companyEmployees) {
-      await companyEmployeeRepository.remove(companyEmployee);
+      await companyEmployeeRepository.remove(companyEmployee)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 }

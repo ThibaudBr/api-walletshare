@@ -22,9 +22,9 @@ export class GroupGroupMembershipSubscriber implements EntitySubscriberInterface
       },
     });
     if (groupMemberships.length == 0) return;
-    for (const groupMembership of groupMemberships) {
-      await groupMembershipRepository.softRemove(groupMembership);
-    }
+    await groupMembershipRepository.softRemove(groupMemberships).catch(async error => {
+      console.log(error);
+    });
   }
 
   async beforeRemove(event: RemoveEvent<GroupEntity>): Promise<void> {
@@ -41,8 +41,8 @@ export class GroupGroupMembershipSubscriber implements EntitySubscriberInterface
       },
     });
     if (groupMemberships.length == 0) return;
-    for (const groupMembership of groupMemberships) {
-      await groupMembershipRepository.remove(groupMembership);
-    }
+    await groupMembershipRepository.remove(groupMemberships).catch(async error => {
+      console.log(error);
+    });
   }
 }

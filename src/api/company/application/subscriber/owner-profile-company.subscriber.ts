@@ -22,7 +22,10 @@ export class OwnerProfileCompanySubscriber implements EntitySubscriberInterface<
     });
     if (companyEntities.length == 0) return;
     for (const company of companyEntities) {
-      await companyRepository.softRemove(company);
+      await companyRepository.softRemove(company)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 
@@ -40,7 +43,10 @@ export class OwnerProfileCompanySubscriber implements EntitySubscriberInterface<
     });
     if (companyEntities.length == 0) return;
     for (const company of companyEntities) {
-      await companyRepository.remove(company);
+      await companyRepository.remove(company)
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 }
