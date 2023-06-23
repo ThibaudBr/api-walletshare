@@ -2,7 +2,7 @@ import { EventBus, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetAllConnectedCardByUserIdQuery } from '../../query/get-all-connected-card-by-user-id.query';
 import { CardEntity } from '../../../../domain/entities/card.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Brackets, Not, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 
 @QueryHandler(GetAllConnectedCardByUserIdQuery)
@@ -15,27 +15,73 @@ export class GetAllConnectedCardByUserIdQueryHandler implements IQueryHandler<Ge
 
   async execute(query: GetAllConnectedCardByUserIdQuery): Promise<CardEntity[]> {
     return await this.cardRepository
-      .createQueryBuilder('card')
-      .leftJoinAndSelect('card.occupations', 'occupations')
-      .leftJoinAndSelect('card.owner', 'owner')
-      .leftJoinAndSelect('owner.user', 'user')
-      .leftJoinAndSelect('card.connectedCardOne', 'connectedCardOne')
-      .leftJoinAndSelect('connectedCardOne.cardEntityOne', 'cardEntityOne')
-      .leftJoinAndSelect('cardEntityOne.owner', 'ownerOne')
-      .leftJoinAndSelect('ownerOne.user', 'userOne')
-      .leftJoinAndSelect('card.connectedCardTwo', 'connectedCardTwo')
-      .leftJoinAndSelect('connectedCardTwo.cardEntityTwo', 'cardEntityTwo')
-      .leftJoinAndSelect('cardEntityTwo.owner', 'ownerTwo')
-      .leftJoinAndSelect('ownerTwo.user', 'userTwo')
-      .where('user.id != :userId', { userId: query.userId })
-      .andWhere(
-        new Brackets(qb => {
-          qb.where('userOne.id = :userId', { userId: query.userId }).orWhere('userTwo.id = :userId', {
-            userId: query.userId,
-          });
-        }),
-      )
-      .getMany()
+      .find({
+        relations: [
+          'occupations',
+          'owner',
+          'owner.user',
+          'connectedCardOne',
+          'connectedCardOne.cardEntityOne',
+          'connectedCardOne.cardEntityOne.owner',
+          'connectedCardOne.cardEntityOne.owner.user',
+          'connectedCardOne.cardEntityTwo',
+          'connectedCardOne.cardEntityTwo.owner',
+          'connectedCardOne.cardEntityTwo.owner.user',
+          'connectedCardTwo',
+          'connectedCardTwo.cardEntityOne',
+          'connectedCardTwo.cardEntityOne.owner',
+          'connectedCardTwo.cardEntityOne.owner.user',
+          'connectedCardTwo.cardEntityTwo',
+          'connectedCardTwo.cardEntityTwo.owner',
+          'connectedCardTwo.cardEntityTwo.owner.user',
+        ],
+        where: [
+          {
+            connectedCardOne: {
+              cardEntityOne: {
+                owner: {
+                  user: {
+                    id: query.userId,
+                  },
+                },
+              },
+            },
+          },
+          {
+            connectedCardOne: {
+              cardEntityTwo: {
+                owner: {
+                  user: {
+                    id: query.userId,
+                  },
+                },
+              },
+            },
+          },
+          {
+            connectedCardTwo: {
+              cardEntityOne: {
+                owner: {
+                  user: {
+                    id: query.userId,
+                  },
+                },
+              },
+            },
+          },
+          {
+            connectedCardTwo: {
+              cardEntityTwo: {
+                owner: {
+                  user: {
+                    id: query.userId,
+                  },
+                },
+              },
+            },
+          },
+        ],
+      })
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
@@ -44,7 +90,20 @@ export class GetAllConnectedCardByUserIdQueryHandler implements IQueryHandler<Ge
             error: error.message,
           }),
         );
-        throw new Error('Error while getting all connected card by user id');
+        throw new Error('invalidId');
+      })
+      .then(async cards => {
+        const uniqueCardIds = new Set();
+        return cards.filter(card => {
+          if (card.owner.user.id === query.userId) {
+            return false;
+          }
+          if (uniqueCardIds.has(card.id)) {
+            return false;
+          }
+          uniqueCardIds.add(card.id);
+          return true;
+        });
       });
   }
 }
