@@ -18,7 +18,7 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
 
   async execute(query: GetConversationByIdQuery): Promise<ConversationEntity> {
     return await this.conversationRepository
-      .findOneOrFail({
+      .find({
         relations: [
           'joinedProfiles',
           'joinedProfiles.profile',
@@ -45,17 +45,29 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
         throw new Error('An error occurred while getting conversation by id');
       })
       .then(async conversation => {
-        if (conversation.group) {
-          conversation.group = await this.groupRepository.findOneOrFail({
+        if (!conversation) {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              handler: 'GetConversationByIdQueryHandler',
+              localisation: 'conversation',
+              error: 'Conversation not found',
+            }),
+          );
+          throw new Error('Conversation not found');
+        }
+        if (conversation[0].group) {
+          conversation[0].group = await this.groupRepository.findOneOrFail({
             relations: ['members', 'members.card', 'members.card.owner', 'members.card.owner.user'],
             where: [
               {
-                id: conversation.group.id,
+                id: conversation[0].group.id,
               },
             ],
           });
         }
-        return conversation;
+        console.log('conversation.group?.members');
+        console.log(conversation[0].group?.members);
+        return conversation[0];
       });
   }
 }
