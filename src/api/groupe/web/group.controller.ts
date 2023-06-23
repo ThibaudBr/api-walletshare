@@ -2,7 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
-  Delete,
+  Delete, ForbiddenException,
   Get,
   HttpCode,
   Param,
@@ -32,6 +32,9 @@ import { AddCardToGroupRequest } from './request/add-card-to-group.request';
 import { ErrorListOfCardIdIsEmptyRuntimeException } from '../../../util/exception/runtime-exception/error-list-of-card-id-is-empty.runtime-exception';
 import { ErrorCardAlreadyInGroupRuntimeException } from '../../../util/exception/runtime-exception/error-card-already-in-group.runtime-exception';
 import { CreatedGroupResponse } from './response/created-group.response';
+import {
+  ErrorUserHaveNoRightOverGroupRuntimeException
+} from "../../../util/exception/runtime-exception/error-user-have-no-right-over-group.runtime-exception";
 
 @Controller('group')
 @ApiTags('Group')
@@ -464,6 +467,7 @@ export class GroupController {
       const userId = requestUser.user.id;
       await this.groupService.addCardToMyGroup(userId, addCardToGroupRequest.groupId, addCardToGroupRequest.cardIdList);
     } catch (error) {
+      if (error instanceof ErrorUserHaveNoRightOverGroupRuntimeException) throw new ForbiddenException(error.message);
       if (error instanceof ErrorListOfCardIdIsEmptyRuntimeException) throw new BadRequestException(error.message);
       if (error instanceof ErrorCardAlreadyInGroupRuntimeException) throw new BadRequestException(error.message);
       else throw error;

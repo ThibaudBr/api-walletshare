@@ -531,11 +531,12 @@ export class GroupService {
   }
 
   async addCardToMyGroup(userId: string, groupId: string, cardIdList: string[]): Promise<void> {
+    console.log('addCardToMyGroup', userId, groupId, cardIdList);
     if (
-      !(await this.isUserIdHaveRoleInGroup(userId, groupId, [
+      await this.isUserIdHaveRoleInGroup(userId, groupId, [
         RoleGroupMembershipEnum.OWNER,
         RoleGroupMembershipEnum.ADMIN,
-      ]))
+      ])
     ) {
       throw new ErrorUserHaveNoRightOverGroupRuntimeException(userId, groupId);
     }

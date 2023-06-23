@@ -36,6 +36,8 @@ export class IsUserIdHaveRoleInGroupQueryHandler implements IQueryHandler<IsUser
         ],
       })
       .then(groupMemberships => {
+        console.log(groupMemberships);
+        console.log(query.roles);
         return groupMemberships.some(groupMembership => {
           return query.roles.includes(groupMembership.role);
         });
