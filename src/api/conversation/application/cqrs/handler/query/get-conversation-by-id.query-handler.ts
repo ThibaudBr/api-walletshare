@@ -4,12 +4,15 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ConversationEntity } from '../../../../domain/entities/conversation.entity';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import { GroupEntity } from '../../../../../groupe/domain/entities/group.entity';
 
 @QueryHandler(GetConversationByIdQuery)
 export class GetConversationByIdQueryHandler implements IQueryHandler<GetConversationByIdQuery> {
   constructor(
     @InjectRepository(ConversationEntity)
     private readonly conversationRepository: Repository<ConversationEntity>,
+    @InjectRepository(GroupEntity)
+    private readonly groupRepository: Repository<GroupEntity>,
     private readonly eventBus: EventBus,
   ) {}
 
@@ -26,9 +29,6 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
           'connectedCard.cardEntityTwo',
           'connectedCard.cardEntityTwo.owner',
           'group',
-          'group.members',
-          'group.members.card',
-          'group.members.card.owner.user',
         ],
         where: {
           id: query.conversationId,
@@ -43,6 +43,19 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
           }),
         );
         throw new Error('An error occurred while getting conversation by id');
+      })
+      .then(async conversation => {
+        if (conversation.group) {
+          conversation.group = await this.groupRepository.findOneOrFail({
+            relations: ['members', 'members.card', 'members.card.owner', 'members.card.owner.user'],
+            where: [
+              {
+                id: conversation.group.id,
+              },
+            ],
+          });
+        }
+        return conversation;
       });
   }
 }

@@ -60,6 +60,7 @@ import { NotificationService } from '../notification/application/notification.se
 import { NotificationModule } from '../notification/notification.module';
 import { RemoveAllJoinedProfileByConversationIdCommandHandler } from './application/cqrs/handler/command/remove-all-joined-profile-by-conversation-id.command-handler';
 import { RemoveAllJoinedProfileByConversationIdEventHandler } from './application/cqrs/handler/event/remove-all-joined-profile-by-conversation-id.event-handler';
+import { GroupEntity } from '../groupe/domain/entities/group.entity';
 
 @Module({
   imports: [
@@ -84,6 +85,7 @@ import { RemoveAllJoinedProfileByConversationIdEventHandler } from './applicatio
       MediaEntity,
       ConnectedUserEntity,
       NotificationEntity,
+      GroupEntity,
     ]),
     CqrsModule,
     ApiLogModule,
