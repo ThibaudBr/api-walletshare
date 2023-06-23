@@ -214,7 +214,7 @@ export class GroupController {
   }
 
   @Post('/public/create-group')
-  @HttpCode(204)
+  @HttpCode(201)
   @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
   async createGroupPublic(
     @Req() requestUser: RequestUser,
