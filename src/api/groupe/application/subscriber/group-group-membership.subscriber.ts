@@ -14,6 +14,7 @@ export class GroupGroupMembershipSubscriber implements EntitySubscriberInterface
     const groupMembershipRepository: Repository<GroupMembershipEntity> =
       event.manager.getRepository(GroupMembershipEntity);
     const groupMemberships: GroupMembershipEntity[] = await groupMembershipRepository.find({
+      relations: ['group'],
       where: {
         group: {
           id: softRemovedGroup?.id,
@@ -31,6 +32,8 @@ export class GroupGroupMembershipSubscriber implements EntitySubscriberInterface
     const groupMembershipRepository: Repository<GroupMembershipEntity> =
       event.manager.getRepository(GroupMembershipEntity);
     const groupMemberships: GroupMembershipEntity[] = await groupMembershipRepository.find({
+      relations: ['group'],
+      withDeleted: true,
       where: {
         group: {
           id: removedGroup?.id,
