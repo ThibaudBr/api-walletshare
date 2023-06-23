@@ -5,6 +5,7 @@ import { ConversationEntity } from '../../../../domain/entities/conversation.ent
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { MessageEntity } from '../../../../domain/entities/message.entity';
+import {GroupEntity} from "../../../../../groupe/domain/entities/group.entity";
 
 @QueryHandler(GetAllConversationByProfilesAndCardQuery)
 export class GetAllConversationByProfilesAndCardQueryHandler
@@ -15,6 +16,8 @@ export class GetAllConversationByProfilesAndCardQueryHandler
     private readonly conversationRepository: Repository<ConversationEntity>,
     @InjectRepository(MessageEntity)
     private readonly messageRepository: Repository<MessageEntity>,
+    @InjectRepository(GroupEntity)
+    private readonly groupRepository: Repository<GroupEntity>,
     private readonly eventBus: EventBus,
   ) {}
 
@@ -63,6 +66,12 @@ export class GetAllConversationByProfilesAndCardQueryHandler
               take: 10,
               skip: 0,
             });
+            if (conversation.group) {
+              conversation.group = await this.groupRepository.findOneOrFail({
+                where: { id: conversation.group.id },
+                relations: ['members', 'members.card', 'members.card.owner', 'members.card.owner.user'],
+              });
+            }
           }
           return conversations;
         });
