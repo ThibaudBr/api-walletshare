@@ -31,6 +31,7 @@ import { UpdateGroupRequest } from './request/update-group.request';
 import { AddCardToGroupRequest } from './request/add-card-to-group.request';
 import { ErrorListOfCardIdIsEmptyRuntimeException } from '../../../util/exception/runtime-exception/error-list-of-card-id-is-empty.runtime-exception';
 import { ErrorCardAlreadyInGroupRuntimeException } from '../../../util/exception/runtime-exception/error-card-already-in-group.runtime-exception';
+import { CreatedGroupResponse } from './response/created-group.response';
 
 @Controller('group')
 @ApiTags('Group')
@@ -212,10 +213,17 @@ export class GroupController {
   @Post('/public/create-group')
   @HttpCode(204)
   @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN]))
-  async createGroupPublic(@Req() requestUser: RequestUser, @Body() groupRequest: CreateGroupRequest): Promise<string> {
+  async createGroupPublic(
+    @Req() requestUser: RequestUser,
+    @Body() groupRequest: CreateGroupRequest,
+  ): Promise<CreatedGroupResponse> {
     try {
       const userId = requestUser.user.id;
-      return await this.groupService.createMyGroup(userId, groupRequest);
+      return await this.groupService.createMyGroup(userId, groupRequest).then((groupId: string) => {
+        return new CreatedGroupResponse({
+          id: groupId,
+        });
+      });
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
