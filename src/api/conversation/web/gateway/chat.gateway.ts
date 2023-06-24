@@ -335,4 +335,28 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       throw e;
     }
   }
+
+  @SubscribeMessage('end-call')
+  async handleEndCall(
+    @ConnectedSocket() socket: Socket,
+    @MessageBody() payload: { conversationId: string },
+  ): Promise<void> {
+    try {
+      const conversation = await this.conversationService.getConversationById(payload.conversationId);
+      if (!conversation) {
+        throw new BadRequestException('Conversation not found');
+      }
+
+      if (!conversation.joinedProfiles.find(p => p.socketId === socket.id)) {
+        throw new BadRequestException('User is not part of the conversation');
+      }
+      const otherParticipants = conversation.joinedProfiles.filter(p => p.socketId !== socket.id);
+      for (const participant of otherParticipants) {
+        this.server.to(participant.socketId).emit('end-call', { type: 'end-call' });
+      }
+    } catch (e) {
+      await this.disconnect(socket);
+      throw e;
+    }
+  }
 }
