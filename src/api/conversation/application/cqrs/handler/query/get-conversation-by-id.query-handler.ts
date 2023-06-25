@@ -68,8 +68,6 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
             ],
           });
         }
-        console.log('conversation.group?.members');
-        console.log(conversation.group?.members);
         return conversation;
       });
   }

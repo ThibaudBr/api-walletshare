@@ -58,7 +58,14 @@ export class IsRoleInCompanyQueryHandler implements IQueryHandler<IsRoleInCompan
     );
 
     if (!companyEmployee) {
-      console.log('companyEmployee not found');
+      await this.eventBus.publish(
+        new ErrorCustomEvent({
+          error: 'Company employee not found',
+          handler: 'IsRoleInCompanyQueryHandler',
+          localisation: 'companyRepository.findOneOrFail',
+        }),
+      );
+      throw new Error('Company employee not found');
       return false;
     }
 

@@ -88,6 +88,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
           }
         }
       }
+      this.server.to(socket.id).emit('no_more_conversations', true);
     } catch (e) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
