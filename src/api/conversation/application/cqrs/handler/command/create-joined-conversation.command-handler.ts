@@ -62,7 +62,7 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
       });
 
     await this.joinedConversationRepository
-      .findOne({
+      .find({
         relations: ['conversation', 'profile'],
         where: {
           conversation: {
@@ -74,6 +74,8 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
         },
       })
       .then(async joinedConversation => {
+        console.log('joinedConversation');
+        console.log(joinedConversation);
         if (joinedConversation) {
           await this.joinedConversationRepository.remove(joinedConversation).catch(async error => {
             await this.eventBus.publish(
@@ -92,7 +94,8 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
       profile: profile,
       conversation: conversation,
     });
-
+    console.log('joinedConversation');
+    console.log(joinedConversation);
     await this.joinedConversationRepository.save(joinedConversation).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
