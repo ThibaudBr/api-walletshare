@@ -27,8 +27,10 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
           'connectedCard',
           'connectedCard.cardEntityOne',
           'connectedCard.cardEntityOne.owner',
+          'connectedCard.cardEntityOne.owner.user',
           'connectedCard.cardEntityTwo',
           'connectedCard.cardEntityTwo.owner',
+          'connectedCard.cardEntityTwo.owner.user',
           'group',
         ],
         where: {
