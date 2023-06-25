@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ConversationEntity } from '../../../../domain/entities/conversation.entity';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
-import { GroupEntity } from '../../../../../groupe/domain/entities/group.entity';
 import { GroupMembershipEntity } from '../../../../../groupe/domain/entities/group-membership.entity';
+import { MessageEntity } from '../../../../domain/entities/message.entity';
 
 @QueryHandler(GetConversationByIdQuery)
 export class GetConversationByIdQueryHandler implements IQueryHandler<GetConversationByIdQuery> {
@@ -14,6 +14,8 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
     private readonly conversationRepository: Repository<ConversationEntity>,
     @InjectRepository(GroupMembershipEntity)
     private readonly groupMembershipEntityRepository: Repository<GroupMembershipEntity>,
+    @InjectRepository(MessageEntity)
+    private readonly messageRepository: Repository<MessageEntity>,
     private readonly eventBus: EventBus,
   ) {}
 
@@ -58,6 +60,13 @@ export class GetConversationByIdQueryHandler implements IQueryHandler<GetConvers
           );
           throw new Error('Conversation not found');
         }
+        conversation.messages = await this.messageRepository.find({
+          where: { conversation: { id: conversation.id } },
+          relations: ['author', 'author.owner'],
+          order: { createdAt: 'DESC' },
+          take: 30,
+          skip: 0,
+        });
         if (conversation.group) {
           conversation.group.members = await this.groupMembershipEntityRepository.find({
             relations: ['group', 'card', 'card.owner', 'card.owner.user'],
