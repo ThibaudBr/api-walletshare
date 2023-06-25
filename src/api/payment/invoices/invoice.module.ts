@@ -12,10 +12,11 @@ import { InvoiceService } from './application/invoice.service';
 import { CreateInvoiceCommandHandler } from './application/cqrs/handler/command/create-invoice.command-handler';
 import { CreateInvoiceEventHandler } from './application/cqrs/handler/event/create-invoice.event-handler';
 import { InvoicesEntity } from './domain/entities/invoices.entity';
+import { InvoiceController } from './web/invoice.controller';
 
 @Module({
   imports: [ConfigModule, TypeOrmModule.forFeature([UserEntity, InvoicesEntity]), CqrsModule, ApiLogModule, HttpModule],
-  controllers: [],
+  controllers: [InvoiceController],
   providers: [
     // log
     ApiLogService,
