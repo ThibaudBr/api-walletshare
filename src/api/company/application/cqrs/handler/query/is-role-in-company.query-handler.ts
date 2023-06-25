@@ -66,7 +66,6 @@ export class IsRoleInCompanyQueryHandler implements IQueryHandler<IsRoleInCompan
         }),
       );
       throw new Error('Company employee not found');
-      return false;
     }
 
     let shouldReturn = false;

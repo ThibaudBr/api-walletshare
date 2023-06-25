@@ -83,7 +83,11 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
               userId: user.id,
             });
             await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
-            this.server.to(socket.id).emit('conversations', createJoinConversationDto.conversationEntity);
+            const conversationToSend = await this.conversationService.getConversationById(conversationEntity.id);
+            this.server.to(socket.id).emit('conversations', conversationToSend);
+            for (const joinedPorfile of conversationToSend.joinedProfiles) {
+              this.server.to(joinedPorfile.socketId).emit('joined_profile', joinedPorfile);
+            }
             sentConversations.add(conversationEntity.id); // ajoute la conversation à l'ensemble des conversations déjà envoyées
           }
         }
@@ -149,7 +153,11 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
             userId: user.id,
           });
           await this.conversationService.saveJoinedConversation(socket.id, createJoinConversationDto);
-          this.server.to(socket.id).emit('conversations', createJoinConversationDto.conversationEntity);
+          const conversationToSend = await this.conversationService.getConversationById(conversationEntity.id);
+          this.server.to(socket.id).emit('conversations', conversationToSend);
+          for (const joinedPorfile of conversationToSend.joinedProfiles) {
+            this.server.to(joinedPorfile.socketId).emit('joined_profile', joinedPorfile);
+          }
           sentConversations.add(conversationEntity.id); // ajoute la conversation à l'ensemble des conversations déjà envoyées
         }
       }
