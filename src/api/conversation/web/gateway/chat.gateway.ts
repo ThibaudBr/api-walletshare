@@ -86,7 +86,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
             const conversationToSend = await this.conversationService.getConversationById(conversationEntity.id);
             this.server.to(socket.id).emit('conversations', conversationToSend);
             for (const joinedPorfile of conversationToSend.joinedProfiles) {
-              this.server.to(joinedPorfile.socketId).emit('joined_profile', joinedPorfile);
+              this.server
+                .to(joinedPorfile.socketId)
+                .emit('joined_profile', { joinedConversation: joinedPorfile, conversationId: conversationEntity.id });
             }
             sentConversations.add(conversationEntity.id); // ajoute la conversation à l'ensemble des conversations déjà envoyées
           }
@@ -156,7 +158,9 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
           const conversationToSend = await this.conversationService.getConversationById(conversationEntity.id);
           this.server.to(socket.id).emit('conversations', conversationToSend);
           for (const joinedPorfile of conversationToSend.joinedProfiles) {
-            this.server.to(joinedPorfile.socketId).emit('joined_profile', joinedPorfile);
+            this.server
+              .to(joinedPorfile.socketId)
+              .emit('joined_profile', { joinedConversation: joinedPorfile, conversationId: conversationEntity.id });
           }
           sentConversations.add(conversationEntity.id); // ajoute la conversation à l'ensemble des conversations déjà envoyées
         }
