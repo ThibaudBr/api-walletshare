@@ -74,7 +74,7 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
         },
       })
       .then(async joinedConversation => {
-        console.log('joinedConversation');
+        console.log('joinedConversation to remove');
         console.log(joinedConversation);
         if (joinedConversation) {
           await this.joinedConversationRepository.remove(joinedConversation).catch(async error => {
@@ -94,7 +94,7 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
       profile: profile,
       conversation: conversation,
     });
-    console.log('joinedConversation');
+    console.log('joinedConversation to save');
     console.log(joinedConversation);
     await this.joinedConversationRepository.save(joinedConversation).catch(async error => {
       await this.eventBus.publish(
