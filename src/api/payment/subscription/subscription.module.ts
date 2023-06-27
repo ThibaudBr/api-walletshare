@@ -37,6 +37,7 @@ import { ReferralCodeEntity } from '../../user/domain/entities/referral-code.ent
 import { GetAllSubscriptionQueryHandler } from './application/cqrs/handler/query/get-all-subscription.query-handler';
 import { RemoveSubscriptionCommandHandler } from './application/cqrs/handler/command/remove-subscription.command-handler';
 import { RemoveSubscriptionEventHandler } from './application/cqrs/handler/event/remove-subscription.event-handler';
+import { GetListMySubscriptionQueryHandler } from './application/cqrs/handler/query/get-list-my-subscription.query-handler';
 
 @Module({
   controllers: [SubscriptionController],
@@ -81,6 +82,7 @@ import { RemoveSubscriptionEventHandler } from './application/cqrs/handler/event
     GetAllSubscriptionQueryHandler,
     GetUserWithReferralCodeByUserIdQueryHandler,
     GetSubscriptionByStripeSubscriptionIdQueryHandler,
+    GetListMySubscriptionQueryHandler,
   ],
 })
 export class SubscriptionModule {}
