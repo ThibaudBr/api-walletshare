@@ -26,10 +26,9 @@ export class CardPresetCardSubscriber implements EntitySubscriberInterface<CardP
     if (cards.length == 0) return;
     for (const card of cards) {
       card.preset = undefined;
-      await cardRepository.save(card)
-        .catch(error => {
-          console.log(error);
-        });
+      await cardRepository.save(card).catch(error => {
+        console.log(error);
+      });
     }
   }
 

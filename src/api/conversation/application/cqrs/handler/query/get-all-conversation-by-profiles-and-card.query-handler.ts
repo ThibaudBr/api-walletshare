@@ -5,7 +5,7 @@ import { ConversationEntity } from '../../../../domain/entities/conversation.ent
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { MessageEntity } from '../../../../domain/entities/message.entity';
-import {GroupEntity} from "../../../../../groupe/domain/entities/group.entity";
+import { GroupEntity } from '../../../../../groupe/domain/entities/group.entity';
 
 @QueryHandler(GetAllConversationByProfilesAndCardQuery)
 export class GetAllConversationByProfilesAndCardQueryHandler

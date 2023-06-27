@@ -23,10 +23,9 @@ export class ProductPriceSubscriber implements EntitySubscriberInterface<Product
     });
     if (prices.length == 0) return;
     for (const price of prices) {
-      await priceRepository.remove(price)
-        .catch(error => {
-          console.log(error);
-        });
+      await priceRepository.remove(price).catch(error => {
+        console.log(error);
+      });
     }
   }
 
@@ -43,10 +42,9 @@ export class ProductPriceSubscriber implements EntitySubscriberInterface<Product
     });
     if (prices.length == 0) return;
     for (const price of prices) {
-      await priceRepository.softRemove(price)
-        .catch(error => {
-          console.log(error);
-        });
+      await priceRepository.softRemove(price).catch(error => {
+        console.log(error);
+      });
     }
   }
 }

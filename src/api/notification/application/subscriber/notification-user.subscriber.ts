@@ -21,10 +21,9 @@ export class NotificationUserSubscriber implements EntitySubscriberInterface<Use
       },
     });
     if (notifications.length == 0) return;
-    await notificationRepository.softRemove(notifications)
-      .catch(error => {
-        console.log(error);
-      });
+    await notificationRepository.softRemove(notifications).catch(error => {
+      console.log(error);
+    });
   }
 
   async beforeRemove(event: RemoveEvent<UserEntity>): Promise<void> {
@@ -40,9 +39,8 @@ export class NotificationUserSubscriber implements EntitySubscriberInterface<Use
       },
     });
     if (notifications.length == 0) return;
-    await notificationRepository.remove(notifications)
-      .catch(error => {
-        console.log(error);
-      });
+    await notificationRepository.remove(notifications).catch(error => {
+      console.log(error);
+    });
   }
 }

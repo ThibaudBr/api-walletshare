@@ -33,10 +33,9 @@ export class CompanyMediaSubscriber implements EntitySubscriberInterface<Company
       ],
     });
     if (medias.length == 0) return;
-    await mediaRepository.softRemove(medias)
-      .catch(error => {
-        console.log(error);
-      });
+    await mediaRepository.softRemove(medias).catch(error => {
+      console.log(error);
+    });
   }
 
   async beforeRemove(event: SoftRemoveEvent<CompanyEntity>): Promise<void> {
@@ -72,9 +71,8 @@ export class CompanyMediaSubscriber implements EntitySubscriberInterface<Company
         Key: media.key,
       });
     }
-    await mediaRepository.remove(medias)
-      .catch(error => {
-        console.log(error);
-      });
+    await mediaRepository.remove(medias).catch(error => {
+      console.log(error);
+    });
   }
 }

@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
 import { ErrorRestoreRuntimeException } from '../../../../../../util/exception/runtime-exception/error-restore.runtime-exception';
 import { ErrorInvalidIdRuntimeException } from '../../../../../../util/exception/runtime-exception/error-invalid-id.runtime-exception';
-import {RestoreGroupEvent} from "../../event/restore-group.event";
+import { RestoreGroupEvent } from '../../event/restore-group.event';
 
 @CommandHandler(RestoreGroupCommand)
 export class RestoreGroupCommandHandler implements ICommandHandler<RestoreGroupCommand> {
