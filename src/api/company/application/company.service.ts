@@ -1040,10 +1040,12 @@ export class CompanyService {
     const dateFormat = 'YYYY-MM-DD HH';
     const countsByDate: { [key: string]: number } = {};
 
+    console.log('employees', employees);
     for (const employee of employees) {
       if (employee.profile?.personalCards) {
         for (const card of employee.profile.personalCards) {
           for (const connectedCard of card.connectedCardOne) {
+            console.log('connectedCard', connectedCard);
             const date = moment(connectedCard.createdAt).format(dateFormat);
             countsByDate[date] = (countsByDate[date] || 0) + 1;
           }
@@ -1051,14 +1053,17 @@ export class CompanyService {
       }
     }
 
+    console.log('countsByDate', countsByDate);
     const responses: ChartResponse[] = [];
     for (const date in countsByDate) {
       responses.push(new ChartResponse({ y: countsByDate[date], x: date }));
     }
 
+    console.log('responses', responses);
     // Trier par date
     responses.sort((a, b) => a.x.localeCompare(b.x));
 
+    console.log('responses 2', responses);
     return responses;
   }
 
