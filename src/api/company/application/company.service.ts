@@ -65,7 +65,11 @@ import { GetCompanyByOwnerUserIdQuery } from './cqrs/query/get-company-by-owner-
 import { CompanyEmployeeEntity } from '../domain/entities/company-employee.entity';
 import { GetCompanyEmployeeByOwnerUserIdQuery } from './cqrs/query/get-company-employee-by-owner-user-id.query';
 import { GetCardPresetByCompanyIdQuery } from './cqrs/query/get-card-preset-by-company-id.query';
-import {GetCompanyPresetByOwnerUserIdQuery} from "./cqrs/query/get-company-preset-by-owner-user-id.query";
+import { GetCompanyPresetByOwnerUserIdQuery } from './cqrs/query/get-company-preset-by-owner-user-id.query';
+import { ChartResponse } from '../web/response/chart.response';
+import * as moment from 'moment';
+import { GetCompanyEmployeeByOwnerUserIdForChartQuery } from './cqrs/query/get-company-employee-by-owner-user-id-for-chart.query';
+import { TypeOfCardEnum } from '../../card/domain/enum/type-of-card.enum';
 
 @Injectable()
 export class CompanyService {
@@ -862,5 +866,296 @@ export class CompanyService {
 
   private generatePassword(): string {
     return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
+  }
+
+  async getAllEmployeePersonalCardView(userId: string, companyId: string): Promise<ChartResponse[]> {
+    if (!(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER]))) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    const employees: CompanyEmployeeEntity[] = await this.queryBus
+      .execute(
+        new GetCompanyEmployeeByOwnerUserIdForChartQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company employee not found') throw new NotFoundException('Company employee not found');
+        throw new InternalServerErrorException(error.message);
+      });
+
+    return await this.groupByHourForCompanyAndPersonalCard(employees);
+  }
+
+  async getEmployeePersonalCardViewByEmployeeId(
+    userId: string,
+    companyId: string,
+    employeeId: string,
+  ): Promise<ChartResponse[]> {
+    if (!(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER]))) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    const employees: CompanyEmployeeEntity[] = await this.queryBus
+      .execute(
+        new GetCompanyEmployeeByOwnerUserIdForChartQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company employee not found') throw new NotFoundException('Company employee not found');
+        throw new InternalServerErrorException(error.message);
+      });
+
+    for (const employee of employees) {
+      if (employee.id === employeeId) {
+        return await this.groupByHourForEmployeeAndPersonalCard(employee);
+      }
+    }
+    throw new BadRequestException('Employee not found in company');
+  }
+
+  async getCompanyForwardCard(userId: string, companyId: string): Promise<ChartResponse[]> {
+    if (!(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER]))) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    const employees: CompanyEmployeeEntity[] = await this.queryBus
+      .execute(
+        new GetCompanyEmployeeByOwnerUserIdForChartQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company employee not found') throw new NotFoundException('Company employee not found');
+        throw new InternalServerErrorException(error.message);
+      });
+
+    return await this.groupByHourForCompanyForward(employees);
+  }
+
+  async getCompanyForwardCardByEmployeeId(
+    userId: string,
+    companyId: string,
+    employeeId: string,
+  ): Promise<ChartResponse[]> {
+    if (!(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER]))) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    const employees: CompanyEmployeeEntity[] = await this.queryBus
+      .execute(
+        new GetCompanyEmployeeByOwnerUserIdForChartQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company employee not found') throw new NotFoundException('Company employee not found');
+        throw new InternalServerErrorException(error.message);
+      });
+
+    for (const employee of employees) {
+      if (employee.id === employeeId) {
+        return await this.groupByHourForEmployeeForward(employee);
+      }
+    }
+
+    throw new BadRequestException('Employee not found in company');
+  }
+
+  async getCompanyReceivedCard(userId: string, companyId: string): Promise<ChartResponse[]> {
+    if (!(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER]))) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    const employees: CompanyEmployeeEntity[] = await this.queryBus
+      .execute(
+        new GetCompanyEmployeeByOwnerUserIdForChartQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company employee not found') throw new NotFoundException('Company employee not found');
+        throw new InternalServerErrorException(error.message);
+      });
+
+    return await this.groupByHourForCompanyReceived(employees);
+  }
+
+  async getCompanyReceivedCardByEmployeeId(
+    userId: string,
+    companyId: string,
+    employeeId: string,
+  ): Promise<ChartResponse[]> {
+    if (!(await this.isRoleInCompany(userId, companyId, [RoleCompanyEmployeeEnum.OWNER]))) {
+      throw new ForbiddenException('You are not allowed to get card preset for this company');
+    }
+
+    const employees: CompanyEmployeeEntity[] = await this.queryBus
+      .execute(
+        new GetCompanyEmployeeByOwnerUserIdForChartQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Company employee not found') throw new NotFoundException('Company employee not found');
+        throw new InternalServerErrorException(error.message);
+      });
+
+    for (const employee of employees) {
+      if (employee.id === employeeId) {
+        return await this.groupByHourForEmployeeReceived(employee);
+      }
+    }
+
+    throw new BadRequestException('Employee not found in company');
+  }
+
+  private async groupByHourForCompanyAndPersonalCard(employees: CompanyEmployeeEntity[]): Promise<ChartResponse[]> {
+    const dateFormat = 'YYYY-MM-DD HH';
+    const countsByDate: { [key: string]: number } = {};
+
+    for (const employee of employees) {
+      if (employee.profile?.personalCards) {
+        for (const card of employee.profile.personalCards) {
+          for (const view of card.cardViews) {
+            const date = moment(view.createdAt).format(dateFormat);
+            countsByDate[date] = (countsByDate[date] || 0) + 1;
+          }
+        }
+      }
+    }
+
+    const responses: ChartResponse[] = [];
+    for (const date in countsByDate) {
+      responses.push(new ChartResponse({ y: countsByDate[date], x: date }));
+    }
+
+    responses.sort((a, b) => a.x.localeCompare(b.x));
+
+    return responses;
+  }
+
+  private async groupByHourForCompanyForward(employees: CompanyEmployeeEntity[]): Promise<ChartResponse[]> {
+    const dateFormat = 'YYYY-MM-DD HH';
+    const countsByDate: { [key: string]: number } = {};
+
+    for (const employee of employees) {
+      if (employee.profile?.personalCards) {
+        for (const card of employee.profile.personalCards) {
+          for (const connectedCard of card.connectedCardOne) {
+            const date = moment(connectedCard.createdAt).format(dateFormat);
+            countsByDate[date] = (countsByDate[date] || 0) + 1;
+          }
+        }
+      }
+    }
+
+    const responses: ChartResponse[] = [];
+    for (const date in countsByDate) {
+      responses.push(new ChartResponse({ y: countsByDate[date], x: date }));
+    }
+
+    // Trier par date
+    responses.sort((a, b) => a.x.localeCompare(b.x));
+
+    return responses;
+  }
+
+  private async groupByHourForEmployeeForward(employee: CompanyEmployeeEntity): Promise<ChartResponse[]> {
+    const dateFormat = 'YYYY-MM-DD HH';
+    const countsByDate: { [key: string]: number } = {};
+
+    if (employee.profile?.personalCards) {
+      for (const card of employee.profile.personalCards) {
+        for (const connectedCard of card.connectedCardOne) {
+          const date = moment(connectedCard.createdAt).format(dateFormat);
+          countsByDate[date] = (countsByDate[date] || 0) + 1;
+        }
+      }
+    }
+
+    const responses: ChartResponse[] = [];
+    for (const date in countsByDate) {
+      responses.push(new ChartResponse({ y: countsByDate[date], x: date }));
+    }
+
+    // Trier par date
+    responses.sort((a, b) => a.x.localeCompare(b.x));
+
+    return responses;
+  }
+
+  private async groupByHourForCompanyReceived(employees: CompanyEmployeeEntity[]): Promise<ChartResponse[]> {
+    const dateFormat = 'YYYY-MM-DD HH';
+    const countsByDate: { [key: string]: number } = {};
+
+    for (const employee of employees) {
+      if (employee.profile?.personalCards) {
+        for (const card of employee.profile.personalCards) {
+          for (const connectedCard of card.connectedCardOne) {
+            const date = moment(connectedCard.createdAt).format(dateFormat);
+            countsByDate[date] = (countsByDate[date] || 0) + 1;
+          }
+        }
+      }
+    }
+
+    const responses: ChartResponse[] = [];
+    for (const date in countsByDate) {
+      responses.push(new ChartResponse({ y: countsByDate[date], x: date }));
+    }
+
+    // Trier par date
+    responses.sort((a, b) => a.x.localeCompare(b.x));
+
+    return responses;
+  }
+
+  private async groupByHourForEmployeeReceived(employee: CompanyEmployeeEntity): Promise<ChartResponse[]> {
+    const dateFormat = 'YYYY-MM-DD HH';
+    const countsByDate: { [key: string]: number } = {};
+
+    if (employee.profile?.personalCards) {
+      for (const card of employee.profile.personalCards) {
+        for (const connectedCard of card.connectedCardOne) {
+          const date = moment(connectedCard.createdAt).format(dateFormat);
+          countsByDate[date] = (countsByDate[date] || 0) + 1;
+        }
+      }
+    }
+
+    const responses: ChartResponse[] = [];
+    for (const date in countsByDate) {
+      responses.push(new ChartResponse({ y: countsByDate[date], x: date }));
+    }
+
+    // Trier par date
+    responses.sort((a, b) => a.x.localeCompare(b.x));
+
+    return responses;
+  }
+
+  private async groupByHourForEmployeeAndPersonalCard(employee: CompanyEmployeeEntity): Promise<ChartResponse[]> {
+    const dateFormat = 'YYYY-MM-DD HH';
+    const countsByDate: { [key: string]: number } = {};
+
+    if (employee.profile?.personalCards) {
+      for (const card of employee.profile.personalCards) {
+        for (const view of card.cardViews) {
+          const date = moment(view.createdAt).format(dateFormat);
+          countsByDate[date] = (countsByDate[date] || 0) + 1;
+        }
+      }
+    }
+
+    const responses: ChartResponse[] = [];
+    for (const date in countsByDate) {
+      responses.push(new ChartResponse({ y: countsByDate[date], x: date }));
+    }
+
+    responses.sort((a, b) => a.x.localeCompare(b.x));
+
+    return responses;
   }
 }

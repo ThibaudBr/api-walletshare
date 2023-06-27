@@ -20,6 +20,7 @@ import { AddCompanyEmployeeRequest } from './request/add-company-employee.reques
 import { CompanyEntity } from '../domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../domain/entities/company-employee.entity';
 import { CardPresetEntity } from '../domain/entities/card-preset.entity';
+import { ChartResponse } from './response/chart.response';
 
 @Controller('company')
 @ApiTags('Company')
@@ -421,5 +422,78 @@ export class CompanyController {
     @Param('companyId') companyId: string,
   ): Promise<number> {
     return await this.companyService.getAllCardForwardCount(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/chart/get-all-employee-personal-card-view/:companyId')
+  @ApiOperation({ summary: 'Get all employee personal card view' })
+  @ApiOkResponse({ type: '{ x: Number, y: Date}' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getAllEmployeePersonalCardView(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<ChartResponse[]> {
+    return await this.companyService.getAllEmployeePersonalCardView(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/chart/get-employee-personal-card-view-by-employee-id/:companyId/:employeeId')
+  @ApiOperation({ summary: 'Get employee personal card view by employee id' })
+  @ApiOkResponse({ type: '{ x: Number, y: Date}' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getEmployeePersonalCardViewByEmployeeId(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+    @Param('employeeId') employeeId: string,
+  ): Promise<ChartResponse[]> {
+    return await this.companyService.getEmployeePersonalCardViewByEmployeeId(
+      requestUser.user.id,
+      companyId,
+      employeeId,
+    );
+  }
+
+  @Get('/company/chart/get-company-forward-card/:companyId')
+  @ApiOperation({ summary: 'Get company forward card' })
+  @ApiOkResponse({ type: '{ x: Number, y: Date}' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getCompanyForwardCard(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<ChartResponse[]> {
+    return await this.companyService.getCompanyForwardCard(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/chart/get-company-forward-card-by-employee-id/:companyId/:employeeId')
+  @ApiOperation({ summary: 'Get company forward card by employee id' })
+  @ApiOkResponse({ type: '{ x: Number, y: Date}' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getCompanyForwardCardByEmployeeId(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+    @Param('employeeId') employeeId: string,
+  ): Promise<ChartResponse[]> {
+    return await this.companyService.getCompanyForwardCardByEmployeeId(requestUser.user.id, companyId, employeeId);
+  }
+
+  @Get('/company/chart/get-company-received-card/:companyId')
+  @ApiOperation({ summary: 'Get company received card' })
+  @ApiOkResponse({ type: '{ x: Number, y: Date}' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getCompanyReceivedCard(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+  ): Promise<ChartResponse[]> {
+    return await this.companyService.getCompanyReceivedCard(requestUser.user.id, companyId);
+  }
+
+  @Get('/company/chart/get-company-received-card-by-employee-id/:companyId/:employeeId')
+  @ApiOperation({ summary: 'Get company received card by employee id' })
+  @ApiOkResponse({ type: '{ x: Number, y: Date}' })
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getCompanyReceivedCardByEmployeeId(
+    @Req() requestUser: RequestUser,
+    @Param('companyId') companyId: string,
+    @Param('employeeId') employeeId: string,
+  ): Promise<ChartResponse[]> {
+    return await this.companyService.getCompanyReceivedCardByEmployeeId(requestUser.user.id, companyId, employeeId);
   }
 }
