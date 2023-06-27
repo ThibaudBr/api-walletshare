@@ -33,7 +33,9 @@ async function bootstrap(): Promise<void> {
   };
 
   // Initialize the firebase admin app
-  admin.initializeApp(firebaseConfig);
+  admin.initializeApp({
+    credential: admin.credential.cert(firebaseConfig),
+  });
 
   app.enableCors({
     origin: function (origin, callback) {
