@@ -25,6 +25,15 @@ export class SubscriptionController {
     return await this.subscriptionService.getListSubscription(requestUser.user.stripeCustomerId, stripePriceId);
   }
 
+  @Get('/public/list-my-subscription')
+  @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
+  async getListMySubscription(@Req() requestUser: RequestUser): Promise<SubscriptionEntity[]> {
+    if (!requestUser.user.stripeCustomerId) {
+      throw new InvalidIdHttpException('User does not have stripe customer id');
+    }
+    return await this.subscriptionService.getListMySubscription(requestUser.user.id);
+  }
+
   @Post('/public/create-subscription')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async createSubscription(

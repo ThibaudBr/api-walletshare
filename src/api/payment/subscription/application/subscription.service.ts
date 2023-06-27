@@ -18,6 +18,7 @@ import { GetSubscriptionByStripeSubscriptionIdQuery } from './cqrs/query/get-sub
 import { GetAllSubscriptionQuery } from './cqrs/query/get-all-subscription.query';
 import { CreateSubscriptionRequest } from '../web/request/create-subscription.request';
 import { RemoveSubscriptionCommand } from './cqrs/command/remove-subscription.command';
+import { GetListMySubscriptionQuery } from './cqrs/query/get-list-my-subscription.query';
 
 @Injectable()
 export class SubscriptionService {
@@ -215,5 +216,19 @@ export class SubscriptionService {
       }
     }
     return false;
+  }
+
+  async getListMySubscription(userId: string): Promise<SubscriptionEntity[]> {
+    return await this.queryBus
+      .execute(
+        new GetListMySubscriptionQuery({
+          userId: userId,
+        }),
+      )
+      .catch(async error => {
+        if (error.message === 'Subscription not found') throw new BadRequestException(error.message);
+        if (error.message === 'User not found') throw new BadRequestException(error.message);
+        throw new InternalServerErrorException(error.message);
+      });
   }
 }
