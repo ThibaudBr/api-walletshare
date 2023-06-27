@@ -62,6 +62,9 @@ import { GetCompanyByOwnerUserIdQueryHandler } from './application/cqrs/handler/
 import { GetCardPresetByCompanyIdQueryHandler } from './application/cqrs/handler/query/get-card-preset-by-company-id.query-handler';
 import { GetCompanyEmployeeByOwnerUserIdQueryHandler } from './application/cqrs/handler/query/get-company-employee-by-owner-user-id.query-handler';
 import { GetCompanyPresetByOwnerUserIdQueryHandler } from './application/cqrs/handler/query/get-company-preset-by-owner-user-id.query-handler';
+import {
+  GetCompanyEmployeeByOwnerUserIdForChartQueryHandler
+} from "./application/cqrs/handler/query/get-company-employee-by-owner-user-id-for-chart.query-handler";
 
 @Module({
   controllers: [CompanyController],
@@ -133,6 +136,7 @@ import { GetCompanyPresetByOwnerUserIdQueryHandler } from './application/cqrs/ha
     GetCardPresetByCompanyIdQueryHandler,
     GetCompanyEmployeeByOwnerUserIdQueryHandler,
     GetCompanyPresetByOwnerUserIdQueryHandler,
+    GetCompanyEmployeeByOwnerUserIdForChartQueryHandler,
     // Import handlers
     UpdateUserRoleCommandHandler,
     UpdateUserRoleEventHandler,
