@@ -21,10 +21,9 @@ export class CardViewSubscriber implements EntitySubscriberInterface<CardEntity>
       },
     });
     if (cardViews.length == 0) return;
-    await cardViewRepository.softRemove(cardViews)
-      .catch(error => {
-        console.log(error);
-      });
+    await cardViewRepository.softRemove(cardViews).catch(error => {
+      console.log(error);
+    });
   }
 
   async beforeRemove(event: SoftRemoveEvent<CardEntity>): Promise<void> {
@@ -40,9 +39,8 @@ export class CardViewSubscriber implements EntitySubscriberInterface<CardEntity>
       },
     });
     if (cardViews.length == 0) return;
-    await cardViewRepository.remove(cardViews)
-      .catch(error => {
-        console.log(error);
-      });
+    await cardViewRepository.remove(cardViews).catch(error => {
+      console.log(error);
+    });
   }
 }

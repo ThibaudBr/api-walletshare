@@ -38,7 +38,7 @@ import { GroupMembershipResponse } from '../../groupe/web/response/group-members
 import { EntityIsNotSoftDeletedHttpException } from '../../../util/exception/custom-http-exception/entity-is-not-soft-deleted.http-exception';
 import { InvalidParameterEntityHttpException } from '../../../util/exception/custom-http-exception/invalid-parameter-entity.http-exception';
 import { GetAllConnectedCardByProfileIdQuery } from './cqrs/query/get-all-connected-card-by-profile-id.query';
-import {GetAllConnectedCardByUserIdQuery} from "./cqrs/query/get-all-connected-card-by-user-id.query";
+import { GetAllConnectedCardByUserIdQuery } from './cqrs/query/get-all-connected-card-by-user-id.query';
 
 @Injectable()
 export class CardService {

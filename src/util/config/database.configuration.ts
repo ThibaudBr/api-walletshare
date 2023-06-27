@@ -60,9 +60,7 @@ import { UserSubscriptionSubscriber } from '../../api/payment/subscription/appli
 import { StripeSubscriptionSubscriber } from '../../api/payment/subscription/application/subscriber/stripe-subscription.subscriber';
 import { PriceSubscriptionSubscriber } from '../../api/payment/subscription/application/subscriber/price-subscription.subscriber';
 import { ProductPriceSubscriber } from '../../api/payment/price/application/subscriber/product-price.subscriber';
-import {
-  JoinedConversationGroupSubscriber
-} from "../../api/conversation/application/subscriber/joined-conversation-group.subscriber";
+import { JoinedConversationGroupSubscriber } from '../../api/conversation/application/subscriber/joined-conversation-group.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {

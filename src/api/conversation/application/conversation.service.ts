@@ -32,9 +32,7 @@ import { RemoveAllConnectedUserCommand } from './cqrs/command/remove-all-connect
 import { CreateConnectedUserCommand } from './cqrs/command/create-connected-user.command';
 import { RemoveConnectedUserBySocketIdCommand } from './cqrs/command/remove-connected-user-by-socket-id.command';
 import { GetAllConversationQuery } from './cqrs/query/get-all-conversation.query';
-import {
-  RemoveAllJoinedProfileByConversationIdCommand
-} from "./cqrs/command/remove-all-joined-profile-by-conversation-id.command";
+import { RemoveAllJoinedProfileByConversationIdCommand } from './cqrs/command/remove-all-joined-profile-by-conversation-id.command';
 
 @Injectable()
 export class ConversationService {
@@ -317,5 +315,4 @@ export class ConversationService {
         throw new InternalServerErrorException(error);
       });
   }
-
 }

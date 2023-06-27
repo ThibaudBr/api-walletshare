@@ -22,20 +22,25 @@ async function bootstrap(): Promise<void> {
 
   const configService: ConfigService = app.get(ConfigService);
   // Set the config options
-  const firebaseConfig = {
-    apiKey: configService.get<string>('FIREBASE_API_KEY'),
-    authDomain: configService.get<string>('FIREBASE_AUTH_DOMAIN'),
-    projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
-    storageBucket: configService.get<string>('FIREBASE_STORAGE_BUCKET'),
-    messagingSenderId: configService.get<string>('FIREBASE_MESSAGING_SENDER_ID'),
-    appId: configService.get<string>('FIREBASE_APP_ID'),
-    measurementId: configService.get<string>('FIREBASE_MEASUREMENT_ID'),
-  };
-
-  // Initialize the firebase admin app
-  admin.initializeApp({
-    credential: admin.credential.cert(firebaseConfig),
-  });
+  // const firebaseConfig = {
+  //   apiKey: configService.get<string>('FIREBASE_API_KEY'),
+  //   authDomain: configService.get<string>('FIREBASE_AUTH_DOMAIN'),
+  //   projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
+  //   storageBucket: configService.get<string>('FIREBASE_STORAGE_BUCKET'),
+  //   messagingSenderId: configService.get<string>('FIREBASE_MESSAGING_SENDER_ID'),
+  //   appId: configService.get<string>('FIREBASE_APP_ID'),
+  //   measurementId: configService.get<string>('FIREBASE_MEASUREMENT_ID'),
+  // };
+  //
+  // admin.initializeApp({
+  //   projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
+  //   storageBucket: configService.get<string>('FIREBASE_STORAGE_BUCKET'),
+  //   credential: admin.credential.cert({
+  //     privateKey: configService.get<string>('FIREBASE_PRIVATE_KEY') ?? 'error',
+  //     clientEmail: configService.get<string>('FIREBASE_CLIENT_EMAIL'),
+  //     projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
+  //   }),
+  // });
 
   app.enableCors({
     origin: function (origin, callback) {

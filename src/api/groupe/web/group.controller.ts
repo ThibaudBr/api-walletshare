@@ -2,7 +2,8 @@ import {
   BadRequestException,
   Body,
   Controller,
-  Delete, ForbiddenException,
+  Delete,
+  ForbiddenException,
   Get,
   HttpCode,
   Param,
@@ -32,9 +33,7 @@ import { AddCardToGroupRequest } from './request/add-card-to-group.request';
 import { ErrorListOfCardIdIsEmptyRuntimeException } from '../../../util/exception/runtime-exception/error-list-of-card-id-is-empty.runtime-exception';
 import { ErrorCardAlreadyInGroupRuntimeException } from '../../../util/exception/runtime-exception/error-card-already-in-group.runtime-exception';
 import { CreatedGroupResponse } from './response/created-group.response';
-import {
-  ErrorUserHaveNoRightOverGroupRuntimeException
-} from "../../../util/exception/runtime-exception/error-user-have-no-right-over-group.runtime-exception";
+import { ErrorUserHaveNoRightOverGroupRuntimeException } from '../../../util/exception/runtime-exception/error-user-have-no-right-over-group.runtime-exception';
 
 @Controller('group')
 @ApiTags('Group')

@@ -23,10 +23,9 @@ export class SubscriptionInvoiceSubscriber implements EntitySubscriberInterface<
     });
     if (invoices.length == 0) return;
     for (const invoice of invoices) {
-      await invoiceRepository.remove(invoice)
-        .catch(error => {
-          console.log(error);
-        });
+      await invoiceRepository.remove(invoice).catch(error => {
+        console.log(error);
+      });
     }
   }
 
@@ -43,10 +42,9 @@ export class SubscriptionInvoiceSubscriber implements EntitySubscriberInterface<
     });
     if (invoices.length == 0) return;
     for (const invoice of invoices) {
-      await invoiceRepository.softRemove(invoice)
-        .catch(error => {
-          console.log(error);
-        });
+      await invoiceRepository.softRemove(invoice).catch(error => {
+        console.log(error);
+      });
     }
   }
 }
