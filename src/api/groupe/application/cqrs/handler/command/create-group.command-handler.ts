@@ -46,7 +46,7 @@ export class CreateGroupCommandHandler implements ICommandHandler<CreateGroupCom
       throw new ErrorInvalidGroupNameRuntimeException('Invalid group name');
     }
 
-    const card = await this.cardRepository
+    const card: CardEntity = await this.cardRepository
       .findOneOrFail({
         relations: ['groupMemberships'],
         where: [

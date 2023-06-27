@@ -21,7 +21,7 @@ export class GiveAdminRightGroupCommandHandler implements ICommandHandler<GiveAd
   async execute(command: GiveAdminRightGroupCommand): Promise<void> {
     const group: GroupEntity = await this.groupRepository
       .findOneOrFail({
-        relations: ['groupMemberships', 'groupMemberships.card'],
+        relations: ['members', 'members.card'],
         where: [
           {
             id: command.groupId,
@@ -36,7 +36,7 @@ export class GiveAdminRightGroupCommandHandler implements ICommandHandler<GiveAd
             error: error.message,
           }),
         );
-        throw new Error('Invalid id');
+        throw new Error('Invalid id for group');
       });
 
     if (group.members.filter(member => member.id === command.cardId).length === 0) {
@@ -72,7 +72,7 @@ export class GiveAdminRightGroupCommandHandler implements ICommandHandler<GiveAd
             error: error.message,
           }),
         );
-        throw new Error('Invalid id');
+        throw new Error('Invalid id for card and group');
       });
 
     groupMembership.role = RoleGroupMembershipEnum.ADMIN;

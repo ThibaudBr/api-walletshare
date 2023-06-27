@@ -27,6 +27,7 @@ export class GetCompanyEmployeeByOwnerUserIdQueryHandler
           'profile.personalCards',
           'profile.personalCards.socialNetwork',
           'profile.personalCards.occupations',
+          'profile.personalCards.cardViews',
           'profile.savedCard.owner',
           'profile.savedCard.owner.user',
           'profile.savedCard.socialNetwork',
