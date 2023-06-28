@@ -18,7 +18,7 @@ export class GetAllMailQueryHandler implements IQueryHandler<GetAllMailQuery> {
 
   async execute(): Promise<MailLandingPageDto[]> {
     return await firstValueFrom(
-      this.httpService.get(this.apiWaitingListUrl + '/all', {
+      this.httpService.get(this.apiWaitingListUrl + '/api/waiting-list/all', {
         headers: {
           Authorization: this.apiWaitingListToken,
         },
