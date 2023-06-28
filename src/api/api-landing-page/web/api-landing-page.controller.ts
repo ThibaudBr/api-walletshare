@@ -10,7 +10,7 @@ import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
 export class ApiLandingPageController {
   constructor(private readonly apiLandingPageService: ApiLandingPageService) {}
 
-  @Get('/getAll')
+  @Get('/get-all')
   @ApiOperation({ summary: 'Get all mails' })
   @ApiOkResponse({ type: [MailResponse] })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))

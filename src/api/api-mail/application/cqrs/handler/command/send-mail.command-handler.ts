@@ -22,7 +22,7 @@ export class SendMailCommandHandler implements ICommandHandler<SendMailCommand> 
 
   async execute(command: SendMailCommand): Promise<void> {
     await firstValueFrom(
-      this.httpService.post(this.apiMailUrl + '/' + command.path, command, {
+      this.httpService.post(this.apiMailUrl + '/mail/' + command.path, command, {
         headers: {
           Authorization: this.apiMailToken,
         },
