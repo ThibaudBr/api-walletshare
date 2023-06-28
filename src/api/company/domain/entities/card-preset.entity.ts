@@ -34,7 +34,11 @@ export class CardPresetEntity extends BaseEntity {
     onDelete: 'SET NULL',
   })
   cards?: CardEntity[];
-  @OneToOne(() => MediaEntity, mediaEntity => mediaEntity.cardPresetMedia, { cascade: true, onDelete: 'SET NULL' })
+  @OneToOne(() => MediaEntity, mediaEntity => mediaEntity.cardPresetMedia, {
+    cascade: true,
+    onDelete: 'SET NULL',
+    eager: true,
+  })
   @JoinColumn()
   media?: MediaEntity;
   @CreateDateColumn()

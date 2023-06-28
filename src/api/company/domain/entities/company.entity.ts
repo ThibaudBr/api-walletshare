@@ -61,12 +61,14 @@ export class CompanyEntity {
   @OneToOne(() => MediaEntity, media => media.avatarProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
+    eager: true,
   })
   @JoinColumn()
   avatarMedia?: MediaEntity;
   @OneToOne(() => MediaEntity, media => media.bannerProfileMedia, {
     cascade: true,
     onDelete: 'SET NULL',
+    eager: true,
   })
   @JoinColumn()
   bannerMedia?: MediaEntity;
