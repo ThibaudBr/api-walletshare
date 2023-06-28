@@ -16,7 +16,7 @@ export class GetListMySubscriptionQueryHandler implements IQueryHandler<GetListM
   async execute(query: GetListMySubscriptionQuery): Promise<SubscriptionEntity[]> {
     return await this.subscriptionRepository
       .find({
-        relations: ['price', 'price.product', 'invoice', 'user'],
+        relations: ['price', 'price.product', 'invoices', 'user'],
         where: {
           user: {
             id: query.userId,
