@@ -23,7 +23,7 @@ export class DeleteMailCommandHandler implements ICommandHandler<DeleteMailComma
 
   async execute(command: DeleteMailCommand): Promise<void> {
     return await firstValueFrom(
-      this.httpService.post(this.apiWaitingListUrl + '/delete', command, {
+      this.httpService.post(this.apiWaitingListUrl + '/api/waiting-list/delete', command, {
         headers: {
           Authorization: this.apiWaitingListToken,
         },
