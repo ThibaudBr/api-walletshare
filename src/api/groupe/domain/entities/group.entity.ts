@@ -46,6 +46,7 @@ export class GroupEntity extends BaseEntity {
     cascade: true,
     nullable: true,
     onDelete: 'SET NULL',
+    eager: true,
   })
   @JoinColumn()
   avatarMedia: MediaEntity;
@@ -53,6 +54,7 @@ export class GroupEntity extends BaseEntity {
     cascade: true,
     nullable: true,
     onDelete: 'SET NULL',
+    eager: true,
   })
   @JoinColumn()
   bannerMedia: MediaEntity;
