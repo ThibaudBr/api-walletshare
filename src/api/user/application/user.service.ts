@@ -147,10 +147,12 @@ export class UserService {
         throw new Error('Mail already exists');
 
       const generatedPassword: string = this.generatePassword();
+      const generatedUsername: string = this.generatePassword();
       const user: CreateUserResponse = await this.commandBus.execute(
         new CreateUserCommand(
           new CreateUserDto({
             mail: generateUserDto.mail,
+            username: generatedUsername,
             password: generatedPassword,
             roles: generateUserDto.roles ? generateUserDto.roles : [UserRoleEnum.PUBLIC],
           }),
