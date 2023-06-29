@@ -8,6 +8,7 @@ import { TransferableStatusCardEnum } from '../../domain/enum/transferable-statu
 import { SocialNetworkResponse } from '../../../social-network/web/response/social-network.response';
 import { GroupMembershipResponse } from '../../../groupe/web/response/group-membership.response';
 import { CardPresetResponse } from '../../../company/web/response/card-preset.response';
+import {CardPresetEntity} from "../../../company/domain/entities/card-preset.entity";
 
 export class CardResponse {
   id: string;
@@ -29,7 +30,7 @@ export class CardResponse {
   groupMembershipsResponse?: GroupMembershipResponse[];
   mediaUrl?: string;
   messagesCount?: number;
-  cardPreset: CardPresetResponse;
+  cardPreset?: CardPresetEntity;
   socialNetworkResponse?: SocialNetworkResponse;
   typeOfCardEnum: TypeOfCardEnum;
   whoCanShareCardEnum?: WhoCanShareCardEnum[];
