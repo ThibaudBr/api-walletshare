@@ -35,7 +35,11 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
       if (command.createUserDto.username) {
         if (await this.isDuplicatedUsername(command.createUserDto.username)) {
           await this.eventBus.publish(
-            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
+            new ErrorCustomEvent({
+              localisation: 'isDuplicatedUsername',
+              handler: 'Register',
+              error: 'Username already exists',
+            }),
           );
           throw new DuplicateUsernameHttpException();
         }
@@ -44,7 +48,11 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
       if (command.createUserDto.mail) {
         if (await this.isDuplicatedEmail(command.createUserDto.mail)) {
           await this.eventBus.publish(
-            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
+            new ErrorCustomEvent({
+              localisation: 'isDuplicatedEmail',
+              handler: 'Register',
+              error: 'Email already exists',
+            }),
           );
           throw new DuplicateMailHttpException();
         }
@@ -52,7 +60,11 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
 
       if (!this.isValidPassword(command.createUserDto.password)) {
         await this.eventBus.publish(
-          new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid password' }),
+          new ErrorCustomEvent({
+            localisation: 'isValidPassword',
+            handler: 'CreateUserCommandHandler',
+            error: 'Invalid password : ' + command.createUserDto.password,
+          }),
         );
         throw new InvalidPasswordHttpException();
       }
@@ -60,7 +72,11 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
       if (command.createUserDto.mail) {
         if (!this.isValidEmail(command.createUserDto.mail)) {
           await this.eventBus.publish(
-            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
+            new ErrorCustomEvent({
+              localisation: 'isValidEmail',
+              handler: 'CreateUserCommandHandler',
+              error: 'Invalid mail: ' + command.createUserDto.mail,
+            }),
           );
           throw new InvalidMailHttpException();
         }
@@ -69,7 +85,11 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
       if (command.createUserDto.username) {
         if (!this.isValidUsername(command.createUserDto.username)) {
           await this.eventBus.publish(
-            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid username' }),
+            new ErrorCustomEvent({
+              localisation: 'isValidUsername',
+              handler: 'CreateUserCommandHandler',
+              error: 'Invalid username: ' + command.createUserDto.username,
+            }),
           );
           throw new InvalidUsernameHttpException(command.createUserDto.username);
         }
@@ -95,7 +115,9 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
         roles: savedUser.roles || [UserRoleEnum.PUBLIC],
       });
     } catch (error) {
-      this.eventBus.publish(new ErrorCustomEvent({ localisation: 'user', handler: 'CreateUser', error: error }));
+      this.eventBus.publish(
+        new ErrorCustomEvent({ localisation: 'user', handler: 'CreateUserCommandHandler', error: error }),
+      );
       throw error;
     }
   }

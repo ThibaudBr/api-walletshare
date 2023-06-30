@@ -23,7 +23,7 @@ export class AddCompanyEmployeeCommandHandler implements ICommandHandler<AddComp
   async execute(command: AddCompanyEmployeeCommand): Promise<void> {
     const company: CompanyEntity = await this.companyRepository
       .findOneOrFail({
-        relations: ['members', 'members.profile'],
+        relations: ['employees', 'employees.profile', 'employees.profile.user'],
         where: {
           id: command.companyId,
         },
