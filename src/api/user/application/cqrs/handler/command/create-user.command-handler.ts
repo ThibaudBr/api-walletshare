@@ -71,7 +71,7 @@ export class CreateUserCommandHandler implements ICommandHandler<CreateUserComma
           await this.eventBus.publish(
             new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid username' }),
           );
-          throw new InvalidUsernameHttpException();
+          throw new InvalidUsernameHttpException(command.createUserDto.username);
         }
       }
 

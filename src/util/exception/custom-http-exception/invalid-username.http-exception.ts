@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class InvalidUsernameHttpException extends HttpException {
-  constructor() {
-    super('Invalid username exception', HttpStatus.BAD_REQUEST);
+  constructor(username?: string) {
+    super('Invalid username exception' + username ?? '', HttpStatus.BAD_REQUEST);
   }
 }

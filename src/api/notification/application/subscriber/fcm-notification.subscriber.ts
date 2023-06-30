@@ -14,38 +14,61 @@ export class FcmNotificationSubscriber implements EntitySubscriberInterface<Noti
 
   async afterInsert(event: InsertEvent<NotificationEntity>): Promise<void> {
     try {
-      return;
-      // const notification: NotificationEntity | undefined = event.entity;
-      // const userRepository: Repository<UserEntity> = event.manager.getRepository(UserEntity);
-      // const userEntity: UserEntity | null = await userRepository.findOne({
-      //   where: {
-      //     id: notification?.user.id,
-      //   },
-      // });
-      // if (!userEntity) return;
-      // if (userEntity?.fcmToken) {
-      //   const message: TokenMessage = {
-      //     notification: {
-      //       title: notification?.title,
-      //       body: notification?.description,
-      //     },
-      //     data: {
-      //       type: notification?.type,
-      //       notificationId: notification?.id,
-      //       conversationId: notification?.conversationId ?? 'not-conversation',
-      //     },
-      //     token: userEntity.fcmToken,
-      //   };
-      //   await admin
-      //     .messaging()
-      //     .send(message)
-      //     .catch(error => {
-      //       console.log(error);
-      //     })
-      //     .then(response => {
-      //       console.log('Successfully sent message:', response);
-      //     });
-      // }
+      const notification: NotificationEntity | undefined = event.entity;
+      const userRepository: Repository<UserEntity> = event.manager.getRepository(UserEntity);
+      const userEntity: UserEntity | null = await userRepository.findOne({
+        where: {
+          id: notification?.user.id,
+        },
+      });
+      if (!userEntity) return;
+      if (userEntity?.fcmToken) {
+        let title = '';
+        let description = '';
+        switch (notification?.type) {
+          case 'NEW_MESSAGE':
+            title = 'Nouveau message';
+            description = 'Vous avez reçu un nouveau message';
+            break;
+          case 'INFO':
+            title = 'Informations';
+            description = notification?.description;
+            break;
+          case 'WARNING':
+            title = 'Warning';
+            description = notification?.description;
+            break;
+          case 'ERROR':
+            title = 'Error';
+            description = notification?.description;
+            break;
+          case 'JOIN_NEW_GROUP':
+            title = 'Vous avez été ajouté à un groupe';
+            description = 'Vous avez été ajouté à un groupe';
+            break;
+          case 'NEW_GROUP_MESSAGE':
+            title = 'Nouveau message dans un groupe';
+            description = 'Vous avez reçu un nouveau message dans un groupe';
+            break;
+          default:
+            title = 'Notification';
+            description = 'Vous avez reçu une notification';
+            break;
+        }
+        const message: TokenMessage = {
+          notification: {
+            title: title,
+            body: description,
+          },
+          data: {
+            type: notification?.type,
+            notificationId: notification?.id,
+            conversationId: notification?.conversationId ?? 'not-conversation',
+          },
+          token: userEntity.fcmToken,
+        };
+        await admin.messaging().send(message);
+      }
     } catch (e) {
       console.log(e);
       return;
