@@ -698,7 +698,7 @@ export class CardService {
           }),
         );
       } else {
-        throw new Error('Unauthorized');
+        throw new ForbiddenException('Unauthorized to remove an add card that is not yours');
       }
     } catch (error) {
       if (error instanceof InvalidIdHttpException) throw new InvalidIdHttpException(' for userId');

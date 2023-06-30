@@ -5,6 +5,7 @@ import * as process from 'process';
 import { ConfigService } from '@nestjs/config';
 import * as admin from 'firebase-admin';
 import { ForbiddenException } from '@nestjs/common';
+import * as http from 'http';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, {
@@ -21,26 +22,18 @@ async function bootstrap(): Promise<void> {
   SwaggerModule.setup('api', app, document);
 
   const configService: ConfigService = app.get(ConfigService);
-  // Set the config options
-  // const firebaseConfig = {
-  //   apiKey: configService.get<string>('FIREBASE_API_KEY'),
-  //   authDomain: configService.get<string>('FIREBASE_AUTH_DOMAIN'),
-  //   projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
-  //   storageBucket: configService.get<string>('FIREBASE_STORAGE_BUCKET'),
-  //   messagingSenderId: configService.get<string>('FIREBASE_MESSAGING_SENDER_ID'),
-  //   appId: configService.get<string>('FIREBASE_APP_ID'),
-  //   measurementId: configService.get<string>('FIREBASE_MEASUREMENT_ID'),
-  // };
-  //
-  // admin.initializeApp({
-  //   projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
-  //   storageBucket: configService.get<string>('FIREBASE_STORAGE_BUCKET'),
-  //   credential: admin.credential.cert({
-  //     privateKey: configService.get<string>('FIREBASE_PRIVATE_KEY') ?? 'error',
-  //     clientEmail: configService.get<string>('FIREBASE_CLIENT_EMAIL'),
-  //     projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
-  //   }),
-  // });
+
+  admin.initializeApp({
+    databaseURL: 'http://' + configService.get<string>('FIREBASE_PROJECT_ID') + '.firebaseio.com/',
+    serviceAccountId: configService.get<string>('FIREBASE_SERVICE_ACCOUNT_ID'),
+    projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
+    storageBucket: configService.get<string>('FIREBASE_STORAGE_BUCKET'),
+    credential: admin.credential.cert({
+      projectId: configService.get<string>('FIREBASE_PROJECT_ID'),
+      clientEmail: configService.get<string>('FIREBASE_CLIENT_EMAIL'),
+      privateKey: configService.get<string>('FIREBASE_PRIVATE_KEY')?.replace(/\\n/g, '\n'),
+    }),
+  });
 
   app.enableCors({
     origin: function (origin, callback) {

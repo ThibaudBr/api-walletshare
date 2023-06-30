@@ -53,18 +53,10 @@ export class SubscriptionService {
     return subscription;
   }
 
-  async cancelSubscription(subscriptionId: string): Promise<void> {
-    await this.commandBus
-      .execute(
-        new CancelSubscriptionCommand({
-          subscriptionId: subscriptionId,
-        }),
-      )
-      .catch(async error => {
-        if (error.message === 'Error while canceling subscription')
-          throw new InternalServerErrorException(error.message);
-        throw new InternalServerErrorException(error.message);
-      });
+  async cancelSubscription(subscriptionId: string, stipeUserId: string): Promise<void> {
+    const stripSubscription: Stripe.Subscription = await this.stripeService.getSubscription(subscriptionId);
+
+    await this.stripeService.cancelSubscription(stipeUserId, stripSubscription.id);
   }
 
   async handlerUserCancelSubscription(userId: string, stipeUserId: string, subscriptionId: string): Promise<void> {

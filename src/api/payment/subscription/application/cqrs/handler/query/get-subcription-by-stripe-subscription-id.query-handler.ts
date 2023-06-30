@@ -18,7 +18,7 @@ export class GetSubscriptionByStripeSubscriptionIdQueryHandler
   async execute(query: GetSubscriptionByStripeSubscriptionIdQuery): Promise<SubscriptionEntity> {
     return await this.subscriptionRepository
       .findOneOrFail({
-        relations: ['price', 'price.product', 'invoices'],
+        relations: ['price', 'price.product', 'invoices', 'user'],
         where: { subscriptionStripeId: query.stripeSubscriptionId },
       })
       .catch(async (error: Error) => {

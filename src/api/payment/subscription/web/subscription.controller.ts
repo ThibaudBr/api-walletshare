@@ -83,9 +83,12 @@ export class SubscriptionController {
     return await this.subscriptionService.removeSubscription(id);
   }
 
-  @Put('/admin/cancel-subscription/:subscriptionId')
+  @Put('/admin/cancel-subscription/:subscriptionId/:userStripeCustomerId')
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async cancelSubscriptionAdmin(@Param('subscriptionId') id: string): Promise<void> {
-    return await this.subscriptionService.cancelSubscription(id);
+  async cancelSubscriptionAdmin(
+    @Param('subscriptionId') id: string,
+    @Param('userStripeCustomerId') userStripeCustomerId: string,
+  ): Promise<void> {
+    return await this.subscriptionService.cancelSubscription(id, userStripeCustomerId);
   }
 }
