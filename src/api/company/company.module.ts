@@ -63,6 +63,10 @@ import { GetCardPresetByCompanyIdQueryHandler } from './application/cqrs/handler
 import { GetCompanyEmployeeByOwnerUserIdQueryHandler } from './application/cqrs/handler/query/get-company-employee-by-owner-user-id.query-handler';
 import { GetCompanyPresetByOwnerUserIdQueryHandler } from './application/cqrs/handler/query/get-company-preset-by-owner-user-id.query-handler';
 import { GetCompanyEmployeeByOwnerUserIdForChartQueryHandler } from './application/cqrs/handler/query/get-company-employee-by-owner-user-id-for-chart.query-handler';
+import { CreateUserCommandHandler } from '../user/application/cqrs/handler/command/create-user.command-handler';
+import { CreateUserEventHandler } from '../user/application/cqrs/handler/event/create-user.event-handler';
+import { CreateProfileCommandHandler } from '../profile/application/cqrs/handler/command/create-profile.command-handler';
+import { CreateProfileEventHandler } from '../profile/application/cqrs/handler/event/create-profile.event-handler';
 
 @Module({
   controllers: [CompanyController],
@@ -138,6 +142,10 @@ import { GetCompanyEmployeeByOwnerUserIdForChartQueryHandler } from './applicati
     // Import handlers
     UpdateUserRoleCommandHandler,
     UpdateUserRoleEventHandler,
+    CreateUserCommandHandler,
+    CreateUserEventHandler,
+    CreateProfileCommandHandler,
+    CreateProfileEventHandler,
   ],
 })
 export class CompanyModule {}

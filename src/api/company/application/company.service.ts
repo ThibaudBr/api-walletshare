@@ -567,6 +567,12 @@ export class CompanyService {
       profileId: profileId,
       companyId: createUserForCompany.companyId,
       roles: createUserForCompany.companyEmployeeRoles,
+    }).catch(async error => {
+      if (error.message === 'Company not found') throw new InvalidIdHttpException('Company not found');
+      if (error.message === 'Profile not found') throw new InvalidIdHttpException('Profile not found');
+      if (error.message === 'Role not found') throw new InvalidIdHttpException('Role not found');
+      if (error.message === 'Role already exist') throw new ConflictException('Role already exist');
+      throw new InternalServerErrorException(error.message);
     });
 
     if (createUserForCompany.createUserDto.mail) {
