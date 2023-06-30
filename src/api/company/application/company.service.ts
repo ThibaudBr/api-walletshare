@@ -576,14 +576,18 @@ export class CompanyService {
     });
 
     if (createUserForCompany.createUserDto.mail) {
-      await this.apiMailService.sendMail({
-        path: 'created-user-for-company',
-        email: createUserForCompany.createUserDto.mail,
-        title: 'You have been add to a company',
-        message: 'je sais pas',
-        password: generatePassword,
-        language: createUserForCompany.language,
-      });
+      try {
+        await this.apiMailService.sendMail({
+          path: 'created-user-for-company',
+          email: createUserForCompany.createUserDto.mail,
+          title: 'You have been add to a company',
+          message: 'je sais pas',
+          password: generatePassword,
+          language: createUserForCompany.language,
+        });
+      } catch (error) {
+        console.error('error while sending mail');
+      }
     }
   }
 
