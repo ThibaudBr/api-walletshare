@@ -1,4 +1,4 @@
-import {MediaEntity} from "../../../media/domain/entities/media.entity";
+import { MediaEntity } from '../../../media/domain/entities/media.entity';
 
 export class ProfileResponse {
   public readonly id: string;

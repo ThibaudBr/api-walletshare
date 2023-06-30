@@ -23,7 +23,7 @@ export class ApiLandingPageController {
   @ApiOperation({ summary: 'Delete mail' })
   @ApiOkResponse({ type: [MailResponse] })
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
-  async deleteMail(@Body() mail: string): Promise<void> {
+  async deleteMail(@Body('mail') mail: string): Promise<void> {
     return this.apiLandingPageService.deleteMail(mail);
   }
 }
