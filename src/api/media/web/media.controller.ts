@@ -8,7 +8,7 @@ import {
   Req,
   UploadedFile,
   UseGuards,
-  UseInterceptors
+  UseInterceptors,
 } from '@nestjs/common';
 import { MediaService } from '../application/media.service';
 import { RoleGuard } from '../../auth/web/guards/role.guard';
@@ -37,7 +37,13 @@ export class MediaController {
   }
 
   @Post('/public/add-avatar-company/:companyId')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+    }),
+  )
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async addAvatarCompany(
     @Req() requestUser: RequestUser,
@@ -54,7 +60,13 @@ export class MediaController {
   }
 
   @Post('/public/add-card-preset/:companyId/:cardPresetId')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+    }),
+  )
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
   async addCardPreset(
     @Req() requestUser: RequestUser,
@@ -72,7 +84,13 @@ export class MediaController {
   }
 
   @Post('/public/add-avatar-group/:groupId')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+    }),
+  )
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async addAvatarGroup(
     @Req() requestUser: RequestUser,
@@ -89,7 +107,13 @@ export class MediaController {
   }
 
   @Post('/public/add-avatar-profile/:profileId')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+    }),
+  )
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async addAvatarProfile(
     @Req() requestUser: RequestUser,
@@ -106,7 +130,13 @@ export class MediaController {
   }
 
   @Post('/public/add-banner-company/:companyId')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+    }),
+  )
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async addBannerCompany(
     @Req() requestUser: RequestUser,
@@ -123,7 +153,13 @@ export class MediaController {
   }
 
   @Post('/public/add-banner-group/:groupId')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+    }),
+  )
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async addBannerGroup(
     @Req() requestUser: RequestUser,
@@ -140,7 +176,13 @@ export class MediaController {
   }
 
   @Post('/public/add-banner-profile/:profileId')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+    }),
+  )
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async addBannerProfile(
     @Req() requestUser: RequestUser,
@@ -157,7 +199,13 @@ export class MediaController {
   }
 
   @Post('/public/add-card-media/:cardId')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      limits: {
+        fileSize: 1024 * 1024 * 5,
+      },
+    }),
+  )
   @UseGuards(RoleGuard([UserRoleEnum.ADMIN, UserRoleEnum.PUBLIC]))
   async addCardMedia(
     @Req() requestUser: RequestUser,
