@@ -33,7 +33,8 @@ export class UploadMediaCommandHandler implements ICommandHandler<UploadMediaCom
       );
       throw new Error('Process.env.AWS_PRIVATE_BUCKET_NAME is not defined');
     }
-    if (command.dataBuffer.length > this.configService.get('AWS_MAX_FILE_SIZE_KILO') || 1500000) {
+
+    if (command.dataBuffer.length > (this.configService.get('AWS_MAX_FILE_SIZE_KILO') || 1024 * 1024 * 5)) {
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'UploadMediaCommandHandler',
