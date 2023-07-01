@@ -25,7 +25,7 @@ import { SoftRemoveMessageConversationEventHandler } from './application/cqrs/ha
 import { MediaEntity } from '../media/domain/entities/media.entity';
 import { UploadMediaCommandHandler } from '../media/application/cqrs/handler/command/upload-media.command-handler';
 import { UploadMediaEventHandler } from '../media/application/cqrs/handler/event/upload-media.event-handler';
-import { RemoveMediaCommandHandler } from '../media/application/cqrs/handler/command/remove-media-command.handler';
+import { RemoveMediaCommandHandler } from '../media/application/cqrs/handler/command/remove-media.command-handler';
 import { RemoveMediaEventHandler } from '../media/application/cqrs/handler/event/remove-media-event.handler';
 import { GetMessageFromConversationQueryHandler } from './application/cqrs/handler/query/get-message-from-conversation.query-handler';
 import { IsUserIdOwnerOfMessageQueryHandler } from './application/cqrs/handler/query/is-user-id-owner-of-message.query-handler';

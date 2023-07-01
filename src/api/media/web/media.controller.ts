@@ -1,4 +1,15 @@
-import { Controller, Delete, Get, Param, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import {
+  BadRequestException,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Req,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors
+} from '@nestjs/common';
 import { MediaService } from '../application/media.service';
 import { RoleGuard } from '../../auth/web/guards/role.guard';
 import { UserRoleEnum } from '../../user/domain/enum/user-role.enum';
@@ -33,6 +44,9 @@ export class MediaController {
     @Param('companyId') companyId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
+    if (!file.buffer) {
+      throw new BadRequestException('File is empty');
+    }
     await this.mediaService.addAvatarCompany(requestUser.user.id, companyId, {
       imageBuffer: file.buffer,
       fileName: file.originalname,
@@ -48,6 +62,9 @@ export class MediaController {
     @Param('cardPresetId') cardPresetId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
+    if (!file.buffer) {
+      throw new BadRequestException('File is empty');
+    }
     await this.mediaService.addCardPresetMedia(requestUser.user.id, companyId, cardPresetId, {
       imageBuffer: file.buffer,
       fileName: file.originalname,
@@ -62,6 +79,9 @@ export class MediaController {
     @Param('groupId') groupId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
+    if (!file.buffer) {
+      throw new BadRequestException('File is empty');
+    }
     await this.mediaService.addAvatarGroupMedia(requestUser.user.id, groupId, {
       imageBuffer: file.buffer,
       fileName: file.originalname,
@@ -76,6 +96,9 @@ export class MediaController {
     @Param('profileId') profileId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
+    if (!file.buffer) {
+      throw new BadRequestException('File is empty');
+    }
     await this.mediaService.addAvatarProfile(requestUser.user.id, profileId, {
       imageBuffer: file.buffer,
       fileName: file.originalname,
@@ -90,6 +113,9 @@ export class MediaController {
     @Param('companyId') companyId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
+    if (!file.buffer) {
+      throw new BadRequestException('File is empty');
+    }
     await this.mediaService.addBannerCompany(requestUser.user.id, companyId, {
       imageBuffer: file.buffer,
       fileName: file.originalname,
@@ -104,6 +130,9 @@ export class MediaController {
     @Param('groupId') groupId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
+    if (!file.buffer) {
+      throw new BadRequestException('File is empty');
+    }
     await this.mediaService.addBannerGroupMedia(requestUser.user.id, groupId, {
       imageBuffer: file.buffer,
       fileName: file.originalname,
@@ -118,6 +147,9 @@ export class MediaController {
     @Param('profileId') profileId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
+    if (!file.buffer) {
+      throw new BadRequestException('File is empty');
+    }
     await this.mediaService.addBannerProfile(requestUser.user.id, profileId, {
       imageBuffer: file.buffer,
       fileName: file.originalname,
@@ -132,6 +164,9 @@ export class MediaController {
     @Param('cardId') cardId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
+    if (!file.buffer) {
+      throw new BadRequestException('File is empty');
+    }
     await this.mediaService.addCardMedia(requestUser.user.id, cardId, {
       imageBuffer: file.buffer,
       fileName: file.originalname,

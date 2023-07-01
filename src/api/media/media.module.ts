@@ -16,7 +16,7 @@ import { AddAvatarProfileMediaCommandHandler } from './application/cqrs/handler/
 import { AddAvatarProfileMediaEventHandler } from './application/cqrs/handler/event/add-avatar-profile-media.event-handler';
 import { RemoveMediaEventHandler } from './application/cqrs/handler/event/remove-media-event.handler';
 import { RestoreMediaEventHandler } from './application/cqrs/handler/event/restore-media.event-handler';
-import { RemoveMediaCommandHandler } from './application/cqrs/handler/command/remove-media-command.handler';
+import { RemoveMediaCommandHandler } from './application/cqrs/handler/command/remove-media.command-handler';
 import { RestoreMediaCommandHandler } from './application/cqrs/handler/command/restore-media.command-handler';
 import { SoftRemoveMediaCommandHandler } from './application/cqrs/handler/command/soft-remove-media.command-handler';
 import { UploadMediaCommandHandler } from './application/cqrs/handler/command/upload-media.command-handler';
