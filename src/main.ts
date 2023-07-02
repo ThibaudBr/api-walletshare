@@ -5,11 +5,12 @@ import * as process from 'process';
 import { ConfigService } from '@nestjs/config';
 import * as admin from 'firebase-admin';
 import { ForbiddenException } from '@nestjs/common';
+import * as bodyParser from 'body-parser';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule, {
-    rawBody: true,
-  });
+  const app = await NestFactory.create(AppModule);
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
   // Swagger
   const swaggerConfig = new DocumentBuilder()
