@@ -16,17 +16,6 @@ export class GetMediaWithIdQueryHandler implements IQueryHandler<GetMediaWithIdQ
   async execute(query: GetMediaWithIdQuery): Promise<MediaEntity> {
     return await this.mediaRepository
       .findOneOrFail({
-        loadEagerRelations: false,
-        loadRelationIds: true,
-        relations: [
-          'avatarGroupMedia',
-          'bannerGroupMedia',
-          'avatarProfileMedia',
-          'bannerProfileMedia',
-          'cardMedia',
-          'avatarCompanyMedia',
-          'bannerCompanyMedia',
-        ],
         where: {
           id: query.mediaId,
         },
