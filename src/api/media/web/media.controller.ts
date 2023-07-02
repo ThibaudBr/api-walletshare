@@ -50,7 +50,8 @@ export class MediaController {
     @Param('companyId') companyId: string,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
-    if (!file.buffer) {
+    console.log('file', file);
+    if (file.buffer === undefined) {
       throw new BadRequestException('File is empty');
     }
     await this.mediaService.addAvatarCompany(requestUser.user.id, companyId, {
