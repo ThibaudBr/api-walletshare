@@ -46,6 +46,8 @@ import { ApiLandingPageModule } from '../api-landing-page/api-landing-page.modul
 import { ApiLandingPageService } from '../api-landing-page/application/api-landing-page.service';
 import { UpdateFcmTokenCommandHandler } from './application/cqrs/handler/command/update-fcm-token.command-handler';
 import { UpdateFcmTokenEventHandler } from './application/cqrs/handler/event/update-fcm-token.event-handler';
+import { CreateConnectyCubeUserCommandHandler } from './application/cqrs/handler/command/create-connecty-cube-user.command-handler';
+import { CreateConnectyCubeUserEventHandler } from './application/cqrs/handler/event/create-connecty-cube-user.event-handler';
 
 @Module({
   imports: [
@@ -79,6 +81,7 @@ import { UpdateFcmTokenEventHandler } from './application/cqrs/handler/event/upd
     CreateStripeCustomerCommandHandler,
     SetReferralCodeCommandHandler,
     UpdateFcmTokenCommandHandler,
+    CreateConnectyCubeUserCommandHandler,
     // Query handlers
     GetUserByUsernameQueryHandler,
     GetUserByEmailQueryHandler,
@@ -99,6 +102,7 @@ import { UpdateFcmTokenEventHandler } from './application/cqrs/handler/event/upd
     SetReferralCodeEventHandler,
     GetUserEntityQueryHandler,
     UpdateFcmTokenEventHandler,
+    CreateConnectyCubeUserEventHandler,
   ],
 })
 export class UserModule {}

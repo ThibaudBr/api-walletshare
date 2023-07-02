@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateUserCommand } from './cqrs/command/create-user.command';
 import { CreateUserDto } from '../domain/dto/create-user.dto';
@@ -42,6 +42,7 @@ import { ApiMailService } from '../../api-mail/application/api-mail.service';
 import { UpdateFcmTokenRequest } from '../web/response/update-fcm-token.request';
 import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
 import { UpdateFcmTokenCommand } from './cqrs/command/update-fcm-token.command';
+import { CreateConnectyCubeUserCommand } from './cqrs/command/create-connecty-cube-user.command';
 
 @Injectable()
 export class UserService {
@@ -280,5 +281,24 @@ export class UserService {
 
   private generatePassword(): string {
     return 'Pt' + Math.random().toString(10).split('.')[1] + '!';
+  }
+
+  async createConnectyCubeUser(userId: string, connectyCubeId: string, connectyCubeToken: string): Promise<void> {
+    const user: UserResponse = await this.getMe(userId);
+    if (user.connectyCubeId) return;
+    await this.commandBus
+      .execute(
+        new CreateConnectyCubeUserCommand({
+          userId: userId,
+          connectyCubeId: connectyCubeId,
+          connectyCubeToken: connectyCubeToken,
+        }),
+      )
+      .catch(err => {
+        if (err.message === 'User not found') throw new BadRequestException('User not found');
+        if (err.message === 'Error while saving user') throw new BadRequestException('Error while saving user');
+        if (err.message === 'Invalid parameter exception') throw new BadRequestException('Invalid parameter exception');
+        throw new InternalServerErrorException(err.message);
+      });
   }
 }
