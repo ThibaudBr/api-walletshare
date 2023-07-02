@@ -69,6 +69,12 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'enum', enum: UserAccountStatusEnum, default: UserAccountStatusEnum.FREE })
   public accountStatus: UserAccountStatusEnum;
 
+  @Column({ nullable: true })
+  public connectyCubeId?: string;
+
+  @Column({ nullable: true })
+  public connectyCubeToken?: string;
+
   // _________________________________________________________
   // Stripe
   // _________________________________________________________

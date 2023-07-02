@@ -9,6 +9,8 @@ export class UserResponse {
   public readonly profiles?: ProfileResponse[];
   public readonly stripeCustomerId?: string;
   public readonly fcmToken?: string;
+  public readonly connectyCubeId?: string;
+  public readonly connectyCubeToken?: string;
 
   constructor(partial?: Partial<UserResponse>) {
     if (partial) {

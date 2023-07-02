@@ -28,6 +28,7 @@ import { UserIdDto } from '../domain/dto/user-id.dto';
 import { SaveUserLoginResponse } from './response/save-user-login.response';
 import { ConfigService } from '@nestjs/config';
 import { UpdateFcmTokenRequest } from './response/update-fcm-token.request';
+import { CreateConnectyCubeUserRequest } from './request/create-connecty-cube-user.request';
 
 @Controller('user')
 @ApiTags('user')
@@ -307,5 +308,19 @@ export class UserController {
     @Body() updateFcmToken: UpdateFcmTokenRequest,
   ): Promise<UserResponse> {
     return await this.userService.updateFcmToken(req.user.id, updateFcmToken);
+  }
+
+  @Post('/public/create-connecty-cube-user')
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async createConnectyCubeUser(
+    @Req() req: RequestUser,
+    @Body() createConnectyCubeUser: CreateConnectyCubeUserRequest,
+  ): Promise<void> {
+    const userId = req.user.id;
+    await this.userService.createConnectyCubeUser(
+      userId,
+      createConnectyCubeUser.connectyCubeId,
+      createConnectyCubeUser.connectyCubeToken,
+    );
   }
 }
