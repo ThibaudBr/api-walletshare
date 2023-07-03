@@ -10,6 +10,7 @@ import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler
 import { UserResponse } from '../../../../web/response/user.response';
 import { DuplicateUsernameHttpException } from '../../../../../../util/exception/custom-http-exception/duplicate-username.http-exception';
 import { DuplicateMailHttpException } from '../../../../../../util/exception/custom-http-exception/duplicate-mail.http-exception';
+import * as bcrypt from 'bcrypt';
 
 @CommandHandler(UpdateUserCommand)
 export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserCommand> {
@@ -48,6 +49,9 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
       const err = await validate(command.user);
       if (err.length > 0) {
         throw new InvalidClassException('Parameter not validate');
+      }
+      if (command.user.password) {
+        command.user.password = bcrypt.hashSync(command.user.password, 10);
       }
       await this.userRepository.update(command.userId, command.user);
       const user: UserEntity = await this.userRepository.findOneOrFail({
