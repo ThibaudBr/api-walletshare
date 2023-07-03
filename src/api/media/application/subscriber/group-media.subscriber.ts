@@ -3,7 +3,7 @@ import { GroupEntity } from '../../../groupe/domain/entities/group.entity';
 import { MediaEntity } from '../../domain/entities/media.entity';
 import { S3 } from '@aws-sdk/client-s3';
 import { ConfigService } from '@nestjs/config';
-import * as process from "process";
+import * as process from 'process';
 
 @EventSubscriber()
 export class GroupMediaSubscriber implements EntitySubscriberInterface<GroupEntity> {

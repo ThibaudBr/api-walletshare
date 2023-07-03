@@ -41,7 +41,7 @@ import { CreateCouponStripeRequest } from '../web/request/create-coupon-stripe.r
 import { StripeWebhookSignatureEnum } from '../../stripe-webhook/domain/enum/stripe-webhook-signature.enum';
 import { GetInvoiceByStripeIdQuery } from './cqrs/query/get-invoice-by-stripe-id.query';
 import { CreateSubscriptionRequest } from '../../subscription/web/request/create-subscription.request';
-import * as buffer from "buffer";
+import * as buffer from 'buffer';
 
 @Injectable()
 export class StripeService {

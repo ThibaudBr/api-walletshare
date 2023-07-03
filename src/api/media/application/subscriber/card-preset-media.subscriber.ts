@@ -3,7 +3,7 @@ import { CardPresetEntity } from '../../../company/domain/entities/card-preset.e
 import { MediaEntity } from '../../domain/entities/media.entity';
 import { S3 } from '@aws-sdk/client-s3';
 import { ConfigService } from '@nestjs/config';
-import process from "process";
+import process from 'process';
 
 @EventSubscriber()
 export class CardPresetMediaSubscriber implements EntitySubscriberInterface<CardPresetEntity> {

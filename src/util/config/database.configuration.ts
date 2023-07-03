@@ -61,6 +61,7 @@ import { StripeSubscriptionSubscriber } from '../../api/payment/subscription/app
 import { PriceSubscriptionSubscriber } from '../../api/payment/subscription/application/subscriber/price-subscription.subscriber';
 import { ProductPriceSubscriber } from '../../api/payment/price/application/subscriber/product-price.subscriber';
 import { JoinedConversationGroupSubscriber } from '../../api/conversation/application/subscriber/joined-conversation-group.subscriber';
+import { UserCompanyEmployeeSubscriber } from '../../api/company/application/subscriber/user-company-employee.subscriber';
 
 @Injectable()
 export class DatabaseConfiguration implements TypeOrmOptionsFactory {
@@ -138,6 +139,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             PriceSubscriptionSubscriber,
             ProductPriceSubscriber,
             JoinedConversationGroupSubscriber,
+            UserCompanyEmployeeSubscriber,
           ],
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PROD'),
           type: 'postgres',
@@ -219,6 +221,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             PriceSubscriptionSubscriber,
             ProductPriceSubscriber,
             JoinedConversationGroupSubscriber,
+            UserCompanyEmployeeSubscriber,
           ],
 
           synchronize: this.configService.get('TYPEORM_SYNCHRONIZE_PPROD'),
@@ -298,6 +301,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             PriceSubscriptionSubscriber,
             ProductPriceSubscriber,
             JoinedConversationGroupSubscriber,
+            UserCompanyEmployeeSubscriber,
           ],
         };
       } else if (this.configService.get('NODE_ENV') === 'dev') {
@@ -373,6 +377,7 @@ export class DatabaseConfiguration implements TypeOrmOptionsFactory {
             PriceSubscriptionSubscriber,
             ProductPriceSubscriber,
             JoinedConversationGroupSubscriber,
+            UserCompanyEmployeeSubscriber,
           ],
         };
       } else {
