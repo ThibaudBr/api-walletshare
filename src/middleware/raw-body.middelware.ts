@@ -1,20 +1,21 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { NextFunction } from 'express';
-import { RequestRaw } from 'express-serve-static-core';
-import * as getRawBody from 'raw-body';
+import { Request, Response, NextFunction } from 'express';
+import { json } from 'body-parser';
 
-declare module 'express-serve-static-core' {
-  export interface RequestRaw extends Request {
-    rawBody: string | undefined;
-  }
+export interface RequestWithRawBody extends Request {
+  rawBody: Buffer | undefined;
 }
 
 @Injectable()
 export class RawBodyMiddleware implements NestMiddleware {
-  async use(req: RequestRaw, res: Response, next: NextFunction): Promise<void> {
-    req.rawBody = await getRawBody(req, {
-      encoding: 'utf8',
-    });
-    next();
+  use(req: RequestWithRawBody, res: Response, next: NextFunction): void {
+    return json({
+      verify: (request: RequestWithRawBody, response: Response, buffer: Buffer) => {
+        if (request.url === '/webhook/subscription' && Buffer.isBuffer(buffer)) {
+          request.rawBody = Buffer.from(buffer);
+        }
+        return true;
+      },
+    })(req, res, next);
   }
 }
