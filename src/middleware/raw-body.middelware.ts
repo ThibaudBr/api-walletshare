@@ -1,6 +1,7 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { NextFunction } from 'express';
 import { RequestRaw } from 'express-serve-static-core';
+import * as getRawBody from 'raw-body';
 
 declare module 'express-serve-static-core' {
   export interface RequestRaw extends Request {
@@ -10,16 +11,10 @@ declare module 'express-serve-static-core' {
 
 @Injectable()
 export class RawBodyMiddleware implements NestMiddleware {
-  use(req: RequestRaw, res: Response, next: NextFunction): void {
-    req.rawBody = '';
-    req.setEncoding('utf8');
-
-    req.on('data', function (chunk) {
-      req.rawBody += chunk;
+  async use(req: RequestRaw, res: Response, next: NextFunction): Promise<void> {
+    req.rawBody = await getRawBody(req, {
+      encoding: 'utf8',
     });
-
-    req.on('end', function () {
-      next();
-    });
+    next();
   }
 }
