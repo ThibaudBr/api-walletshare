@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable, InternalServerErrorException} from '@nestjs/common';
 import { StripeService } from '../../stripe/application/stripe.service';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateProductCommand } from './cqrs/command/create-product.command';
@@ -48,7 +48,7 @@ export class ProductService {
         await this.stripeService.removeProductStripe(stripProduct.id);
         if (error.message === 'Error during the creation of the product')
           throw new InvalidIdHttpException('Error during the creation of the product');
-        throw new Error('Error during the creation of the product');
+        throw new InternalServerErrorException('Error during the creation of the product');
       });
   }
 
@@ -61,7 +61,7 @@ export class ProductService {
       )
       .catch(error => {
         if (error.message === 'Product not found') throw new InvalidIdHttpException('Product not found');
-        throw new Error('Error during the remove of the product');
+        throw new InternalServerErrorException('Error during the remove of the product');
       });
 
     await this.stripeService.removeProductStripe(productEntity.stripeProductId);
@@ -75,7 +75,7 @@ export class ProductService {
       .catch(error => {
         if (error.message === 'Error during the remove of the product')
           throw new InvalidIdHttpException('Error during the remove of the product');
-        throw new Error('Error during the remove of the product');
+        throw new InternalServerErrorException('Error during the remove of the product');
       });
   }
 
@@ -88,7 +88,7 @@ export class ProductService {
       )
       .catch(error => {
         if (error.message === 'Product not found') throw new InvalidIdHttpException('Product not found');
-        throw new Error('Error during the remove of the product');
+        throw new InternalServerErrorException('Error during the remove of the product');
       });
 
     await this.stripeService.updateProductStripe({
@@ -105,7 +105,7 @@ export class ProductService {
       .catch(error => {
         if (error.message === 'Error during the remove of the product')
           throw new InvalidIdHttpException('Error during the remove of the product');
-        throw new Error('Error during the remove of the product');
+        throw new InternalServerErrorException('Error during the remove of the product');
       });
   }
 
@@ -118,7 +118,7 @@ export class ProductService {
       )
       .catch(error => {
         if (error.message === 'Product not found') throw new InvalidIdHttpException('Product not found');
-        throw new Error('Error during the restore of the product');
+        throw new InternalServerErrorException('Error during the restore of the product');
       });
 
     await this.stripeService.updateProductStripe({
@@ -135,7 +135,7 @@ export class ProductService {
       .catch(error => {
         if (error.message === 'Error during the restore of the product')
           throw new InvalidIdHttpException('Error during the restore of the product');
-        throw new Error('Error during the restore of the product');
+        throw new InternalServerErrorException('Error during the restore of the product');
       });
   }
 
@@ -148,7 +148,7 @@ export class ProductService {
       )
       .catch(error => {
         if (error.message === 'Product not found') throw new InvalidIdHttpException('Product not found');
-        throw new Error('Error during the update of the product');
+        throw new InternalServerErrorException('Error during the update of the product');
       });
 
     const productStripe: Stripe.Product = await this.stripeService.updateProductStripe({
@@ -172,7 +172,7 @@ export class ProductService {
       .catch(error => {
         if (error.message === 'Error during the update of the product')
           throw new InvalidIdHttpException('Error during the update of the product');
-        throw new Error('Error during the update of the product');
+        throw new InternalServerErrorException('Error during the update of the product');
       });
   }
 
@@ -185,7 +185,7 @@ export class ProductService {
       )
       .catch(error => {
         if (error.message === 'Product not found') throw new InvalidIdHttpException('Product not found');
-        throw new Error('Error during the get of the product');
+        throw new InternalServerErrorException('Error during the get of the product');
       })
       .then(productEntity => {
         return new ProductResponse({
@@ -203,7 +203,7 @@ export class ProductService {
       )
       .catch(error => {
         if (error.message === 'Product not found') throw new InvalidIdHttpException('Product not found');
-        throw new Error('Error during the get of the product');
+        throw new InternalServerErrorException('Error during the get of the product');
       })
       .then(productEntity => {
         return new ProductResponse({
@@ -222,7 +222,7 @@ export class ProductService {
       )
       .catch(error => {
         if (error.message === 'Product not found') throw new InvalidIdHttpException('Product not found');
-        throw new Error('Error during the get of the product');
+        throw new InternalServerErrorException('Error during the get of the product');
       })
       .then((productEntities: ProductEntity[]) => {
         return productEntities.map(
@@ -251,7 +251,7 @@ export class ProductService {
       )
       .catch(error => {
         if (error.message === 'Product not found') throw new InvalidIdHttpException('Product not found');
-        throw new Error('Error during the get of the product');
+        throw new InternalServerErrorException('Error during the get of the product');
       })
       .then((productEntities: ProductEntity[]) => {
         return productEntities.map(
