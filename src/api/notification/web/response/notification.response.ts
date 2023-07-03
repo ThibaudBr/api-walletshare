@@ -9,6 +9,9 @@ export class NotificationResponse {
   public readonly isRead: boolean;
   public readonly link: string;
   public readonly conversation?: ConversationResponse;
+  public readonly createdAt: Date;
+  public readonly updatedAt: Date;
+  public readonly deletedAt?: Date;
 
   constructor(partial: Partial<NotificationResponse>) {
     Object.assign(this, partial);
