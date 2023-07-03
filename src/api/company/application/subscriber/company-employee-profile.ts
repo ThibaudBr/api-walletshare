@@ -56,7 +56,7 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
     const userRepository: Repository<UserEntity> = event.manager.getRepository(UserEntity);
 
     const companyEmployee: CompanyEmployeeEntity = await companyEmployeeRepository.findOneOrFail({
-      relations: ['profile', 'profile.owner', 'company', 'company.ownerProfile', 'company.ownerProfile.user'],
+      relations: ['profile', 'profile.user', 'company', 'company.ownerProfile', 'company.ownerProfile.user'],
       where: {
         id: softRemovedCompanyEmployee?.id,
       },
@@ -91,7 +91,7 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
     const userRepository: Repository<UserEntity> = event.manager.getRepository(UserEntity);
 
     const companyEmployee: CompanyEmployeeEntity = await companyEmployeeRepository.findOneOrFail({
-      relations: ['profile', 'profile.owner', 'company', 'company.ownerProfile', 'company.ownerProfile.user'],
+      relations: ['profile', 'profile.user', 'company', 'company.ownerProfile', 'company.ownerProfile.user'],
       withDeleted: true,
       where: {
         id: removedCompanyEmployee?.id,
