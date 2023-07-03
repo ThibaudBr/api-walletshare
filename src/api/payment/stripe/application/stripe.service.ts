@@ -163,7 +163,7 @@ export class StripeService {
 
   public async constructEventFromStripeWebhook(
     stripeSignature: string,
-    payload: Buffer,
+    payload: string,
     stripeWebhookSignatureEnum: StripeWebhookSignatureEnum,
   ): Promise<Stripe.Event> {
     return await this.commandBus.execute(

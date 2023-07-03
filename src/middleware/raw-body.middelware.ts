@@ -4,14 +4,14 @@ import { RequestRaw } from 'express-serve-static-core';
 
 declare module 'express-serve-static-core' {
   export interface RequestRaw extends Request {
-    rawBody: Buffer | undefined;
+    rawBody: string | undefined;
   }
 }
 
 @Injectable()
 export class RawBodyMiddleware implements NestMiddleware {
-  use(req: RequestRaw, res: Response, next: NextFunction) {
-    req.rawBody = Buffer.from('');
+  use(req: RequestRaw, res: Response, next: NextFunction): void {
+    req.rawBody = '';
     req.setEncoding('utf8');
 
     req.on('data', function (chunk) {
