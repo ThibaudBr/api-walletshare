@@ -36,6 +36,7 @@ import { PriceModule } from './api/payment/price/price.module';
 import { HttpModule } from '@nestjs/axios';
 import { ApiLandingPageService } from './api/api-landing-page/application/api-landing-page.service';
 import { ApiMailService } from './api/api-mail/application/api-mail.service';
+import { RawBodyMiddleware } from './middleware/raw-body.middelware';
 
 @Module({
   controllers: [AppController],
@@ -130,5 +131,6 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(RequestLoggingMiddleware, ResponseLoggingMiddleware, ErrorLoggingMiddleware).forRoutes('*');
     consumer.apply(SaveUserLoginMiddleware).forRoutes('/auth/login');
+    consumer.apply(RawBodyMiddleware).forRoutes('/webhook/subscription');
   }
 }

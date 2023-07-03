@@ -21,7 +21,7 @@ export class RemoveAdminRightGroupCommandHandler implements ICommandHandler<Remo
   async execute(command: RemoveAdminRightGroupCommand): Promise<void> {
     const group: GroupEntity = await this.groupRepository
       .findOneOrFail({
-        relations: ['groupMemberships', 'groupMemberships.card'],
+        relations: ['members', 'members.card'],
         where: [
           {
             id: command.groupId,
