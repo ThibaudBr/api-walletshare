@@ -5,10 +5,9 @@ import * as process from 'process';
 import { ConfigService } from '@nestjs/config';
 import * as admin from 'firebase-admin';
 import { ForbiddenException } from '@nestjs/common';
-import * as bodyParser from 'body-parser';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule, { bodyParser: true });
+  const app = await NestFactory.create(AppModule, { bodyParser: false });
 
   // Swagger
   const swaggerConfig = new DocumentBuilder()

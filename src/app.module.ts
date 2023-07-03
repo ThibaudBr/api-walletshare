@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseConfiguration } from './util/config/database.configuration';
@@ -37,6 +37,7 @@ import { HttpModule } from '@nestjs/axios';
 import { ApiLandingPageService } from './api/api-landing-page/application/api-landing-page.service';
 import { ApiMailService } from './api/api-mail/application/api-mail.service';
 import { RawBodyMiddleware } from './middleware/raw-body.middelware';
+import { JsonBodyMiddleware } from './middleware/json-body.middleware';
 
 @Module({
   controllers: [AppController],
@@ -127,10 +128,14 @@ import { RawBodyMiddleware } from './middleware/raw-body.middelware';
   providers: [AppService, ApiLogService, UserService, ApiLandingPageService, ApiMailService],
 })
 export class AppModule implements NestModule {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/explicit-function-return-type
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestLoggingMiddleware, ResponseLoggingMiddleware, ErrorLoggingMiddleware).forRoutes('*');
-    consumer.apply(SaveUserLoginMiddleware).forRoutes('/auth/login');
-    consumer.apply(RawBodyMiddleware).forRoutes('/webhook/subscription');
+  public configure(consumer: MiddlewareConsumer): void {
+    consumer
+      .apply(RawBodyMiddleware)
+      .forRoutes({
+        path: '/webhook/subscription',
+        method: RequestMethod.POST,
+      })
+      .apply(JsonBodyMiddleware)
+      .forRoutes('*');
   }
 }
