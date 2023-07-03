@@ -39,7 +39,9 @@ export class UpdateUserCredentialCommandHandler implements ICommandHandler<Updat
         throw new Error('Invalid old password');
       }
 
-      await this.userRepository.update(command.userId, { password: command.updateUserCredentialDto.newPassword });
+      await this.userRepository.update(command.userId, {
+        password: bcrypt.hashSync(command.updateUserCredentialDto.newPassword, 10),
+      });
       await this.eventBus.publish(new UpdateUserCredentialEvent(command.userId));
     } catch (error) {
       this.eventBus.publish(
