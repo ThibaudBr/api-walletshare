@@ -1,4 +1,4 @@
-import {Injectable, InternalServerErrorException} from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { StripeService } from '../../stripe/application/stripe.service';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateProductCommand } from './cqrs/command/create-product.command';
