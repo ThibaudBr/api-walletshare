@@ -21,7 +21,7 @@ export class UpdateGroupCommandHandler implements ICommandHandler<UpdateGroupCom
 
     const group = await this.groupRepository
       .findOneOrFail({
-        relations: ['groupMemberships', 'groupMemberships.card'],
+        relations: ['members', 'members.card'],
         where: [
           {
             id: command.groupId,
