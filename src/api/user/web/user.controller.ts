@@ -323,4 +323,14 @@ export class UserController {
       createConnectyCubeUser.connectyCubeToken,
     );
   }
+
+  @Get('/public/get-username-by-connecty-cube-id/:connectyCubeId')
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async getUsernameByConnectyCubeId(@Param('connectyCubeId') connectyCubeId: string): Promise<{ username: string }> {
+    return await this.userService.getUsernameByConnectyCubeId(connectyCubeId).then((username: string) => {
+      return {
+        username: username,
+      };
+    });
+  }
 }
