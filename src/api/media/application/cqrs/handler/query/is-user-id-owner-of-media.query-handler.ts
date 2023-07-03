@@ -51,7 +51,7 @@ export class IsUserIdOwnerOfMediaQueryHandler implements IQueryHandler<IsUserIdO
           new ErrorCustomEvent({
             handler: 'GetMediaWithIdQueryHandler',
             localisation: 'MediaRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Media not found');

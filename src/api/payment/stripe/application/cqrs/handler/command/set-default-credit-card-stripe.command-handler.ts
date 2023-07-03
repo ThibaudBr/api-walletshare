@@ -33,7 +33,7 @@ export class SetDefaultCreditCardStripeCommandHandler implements ICommandHandler
           new ErrorCustomEvent({
             localisation: 'payment',
             handler: 'SetDefaultCreditCardStripCommandHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Error during the set default credit card of the customer');

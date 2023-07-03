@@ -30,7 +30,7 @@ export class CreateProductCommandHandler implements ICommandHandler<CreateProduc
         new ErrorCustomEvent({
           localisation: 'productRepository.save',
           handler: 'CreateProductCommandHandler',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Error during the creation of the product');

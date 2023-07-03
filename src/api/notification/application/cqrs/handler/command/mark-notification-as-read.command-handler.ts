@@ -26,7 +26,7 @@ export class MarkNotificationAsReadCommandHandler implements ICommandHandler<Mar
           new ErrorCustomEvent({
             handler: 'MarkNotificationAsReadCommandHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Notification not found');

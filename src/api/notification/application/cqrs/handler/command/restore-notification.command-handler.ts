@@ -26,7 +26,7 @@ export class RestoreNotificationCommandHandler implements ICommandHandler<Restor
           new ErrorCustomEvent({
             handler: 'ResoreNotificationCommandHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Notification not found');

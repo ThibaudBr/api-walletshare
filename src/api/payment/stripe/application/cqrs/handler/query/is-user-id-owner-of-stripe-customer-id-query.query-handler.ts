@@ -27,7 +27,7 @@ export class IsUserIdOwnerOfStripeCustomerIdQueryQueryHandler
           new ErrorCustomEvent({
             localisation: 'payment',
             handler: 'IsUserIdOwnerOfStripCustomerIdQueryQueryHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('User not found');

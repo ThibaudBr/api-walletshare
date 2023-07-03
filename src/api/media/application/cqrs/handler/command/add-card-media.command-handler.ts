@@ -33,7 +33,7 @@ export class AddCardMediaCommandHandler implements ICommandHandler<AddCardMediaC
           new ErrorCustomEvent({
             handler: 'AddCardMediaCommandHandler',
             localisation: 'cardRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Card not found');
@@ -53,7 +53,7 @@ export class AddCardMediaCommandHandler implements ICommandHandler<AddCardMediaC
         new ErrorCustomEvent({
           handler: 'AddCardMediaCommandHandler',
           localisation: 'CardRepository.save',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Card not saved');

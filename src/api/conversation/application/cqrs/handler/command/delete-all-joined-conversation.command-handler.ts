@@ -21,7 +21,7 @@ export class DeleteAllJoinedConversationCommandHandler implements ICommandHandle
           new ErrorCustomEvent({
             handler: 'DeleteAllJoinedConversationCommandHandler',
             localisation: 'JoinedConversationEntity.find',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('JoinedConversation not found');
@@ -31,7 +31,7 @@ export class DeleteAllJoinedConversationCommandHandler implements ICommandHandle
         new ErrorCustomEvent({
           handler: 'DeleteAllJoinedConversationCommandHandler',
           localisation: 'JoinedConversationEntity.remove',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('JoinedConversation not removed');

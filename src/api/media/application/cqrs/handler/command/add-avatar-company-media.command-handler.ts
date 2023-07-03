@@ -33,7 +33,7 @@ export class AddAvatarCompanyMediaCommandHandler implements ICommandHandler<AddA
           new ErrorCustomEvent({
             handler: 'AddAvatarCompanyMediaCommandHandler',
             localisation: 'companyRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Company not found');
@@ -53,7 +53,7 @@ export class AddAvatarCompanyMediaCommandHandler implements ICommandHandler<AddA
         new ErrorCustomEvent({
           handler: 'AddAvatarCompanyMediaCommandHandler',
           localisation: 'CompanyRepository.save',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Company not saved');

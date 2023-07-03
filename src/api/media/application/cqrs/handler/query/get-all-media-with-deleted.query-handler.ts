@@ -33,7 +33,7 @@ export class GetAllMediaWithDeletedQueryHandler implements IQueryHandler<GetAllM
           new ErrorCustomEvent({
             handler: 'GetAllMediaWithDeletedQueryHandler',
             localisation: 'MediaRepository.find',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Media not found');

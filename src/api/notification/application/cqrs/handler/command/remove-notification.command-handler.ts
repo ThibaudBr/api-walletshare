@@ -26,7 +26,7 @@ export class RemoveNotificationCommandHandler implements ICommandHandler<RemoveN
           new ErrorCustomEvent({
             handler: 'RemoveNotificationCommandHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Notification not found');

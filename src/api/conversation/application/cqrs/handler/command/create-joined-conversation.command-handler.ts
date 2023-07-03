@@ -38,7 +38,7 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
           new ErrorCustomEvent({
             handler: 'CreateJoinedConversationCommandHandler',
             localisation: 'ProfileEntity.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Profile not found');
@@ -55,7 +55,7 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
           new ErrorCustomEvent({
             handler: 'CreateJoinedConversationCommandHandler',
             localisation: 'ConversationEntity.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Conversation not found');
@@ -80,7 +80,7 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
               new ErrorCustomEvent({
                 handler: 'CreateJoinedConversationCommandHandler',
                 localisation: 'JoinedConversationEntity.remove',
-                error: error,
+                error: error.message,
               }),
             );
             throw new Error('JoinedConversation not removed');
@@ -97,7 +97,7 @@ export class CreateJoinedConversationCommandHandler implements ICommandHandler<C
         new ErrorCustomEvent({
           handler: 'CreateJoinedConversationCommandHandler',
           localisation: 'JoinedConversationEntity.save',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('JoinedConversation not saved');

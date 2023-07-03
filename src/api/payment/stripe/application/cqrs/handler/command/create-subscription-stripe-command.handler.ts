@@ -46,7 +46,7 @@ export class CreateSubscriptionStripeCommandHandler implements ICommandHandler<C
           new ErrorCustomEvent({
             handler: 'CreateSubscriptionStripCommandHandler',
             localisation: 'stripe.subscriptions.create',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Error during the subscription creation');

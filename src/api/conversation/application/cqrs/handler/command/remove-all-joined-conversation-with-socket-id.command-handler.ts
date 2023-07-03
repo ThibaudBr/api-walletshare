@@ -27,7 +27,7 @@ export class RemoveAllJoinedConversationWithSocketIdCommandHandler
           new ErrorCustomEvent({
             handler: 'RemoveAllJoinedConversationWithSocketIdCommandHandler',
             localisation: 'JoinedConversationEntity.find',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('JoinedConversation not found');
@@ -39,7 +39,7 @@ export class RemoveAllJoinedConversationWithSocketIdCommandHandler
         new ErrorCustomEvent({
           handler: 'RemoveAllJoinedConversationWithSocketIdCommandHandler',
           localisation: 'JoinedConversationEntity.remove',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('JoinedConversation not removed');

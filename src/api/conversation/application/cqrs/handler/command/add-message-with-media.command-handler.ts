@@ -33,7 +33,7 @@ export class AddMessageWithMediaCommandHandler implements ICommandHandler<AddMes
           new ErrorCustomEvent({
             handler: 'AddMessageWithMediaCommandHandler',
             localisation: 'ConversationRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Conversation not found');
@@ -51,7 +51,7 @@ export class AddMessageWithMediaCommandHandler implements ICommandHandler<AddMes
           new ErrorCustomEvent({
             handler: 'AddMessageWithMediaCommandHandler',
             localisation: 'CardRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Card not found');
@@ -69,7 +69,7 @@ export class AddMessageWithMediaCommandHandler implements ICommandHandler<AddMes
           new ErrorCustomEvent({
             handler: 'AddMessageWithMediaCommandHandler',
             localisation: 'MessageRepository.save',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Message not saved');

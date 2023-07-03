@@ -30,7 +30,7 @@ export class CreatePriceCommandHandler implements ICommandHandler<CreatePriceCom
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            error: error,
+            error: error.message,
             handler: 'CreatePriceCommandHandler',
             localisation: 'productRepository.findOneOrFail',
           }),
@@ -54,7 +54,7 @@ export class CreatePriceCommandHandler implements ICommandHandler<CreatePriceCom
     const savedPrice: PriceEntity = await this.priceRepository.save(newPriceEntity).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          error: error,
+          error: error.message,
           handler: 'CreatePriceCommandHandler',
           localisation: 'priceRepository.save',
         }),
@@ -66,7 +66,7 @@ export class CreatePriceCommandHandler implements ICommandHandler<CreatePriceCom
     await this.productRepository.save(productEntity).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          error: error,
+          error: error.message,
           handler: 'CreatePriceCommandHandler',
           localisation: 'productRepository.save',
         }),

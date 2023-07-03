@@ -26,7 +26,7 @@ export class AddCardPresetMediaCommandHandler implements ICommandHandler<AddCard
           new ErrorCustomEvent({
             handler: 'AddCardPresetMediaCommandHandler',
             localisation: 'cardPresetRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Card preset not found');
@@ -39,7 +39,7 @@ export class AddCardPresetMediaCommandHandler implements ICommandHandler<AddCard
         new ErrorCustomEvent({
           handler: 'AddCardPresetMediaCommandHandler',
           localisation: 'cardPresetRepository.save',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Card preset media not saved');

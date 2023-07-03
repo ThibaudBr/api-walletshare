@@ -33,7 +33,7 @@ export class AddBannerGroupMediaCommandHandler implements ICommandHandler<AddBan
           new ErrorCustomEvent({
             handler: 'AddBannerGroupMediaCommandHandler',
             localisation: 'groupRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Group not found');
@@ -53,7 +53,7 @@ export class AddBannerGroupMediaCommandHandler implements ICommandHandler<AddBan
         new ErrorCustomEvent({
           handler: 'AddBannerGroupMediaCommandHandler',
           localisation: 'GroupRepository.save',
-          error: error,
+          error: error.message,
         }),
       );
     });

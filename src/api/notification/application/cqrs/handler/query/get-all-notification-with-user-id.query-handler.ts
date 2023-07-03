@@ -28,7 +28,7 @@ export class GetAllNotificationWithUserIdQueryHandler implements IQueryHandler<G
           new ErrorCustomEvent({
             handler: 'GetAllNotificationWithUserIdQueryHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('User not found');
@@ -46,7 +46,7 @@ export class GetAllNotificationWithUserIdQueryHandler implements IQueryHandler<G
           new ErrorCustomEvent({
             handler: 'GetAllNotificationWithUserIdQueryHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Error while getting all notifications');

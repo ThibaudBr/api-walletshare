@@ -28,7 +28,7 @@ export class CreateSaveLoginCommandHandler implements ICommandHandler<CreateSave
         await this.eventBus.publish(
           new ErrorCustomEvent({
             handler: 'CreateSaveLoginCommandHandler',
-            error: error,
+            error: error.message,
             localisation: 'userRepository.findOneOrFail',
           }),
         );
@@ -46,7 +46,7 @@ export class CreateSaveLoginCommandHandler implements ICommandHandler<CreateSave
       await this.eventBus.publish(
         new ErrorCustomEvent({
           handler: 'CreateSaveLoginCommandHandler',
-          error: error,
+          error: error.message,
           localisation: 'userLoginRepository.save',
         }),
       );
