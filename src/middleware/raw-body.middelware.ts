@@ -11,9 +11,8 @@ export class RawBodyMiddleware implements NestMiddleware {
   use(req: RequestWithRawBody, res: Response, next: NextFunction): void {
     return json({
       verify: (request: RequestWithRawBody, response: Response, buffer: Buffer) => {
-        if (request.url === '/webhook/subscription' && Buffer.isBuffer(buffer)) {
-          request.rawBody = Buffer.from(buffer);
-        }
+        console.log('buffer', buffer);
+        request.rawBody = Buffer.from(buffer);
         return true;
       },
     })(req, res, next);

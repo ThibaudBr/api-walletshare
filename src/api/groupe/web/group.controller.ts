@@ -393,6 +393,7 @@ export class GroupController {
       await this.groupService.softDeleteGroupAdmin(groupId);
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof Error) throw new BadRequestException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
       else throw error;
     }
@@ -406,6 +407,7 @@ export class GroupController {
       await this.groupService.updateGroupAdmin(groupId, groupRequest);
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof Error) throw new BadRequestException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
       else throw error;
     }
@@ -424,6 +426,7 @@ export class GroupController {
       await this.groupService.updateMyGroup(userId, groupId, groupRequest);
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof Error) throw new BadRequestException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
       else throw error;
     }
@@ -437,6 +440,7 @@ export class GroupController {
       await this.groupService.deleteGroupMembershipAdmin(groupId);
     } catch (error) {
       if (error instanceof ErrorInvalidIdRuntimeException) throw new InvalidIdHttpException(error.message);
+      if (error instanceof Error) throw new BadRequestException(error.message);
       if (error instanceof RuntimeException) throw new QueryErrorHttpException();
       else throw error;
     }

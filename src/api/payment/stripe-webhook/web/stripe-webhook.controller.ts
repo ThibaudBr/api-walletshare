@@ -29,7 +29,8 @@ export class StripeWebhookController {
     if (!signature) {
       throw new BadRequestException('Missing stripe-signature header');
     }
-
+    console.log('req.rawBody', req.rawBody);
+    console.log(req);
     if (!req.rawBody) {
       throw new BadRequestException('Invalid payload');
     }
