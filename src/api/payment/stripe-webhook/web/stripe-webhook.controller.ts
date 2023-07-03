@@ -12,7 +12,6 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { StripeWebhookService } from '../application/stripe-webhook.service';
 import { StripeWebhookSignatureEnum } from '../domain/enum/stripe-webhook-signature.enum';
-import { RequestRaw } from 'express-serve-static-core';
 
 @Controller('webhook')
 @ApiTags('Stripe Webhook')
@@ -23,7 +22,10 @@ export class StripeWebhookController {
   ) {}
 
   @Post('subscription')
-  public async subscription(@Req() req: RequestRaw, @Headers('stripe-signature') signature: string): Promise<void> {
+  public async subscription(
+    @Req() req: RawBodyRequest<Request>,
+    @Headers('stripe-signature') signature: string,
+  ): Promise<void> {
     if (!signature) {
       throw new BadRequestException('Missing stripe-signature header');
     }
