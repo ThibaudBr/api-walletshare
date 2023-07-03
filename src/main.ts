@@ -8,9 +8,7 @@ import { ForbiddenException } from '@nestjs/common';
 import * as bodyParser from 'body-parser';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
-  app.use(bodyParser.json({ limit: '50mb' }));
-  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+  const app = await NestFactory.create(AppModule, { bodyParser: false });
 
   // Swagger
   const swaggerConfig = new DocumentBuilder()
