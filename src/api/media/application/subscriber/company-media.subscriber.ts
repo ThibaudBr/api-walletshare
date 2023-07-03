@@ -3,6 +3,7 @@ import { CompanyEntity } from '../../../company/domain/entities/company.entity';
 import { MediaEntity } from '../../domain/entities/media.entity';
 import { S3 } from '@aws-sdk/client-s3';
 import { ConfigService } from '@nestjs/config';
+import process from "process";
 
 @EventSubscriber()
 export class CompanyMediaSubscriber implements EntitySubscriberInterface<CompanyEntity> {
@@ -60,14 +61,14 @@ export class CompanyMediaSubscriber implements EntitySubscriberInterface<Company
     });
     if (medias.length == 0) return;
     const s3: S3 = new S3({
-      region: this.configService.get('AWS_REGION'),
+      region: process.env.AWS_REGION,
     });
-    if (!this.configService.get('AWS_PRIVATE_BUCKET_NAME')) {
+    if (!process.env.AWS_PRIVATE_BUCKET_NAME) {
       throw new Error('AWS_PRIVATE_BUCKET_NAME is not defined');
     }
     for (const media of medias) {
       await s3.deleteObject({
-        Bucket: this.configService.get('AWS_BUCKET_NAME') ?? '',
+        Bucket: process.env.AWS_BUCKET_NAME ?? '',
         Key: media.key,
       });
     }

@@ -80,24 +80,30 @@ export class NotificationService {
         return notificationEntities.map((notificationEntity: NotificationEntity) => {
           return new NotificationResponse({
             ...notificationEntity,
-            conversation: new ConversationResponse({
-              ...notificationEntity.group.conversation,
-              messages: notificationEntity.group.conversation?.messages.map(message => {
-                return {
-                  ...message,
-                  media: undefined,
-                  conversation: undefined,
-                };
-              }),
-              group: new GroupResponse({
-                ...notificationEntity.group,
-                groupMemberships: notificationEntity.group.members.map((groupMembership: GroupMembershipEntity) => {
-                  return new GroupMembershipResponse({
-                    ...groupMembership,
-                  });
-                }),
-              }),
-            }),
+            conversation: notificationEntity.group
+              ? notificationEntity.group.conversation
+                ? new ConversationResponse({
+                    ...notificationEntity.group.conversation,
+                    messages: notificationEntity.group.conversation?.messages.map(message => {
+                      return {
+                        ...message,
+                        media: undefined,
+                        conversation: undefined,
+                      };
+                    }),
+                    group: new GroupResponse({
+                      ...notificationEntity.group,
+                      groupMemberships: notificationEntity.group.members.map(
+                        (groupMembership: GroupMembershipEntity) => {
+                          return new GroupMembershipResponse({
+                            ...groupMembership,
+                          });
+                        },
+                      ),
+                    }),
+                  })
+                : undefined
+              : undefined,
           });
         });
       });
