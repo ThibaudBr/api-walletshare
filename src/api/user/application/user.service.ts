@@ -43,6 +43,7 @@ import { UpdateFcmTokenRequest } from '../web/response/update-fcm-token.request'
 import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
 import { UpdateFcmTokenCommand } from './cqrs/command/update-fcm-token.command';
 import { CreateConnectyCubeUserCommand } from './cqrs/command/create-connecty-cube-user.command';
+import {GetUsernameByConnectyCubeIdQuery} from "./cqrs/query/get-username-by-connecty-cube-id.query";
 
 @Injectable()
 export class UserService {
@@ -300,5 +301,9 @@ export class UserService {
         if (err.message === 'Invalid parameter exception') throw new BadRequestException('Invalid parameter exception');
         throw new InternalServerErrorException(err.message);
       });
+  }
+
+  async getUsernameByConnectyCubeId(connectyCubeId: string): Promise<string> {
+    return await this.queryBus.execute(new GetUsernameByConnectyCubeIdQuery({ connectyCubeId: connectyCubeId }));
   }
 }

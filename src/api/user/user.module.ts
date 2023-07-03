@@ -48,6 +48,7 @@ import { UpdateFcmTokenCommandHandler } from './application/cqrs/handler/command
 import { UpdateFcmTokenEventHandler } from './application/cqrs/handler/event/update-fcm-token.event-handler';
 import { CreateConnectyCubeUserCommandHandler } from './application/cqrs/handler/command/create-connecty-cube-user.command-handler';
 import { CreateConnectyCubeUserEventHandler } from './application/cqrs/handler/event/create-connecty-cube-user.event-handler';
+import { GetUsernameByConnectyCubeIdQueryHandler } from './application/cqrs/handler/query/get-username-by-connecty-cube-id.query-handler';
 
 @Module({
   imports: [
@@ -90,6 +91,7 @@ import { CreateConnectyCubeUserEventHandler } from './application/cqrs/handler/e
     GetUserQueryHandler,
     GetUserWithCriteriaQueryHandler,
     GetUserLoginByIdQueryHandler,
+    GetUsernameByConnectyCubeIdQueryHandler,
     // Event handlers
     CreateUserEventHandler,
     DeleteUserEventHandler,
