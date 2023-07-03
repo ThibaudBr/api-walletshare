@@ -5,6 +5,7 @@ import { CompanyEntity } from '../../../../domain/entities/company.entity';
 import { CompanyEmployeeEntity } from '../../../../domain/entities/company-employee.entity';
 import { Repository } from 'typeorm';
 import { ErrorCustomEvent } from '../../../../../../util/exception/error-handler/error-custom.event';
+import { RemoveCompanyEmployeeEvent } from '../../event/remove-company-employee.event';
 
 @CommandHandler(RemoveCompanyEmployeeCommand)
 export class RemoveCompanyEmployeeCommandHandler implements ICommandHandler<RemoveCompanyEmployeeCommand> {
@@ -35,12 +36,14 @@ export class RemoveCompanyEmployeeCommandHandler implements ICommandHandler<Remo
         throw new Error('Company not found');
       });
 
-    const employee: CompanyEmployeeEntity | undefined = company.employees.find(employee => employee.profile.user.id);
+    const employee: CompanyEmployeeEntity | undefined = company.employees.find(
+      employee => command.profileId == employee.profile.id,
+    );
 
     if (employee) {
       await this.companyEmployeeEntityRepository.softRemove(employee);
       await this.eventBus.publish(
-        new RemoveCompanyEmployeeCommand({
+        new RemoveCompanyEmployeeEvent({
           companyId: command.companyId,
           profileId: command.profileId,
         }),

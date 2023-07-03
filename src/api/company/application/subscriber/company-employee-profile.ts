@@ -76,8 +76,13 @@ export class CompanyEmployeeProfile implements EntitySubscriberInterface<Company
     await userRepository.update(companyEmployee.profile.user.id, {
       roles: companyEmployee.profile.user.roles.filter(role => role !== UserRoleEnum.COMPANY_EMPLOYEE_ACCOUNT),
     });
-
-    await profileRepository.softRemove(companyEmployee.profile).catch(error => {
+    
+    const profileToRemove: ProfileEntity = await profileRepository.findOneOrFail({
+      where: {
+        id: companyEmployee.profile.id,
+      },
+    });
+    await profileRepository.softRemove(profileToRemove).catch(error => {
       console.log(error);
     });
   }
