@@ -43,7 +43,11 @@ export class UpdateUserCredentialCommandHandler implements ICommandHandler<Updat
       await this.eventBus.publish(new UpdateUserCredentialEvent(command.userId));
     } catch (error) {
       this.eventBus.publish(
-        new ErrorCustomEvent({ localisation: 'user', handler: 'UpdateUserCredentialCommandHandler', error: error }),
+        new ErrorCustomEvent({
+          localisation: 'user',
+          handler: 'UpdateUserCredentialCommandHandler',
+          error: error.message,
+        }),
       );
       throw error;
     }

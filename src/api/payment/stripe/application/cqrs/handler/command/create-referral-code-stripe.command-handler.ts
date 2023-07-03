@@ -34,7 +34,7 @@ export class CreateReferralCodeStripeCommandHandler implements ICommandHandler<C
           new ErrorCustomEvent({
             localisation: 'payment',
             handler: 'CreateReferralCodeStripeCommandHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Error during the creation of the referral code');

@@ -25,7 +25,7 @@ export class GetUserLoginByIdQueryHandler implements IQueryHandler<GetUserLoginB
         await this.eventBus.publish(
           new ErrorCustomEvent({
             handler: 'GetUserLoginByIdQueryHandler',
-            error: error,
+            error: error.message,
             localisation: 'userLoginRepository.findOneOrFail',
           }),
         );

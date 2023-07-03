@@ -23,7 +23,7 @@ export class SoftRemovePriceCommandHandler implements ICommandHandler<SoftRemove
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            error: error,
+            error: error.message,
             handler: 'SoftRemovePriceCommandHandler',
             localisation: 'priceRepository.findOneOrFail',
           }),
@@ -34,7 +34,7 @@ export class SoftRemovePriceCommandHandler implements ICommandHandler<SoftRemove
     await this.priceRepository.softRemove(priceEntity).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          error: error,
+          error: error.message,
           handler: 'SoftRemovePriceCommandHandler',
           localisation: 'priceRepository.softRemove',
         }),

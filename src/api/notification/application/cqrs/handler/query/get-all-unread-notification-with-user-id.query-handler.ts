@@ -30,7 +30,7 @@ export class GetAllUnreadNotificationWithUserIdQueryHandler
           new ErrorCustomEvent({
             handler: 'GetAllUnreadNotificationWithUserIdQueryHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('User not found');
@@ -49,7 +49,7 @@ export class GetAllUnreadNotificationWithUserIdQueryHandler
           new ErrorCustomEvent({
             handler: 'GetAllUnreadNotificationWithUserIdQueryHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Error while getting all notifications');

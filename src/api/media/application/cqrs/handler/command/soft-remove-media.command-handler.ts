@@ -26,7 +26,7 @@ export class SoftRemoveMediaCommandHandler implements ICommandHandler<SoftRemove
           new ErrorCustomEvent({
             handler: 'SoftRemoveMediaCommandHandler',
             localisation: 'MediaRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Media not found');
@@ -37,7 +37,7 @@ export class SoftRemoveMediaCommandHandler implements ICommandHandler<SoftRemove
         new ErrorCustomEvent({
           handler: 'SoftRemoveMediaCommandHandler',
           localisation: 'MediaRepository.softRemove',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Media not soft removed');

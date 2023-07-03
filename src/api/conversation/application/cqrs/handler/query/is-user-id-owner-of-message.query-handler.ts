@@ -26,7 +26,7 @@ export class IsUserIdOwnerOfMessageQueryHandler implements IQueryHandler<IsUserI
           new ErrorCustomEvent({
             handler: 'IsUserIdOwnerOfMessageQueryHandler',
             localisation: 'MessageRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Message not found');

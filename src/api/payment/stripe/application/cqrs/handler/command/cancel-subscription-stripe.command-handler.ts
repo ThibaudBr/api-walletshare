@@ -31,7 +31,7 @@ export class CancelSubscriptionStripeCommandHandler implements ICommandHandler<C
           new ErrorCustomEvent({
             handler: 'CancelSubscriptionStripeCommandHandler',
             localisation: 'stripe.subscriptions.del',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Error during the subscription cancelation');

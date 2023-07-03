@@ -30,7 +30,7 @@ export class AddAvatarProfileMediaCommandHandler implements ICommandHandler<AddA
           new ErrorCustomEvent({
             handler: 'AddAvatarProfileMediaCommandHandler',
             localisation: 'ProfileRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Profile not found');
@@ -50,7 +50,7 @@ export class AddAvatarProfileMediaCommandHandler implements ICommandHandler<AddA
         new ErrorCustomEvent({
           handler: 'AddAvatarProfileMediaCommandHandler',
           localisation: 'ProfileRepository.save',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Profile not saved');

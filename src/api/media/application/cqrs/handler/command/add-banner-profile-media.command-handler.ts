@@ -33,7 +33,7 @@ export class AddBannerProfileMediaCommandHandler implements ICommandHandler<AddB
           new ErrorCustomEvent({
             handler: 'AddBannerProfileMediaCommandHandler',
             localisation: 'ProfileRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Profile not found');
@@ -53,7 +53,7 @@ export class AddBannerProfileMediaCommandHandler implements ICommandHandler<AddB
         new ErrorCustomEvent({
           handler: 'AddBannerProfileMediaCommandHandler',
           localisation: 'ProfileRepository.save',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Profile not saved');

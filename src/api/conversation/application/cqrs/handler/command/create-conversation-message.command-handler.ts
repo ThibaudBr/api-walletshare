@@ -33,7 +33,7 @@ export class CreateConversationMessageCommandHandler implements ICommandHandler<
           new ErrorCustomEvent({
             handler: 'CreateConversationMessageCommandHandler',
             localisation: 'ConversationEntity.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Conversation not found');
@@ -49,7 +49,7 @@ export class CreateConversationMessageCommandHandler implements ICommandHandler<
           new ErrorCustomEvent({
             handler: 'CreateConversationMessageCommandHandler',
             localisation: 'CardEntity.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Card not found');
@@ -77,7 +77,7 @@ export class CreateConversationMessageCommandHandler implements ICommandHandler<
           new ErrorCustomEvent({
             handler: 'CreateConversationMessageCommandHandler',
             localisation: 'MessageRepository.save',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Message not saved');

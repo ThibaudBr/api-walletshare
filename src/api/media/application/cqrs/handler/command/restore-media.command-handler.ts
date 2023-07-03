@@ -27,7 +27,7 @@ export class RestoreMediaCommandHandler implements ICommandHandler<RestoreMediaC
           new ErrorCustomEvent({
             handler: 'RestoreMediaCommandHandler',
             localisation: 'MediaRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Media not found');
@@ -38,7 +38,7 @@ export class RestoreMediaCommandHandler implements ICommandHandler<RestoreMediaC
         new ErrorCustomEvent({
           handler: 'RestoreMediaCommandHandler',
           localisation: 'MediaRepository.restore',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Media not restored');

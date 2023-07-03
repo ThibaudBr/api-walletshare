@@ -30,7 +30,7 @@ export class RemoveMediaCommandHandler implements ICommandHandler<RemoveMediaCom
           new ErrorCustomEvent({
             handler: 'RemoveMediaCommandHandler',
             localisation: 'MediaRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Media not found');

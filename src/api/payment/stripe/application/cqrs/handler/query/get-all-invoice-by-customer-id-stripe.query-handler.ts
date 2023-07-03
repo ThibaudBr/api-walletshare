@@ -32,7 +32,7 @@ export class GetAllInvoiceByCustomerIdStripeQueryHandler
           new ErrorCustomEvent({
             localisation: 'payment',
             handler: 'GetAllInvoiceByCustomerIdStripeQueryHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Error during the listing of the invoices');

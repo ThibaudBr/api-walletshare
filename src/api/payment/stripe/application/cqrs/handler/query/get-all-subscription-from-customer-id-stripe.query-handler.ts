@@ -32,7 +32,7 @@ export class GetAllSubscriptionFromCustomerIdStripeQueryHandler
           new ErrorCustomEvent({
             localisation: 'payment',
             handler: 'GetAllSubscriptionFromCustomerIdStripeQueryHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Error during the listing of the subscriptions');

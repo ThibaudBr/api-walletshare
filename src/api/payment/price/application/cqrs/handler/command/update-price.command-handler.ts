@@ -24,7 +24,7 @@ export class UpdatePriceCommandHandler implements ICommandHandler<UpdatePriceCom
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            error: error,
+            error: error.message,
             handler: 'UpdatePriceCommandHandler',
             localisation: 'priceRepository.findOneOrFail',
           }),
@@ -51,7 +51,7 @@ export class UpdatePriceCommandHandler implements ICommandHandler<UpdatePriceCom
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            error: error,
+            error: error.message,
             handler: 'UpdatePriceCommandHandler',
             localisation: 'priceRepository.save',
           }),

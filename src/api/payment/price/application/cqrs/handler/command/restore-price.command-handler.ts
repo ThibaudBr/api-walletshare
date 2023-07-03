@@ -24,7 +24,7 @@ export class RestorePriceCommandHandler implements ICommandHandler<RestorePriceC
       .catch(async error => {
         await this.eventBus.publish(
           new ErrorCustomEvent({
-            error: error,
+            error: error.message,
             handler: 'restorePriceCommandHandler',
             localisation: 'priceRepository.findOneOrFail',
           }),
@@ -35,7 +35,7 @@ export class RestorePriceCommandHandler implements ICommandHandler<RestorePriceC
     await this.priceRepository.restore(priceEntity.id).catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          error: error,
+          error: error.message,
           handler: 'restorePriceCommandHandler',
           localisation: 'priceRepository.restore',
         }),

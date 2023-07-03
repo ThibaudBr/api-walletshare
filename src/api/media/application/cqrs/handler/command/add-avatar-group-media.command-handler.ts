@@ -33,7 +33,7 @@ export class AddAvatarGroupMediaCommandHandler implements ICommandHandler<AddAva
           new ErrorCustomEvent({
             handler: 'AddAvatarGroupMediaCommandHandler',
             localisation: 'groupRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Group not found');
@@ -53,7 +53,7 @@ export class AddAvatarGroupMediaCommandHandler implements ICommandHandler<AddAva
         new ErrorCustomEvent({
           handler: 'AddAvatarGroupMediaCommandHandler',
           localisation: 'GroupRepository.save',
-          error: error,
+          error: error.message,
         }),
       );
     });

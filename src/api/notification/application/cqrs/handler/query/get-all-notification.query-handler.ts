@@ -19,7 +19,7 @@ export class GetAllNotificationQueryHandler implements IQueryHandler<GetAllNotif
         new ErrorCustomEvent({
           handler: 'GetAllNotificationQueryHandler',
           localisation: 'notificationHandler',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('Error while getting all notifications');

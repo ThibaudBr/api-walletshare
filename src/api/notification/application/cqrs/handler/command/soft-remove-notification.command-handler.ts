@@ -25,7 +25,7 @@ export class SoftRemoveNotificationCommandHandler implements ICommandHandler<Sof
           new ErrorCustomEvent({
             handler: 'SoftRemoveNotificationCommandHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Notification not found');

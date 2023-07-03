@@ -31,7 +31,7 @@ export class GetMessageFromConversationQueryHandler implements IQueryHandler<Get
           new ErrorCustomEvent({
             handler: 'GetMessageFromConversationQueryHandler',
             localisation: 'ConversationRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Conversation not found');
@@ -56,7 +56,7 @@ export class GetMessageFromConversationQueryHandler implements IQueryHandler<Get
           new ErrorCustomEvent({
             handler: 'GetMessageFromConversationQueryHandler',
             localisation: 'MessageRepository.find',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Messages not found');

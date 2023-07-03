@@ -27,7 +27,7 @@ export class DeleteJoinedConversationCommandHandler
           new ErrorCustomEvent({
             handler: 'DeleteJoinedConversationCommandHandler',
             localisation: 'JoinedConversationEntity.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('JoinedConversation not found');
@@ -37,7 +37,7 @@ export class DeleteJoinedConversationCommandHandler
         new ErrorCustomEvent({
           handler: 'DeleteJoinedConversationCommandHandler',
           localisation: 'JoinedConversationEntity.remove',
-          error: error,
+          error: error.message,
         }),
       );
       throw new Error('JoinedConversation not removed');

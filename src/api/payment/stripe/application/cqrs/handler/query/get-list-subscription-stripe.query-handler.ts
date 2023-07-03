@@ -31,7 +31,7 @@ export class GetListSubscriptionStripeQueryHandler implements IQueryHandler<GetL
         await this.eventBus.publish(
           new ErrorCustomEvent({
             handler: 'GetListSubscriptionStripQueryHandler',
-            error: error,
+            error: error.message,
             localisation: 'stripe.subscriptions.list',
           }),
         );

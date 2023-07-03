@@ -33,7 +33,7 @@ export class AddBannerCompanyMediaCommandHandler implements ICommandHandler<AddB
           new ErrorCustomEvent({
             handler: 'AddBannerCompanyMediaCommandHandler',
             localisation: 'companyRepository.findOneOrFail',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Company not found');
@@ -53,7 +53,7 @@ export class AddBannerCompanyMediaCommandHandler implements ICommandHandler<AddB
         new ErrorCustomEvent({
           handler: 'AddBannerCompanyMediaCommandHandler',
           localisation: 'CompanyRepository.save',
-          error: error,
+          error: error.message,
         }),
       );
     });

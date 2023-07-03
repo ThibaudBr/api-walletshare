@@ -17,7 +17,7 @@ export class GetAllPriceQueryHandler implements IQueryHandler<GetAllPriceQuery> 
     return await this.priceRepository.find().catch(async error => {
       await this.eventBus.publish(
         new ErrorCustomEvent({
-          error: error,
+          error: error.message,
           handler: 'GetAllPriceQueryHandler',
           localisation: 'priceRepository.find',
         }),

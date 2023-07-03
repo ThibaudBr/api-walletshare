@@ -25,7 +25,7 @@ export class GetNotificationByIdQueryHandler implements IQueryHandler<GetNotific
           new ErrorCustomEvent({
             handler: 'GetNotificationByIdQueryHandler',
             localisation: 'notificationHandler',
-            error: error,
+            error: error.message,
           }),
         );
         throw new Error('Notification not found');
