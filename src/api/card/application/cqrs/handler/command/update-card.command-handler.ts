@@ -126,8 +126,8 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
       }
     }
 
-    const cardUpdated = new CardEntity({
-      ...cardToUpdate,
+    const cardUpdated = this.cardRepository.create({
+      id: cardToUpdate.id,
       ...command,
     });
 
