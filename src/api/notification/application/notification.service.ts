@@ -248,7 +248,16 @@ export class NotificationService {
 
   async markNotificationsAsRead(id: string, notificationIds: string[]): Promise<void> {
     for (const notificationId of notificationIds) {
-      await this.markNotificationAsRead(id, notificationId);
+      await this.commandBus
+        .execute(
+          new MarkNotificationAsReadCommand({
+            notificationId: notificationId,
+          }),
+        )
+        .catch(err => {
+          if (err.message === 'Notification not found') throw new InvalidIdHttpException('Notification not found');
+          throw err;
+        });
     }
   }
 }
