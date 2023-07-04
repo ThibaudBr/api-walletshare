@@ -23,7 +23,7 @@ export class RemoveCardFromGroupCommandHandler implements ICommandHandler<Remove
   async execute(command: RemoveCardFromGroupCommand): Promise<void> {
     const group: GroupEntity = await this.groupRepository
       .findOneOrFail({
-        relations: ['groupMemberships', 'groupMemberships.card'],
+        relations: ['members', 'members.card'],
         where: [
           {
             id: command.groupId,
