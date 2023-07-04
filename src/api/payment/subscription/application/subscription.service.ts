@@ -60,6 +60,7 @@ export class SubscriptionService {
   }
 
   async handlerUserCancelSubscription(userId: string, stipeUserId: string, subscriptionId: string): Promise<void> {
+    console.log('handlerUserCancelSubscription', userId, stipeUserId, subscriptionId);
     const stripSubscription: Stripe.Subscription = await this.stripeService.getSubscription(subscriptionId);
 
     await this.stripeService.cancelSubscription(stipeUserId, stripSubscription.id);

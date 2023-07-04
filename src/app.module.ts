@@ -132,7 +132,7 @@ export class AppModule implements NestModule {
     consumer
       .apply(RawBodyMiddleware)
       .forRoutes({
-        path: '/webhook',
+        path: '/webhook/subscription',
         method: RequestMethod.POST,
       })
       .apply(JsonBodyMiddleware)
