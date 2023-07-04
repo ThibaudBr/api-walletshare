@@ -9,8 +9,8 @@ export class UpdateCardCommand {
   public readonly profileId: string;
   public readonly typeOfCardEnum: TypeOfCardEnum;
   public readonly socialName?: string;
-  public readonly firstName?: string;
-  public readonly lastName?: string;
+  public readonly firstname?: string;
+  public readonly lastname?: string;
   public readonly email?: string;
   public readonly phone?: string[];
   public readonly companyName?: string;

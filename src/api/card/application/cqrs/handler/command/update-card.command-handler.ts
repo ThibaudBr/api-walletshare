@@ -126,13 +126,13 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
       }
     }
 
-    const cardUpdated = this.cardRepository.create({
-      id: cardToUpdate.id,
-      ...command,
-    });
-
     await this.cardRepository
-      .save(cardUpdated)
+      .update(cardToUpdate.id, {
+        firstname: command?.firstname ? command.firstname : cardToUpdate.firstname,
+        lastname: command?.lastname ? command.lastname : cardToUpdate.lastname,
+        socialName: command?.socialName ? command.socialName : cardToUpdate.socialName,
+        phones: command?.phone ? command.phone : cardToUpdate.phones,
+      })
       .then(() => {
         this.eventBus.publish(
           new UpdateCardEvent({
