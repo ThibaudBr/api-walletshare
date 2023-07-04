@@ -23,7 +23,11 @@ export class GetSubscriptionStripeQueryHandler implements IQueryHandler<GetSubsc
   async execute(query: GetSubscriptionStripeQuery): Promise<Stripe.Response<Stripe.Subscription>> {
     return await this.stripe.subscriptions.retrieve(query.subscriptionId).catch(error => {
       this.eventBus.publish(
-        new ErrorCustomEvent({ localisation: 'payment', handler: 'GetSubscriptionStripeQueryHandler', error: error }),
+        new ErrorCustomEvent({
+          localisation: 'payment',
+          handler: 'GetSubscriptionStripeQueryHandler',
+          error: error.message,
+        }),
       );
       throw new Error('Error during the listing of the subscriptions');
     });
