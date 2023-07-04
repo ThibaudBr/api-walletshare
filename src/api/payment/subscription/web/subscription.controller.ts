@@ -40,7 +40,8 @@ export class SubscriptionController {
     @Req() requestUser: RequestUser,
     @Body() createSubscriptionRequest: CreateSubscriptionRequest,
   ): Promise<Stripe.Response<Stripe.Subscription>> {
-    console.log(createSubscriptionRequest);
+    console.log('createSubscriptionRequest.priceId', createSubscriptionRequest.priceId);
+    console.log('createSubscriptionRequest.customerId', createSubscriptionRequest.customerId);
     console.log(requestUser.user);
     if (!requestUser.user.stripeCustomerId) {
       throw new InvalidIdHttpException('User does not have stripe customer id');
