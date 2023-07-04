@@ -131,7 +131,7 @@ export class UpdateCardCommandHandler implements ICommandHandler<UpdateCardComma
         firstname: command?.firstname ? command.firstname : cardToUpdate.firstname,
         lastname: command?.lastname ? command.lastname : cardToUpdate.lastname,
         socialName: command?.socialName ? command.socialName : cardToUpdate.socialName,
-        phones: command?.phone ? command.phone : cardToUpdate.phones,
+        phones: command?.phones ? command.phones : cardToUpdate.phones,
       })
       .then(() => {
         this.eventBus.publish(
