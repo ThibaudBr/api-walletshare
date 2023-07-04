@@ -12,7 +12,7 @@ export class UpdateCardCommand {
   public readonly firstname?: string;
   public readonly lastname?: string;
   public readonly email?: string;
-  public readonly phone?: string[];
+  public readonly phones?: string[];
   public readonly companyName?: string;
   public readonly jobTitle?: string;
   public readonly address?: string;

@@ -9,8 +9,8 @@ export class UpdateCardRequest {
   profileId: string;
   socialName?: string;
   isOwnerPro: boolean;
-  firstName?: string;
-  lastName?: string;
+  firstname?: string;
+  lastname?: string;
   companyName?: string;
   phones?: string[];
   emails?: string[];
