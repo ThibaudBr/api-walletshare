@@ -245,4 +245,10 @@ export class NotificationService {
         });
       });
   }
+
+  async markNotificationsAsRead(id: string, notificationIds: string[]): Promise<void> {
+    for (const notificationId of notificationIds) {
+      await this.markNotificationAsRead(id, notificationId);
+    }
+  }
 }

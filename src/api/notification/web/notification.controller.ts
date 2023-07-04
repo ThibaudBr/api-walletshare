@@ -7,6 +7,7 @@ import { RequestUser } from '../../auth/domain/interface/request-user.interface'
 import { MarkNotificationAsReadRequest } from './request/mark-notification-as-read.request';
 import { NotificationService } from '../application/notification.service';
 import { CreateNotificationAdminRequest } from './request/create-notification-admin.request';
+import { MarkNotificationsAsReadRequest } from './request/mark-notifications-as-read.request';
 
 @Controller('notification')
 @ApiTags('Notification')
@@ -40,6 +41,18 @@ export class NotificationController {
     return await this.notificationService.markNotificationAsRead(
       req.user.id,
       markNotificationAsReadRequest.notificationId,
+    );
+  }
+
+  @Put('/public/mark-notification-as-read-tab')
+  @UseGuards(RoleGuard([UserRoleEnum.PUBLIC, UserRoleEnum.ADMIN, UserRoleEnum.COMPANY_ACCOUNT]))
+  async markNotificationAsReadTab(
+    @Req() req: RequestUser,
+    @Body() markNotificationAsReadRequest: MarkNotificationsAsReadRequest,
+  ): Promise<void> {
+    return await this.notificationService.markNotificationsAsRead(
+      req.user.id,
+      markNotificationAsReadRequest.notificationIds,
     );
   }
 
