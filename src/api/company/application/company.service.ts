@@ -983,7 +983,7 @@ export class CompanyService {
 
     const employees: CompanyEmployeeEntity[] = await this.queryBus
       .execute(
-        new GetCompanyEmployeeByOwnerUserIdForChartQuery({
+        new GetCompanyEmployeeByOwnerUserIdQuery({
           userId: userId,
         }),
       )
