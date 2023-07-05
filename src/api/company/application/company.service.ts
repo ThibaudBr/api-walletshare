@@ -70,6 +70,10 @@ import { ChartResponse } from '../web/response/chart.response';
 import * as moment from 'moment';
 import { GetCompanyEmployeeByOwnerUserIdForChartQuery } from './cqrs/query/get-company-employee-by-owner-user-id-for-chart.query';
 import { TypeOfCardEnum } from '../../card/domain/enum/type-of-card.enum';
+import {DuplicateMailHttpException} from "../../../util/exception/custom-http-exception/duplicate-mail.http-exception";
+import {
+  DuplicateUsernameHttpException
+} from "../../../util/exception/custom-http-exception/duplicate-username.http-exception";
 
 @Injectable()
 export class CompanyService {
@@ -542,6 +546,8 @@ export class CompanyService {
       )
       .catch(async error => {
         if (error.message === 'User already exists') throw new ConflictException('User already exists');
+        if (error instanceof DuplicateMailHttpException) throw new DuplicateMailHttpException();
+        if (error instanceof DuplicateUsernameHttpException) throw new DuplicateUsernameHttpException();
         throw new InternalServerErrorException(error.message);
       });
 

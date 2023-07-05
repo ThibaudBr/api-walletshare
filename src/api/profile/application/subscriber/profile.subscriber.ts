@@ -9,6 +9,7 @@ import {
 import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { ProfileEntity } from '../../domain/entities/profile.entity';
 import { RoleProfileEnum } from '../../domain/enum/role-profile.enum';
+import { CompanyEmployeeEntity } from '../../../company/domain/entities/company-employee.entity';
 
 @EventSubscriber()
 export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> {
@@ -42,6 +43,29 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
       },
     });
     if (profiles.length == 0) return;
+
+    for (const profile of profiles) {
+      if (profile.roleProfile == RoleProfileEnum.COMPANY) {
+        const companyEmployeeRepository: Repository<CompanyEmployeeEntity> =
+          event.manager.getRepository(CompanyEmployeeEntity);
+        const companyEmployee: CompanyEmployeeEntity = await companyEmployeeRepository
+          .findOneOrFail({
+            relations: ['profile', 'profile.user'],
+            where: {
+              profile: {
+                id: profile.id,
+              },
+            },
+          })
+          .catch(error => {
+            console.log(error);
+            throw error;
+          });
+        await companyEmployeeRepository.softRemove(companyEmployee).catch(error => {
+          console.log(error);
+        });
+      }
+    }
     await profileRepository.softRemove(profiles).catch(error => {
       console.log(error);
     });
@@ -60,6 +84,30 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
       },
     });
     if (profiles.length == 0) return;
+
+    for (const profile of profiles) {
+      if (profile.roleProfile == RoleProfileEnum.COMPANY) {
+        const companyEmployeeRepository: Repository<CompanyEmployeeEntity> =
+          event.manager.getRepository(CompanyEmployeeEntity);
+        const companyEmployee: CompanyEmployeeEntity = await companyEmployeeRepository
+          .findOneOrFail({
+            relations: ['profile', 'profile.user'],
+            withDeleted: true,
+            where: {
+              profile: {
+                id: profile.id,
+              },
+            },
+          })
+          .catch(error => {
+            console.log(error);
+            throw error;
+          });
+        await companyEmployeeRepository.remove(companyEmployee).catch(error => {
+          console.log(error);
+        });
+      }
+    }
     await profileRepository.remove(profiles).catch(error => {
       console.log(error);
     });
