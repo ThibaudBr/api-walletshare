@@ -1105,7 +1105,7 @@ export class CompanyService {
     for (const employee of employees) {
       if (employee.profile?.personalCards) {
         for (const card of employee.profile.personalCards) {
-          for (const connectedCard of card.connectedCardOne) {
+          for (const connectedCard of card.connectedCardTwo) {
             const date = moment(connectedCard.createdAt).format(dateFormat);
             countsByDate[date] = (countsByDate[date] || 0) + 1;
           }
