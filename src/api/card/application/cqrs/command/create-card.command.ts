@@ -11,7 +11,7 @@ export class CreateCardCommand {
   public readonly firstName?: string;
   public readonly lastName?: string;
   public readonly email?: string;
-  public readonly phone?: string[];
+  public readonly phones?: string[];
   public readonly companyName?: string;
   public readonly jobTitle?: string;
   public readonly address?: string;
