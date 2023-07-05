@@ -34,7 +34,7 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
   async beforeSoftRemove(event: SoftRemoveEvent<UserEntity>): Promise<void> {
     const softRemovedUser: UserEntity | undefined = event.entity;
     const profileRepository: Repository<ProfileEntity> = event.manager.getRepository(ProfileEntity);
-    const profiles: ProfileEntity[] = await profileRepository.find({
+    let profiles: ProfileEntity[] = await profileRepository.find({
       relations: ['user'],
       where: {
         user: {
@@ -61,6 +61,7 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
             console.log(error);
             throw error;
           });
+        profiles = profiles.filter(profile => profile.id != companyEmployee.profile.id);
         await companyEmployeeRepository.softRemove(companyEmployee).catch(error => {
           console.log(error);
         });
@@ -74,7 +75,7 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
   async beforeRemove(event: RemoveEvent<UserEntity>): Promise<void> {
     const softRemovedUser: UserEntity | undefined = event.entity;
     const profileRepository: Repository<ProfileEntity> = event.manager.getRepository(ProfileEntity);
-    const profiles: ProfileEntity[] = await profileRepository.find({
+    let profiles: ProfileEntity[] = await profileRepository.find({
       relations: ['user'],
       withDeleted: true,
       where: {
@@ -103,6 +104,7 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
             console.log(error);
             throw error;
           });
+        profiles = profiles.filter(profile => profile.id != companyEmployee.profile.id);
         await companyEmployeeRepository.remove(companyEmployee).catch(error => {
           console.log(error);
         });
