@@ -13,10 +13,12 @@ export class UpdateProductStripeCommandHandler implements ICommandHandler<Update
     if (this.configService.get('NODE_ENV') == 'prod') {
       this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_PROD') ?? 'error', {
         apiVersion: '2022-11-15',
+        maxNetworkRetries: 2,
       });
     } else {
       this.stripe = new Stripe(this.configService.get('STRIPE_SECRET_KEY_TEST') ?? 'error', {
         apiVersion: '2022-11-15',
+        maxNetworkRetries: 2,
       });
     }
   }

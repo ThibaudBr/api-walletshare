@@ -129,6 +129,8 @@ export class UserService {
         throw new DuplicateMailHttpException();
       else if (error instanceof DuplicateUsernameHttpException || error.message === 'Username already exists') {
         throw new DuplicateUsernameHttpException();
+      } else if (error.message === 'Error during user update') {
+        throw new BadRequestException('Error during user update');
       } else throw Error('not handled error');
     }
   }

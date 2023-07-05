@@ -22,22 +22,46 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
 
   async execute(command: UpdateUserCommand): Promise<UserResponse> {
     try {
+      const userToUpdate: UserEntity = await this.userRepository
+        .findOneOrFail({
+          where: [{ id: command.userId }],
+        })
+        .catch(async (error: Error) => {
+          await this.eventBus.publish(
+            new ErrorCustomEvent({
+              localisation: 'userRepository.findOneOrFail',
+              handler: 'UpdateUserCommandHandler',
+              error: error.message,
+            }),
+          );
+          throw new Error('User not found');
+        });
       if (command.user.username) {
         if (await this.isDuplicatedUsername(command.user.username)) {
           await this.eventBus.publish(
-            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
+            new ErrorCustomEvent({
+              localisation: 'isDuplicatedUsername',
+              handler: 'UpdateUserCommandHandler',
+              error: 'Username already exists',
+            }),
           );
           throw new DuplicateUsernameHttpException();
         }
+        userToUpdate.username = command.user.username;
       }
 
       if (command.user.mail) {
         if (await this.isDuplicatedEmail(command.user.mail)) {
           await this.eventBus.publish(
-            new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
+            new ErrorCustomEvent({
+              localisation: 'isDuplicatedEmail',
+              handler: 'UpdateUserCommandHandler',
+              error: 'Email already exists',
+            }),
           );
           throw new DuplicateMailHttpException();
         }
+        userToUpdate.mail = command.user.mail;
       }
       if ((await this.userRepository.findOne({ where: [{ id: command.userId }] })) === undefined) {
         throw new Error('User not found');
@@ -51,9 +75,18 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
         throw new InvalidClassException('Parameter not validate');
       }
       if (command.user.password) {
-        command.user.password = bcrypt.hashSync(command.user.password, 10);
+        userToUpdate.password = bcrypt.hashSync(command.user.password, 10);
       }
-      await this.userRepository.update(command.userId, command.user);
+      await this.userRepository.save(userToUpdate).catch(async (error: Error) => {
+        await this.eventBus.publish(
+          new ErrorCustomEvent({
+            localisation: 'userRepository.save',
+            handler: 'UpdateUserCommandHandler',
+            error: error.message,
+          }),
+        );
+        throw new Error('Error during user update');
+      });
       const user: UserEntity = await this.userRepository.findOneOrFail({
         where: [{ id: command.userId }],
       });

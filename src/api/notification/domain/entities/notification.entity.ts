@@ -57,7 +57,6 @@ export class NotificationEntity extends BaseEntity {
 
   @ManyToOne(() => GroupEntity, groupEntity => groupEntity.notifications, {
     nullable: true,
-    onDelete: 'CASCADE',
   })
   group: GroupEntity;
 
