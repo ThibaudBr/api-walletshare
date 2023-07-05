@@ -6,7 +6,6 @@ import { ErrorCustomEvent } from '../../../../util/exception/error-handler/error
 import { PriceService } from '../../price/application/price.service';
 import { UserEntity } from '../../../user/domain/entities/user.entity';
 import { CreateSubscriptionCommand } from './cqrs/command/create-subscription.command';
-import { CancelSubscriptionCommand } from './cqrs/command/cancel-subscription.command';
 import { UpdateAccountStatusCommand } from './cqrs/command/update-account-status.command';
 import { UserAccountStatusEnum } from '../../../user/domain/enum/user-account-status.enum';
 import { GetAllActiveSubscriptionQuery } from './cqrs/query/get-all-active-subscription.query';
@@ -60,7 +59,6 @@ export class SubscriptionService {
   }
 
   async handlerUserCancelSubscription(userId: string, stipeUserId: string, subscriptionId: string): Promise<void> {
-    console.log('handlerUserCancelSubscription', userId, stipeUserId, subscriptionId);
     const stripSubscription: Stripe.Subscription = await this.stripeService.getSubscription(subscriptionId);
 
     await this.stripeService.cancelSubscription(stipeUserId, stripSubscription.id);
