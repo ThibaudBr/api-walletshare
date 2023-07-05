@@ -69,11 +69,8 @@ import { GetCompanyPresetByOwnerUserIdQuery } from './cqrs/query/get-company-pre
 import { ChartResponse } from '../web/response/chart.response';
 import * as moment from 'moment';
 import { GetCompanyEmployeeByOwnerUserIdForChartQuery } from './cqrs/query/get-company-employee-by-owner-user-id-for-chart.query';
-import { TypeOfCardEnum } from '../../card/domain/enum/type-of-card.enum';
-import {DuplicateMailHttpException} from "../../../util/exception/custom-http-exception/duplicate-mail.http-exception";
-import {
-  DuplicateUsernameHttpException
-} from "../../../util/exception/custom-http-exception/duplicate-username.http-exception";
+import { DuplicateMailHttpException } from '../../../util/exception/custom-http-exception/duplicate-mail.http-exception';
+import { DuplicateUsernameHttpException } from '../../../util/exception/custom-http-exception/duplicate-username.http-exception';
 
 @Injectable()
 export class CompanyService {
@@ -1060,7 +1057,6 @@ export class CompanyService {
       if (employee.profile?.personalCards) {
         for (const card of employee.profile.personalCards) {
           for (const connectedCard of card.connectedCardOne) {
-            console.log('connectedCard', connectedCard);
             const date = moment(connectedCard.createdAt).format(dateFormat);
             countsByDate[date] = (countsByDate[date] || 0) + 1;
           }
