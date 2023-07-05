@@ -70,7 +70,7 @@ export class UpdateUserCommandHandler implements ICommandHandler<UpdateUserComma
       await this.isDuplicateOfDeletedUsername(command.user.username ?? '');
       await this.isDuplicateOfDeletedMail(command.user.mail ?? '');
 
-      const err = await validate(command.user);
+      const err = await validate(userToUpdate);
       if (err.length > 0) {
         throw new InvalidClassException('Parameter not validate');
       }

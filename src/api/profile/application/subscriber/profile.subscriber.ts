@@ -48,8 +48,8 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
       if (profile.roleProfile == RoleProfileEnum.COMPANY) {
         const companyEmployeeRepository: Repository<CompanyEmployeeEntity> =
           event.manager.getRepository(CompanyEmployeeEntity);
-        const companyEmployee: CompanyEmployeeEntity = await companyEmployeeRepository
-          .findOneOrFail({
+        const companyEmployees: CompanyEmployeeEntity[] = await companyEmployeeRepository
+          .find({
             relations: ['profile', 'profile.user'],
             where: {
               profile: {
@@ -61,8 +61,8 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
             console.log(error);
             throw error;
           });
-        profiles = profiles.filter(profile => profile.id != companyEmployee.profile.id);
-        await companyEmployeeRepository.softRemove(companyEmployee).catch(error => {
+        profiles = profiles.filter(profileEntity => profileEntity.id != profile.id);
+        await companyEmployeeRepository.softRemove(companyEmployees).catch(error => {
           console.log(error);
         });
       }
@@ -90,8 +90,8 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
       if (profile.roleProfile == RoleProfileEnum.COMPANY) {
         const companyEmployeeRepository: Repository<CompanyEmployeeEntity> =
           event.manager.getRepository(CompanyEmployeeEntity);
-        const companyEmployee: CompanyEmployeeEntity = await companyEmployeeRepository
-          .findOneOrFail({
+        const companyEmployees: CompanyEmployeeEntity[] = await companyEmployeeRepository
+          .find({
             relations: ['profile', 'profile.user'],
             withDeleted: true,
             where: {
@@ -104,8 +104,8 @@ export class ProfileSubscriber implements EntitySubscriberInterface<UserEntity> 
             console.log(error);
             throw error;
           });
-        profiles = profiles.filter(profile => profile.id != companyEmployee.profile.id);
-        await companyEmployeeRepository.remove(companyEmployee).catch(error => {
+        profiles = profiles.filter(profileEntity => profileEntity.id != profile.id);
+        await companyEmployeeRepository.remove(companyEmployees).catch(error => {
           console.log(error);
         });
       }
