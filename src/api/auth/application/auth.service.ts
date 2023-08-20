@@ -37,37 +37,6 @@ export class AuthService {
       new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password),
     );
 
-    createdUser.stripeCustomerId = await this.commandBus.execute(
-      new CreateStripeCustomerCommand({
-        userId: createdUser.id,
-        username: createdUser.username,
-        email: createdUser.mail,
-      }),
-    );
-
-    if (this.configService.get('STRIPE_COUPON_REFERRAL_ID')) {
-      const createdReferralCode: Stripe.PromotionCode = await this.commandBus.execute(
-        new CreateReferralCodeStripeCommand({
-          userId: createdUser.id,
-          couponStripeId: this.configService.get('STRIPE_COUPON_REFERRAL_ID'),
-          customerStripeId: createdUser.stripeCustomerId,
-        }),
-      );
-      createdUser.referralCode = await this.commandBus
-        .execute(
-          new SetReferralCodeCommand({
-            userId: createdUser.id,
-            referralCode: createdReferralCode,
-          }),
-        )
-        .catch(error => {
-          if (error.message === 'Error while seting referral code') {
-            throw new Error('Error while seting referral code');
-          }
-          throw new InternalServerErrorException('Error while seting referral code');
-        });
-    }
-
     return new UserResponse({
       ...createdUser,
     });

@@ -19,7 +19,7 @@ export class AuthController {
   constructor(private readonly userService: UserService, private readonly authService: AuthService) {}
 
   @Post('/register')
-  @UseGuards(RoleGuard([UserRoleEnum.ADMIN]))
+  @UseGuards(LocalAuthenticationGuard)
   async signUp(@Body() signUpDto: SignUpDto): Promise<UserResponse | HttpException> {
     try {
       return await this.authService.signup(signUpDto);
