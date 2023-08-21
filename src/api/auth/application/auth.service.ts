@@ -37,9 +37,7 @@ export class AuthService {
       new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password),
     );
 
-    return new UserResponse({
-      ...createdUser,
-    });
+    return this.login(signUpDto.mail, signUpDto.password);
   }
 
   async login(username: string, plainTextPassword: string): Promise<UserEntity> {
