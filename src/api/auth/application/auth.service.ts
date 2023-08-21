@@ -1,27 +1,16 @@
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import {
-  ForbiddenException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { TokenPayload } from '../domain/interface/token-payload.interface';
-import { SignUpDto } from '../domain/dto/sign-up.dto';
-import { RegisterCommand } from './cqrs/command/register.command';
-import { UserLoginResponse } from '../../user/web/response/user-login.response';
-import { UserEntity } from '../../user/domain/entities/user.entity';
-import { GetUserQuery } from '../../user/application/cqrs/query/get-user.query';
-import { GetUserLoginQuery } from '../../user/application/cqrs/query/get-user-login.query';
-import { UserResponse } from '../../user/web/response/user.response';
-import { CreateStripeCustomerCommand } from '../../payment/stripe/application/cqrs/command/create-stripe-customer.command';
-import { ConfigService } from '@nestjs/config';
-import Stripe from 'stripe';
-import { CreateReferralCodeStripeCommand } from '../../payment/stripe/application/cqrs/command/create-referral-code-stripe.command';
-import { SetReferralCodeCommand } from '../../user/application/cqrs/command/set-referral-code.command';
-import { GetUserEntityQuery } from '../../user/application/cqrs/query/get-user-entity.query';
-import { InvalidIdHttpException } from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
+import {CommandBus, QueryBus} from '@nestjs/cqrs';
+import {ForbiddenException, HttpException, HttpStatus, Injectable, InternalServerErrorException,} from '@nestjs/common';
+import {JwtService} from '@nestjs/jwt';
+import {TokenPayload} from '../domain/interface/token-payload.interface';
+import {SignUpDto} from '../domain/dto/sign-up.dto';
+import {RegisterCommand} from './cqrs/command/register.command';
+import {UserLoginResponse} from '../../user/web/response/user-login.response';
+import {UserEntity} from '../../user/domain/entities/user.entity';
+import {GetUserQuery} from '../../user/application/cqrs/query/get-user.query';
+import {GetUserLoginQuery} from '../../user/application/cqrs/query/get-user-login.query';
+import {ConfigService} from '@nestjs/config';
+import {GetUserEntityQuery} from '../../user/application/cqrs/query/get-user-entity.query';
+import {InvalidIdHttpException} from '../../../util/exception/custom-http-exception/invalid-id.http-exception';
 
 @Injectable()
 export class AuthService {
@@ -32,12 +21,10 @@ export class AuthService {
     private queryBus: QueryBus,
   ) {}
 
-  async signup(signUpDto: SignUpDto): Promise<UserResponse> {
-    const createdUser: UserEntity = await this.commandBus.execute(
-      new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password),
+  async signup(signUpDto: SignUpDto): Promise<UserEntity> {
+    return await this.commandBus.execute(
+        new RegisterCommand(signUpDto.username, signUpDto.mail, signUpDto.password),
     );
-
-    return this.login(signUpDto.mail, signUpDto.password);
   }
 
   async login(username: string, plainTextPassword: string): Promise<UserEntity> {

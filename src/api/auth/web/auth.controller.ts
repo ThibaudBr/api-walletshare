@@ -19,9 +19,25 @@ export class AuthController {
   constructor(private readonly userService: UserService, private readonly authService: AuthService) {}
 
   @Post('/register')
-  async signUp(@Body() signUpDto: SignUpDto): Promise<UserResponse | HttpException> {
+  async signUp(
+    @Req() request: RequestUser,
+    @Res() response: Response,
+    @Body() signUpDto: SignUpDto,
+  ): Promise<Response> {
     try {
-      return await this.authService.signup(signUpDto);
+      const user = await this.authService.signup(signUpDto);
+      const accessTokenCookie = this.authService.getCookieWithJwtToken(user.id);
+      const refreshTokenCookie = this.authService.getCookieWithJwtRefreshToken(user.id);
+      await this.userService.setCurrentRefreshToken(refreshTokenCookie.token, user.id);
+      if (!request.res) {
+        throw new Error('Response object missing');
+      }
+
+      request.res.setHeader('Set-Cookie', [accessTokenCookie.auth, refreshTokenCookie.cookie]);
+      user.currentHashedRefreshToken = refreshTokenCookie.token;
+      user.jwtToken = accessTokenCookie.token;
+      user.password = '';
+      return response.send(user);
     } catch (error) {
       throw new HttpException(
         {
