@@ -49,14 +49,14 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
       throw new InvalidPasswordHttpException();
     }
 
-    if (command.mail) {
-      if (!this.isValidEmail(command.mail)) {
-        this.eventBus.publish(
-          new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
-        );
-        throw new InvalidMailHttpException();
-      }
-    }
+    // if (command.mail) {
+    //   if (!this.isValidEmail(command.mail)) {
+    //     this.eventBus.publish(
+    //       new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
+    //     );
+    //     throw new InvalidMailHttpException();
+    //   }
+    // }
 
     if (command.username) {
       if (!this.isValidUsername(command.username)) {
