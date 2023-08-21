@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateUserCommand } from './cqrs/command/create-user.command';
 import { CreateUserDto } from '../domain/dto/create-user.dto';
@@ -44,6 +44,9 @@ import { InvalidIdHttpException } from '../../../util/exception/custom-http-exce
 import { UpdateFcmTokenCommand } from './cqrs/command/update-fcm-token.command';
 import { CreateConnectyCubeUserCommand } from './cqrs/command/create-connecty-cube-user.command';
 import { GetUsernameByConnectyCubeIdQuery } from './cqrs/query/get-username-by-connecty-cube-id.query';
+import { GetUserByEmailQuery } from './cqrs/query/get-user-by-email.query';
+import { GetUserByUsernameQuery } from './cqrs/query/get-user-by-username.query';
+import { QueryErrorHttpException } from '../../../util/exception/custom-http-exception/query-error.http-exception';
 
 @Injectable()
 export class UserService {
@@ -307,5 +310,16 @@ export class UserService {
 
   async getUsernameByConnectyCubeId(connectyCubeId: string): Promise<string> {
     return await this.queryBus.execute(new GetUsernameByConnectyCubeIdQuery({ connectyCubeId: connectyCubeId }));
+  }
+
+  async verifyEmailAndUsername(email: string, username: string): Promise<void> {
+    const verifEmail = await this.queryBus.execute(new GetUserByEmailQuery(email));
+    const verifUsername = await this.queryBus.execute(new GetUserByUsernameQuery(username));
+    if (verifEmail != null) {
+      throw new BadRequestException('Email already exist');
+    }
+    if (verifUsername != null) {
+      throw new BadRequestException('Username already exist');
+    }
   }
 }

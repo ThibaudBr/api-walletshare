@@ -11,9 +11,9 @@ export class GetUserByEmailQueryHandler implements IQueryHandler<GetUserByEmailQ
     private userRepository: Repository<UserEntity>,
   ) {}
 
-  async execute(query: GetUserByEmailQuery): Promise<UserEntity> {
+  async execute(query: GetUserByEmailQuery): Promise<UserEntity | null> {
     try {
-      return await this.userRepository.findOneOrFail({
+      return await this.userRepository.findOne({
         where: [{ mail: query.email }],
         select: ['id', 'mail', 'password', 'roles', 'createdAt', 'updatedAt'],
       });

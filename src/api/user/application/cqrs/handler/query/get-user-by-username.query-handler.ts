@@ -11,9 +11,9 @@ export class GetUserByUsernameQueryHandler implements IQueryHandler<GetUserByUse
     private userRepository: Repository<UserEntity>,
   ) {}
 
-  async execute(query: GetUserByUsernameQuery): Promise<UserEntity> {
+  async execute(query: GetUserByUsernameQuery): Promise<UserEntity | null> {
     try {
-      return await this.userRepository.findOneOrFail({
+      return await this.userRepository.findOne({
         where: [{ username: query.username }],
         select: ['id', 'username', 'password', 'roles', 'createdAt', 'updatedAt'],
       });

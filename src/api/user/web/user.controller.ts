@@ -333,4 +333,9 @@ export class UserController {
       };
     });
   }
+
+  @Get('/public/verify-email-and-username/:email/:username')
+  async verifyEmailAndUsername(@Param('email') email: string, @Param('username') username: string): Promise<void> {
+    return await this.userService.verifyEmailAndUsername(email, username);
+  }
 }
