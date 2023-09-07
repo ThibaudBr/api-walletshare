@@ -29,18 +29,18 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
   }
 
   async execute(command: RegisterCommand): Promise<UserEntity> {
-    if (await this.isDuplicatedUsername(command.username)) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
-      );
-      throw new DuplicateUsernameHttpException();
-    }
-    if (await this.isDuplicatedEmail(command.mail)) {
-      this.eventBus.publish(
-        new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
-      );
-      throw new DuplicateMailHttpException();
-    }
+    // if (await this.isDuplicatedUsername(command.username)) {
+    //   this.eventBus.publish(
+    //     new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Username already exists' }),
+    //   );
+    //   throw new DuplicateUsernameHttpException();
+    // }
+    // if (await this.isDuplicatedEmail(command.mail)) {
+    //   this.eventBus.publish(
+    //     new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Email already exists' }),
+    //   );
+    //   throw new DuplicateMailHttpException();
+    // }
 
     if (this.isValidPassword(command.password)) {
       this.eventBus.publish(
@@ -49,14 +49,14 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
       throw new InvalidPasswordHttpException();
     }
 
-    // if (command.mail) {
-    //   if (!this.isValidEmail(command.mail)) {
-    //     this.eventBus.publish(
-    //       new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
-    //     );
-    //     throw new InvalidMailHttpException();
-    //   }
-    // }
+    if (command.mail) {
+      if (!this.isValidEmail(command.mail)) {
+        this.eventBus.publish(
+          new ErrorCustomEvent({ localisation: 'auth', handler: 'Register', error: 'Invalid mail' }),
+        );
+        throw new InvalidMailHttpException();
+      }
+    }
 
     if (command.username) {
       if (!this.isValidUsername(command.username)) {
@@ -85,11 +85,11 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
     return insertedUser;
   }
 
-  private async isDuplicatedUsername(username: string): Promise<boolean> {
-    return await this.userRepository.find().then(users => {
-      return users.some(user => user.username === username);
-    });
-  }
+  // private async isDuplicatedUsername(username: string): Promise<boolean> {
+  //   return await this.userRepository.find().then(users => {
+  //     return users.some(user => user.username === username);
+  //   });
+  // }
 
   private async isDuplicatedEmail(email: string): Promise<boolean> {
     return await this.userRepository.find().then(users => {
